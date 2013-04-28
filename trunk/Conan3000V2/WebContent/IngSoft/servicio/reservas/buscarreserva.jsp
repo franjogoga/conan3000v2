@@ -52,6 +52,25 @@
 	<!-- The fav icon -->
 	<link rel="shortcut icon" href="img/favicon.ico">
 		
+		<script> 
+function cambiarIcono(id){
+
+var elemento = document.getElementById(id);
+	
+	if (elemento.className == "btn btn-success") {
+	elemento.className = "btn btn-primary";
+	alert("Entre aqui");
+	}
+	else {
+	elemento.className = "btn btn-success";
+	alert("Entre al else");
+	}
+
+
+}
+</script>	
+		
+		
 </head>
 
 <body>
@@ -135,33 +154,34 @@
 							
 							<tr>
 								<td>7:00-7:30</td>
-								</td>
+								
+							
 								<td class="center">
-									<a class="btn btn-success" href="/Conan3000/IngSoft/servicio/reservas/buscarreserva.jsp" >
+									<a id="btn1" class="btn btn-success" href"javascript:cambiarIcono('btn1')">
 										<i class="icon-ok icon-white"></i>  
 										Reservar&nbsp;&nbsp;&nbsp;&nbsp;                                      
-								
-					<!-- <li><a class="ajax-link" href="/Conan3000/IngSoft/servicio/reservas/buscarreserva.jsp"><i class="icon-wrench"></i><span class="hidden-tablet"> Reservas</span></a></li> -->
+						</a>	
+
 									
 								</td>
 								<td class="center" align="center">
 									<a class="btn btn-success" href="formularioreservas.jsp">
 										<i class="icon-ok icon-white"></i>  
 										Reservar&nbsp;&nbsp;&nbsp;&nbsp;                                             
-									
+									</a>
 								</td>
 								<td class="center">
 									<a class="btn btn-success" href="formularioreservas.jsp">
 										<i class="icon-ok icon-white"></i>  
 										Reservar&nbsp;&nbsp;&nbsp;&nbsp;                                             
-									
+								</a>	
 								</td>
                                 </td>
 								<td class="center">
 									<a class="btn btn-success" href="formularioreservas.jsp">
 										<i class="icon-ok icon-white"></i>  
 										Reservar&nbsp;&nbsp;&nbsp;&nbsp;                                             
-									
+									</a>
 								</td>
 								<td class="center">
 									<a class="btn btn-success" href="formularioreservas.jsp">
@@ -177,7 +197,9 @@
 										Reservar&nbsp;&nbsp;&nbsp;&nbsp;                                             
 									
 								</td>
+                                
                                 </td>
+								
 								<td class="center">
 									<a class="btn btn-success" href="formularioreservas.jsp">
 										<i class="icon-ok icon-white"></i>  
@@ -185,6 +207,9 @@
 									
 								</td>
 							</tr>
+							
+							
+							
 							<tr>
 								
 							<tr>
