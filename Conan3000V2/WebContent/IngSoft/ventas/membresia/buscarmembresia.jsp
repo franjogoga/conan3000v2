@@ -156,7 +156,7 @@
 		                <td class="center">02/16/2014</td>
 		                <td class="center">600</td>
 		                <td class="center"><span class="label label-success">Activo</span></td>
-		                <td class="center"><a class="btn btn-success" href="#"> <i class="icon-zoom-in icon-white"></i> Ver </a> <a class="btn btn-info" href="eliminarmembresia.jsp"> <i class="icon-edit icon-white"></i> Modificar </a> <a class="btn btn-danger" href="eliminarmembresia.jsp"> <i class="icon-trash icon-white"></i> Eliminar </a></td>
+		                <td class="center"><a class="btn btn-success" href="#"> <i class="icon-zoom-in icon-white"></i> Ver </a> <a class="btn btn-info" href="modificarmembresia.jsp"> <i class="icon-edit icon-white"></i> Modificar </a> <a class="btn btn-danger" href="eliminarmembresia.jsp"> <i class="icon-trash icon-white"></i> Eliminar </a></td>
 	                  </tr>
 		              <tr>
 		                <td>Jose Sanchez</td>
@@ -164,7 +164,7 @@
 		                <td class="center">05/11/2014</td>
 		                <td class="center">600</td>
 		                <td class="center"><span class="label label-success">Activo</span></td>
-		                <td class="center"><a class="btn btn-success" href="#"> <i class="icon-zoom-in icon-white"></i> Ver </a> <a class="btn btn-info" href="eliminarmembresia.jsp"> <i class="icon-edit icon-white"></i> Modificar </a> <a class="btn btn-danger" href="eliminarmembresia.jsp"> <i class="icon-trash icon-white"></i> Eliminar </a></td>
+		                <td class="center"><a class="btn btn-success" href="#"> <i class="icon-zoom-in icon-white"></i> Ver </a> <a class="btn btn-info" href="modificarmembresia.jsp"> <i class="icon-edit icon-white"></i> Modificar </a> <a class="btn btn-danger" href="eliminarmembresia.jsp"> <i class="icon-trash icon-white"></i> Eliminar </a></td>
 	                  </tr>
 		              <tr>
 		                <td>Raul Bermudez</td>
@@ -172,7 +172,7 @@
 		                <td class="center">07/23/2016</td>
 		                <td class="center">1200</td>
 		                <td class="center"><span class="label">Inactive</span></td>
-		                <td class="center"><a class="btn btn-success" href="#"> <i class="icon-zoom-in icon-white"></i> Ver </a> <a class="btn btn-info" href="eliminarmembresia.jsp"> <i class="icon-edit icon-white"></i> Modificar </a> <a class="btn btn-danger" href="eliminarmembresia.jsp"> <i class="icon-trash icon-white"></i> Eliminar </a></td>
+		                <td class="center"><a class="btn btn-success" href="#"> <i class="icon-zoom-in icon-white"></i> Ver </a> <a class="btn btn-info" href="modificarmembresia.jsp"> <i class="icon-edit icon-white"></i> Modificar </a> <a class="btn btn-danger" href="eliminarmembresia.jsp"> <i class="icon-trash icon-white"></i> Eliminar </a></td>
 	                  </tr>
 	                </tbody>
 	              </table>
