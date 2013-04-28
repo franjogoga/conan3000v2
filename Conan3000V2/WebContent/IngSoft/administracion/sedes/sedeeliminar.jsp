@@ -100,7 +100,7 @@
 						
 						
 							  <div class="control-group">
-                                  <label class="control-label" for="selectError">Provincia:</label>
+                                  <label class="control-label" for="selectError">Departamento:</label>
                                   <div class="controls">
                                       <select disabled=""  name="selectError1" id="selectError" data-rel="chosen">
                                           <option> Lima </option>
@@ -111,6 +111,21 @@
                                       </select>
                                   </div>
 						      </div>
+                              
+                              
+							  <div class="control-group">
+                                  <label class="control-label" for="selectError10">Provincia:</label>
+                                  <div class="controls">
+                                      <select disabled=""  name="selectError1" id="selectError10" data-rel="chosen">
+                                          <option> Lima </option>
+                                          <option> Arequipa </option>
+                                          <option> Puno </option>
+                                          <option> Ica </option>
+                                          <option> Piura </option>
+                                      </select>
+                                  </div>
+						      </div>
+                              
                               
 							  <div class="control-group">
                                   <label class="control-label" for="selectError20">Distrito:</label>
@@ -190,6 +205,44 @@
 								  </select>
 								</div>
 							  </div>
+							  
+							  
+							  
+							  
+							  
+							  <div class="control-group">
+								<label class="control-label">Estado</label>
+								
+								<div class="controls">
+								
+								  <label class="radio">
+									<input disabled="" type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
+									Dispoible
+								  </label>
+								  
+								 <!--     <div style="clear:both"></div>   -->
+								  
+								  
+								  <label class="radio">
+									<input disabled="" type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+									No disponible
+								  </label>
+								  
+								  
+								  <label class="radio">
+									<input disabled="" type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+									Cancelada
+								  </label>
+								  
+								  
+								</div>
+								
+							  </div>	  
+							  
+							  
+							  
+							  
+							  
 						
 						<!--    ----------------------------------------------------------------------------------------------    -->
 						

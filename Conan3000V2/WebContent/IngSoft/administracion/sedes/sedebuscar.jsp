@@ -105,7 +105,7 @@
 						
 						
 							  <div class="control-group">
-                                  <label class="control-label" for="selectError">Provincia:</label>
+                                  <label class="control-label" for="selectError">Departamento:</label>
                                   <div class="controls">
                                       <select    name="selectError1" id="selectError" data-rel="chosen">
                                           <option> Lima </option>
@@ -116,6 +116,22 @@
                                       </select>
                                   </div>
 						      </div>
+						      
+						      
+							  <div class="control-group">
+                                  <label class="control-label" for="selectError10">Provincia:</label>
+                                  <div class="controls">
+                                      <select    name="selectError1" id="selectError10" data-rel="chosen">
+                                          <option> Lima </option>
+                                          <option> Arequipa </option>
+                                          <option> Puno </option>
+                                          <option> Ica </option>
+                                          <option> Piura </option>
+                                      </select>
+                                  </div>
+						      </div>
+						      
+						      
                               
 							  <div class="control-group">
                                   <label class="control-label" for="selectError20">Distrito:</label>

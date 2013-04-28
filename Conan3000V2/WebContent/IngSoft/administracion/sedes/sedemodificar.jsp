@@ -92,15 +92,15 @@
 					  
 					  <!--    ----------------------------------------------------------------------------------------------    -->
 							<div class="control-group">
-							  <label class="control-label" for="typeahead7">Nombre: </label>
+							  <label class="control-label" for="typeahead7">Nombre(*): </label>
 							  <div class="controls">
 								<input   type="text" class="span6 typeahead" id="typeahead7"  data-provide="typeahead" >
 							  </div>
 							</div>
-						
-						
+
+
 							  <div class="control-group">
-                                  <label class="control-label" for="selectError">Provincia:</label>
+                                  <label class="control-label" for="selectError">Departamento(*):</label>
                                   <div class="controls">
                                       <select    name="selectError1" id="selectError" data-rel="chosen">
                                           <option> Lima </option>
@@ -111,9 +111,26 @@
                                       </select>
                                   </div>
 						      </div>
+
+
+
+
+						
+							  <div class="control-group">
+                                  <label class="control-label" for="selectError10">Provincia(*):</label>
+                                  <div class="controls">
+                                      <select    name="selectError1" id="selectError10" data-rel="chosen">
+                                          <option> Lima </option>
+                                          <option> Arequipa </option>
+                                          <option> Puno </option>
+                                          <option> Ica </option>
+                                          <option> Piura </option>
+                                      </select>
+                                  </div>
+						      </div>
                               
 							  <div class="control-group">
-                                  <label class="control-label" for="selectError20">Distrito:</label>
+                                  <label class="control-label" for="selectError20">Distrito(*):</label>
                                   <div class="controls">
                                       <select    name="selectError20" id="selectError20" data-rel="chosen">
                                           <option> Magdalena </option>
@@ -126,14 +143,14 @@
 						      </div>
 						  
 						    <div class="control-group">
-						      <label class="control-label" for="typeahead7">Direccion: </label>
+						      <label class="control-label" for="typeahead7">Direccion(*): </label>
 						      <div class="controls">
 						        <input    type="text" class="span6 typeahead" id="typeahead7"  data-provide="typeahead" >
 					          </div>
 					        </div>
 							
 							  <div class="control-group">
-							    <label class="control-label" for="typeahead6">Telefono: </label>
+							    <label class="control-label" for="typeahead6">Telefono(*): </label>
 							    <div class="controls">
 							      <input     type="text" class="span6 typeahead" id="typeahead6"  data-provide="typeahead" data-items="4" data-source='["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Dakota","North Carolina","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"]'>
 						        </div>
@@ -190,6 +207,38 @@
 								  </select>
 								</div>
 							  </div>
+						
+						
+							  <div class="control-group">
+								<label class="control-label">Estado</label>
+								
+								<div class="controls">
+								
+								  <label class="radio">
+									<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
+									Dispoible
+								  </label>
+								  
+								<!--     <div style="clear:both"></div>   -->
+								  
+								  
+								  <label class="radio">
+									<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+									No disponible
+								  </label>
+								  
+								  
+								  <label class="radio">
+									<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+									Cancelada
+								  </label>
+								  
+								  
+								</div>
+								
+							  </div>	
+							
+						
 						
 						<!--    ----------------------------------------------------------------------------------------------    -->
 						
