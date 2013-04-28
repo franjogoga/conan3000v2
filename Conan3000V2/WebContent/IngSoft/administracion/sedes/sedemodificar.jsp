@@ -159,54 +159,14 @@
                                 
                                 
 							  <div class="control-group">
-                                  <label class="control-label" for="typeahead10">Terreno: </label>
+                                  <label class="control-label" for="typeahead10">Area: </label>
 							    <div class="controls">
 							      <input      type="text" class="span6 typeahead" id="typeahead10"  data-provide="typeahead" data-items="4" data-source='["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Dakota","North Carolina","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"]'>
 						        </div>
 						      </div>
 
-							  <div class="control-group">
-								<label class="control-label" for="selectError1">Actividad: </label>
-								<div class="controls">
-								  <select       id="selectError1" multiple data-rel="chosen">
-									<option selected >Natacion</option>
-									<option>Voley</option>
-									<option>Basket</option>
-									<option>Futbol</option>
-									<option>Tenis</option>
-								  </select>
-								</div>
-							  </div>          
 
 
-							  <div class="control-group">
-								<label class="control-label" for="selectError2">Ambiente: </label>
-								<div class="controls">
-								  <select     id="selectError2" multiple data-rel="chosen">
-									<option selected>Piscina</option>
-									<option>Gymnacio</option>
-									<option>Playa</option>
-									<option>Area de Tenis</option>
-									<option>Cancha Futbol</option>
-								  </select>
-								</div>
-							  </div>
-
-
-								
-                                
-							  <div class="control-group">
-								<label class="control-label" for="selectError3">Consecionarios: </label>
-								<div class="controls">
-								  <select     id="selectError3" multiple data-rel="chosen">
-									<option selected >Sodexo</option>
-									<option>Bembos</option>
-									<option>Pizza Hut</option>
-									<option>KFC</option>
-									<option>Popeye</option>
-								  </select>
-								</div>
-							  </div>
 						
 						
 							  <div class="control-group">
@@ -219,45 +179,15 @@
 									Dispoible
 								  </label>
 								  
-								<!--     <div style="clear:both"></div>   -->
+								   <div style="clear:both"></div> 
 								  
 								  
 								  <label class="radio">
 									<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
 									No disponible
 								  </label>
-								  
-								  
-								  <label class="radio">
-									<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-									Cancelada
-								  </label>
-								  
-								  
-								</div>
-								
-							  </div>	
-							
-						
-						
-							  <div class="control-group">
-								<label class="control-label">Estado</label>
-								
-								<div class="controls">
-								
-								  <label class="radio">
-									<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
-									Dispoible
-								  </label>
-								  
-								<!--     <div style="clear:both"></div>   -->
-								  
-								  
-								  <label class="radio">
-									<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-									No disponible
-								  </label>
-								  
+								 
+								    <div style="clear:both"></div> 
 								  
 								  <label class="radio">
 									<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">

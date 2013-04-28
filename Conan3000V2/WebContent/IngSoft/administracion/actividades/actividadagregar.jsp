@@ -90,6 +90,21 @@
 			          <fieldset>
 					  
 					  <!--    ----------------------------------------------------------------------------------------------    -->
+
+
+							  <div class="control-group">
+                                  <label class="control-label" for="selectError">Sede(*): </label>
+                                  <div class="controls">
+                                      <select name="selectError" id="selectError1" data-rel="chosen">
+                                          <option> Sede 1 </option>
+										  <option> Sede 2 </option>
+                                          <option> Sede 3 </option>
+                                          <option> Sede 4 </option>
+                                          <option> Sede 5 </option>
+                                      </select>
+                                  </div>
+						      </div>
+
 							<div class="control-group">
 							  <label class="control-label" for="typeahead7">Nombre(*): </label>
 							  <div class="controls">
@@ -256,7 +271,7 @@
 									Dispoible
 								  </label>
 								  
-								<!--     <div style="clear:both"></div>   -->
+										 <div style="clear:both"></div> 
 								  
 								  
 								  <label class="radio">
@@ -264,6 +279,7 @@
 									No disponible
 								  </label>
 								  
+								         <div style="clear:both"></div>  
 								  
 								  <label class="radio">
 									<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
