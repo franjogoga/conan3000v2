@@ -7,7 +7,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</a>
-				<a class="brand" href="/Conan3000/IngSoft/general/index.jsp"> <img alt="Conan Logo" src="img/conan_logo.png" /> 
+				<a class="brand" href="/Conan3000V2/IngSoft/general/index.jsp"> <img alt="Conan Logo" src="img/conan_logo.png" /> 
 				<span>Conan<br> <span style="font-size:10px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3000</span></span></a>
 				
 				<!-- theme selector starts -->
