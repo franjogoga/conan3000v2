@@ -1,7 +1,7 @@
 <div class="span2 main-menu-span">
 				<div class="well nav-collapse sidebar-nav">
 					<ul class="nav nav-tabs nav-stacked main-menu">
-                        <li><a class="ajax-link" href="/Conan300/IngSoft/general/index.jsp"><i class="icon-home"></i><span class="hidden-tablet"> Home</span></a></li>
+                        <li><a class="ajax-link" href="/Conan3000V2/IngSoft/general/index.jsp"><i class="icon-home"></i><span class="hidden-tablet"> Home</span></a></li>
    						<li class="nav-header hidden-tablet">Mantenimientos</li>
    						<li><a class="ajax-link" href="/Conan3000V2/IngSoft/administracion/sedes/sedebuscar.jsp"><i class="icon-wrench"></i><span class="hidden-tablet"> Sedes</span></a></li>
 						<li><a class="ajax-link" href="/Conan3000V2/IngSoft/administracion/empleados/buscarempleado.jsp"><i class="icon-wrench"></i><span class="hidden-tablet"> Empleados</span></a></li>
