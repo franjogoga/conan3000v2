@@ -90,7 +90,7 @@
 			        <form class="form-horizontal">
 			          <fieldset>
 			            <div class="control-group">
-			              <label class="control-label" for="typeahead7">Nombre(*):</label>
+			              <label class="control-label" for="typeahead7">Nombre Promoci&oacute;n(*):</label>
 			              <div class="controls">
 			                <input type="text" class="span6 typeahead" id="typeahead7"  data-provide="typeahead" >
 		                  </div>
@@ -103,9 +103,9 @@
 		                    </div>
 		                  </div>
 			              <div class="control-group">
-			                <label class="control-label" for="date01">Fecha de fin(*):</label>
+			                <label class="control-label" for="date02">Fecha de fin(*):</label>
 			                <div class="controls">
-			                  <input type="text" class="input-xlarge datepicker" id="date01" value="02/16/13">
+			                  <input type="text" class="input-xlarge datepicker" id="date02" value="02/16/13">
 		                    </div>
 		                  </div>
 			              <div class="control-group">
@@ -114,24 +114,11 @@
 			                  <input type="text" class="span6 typeahead" id="typeahead8"  data-provide="typeahead" data-items="4" >
 		                    </div>
 		                  </div>
-			              <div class="control-group">
-								<label class="control-label">Estado(*):</label>
-								<div class="controls">
-								  <label class="radio">
-									<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
-									Activo
-								  </label>
-								  <div style="clear:both"></div>
-								  <label class="radio">
-									<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-									Inactivo
-								  </label>
-								</div>
-							  </div>
+			            
 			              <div class="control-group">
 			                <label class="control-label" for="textarea2">Descripci&oacute;n:</label>
 			                <div class="controls">
-			                  <textarea name="textarea" rows="3" class="" id="textarea2"></textarea>
+			                  <textarea name="textarea" class="" id="textarea2" ></textarea>
 		                    </div>
 		                  </div>
 			            </div>

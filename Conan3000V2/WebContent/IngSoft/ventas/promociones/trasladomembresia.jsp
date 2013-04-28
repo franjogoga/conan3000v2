@@ -78,13 +78,13 @@
 			  <!-- content starts -->
 			  <div>
 			    <ul class="breadcrumb">
-			      <li> <a href="#">Home</a> /  <a href="#">Mantenimiento de Membres&iacuteas</a> / Traslado de Membres&iacutea</li>
+			      <li> <a href="#">Home</a> /  <a href="#">Mantenimiento de Membres&iacutea;s</a> / Traslado de Membres&iacutea</li>
 		        </ul>
 		      </div>
 			  <div class="row-fluid sortable">
 			    <div class="box span12">
 			      <div class="box-header well" data-original-title>
-			        <h2><i class="icon-user"></i>TRASLADO DE MEMBRES&IacuteçA</h2>
+			        <h2><i class="icon-user"></i>TRASLADO DE MEMBRES&Iacute;çA</h2>
 		          </div>
 			      <div class="box-content">
 			        <form class="form-horizontal">
@@ -105,12 +105,13 @@
                           <div class="control-group">
 			              <label class="control-label" for="typeahead7">Nuevo socio:</label>
 			              <div class="controls">
-			                <input type="text" disabled class="span6 typeahead" id="typeahead7"  data-provide="typeahead"  align="right"> <a class="btn btn-primary" href="#" > <i class="icon icon-add icon-white" > </i> Agregar </a>  
+			                <input type="text" disabled class="span6 typeahead" id="typeahead7"  data-provide="typeahead"  align="right"> <a class="btn btn-primary" href="agregarmembresia.jsp" > <i class="icon icon-add icon-white" > </i> Agregar </a>  
 			                		                  
-			                		                  </div>  <!-- agregar nuevo boton -->
+			           </div>  <!-- agregar nuevo boton -->
 					   
 		                </div>
 			            <div class="control-group">
+			            
                         <div class="control-group">
 			                <label class="control-label" for="selectError">Parentesco:</label>
 			                <div class="controls">

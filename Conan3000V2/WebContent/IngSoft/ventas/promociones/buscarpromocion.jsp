@@ -84,7 +84,7 @@
 			  <div class="row-fluid sortable">
 			    <div class="box span12">
 			      <div class="box-header well" data-original-title>
-			        <h2><i class="icon-search"></i>BUSCAR PROMOCI</h2>
+			        <h2><i class="icon-search"></i>BUSCAR PROMOCION</h2>
 		          </div>
 			      <div class="box-content">
 			        <form class="form-horizontal">
@@ -98,20 +98,21 @@
 			            <div class="control-group">
 			              <div class="control-group">
 			                <div class="control-group">
-			                  <label class="control-label" for="typeahead2">Nombre:</label>
+			                  <label class="control-label" for="typeahead2">Nombre Promoci&oacute;n:</label>
 			                  <div class="controls">
 			                    <input type="text" class="span6 typeahead" id="typeahead2"  data-provide="typeahead" >
 		                      </div>
 		                    </div>
+		                     
 			                <label class="control-label" for="date01">Fecha de inicio:</label>
 			                <div class="controls">
 			                  <input type="text" class="input-xlarge datepicker" id="date01" value="16/02/12">
 		                    </div>
 		                  </div>
 			              <div class="control-group">
-			                <label class="control-label" for="date01">Fecha de fin:</label>
+			                <label class="control-label" for="date02">Fecha de fin:</label>
 			                <div class="controls">
-			                  <input type="text" class="input-xlarge datepicker" id="date01" value="16/02/13">
+			                  <input type="text" class="input-xlarge datepicker" id="date02" value="16/02/13">
 		                    </div>
 		                  </div>
 			              <div class="control-group">
