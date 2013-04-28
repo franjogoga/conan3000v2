@@ -53,21 +53,37 @@
 	<link rel="shortcut icon" href="img/favicon.ico">
 		
 		<script> 
-function cambiarIcono(id){
+// function cambiarIcono(id){
 
-var elemento = document.getElementById(id);
+// var elemento = document.getElementById(id);
+	
+// 	if (elemento.className == "btn btn-success") {
+// 	elemento.className = "btn btn-primary";
+// 	alert("Entre aqui");
+// 	}
+// 	else {
+// 	elemento.className = "btn btn-success";
+// 	alert("Entre al else");
+// 	}
+
+
+// }
+
+function cambiarClase(elemento){
+
+//alert("MAY");
 	
 	if (elemento.className == "btn btn-success") {
 	elemento.className = "btn btn-primary";
-	alert("Entre aqui");
+	//alert("Entre aqui");
 	}
 	else {
 	elemento.className = "btn btn-success";
-	alert("Entre al else");
+	//alert("Entre al else");
 	}
-
-
 }
+
+
 </script>	
 		
 		
@@ -157,7 +173,7 @@ var elemento = document.getElementById(id);
 								
 							
 								<td class="center">
-									<a id="btn1" class="btn btn-success" href"javascript:cambiarIcono('btn1')">
+									<a id="btn1" class="btn btn-success" onclick="javascript:cambiarClase(this)">
 										<i class="icon-ok icon-white"></i>  
 										Reservar&nbsp;&nbsp;&nbsp;&nbsp;                                      
 						</a>	
@@ -165,26 +181,26 @@ var elemento = document.getElementById(id);
 									
 								</td>
 								<td class="center" align="center">
-									<a class="btn btn-success" href="formularioreservas.jsp">
+									<a class="btn btn-success" onclick="javascript:cambiarClase(this)">
 										<i class="icon-ok icon-white"></i>  
 										Reservar&nbsp;&nbsp;&nbsp;&nbsp;                                             
 									</a>
 								</td>
 								<td class="center">
-									<a class="btn btn-success" href="formularioreservas.jsp">
+									<a class="btn btn-success" onclick="javascript:cambiarClase(this)">
 										<i class="icon-ok icon-white"></i>  
 										Reservar&nbsp;&nbsp;&nbsp;&nbsp;                                             
 								</a>	
 								</td>
                                 </td>
 								<td class="center">
-									<a class="btn btn-success" href="formularioreservas.jsp">
+									<a class="btn btn-success" onclick="javascript:cambiarClase(this)">
 										<i class="icon-ok icon-white"></i>  
 										Reservar&nbsp;&nbsp;&nbsp;&nbsp;                                             
 									</a>
 								</td>
 								<td class="center">
-									<a class="btn btn-success" href="formularioreservas.jsp">
+									<a class="btn btn-success" onclick="javascript:cambiarClase(this)">
 										<i class="icon-ok icon-white"></i>  
 										Reservar&nbsp;&nbsp;&nbsp;&nbsp;                                             
 									</a>
@@ -192,7 +208,7 @@ var elemento = document.getElementById(id);
 								</td>
                                 </td>
 								<td class="center">
-									<a class="btn btn-success" href="formularioreservas.jsp">
+									<a class="btn btn-success" onclick="javascript:cambiarClase(this)">
 										<i class="icon-ok icon-white"></i>  
 										Reservar&nbsp;&nbsp;&nbsp;&nbsp;                                             
 									
@@ -201,7 +217,7 @@ var elemento = document.getElementById(id);
                                 </td>
 								
 								<td class="center">
-									<a class="btn btn-success" href="formularioreservas.jsp">
+									<a class="btn btn-success" onclick="javascript:cambiarClase(this)">
 										<i class="icon-ok icon-white"></i>  
 										Reservar&nbsp;&nbsp;&nbsp;&nbsp;                                             
 									
@@ -215,14 +231,14 @@ var elemento = document.getElementById(id);
 							<tr>
 								<td>7:30-8:00</td>
 								<td class="center">
-									<a class="btn btn-success" href="formularioreservas.jsp">
+									<a class="btn btn-success" onclick="javascript:cambiarClase(this)">
 										<i class="icon-ok icon-white"></i>  
 										Reservar&nbsp;&nbsp;&nbsp;&nbsp;                                             
 									</a>
 									
 								</td>
 								<td class="center">
-									<a class="btn btn-success" href="formularioreservas.jsp">
+									<a class="btn btn-success" onclick="javascript:cambiarClase(this)">
 										<i class="icon-ok icon-white"></i>  
 										Reservar&nbsp;&nbsp;&nbsp;&nbsp;                                             
 									</a>
@@ -230,34 +246,34 @@ var elemento = document.getElementById(id);
 								</td>
 								</td>
 								<td class="center">
-									<a class="btn btn-success" href="formularioreservas.jsp">
+									<a class="btn btn-success" onclick="javascript:cambiarClase(this)">
 										<i class="icon-ok icon-white"></i>  
 										Reservar&nbsp;&nbsp;&nbsp;&nbsp;                                             
 									
 								</td>
                                 </td>
 								<td class="center">
-									<a class="btn btn-success" href="formularioreservas.jsp">
+									<a class="btn btn-success" onclick="javascript:cambiarClase(this)">
 										<i class="icon-ok icon-white"></i>  
 										Reservar&nbsp;&nbsp;&nbsp;&nbsp;                                             
 									
 								</td>
 								<td class="center">
-									<a class="btn btn-success" href="formularioreservas.jsp">
+									<a class="btn btn-success" onclick="javascript:cambiarClase(this)">
 										<i class="icon-ok icon-white"></i>  
 										Reservar&nbsp;&nbsp;&nbsp;&nbsp;                                             
 									</a>
 						
 								</td>
                                 <td class="center">
-									<a class="btn btn-success" href="formularioreservas.jsp">
+									<a class="btn btn-success" onclick="javascript:cambiarClase(this)">
 										<i class="icon-ok icon-white"></i>  
 										Reservar&nbsp;&nbsp;&nbsp;&nbsp;                                             
 									</a>
 						
 								</td>
                                 <td class="center">
-									<a class="btn btn-success" href="formularioreservas.jsp">
+									<a class="btn btn-success" onclick="javascript:cambiarClase(this)">
 										<i class="icon-ok icon-white"></i>  
 										Reservar&nbsp;&nbsp;&nbsp;&nbsp;                                             
 									</a>
@@ -273,14 +289,14 @@ var elemento = document.getElementById(id);
 									</a>
 								</td>
 								<td class="center">
-									<a class="btn btn-success" href="formularioreservas.jsp">
+									<a class="btn btn-success" onclick="javascript:cambiarClase(this)">
 										<i class="icon-ok icon-white"></i>  
 										Reservar&nbsp;&nbsp;&nbsp;&nbsp;                                             
 									</a>
 									
 								</td>
 								<td class="center">
-									<a class="btn btn-success" href="formularioreservas.jsp">
+									<a class="btn btn-success" onclick="javascript:cambiarClase(this)">
 										<i class="icon-ok icon-white"></i>  
 										Reservar&nbsp;&nbsp;&nbsp;&nbsp;                                             
 									</a>
@@ -303,14 +319,14 @@ var elemento = document.getElementById(id);
 									</a>
 								</td>
                                 <td class="center">
-									<a class="btn btn-success" href="formularioreservas.jsp">
+									<a class="btn btn-success" onclick="javascript:cambiarClase(this)">
 										<i class="icon-ok icon-white"></i>  
 										Reservar&nbsp;&nbsp;&nbsp;&nbsp;                                             
 									</a>
 						
 								</td>
                                 <td class="center">
-									<a class="btn btn-success" href="formularioreservas.jsp">
+									<a class="btn btn-success" onclick="javascript:cambiarClase(this)">
 										<i class="icon-ok icon-white"></i>  
 										Reservar&nbsp;&nbsp;&nbsp;&nbsp;                                             
 									</a>
@@ -327,14 +343,14 @@ var elemento = document.getElementById(id);
 									</a>
 								</td>
 								<td class="center">
-									<a class="btn btn-success" href="formularioreservas.jsp">
+									<a class="btn btn-success" onclick="javascript:cambiarClase(this)">
 										<i class="icon-ok icon-white"></i>  
 										Reservar&nbsp;&nbsp;&nbsp;&nbsp;                                             
 									</a>
 									
 								</td>
 								<td class="center">
-									<a class="btn btn-success" href="formularioreservas.jsp">
+									<a class="btn btn-success" onclick="javascript:cambiarClase(this)">
 										<i class="icon-ok icon-white"></i>  
 										Reservar&nbsp;&nbsp;&nbsp;&nbsp;                                             
 									</a>
@@ -378,28 +394,28 @@ var elemento = document.getElementById(id);
 									</a>
 								</td>
 								<td class="center">
-									<a class="btn btn-success" href="formularioreservas.jsp">
+									<a class="btn btn-success" onclick="javascript:cambiarClase(this)">
 										<i class="icon-ok icon-white"></i>  
 										Reservar&nbsp;&nbsp;&nbsp;&nbsp;                                             
 									</a>
 									
 								</td>
 								<td class="center">
-									<a class="btn btn-success" href="formularioreservas.jsp">
+									<a class="btn btn-success" onclick="javascript:cambiarClase(this)">
 										<i class="icon-ok icon-white"></i>  
 										Reservar&nbsp;&nbsp;&nbsp;&nbsp;                                             
 									</a>
 									
 								</td>
 								<td class="center">
-									<a class="btn btn-success" href="formularioreservas.jsp">
+									<a class="btn btn-success" onclick="javascript:cambiarClase(this)">
 										<i class="icon-ok icon-white"></i>  
 										Reservar&nbsp;&nbsp;&nbsp;&nbsp;                                             
 									
 								</td>
                                 </td>
 								<td class="center">
-									<a class="btn btn-success" href="formularioreservas.jsp">
+									<a class="btn btn-success" onclick="javascript:cambiarClase(this)">
 										<i class="icon-ok icon-white"></i>  
 										Reservar&nbsp;&nbsp;&nbsp;&nbsp;                                             
 									
@@ -420,14 +436,14 @@ var elemento = document.getElementById(id);
 							<tr>
 								<td>9:30-10:00</td>
 								<td class="center">
-									<a class="btn btn-success" href="formularioreservas.jsp">
+									<a class="btn btn-success" onclick="javascript:cambiarClase(this)">
 										<i class="icon-ok icon-white"></i>  
 										Reservar&nbsp;&nbsp;&nbsp;&nbsp;                                             
 									</a>
 									
 								</td>
 								<td class="center">
-									<a class="btn btn-success" href="formularioreservas.jsp">
+									<a class="btn btn-success" onclick="javascript:cambiarClase(this)">
 										<i class="icon-ok icon-white"></i>  
 										Reservar&nbsp;&nbsp;&nbsp;&nbsp;                                             
 									</a>
@@ -440,7 +456,7 @@ var elemento = document.getElementById(id);
 									</a>
 								</td>
 								<td class="center">
-									<a class="btn btn-success" href="formularioreservas.jsp">
+									<a class="btn btn-success" onclick="javascript:cambiarClase(this)">
 										<i class="icon-ok icon-white"></i>  
 										Reservar&nbsp;&nbsp;&nbsp;&nbsp;                                             
 									</a>
@@ -448,7 +464,7 @@ var elemento = document.getElementById(id);
 								</td>
                                 </td>
 								<td class="center">
-									<a class="btn btn-success" href="formularioreservas.jsp">
+									<a class="btn btn-success" onclick="javascript:cambiarClase(this)">
 										<i class="icon-ok icon-white"></i>  
 										Reservar&nbsp;&nbsp;&nbsp;&nbsp;                                             
 									
@@ -469,14 +485,14 @@ var elemento = document.getElementById(id);
 							<tr>
 								<td>10:00-10:30</td>
 								<td class="center">
-									<a class="btn btn-success" href="formularioreservas.jsp">
+									<a class="btn btn-success" onclick="javascript:cambiarClase(this)">
 										<i class="icon-ok icon-white"></i>  
 										Reservar&nbsp;&nbsp;&nbsp;&nbsp;                                             
 									</a>
 									
 								</td>
 								<td class="center">
-									<a class="btn btn-success" href="formularioreservas.jsp">
+									<a class="btn btn-success" onclick="javascript:cambiarClase(this)">
 										<i class="icon-ok icon-white"></i>  
 										Reservar&nbsp;&nbsp;&nbsp;&nbsp;                                             
 									</a>
@@ -489,19 +505,19 @@ var elemento = document.getElementById(id);
 									</a>
 								</td>
 								<td class="center">
-									<a class="btn btn-success" href="formularioreservas.jsp">
+									<a class="btn btn-success" onclick="javascript:cambiarClase(this)">
 										<i class="icon-ok icon-white"></i>  
 										Reservar&nbsp;&nbsp;&nbsp;&nbsp;                                             
 									</a>
                               <td class="center">
-									<a class="btn btn-success" href="formularioreservas.jsp">
+									<a class="btn btn-success" onclick="javascript:cambiarClase(this)">
 										<i class="icon-ok icon-white"></i>  
 										Reservar&nbsp;&nbsp;&nbsp;&nbsp;                                             
 									</a>
 						
 							  </td>
                                 <td class="center">
-									<a class="btn btn-success" href="formularioreservas.jsp">
+									<a class="btn btn-success" onclick="javascript:cambiarClase(this)">
 										<i class="icon-ok icon-white"></i>  
 										Reservar&nbsp;&nbsp;&nbsp;&nbsp;                                             
 									</a>
@@ -512,7 +528,7 @@ var elemento = document.getElementById(id);
 								</td>
                                 </td>
 								<td class="center">
-									<a class="btn btn-success" href="formularioreservas.jsp">
+									<a class="btn btn-success" onclick="javascript:cambiarClase(this)">
 										<i class="icon-ok icon-white"></i>  
 										Reservar&nbsp;&nbsp;&nbsp;&nbsp;                                             
 									
@@ -521,14 +537,14 @@ var elemento = document.getElementById(id);
 							<tr>
 								<td>10:30-11:00</td>
 								<td class="center">
-									<a class="btn btn-success" href="formularioreservas.jsp">
+									<a class="btn btn-success" onclick="javascript:cambiarClase(this)">
 										<i class="icon-ok icon-white"></i>  
 										Reservar&nbsp;&nbsp;&nbsp;&nbsp;                                             
 									</a>
 									
 								</td>
 								<td class="center">
-									<a class="btn btn-success" href="formularioreservas.jsp">
+									<a class="btn btn-success" onclick="javascript:cambiarClase(this)">
 										<i class="icon-ok icon-white"></i>  
 										Reservar&nbsp;&nbsp;&nbsp;&nbsp;                                             
 									</a>
@@ -541,7 +557,7 @@ var elemento = document.getElementById(id);
 									</a>
 								</td>
 								<td class="center">
-									<a class="btn btn-success" href="formularioreservas.jsp">
+									<a class="btn btn-success" onclick="javascript:cambiarClase(this)">
 										<i class="icon-ok icon-white"></i>  
 										Reservar&nbsp;&nbsp;&nbsp;&nbsp;                                             
 									</a>
@@ -549,20 +565,20 @@ var elemento = document.getElementById(id);
 								</td>
                                 </td>
 								<td class="center">
-									<a class="btn btn-success" href="formularioreservas.jsp">
+									<a class="btn btn-success" onclick="javascript:cambiarClase(this)">
 										<i class="icon-ok icon-white"></i>  
 										Reservar&nbsp;&nbsp;&nbsp;&nbsp;                                             
 									
 								</td>
                                 <td class="center">
-									<a class="btn btn-success" href="formularioreservas.jsp">
+									<a class="btn btn-success" onclick="javascript:cambiarClase(this)">
 										<i class="icon-ok icon-white"></i>  
 										Reservar&nbsp;&nbsp;&nbsp;&nbsp;                                             
 									</a>
 						
 								</td>
                                 <td class="center">
-									<a class="btn btn-success" href="formularioreservas.jsp">
+									<a class="btn btn-success" onclick="javascript:cambiarClase(this)">
 										<i class="icon-ok icon-white"></i>  
 										Reservar&nbsp;&nbsp;&nbsp;&nbsp;                                             
 									</a>
