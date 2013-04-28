@@ -97,7 +97,7 @@
 		                    </div>
 		                  </div>
 			            <div class="control-group">
-			              <label class="control-label" for="typeahead7">Nombre:</label>
+			              <label class="control-label" for="typeahead7">Nombre Promoci&oacute;n:</label>
 			              <div class="controls">
 			                <input type="text" class="span6 typeahead" id="typeahead7"  data-provide="typeahead" >
 		                  </div>
@@ -110,9 +110,9 @@
 		                    </div>
 		                  </div>
 			              <div class="control-group">
-			                <label class="control-label" for="date01">Fecha de fin:</label>
+			                <label class="control-label" for="date02">Fecha de fin:</label>
 			                <div class="controls">
-			                  <input type="text" class="input-xlarge datepicker" id="date01" value="02/16/13">
+			                  <input type="text" class="input-xlarge datepicker" id="date02" value="02/16/13">
 		                    </div>
 		                  </div>
 			              <div class="control-group">
