@@ -342,12 +342,10 @@ var rokboxPath = 'http://livedemo00.template-help.com/joomla_43780/plugins/syste
 
 <!-- modal -->
 
-<div id="openModal" class="modalDialog">
-	<div>
+<div id="openModal" class="modalDialog" >
+	<div >
 		<a href="#close" title="Close" class="mclose">X</a>
-		<h2>Lista de eventos disponibles</h2>
-		<p>This is a sample modal box that can be created using the powers of CSS3.</p>
-		<p>You could do a lot of things here like have a pop-up ad that shows when your website loads, or create a login/register form for users.</p>
+		<iframe src="/Conan3000V2/IngSoft/servicio/evento/buscarevento.jsp" width="100%" height="100%" frameborder="0"></iframe>
 	</div>
 </div>									
 <!-- modal end -->																
