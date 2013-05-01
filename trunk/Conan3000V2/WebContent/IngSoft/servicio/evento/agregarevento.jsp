@@ -52,8 +52,25 @@
 	<!-- The fav icon -->
 	<link rel="shortcut icon" href="img/conan_logo.png">
 	<script>
+		function procesar(form,indice){
+			
+		
+		
+		}
+	
 		function alt_submit(){
-			document.fmrData.submit();
+		var form=document.fmrData;
+		var i=0;
+			while(true){
+				if(form[i].className.search("btn")>=0) break;
+				if(form[i]).id.search("selectS")
+			
+			
+			}
+		
+		
+		
+			//document.fmrData.submit();
 		
 		}
 	</script>	
@@ -83,10 +100,10 @@
 			<div>
 				<ul class="breadcrumb">
 					<li>
-						<a href="#">Home</a> <span class="divider">/</span>
+						<a href="/Conan3000V2/IngSoft/general/index.jsp">Home</a> <span class="divider">/</span>
 					</li>
 					<li>
-						<a href="#">Mantenimiento de Eventos</a> <span class="divider">/</span>
+						<a href="buscarevento.jsp">Mantenimiento de Eventos</a> <span class="divider">/</span>
 					</li>
 					<li>
 						Agregar de Eventos
@@ -106,32 +123,32 @@
 						    <div class="control-group">
 						      <label class="control-label" for="typeahead7">Nombre de evento(*): </label>
 						      <div class="controls">
-						        <input type="text" class="span6 typeahead" id="typeahead7"  data-provide="typeahead" >
+						        <input type="text" class="span6 typeahead" id="txtNombreEvento"  data-provide="typeahead"  name="txtNombreEvento" >
 					          </div>
 					        </div>
 						    
 							<div class="control-group">
-								<label class="control-label" for="selectError">Tipo de Evento(*):</label>
+								<label class="control-label" for="selectS1">Tipo de Evento(*):</label>
 								<div class="controls">
-								  <select id="selectError" data-rel="chosen">
+								  <select id="selectS1" data-rel="chosen" name="cmbTipo">
 									<option selected>Interno</option>
 									<option>Externo</option>									
 								  </select>
 								</div>
 							  </div>
 							  <div class="control-group">
-								<label class="control-label" for="selectError1">Sedes relacionadas(*):</label>
+								<label class="control-label" for="selectM1">Sedes relacionadas(*):</label>
 								<div class="controls">
-								  <select id="selectError1" multiple data-rel="chosen">
-									<option>Campo</option>
-									<option>Playa</option>																	
+								  <select id="selectM1" multiple data-rel="chosen" name="cmbSedes" >
+									<option value="01">Campo</option>
+									<option value="02">Playa</option>																	
 								  </select>
 								</div>
 							  </div>
 							   <div class="control-group">
-								<label class="control-label" for="selectError2">Ambientes relacionados(*):</label>
+								<label class="control-label" for="selectM2">Ambientes relacionados(*):</label>
 								<div class="controls">
-								  <select id="selectError2" multiple data-rel="chosen">
+								  <select id="selectM2" multiple data-rel="chosen" name="cmbAmbientes">
 									<option>Cancha de tenis</option>
 									<option>Cancha de futbol</option>
 									<option>Piscina</option>
@@ -142,14 +159,14 @@
 							  <div class="control-group">
 							  <label class="control-label" for="date01">Limite Inicio(*):</label>
 							  <div class="controls">
-								<input type="text" class="input-xlarge datepicker" id="date01" value="14/04/2013" obl="true">
+								<input type="text" class="input-xlarge datepicker" id="date01" value="14/04/2013" obl="true" name="fFecIncio">
 							  </div>
 							</div>
 							
 							<div class="control-group">
 							  <label class="control-label" for="date02">Limite Fin(*):</label>
 							  <div class="controls">
-								<input type="text" class="input-xlarge datepicker" id="date02" value="14/04/2013">
+								<input type="text" class="input-xlarge datepicker" id="date02" value="14/04/2013" name="fFecFin">
 							  </div>
 							</div>
 						    <div class="form-actions">
