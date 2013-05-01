@@ -51,7 +51,12 @@
 
 	<!-- The fav icon -->
 	<link rel="shortcut icon" href="img/conan_logo.png">
+	<script>
+		function alt_submit(){
+			document.fmrData.submit();
 		
+		}
+	</script>	
 </head>
 
 <body>
@@ -95,7 +100,8 @@
 					  <h2><i class="icon-plus-sign"></i>AGREGAR EVENTO</h2>
 				  </div>
 					<div class="box-content">
-						<form class="form-horizontal">
+						<form class="form-horizontal" action="<%= response.encodeURL("SMSEvento")%>" name="frmData" method="post">
+						<input type="hidden" name="accion" value="Agregar"></input>
 						  <fieldset>
 						    <div class="control-group">
 						      <label class="control-label" for="typeahead7">Nombre de evento(*): </label>
@@ -147,8 +153,8 @@
 							  </div>
 							</div>
 						    <div class="form-actions">
-							  <button type="submit" class="btn btn-primary">Agregar</button>
-							  <button type="reset" class="btn">Cancelar</button>
+							  <button type="submit" class="btn btn-primary" onclick="javascript:alt_submit()">Agregar</button>
+							  <button type="reset" class="btn" >Cancelar</button>
 							</div>
 						  </fieldset>
 					  </form>   

@@ -6,7 +6,9 @@ public class SMSEvento extends CoServlet{
 	
 	@Override
 	protected void initAcciones() {
-		acciones.put("Buscar", null);
+		acciones.put("Buscar", new AccionBuscarEvento());
+		acciones.put("Agregar", new AccionAgregarEvento());
+		acciones.put("Modificar", new AccionModificarEvento());
 	}
 	
 }

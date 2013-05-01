@@ -9,4 +9,16 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  
+  <servlet id="Servlet_0001">
+        <servlet-name>SMSEvento</servlet-name>
+	<servlet-class>IngSoft.servicio.evento.SMSEvento</servlet-class>
+</servlet>
+
+
+
+<servlet-mapping id="ServletMapping_0001">
+        <servlet-name>SMSEvento</servlet-name>
+<url-pattern>/IngSoft/servicio/evento/SMSEvento</url-pattern>
+</servlet-mapping>
 </web-app>
