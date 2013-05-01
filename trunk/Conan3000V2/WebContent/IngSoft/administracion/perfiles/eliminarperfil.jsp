@@ -232,7 +232,7 @@
 	<script src="js/jquery.history.js"></script>
 	<!-- application script for Charisma demo -->
 	<script src="js/charisma.js"></script>
-	<script>	
+	<script>
 
 	</script>
 		<script>loadContent()</script>
