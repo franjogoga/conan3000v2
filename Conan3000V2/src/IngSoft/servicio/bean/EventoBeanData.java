@@ -7,8 +7,8 @@ public class EventoBeanData {
 	private int codigo;
 	private String nombre;
 	private int idTipo;
-	private String idSede;
-	private String idAmbientes;
+	private String[] idSede;
+	private String[] idAmbientes;
 	private Date limiteInicio;
 	private Date limiteFin;
 	
@@ -30,16 +30,16 @@ public class EventoBeanData {
 	public void setIdTipo(int idTipo) {
 		this.idTipo = idTipo;
 	}
-	public String getIdSede() {
+	public String[] getIdSede() {
 		return idSede;
 	}
-	public void setIdSede(String idSede) {
+	public void setIdSede(String[] idSede) {
 		this.idSede = idSede;
 	}
-	public String getIdAmbientes() {
+	public String[] getIdAmbientes() {
 		return idAmbientes;
 	}
-	public void setIdAmbientes(String idAmbientes) {
+	public void setIdAmbientes(String[] idAmbientes) {
 		this.idAmbientes = idAmbientes;
 	}
 	public Date getLimiteInicio() {
@@ -54,6 +54,7 @@ public class EventoBeanData {
 	public void setLimiteFin(Date limiteFin) {
 		this.limiteFin = limiteFin;
 	}
-
+	
+	
 	
 }
