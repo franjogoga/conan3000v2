@@ -103,7 +103,23 @@
 						  <div class="controls">
 							<input type="text" class="span6 typeahead" id="typeahead"  data-provide="typeahead" data-items="4" ></input>								
 						  </div>
-						</div>								
+						</div>				
+						
+						<div class="control-group">
+							<label class="control-label">Estado</label>
+							<div class="controls">
+							  <label class="radio">
+								<input type="radio" name="optionsRadios" id="optionsRadios1" value="activo" checked="">
+								Activo
+							  </label>
+							  <div style="clear:both"></div>
+							  <label class="radio">
+								<input type="radio" name="optionsRadios" id="optionsRadios2" value="inactivo">
+								Inactivo
+							  </label>
+							</div>
+						  </div>
+										
 						
 			            <div class="form-actions">
 			              <button type="submit" class="btn btn-primary">Agregar</button>
