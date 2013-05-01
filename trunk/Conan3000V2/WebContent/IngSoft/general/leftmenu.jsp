@@ -14,7 +14,7 @@
                         <li><a class="ajax-link" href="/Conan3000V2/IngSoft/ventas/producto/buscarproducto.jsp"><i class="icon-wrench"></i><span class="hidden-tablet"> Productos</span></a></li>
                         <li><a class="ajax-link" href="/Conan3000V2/IngSoft/administracion/usuarios/usuariobuscar.jsp"><i class="icon-wrench"></i><span class="hidden-tablet"> Usuarios</span></a></li>
                         <li><a class="ajax-link" href="/Conan3000V2/IngSoft/administracion/actividades/actividadbuscar.jsp"><i class="icon-wrench"></i><span class="hidden-tablet"> Actividades</span></a></li>
-                        <li><a class="ajax-link" href="/Conan3000V2/IngSoft/administracion/perfiles/agregarperfil.jsp"><i class="icon-wrench"></i><span class="hidden-tablet"> Perfiles</span></a></li>
+                        <li><a class="ajax-link" href="/Conan3000V2/IngSoft/administracion/perfiles/buscarperfil.jsp"><i class="icon-wrench"></i><span class="hidden-tablet"> Perfiles</span></a></li>
                         <li><a class="ajax-link" href="/Conan3000V2/IngSoft/administracion/concesionario/buscarconcesionario.jsp"><i class="icon-wrench"></i><span class="hidden-tablet"> Concesionarios</span></a></li>
                         <li><a class="ajax-link" href="/Conan3000V2/IngSoft/servicio/reporte/generarreportes.jsp"><i class="icon-wrench"></i><span class="hidden-tablet"> Reportes</span></a></li>
                         <li><a class="ajax-link" href="/Conan3000V2/IngSoft/administracion/ambiente/buscarambiente.jsp"><i class="icon-wrench"></i><span class="hidden-tablet"> Ambientes</span></a></li>
