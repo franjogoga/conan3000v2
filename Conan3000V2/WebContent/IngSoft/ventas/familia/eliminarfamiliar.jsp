@@ -12,7 +12,7 @@
 		http://twitter.com/halalit_usman
 	-->
 	<meta charset="utf-8">
-	<title>Eliminar Familia</title>
+	<title>Eliminar Familiar</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
 	<meta name="author" content="Muhammad Usman">
@@ -122,12 +122,32 @@
 		                    </div>
 		                  </div>
 			              <div class="control-group">
-			                <div class="control-group">
-			                  <label class="control-label" for="typeahead3">DNI: </label>
-			                  <div class="controls">
-			                    <input type="text" disabled class="span6 typeahead" id="typeahead3" value="45800775"  data-provide="typeahead" data-items="4">
-		                      </div>
+			               	<div class="control-group">
+								<label  class="control-label" for="typeahead3">Tipo de Documento(*):</label>
+								<div class="controls">
+								  <label class="radio">
+									<input disabled type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
+									DNI
+								  </label>
+								  <div style="clear:both"></div>
+								  <label class="radio">
+									<input disabled type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+									Carnet de Extranjeria
+								  </label>
+								   <div style="clear:both"></div>
+								  <label class="radio">
+									<input  disabled type="radio" name="optionsRadios" id="optionsRadios3" value="option3">
+									Pasaporte
+								  </label>
+								</div>
+							  </div>
+							  
+							    <div class="control-group">
+			                <label class="control-label" for="typeahead8">N&uacute;mero de Doc.(*):</label>
+			                <div class="controls">
+			                  <input type="text" disabled class="span6 typeahead" id="typeahead8"  data-provide="typeahead" data-items="4" >
 		                    </div>
+		                  </div>
 			            
 			              <div class="control-group">
 			                <div class="control-group">
