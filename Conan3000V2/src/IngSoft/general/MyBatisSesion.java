@@ -9,17 +9,27 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 public class MyBatisSesion {
 
-	static SqlSessionFactory sesion;
+	static SqlSessionFactory sqlSesionB=null;
 	
-	static public void metodo(){
-		
+	private MyBatisSesion(){}
+	private MyBatisSesion(SqlSessionFactory sqlSesion){
+		this.sqlSesionB=sqlSesion;
+	}
+	
+	static public SqlSessionFactory metodo(){
+		if (sqlSesionB!=null) return sqlSesionB;
 		try{
 			String resource = "Data/config/mybatis-config.xml";
 			InputStream inputStream = Resources.getResourceAsStream(resource);
 			SqlSessionFactoryBuilder builder = new SqlSessionFactoryBuilder();
-			sesion = builder.build(inputStream);
+			sqlSesionB = builder.build(inputStream);
+			return sqlSesionB;
 			}
-			catch(Exception e){}
+			catch(Exception e){
+				e.printStackTrace();
+				
+			}
+		return sqlSesionB;
 			
 	}
 	
