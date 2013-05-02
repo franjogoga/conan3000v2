@@ -177,7 +177,7 @@
 		                
 			            <div class="form-actions">
 			              <button type="submit" class="btn btn-primary">Guardar</button>
-			              <button type="reset" class="btn">Cancelar</button>
+			              <button type="reset" class="btn"><a href="buscarfamiliar.jsp">Cancelar</a></button>
 		                </div>
 		              </fieldset>
 		            </form>

@@ -175,8 +175,8 @@
 		                  </div>
 		                </div>
 			            <div class="form-actions">
-			              <button type="submit" class="btn btn-primary">Eliminar</button>
-			              <button type="reset" class="btn">Cancelar</button>
+			              <button type="submit"  class="btn btn-primary"><a href="confirmacion.jsp">Eliminar</button>
+			              <button type="reset" class="btn"><a href="buscarfamiliar.jsp">Cancelar</a></button>
 		                </div>
 		              </fieldset>
 		            </form>
