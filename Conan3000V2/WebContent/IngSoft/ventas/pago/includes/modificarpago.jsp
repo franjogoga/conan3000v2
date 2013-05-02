@@ -1,7 +1,9 @@
  <!-- content starts -->
 			  <div>
 			    <ul class="breadcrumb">
-			      <li> <a href="#">Home</a> / <a href="#">Mantenimiento de Pagos</a> / Modificar Pago de Membresía</li>
+			      <li> <a href="index.jsp">Home</a> <span class="divider">/</span></li>
+		        <li> <a href="buscarpago.jsp">Mantenimiento de Pagos</a> <span class="divider">/</span></li>
+		        <li> Modificar pago de Membres&iacute;a </li>
 		        </ul>
 		      </div>
 			  <div class="row-fluid sortable">
@@ -19,7 +21,7 @@
 			              </div>
 		                </div>
                         <div class="control-group">
-			                <label class="control-label" for="typeahead4">CÃ³digo de Socio: </label>
+			                <label class="control-label" for="typeahead4">C&oacute;digo de Socio: </label>
 			                <div class="controls">
 			                  <input type="text" class="span6 typeahead disabled" id="typeahead4" value="00001" data-provide="typeahead" data-items="4" disabled="" >
 		                    </div>
@@ -41,6 +43,14 @@
 			                <label class="control-label" for="typeahead4">Monto (S/.): </label>
 			                <div class="controls">
 			                  <input type="text" class="span6 typeahead" id="typeahead4"  data-provide="typeahead" data-items="4" >
+		                    </div>
+		                  </div>
+			            </div>
+			            <div class="control-group">
+			              <div class="control-group">
+			                <label class="control-label" for="typeahead4">Motivo: </label>
+			                <div class="controls">
+			                 <textarea  id="textarea2" rows="3"  style="resize:none"></textarea>
 		                    </div>
 		                  </div>
 			            </div>

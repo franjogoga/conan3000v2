@@ -1,7 +1,10 @@
 <!-- content starts -->
 			  <div>
 			    <ul class="breadcrumb">
-			      <li> <a href="index.jsp">Home</a> / <a href="buscarpagos.jsp">Mantenimiento de Pagos</a> / <a href="buscarpagosotros.jsp">Pago Otros Servicios</a> / Modificar Pago de Otros Servicios</li>
+			      <li> <a href="index.jsp">Home</a> <span class="divider">/</span></li>
+		        <li> <a href="buscarpago.jsp">Mantenimiento de Pagos</a> <span class="divider">/</span></li>
+		        <li> <a href="buscarpagootros.jsp">Pago de Otros Servicios</a> <span class="divider">/</span></li>
+		        <li> Modificar Pago de Otros Servicios </li>
 		        </ul>
 		      </div>
 			  <div class="row-fluid sortable">
@@ -49,6 +52,14 @@
 			                <div class="controls">
 			                  <input type="text" class="span6 typeahead" id="typeahead4"  data-provide="typeahead" data-items="4" >
 			                </div>
+		                  </div>
+			            </div>
+			            <div class="control-group">
+			              <div class="control-group">
+			                <label class="control-label" for="typeahead4">Motivo: </label>
+			                <div class="controls">
+			                 <textarea  id="textarea2" rows="3"  style="resize:none"></textarea>
+		                    </div>
 		                  </div>
 			            </div>
 			            <div class="form-actions">

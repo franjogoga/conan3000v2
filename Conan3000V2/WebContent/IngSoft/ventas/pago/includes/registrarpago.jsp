@@ -1,7 +1,9 @@
 <!-- content starts -->
 			  <div>
 			    <ul class="breadcrumb">
-			      <li> <a href="index.jsp">Home</a> / <a href="buscarpago.jsp">Mantenimiento de Pagos</a> / Registrar Pago de Membres&iacute;a</li>
+			      <li> <a href="index.jsp">Home</a> <span class="divider">/</span></li>
+		        <li> <a href="buscarpago.jsp">Mantenimiento de Pagos</a> <span class="divider">/</span></li>
+		        <li> Registrar Pago de Membres&iacute;a </li>
 		        </ul>
 		      </div>
 			  <div class="row-fluid sortable">
