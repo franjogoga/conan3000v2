@@ -9,7 +9,7 @@
 	<meta name="author" content="Dos Virgenes">
 
 	<!-- The styles -->
-	<link id="bs-css" href="/css/bootstrap-cerulean.css" rel="stylesheet">    
+	<link id="bs-css" href="css/bootstrap-cerulean.css" rel="stylesheet">    
 	<style type="text/css">
 	  body {
 		padding-bottom: 40px;
@@ -99,30 +99,50 @@
 							</div>
 							
 							<div class="control-group">
-							  <label class="control-label" for="typeahead">Apellido Paterno(*):</label>							  
+							  <label class="control-label" for="typeahead">Apellido Paterno (*):</label>							  
 							  <div class="controls">
 								<input type="text" class="span6 typeahead" id="typeahead"  data-provide="typeahead" data-items="4" value="P&eacute;rez"></input>								
 							  </div>
 							</div>
 							
 							<div class="control-group">
-							  <label class="control-label" for="typeahead">Apellido Materno(*):</label>							  
+							  <label class="control-label" for="typeahead">Apellido Materno (*):</label>							  
 							  <div class="controls">
 								<input type="text" class="span6 typeahead" id="typeahead"  data-provide="typeahead" data-items="4" value="Garc&iacute;a"></input>								
 							  </div>
 							</div>
 							
 							<div class="control-group">
-							  <label class="control-label" for="date01">Fecha de Nacimiento (*):</label>
+							  <label class="control-label" for="date01">Fecha de Nac. (*):</label>
 							  <div class="controls">
 								<input type="text" class="input-xlarge datepicker" id="date01" value="02/16/12">
 							  </div>
 							</div>
 
 							<div class="control-group">
-							  <label class="control-label" for="typeahead">DNI(*):</label>							  
+							<label class="control-label" for="dni">Tipo de Documento (*):</label>
+							<div class="controls">
+							  <label class="radio">
+								<input type="radio" name="optionsRadios" id="dni" value="dni" checked="">
+								DNI
+							  </label>					
+							  <div style="clear:both"></div>		  
+							  <label class="radio">
+								<input type="radio" name="optionsRadios" id="carnet" value="carnet">
+								Carnet de extranjería
+							  </label>
+							  <div style="clear:both"></div>
+							  <label class="radio">
+								<input type="radio" name="optionsRadios" id="pasaporte" value="pasaporte">
+								Pasaporte
+							  </label>
+							</div>
+						  </div>						
+
+							<div class="control-group">
+							  <label class="control-label" for="numerodocumento">N&uacute;mero de Documento (*):</label>							  
 							  <div class="controls">
-								<input type="text" class="span6 typeahead" id="typeahead"  data-provide="typeahead" data-items="4" value=12345678></input>								
+								<input type="text" class="span6 typeahead" id="numerodocumento" data-provide="typeahead" data-items="4" value=12345678></input>								
 							  </div>
 							</div>
 							
@@ -137,14 +157,7 @@
 									<option>Puesto 4</option>
 								  </select>
 								</div>
-							</div>
-											
-							<div class="control-group">
-							  <label class="control-label" for="date01">Fecha de Contrato (*):</label>
-							  <div class="controls">
-								<input type="text" class="input-xlarge datepicker" id="date01" value="02/16/12">
-							  </div>
-							</div>
+							</div>																	
 							
 							<div class="control-group">
 								<label class="control-label" for="selectError">Horario de Trabajo (*):</label>
@@ -160,6 +173,19 @@
 							</div>
 							
 							<div class="control-group">
+								<label class="control-label" for="selectarea">&Aacute;rea (*):</label>
+								<div class="controls">
+								  <select name="selectarea" id="selectarea" data-rel="chosen">
+									<option>Area 1</option>
+									<option>Area 2</option>
+									<option>Area 3</option>
+									<option>Area 4</option>
+									<option>Area 5</option>
+								  </select>
+								</div>
+							</div>	
+							
+							<div class="control-group">
 								<label class="control-label" for="selectError">Sede (*):</label>
 								<div class="controls">
 								  <select id="selectError7" data-rel="chosen">
@@ -170,7 +196,22 @@
 									<option>Sede 5</option>
 								  </select>
 								</div>
-							</div>						
+							</div>			
+							
+							<div class="control-group">
+							<label class="control-label">Estado</label>
+							<div class="controls">
+							  <label class="radio">
+								<input type="radio" name="opcionactivo" id="opcionactivo" value="activo" checked="">
+								Activo
+							  </label>
+							  <div style="clear:both"></div>
+							  <label class="radio">
+								<input type="radio" name="opcioninactivo" id="opcioninactivo" value="inactivo">
+								Inactivo
+							  </label>
+							</div>
+						  </div>			
 						
 			            <div class="form-actions">
 			              <button type="submit" class="btn btn-primary">Guardar</button>

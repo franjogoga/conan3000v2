@@ -6,7 +6,7 @@
 	<title>CONAN 3000</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
-	<meta name="author" content="Muhammad Usman">
+	<meta name="author" content="Dos virgenes">
 
 	<!-- The styles -->
 	<link id="bs-css" href="css/bootstrap-cerulean.css" rel="stylesheet">
@@ -51,12 +51,13 @@
 			<jsp:include page="/IngSoft/general/leftmenu.jsp" />
 						<!-- left menu ends -->       
 			
-		  <noscript>
+		<noscript>
 				<div class="alert alert-block span10">
 					<h4 class="alert-heading">Warning!</h4>
 					<p>You need to have <a href="http://en.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript</a> enabled to use this site.</p>
 				</div>
-			</noscript>
+		</noscript>
+			
 		  <div id="content" class="span10">
 		    <!-- content starts -->
 		    <div>
@@ -84,35 +85,55 @@
 		            <fieldset>		              			 
 						
 						<div class="control-group">
-						  <label class="control-label" for="typeahead">Nombres</label>							  
+						  <label class="control-label" for="typeahead">Nombres :</label>							  
 						  <div class="controls">
 							<input type="text" class="span6 typeahead" id="typeahead"  data-provide="typeahead" data-items="4" ></input>								
 						  </div>
 						</div>
 						
 						<div class="control-group">
-						  <label class="control-label" for="typeahead">Apellido Paterno</label>							  
+						  <label class="control-label" for="typeahead">Apellido Paterno :</label>							  
 						  <div class="controls">
 							<input type="text" class="span6 typeahead" id="typeahead"  data-provide="typeahead" data-items="4" ></input>								
 						  </div>
 						</div>
 						
 						<div class="control-group">
-						  <label class="control-label" for="typeahead">Apellido Materno</label>							  
-						  <div class="controls">
-							<input type="text" class="span6 typeahead" id="typeahead"  data-provide="typeahead" data-items="4" ></input>								
-						  </div>
-						</div>
-									
-						<div class="control-group">
-						  <label class="control-label" for="typeahead">DNI</label>							  
+						  <label class="control-label" for="typeahead">Apellido Materno :</label>							  
 						  <div class="controls">
 							<input type="text" class="span6 typeahead" id="typeahead"  data-provide="typeahead" data-items="4" ></input>								
 						  </div>
 						</div>
 						
 						<div class="control-group">
-							<label class="control-label" for="selectError">Puesto</label>
+							<label class="control-label" for="dni">Tipo de Documento :</label>
+							<div class="controls">
+							  <label class="radio">
+								<input type="radio" name="optionsRadios" id="dni" value="dni" checked="">
+								DNI
+							  </label>					
+							  <div style="clear:both"></div>		  
+							  <label class="radio">
+								<input type="radio" name="optionsRadios" id="carnet" value="carnet">
+								Carnet de extranjería
+							  </label>
+							  <div style="clear:both"></div>
+							  <label class="radio">
+								<input type="radio" name="optionsRadios" id="pasaporte" value="pasaporte">
+								Pasaporte
+							  </label>
+							</div>
+						  </div>						
+
+							<div class="control-group">
+							  <label class="control-label" for="numerodocumento">N&uacute;mero de Documento :</label>							  
+							  <div class="controls">
+								<input type="text" class="span6 typeahead" id="numerodocumento" data-provide="typeahead" data-items="4" ></input>								
+							  </div>
+							</div>
+						
+						<div class="control-group">
+							<label class="control-label" for="selectError">Puesto :</label>
 							<div class="controls">
 							  <select name="selectError5" id="selectError5" data-rel="chosen">
 								<option>Puesto 1</option>
@@ -125,7 +146,7 @@
 						</div>															
 						
 						<div class="control-group">
-							<label class="control-label" for="selectError">Horario de Trabajo</label>
+							<label class="control-label" for="selectError">Horario de Trabajo :</label>
 							<div class="controls">
 							  <select id="selectError6" data-rel="chosen">
 								<option>Horario 1</option>
@@ -138,7 +159,20 @@
 						</div>
 						
 						<div class="control-group">
-							<label class="control-label" for="selectError">Sede</label>
+								<label class="control-label" for="selectarea">&Aacute;rea :</label>
+								<div class="controls">
+								  <select name="selectarea" id="selectarea" data-rel="chosen">
+									<option>Area 1</option>
+									<option>Area 2</option>
+									<option>Area 3</option>
+									<option>Area 4</option>
+									<option>Area 5</option>
+								  </select>
+								</div>
+							</div>	
+						
+						<div class="control-group">
+							<label class="control-label" for="selectError">Sede :</label>
 							<div class="controls">
 							  <select id="selectError7" data-rel="chosen">
 								<option>Sede 1</option>
@@ -175,11 +209,13 @@
 		              <tr>
 		                <th width="17%">Nombre</th>
 		                <th width="10%">Fecha Nacimiento</th>
-		                <th width="10%">DNI</th>
+		                <th width="10%">Tipo de Doc.</th>
+		                <th width="10%">N&uacute;m. de Doc.</th>
 		                <th width="10%">Puesto</th>
-						<th width="10%">Fecha de Contrato</th>
 						<th width="10%">Horario</th>
-						<th width="10%">Sede</th>		                
+						<th width="10%">&Aacute;rea</th>						
+						<th width="10%">Sede</th>
+						<th width="10%">Estado</th>								                
 		                <th width="29%">Acci&oacute;n</th>
 	                  </tr>
 	                </thead>
@@ -187,31 +223,37 @@
 		              <tr>
 		                <td>Juan Perez</td>
 		                <td class="center">02/16/2012</td>
+		                <td class="center">DNI</td>
 		                <td class="center">12345678</td>
-						<td class="center">Barredor</td>
-						<td class="center">02/16/2014</td>
+						<td class="center">Barredor</td>						
 		                <td class="center">L-V 8-10HS</td>
+		                <td class="center">Administraci&oacute;n</td>
 		                <td class="center">Los Olivos</td>
+		                <td class="center">Activo</td>
 		                <td class="center"><a class="btn btn-success" href="#"> <i class="icon-zoom-in icon-white"></i> Ver </a> <a class="btn btn-info" href="modificarempleado.jsp"> <i class="icon-edit icon-white"></i> Modificar </a> <a class="btn btn-danger" href="eliminarempleado.jsp"> <i class="icon-trash icon-white"></i> Eliminar </a></td>
 	                  </tr>					  
 		              <tr>
 		                <td>Jose Sanchez</td>
 		                <td class="center">05/11/2012</td>
+		                <td class="center">DNI</td>
 		                <td class="center">234567890</td>
-						<td class="center">Huachim&aacute;n</td>
-						<td class="center">05/11/2014</td>
+						<td class="center">Huachim&aacute;n</td>						
 		                <td class="center">L-V 7-15HS</td>
+		                <td class="center">Administraci&oacute;n</td>
 		                <td class="center">Cercado</td>
+		                <td class="center">Activo</td>
 		                <td class="center"><a class="btn btn-success" href="#"> <i class="icon-zoom-in icon-white"></i> Ver </a> <a class="btn btn-info" href="modificarempleado.jsp"> <i class="icon-edit icon-white"></i> Modificar </a> <a class="btn btn-danger" href="eliminarempleado.jsp"> <i class="icon-trash icon-white"></i> Eliminar </a></td>
 	                  </tr>
 		              <tr>
 		                <td>Raul Bermudez</td>
 		                <td class="center">07/23/2012</td>
+		                <td class="center">DNI</td>
 		                <td class="center">345678901</td>
-						<td class="center">T&eacute;cnico</td>
-						<td class="center">05/11/2014</td>
+						<td class="center">T&eacute;cnico</td>						
 		                <td class="center">L-V 10-15HS</td>
+		                <td class="center">Administraci&oacute;n</td>
 		                <td class="center">Miraflores</td>
+		                <td class="center">Activo</td>
 		                <td class="center"><a class="btn btn-success" href="#"> <i class="icon-zoom-in icon-white"></i> Ver </a> <a class="btn btn-info" href="modificarempleado.jsp"> <i class="icon-edit icon-white"></i> Modificar </a> <a class="btn btn-danger" href="eliminarempleado.jsp"> <i class="icon-trash icon-white"></i> Eliminar </a></td>
 	                  </tr>
 	                </tbody>
