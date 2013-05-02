@@ -106,7 +106,7 @@
 						</div>				
 						
 						<div class="control-group">
-							<label class="control-label">Estado</label>
+							<label class="control-label">Estado (*):</label>
 							<div class="controls">
 							  <label class="radio">
 								<input type="radio" name="optionsRadios" id="optionsRadios1" value="activo" checked="">
