@@ -134,7 +134,7 @@
 							  </div>
 			                <div class="form-actions">
 			              <button type="submit" class="btn btn-primary">Buscar</button>
-			              <button type="reset" class="btn">Cancelar</button>
+			              <button type="reset" class="btn"><a href="buscarfamiliar.jsp">Cancelar</a></button>
 		                </div>
 		                </div>
 		              </fieldset>
@@ -153,7 +153,7 @@
 			      <div class="box-content">
                   <table class="table table-striped table-bordered bootstrap-datatable datatable">
 					    <!-- agregar nuevo boton -->
-					    <div  align="right"> <a class="btn btn-primary" href="agregarfamiliar.jsp"> <i class="icon icon-add icon-white"></i> Agregar </a> </div>
+					    <div align="right"> <a class="btn btn-primary" href="agregarfamiliar.jsp"> <i class="icon icon-add icon-white"></i> Agregar </a> </div>
 					    <thead>
 					      <tr>
 					        <th>Parentesco</th>
