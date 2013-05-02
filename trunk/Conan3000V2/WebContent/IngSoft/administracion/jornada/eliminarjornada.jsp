@@ -96,7 +96,7 @@
 							<div class="control-group">
 							  <label class="control-label" for="typeahead7">Nombre(*): </label>
 							  <div class="controls">
-								<input   type="text" class="span6 typeahead" id="typeahead7"  data-provide="typeahead" >
+								<input  disabled=""  type="text" class="span6 typeahead" id="typeahead7"  data-provide="typeahead" >
 							  </div>
 							</div>
 
@@ -106,7 +106,7 @@
                           <div class="control-group">
                                     <label class="control-label" for="typeahead">Hora inicio(*):</label>
                                 <div class="controls">
-                                        <input type="text" class="span6 typeahead" id="typeahead"  data-provide="typeahead" data-items="4" data-source='["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Dakota","North Carolina","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"]'>
+                                        <input disabled="" type="text" class="span6 typeahead" id="typeahead"  data-provide="typeahead" data-items="4" data-source='["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Dakota","North Carolina","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"]'>
                                             <!--
                                              <p class="help-block">Start typing to activate auto complete!</p>
                                              
@@ -118,7 +118,7 @@
                           <div class="control-group">
                                     <label class="control-label" for="typeahead">Hora Fin(*):</label>
                                 <div class="controls">
-                                        <input type="text" class="span6 typeahead" id="typeahead"  data-provide="typeahead" data-items="4" data-source='["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Dakota","North Carolina","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"]'>
+                                        <input disabled="" type="text" class="span6 typeahead" id="typeahead"  data-provide="typeahead" data-items="4" data-source='["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Dakota","North Carolina","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"]'>
                                             <!--
                                              <p class="help-block">Start typing to activate auto complete!</p>
                                              
@@ -132,9 +132,9 @@
                                 <div class="control-group">
                                     <label class="control-label" for="textarea2">Descripcion:</label>
 			                          <div class="controls">
-			                            <textarea name="textarea" rows="3" id="textarea2" style="resize:none"></textarea>
+			                            <textarea disabled="" name="textarea" rows="3" id="textarea2" style="resize:none"></textarea>
 			                          </div>
-                                    </div>
+                                   
                                 </div>
 												
 						
@@ -146,7 +146,7 @@
 								<div class="controls">
 								
 								  <label class="radio">
-									<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
+									<input disabled="" type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
 									Activo
 								  </label>
 								  
@@ -154,7 +154,7 @@
 								  
 								  
 								  <label class="radio">
-									<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+									<input disabled="" type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
 									Desactivo
 								  </label>
 								  
