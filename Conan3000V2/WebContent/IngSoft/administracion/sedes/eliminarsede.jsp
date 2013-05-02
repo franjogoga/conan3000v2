@@ -187,13 +187,7 @@
 									<input disabled="" type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
 									No disponible
 								  </label>
-								 
-								     <div style="clear:both"></div>   
-								  
-								  <label class="radio">
-									<input disabled="" type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-									Cancelada
-								  </label>
+
 								  
 								  
 								</div>
