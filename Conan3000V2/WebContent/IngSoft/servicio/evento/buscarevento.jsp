@@ -1,4 +1,9 @@
 <!DOCTYPE html>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Calendar"%>
+<%@page import="IngSoft.servicio.bean.ResultadoEventoBeanData"%>
+<%@page import="java.util.Vector"%>
+
 <html lang="en">
 <head>
 	<!--
@@ -16,6 +21,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
 	<meta name="author" content="Muhammad Usman">
+	<!--The beans  -->
+	<jsp:useBean id="resultados" scope="request"class="java.util.Vector"></jsp:useBean>
+
 
 	<!-- The styles -->
 	<link id="bs-css" href="css/bootstrap-cerulean.css" rel="stylesheet">
@@ -128,9 +136,12 @@
 	<script src="js/charisma.js"></script>
 	
 	<script src="js/ajaxsbmt.js"></script>
+	<script>
+	function alt_fecha(obj){
+	obj.value=obj.value.slice(0,5);
 	
-		
-		
+	}
+	</script>			
 </head>
 
 <body>
@@ -159,7 +170,7 @@
 						<a href="/Conan3000V2/IngSoft/general/index.jsp">Home</a> <span class="divider">/</span>
 					</li>
 					<li>
-						Mantenimiento de Eventos
+						Mantenimiento de Eventos 
 					</li>
 					
 				</ul>
@@ -175,37 +186,39 @@
 						</div>
 					</div>
 					<div class="box-content">
-						<form class="form-horizontal" name="frmCriteriosBusqueda" id="frmCriteriosBusqueda"  method="post" onsubmit="xmlhttpPost('/Conan3000V2/IngSoft/servicio/evento/SMSEvento?accion=Buscar', 'frmCriteriosBusqueda', 'resultadoBusqueda','<img >');
-		 return false;">
+						<!-- <form class="form-horizontal" name="frmCriteriosBusqueda" id="frmCriteriosBusqueda"  method="post" onsubmit="xmlhttpPost('/Conan3000V2/IngSoft/servicio/evento/SMSEvento?accion=Buscar', 'frmCriteriosBusqueda', 'resultadoBusqueda','<img >');
+		 return false;"> -->
+		 <form class="form-horizontal" name="frmCriteriosBusqueda" id="frmCriteriosBusqueda"  method="post" action="<%= response.encodeURL("SMSEvento")%>">
+		 <input type="hidden" name="accion" value="Buscar"></input>
 						  <fieldset>
 							
 							<div class="control-group">
 							  <label class="control-label" for="typeahead">Nombre de Evento </label>
 							  <div class="controls">
-								<input type="text" class="span6 typeahead" id="typeahead">
+								<input type="text" class="span6 typeahead" id="typeahead" name="txtNombre">
 							  </div>
 							</div>
 							 <div class="control-group">
 								<label class="control-label" for="selectError">Tipo de Evento</label>
 								<div class="controls">
-								  <select id="selectError" data-rel="chosen">
-								  	<option selected>Todos</option>
-									<option>Interno</option>
-									<option>Externo</option>									
+								  <select id="selectError" data-rel="chosen" name="cmbTipoEvento">
+								  	<option selected value="0">Todos</option>
+									<option value="1">Interno</option>
+									<option value="2">Externo</option>									
 								  </select>
 								</div>
 							  </div>
 							<div class="control-group">
 							  <label class="control-label" for="date01">Fecha Inicio</label>
 							  <div class="controls">
-								<input type="text" class="input-xlarge datepicker" id="date01" value="14/04/2013">
+								<input type="text" class="input-xlarge datepicker" id="date01" name="date01" value="01/01" onchange="alt_fecha(this)">
 							  </div>
 							</div>
 							
 							<div class="control-group">
 							  <label class="control-label" for="date02">Fecha Fin</label>
 							  <div class="controls">
-								<input type="text" class="input-xlarge datepicker" id="date02" value="14/04/2013">
+								<input type="text" class="input-xlarge datepicker" id="date02" name="date02" value="31/12" onchange="alt_fecha(this)">
 							  </div>
 							</div>
 		
@@ -249,78 +262,70 @@
 							        <th>Nombre Evento</th>
 							        <th>Limite de incio (d&iacutea/mes)</th>
 							        <th>Limite de fin (d&iacutea/mes)</th>
-							        <th>Sede</th>							        							      							        
+												        							      							        
 							        <th>Acción</th>
 							
 							  </tr>
-						  </thead>   
-						  <tbody id="resultadoBusqueda">
-							<tr>
-								<td>Interno</td>
-							        <td class="center">Fiesta de fin de año</td>
-							        <td class="center">29/12</td>
-							        <td class="center">29/12</td>
-							        <td class="center">Ambos</td>					   
-							      	<td class="center">
-									<a class="btn btn-success" href="#">
-										<i class="icon-zoom-in icon-white"></i>  
-										
-									</a>
-									<a class="btn btn-info" href="modificarevento.jsp">
-										<i class="icon-edit icon-white"></i>  
-                                        
-									</a>
-									<a class="btn btn-danger" href="eliminarevento.jsp">
-										<i class="icon-trash icon-white"></i> 
-										
-									</a>
-								</td>
-							</tr>
-							<tr>
-								<td>Interno</td>
-							        <td class="center">Clase de natacion</td>
-							        <td class="center">01/01</td>
-							        <td class="center">28/02</td>
-							        <td class="center">Ambos</td>							   
-							      	<td class="center">
-									<a class="btn btn-success" href="#">
-										<i class="icon-zoom-in icon-white"></i>  
-										
-									</a>
-									<a class="btn btn-info" href="modificarevento.jsp">
-										<i class="icon-edit icon-white"></i>  
-                                        
-									</a>
-									<a class="btn btn-danger" href="eliminarevento.jsp">
-										<i class="icon-trash icon-white"></i> 
-										
-									</a>
-								</td>
-							</tr>
-							<tr>
-								<td>Interno</td>
-							        <td class="center">Clase de equitacion</td>
-							        <td class="center">01/05</td>
-							        <td class="center">30/09</td>
-							        <td class="center">Campo</td>							   
-							      	<td class="center">
-									<a class="btn btn-success" href="#">
-										<i class="icon-zoom-in icon-white"></i>  
-										
-									</a>
-									<a class="btn btn-info" href="modificarevento.jsp">
-										<i class="icon-edit icon-white"></i>  
-                                        
-									</a>
-									<a class="btn btn-danger" href="eliminarevento.jsp">
-										<i class="icon-trash icon-white"></i> 
-										
-									</a>
-								</td>
-							</tr>
-                               
-							  </tbody>
-						 </table>       
+						  </thead>
+                          <element>
+                          	<tbody id="resultadoBusqueda">
+                          		<% SimpleDateFormat df= new SimpleDateFormat("dd/MM"); 
+                          			for(int i=0;
+                          			i<resultados.size();i++){
+                          		%>
+                          		<tr>
+                          			<td>
+                          				<%=
+                          					((ResultadoEventoBeanData)resultados.get(i)).getTipo()
+                          				%>
+                          			</td>
+                          			<td class="center">
+                          				<%=
+                          					((ResultadoEventoBeanData)resultados.get(i)).getNombre()
+                          				%>
+                          			</td>
+                          			<td class="center">
+                          				<%=
+                          					df.format(((ResultadoEventoBeanData)resultados.get(i)).getLimInicio())
+                          				%>
+                          			</td>
+                          			<td class="center">
+                          				<%=
+                          					df.format(((ResultadoEventoBeanData)resultados.get(i)).getLimFin())                  
+                          				%>
+                          			</td>
+
+                          			<td class="center">
+                          				<a class="btn btn-success"
+                          					href="#">
+                          					<i
+                          						class="icon-zoom-in icon-white">
+                          					</i>
+
+                          				</a>
+                          				<a class="btn btn-info"
+                          					href="modificarevento.jsp">
+                          					<i
+                          						class="icon-edit icon-white">
+                          					</i>
+
+                          				</a>
+                          				<a class="btn btn-danger"
+                          					href="eliminarevento.jsp">
+                          					<i
+                          						class="icon-trash icon-white">
+                          					</i>
+
+                          				</a>
+                          			</td>
+                          		</tr>
+
+
+                          		<%}%>
+
+                          	</tbody>
+                          </element>
+                        </table>       
 					</div>
 				</div><!--/span-->
 				

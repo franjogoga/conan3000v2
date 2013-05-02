@@ -19,6 +19,7 @@ public class MyBatisSesion {
 	static public SqlSessionFactory metodo(){
 		if (sqlSesionB!=null) return sqlSesionB;
 		try{
+			SqlSessionFactory sqlSesionB;
 			String resource = "Data/config/mybatis-config.xml";
 			InputStream inputStream = Resources.getResourceAsStream(resource);
 			SqlSessionFactoryBuilder builder = new SqlSessionFactoryBuilder();
@@ -26,6 +27,7 @@ public class MyBatisSesion {
 			return sqlSesionB;
 			}
 			catch(Exception e){
+				System.out.println("error en conf");
 				e.printStackTrace();
 				
 			}
