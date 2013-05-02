@@ -22,8 +22,8 @@
 						<li><a class="ajax-link" href="/Conan3000V2/IngSoft/ventas/membresia/buscarmembresia.jsp"><i class="icon-wrench"></i><span class="hidden-tablet"> Membresias</span></a></li>						
                         <li><a class="ajax-link" href="/Conan3000V2/IngSoft/ventas/familia/buscarfamiliar.jsp"><i class="icon-wrench"></i><span class="hidden-tablet"> Familiares</span></a></li>
 
-  						<li><a class="ajax-link" href="/Conan3000V2/IngSoft/administracion/jornada/buscarjornada.jsp"><i class="icon-wrench"></i><span class="hidden-tablet"> Sedes</span></a></li>   						
-						<li><a class="ajax-link" href="/Conan3000V2/IngSoft/administracion/Horarioactividad/buscarhorarioactividad.jsp"><i class="icon-wrench"></i><span class="hidden-tablet"> Empleados</span></a></li>
+  						<li><a class="ajax-link" href="/Conan3000V2/IngSoft/administracion/jornada/buscarjornada.jsp"><i class="icon-wrench"></i><span class="hidden-tablet"> Jornadas</span></a></li>   						
+						<li><a class="ajax-link" href="/Conan3000V2/IngSoft/administracion/Horarioactividad/buscarhorarioactividad.jsp"><i class="icon-wrench"></i><span class="hidden-tablet"> Horario Actividad</span></a></li>
 
 
                         <li><a class="ajax-link" href="/Conan3000V2/IngSoft/administracion/invitados/invitadobuscar.jsp"><i class="icon-wrench"></i><span class="hidden-tablet"> Invitados</span></a></li>
