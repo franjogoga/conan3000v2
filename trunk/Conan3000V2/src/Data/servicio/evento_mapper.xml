@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Data.servicio.evento">
+
+  <cache />
+
+<select id="searchPlantillaEvento" parameterType="IngSoft.servicio.bean.CriterioEventoBeanData" resultType="IngSoft.servicio.bean.ResultadoEventoBeanData">
+select tipo_evento.nombre as tipo
+,plantilla_evento.nombre as nombre
+,plantilla_evento.lim_inicio as limInicio
+,plantilla_evento.lim_fin as limFin
+from plantilla_evento 
+left JOIN tipo_evento on tipo_evento.id_tipo_evento=plantilla_evento.id_tipo_evento 
+<where>
+<if test="nombre != null ">
+        plantilla_evento.nombre  like  #{nombre}
+    </if>
+    <if test="tipo != null and tipo>0">
+        AND tipo_evento.id_tipo_evento = #{tipo}
+    </if>
+    <if test="limInicio != null">
+        AND plantilla_evento.lim_inicio &gt;= #{limInicio}
+    </if>
+    <if test="limFin != null">
+        AND plantilla_evento.lim_fin &lt;= #{limFin}
+    </if>
+</where>
+
+</select>
+</mapper>
