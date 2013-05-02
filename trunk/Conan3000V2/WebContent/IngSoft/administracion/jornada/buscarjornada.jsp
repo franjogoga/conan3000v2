@@ -168,7 +168,7 @@
                                                      
                             <div align="right">
                             
-                                <a class="btn btn-primary" href="sedeagregar.jsp">
+                                <a class="btn btn-primary" href="agregarjornada.jsp">
                                     <i class="icon icon-add icon-white"></i>
                                     Agregar
                                 </a>
@@ -196,11 +196,11 @@
 										<i class="icon-zoom-in icon-white"></i>
 										Ver
 									</a>
-									<a class="btn btn-info" href="sedemodificar.jsp">
+									<a class="btn btn-info" href="modificarjornada.jsp">
 										<i class="icon-edit icon-white"></i>
 										Modificar
 									</a>
-									<a class="btn btn-danger" href="sedeeliminar.jsp">
+									<a class="btn btn-danger" href="eliminarjornada.jsp">
 										<i class="icon-trash icon-white"></i>
 										Eliminar
 									</a>
