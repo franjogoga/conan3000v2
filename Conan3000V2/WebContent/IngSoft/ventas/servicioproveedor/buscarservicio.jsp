@@ -151,8 +151,8 @@
 		                <td width="9%" class="center">400.00</td>
 		                <td width="12%" >Liz Gym </td>
 		                <td width="10%" class="center"><span class="label label-success">Activo</span></td>
-		                <td width="27%" class="center"><a class="btn btn-success" href="#"> <i class="icon-zoom-in icon-white"></i> Ver</a> <a class="btn btn-info" href="/Conan3000V2/IngSoft/ventas/producto/modificarproducto.jsp"> <i class="icon-edit icon-white"></i> Modificar
-		                 </a> <a class="btn btn-danger" href="/Conan3000V2/IngSoft/ventas/producto/eliminarproducto.jsp"> <i class="icon-trash icon-white"></i> Eliminar</a></td>
+		                <td width="27%" class="center"><a class="btn btn-success" href="#"> <i class="icon-zoom-in icon-white"></i> Ver</a> <a class="btn btn-info" href="/Conan3000V2/IngSoft/ventas/servicioproveedor/modificarservicio.jsp"> <i class="icon-edit icon-white"></i> Modificar
+		                 </a> <a class="btn btn-danger" href="/Conan3000V2/IngSoft/ventas/servicioproveedor/eliminarservicio.jsp"> <i class="icon-trash icon-white"></i> Eliminar</a></td>
 	                  </tr>
 		              <tr>
 		                <td>Mantenimiento</td>
@@ -160,8 +160,8 @@
 		                <td class="center">5000.00</td>
 		                <td>Jonatan RuQ </td>
 		                <td class="center"><span class="label label-success">Activo</span></td>
-		                <td class="center"class="center"><a class="btn btn-success" href="#"> <i class="icon-zoom-in icon-white"></i> Ver</a> <a class="btn btn-info" href="/Conan3000V2/IngSoft/ventas/producto/modificarproducto.jsp"> <i class="icon-edit icon-white"></i> Modificar
-		                 </a> <a class="btn btn-danger" href="/Conan3000V2/IngSoft/ventas/producto/eliminarproducto.jsp"> <i class="icon-trash icon-white"></i> Eliminar</a></td>
+		                <td class="center"class="center"><a class="btn btn-success" href="#"> <i class="icon-zoom-in icon-white"></i> Ver</a> <a class="btn btn-info" href="/Conan3000V2/IngSoft/ventas/servicioproveedor/modificarservicio.jsp"> <i class="icon-edit icon-white"></i> Modificar
+		                 </a> <a class="btn btn-danger" href="/Conan3000V2/IngSoft/ventas/servicioproveedor/eliminarservicio.jsp"> <i class="icon-trash icon-white"></i> Eliminar</a></td>
 	                  </tr>
 		              
 	                </tbody>
