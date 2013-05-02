@@ -12,7 +12,7 @@
 		http://twitter.com/halalit_usman
 	-->
 	<meta charset="utf-8">
-	<title>Eliminar Promocion</title>
+	<title>Eliminar Promoci&oacute;n</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
 	<meta name="author" content="Muhammad Usman">
@@ -93,7 +93,7 @@
 			                <label class="control-label" for="typeahead9">Promoci&oacute;n(*): </label>
 			                <div class="controls">
 			                  <input type="text" class="span6 typeahead" id="typeahead9"  data-provide="typeahead" data-items="4" >
-			                  <p class="help-block">Escriba sobre la casilla un nombre de la promoci&ocuote;n para ser autocompletado</p>
+			                  <p class="help-block">Escriba sobre la casilla un nombre de la promoci&oacute;n para ser autocompletado</p>
 		                    </div>
 		                  </div>
 			            <div class="control-group">
@@ -115,12 +115,7 @@
 			                  <input type="text" disabled class="input-xlarge datepicker" id="date01" value="02/16/13">
 		                    </div>
 		                  </div>
-			              <div class="control-group">
-			                <label class="control-label" for="typeahead8">Descuento:</label>
-			                <div class="controls">
-			                  <input type="text" disabled class="span6 typeahead" id="typeahead8" value="100"  data-provide="typeahead" data-items="4" >
-		                    </div>
-		                  </div>
+
 			           				<div class="control-group">
 								<label class="control-label" for="typeahead3">Estado</label>
 								<div class="controls">
@@ -144,7 +139,7 @@
 			            </div>
 			            <div class="form-actions">
 			              <button type="submit" class="btn btn-primary">Eliminar</button>
-			              <button type="reset" class="btn">Cancelar</button>
+			              <button type="reset" class="btn"><a href="buscarpromocion.jsp">Cancelar</a></button>
 		                </div>
 		              </fieldset>
 		            </form>

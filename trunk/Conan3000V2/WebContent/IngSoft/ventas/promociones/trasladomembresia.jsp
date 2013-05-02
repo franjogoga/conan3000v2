@@ -55,6 +55,20 @@
 		
 </head>
 
+<style type="text/css" media="screen"> 
+.izquierda { 
+   
+    float: left; 
+} 
+ 
+.derecha { 
+   padding: 9px;
+    float: center; 
+} 
+</style> 
+</head> 
+
+
 <body>
 		<jsp:include page="/IngSoft/general/superior.jsp" />
 		<div class="container-fluid">
@@ -95,25 +109,37 @@
 			                  <input type="text" class="span6 typeahead" id="typeahead9"  data-provide="typeahead" data-items="4" >
 			                  <p class="help-block">Escriba sobre la casilla un nombre de socio para ser autocompletado</p>
 		                    </div>
-		                  </div>
+	                    </div>
 			            <div class="control-group">
 			              <label class="control-label" for="typeahead7">Socio asociado:</label>
 			              <div class="controls">
-			                <input type="text" disabled class="span6 typeahead" id="typeahead7" value="SOC_2739"  data-provide="typeahead" >
-		                  </div>
+			                <input type="text" disabled class="span6 typeahead" id="typeahead7" value="SOC_2739"  data-provide="typeahead" > 
+			              </div>
 		                </div>
                           <div class="control-group">
-			              <label class="control-label" for="typeahead7">Nuevo socio:</label>
-			              <div class="controls">
-			                <input type="text" disabled class="span6 typeahead" id="typeahead7"  data-provide="typeahead"  align="right"> <a class="btn btn-primary" href="agregarmembresia.jsp" > <i class="icon icon-add icon-white" > </i> Agregar </a>  
-			                		                  
-			           </div>  <!-- agregar nuevo boton -->
-					   
+			              <label class="control-label" for="typeahead7">Nuevo socio(*):</label>
+		                <div class="controls">
+		                
+			                  <!-- agregar nuevo boton -->
+			                   <input type="text"  disabled class="span6 typeahead" id="typeahead7" value=""  data-provide="typeahead" > 
+			        
+			        
+						 <a  class="btn btn-primary" href="agregarmembresia.jsp"> <i class="icon icon-add icon-white"></i> Agregar</a>  
+						      
+					     		                </div>
 		                </div>
-			            <div class="control-group">
+		                
+			     
 			            
                         <div class="control-group">
-			                <label class="control-label" for="selectError">Parentesco:</label>
+							  <label class="control-label" for="date01">Fecha(*):</label>
+							  <div class="controls">
+								<input type="text" class="input-xlarge datepicker" id="date01" value="02/16/12">
+							  </div>
+							</div>
+                        
+                        <div class="control-group">
+			                <label class="control-label" for="selectError">Parentesco(*):</label>
 			                <div class="controls">
 			                  <select name="selectError" id="selectError" data-rel="chosen">
 			                    <option selected>Hija(o)</option>
@@ -127,16 +153,15 @@
                       
 			              
 			              <div class="control-group">
-			                <label class="control-label" for="typeahead8">Costo:</label>
+			                <label class="control-label" for="typeahead8">Monto(*):</label>
 			                <div class="controls">
 			                  <input type="text" class="span6 typeahead" id="typeahead8"  data-provide="typeahead" data-items="4" >
 		                    </div>
 		                  </div>
-			              
-			            </div>
+			           
 			            <div class="form-actions">
 			              <button type="submit" class="btn btn-primary">Aceptar</button>
-			              <button type="reset" class="btn">Cancelar</button>
+			              <button type="reset" class="btn"><a href="buscarmembresia.jsp">Cancelar</a></button>
 		                </div>
 		              </fieldset>
 		            </form>
