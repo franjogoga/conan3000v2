@@ -87,6 +87,13 @@
 			      <div class="box-content">
 			        <form class="form-horizontal">
 			          <fieldset>
+			             <div class="control-group">
+			                <label class="control-label" for="typeahead9">Socio (*): </label>
+			                <div class="controls">
+			                  <input type="text" class="span6 typeahead" id="typeahead9"  data-provide="typeahead" data-items="4" >
+			                  <p class="help-block">Escriba sobre la casilla un nombre de socio para ser autocompletado</p>
+		                    </div>
+		                  </div>
 			            <div class="control-group">
 			              <label class="control-label" for="typeahead7">Socio Asociado:</label>
 			              <div class="controls">
