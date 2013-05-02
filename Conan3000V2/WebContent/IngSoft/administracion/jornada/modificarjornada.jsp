@@ -78,35 +78,32 @@
 			  <!-- content starts -->
 			  <div>
 			    <ul class="breadcrumb">
-			      <li> <a href="#">Home</a> / <a href="#">Mantenimiento de Jornada</a> / Buscar Jornada</li>
+			      <li> <a href="#">Home</a> / <a href="#">Mantenimiento de Jornada</a> / Modificar Jornada</li>
 		        </ul>
 		      </div>
 			  <div class="row-fluid sortable">
 			    <div class="box span12">
 			      <div class="box-header well" data-original-title>
-			        <h2><i class="icon-search"></i> BUSCAR JORNADA</h2>
-					  	<div class="box-icon">
-							<a href="#" class="btn btn-setting btn-round"><i class="icon-cog"></i></a>
-							<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
-							<a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>
-						</div>
+			        <h2>MODIFICAR JORNADA</h2>
 		          </div>
 			      <div class="box-content">
 			        <form class="form-horizontal">
 			          <fieldset>
 					  
+					  
 					  <!--    ----------------------------------------------------------------------------------------------    -->
 							<div class="control-group">
-							  <label class="control-label" for="typeahead7">Nombre: </label>
+							  <label class="control-label" for="typeahead7">Nombre(*): </label>
 							  <div class="controls">
 								<input   type="text" class="span6 typeahead" id="typeahead7"  data-provide="typeahead" >
 							  </div>
 							</div>
-						
 
-						      
+
+
+
                           <div class="control-group">
-                                    <label class="control-label" for="typeahead">Hora inicio:</label>
+                                    <label class="control-label" for="typeahead">Hora inicio(*):</label>
                                 <div class="controls">
                                         <input type="text" class="span6 typeahead" id="typeahead"  data-provide="typeahead" data-items="4" data-source='["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Dakota","North Carolina","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"]'>
                                             <!--
@@ -118,7 +115,7 @@
                                 
                                 
                           <div class="control-group">
-                                    <label class="control-label" for="typeahead">Hora Fin:</label>
+                                    <label class="control-label" for="typeahead">Hora Fin(*):</label>
                                 <div class="controls">
                                         <input type="text" class="span6 typeahead" id="typeahead"  data-provide="typeahead" data-items="4" data-source='["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Dakota","North Carolina","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"]'>
                                             <!--
@@ -127,15 +124,51 @@
                                              -->
 							    </div>
                           </div>
-                                
-                                
-                                
+						
+							  
+							  
 
+                                <div class="control-group">
+                                    <label class="control-label" for="textarea2">Descripcion:</label>
+			                          <div class="controls">
+			                            <textarea name="textarea" rows="3" id="textarea2" style="resize:none"></textarea>
+			                          </div>
+                                    
+                                </div>
+												
+						
+						
+						
+							  <div class="control-group">
+								<label class="control-label">Estado</label>
+								
+								<div class="controls">
+								
+								  <label class="radio">
+									<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
+									Activo
+								  </label>
+								  
+								    <div style="clear:both"></div>   
+								  
+								  
+								  <label class="radio">
+									<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+									Desactivo
+								  </label>
+								  
+
+								  
+								</div>
+								
+							  </div>	
+				
+						
+						
 						<!--    ----------------------------------------------------------------------------------------------    -->
-						
-						
+		
 			            <div class="form-actions">
-			              <button type="submit" class="btn btn-primary">Buscar</button>
+			              <button type="submit" class="btn btn-primary">Guardar</button>
 			              <button type="reset" class="btn">Cancelar</button>
 		                </div>
 		              </fieldset>
@@ -145,88 +178,10 @@
 			    <!--/span-->
 		      </div>
 			  <!--/row-->
-			  
-			  
-			  
 			  <div class="row-fluid sortable">
-			     <div class="box span12">
-					<div class="box-header well" data-original-title>
-						<h2><i class="icon-th-list"></i> RESULTADO </h2>
-                        <!--
-						<div class="box-icon">
-							<a href="#" class="btn btn-setting btn-round"><i class="icon-cog"></i></a>
-							<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
-							<a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>
-						</div>
-						-->
-                    
-					</div>
-			  
-					<div class="box-content">
-                        <table class="table table-striped table-bordered bootstrap-datatable datatable">
-                         
-                                                     
-                            <div align="right">
-                            
-                                <a class="btn btn-primary" href="agregarjornada.jsp">
-                                    <i class="icon icon-add icon-white"></i>
-                                    Agregar
-                                </a>
-                              
-                             </div> 
-                         
-                          <thead>
-							  <tr>
-								  <th>Nombre</th>
-								  <th>Hora Inicio</th>
-								  <th>Hora Fin</th>
-								 
-								  <th>Accion</th>
-							  </tr>
-						  </thead>   
-						  <tbody>
-							<tr>
-								
-								<td class="center">FULL TIME</td>
-								<td class="center">9:00 am</td>
-								<td class="center">5:00 pm</td>
-							
-								<td class="center">
-									<a class="btn btn-success" href="">
-										<i class="icon-zoom-in icon-white"></i>
-										Ver
-									</a>
-									<a class="btn btn-info" href="modificarjornada.jsp">
-										<i class="icon-edit icon-white"></i>
-										Modificar
-									</a>
-									<a class="btn btn-danger" href="eliminarjornada.jsp">
-										<i class="icon-trash icon-white"></i>
-										Eliminar
-									</a>
-								</td>
-							</tr>
-							</tr>
-						  </tbody>
-					  </table>            
-					</div>
-				</div>
-				<!--/span-->
+			    <!--/span-->
 		      </div>
 			  <!--/row-->
-			  
-			  
-			  
-			  
-			  
-			  
-			  
-			  
-			  
-			  
-			  
-			  
-			  
 			  <div class="row-fluid sortable">
 			    <!--/span-->
 		      </div>

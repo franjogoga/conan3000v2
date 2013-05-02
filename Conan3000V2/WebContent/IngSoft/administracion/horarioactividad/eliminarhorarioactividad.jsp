@@ -96,7 +96,7 @@
 							  <div class="control-group">
                                   <label class="control-label" for="selectError">Actividad(*): </label>
                                   <div class="controls">
-                                      <select name="selectError" id="selectError1" data-rel="chosen">
+                                      <select disabled="" name="selectError" id="selectError1" data-rel="chosen">
                                           <option> Actividad 1 </option>
 										  <option> Actividad 2 </option>
                                           <option> Actividad 3 </option>
@@ -112,7 +112,7 @@
 							  <div class="control-group">
                                   <label class="control-label" for="selectError">Dia(*): </label>
                                   <div class="controls">
-                                      <select name="selectError" id="selectError1" data-rel="chosen">
+                                      <select disabled="" name="selectError" id="selectError2" data-rel="chosen">
                                           <option> Lunes </option>
 										  <option> Martes </option>
                                           <option> Miercoles </option>
@@ -126,7 +126,7 @@
                           <div class="control-group">
                                     <label class="control-label" for="typeahead">Hora Inicio(*):</label>
                                 <div class="controls">
-                                        <input type="text" class="span6 typeahead" id="typeahead"  data-provide="typeahead" data-items="4" data-source='["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Dakota","North Carolina","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"]'>
+                                        <input disabled=""  type="text" class="span6 typeahead" id="typeahead"  data-provide="typeahead" data-items="4" data-source='["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Dakota","North Carolina","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"]'>
                                             <!--
                                              <p class="help-block">Start typing to activate auto complete!</p>
                                              
@@ -138,7 +138,7 @@
                           <div class="control-group">
                                     <label class="control-label" for="typeahead">Hora Fin(*):</label>
                                 <div class="controls">
-                                        <input type="text" class="span6 typeahead" id="typeahead"  data-provide="typeahead" data-items="4" data-source='["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Dakota","North Carolina","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"]'>
+                                        <input disabled=""  type="text" class="span6 typeahead" id="typeahead"  data-provide="typeahead" data-items="4" data-source='["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Dakota","North Carolina","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"]'>
                                             <!--
                                              <p class="help-block">Start typing to activate auto complete!</p>
                                              
@@ -157,7 +157,7 @@
 								<div class="controls">
 								
 								  <label class="radio">
-									<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
+									<input disabled="" type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
 									Disponible
 								  </label>
 								  
@@ -165,7 +165,7 @@
 								  
 								  
 								  <label class="radio">
-									<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+									<input  disabled="" type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
 									No Disponible
 								  </label>
 								  

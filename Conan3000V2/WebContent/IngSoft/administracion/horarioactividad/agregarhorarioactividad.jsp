@@ -110,7 +110,7 @@
 							  <div class="control-group">
                                   <label class="control-label" for="selectError">Dia(*): </label>
                                   <div class="controls">
-                                      <select name="selectError" id="selectError1" data-rel="chosen">
+                                      <select name="selectError" id="selectError2" data-rel="chosen">
                                           <option> Lunes </option>
 										  <option> Martes </option>
                                           <option> Miercoles </option>
