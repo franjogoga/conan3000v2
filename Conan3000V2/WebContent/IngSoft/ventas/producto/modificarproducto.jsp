@@ -95,20 +95,31 @@
 						    <div class="control-group">
 						      <label class="control-label" for="typeahead7">Nombre(*): </label>
 						      <div class="controls">
-						        <input type="text" value="Gorro GoE" class="span6 typeahead" id="typeahead7"  data-provide="typeahead" >
+						        <input type="text" value="Gaseosa Inca-Cola" class="span6 typeahead" id="typeahead7"  data-provide="typeahead" >
 					          </div>
 					        </div>
-						    <div class="control-group">
+						    
+							 
+							  
 							  <div class="control-group">
-							    <label class="control-label" for="typeahead6">Descripci&oacute;n: </label>
+			                <label class="control-label" for="textarea2">Descripci&oacute;n:</label>
+			                <div class="controls">
+			                  <textarea name="textarea" class=""  id="textarea" >Gaseosa de 1L retornable</textarea>
+		                    </div>
+		                  </div>
+						      
+						      <div class="control-group">
+
+							    <label class="control-label" for="typeahead14">Presentación: </label>
 							    <div class="controls">
-							      <input type="text" value="Gorro GoE color rojo" class="span6 typeahead" id="typeahead6"  data-provide="typeahead" data-items="4" >
+							      <input type="text" class="span6 typeahead" value="botella"id="typeahead14" data-provide="typeahead" data-items="4"/>
 						        </div>
 						      </div>
+						      
 							  <div class="control-group">
 							    <label class="control-label" for="typeahead10">Precio Unitario(S/.) (*): </label>
 							    <div class="controls">
-							      <input type="text" value="25.00" class="span6 typeahead" id="typeahead10"  data-provide="typeahead" data-items="4" >
+							      <input type="text" value="3.00" class="span6 typeahead" id="typeahead10"  data-provide="typeahead" data-items="4" >
 						        </div>
 						      </div>
 							  <div class="control-group">
@@ -118,6 +129,23 @@
 								<p class="help-block">Escriba sobre la casilla un proveedor para ser autocompletado</p>
 							  </div>
 							</div>
+							
+							<div class="control-group">
+								<label class="control-label" for="typeahead3">Estado</label>
+								<div class="controls">
+								  <label class="radio">
+									<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
+									Activo
+								  </label>
+								  <div style="clear:both"></div>
+								  <label class="radio">
+									<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+									Inactivo
+								  </label>
+								</div>
+							  </div>
+							
+							
 						    <div class="form-actions">
 							  <button type="submit" class="btn btn-primary">Guardar</button>
 							  <button type="reset" class="btn">Cancelar</button>

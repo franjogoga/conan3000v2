@@ -88,7 +88,7 @@
 			<div class="row-fluid sortable">
 				<div class="box span12">
 					<div class="box-header well" data-original-title>
-						<h2></i>AGREGAR PRODUCTO				  </h2>
+						<h2>AGREGAR PRODUCTO				  </h2>
 				  </div>
 					<div class="box-content">
 						<form class="form-horizontal">
@@ -99,14 +99,27 @@
 						        <input type="text" class="span6 typeahead" id="typeahead7"  data-provide="typeahead" >
 					          </div>
 					        </div>
+					        
 						    <div class="control-group">
+							  
 							  <div class="control-group">
+			                <label class="control-label" for="textarea2">Descripci&oacute;n:</label>
+			                <div class="controls">
+			                  <textarea name="textarea" class="" id="textarea" ></textarea>
+		                    </div>
+		                  </div>
+							  
+						      
+						       <div class="control-group">
 
-							    <label class="control-label" for="typeahead6">Descripci&oacute;n: </label>
+							    <label class="control-label" for="typeahead14">Presentaci&oacute;n: </label>
 							    <div class="controls">
-							      <input type="text" class="span6 typeahead" id="typeahead6"  data-provide="typeahead" data-items="4" >
+							      <input type="text" class="span6 typeahead" id="typeahead14"  data-provide="typeahead" data-items="4" >
 						        </div>
 						      </div>
+						      
+						      
+						      
 							  <div class="control-group">
 							    <label class="control-label" for="typeahead10">Precio Unitario(S/.) (*): </label>
 							    <div class="controls">
