@@ -133,7 +133,7 @@
 		        <div class="box-content">
 		          <table width="99%" class="table table-striped table-bordered bootstrap-datatable datatable">
 		            <!-- agregar nuevo boton -->
-		            <div  align="right"> <a class="btn btn-primary" href="/Conan3000V2/IngSoft/ventas/producto/agregarproducto.jsp"> <i class="icon icon-add icon-white"></i> Agregar </a> </div>
+		            <div  align="right"> <a class="btn btn-primary" href="/Conan3000V2/IngSoft/ventas/servicioproveedor/agregarservicio.jsp"> <i class="icon icon-add icon-white"></i> Agregar </a> </div>
 		            <thead>
 		              <tr>
 		                <th>Nombre</th>
