@@ -83,7 +83,11 @@
 			          <!-- content starts -->
 			          
 			           
-			              <li> <a href="#">Home / Mantenimiento de Socios / </a>Agregar Socio</li>
+			              <li><a href="/Conan3000V2/IngSoft/general/index.jsp">Home / </a><a href="/Conan3000V2/IngSoft/ventas/socio/buscarsocio.jsp">Mantenimiento de Socios / </a>Agregar Socio
+			           
+			              </li>
+			              
+			              
 		                </ul>
 		              <div class="row-fluid sortable">
 			            <div class="box span12">
@@ -100,7 +104,7 @@
 			                        <input type="text" class="span6 typeahead" id="typeahead7"  data-provide="typeahead" >
 		                          </div>
 		                        </div>
-			                    <div class="control-group">
+			                   
 			                      <div class="control-group">
 			                        <label class="control-label" for="typeahead6">Apellido Paterno(*): </label>
 			                        <div class="controls">
@@ -114,48 +118,78 @@
 		                            </div>
 		                          </div>
                                   
-                                  dadadadadadadadadadadadadadadadadadadadada
+                                
+                                  <div class="control-group">
+			              		<label class="control-label" for="typeahead17">Fecha Nacimiento(*): </label>
+			              		<div class="controls">
+			               		 <input type="text" class="input-xlarge datepicker" id="date020" value="">
+			             		</div>
+		                		</div>
+                         
 			                       
-			                         <div class="control-group">
-								<label class="control-label" for="selectError">Tipo de Documento(*):</label>
-								<div class="controls">
-								  <select id="selectError" data-rel="chosen">
-									<option>DNI</option>
-									<option>Carnet de Extranjeria</option>
-								
-								  </select>
-								</div>
-							  </div>
+			               
                               
-                              <div class="control-group">
-			                          <label class="control-label" for="typeahead2">Nro. de Documento(*): </label>
-			                          <div class="controls">
-			                            <input type="text" class="span6 typeahead" id="typeahead2"  data-provide="typeahead" data-items="4">
-		                              </div>
-		                            </div>
                               
                               
                                
+			                		                  		                      
+		                         	<div class="control-group">
+								<label class="control-label" for="typeahead3">Tipo de Documento(*):</label>
+								<div class="controls">
+								  <label class="radio">
+									<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
+									DNI
+								  </label>
+								  <div style="clear:both"></div>
+								  <label class="radio">
+									<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+									Carnet de Extranjeria
+								  </label>
+								   
+								
+								</div>
+							  </div>
+							  
+							  <div class="control-group">
+			                          <label class="control-label" for="typeahead2">N&uacute;mero de Documento(*): </label>
+			                          <div class="controls">
+			                            <input type="text" class="span6 typeahead" id="typeahead2"  data-provide="typeahead" data-items="4">
+		                              </div>
+		                      </div>
+                               
                                 
 							
-                              
+                          
 		                        <div class="control-group">
 			                        <div class="control-group">
-			                          <label class="control-label" for="typeahead2">Correo Electronico: </label>
+			                          <label class="control-label" for="typeahead2">Correo Electr&oacute;nico: </label>
 			                          <div class="controls">
 			                            <input type="text" class="span6 typeahead" id="typeahead2"  data-provide="typeahead" data-items="4">
 		                              </div>
 		                            </div>
+		                            
 			                        <div class="control-group">
 			                          <label class="control-label" for="typeahead3">Direcci&oacute;n: </label>
 			                          <div class="controls">
 			                            <input type="text" class="span6 typeahead" id="typeahead3"  data-provide="typeahead" data-items="4">
 		                              </div>
 		                            </div>
-			                        <label class="control-label" for="typeahead12">Tel&eacute;fono / Celular: </label>
+		                            
+		                             <div class="control-group">
+			                        <label class="control-label" for="typeahead4">Tel&eacute;fono Fijo: </label>
 			                        <div class="controls">
 			                          <input type="text" class="span6 typeahead" id="typeahead12"  data-provide="typeahead" data-items="4" >
 		                            </div>
+		                            </div>
+		                            
+		                            <div class="control-group">
+		                             <label class="control-label" for="typeahead5">Tel&eacute;fono Celular: </label>
+			                        
+			                        <div class="controls">
+			                          <input type="text" class="span6 typeahead" id="typeahead12"  data-provide="typeahead" data-items="4" >
+		                            </div>
+		                            </div>
+		                            
 		                          </div>
 		                        <div class="form-actions">
 			                      <button type="submit" class="btn btn-primary">Agregar</button>
@@ -193,7 +227,7 @@
 		              </div>
 			          <!--/row-->
 			          <!-- content ends -->
-			    </ul>
+			   
 		      </div>
 			  <!--/row-->
 			  <div class="row-fluid sortable">
