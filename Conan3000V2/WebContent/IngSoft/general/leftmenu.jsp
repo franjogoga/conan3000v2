@@ -29,7 +29,10 @@
                         <li><a class="ajax-link" href="/Conan3000V2/IngSoft/administracion/invitados/invitadobuscar.jsp"><i class="icon-wrench"></i><span class="hidden-tablet"> Invitados</span></a></li>
                         <li><a class="ajax-link" href="/Conan3000V2/IngSoft/servicio/reservas/buscarreserva.jsp"><i class="icon-wrench"></i><span class="hidden-tablet"> Reservas</span></a></li>
                         <li><a class="ajax-link" href="/Conan3000V2/IngSoft/ventas/pago/buscarpago.jsp"><i class="icon-wrench"></i><span class="hidden-tablet"> Pagos</span></a></li>                                                                    
-                        <li><a class="ajax-link" href="/Conan3000V2/IngSoft/servicio/reporte/generarreportes.jsp"><i class="icon-wrench"></i><span class="hidden-tablet"> Reportes</span></a></li>                         
+                        <li><a class="ajax-link" href="/Conan3000V2/IngSoft/servicio/reporte/generarreportes.jsp"><i class="icon-wrench"></i><span class="hidden-tablet"> Reportes</span></a></li>
+                        <li><a class="ajax-link" href="/Conan3000V2/IngSoft/administracion/bungalow/buscarservicio.jsp"><i class="icon-wrench"></i><span class="hidden-tablet"> Servicio</span></a></li>      
+                        <li><a class="ajax-link" href="/Conan3000V2/IngSoft/administracion/bungalow/buscarcancha.jsp"><i class="icon-wrench"></i><span class="hidden-tablet"> Cancha </span></a></li>      
+                        <li><a class="ajax-link" href="/Conan3000V2/IngSoft/administracion/bungalow/buscarbungalow.jsp"><i class="icon-wrench"></i><span class="hidden-tablet"> Bungalow</span></a></li>                               
                         <!--   <li><a class="ajax-link" href="#"><i class="icon-wrench"></i><span class="hidden-tablet"> Venta de Productos</span></a></li> -->
 				</div><!--/.well -->
 			</div><!--/span-->
