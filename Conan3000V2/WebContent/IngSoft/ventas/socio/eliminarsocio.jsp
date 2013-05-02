@@ -101,6 +101,7 @@
 						          <input class="input-xlarge disabled" value="Jonatan" id="disabledInput" type="text" placeholder="Disabled input here" disabled="">
 					            </div>
 					          </div>
+					          
 						      <div class="control-group">
 						        <label class="control-label" for="disabledInput">Apellido Paterno:</label>
 						        <div class="controls">
@@ -116,14 +117,14 @@
 						        </div>
 						        
 						        <div class="control-group">
-			              		<label class="control-label" for="typeahead7">Fecha Nacimiento(*): </label>
+			              		<label class="control-label" for="typeahead1">Fecha Nacimiento(*): </label>
 			              		<div class="controls">
 			               		 <input type="text" class="input-xlarge datepicker" id="date020" value="02/16/2012" disabled="">
 			             		</div>
 		                		</div>
 						        
 							   <div class="control-group">
-								<label class="control-label" for="typeahead3">Tipo de Documento(*):</label>
+								<label class="control-label" for="typeahead2">Tipo de Documento(*):</label>
 								<div class="controls">
 								  <label class="radio">
 									<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="" disabled="">
@@ -138,9 +139,9 @@
 								</div>
 							  
                               <div class="control-group">
-			                          <label class="control-label" for="typeahead8">N&uacute;mero de Documento(*): </label>
+			                          <label class="control-label" for="typeahead3">N&uacute;mero de Documento(*): </label>
 			                          <div class="controls">
-			                            <input type="text" class="span6 typeahead" id="typeahead8" value="04583232"  data-provide="typeahead" data-items="4" disabled="">
+			                            <input type="text" class="span6 typeahead" id="typeahead3" value="04583232"  data-provide="typeahead" data-items="4" disabled="">
 		                              </div>
                               </div>
                               
@@ -150,7 +151,7 @@
 							  <div class="control-group">
 							    <div class="control-group">
 							      <div class="control-group">
-							        <label class="control-label" for="typeahead2">Correo Electronico: </label>
+							        <label class="control-label" for="typeahead4">Correo Electronico: </label>
 							        <div class="controls">
 									    <input class="input-xlarge disabled" value="vie_jonatan@pucp.pe" id="disabledInput" type="text" placeholder="Disabled input here" disabled="">
 						            </div>
@@ -164,16 +165,16 @@
 						          
 						          
 						           <div class="control-group">
-						          <label class="control-label" for="typeahead12">Tel&eacute;fono Fijo: </label>
+						          <label class="control-label" for="typeahead5">Tel&eacute;fono Fijo: </label>
 			                        <div class="controls">
-			                          <input type="text" class="span6 typeahead" id="typeahead12"  value="4423131"data-provide="typeahead" data-items="4" disabled="">
+			                          <input type="text" class="span6 typeahead" id="typeahead5"  value="4423131"data-provide="typeahead" data-items="4" disabled="">
 		                            </div>
 		                            </div>
 		                            
 		                             <div class="control-group">
-		                             <label class="control-label" for="typeahead10">Tel&eacute;fono Celular: </label>
+		                             <label class="control-label" for="typeahead6">Tel&eacute;fono Celular: </label>
 			                        <div class="controls">
-			                          <input type="text" class="span6 typeahead" id="typeahead10"  value="993231413" data-provide="typeahead" data-items="4" disabled="">
+			                          <input type="text" class="span6 typeahead" id="typeahead6"  value="993231413" data-provide="typeahead" data-items="4" disabled="">
 		                            </div>
 		                            </div>
 							    
