@@ -75,7 +75,7 @@
 
 			<div>
 				<ul class="breadcrumb">
-                  <li> <a href="#">Home</a> <span class="divider">/</span> </li>
+                  <li> <a href="../../general/index.jsp">Home</a> <span class="divider">/</span> </li>
                   <li> <a href="#">Mantenimiento de Ambientes</a> <span class="divider">/</span></li>
                   <li>Buscar Ambiente</li>
 				</ul>
@@ -148,13 +148,13 @@
                           </thead>
                           <tbody>
                             <tr>
-                              <td>Gimnasio</td>
+                              <td>Zona deportiva</td>
                               <td class="center">Deportivo</td>
                               <td class="center">Chosica</td>
                               <td class="center"><a class="btn btn-success" href="#"> <i class="icon-zoom-in icon-white"></i> Ver </a> <a class="btn btn-info" href="modificarambiente.jsp"> <i class="icon-edit icon-white"></i> Modificar </a> <a class="btn btn-danger" href="eliminarambiente.jsp"> <i class="icon-trash icon-white"></i> Eliminar </a></td>
                             </tr>
                             <tr>
-                              <td>Piscina</td>
+                              <td>Polideportivo</td>
                               <td class="center">Deportivo</td>
                               <td class="center">Chosica</td>
                               <td class="center"><a class="btn btn-success" href="#"> <i class="icon-zoom-in icon-white"></i> Ver </a> <a class="btn btn-info" href="modificarambiente.jsp"> <i class="icon-edit icon-white"></i> Modificar </a> <a class="btn btn-danger" href="eliminarambiente.jsp"> <i class="icon-trash icon-white"></i> Eliminar </a></td>

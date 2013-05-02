@@ -55,7 +55,7 @@
 </head>
 
 <body>
-		<jsp:include page="/IngSoft/general/superior.jsp" />
+	<jsp:include page="/IngSoft/general/superior.jsp" />
 		<div class="container-fluid">
 		<div class="row-fluid">
 				
@@ -75,58 +75,36 @@
               <div>
                 <ul class="breadcrumb">
                   <li> <a href="../../general/index.jsp">Home</a> <span class="divider">/</span> </li>
-                  <li> <a href="#">Mantenimiento de Ambientes</a> <span class="divider">/</span></li>
-                  <li>Eliminar Ambiente</li>
+                  <li> <a href="#">Mantenimiento de Servicios</a> <span class="divider">/</span></li>
+                  <li>Modificar Servicio</li>
                 </ul>
               </div>
               <div class="row-fluid sortable">
                 <div class="box span12">
                   <div class="box-header well" data-original-title>
-                    <h2></i>ELIMINAR AMBIENTE</h2>
+                    <h2></i>MODIFICAR SERVICIO</h2>
                   </div>
                   <div class="box-content">
                     <form class="form-horizontal">
                       <fieldset>
                         <div class="control-group">
-                          <label class="control-label" for="disabledInput">Nombre:</label>
+                          <label class="control-label" for="typeahead">Nombre (*):</label>
                           <div class="controls">
-                            <input class="input-xlarge disabled" id="disabledInput" type="text" placeholder="Polideportivo" disabled="">
+                            <input type="text" class="span6 typeahead" id="typeahead"  data-provide="typeahead" placeholder="Biblioteca">
                           </div>
                         </div>
                         <div class="control-group">
-                          <label class="control-label" for="selectError">Tipo:</label>
+                  		  <label class="control-label" for="textarea2">Descripci&oacuten (*):</label>
                           <div class="controls">
-                            <select name="selectError" id="selectError" data-rel="chosen" disabled="">
-                              <option>Deportivo</option>
-                            </select>
-                          </div>
-                        </div>
-                        <div class="control-group">
-                          <label class="control-label" for="selectError">Sede:</label>
-                          <div class="controls">
-                            <select name="selectError2" id="selectError2" data-rel="chosen" disabled="">
-                              <option>Chosica</option>
-                            </select>
-                          </div>
-                        </div>
-                        <div class="control-group">
-                  		  <label class="control-label" for="textarea2">Descripci&oacuten:</label>
-                          <div class="controls">
-                            <textarea name="textarea" rows="3" id="textarea2" disabled="" style="resize:none" placeholder="Complejo deportivo"></textarea>
-                          </div>
-                        </div>
-                        <div class="control-group">
-                          <label class="control-label" for="textarea2">Caracter&iacutesticas: </label>
-                          <div class="controls">
-                            <textarea name="textarea2" rows="3" id="textarea2" disabled="" style="resize:none" placeholder="Área: 200 metros cuadrados."></textarea>
+                            <textarea name="textarea" rows="3" id="textarea2" style="resize:none" placeholder="Espacio para lectura."></textarea>
                           </div>
                         </div>
                         <div class="form-actions">
-                          <button type="submit" class="btn btn-primary">Eliminar</button>
+                          <button type="submit" class="btn btn-primary">Guardar</button>
                           <button type="reset" class="btn">Cancelar</button>
                         </div>
                       </fieldset>
-                    </form>
+                    </form>(*) Datos Obligatorios
                   </div>
                 </div>
                 <!--/span-->

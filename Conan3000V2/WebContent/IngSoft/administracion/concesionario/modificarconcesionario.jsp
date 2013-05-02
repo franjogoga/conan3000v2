@@ -74,7 +74,7 @@
               <!-- content starts -->
               <div>
                 <ul class="breadcrumb">
-                  <li> <a href="#">Home</a> <span class="divider">/</span> </li>
+                  <li> <a href="../../general/index.jsp">Home</a> <span class="divider">/</span> </li>
                   <li> <a href="#">Mantenimiento de Concesionarios</a> <span class="divider">/</span></li>
                   <li>Modificar Concesionario</li>
                 </ul>
@@ -88,7 +88,7 @@
                     <form class="form-horizontal">
                       <fieldset>
                         <div class="control-group">
-                          <label class="control-label" for="typeahead">Nombre (*):</label>
+                          <label class="control-label" for="typeahead">Raz&oacute Social (*):</label>
                           <div class="controls">
                             <input type="text" class="span6 typeahead" id="typeahead"  data-provide="typeahead" placeholder="Pizzas Saul">
                           </div>

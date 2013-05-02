@@ -62,7 +62,6 @@
 			<!-- left menu starts -->
 			<jsp:include page="/IngSoft/general/leftmenu.jsp" />
 						<!-- left menu ends -->
-			
 			<noscript>
 				<div class="alert alert-block span10">
 					<h4 class="alert-heading">Warning!</h4>
@@ -70,81 +69,132 @@
 				</div>
 			</noscript>
 			
-            <div id="content" class="span10">
-              <!-- content starts -->
-              <div>
-                <ul class="breadcrumb">
+			<div id="content" class="span10">
+			<!-- content starts -->
+			
+
+			<div>
+				<ul class="breadcrumb">
                   <li> <a href="../../general/index.jsp">Home</a> <span class="divider">/</span> </li>
-                  <li> <a href="#">Mantenimiento de Ambientes</a> <span class="divider">/</span></li>
-                  <li>Eliminar Ambiente</li>
-                </ul>
-              </div>
-              <div class="row-fluid sortable">
-                <div class="box span12">
-                  <div class="box-header well" data-original-title>
-                    <h2></i>ELIMINAR AMBIENTE</h2>
-                  </div>
-                  <div class="box-content">
-                    <form class="form-horizontal">
-                      <fieldset>
+                  <li> <a href="#">Mantenimiento de Canchas</a> <span class="divider">/</span></li>
+                  <li>Buscar Cancha</li>
+				</ul>
+			</div>
+			
+			<div class="row-fluid sortable">		
+				
+                <div class="row-fluid sortable">
+                  <div class="box span12">
+                    <div class="box-header well" data-original-title>
+                      <h2><i class="icon-search"></i> BUSCAR CANCHA</h2>
+                      <div class="box-icon">
+							<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
+							<a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>
+						</div>
+                    </div>
+                    <div class="box-content">
+                      <form class="form-horizontal">
+                        <fieldset>
                         <div class="control-group">
-                          <label class="control-label" for="disabledInput">Nombre:</label>
+                          <label class="control-label" for="typeahead">Nombre:</label>
                           <div class="controls">
-                            <input class="input-xlarge disabled" id="disabledInput" type="text" placeholder="Polideportivo" disabled="">
+                            <input type="text" class="span6 typeahead" id="typeahead"  data-provide="typeahead" >
                           </div>
                         </div>
                         <div class="control-group">
-                          <label class="control-label" for="selectError">Tipo:</label>
+                          <label class="control-label" for="selectError">Tipo de Cancha:</label>
                           <div class="controls">
-                            <select name="selectError" id="selectError" data-rel="chosen" disabled="">
-                              <option>Deportivo</option>
+                            <select name="selectError" id="selectError" data-rel="chosen">
+                              <option>F&uacutetbol</option>
+                              <option>Voley</option>
                             </select>
                           </div>
                         </div>
                         <div class="control-group">
-                          <label class="control-label" for="selectError">Sede:</label>
+                          <label class="control-label" for="selectError">Ambiente:</label>
                           <div class="controls">
-                            <select name="selectError2" id="selectError2" data-rel="chosen" disabled="">
-                              <option>Chosica</option>
+                            <select name="selectError2" id="selectError2" data-rel="chosen">
+                              <option>Polideportivo</option>
+                              <option>Zona deportiva</option>
                             </select>
-                          </div>
-                        </div>
-                        <div class="control-group">
-                  		  <label class="control-label" for="textarea2">Descripci&oacuten:</label>
-                          <div class="controls">
-                            <textarea name="textarea" rows="3" id="textarea2" disabled="" style="resize:none" placeholder="Complejo deportivo"></textarea>
-                          </div>
-                        </div>
-                        <div class="control-group">
-                          <label class="control-label" for="textarea2">Caracter&iacutesticas: </label>
-                          <div class="controls">
-                            <textarea name="textarea2" rows="3" id="textarea2" disabled="" style="resize:none" placeholder="Área: 200 metros cuadrados."></textarea>
                           </div>
                         </div>
                         <div class="form-actions">
-                          <button type="submit" class="btn btn-primary">Eliminar</button>
+                          <button type="submit" class="btn btn-primary">Buscar</button>
                           <button type="reset" class="btn">Cancelar</button>
                         </div>
                       </fieldset>
-                    </form>
+                      </form>
+                    </div>
                   </div>
+                  <!--/span-->
+                </div>
+                <div class="row-fluid sortable">
+                  <div class="row-fluid sortable">
+                    <div class="box span12">
+                      <div class="box-header well" data-original-title>
+                        <h2><i class="icon-th-list"></i> RESULTADOS</h2>
+                      </div>
+                      <div class="box-content">
+                        <table class="table table-striped table-bordered bootstrap-datatable datatable">
+                          <!-- agregar nuevo boton -->
+                          <div  align="right"> <a class="btn btn-primary" href="agregarcancha.jsp"> <i class="icon icon-add icon-white"></i> Agregar </a> </div>
+                          <thead>
+                            <tr>
+                              <th>Nombre</th>
+                              <th>Tipo de Cancha</th>
+                              <th>Ambiente</th>
+                              <th>Acci&oacuten</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>Cancha A</td>
+                              <td class="center">Futsal</td>
+                              <td class="center">Polideportivo</td>
+                              <td class="center"><a class="btn btn-success" href="#"> <i class="icon-zoom-in icon-white"></i> Ver </a> <a class="btn btn-info" href="modificarcancha.jsp"> <i class="icon-edit icon-white"></i> Modificar </a> <a class="btn btn-danger" href="eliminarcancha.jsp"> <i class="icon-trash icon-white"></i> Eliminar </a></td>
+                            </tr>
+                            <tr>
+                              <td>Cancha C</td>
+                              <td class="center">F&uactetbol</td>
+                              <td class="center">Zona deportiva</td>
+                              <td class="center"><a class="btn btn-success" href="#"> <i class="icon-zoom-in icon-white"></i> Ver </a> <a class="btn btn-info" href="modificarcancha.jsp"> <i class="icon-edit icon-white"></i> Modificar </a> <a class="btn btn-danger" href="eliminarcancha.jsp"> <i class="icon-trash icon-white"></i> Eliminar </a></td>
+                            </tr>
+                            <tr>
+                              <td>Cancha D</td>
+                              <td class="center">Voley</td>
+                              <td class="center">Polideportivo</td>
+                              <td class="center"><a class="btn btn-success" href="#"> <i class="icon-zoom-in icon-white"></i> Ver </a> <a class="btn btn-info" href="modificarcancha.jsp"> <i class="icon-edit icon-white"></i> Modificar </a> <a class="btn btn-danger" href="eliminarcancha.jsp"> <i class="icon-trash icon-white"></i> Eliminar </a></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                    <!--/span-->
+                  </div>
+                  <!--/span-->
                 </div>
                 <!--/span-->
-              </div>
-              <!--/row-->
-              <div class="row-fluid sortable">
+			
+			</div><!--/row-->
                 
-                <!--/span-->
-              </div>
-              <!--/row-->
-              <div class="row-fluid sortable">
                 
-                <!--/span-->
-              </div>
-              <!--/row-->
-              <!-- content ends -->
-            </div>
-          <!--/#content.span10-->
+                
+                
+                
+
+			<div class="row-fluid sortable"><!--/span--><!--/span-->
+			</div><!--/row-->
+			
+			<div class="row-fluid sortable"><!--/span--><!--/span-->
+			
+			</div><!--/row-->
+			
+			<div class="row-fluid sortable"><!--/span-->
+			</div><!--/row-->
+    
+					<!-- content ends -->
+			</div><!--/#content.span10-->
 				</div><!--/fluid-row-->
 				
 		<hr>
