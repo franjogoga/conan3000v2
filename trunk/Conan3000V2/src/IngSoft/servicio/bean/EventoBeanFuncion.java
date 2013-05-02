@@ -1,6 +1,8 @@
 package IngSoft.servicio.bean;
 
+import java.io.BufferedWriter;
 import java.io.InputStream;
+import java.nio.Buffer;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -26,4 +28,11 @@ public class EventoBeanFuncion {
 		e.printStackTrace();	
 		}
 	} 
+	
+	public void pruebahtml(){
+		
+		
+		
+		
+	}
 }

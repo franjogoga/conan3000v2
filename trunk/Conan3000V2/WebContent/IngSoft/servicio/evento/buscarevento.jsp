@@ -127,6 +127,8 @@
 	<!-- application script for Charisma demo -->
 	<script src="js/charisma.js"></script>
 	
+	<script src="js/ajaxsbmt.js"></script>
+	
 		
 		
 </head>
@@ -173,7 +175,8 @@
 						</div>
 					</div>
 					<div class="box-content">
-						<form class="form-horizontal">
+						<form class="form-horizontal" name="frmCriteriosBusqueda" id="frmCriteriosBusqueda"  method="post" onsubmit="xmlhttpPost('/Conan3000V2/IngSoft/servicio/evento/SMSEvento?accion=Buscar', 'frmCriteriosBusqueda', 'resultadoBusqueda','<img >');
+		 return false;">
 						  <fieldset>
 							
 							<div class="control-group">
@@ -219,7 +222,7 @@
 				</div><!--/span-->
 
 			</div><!--/row-->
-	
+		
 			<div class="row-fluid sortable">		
 				<div class="box span12">
 					<div class="box-header well" data-original-title>
@@ -251,7 +254,7 @@
 							
 							  </tr>
 						  </thead>   
-						  <tbody>
+						  <tbody id="resultadoBusqueda">
 							<tr>
 								<td>Interno</td>
 							        <td class="center">Fiesta de fin de año</td>
