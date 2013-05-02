@@ -29,4 +29,28 @@ left JOIN tipo_evento on tipo_evento.id_tipo_evento=plantilla_evento.id_tipo_eve
 </where>
 
 </select>
+<select id="searchSedeMini" resultType="IngSoft.servicio.bean.SedeMiniBeanData">
+	select id_sede as codigo
+	,nombre 
+	from 
+	sede
+</select>
+<select id="searchAmbienteMini" resultType="IngSoft.servicio.bean.AmbienteMiniBeanData">
+	select id_tipo_ambiente as codigo
+	,nombre 
+	from 
+	tipo_ambiente
+</select>
+<select id="searchTipoEventoMini" resultType="IngSoft.servicio.bean.TipoEventoMiniBeanData">
+	select id_tipo_evento as codigo
+	,nombre 
+	from 
+	tipo_evento
+</select>
+<insert id="insertPlantillaEvento" parameterType="IngSoft.servicio.bean.EventoBeanData" >
+	insert into plantilla_evento(id_plantilla_evento,nombre,lim_inicio,lim_fin,id_tipo_evento)
+	values (#{codigo},#{nombre},#{limiteInicio},#{limiteFin},#{idTipo})
+</insert>
+
+
 </mapper>

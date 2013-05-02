@@ -141,6 +141,12 @@
 	obj.value=obj.value.slice(0,5);
 	
 	}
+	function alt_agregar(){
+		var form=document.getElementById("frmAlternativo");
+		form.accion="Agregar";
+		form.submit();
+	
+	}
 	</script>			
 </head>
 
@@ -235,7 +241,11 @@
 				</div><!--/span-->
 
 			</div><!--/row-->
-		
+			<form id="frmAlternativo" name="frmAlternativo" method="post" action="<%= response.encodeURL("SMSEvento")%>">
+			<input type="hidden" name="accion" value="Agregar"></input>
+			<input type="hidden" name="codigo" value=""></input>
+			<input type="hidden" name="tipo" value="1"></input>
+			</form>
 			<div class="row-fluid sortable">		
 				<div class="box span12">
 					<div class="box-header well" data-original-title>
@@ -250,7 +260,7 @@
                             
                             <div align="right">
                             
-                                <a class="btn btn-primary" href="agregarevento.jsp">
+                                <a class="btn btn-primary" href="javascript:alt_agregar()">
                                     <i class="icon icon-add icon-white"></i>
                                     Agregar
                                 </a>

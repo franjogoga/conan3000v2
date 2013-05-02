@@ -30,7 +30,6 @@ public class CriterioEventoBeanFunction {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		
 		return criterioEventoData;				
 	}
 	
@@ -40,6 +39,7 @@ public class CriterioEventoBeanFunction {
 		System.out.println(resultados.size());
 		Vector<ResultadoEventoBeanData> resultadosV= new Vector<>(resultados);
 		System.out.println(resultadosV.size());
+		sqlsesion.close();
 		return resultadosV;
 		
 	}

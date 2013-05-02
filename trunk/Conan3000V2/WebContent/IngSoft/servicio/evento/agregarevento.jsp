@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<%@page import="IngSoft.servicio.bean.TipoEventoMiniBeanData"%>
+<%@page import="IngSoft.servicio.bean.AmbienteMiniBeanData"%>
+<%@page import="IngSoft.servicio.bean.SedeMiniBeanData"%>
 <html lang="en">
 <head>
 	<!--
@@ -16,7 +19,11 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
 	<meta name="author" content="Muhammad Usman">
-
+	<!--The beans  -->
+	<jsp:useBean id="sedes" scope="request"class="java.util.Vector"></jsp:useBean>
+	<jsp:useBean id="ambientes" scope="request"class="java.util.Vector"></jsp:useBean>
+	<jsp:useBean id="tiposEvento" scope="request"class="java.util.Vector"></jsp:useBean>
+	
 	<!-- The styles -->
 	<link id="bs-css" href="css/bootstrap-cerulean.css" rel="stylesheet">
 	<style type="text/css">
@@ -58,21 +65,20 @@
 		
 		}
 	
-		function alt_submit(){
-		var form=document.fmrData;
-		var i=0;
-			while(true){
-				if(form[i].className.search("btn")>=0) break;
-				if(form[i]).id.search("selectS")
-			
+	function alt_fecha(obj){
+	obj.value=obj.value.slice(0,5);
+	
+	}
+	
+	function alt_submit(){
+		
 			
 			}
 		
 		
 		
 			//document.fmrData.submit();
-		
-		}
+
 	</script>	
 </head>
 
@@ -119,6 +125,7 @@
 					<div class="box-content">
 						<form class="form-horizontal" action="<%= response.encodeURL("SMSEvento")%>" name="frmData" method="post">
 						<input type="hidden" name="accion" value="Agregar"></input>
+						<input type="hidden" name="tipo" value="2"></input>
 						  <fieldset>
 						    <div class="control-group">
 						      <label class="control-label" for="typeahead7">Nombre de evento(*): </label>
@@ -131,8 +138,9 @@
 								<label class="control-label" for="selectS1">Tipo de Evento(*):</label>
 								<div class="controls">
 								  <select id="selectS1" data-rel="chosen" name="cmbTipo">
-									<option selected>Interno</option>
-									<option>Externo</option>									
+									<%for(int i=0;i<tiposEvento.size();i++){ %>
+										<option value="<%= ((TipoEventoMiniBeanData)tiposEvento.get(i)).getCodigo()%>" <%=i==0?"selected":""%>><%= ((TipoEventoMiniBeanData)tiposEvento.get(i)).getNombre()%></option>
+									<%} %>										
 								  </select>
 								</div>
 							  </div>
@@ -140,8 +148,9 @@
 								<label class="control-label" for="selectM1">Sedes relacionadas(*):</label>
 								<div class="controls">
 								  <select id="selectM1" multiple data-rel="chosen" name="cmbSedes" >
-									<option value="01">Campo</option>
-									<option value="02">Playa</option>																	
+									<%for(int i=0;i<sedes.size();i++){ %>
+										<option value="<%= ((SedeMiniBeanData)sedes.get(i)).getCodigo()%>"><%= ((SedeMiniBeanData)sedes.get(i)).getNombre()%></option>
+									<%} %>																
 								  </select>
 								</div>
 							  </div>
@@ -149,24 +158,23 @@
 								<label class="control-label" for="selectM2">Ambientes relacionados(*):</label>
 								<div class="controls">
 								  <select id="selectM2" multiple data-rel="chosen" name="cmbAmbientes">
-									<option>Cancha de tenis</option>
-									<option>Cancha de futbol</option>
-									<option>Piscina</option>
-									<option>Bungalow</option>									
+									<%for(int i=0;i<ambientes.size();i++){ %>
+										<option value="<%= ((AmbienteMiniBeanData)ambientes.get(i)).getCodigo()%>"><%= ((AmbienteMiniBeanData)ambientes.get(i)).getNombre()%></option>
+									<%} %>										
 								  </select>
 								</div>
 							  </div>
 							  <div class="control-group">
 							  <label class="control-label" for="date01">Limite Inicio(*):</label>
 							  <div class="controls">
-								<input type="text" class="input-xlarge datepicker" id="date01" value="14/04/2013" obl="true" name="fFecIncio">
+								<input type="text" class="input-xlarge datepicker" id="date01" value="01/01"  obl="true" name="fFecIncio" onchange="alt_fecha(this)">
 							  </div>
 							</div>
 							
 							<div class="control-group">
 							  <label class="control-label" for="date02">Limite Fin(*):</label>
 							  <div class="controls">
-								<input type="text" class="input-xlarge datepicker" id="date02" value="14/04/2013" name="fFecFin">
+								<input type="text" class="input-xlarge datepicker" id="date02" value="31/12" name="fFecFin" onchange="alt_fecha(this)">
 							  </div>
 							</div>
 						    <div class="form-actions">

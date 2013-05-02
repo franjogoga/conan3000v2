@@ -1,34 +1,48 @@
 package IngSoft.servicio.bean;
 
-import java.io.BufferedWriter;
-import java.io.InputStream;
-import java.nio.Buffer;
+import java.util.List;
+import java.util.Vector;
 
-import org.apache.ibatis.io.Resources;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import IngSoft.general.MyBatisSesion;
 
 public class EventoBeanFuncion {
 
-	public void getTemp(){
+	public EventoBeanData crearEvento(HttpServletRequest request, HttpServletResponse response){
+		EventoBeanData eventoData= new EventoBeanData();
+		eventoData.setCodigo(Integer.parseInt(request.getParameter("")));
 		try{
-
-		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
-		Prueba prueba=(Prueba)sqlsesion.selectOne("selectTest",1);		
-		System.out.println(""+prueba.getId()+"/"+prueba.getNombre());
+			
+		
 		}
 		catch(Exception e){
 		e.printStackTrace();	
 		}
+		return eventoData;
 	} 
 	
-	public void pruebahtml(){
-		
-		
-		
-		
+	public Vector<SedeMiniBeanData> getSedes(){
+		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+		List<SedeMiniBeanData> resultados=sqlsesion.selectList("searchSedeMini");
+		sqlsesion.close();
+		return new Vector<>(resultados);
+	}
+	
+	public Vector<AmbienteMiniBeanData> getAmbientes(){
+		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+		List<AmbienteMiniBeanData> resultados=sqlsesion.selectList("searchAmbienteMini");
+		sqlsesion.close();
+		return new Vector<>(resultados);
+	}
+	
+	public Vector<TipoEventoMiniBeanData> getTipoEvento(){
+		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+		List<TipoEventoMiniBeanData> resultados=sqlsesion.selectList("searchTipoEventoMini");
+		sqlsesion.close();
+		return new Vector<>(resultados);
 	}
 }
