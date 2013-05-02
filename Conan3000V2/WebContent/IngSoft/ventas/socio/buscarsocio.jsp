@@ -85,8 +85,9 @@
 			<div>
 				<ul class="breadcrumb">
 					
-					<li> <a href="#">Home / Mantenimiento de Socios / </a>Busqueda de Socio</li>
-					<li></li>
+					<li><a href="/Conan3000V2/IngSoft/general/index.jsp">Home / </a><a href="/Conan3000V2/IngSoft/ventas/socio/buscarsocio.jsp">Mantenimiento de Socios / </a>Busqueda Socio
+			           
+			              </li>
 				</ul>
 			</div>
 			
@@ -174,7 +175,7 @@
                         
                         
                         <div  align="right">
-                                <a class="btn btn-primary" href="/Conan3000/IngSoft/ventas/socio/agregarsocio.jsp">
+                                <a class="btn btn-primary" href="/Conan3000V2/IngSoft/ventas/socio/agregarsocio.jsp">
                                     <i class="icon icon-add icon-white"></i>
                                     Agregar
                                 </a>
@@ -220,10 +221,10 @@
 										<i class="icon-zoom-in icon-white"></i>  
 										Ver                                            
 									</a>
-									<a class="btn btn-info" href="/Conan3000/IngSoft/ventas/socio/modificarsocio.jsp">
+									<a class="btn btn-info" href="/Conan3000V2/IngSoft/ventas/socio/modificarsocio.jsp">
 										<i class="icon-edit icon-white"></i>  
 										Modificar</a>
-									<a class="btn btn-danger" href="/Conan3000/IngSoft/ventas/socio/eliminarsocio.jsp">
+									<a class="btn btn-danger" href="/Conan3000V2/IngSoft/ventas/socio/eliminarsocio.jsp">
 										<i class="icon-trash icon-white"></i> 
 										Eliminar
 									</a>
@@ -260,11 +261,11 @@
 										<i class="icon-zoom-in icon-white"></i>  
 										Ver                                            
 									</a>
-									<a class="btn btn-info" href="/Conan3000/IngSoft/ventas/socio/modificarsocio.jsp">
+									<a class="btn btn-info" href="/Conan3000V2/IngSoft/ventas/socio/modificarsocio.jsp">
 										<i class="icon-edit icon-white"></i>  
 										Modificar                                            
 									</a>
-									<a class="btn btn-danger" href="/Conan3000/IngSoft/ventas/socio/eliminarsocio.jsp">
+									<a class="btn btn-danger" href="/Conan3000V2/IngSoft/ventas/socio/eliminarsocio.jsp">
 										<i class="icon-trash icon-white"></i> 
 										Eliminar
 									</a>
@@ -349,7 +350,7 @@
     
 					<!-- content ends -->
 			</div><!--/#content.span10-->
-				</div><!--/fluid-row-->
+				<!--/fluid-row-->
 				
 		<hr>
 
@@ -372,7 +373,7 @@
           <p class="pull-right">Powered by: <a href="http://usman.it/free-responsive-admin-template">Las dos virgenes</a></p>
 		</footer>
 		
-	</div><!--/.fluid-container-->
+	<!--/.fluid-container-->
 
 	<!-- external javascript
 	================================================== -->
