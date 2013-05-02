@@ -115,14 +115,7 @@
 			                  <input type="text" class="input-xlarge datepicker" id="date02" value="02/16/13">
 		                    </div>
 		                  </div>
-			              <div class="control-group">
-			                <label class="control-label" for="typeahead8">Descuento:</label>
-			                <div class="controls">
-			                  <input type="text" class="span6 typeahead" id="typeahead8"  data-provide="typeahead" data-items="4" >
-		                    </div>
-		                  </div>
-
-
+			             
 								<div class="control-group">
 								<label class="control-label" for="typeahead3">Estado</label>
 								<div class="controls">
@@ -148,7 +141,7 @@
 			            </div>
 			            <div class="form-actions">
 			              <button type="submit" class="btn btn-primary">Modificar</button>
-			              <button type="reset" class="btn">Cancelar</button>
+			              <button type="reset" class="btn"><a href="buscarpromocion.jsp">Cancelar</a></button>
 		                </div>
 		              </fieldset>
 		            </form>

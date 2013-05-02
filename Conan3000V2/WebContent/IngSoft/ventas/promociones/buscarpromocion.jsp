@@ -139,7 +139,7 @@
 			            </div>
 			            <div class="form-actions">
 			              <button type="submit" class="btn btn-primary">Buscar</button>
-			              <button type="reset" class="btn">Cancelar</button>
+			              <button type="reset" class="btn"><a href="buscarpromocion.jsp">Cancelar</a></button>
 		                </div>
 		              </fieldset>
 		            </form>
