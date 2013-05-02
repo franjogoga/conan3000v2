@@ -133,7 +133,7 @@
 		        <div class="box-content">
 		          <table width="99%" class="table table-striped table-bordered bootstrap-datatable datatable">
 		            <!-- agregar nuevo boton -->
-		            <div  align="right"> <a class="btn btn-primary" href="/Conan3000/IngSoft/ventas/producto/agregarproducto.jsp"> <i class="icon icon-add icon-white"></i> Agregar </a> </div>
+		            <div  align="right"> <a class="btn btn-primary" href="/Conan3000V2/IngSoft/ventas/producto/agregarproducto.jsp"> <i class="icon icon-add icon-white"></i> Agregar </a> </div>
 		            <thead>
 		              <tr>
 		                <th>Nombre</th>
@@ -151,8 +151,8 @@
 		                <td width="9%" class="center">25.00</td>
 		                <td width="12%" >Liz Gym </td>
 		                <td width="10%" class="center"><span class="label label-success">Activo</span></td>
-		                <td width="27%" class="center"><a class="btn btn-success" href="#"> <i class="icon-zoom-in icon-white"></i> Ver</a> <a class="btn btn-info" href="/Conan3000/IngSoft/ventas/producto/modificarproducto.jsp"> <i class="icon-edit icon-white"></i> Modificar
-		                 </a> <a class="btn btn-danger" href="/Conan3000/IngSoft/ventas/producto/eliminarproducto.jsp"> <i class="icon-trash icon-white"></i> Eliminar</a></td>
+		                <td width="27%" class="center"><a class="btn btn-success" href="#"> <i class="icon-zoom-in icon-white"></i> Ver</a> <a class="btn btn-info" href="/Conan3000V2/IngSoft/ventas/producto/modificarproducto.jsp"> <i class="icon-edit icon-white"></i> Modificar
+		                 </a> <a class="btn btn-danger" href="/Conan3000V2/IngSoft/ventas/producto/eliminarproducto.jsp"> <i class="icon-trash icon-white"></i> Eliminar</a></td>
 	                  </tr>
 		              <tr>
 		                <td>Mochila JRP</td>
@@ -160,7 +160,8 @@
 		                <td class="center">60.00</td>
 		                <td>Jonatan RuQ </td>
 		                <td class="center"><span class="label label-success">Activo</span></td>
-		                <td class="center"><a class="btn btn-success" href="#"> <i class="icon-zoom-in icon-white"></i> Ver</a> <a class="btn btn-info" href="#"> <i class="icon-edit icon-white"></i> Modificar</a> <a class="btn btn-danger" href="#"> <i class="icon-trash icon-white"></i> Eliminar </a></td>
+		                <td class="center"class="center"><a class="btn btn-success" href="#"> <i class="icon-zoom-in icon-white"></i> Ver</a> <a class="btn btn-info" href="/Conan3000V2/IngSoft/ventas/producto/modificarproducto.jsp"> <i class="icon-edit icon-white"></i> Modificar
+		                 </a> <a class="btn btn-danger" href="/Conan3000V2/IngSoft/ventas/producto/eliminarproducto.jsp"> <i class="icon-trash icon-white"></i> Eliminar</a></td>
 	                  </tr>
 		              <tr>
 		                <td>Polo ARQ</td>
@@ -168,7 +169,7 @@
 		                <td class="center">50.00</td>
 		                <td>Heli PrO </td>
 		                <td class="center"><span class="label label-success">Activo</span></td>
-		                <td class="center"><a class="btn btn-success" href="#"> <i class="icon-zoom-in icon-white"></i> Ver</a> <a class="btn btn-info" href="#"> <i class="icon-edit icon-white"></i> Modificar </a> <a class="btn btn-danger" href="#"> <i class="icon-trash icon-white"></i> Eliminar </a></td>
+		                <td class="center"><a class="btn btn-success" href="#"> <i class="icon-zoom-in icon-white"></i> Ver</a> <a class="btn btn-info" href="/Conan3000V2/IngSoft/ventas/producto/modificarproducto.jsp"> <i class="icon-edit icon-white"></i> Modificar </a> <a class="btn btn-danger" href="/Conan3000V2/IngSoft/ventas/producto/eliminarproducto.jsp"> <i class="icon-trash icon-white"></i> Eliminar </a></td>
 	                  </tr>
 	                </tbody>
 	              </table>
