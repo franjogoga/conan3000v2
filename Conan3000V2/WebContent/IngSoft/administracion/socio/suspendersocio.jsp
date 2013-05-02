@@ -75,7 +75,7 @@
 						<a href="#">Mantenimiento de Socio</a> <span class="divider">/</span>
 					</li>
 					<li>
-						Suspender Socio
+						Registrar Socio Vitalicio
 					</li>
 				</ul>
 			</div>
@@ -83,7 +83,7 @@
 			  <div class="row-fluid sortable">
 			    <div class="box span12">
 			      <div class="box-header well" data-original-title>
-			        <h2> SUSPENDER SOCIO</h2>
+			        <h2> REGISTRAR SOCIO VITALICIO</h2>
 		          </div>
 				  
 			      <div class="box-content">
@@ -116,6 +116,7 @@
 			              <button type="submit" class="btn btn-primary">Suspender</button>
 			              <button type="reset" class="btn">Cancelar</button>
 		                </div>
+						
 		              </fieldset>
 		            </form>
 		          </div>
