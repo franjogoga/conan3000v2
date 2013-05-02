@@ -75,14 +75,14 @@
               <div>
                 <ul class="breadcrumb">
                   <li> <a href="../../general/index.jsp">Home</a> <span class="divider">/</span> </li>
-                  <li> <a href="#">Mantenimiento de Ambientes</a> <span class="divider">/</span></li>
-                  <li>Eliminar Ambiente</li>
+                  <li> <a href="#">Mantenimiento de Canchas</a> <span class="divider">/</span></li>
+                  <li>Eliminar Cancha</li>
                 </ul>
               </div>
               <div class="row-fluid sortable">
                 <div class="box span12">
                   <div class="box-header well" data-original-title>
-                    <h2></i>ELIMINAR AMBIENTE</h2>
+                    <h2></i>ELIMINAR CANCHA</h2>
                   </div>
                   <div class="box-content">
                     <form class="form-horizontal">
@@ -90,35 +90,29 @@
                         <div class="control-group">
                           <label class="control-label" for="disabledInput">Nombre:</label>
                           <div class="controls">
-                            <input class="input-xlarge disabled" id="disabledInput" type="text" placeholder="Polideportivo" disabled="">
+                            <input class="input-xlarge disabled" id="disabledInput" type="text" placeholder="Cancha A" disabled="">
                           </div>
                         </div>
                         <div class="control-group">
-                          <label class="control-label" for="selectError">Tipo:</label>
+                          <label class="control-label" for="selectError">Tipo de Cancha:</label>
                           <div class="controls">
                             <select name="selectError" id="selectError" data-rel="chosen" disabled="">
-                              <option>Deportivo</option>
+                              <option>Futsal</option>
                             </select>
                           </div>
                         </div>
                         <div class="control-group">
-                          <label class="control-label" for="selectError">Sede:</label>
+                          <label class="control-label" for="selectError">Ambiente:</label>
                           <div class="controls">
                             <select name="selectError2" id="selectError2" data-rel="chosen" disabled="">
-                              <option>Chosica</option>
+                              <option>Polideportivo</option>
                             </select>
                           </div>
                         </div>
                         <div class="control-group">
                   		  <label class="control-label" for="textarea2">Descripci&oacuten:</label>
                           <div class="controls">
-                            <textarea name="textarea" rows="3" id="textarea2" disabled="" style="resize:none" placeholder="Complejo deportivo"></textarea>
-                          </div>
-                        </div>
-                        <div class="control-group">
-                          <label class="control-label" for="textarea2">Caracter&iacutesticas: </label>
-                          <div class="controls">
-                            <textarea name="textarea2" rows="3" id="textarea2" disabled="" style="resize:none" placeholder="Área: 200 metros cuadrados."></textarea>
+                            <textarea name="textarea" rows="3" id="textarea2" disabled="" style="resize:none" placeholder="Cancha de futsal. Medidas oficiales."></textarea>
                           </div>
                         </div>
                         <div class="form-actions">

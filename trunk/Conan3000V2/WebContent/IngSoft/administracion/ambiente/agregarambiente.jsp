@@ -74,7 +74,7 @@
               <!-- content starts -->
               <div>
                 <ul class="breadcrumb">
-                  <li> <a href="#">Home</a> <span class="divider">/</span> </li>
+                  <li> <a href="../../general/index.jsp">Home</a> <span class="divider">/</span> </li>
                   <li> <a href="#">Mantenimiento de Ambientes</a> <span class="divider">/</span></li>
                   <li>Agregar Ambiente</li>
                 </ul>

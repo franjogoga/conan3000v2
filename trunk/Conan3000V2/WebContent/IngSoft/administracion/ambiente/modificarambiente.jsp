@@ -74,7 +74,7 @@
               <!-- content starts -->
               <div>
                 <ul class="breadcrumb">
-                  <li> <a href="#">Home</a> <span class="divider">/</span> </li>
+                  <li> <a href="../../general/index.jsp">Home</a> <span class="divider">/</span> </li>
                   <li> <a href="#">Mantenimiento de Ambientes</a> <span class="divider">/</span></li>
                   <li>Modificar Ambiente</li>
                 </ul>
@@ -90,14 +90,14 @@
                         <div class="control-group">
                           <label class="control-label" for="typeahead">Nombre (*):</label>
                           <div class="controls">
-                            <input type="text" class="span6 typeahead" id="typeahead"  data-provide="typeahead" placeholder="Sala de juegos">
+                            <input type="text" class="span6 typeahead" id="typeahead"  data-provide="typeahead" placeholder="Polideportivo">
                           </div>
                         </div>
                         <div class="control-group">
                           <label class="control-label" for="selectError">Tipo (*):</label>
                           <div class="controls">
                             <select name="selectError" id="selectError" data-rel="chosen">
-                              <option>Recreativo</option>
+                              <option>Deportivo</option>
                             </select>
                           </div>
                         </div>
@@ -112,13 +112,13 @@
                         <div class="control-group">
                   		  <label class="control-label" for="textarea2">Descripci&oacuten (*):</label>
                           <div class="controls">
-                            <textarea name="textarea" rows="3" id="textarea2" style="resize:none" placeholder="Sala con diversos juegos de mesa."></textarea>
+                            <textarea name="textarea" rows="3" id="textarea2" style="resize:none" placeholder="Complejo deportivo."></textarea>
                           </div>
                         </div>
                         <div class="control-group">
                           <label class="control-label" for="textarea2">Caracter&iacutesticas: </label>
                           <div class="controls">
-                            <textarea name="textarea2" rows="3" id="textarea2" style="resize:none" placeholder="Área: 5 metros cuadrados."></textarea>
+                            <textarea name="textarea2" rows="3" id="textarea2" style="resize:none" placeholder="Área: 200 metros cuadrados."></textarea>
                           </div>
                         </div>
                         <div class="form-actions">
