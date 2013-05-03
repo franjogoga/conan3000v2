@@ -131,27 +131,7 @@
 		                  </div>
 			              <div class="control-group">
 			                		                  		                      
-		                         	<div  disabled class="control-group">
-								<label disabled class="control-label" for="typeahead3">Estado:</label>
-								<div class="controls">
-								  <label  disabled class="radio">
-									<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
-									Pendiente
-								  </label>
-								  <div style="clear:both"></div>
-								  <label  disabled class="radio">
-									<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-									Registrado
-								  </label>
-								   <div style="clear:both"></div>
-								  <label  disabled class="radio">
-									<input type="radio" name="optionsRadios" id="optionsRadios3" value="option3">
-									Eliminado
-								  </label>
-								</div>
-							  </div>
-							  
-						
+		                       					
 			            
 			       
 			            <div class="form-actions">
