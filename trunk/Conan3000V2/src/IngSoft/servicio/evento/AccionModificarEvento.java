@@ -9,10 +9,10 @@ import IngSoft.general.CoAccion;
 public class AccionModificarEvento extends CoAccion {
 
 	@Override
-	public void ejecutar(ServletContext arg0, HttpServletRequest arg1,
-			HttpServletResponse arg2) {
+	public void ejecutar(ServletContext sc, HttpServletRequest request,
+			HttpServletResponse response) {
 		// TODO Auto-generated method stub
-
+		this.direccionar(sc, request, response, "/IngSoft/servicio/evento/modificarevento.jsp");
 	}
 
 }
