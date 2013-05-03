@@ -30,7 +30,7 @@
 			              <div class="control-group">
 			                <label class="control-label" for="typeahead4">Costo (S/.) (*): </label>
 			                <div class="controls">
-			                  <input type="text" class="span6 typeahead" id="typeahead4"  data-provide="typeahead" data-items="4" >
+			                  <input type="text" class="input-xlarge" id="typeahead4"  data-provide="typeahead" data-items="4" >
 			                </div>
 		                  </div>
 			              <div class="control-group">
