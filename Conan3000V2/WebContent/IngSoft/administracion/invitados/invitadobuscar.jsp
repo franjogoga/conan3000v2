@@ -107,19 +107,12 @@
 						<div class="control-group">
                                 
                                 
-                                <label class="control-label" for="typeahead7">DNI: </label>
+                                <label class="control-label" for="typeahead7">Tipo de Documento: </label>
                                 <div class="controls">
                                     <input type="text" class="span6 typeahead" id="typeahead7"  data-provide="typeahead" >
                                         </div>
 					        </div>
-	                  <div class="control-group">
-                                
-                                
-                                <label class="control-label" for="typeahead7">C&oacutedigo de Socio: </label>
-                                <div class="controls">
-                                    <input type="text" class="span6 typeahead" id="typeahead7"  data-provide="typeahead" >
-                                        </div>
-					        </div>
+	               
 							
                     <div class="control-group">
 			              <label class="control-label" for="typeahead7">Fecha Registro: </label>
@@ -127,13 +120,38 @@
 			                <input type="text" class="input-xlarge datepicker" id="date01" value="02/16/2012">
 		                  </div>
 		                </div>							
-                                
-								<div class="control-group">
-			              <label class="control-label" for="typeahead7">Fecha Ingreso: </label>
-			              <div class="controls">
-			                <input type="text" class="input-xlarge datepicker" id="date01" value="02/16/2012">
-		                  </div>
-		                </div>
+                              
+                              
+                  <div class="control-group">
+								<label class="control-label">Estado:</label>
+								
+								<div class="controls">
+								
+								  <label class="radio">
+									<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
+									Activo
+								  </label>
+								  
+										 <div style="clear:both"></div> 
+								  
+								  
+								  <label class="radio">
+									<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+									Inactivo
+								  </label>
+								  
+								         <div style="clear:both"></div>  
+								  
+								  <label class="radio">
+									<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+									Cancelado
+								  </label>
+								  
+								  
+								</div>
+								
+							  </div>  
+								
 		                <button type="submit" class="btn btn-primary">Buscar</button>
 		                
 	                  </div>
@@ -157,7 +175,6 @@
 		              <tr>
 		                <th width="13%">Nombre</th>
 		                <th width="17%">C&oacutedigo</th>
-		                <th width="20%">C&oacutedigo de Socio</th>
 		                <th width="11%">Estado</th>
 		                <th width="27%">Acci&oacuten</th>
 	                  </tr>
@@ -166,7 +183,6 @@
 		              <tr>
 		                <td>Juan L&oacutepez</td>
 		                <td class="center">USU_00232 </td>
-		                <td class="center">SOC_00150</td>
 		                <td class="center"><span class="label label-success">Activo</span></td>
 		                <td class="center"><a class="btn btn-success" href="#"> <i class="icon-zoom-in icon-white"></i> Ver </a> <a class="btn btn-info" href="invitadomodificar.jsp"> <i class="icon-edit icon-white"></i> Modificar </a> <a class="btn btn-danger" href="invitadoeliminar.jsp"> <i class="icon-trash icon-white"></i> Eliminar </a></td>
 	                  </tr>

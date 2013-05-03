@@ -118,10 +118,23 @@
                                           </div>
                               </div>
                               
+                              
+                              <div class="control-group">
+								<label class="control-label" for="selectError">Tipo de Documento(*):</label>
+								<div class="controls">
+								  <select id="selectError" data-rel="chosen">
+									<option>DNI</option>
+									<option>Carnet de Extranjer&iacutea</option>
+									<option>Pasaporte</option>
+								
+								  </select>
+								</div>
+							  </div>
+                              
                               <div class="control-group">
                                   
                                   
-                                  <label class="control-label" for="typeahead7">DNI(*): </label>
+                                  <label class="control-label" for="typeahead7">Nro. de Documento(*): </label>
                                   <div class="controls">
                                       <input type="text" class="span6 typeahead" id="typeahead7"  data-provide="typeahead" >
                                           </div>
@@ -137,17 +150,7 @@
                                                           
                               
                               
-						    <div class="control-group">
-							  <div class="control-group">
-							    <label class="control-label" for="typeahead6">C&oacutedigo de Socio(*): </label>
-							    <div class="controls">
-							      <input type="text" class="span6 typeahead" id="typeahead6"  data-provide="typeahead" data-items="4"
-                                      
-                                                                            
-                                      data-source='["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Dakota","North Carolina","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"]'>
-						        </div>
-						      </div>
-                                
+						                                  
                             
 						<div class="control-group">
 			              <label class="control-label" for="typeahead7">Fecha Registro(*): </label>
@@ -156,19 +159,7 @@
 		                  </div>
 		                </div>							
                                 
-								<div class="control-group">
-			              <label class="control-label" for="typeahead7">Fecha Ingreso(*): </label>
-			              <div class="controls">
-			                <input type="text" class="input-xlarge datepicker" id="date01" value="02/16/2012">
-		                  </div>
-		                </div>
-							                                    
-                                                              
-                                
-                                                             
-                                                            
-                                
-                                           
+								                                                    
                                                       
                                                              
                                 
@@ -186,6 +177,36 @@
                                    
                                     </div>
                                 </div>
+                                
+                                <div class="control-group">
+								<label class="control-label">Estado:</label>
+								
+								<div class="controls">
+								
+								  <label class="radio">
+									<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
+									Activo
+								  </label>
+								  
+										 <div style="clear:both"></div> 
+								  
+								  
+								  <label class="radio">
+									<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+									Inactivo
+								  </label>
+								  
+								         <div style="clear:both"></div>  
+								  
+								  <label class="radio">
+									<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+									Cancelado
+								  </label>
+								  
+								  
+								</div>
+								
+							  </div>	
 		          
 			            <div class="form-actions">
 			              <button type="submit" class="btn btn-primary">Agregar</button>
@@ -193,7 +214,7 @@
 		                </div>
 						
 					<div class="control-group">
-                    <label class="control-label" for="typeahead2">(*)CamposObligatorios </label>
+                    <label class="control-label" for="typeahead2">(*)Campos Obligatorios </label>
                                   
                               </div>
 		              </fieldset>
