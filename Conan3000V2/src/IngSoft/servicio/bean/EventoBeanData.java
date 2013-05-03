@@ -1,8 +1,9 @@
 package IngSoft.servicio.bean;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class EventoBeanData {
+public class EventoBeanData implements Serializable{
 	
 	private int codigo;
 	private String nombre;

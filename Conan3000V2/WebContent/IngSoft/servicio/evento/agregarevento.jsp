@@ -178,7 +178,7 @@
 							  </div>
 							</div>
 						    <div class="form-actions">
-							  <button type="submit" class="btn btn-primary" onclick="javascript:alt_submit()">Agregar</button>
+							  <button type="submit" class="btn btn-primary">Agregar</button>
 							  <button type="reset" class="btn" >Cancelar</button>
 							</div>
 						  </fieldset>

@@ -1,9 +1,10 @@
 package IngSoft.servicio.bean;
 
+import java.io.Serializable;
 import java.sql.Date;
 
-public class ResultadoEventoBeanData {
-	private String nombre;
+public class ResultadoEventoBeanData implements Serializable{
+	private String nombre; 
 	private String tipo;
 	private Date limInicio;
 	private Date limFin;

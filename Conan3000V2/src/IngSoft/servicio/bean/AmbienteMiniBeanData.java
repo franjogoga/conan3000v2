@@ -1,6 +1,8 @@
 package IngSoft.servicio.bean;
 
-public class AmbienteMiniBeanData {
+import java.io.Serializable;
+
+public class AmbienteMiniBeanData implements Serializable{
 	private int codigo;
 	private String nombre;
 	public int getCodigo() {
