@@ -3,6 +3,9 @@
 					<ul class="nav nav-tabs nav-stacked main-menu">
                         <li><a class="ajax-link" href="/Conan3000V2/IngSoft/general/index.jsp"><i class="icon-home"></i><span class="hidden-tablet"> Home</span></a></li>
    						<li class="nav-header hidden-tablet">Mantenimientos</li>
+   						
+						<li><a class="ajax-link" href="/Conan3000V2/IngSoft/administracion/configuracion/configuracion.jsp"><i class="icon-wrench"></i><span class="hidden-tablet"> Configuracion</span></a></li>   						
+
    						<li><a class="ajax-link" href="/Conan3000V2/IngSoft/administracion/perfiles/agregarperfil.jsp"><i class="icon-wrench"></i><span class="hidden-tablet"> Perfiles</span></a></li>
 
 
