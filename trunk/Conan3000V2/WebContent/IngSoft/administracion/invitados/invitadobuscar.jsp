@@ -104,14 +104,19 @@
 		                  <input type="text" class="span6 typeahead" id="typeahead">
                           <p class="help-block">Escriba sobre la casilla un nombre del invitado para ser autocompletado</p>
 		                </div>
+						
 						<div class="control-group">
-                                
-                                
-                                <label class="control-label" for="typeahead7">Tipo de Documento: </label>
-                                <div class="controls">
-                                    <input type="text" class="span6 typeahead" id="typeahead7"  data-provide="typeahead" >
-                                        </div>
-					        </div>
+								<label class="control-label" for="selectError">Tipo de Documento(*):</label>
+								<div class="controls">
+								  <select id="selectError" data-rel="chosen">
+									<option>DNI</option>
+									<option>Carnet de Extranjer&iacutea</option>
+									<option>Pasaporte</option>
+								
+								  </select>
+								</div>
+							  </div>					
+						
 	               
 							
                     <div class="control-group">
@@ -151,10 +156,11 @@
 								</div>
 								
 							  </div>  
-								
-		                <button type="submit" class="btn btn-primary">Buscar</button>
-		                
+						  <div class="form-actions">
+		                <button type="submit" class="btn btn-primary">Buscar</button>		                
 	                  </div>
+					  		
+		               
 	                </fieldset>
 	              </form>
 	            </div>
