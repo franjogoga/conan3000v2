@@ -1041,7 +1041,7 @@ function cambiarClase(elemento){
 										Reservar&nbsp;&nbsp;&nbsp;&nbsp;                                             
 									</a>
 									
-									<!-- PRUEBA -->
+									<!-- PRUEBA2 -->
 								</td>
                                 </td>
 								<td class="center">
