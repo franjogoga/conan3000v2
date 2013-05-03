@@ -196,6 +196,12 @@
 									<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
 									Suspendido
 								  </label>
+								  
+								  <div style="clear:both"></div>
+								  <label class="radio">
+									<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+									Eliminado
+								  </label>
 								</div>
 							  </div>
 							    
