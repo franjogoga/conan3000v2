@@ -17,7 +17,7 @@
 			            <div class="control-group">
 			              <label class="control-label" for="typeahead8">Socio: </label>
 			              <div class="controls">
-			                <input type="text" class="span6 typeahead disabled" id="typeahead8"  data-provide="typeahead" data-items="4" disabled="" >
+			                <input type="text" class="span6 typeahead disabled" id="typeahead8"  data-provide="typeahead" data-items="4" disabled="" value="Juan Perez" >
 			              </div>
 		                </div>
                         <div class="control-group">
@@ -42,13 +42,13 @@
 			              <div class="control-group">
 			                <label class="control-label" for="typeahead4">Monto (S/.): </label>
 			                <div class="controls">
-			                  <input type="text" class="span6 typeahead" id="typeahead4"  data-provide="typeahead" data-items="4" >
+			                  <input type="text" class="input-xlarge" id="typeahead4"  data-provide="typeahead" data-items="4" value="300" >
 		                    </div>
 		                  </div>
 			            </div>
 			            <div class="control-group">
 			              <div class="control-group">
-			                <label class="control-label" for="typeahead4">Motivo: </label>
+			                <label class="control-label" for="typeahead4">Motivo (*): </label>
 			                <div class="controls">
 			                 <textarea  id="textarea2" rows="3"  style="resize:none"></textarea>
 		                    </div>
