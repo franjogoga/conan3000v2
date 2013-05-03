@@ -17,14 +17,14 @@
 			            <div class="control-group">
 			              <label class="control-label" for="typeahead8">Socio (*): </label>
 			              <div class="controls">
-			                <input type="text" class="span6 typeahead" id="typeahead8"  data-provide="typeahead" data-items="4" >
+			                <input type="text" class="span6 typeahead" id="typeahead8"  data-provide="typeahead" data-items="4" value="Juan Perez" >
 			                <p class="help-block">Escriba sobre la casilla un nombre de socio para ser autocompletado</p>
 		                  </div>
 		                </div>
                         <div class="control-group">
 			                <label class="control-label" for="typeahead4">C&oacute;digo de Socio (*): </label>
 			                <div class="controls">
-			                  <input type="text" class="span6 typeahead disabled" id="typeahead4"  data-provide="typeahead" data-items="4" disabled="" >
+			                  <input type="text" class="span6 typeahead disabled" id="typeahead4"  data-provide="typeahead" data-items="4" disabled="" value="002" >
 		                    </div>
 		                  </div>
 			            <div class="control-group">
@@ -43,7 +43,7 @@
           <div class="control-group">
 			                <label class="control-label" for="typeahead4">Monto (S/.) (*): </label>
 			                <div class="controls">
-			                  <input type="text" class="span6 typeahead" id="typeahead4"  data-provide="typeahead" data-items="4" >
+			                  <input type="text" class="input-xlarge" id="typeahead4"  data-provide="typeahead" data-items="4" value="300" >
 			                </div>
 		                  </div>
 			            </div>
