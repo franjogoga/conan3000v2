@@ -12,7 +12,7 @@
 		http://twitter.com/halalit_usman
 	-->
 	<meta charset="utf-8">
-	<title>Conan3000</title>
+	<title>Solicitud de Socio</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
 	<meta name="author" content="Muhammad Usman">
@@ -83,7 +83,7 @@
 			          <!-- content starts -->
 			          
 			           
-			              <li><a href="/Conan3000V2/IngSoft/general/index.jsp">Home / </a><a href="">Mantenimiento de Solicitudes / </a>Agregar Solicitud de Socio
+			              <li><a href="/Conan3000V2/IngSoft/general/index.jsp">Home / </a><a href="solicitud.jsp"> Solicitud / </a>Agregar Solicitud de Socio
 			           
 			              </li>
 			              
@@ -165,7 +165,7 @@
 		                          
 		                        <div class="form-actions">
 			                      <button type="submit" class="btn btn-primary">Agregar</button>
-			                      <button type="reset" class="btn">Cancelar</button>
+			                      <button type="reset" class="btn"><a href="solicitud.jsp">Cancelar</a></button>
 		                        </div>
 		                      </fieldset>
 		                    </form>
