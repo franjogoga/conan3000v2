@@ -93,7 +93,7 @@
 			                  <select name="selectError" id="selectError" data-rel="chosen">
 			                    <option selected>Productos</option>
 			                    <option>Socio</option>
-			                     <option>Servicio a proveedores</option>
+			                     <option>Servicio de proveedores</option>
 			                
 		                      </select>
 		                    </div>
