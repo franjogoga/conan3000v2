@@ -91,21 +91,25 @@
 			          <fieldset>
 			            
 						<div class="control-group">
-						  <label class="control-label" for="typeahead">Nombre de Socio (*):</label>							  
+						  <label class="control-label" for="nombre">Nombres (*):</label>							  
 						  <div class="controls">
-							<input type="text" class="span6 typeahead" id="typeahead"  data-provide="typeahead" data-items="4" data-source='["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Dakota","North Carolina","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"]'>	
-							<p class="help-block">Escriba el nombre un socio para autocompletar</p>
+							<input type="text" class="span6 typeahead" id="nombre"  data-provide="typeahead" data-items="4" data-source='["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Dakota","North Carolina","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"]'>								
 						  </div>
 						</div>											
-						
+								
 						<div class="control-group">
-							<label class="control-label">Estado de Socio (*):</label>
-							<div class="controls">
-							  <label class="checkbox inline">
-								<input type="checkbox" id="inlineCheckbox1" value="option1"> Vitalicio
-							  </label>								  
-							</div>
-						  </div>												
+						  <label class="control-label" for="paterno">Apellido Paterno (*):</label>							  
+						  <div class="controls">
+							<input type="text" class="span6 typeahead" id="paterno"  data-provide="typeahead" data-items="4" data-source='["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Dakota","North Carolina","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"]'>								
+						  </div>
+						</div>			
+											
+						<div class="control-group">
+						  <label class="control-label" for="materno">Apellido Materno (*):</label>							  
+						  <div class="controls">
+							<input type="text" class="span6 typeahead" id="materno"  data-provide="typeahead" data-items="4" data-source='["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Dakota","North Carolina","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"]'>								
+						  </div>
+						</div>													
 											
 			            <div class="form-actions">
 			              <button type="submit" class="btn btn-primary">Registrar</button>
