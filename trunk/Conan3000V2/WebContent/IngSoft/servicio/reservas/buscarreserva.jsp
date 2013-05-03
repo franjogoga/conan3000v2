@@ -2,14 +2,7 @@
 <html lang="en">
 <head>
 	<!--
-		Charisma v1.0.0
-
-		Copyright 2012 Muhammad Usman
-		Licensed under the Apache License v2.0
-		http://www.apache.org/licenses/LICENSE-2.0
-
-		http://usman.it
-		http://twitter.com/halalit_usman
+	Formulario para la generación de las reservas de las actividades.
 	-->
 	<meta charset="utf-8">
 	<title>Conan3000</title>
@@ -74,7 +67,7 @@ function cambiarClase(elemento){
 //alert("MAY");
 	
 	if (elemento.className == "btn btn-success") {
-	elemento.className = "btn btn-primary";
+	elemento.className = "btn btn-inverse";
 	elemento.innerHTML=elemento.innerHTML.replace("Reservar&nbsp;&nbsp;&nbsp;","Pendiente");
 	//alert("Entre aqui");
 	}
@@ -86,6 +79,29 @@ function cambiarClase(elemento){
 
 
 </script>	
+
+
+
+<script type="text/javascript">
+    
+    function cambiarTabla(){
+        
+        var option = document.getElementById("options").value;
+        var div = document.getElementById("tablaCanchaFutbol").value;
+       
+        if(option == "bungalow"){
+       
+           //alert("Entre aqui");
+           
+           document.getElementById("tablaCanchaFutbol").style.visibility="hidden";
+           document.getElementById("tablaBungalow").style.visibility="visible";
+        }
+        
+    }
+</script>
+
+
+
 		
 		
 </head>
@@ -124,28 +140,38 @@ function cambiarClase(elemento){
 				<div class="box span12">
 					<div class="box-header well" data-original-title>
 						<h2><i class="icon-edit"></i> MANTENIMIENTO DE RESERVAS</h2>
-						<div class="box-icon">
-							
-							<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
-							<a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>
-						</div>
+						
 					</div>
 					<div class="box-content">
 						<form class="form-horizontal">
 						  <fieldset>
 							
 					<div class="control-group">
+								
+							<label class="control-label" for="selectError">Seleccionar Sede</label>
+							<div class="controls">
+							  <select id="selectError7" data-rel="chosen">
+								<option>Sede 1</option>
+								<option>Sede 2</option>
+								<option>Sede 3</option>
+								<option>Sede 4</option>
+								<option>Sede 5</option>
+							  </select>
+							</div>
+						</div>	
+						<div class="control-group">
+						
 								<label class="control-label" for="selectError">Seleccionar servicios</label>
 								<div class="controls">
-								  <select id="selectError3" data-rel="chosen">
+								
+								  <select id="options" data-rel="chosen" onchange="cambiarTabla()">
 									<option>Cancha de futbol</option>
 									<option>Cancha de tennis</option>
                                     <option>Cancha de Fronton</option>
-									<option>Bungalows</option>
+									<option value="bungalow"> Bungalows</option>
 								  </select>
 								</div>
 						    </div>
-					
 		
 						  </fieldset>
 						</form>   
@@ -153,7 +179,8 @@ function cambiarClase(elemento){
 				</div><!--/span-->
 
 			</div><!--/row-->
-<div class="box-content">
+			
+<div id="tablaCanchaFutbol" class="box-content">
 						<table class="table table-striped table-bordered bootstrap-datatable datatable">
 						  <thead>
 							  <tr>
@@ -590,11 +617,467 @@ function cambiarClase(elemento){
 							
 						  </tbody>
 					  </table> 
+					  
+					  
+                      <div class="form-actions">
+			             <a class="btn btn-primary" href="/Conan3000V2/IngSoft/servicio/reservas/formularioreservas.jsp">Crear Reserva</a>
+                          <button type="reset" class="btn">Cancelar</button>
+                      
+		                </div>
                       
   </div><!--/span-->
 			
 			</div><!--/row-->
 
+			<div id="tablaBungalow" class="box-content" style="visibility:hidden; display:inline; ">
+						<table class="table table-striped table-bordered bootstrap-datatable datatable">
+						  <thead>
+							  <tr>
+								  <th>Horas</th>
+								  <th>Lunes</th>
+								  <th>Martes</th>
+								  <th>Miercoles</th>
+								  <th>Jueves</th>
+                                  <th>Viernes</th>
+                                  <th>Sabado</th>
+                                  <th>Domingo</th>
+							  </tr>
+						  </thead>   
+						  <tbody>
+							
+							<tr>
+								<td>Bungalow</td>
+								
+							
+								<td class="center">
+									<a id="btn1" class="btn btn-success" onclick="javascript:cambiarClase(this)">
+										<i class="icon-ok icon-white"></i>  
+										Reservar&nbsp;&nbsp;&nbsp;&nbsp;                                      
+						</a>	
+
+									
+								</td>
+								<td class="center" align="center">
+									<a class="btn btn-success" onclick="javascript:cambiarClase(this)">
+										<i class="icon-ok icon-white"></i>  
+										Reservar&nbsp;&nbsp;&nbsp;&nbsp;                                             
+									</a>
+								</td>
+								<td class="center">
+									<a class="btn btn-success" onclick="javascript:cambiarClase(this)">
+										<i class="icon-ok icon-white"></i>  
+										Reservar&nbsp;&nbsp;&nbsp;&nbsp;                                             
+								</a>	
+								</td>
+                                </td>
+								<td class="center">
+									<a class="btn btn-success" onclick="javascript:cambiarClase(this)">
+										<i class="icon-ok icon-white"></i>  
+										Reservar&nbsp;&nbsp;&nbsp;&nbsp;                                             
+									</a>
+								</td>
+								<td class="center">
+									<a class="btn btn-success" onclick="javascript:cambiarClase(this)">
+										<i class="icon-ok icon-white"></i>  
+										Reservar&nbsp;&nbsp;&nbsp;&nbsp;                                             
+									</a>
+						
+								</td>
+                                </td>
+								<td class="center">
+									<a class="btn btn-success" onclick="javascript:cambiarClase(this)">
+										<i class="icon-ok icon-white"></i>  
+										Reservar&nbsp;&nbsp;&nbsp;&nbsp;                                             
+									
+								</td>
+                                
+                                </td>
+								
+								<td class="center">
+									<a class="btn btn-success" onclick="javascript:cambiarClase(this)">
+										<i class="icon-ok icon-white"></i>  
+										Reservar&nbsp;&nbsp;&nbsp;&nbsp;                                             
+									
+								</td>
+							</tr>
+							
+							
+							
+							<tr>
+								
+							<tr>
+								<td>7:30-8:00</td>
+								<td class="center">
+									<a class="btn btn-success" onclick="javascript:cambiarClase(this)">
+										<i class="icon-ok icon-white"></i>  
+										Reservar&nbsp;&nbsp;&nbsp;&nbsp;                                             
+									</a>
+									
+								</td>
+								<td class="center">
+									<a class="btn btn-success" onclick="javascript:cambiarClase(this)">
+										<i class="icon-ok icon-white"></i>  
+										Reservar&nbsp;&nbsp;&nbsp;&nbsp;                                             
+									</a>
+									
+								</td>
+								</td>
+								<td class="center">
+									<a class="btn btn-success" onclick="javascript:cambiarClase(this)">
+										<i class="icon-ok icon-white"></i>  
+										Reservar&nbsp;&nbsp;&nbsp;&nbsp;                                             
+									
+								</td>
+                                </td>
+								<td class="center">
+									<a class="btn btn-success" onclick="javascript:cambiarClase(this)">
+										<i class="icon-ok icon-white"></i>  
+										Reservar&nbsp;&nbsp;&nbsp;&nbsp;                                             
+									
+								</td>
+								<td class="center">
+									<a class="btn btn-success" onclick="javascript:cambiarClase(this)">
+										<i class="icon-ok icon-white"></i>  
+										Reservar&nbsp;&nbsp;&nbsp;&nbsp;                                             
+									</a>
+						
+								</td>
+                                <td class="center">
+									<a class="btn btn-success" onclick="javascript:cambiarClase(this)">
+										<i class="icon-ok icon-white"></i>  
+										Reservar&nbsp;&nbsp;&nbsp;&nbsp;                                             
+									</a>
+						
+								</td>
+                                <td class="center">
+									<a class="btn btn-success" onclick="javascript:cambiarClase(this)">
+										<i class="icon-ok icon-white"></i>  
+										Reservar&nbsp;&nbsp;&nbsp;&nbsp;                                             
+									</a>
+						
+								</td>
+							</tr>
+							<tr>
+								<td>8:00-8:30</td>
+								<td class="center">
+									<a class="btn btn-danger" href="#">
+										<i class="icon-remove icon-white"></i> 
+										Reservado
+									</a>
+								</td>
+								<td class="center">
+									<a class="btn btn-success" onclick="javascript:cambiarClase(this)">
+										<i class="icon-ok icon-white"></i>  
+										Reservar&nbsp;&nbsp;&nbsp;&nbsp;                                             
+									</a>
+									
+								</td>
+								<td class="center">
+									<a class="btn btn-success" onclick="javascript:cambiarClase(this)">
+										<i class="icon-ok icon-white"></i>  
+										Reservar&nbsp;&nbsp;&nbsp;&nbsp;                                             
+									</a>
+									
+								</td>
+								<td class="center">
+									
+									
+									<a class="btn btn-danger" href="#">
+										<i class=" icon-remove icon-white"></i> 
+										Reservado
+									</a>
+								</td>
+                                <td class="center">
+									
+									
+									<a class="btn btn-danger" href="#">
+										<i class=" icon-remove icon-white"></i> 
+										Reservado
+									</a>
+								</td>
+                                <td class="center">
+									<a class="btn btn-success" onclick="javascript:cambiarClase(this)">
+										<i class="icon-ok icon-white"></i>  
+										Reservar&nbsp;&nbsp;&nbsp;&nbsp;                                             
+									</a>
+						
+								</td>
+                                <td class="center">
+									<a class="btn btn-success" onclick="javascript:cambiarClase(this)">
+										<i class="icon-ok icon-white"></i>  
+										Reservar&nbsp;&nbsp;&nbsp;&nbsp;                                             
+									</a>
+						
+								</td>
+                                
+							</tr>
+							<tr>
+								<td>8:30-9:00</td>
+								<td class="center">
+									<a class="btn btn-danger" href="#">
+										<i class="icon-remove icon-white"></i> 
+										Reservado
+									</a>
+								</td>
+								<td class="center">
+									<a class="btn btn-success" onclick="javascript:cambiarClase(this)">
+										<i class="icon-ok icon-white"></i>  
+										Reservar&nbsp;&nbsp;&nbsp;&nbsp;                                             
+									</a>
+									
+								</td>
+								<td class="center">
+									<a class="btn btn-success" onclick="javascript:cambiarClase(this)">
+										<i class="icon-ok icon-white"></i>  
+										Reservar&nbsp;&nbsp;&nbsp;&nbsp;                                             
+									</a>
+									
+								</td>
+								<td class="center">
+									
+									
+									<a class="btn btn-danger" href="#">
+										<i class=" icon-remove icon-white"></i> 
+										Reservado
+									</a>
+								</td>
+                                <td class="center">
+									
+									
+									<a class="btn btn-danger" href="#">
+										<i class=" icon-remove icon-white"></i> 
+										Reservado
+									</a>
+								</td>
+                                <td class="center">
+									<a class="btn btn-danger" href="#">
+										<i class="icon-remove icon-white"></i> 
+										Reservado
+									</a>
+								</td>
+                                <td class="center">
+									<a class="btn btn-danger" href="#">
+										<i class="icon-remove icon-white"></i> 
+										Reservado
+									</a>
+								</td>
+							</tr>
+							<tr>
+								<td>9:00-9:30</td>
+								<td class="center">
+									<a class="btn btn-danger" href="#">
+										<i class="icon-remove icon-white"></i> 
+										Reservado
+									</a>
+								</td>
+								<td class="center">
+									<a class="btn btn-success" onclick="javascript:cambiarClase(this)">
+										<i class="icon-ok icon-white"></i>  
+										Reservar&nbsp;&nbsp;&nbsp;&nbsp;                                             
+									</a>
+									
+								</td>
+								<td class="center">
+									<a class="btn btn-success" onclick="javascript:cambiarClase(this)">
+										<i class="icon-ok icon-white"></i>  
+										Reservar&nbsp;&nbsp;&nbsp;&nbsp;                                             
+									</a>
+									
+								</td>
+								<td class="center">
+									<a class="btn btn-success" onclick="javascript:cambiarClase(this)">
+										<i class="icon-ok icon-white"></i>  
+										Reservar&nbsp;&nbsp;&nbsp;&nbsp;                                             
+									
+								</td>
+                                </td>
+								<td class="center">
+									<a class="btn btn-success" onclick="javascript:cambiarClase(this)">
+										<i class="icon-ok icon-white"></i>  
+										Reservar&nbsp;&nbsp;&nbsp;&nbsp;                                             
+									
+								</td>
+                                <td class="center">
+									<a class="btn btn-danger" href="#">
+										<i class="icon-remove icon-white"></i> 
+										Reservado
+									</a>
+								</td>
+                                <td class="center">
+									<a class="btn btn-danger" href="#">
+										<i class="icon-remove icon-white"></i> 
+										Reservado
+									</a>
+								</td>
+							</tr>
+							<tr>
+								<td>9:30-10:00</td>
+								<td class="center">
+									<a class="btn btn-success" onclick="javascript:cambiarClase(this)">
+										<i class="icon-ok icon-white"></i>  
+										Reservar&nbsp;&nbsp;&nbsp;&nbsp;                                             
+									</a>
+									
+								</td>
+								<td class="center">
+									<a class="btn btn-success" onclick="javascript:cambiarClase(this)">
+										<i class="icon-ok icon-white"></i>  
+										Reservar&nbsp;&nbsp;&nbsp;&nbsp;                                             
+									</a>
+									
+								</td>
+								<td class="center">
+									<a class="btn btn-danger" href="#">
+										<i class="icon-remove icon-white"></i> 
+										Reservado
+									</a>
+								</td>
+								<td class="center">
+									<a class="btn btn-success" onclick="javascript:cambiarClase(this)">
+										<i class="icon-ok icon-white"></i>  
+										Reservar&nbsp;&nbsp;&nbsp;&nbsp;                                             
+									</a>
+									
+								</td>
+                                </td>
+								<td class="center">
+									<a class="btn btn-success" onclick="javascript:cambiarClase(this)">
+										<i class="icon-ok icon-white"></i>  
+										Reservar&nbsp;&nbsp;&nbsp;&nbsp;                                             
+									
+								</td>
+                                <td class="center">
+									<a class="btn btn-danger" href="#">
+										<i class="icon-remove icon-white"></i> 
+										Reservado
+									</a>
+								</td>
+                                <td class="center">
+									<a class="btn btn-danger" href="#">
+										<i class="icon-remove icon-white"></i> 
+										Reservado
+									</a>
+								</td>
+							</tr>
+							<tr>
+								<td>10:00-10:30</td>
+								<td class="center">
+									<a class="btn btn-success" onclick="javascript:cambiarClase(this)">
+										<i class="icon-ok icon-white"></i>  
+										Reservar&nbsp;&nbsp;&nbsp;&nbsp;                                             
+									</a>
+									
+								</td>
+								<td class="center">
+									<a class="btn btn-success" onclick="javascript:cambiarClase(this)">
+										<i class="icon-ok icon-white"></i>  
+										Reservar&nbsp;&nbsp;&nbsp;&nbsp;                                             
+									</a>
+									
+								</td>
+								<td class="center">
+									<a class="btn btn-danger" href="#">
+										<i class="icon-remove icon-white"></i> 
+										Reservado
+									</a>
+								</td>
+								<td class="center">
+									<a class="btn btn-success" onclick="javascript:cambiarClase(this)">
+										<i class="icon-ok icon-white"></i>  
+										Reservar&nbsp;&nbsp;&nbsp;&nbsp;                                             
+									</a>
+                              <td class="center">
+									<a class="btn btn-success" onclick="javascript:cambiarClase(this)">
+										<i class="icon-ok icon-white"></i>  
+										Reservar&nbsp;&nbsp;&nbsp;&nbsp;                                             
+									</a>
+						
+							  </td>
+                                <td class="center">
+									<a class="btn btn-success" onclick="javascript:cambiarClase(this)">
+										<i class="icon-ok icon-white"></i>  
+										Reservar&nbsp;&nbsp;&nbsp;&nbsp;                                             
+									</a>
+						
+								</td>
+									
+									
+								</td>
+                                </td>
+								<td class="center">
+									<a class="btn btn-success" onclick="javascript:cambiarClase(this)">
+										<i class="icon-ok icon-white"></i>  
+										Reservar&nbsp;&nbsp;&nbsp;&nbsp;                                             
+									
+								</td>
+							</tr>
+							<tr>
+								<td>10:30-11:00</td>
+								<td class="center">
+									<a class="btn btn-success" onclick="javascript:cambiarClase(this)">
+										<i class="icon-ok icon-white"></i>  
+										Reservar&nbsp;&nbsp;&nbsp;&nbsp;                                             
+									</a>
+									
+								</td>
+								<td class="center">
+									<a class="btn btn-success" onclick="javascript:cambiarClase(this)">
+										<i class="icon-ok icon-white"></i>  
+										Reservar&nbsp;&nbsp;&nbsp;&nbsp;                                             
+									</a>
+									
+								</td>
+								<td class="center">
+									<a class="btn btn-danger" href="#">
+										<i class="icon-remove icon-white"></i> 
+										Reservado
+									</a>
+								</td>
+								<td class="center">
+									<a class="btn btn-success" onclick="javascript:cambiarClase(this)">
+										<i class="icon-ok icon-white"></i>  
+										Reservar&nbsp;&nbsp;&nbsp;&nbsp;                                             
+									</a>
+									
+								</td>
+                                </td>
+								<td class="center">
+									<a class="btn btn-success" onclick="javascript:cambiarClase(this)">
+										<i class="icon-ok icon-white"></i>  
+										Reservar&nbsp;&nbsp;&nbsp;&nbsp;                                             
+									
+								</td>
+                                <td class="center">
+									<a class="btn btn-success" onclick="javascript:cambiarClase(this)">
+										<i class="icon-ok icon-white"></i>  
+										Reservar&nbsp;&nbsp;&nbsp;&nbsp;                                             
+									</a>
+						
+								</td>
+                                <td class="center">
+									<a class="btn btn-success" onclick="javascript:cambiarClase(this)">
+										<i class="icon-ok icon-white"></i>  
+										Reservar&nbsp;&nbsp;&nbsp;&nbsp;                                             
+									</a>
+						
+								</td>
+							</tr>
+							
+							
+						  </tbody>
+					  </table> 
+					  
+					  
+                      <div class="form-actions">
+			             <a class="btn btn-primary" href="/Conan3000V2/IngSoft/servicio/reservas/formularioreservas.jsp">Crear Reserva</a>
+                          <button type="reset" class="btn">Cancelar</button>
+                      
+		                </div>
+                      
+  </div><!--/span-->
+			
+			</div><!--/row-->
+			
 			
 			
 				
