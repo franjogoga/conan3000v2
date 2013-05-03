@@ -185,7 +185,8 @@
 						</div>						
 					  
 		              <div class="form-actions">
-		                <button type="submit" class="btn btn-primary">Buscar</button>		                
+		                <button type="submit" class="btn btn-primary">Buscar</button>
+		                <button type="reset" class="btn">Cancelar</button>	                
 	                  </div>
 					  
 	                </fieldset>
@@ -207,8 +208,7 @@
 		            <div  align="right"> <a class="btn btn-primary" href="agregarempleado.jsp"> <i class="icon icon-add icon-white"></i> Agregar </a> </div>
 		            <thead>
 		              <tr>
-		                <th width="17%">Nombre</th>
-		                <th width="10%">Fecha Nacimiento</th>
+		                <th width="17%">Nombre</th>		                
 		                <th width="10%">Tipo de Doc.</th>
 		                <th width="10%">N&uacute;m. de Doc.</th>
 		                <th width="10%">Puesto</th>
@@ -221,8 +221,7 @@
 	                </thead>
 		            <tbody>
 		              <tr>
-		                <td>Juan Perez</td>
-		                <td class="center">02/16/2012</td>
+		                <td>Juan Perez</td>		                
 		                <td class="center">DNI</td>
 		                <td class="center">12345678</td>
 						<td class="center">Barredor</td>						
@@ -233,8 +232,7 @@
 		                <td class="center"><a class="btn btn-success" href="#"> <i class="icon-zoom-in icon-white"></i> Ver </a> <a class="btn btn-info" href="modificarempleado.jsp"> <i class="icon-edit icon-white"></i> Modificar </a> <a class="btn btn-danger" href="eliminarempleado.jsp"> <i class="icon-trash icon-white"></i> Eliminar </a></td>
 	                  </tr>					  
 		              <tr>
-		                <td>Jose Sanchez</td>
-		                <td class="center">05/11/2012</td>
+		                <td>Jose Sanchez</td>		                
 		                <td class="center">DNI</td>
 		                <td class="center">234567890</td>
 						<td class="center">Huachim&aacute;n</td>						
@@ -245,8 +243,7 @@
 		                <td class="center"><a class="btn btn-success" href="#"> <i class="icon-zoom-in icon-white"></i> Ver </a> <a class="btn btn-info" href="modificarempleado.jsp"> <i class="icon-edit icon-white"></i> Modificar </a> <a class="btn btn-danger" href="eliminarempleado.jsp"> <i class="icon-trash icon-white"></i> Eliminar </a></td>
 	                  </tr>
 		              <tr>
-		                <td>Raul Bermudez</td>
-		                <td class="center">07/23/2012</td>
+		                <td>Raul Bermudez</td>		                
 		                <td class="center">DNI</td>
 		                <td class="center">345678901</td>
 						<td class="center">T&eacute;cnico</td>						

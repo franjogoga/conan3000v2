@@ -193,23 +193,7 @@
 									<option>Sede 5</option>
 								  </select>
 								</div>
-							</div>				
-							
-							<div class="control-group">
-							<label class="control-label">Estado</label>
-							<div class="controls">
-							  <label class="radio">
-								<input type="radio" name="opcionactivo" id="opcionactivo" value="activo" checked="">
-								Activo
-							  </label>
-							  <div style="clear:both"></div>
-							  <label class="radio">
-								<input type="radio" name="opcioninactivo" id="opcioninactivo" value="inactivo">
-								Inactivo
-							  </label>
-							</div>
-						  </div>
-								
+							</div>																										
 						
 			            <div class="form-actions">
 			              <button type="submit" class="btn btn-primary">Agregar</button>
