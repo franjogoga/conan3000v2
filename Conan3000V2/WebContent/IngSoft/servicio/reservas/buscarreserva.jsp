@@ -93,8 +93,10 @@ function cambiarClase(elemento){
        
            //alert("Entre aqui");
            
-           document.getElementById("tablaCanchaFutbol").style.visibility="hidden";
-           document.getElementById("tablaBungalow").style.visibility="visible";
+           //display: none
+           
+           document.getElementById("tablaCanchaFutbol").style.display="none";
+           document.getElementById("tablaBungalow").style.display="inline";
         }
         
     }
@@ -629,7 +631,7 @@ function cambiarClase(elemento){
 			
 			</div><!--/row-->
 
-			<div id="tablaBungalow" class="box-content" style="visibility:hidden; display:inline; ">
+			<div id="tablaBungalow" class="box-content"; style="display:none">						
 						<table class="table table-striped table-bordered bootstrap-datatable datatable">
 						  <thead>
 							  <tr>
@@ -646,7 +648,7 @@ function cambiarClase(elemento){
 						  <tbody>
 							
 							<tr>
-								<td>Bungalow</td>
+								<td>Bungalow 1</td>
 								
 							
 								<td class="center">
@@ -706,7 +708,7 @@ function cambiarClase(elemento){
 							<tr>
 								
 							<tr>
-								<td>7:30-8:00</td>
+								<td>Bungalow 2</td>
 								<td class="center">
 									<a class="btn btn-success" onclick="javascript:cambiarClase(this)">
 										<i class="icon-ok icon-white"></i>  
@@ -758,7 +760,7 @@ function cambiarClase(elemento){
 								</td>
 							</tr>
 							<tr>
-								<td>8:00-8:30</td>
+								<td>Bungalow 3</td>
 								<td class="center">
 									<a class="btn btn-danger" href="#">
 										<i class="icon-remove icon-white"></i> 
@@ -812,7 +814,7 @@ function cambiarClase(elemento){
                                 
 							</tr>
 							<tr>
-								<td>8:30-9:00</td>
+								<td>Bungalow 4</td>
 								<td class="center">
 									<a class="btn btn-danger" href="#">
 										<i class="icon-remove icon-white"></i> 
@@ -863,7 +865,7 @@ function cambiarClase(elemento){
 								</td>
 							</tr>
 							<tr>
-								<td>9:00-9:30</td>
+								<td>Bungalow 5</td>
 								<td class="center">
 									<a class="btn btn-danger" href="#">
 										<i class="icon-remove icon-white"></i> 
@@ -911,7 +913,7 @@ function cambiarClase(elemento){
 								</td>
 							</tr>
 							<tr>
-								<td>9:30-10:00</td>
+								<td>Bungalow 6</td>
 								<td class="center">
 									<a class="btn btn-success" onclick="javascript:cambiarClase(this)">
 										<i class="icon-ok icon-white"></i>  
@@ -960,7 +962,7 @@ function cambiarClase(elemento){
 								</td>
 							</tr>
 							<tr>
-								<td>10:00-10:30</td>
+								<td>Bungalow 7</td>
 								<td class="center">
 									<a class="btn btn-success" onclick="javascript:cambiarClase(this)">
 										<i class="icon-ok icon-white"></i>  
@@ -1012,7 +1014,7 @@ function cambiarClase(elemento){
 								</td>
 							</tr>
 							<tr>
-								<td>10:30-11:00</td>
+								<td>Bungalow 8</td>
 								<td class="center">
 									<a class="btn btn-success" onclick="javascript:cambiarClase(this)">
 										<i class="icon-ok icon-white"></i>  
@@ -1077,10 +1079,6 @@ function cambiarClase(elemento){
   </div><!--/span-->
 			
 			</div><!--/row-->
-			
-			
-			
-				
 					
 
 				
