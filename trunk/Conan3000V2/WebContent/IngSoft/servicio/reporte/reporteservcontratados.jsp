@@ -96,9 +96,8 @@
                                       <select name="selectError" id="selectError" data-rel="chosen">
                                           <option> Servicios Contratados </option>
                                           <option> Ventas </option>
-                                          <option> Voley </option>
-                                          <option> Futbol </option>
-                                          <option> Tenis </option>
+                                          <option> Servicios Externos </option>
+                                          <option> Servicios Internos</option>
                                       </select>
                                   </div>
 						      </div>
