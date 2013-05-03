@@ -94,7 +94,7 @@
 							<!--   <a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>  -->
 						</div>
 		          </div>
-			      <div class="box-content">
+			      <div class="box-content" style="display: none;">
 			        <form class="form-horizontal">
 			          <fieldset>
 					  
@@ -140,7 +140,7 @@
 							<!--   <a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>  -->
 						</div>
 		          </div>
-			      <div class="box-content">
+			      <div class="box-content" style="display: none;">
 			        <form class="form-horizontal">
 			          <fieldset>
 					  
@@ -182,7 +182,7 @@
 							<!--   <a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>  -->
 						</div>
 		          </div>
-			      <div class="box-content">
+			      <div class="box-content" style="display: none;">
 			        <form class="form-horizontal">
 			          <fieldset>
 					  
@@ -229,7 +229,7 @@
 							<!--   <a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>  -->
 						</div>
 		          </div>
-			      <div class="box-content">
+			      <div class="box-content" style="display: none;">
 			        <form class="form-horizontal">
 			          <fieldset>
 					  
@@ -274,7 +274,7 @@
 							<!--   <a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>  -->
 						</div>
 		          </div>
-			      <div class="box-content">
+			     <div class="box-content" style="display: none;">
 			        <form class="form-horizontal">
 			          <fieldset>
 					  
@@ -318,7 +318,7 @@
 							<!--   <a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>  -->
 						</div>
 		          </div>
-			      <div class="box-content">
+			      <div class="box-content" style="display: none;">
 			        <form class="form-horizontal">
 			          <fieldset>
 					  
@@ -363,7 +363,7 @@
 							<!--   <a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>  -->
 						</div>
 		          </div>
-			      <div class="box-content">
+			      <div class="box-content" style="display: none;">
 			        <form class="form-horizontal">
 			          <fieldset>
 					  
