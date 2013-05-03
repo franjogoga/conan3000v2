@@ -2,11 +2,17 @@
 <html lang="en">
 <head>
 	<!--
-		Autor: Carlos Bustamante
-		Edición: 20_04_2013
+		Charisma v1.0.0
+
+		Copyright 2012 Muhammad Usman
+		Licensed under the Apache License v2.0
+		http://www.apache.org/licenses/LICENSE-2.0
+
+		http://usman.it
+		http://twitter.com/halalit_usman
 	-->
 	<meta charset="utf-8">
-	<title>Generar Reportes</title>
+	<title>Free HTML5 Bootstrap Admin Template</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
 	<meta name="author" content="Muhammad Usman">
@@ -57,8 +63,11 @@
 			<!-- left menu starts -->
 			<jsp:include page="/IngSoft/general/leftmenu.jsp" />
 						<!-- left menu ends -->
+            
+            
+           
 			
-			<noscript>
+		  <noscript>
 				<div class="alert alert-block span10">
 					<h4 class="alert-heading">Warning!</h4>
 					<p>You need to have <a href="http://en.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript</a> enabled to use this site.</p>
@@ -66,79 +75,110 @@
 			</noscript>
 			
 			<div id="content" class="span10">
-			<!-- content starts -->
-			
-
-			<div>
-				<ul class="breadcrumb">
-					<li>
-						<a href="#">Home</a> <span class="divider">/</span>
-					</li>
-                    <li>
-						Generar Reportes
-					</li>
-					
-				</ul>
-			</div>
-			
-<div class="row-fluid sortable">
-				<div class="box span12">
-					<div class="box-header well" data-original-title>
-						<h2><i class="icon-edit"></i> GENERAR REPORTES</h2>
-
+			  <!-- content starts -->
+			  <div>
+			    <ul class="breadcrumb">
+			      <li> <a href="#">Home</a> / <a href="#">Generar Reportes</a></li>
+		        </ul>
+		      </div>
+			  <div class="row-fluid sortable">
+			    <div class="box span12">
+			      <div class="box-header well" data-original-title>
+			        <h2>GENERAR REPORTES</h2>
 					</div>
 					<div class="box-content">
 						<form class="form-horizontal">
 						  <fieldset>
+						                               
                              <div class="control-group">
-								<label class="control-label" for="selectError">Seleccione Reporte</label>
-								<div class="controls">
-								  <select id="selectError" data-rel="chosen" ONCHANGE="location = this.options[this.selectedIndex].value;">
-									<option value="/Conan3000/IngSoft/servicio/reporte/reporteeventointerno.jsp"><a HREF="/Conan3000/IngSoft/servicio/reporte/reporteeventointerno.jsp">Eventos Internos</a></option>
-									<option value="/Conan3000/IngSoft/servicio/reporte/reporteeventoexterno.jsp"><a HREF="/Conan3000/IngSoft/servicio/reporte/reporteeventoexterno.jsp">Eventos Externos</a></option>
-                                    <option>Reporte3</option>
-                                    <option>Reporte4</option>
-                                    <option>Reporte5</option>
-								  </select>
-								</div>
-							  </div>
-                          	<div class="control-group">
-							  <label class="control-label" for="date01">Fecha Inicial</label>
-							  <div class="controls">
-								<input type="text" class="input-xlarge datepicker" id="date01" value="02/16/12">
-							  </div>
-                             </div>
-                             <div class="control-group">
-                              <label class="control-label" for="date01">Fecha Final</label>
-							  <div class="controls">
-								<input type="text" class="input-xlarge datepicker" id="date01" value="02/16/12">
-							  </div>
-							</div>
-                            <div class="control-group">
-							  <div class="controls">
-								<button type="submit" class="btn btn-primary">Generar</button>
-                                <button class="btn">Cancelar</button>
-							  </div>
-							</div>
-						  </fieldset>
-						</form>   
+                                  <label class="control-label" for="selectError">Seleccionar Reporte:</label>
+                                  <div class="controls">
+                                      <select name="selectError" id="selectError" data-rel="chosen">
+                                          <option> Servicios Contratados </option>
+                                          <option> Ventas </option>
+                                          <option> Voley </option>
+                                          <option> Futbol </option>
+                                          <option> Tenis </option>
+                                      </select>
+                                  </div>
+						      </div>
+                                                            
+                              <div class="control-group">
+                                  
+                                  
+                                  <label class="control-label" for="typeahead7">CÃ³digo de Servicio: </label>
+                                  <div class="controls">
+                                      <input type="text" class="span6 typeahead" id="typeahead7"  data-provide="typeahead" >
+                                          </div>
+                              </div>
+							  
+							  <div class="control-group">
+                                  
+                                  
+                                  <label class="control-label" for="typeahead7">Servicios: </label>
+                                  <div class="controls">
+                                      <input type="text" class="span6 typeahead" id="typeahead7"  data-provide="typeahead" >
+                                          </div>
+                              </div>
+							  <div class="control-group">
+                                  
+                                  
+                                  <label class="control-label" for="typeahead7">Local: </label>
+                                  <div class="controls">
+                                      <input type="text" class="span6 typeahead" id="typeahead7"  data-provide="typeahead" >
+                                          </div>
+                              </div>
+                              
+                            					                           
+                                                          
+                                                          
+						<div class="control-group">
+			              <label class="control-label" for="typeahead7">Fecha Inicial: </label>
+			              <div class="controls">
+			                <input type="text" class="input-xlarge datepicker" id="date01" value="02/16/2012">
+		                  </div>
+		                </div>							
+                                
+								<div class="control-group">
+			              <label class="control-label" for="typeahead7">Fecha Final: </label>
+			              <div class="controls">
+			                <input type="text" class="input-xlarge datepicker" id="date01" value="02/16/2012">
+		                  </div>
+		                </div>
+							                                    
+                                                                                                                                                    
+                                                                                                                               
+                                                      
+                                       
+		          
+			            <div class="form-actions">
+			              <button type="submit" class="btn btn-primary">Generar</button>
+			              <button type="reset" class="btn">Cancelar</button>
+		                </div>
+						
+				
+		              </fieldset>
+		            </form>
+		          </div>
+		        </div>
+				
+			    <!--/span-->
+		      </div>
+			  <!--/row-->
+			  <div class="row-fluid sortable">
+			    <!--/span-->
+		      </div>
+			  <!--/row-->
+			  <div class="row-fluid sortable">
+			    <!--/span-->
+		      </div>
+			  <!--/row-->
+			 
 
-					</div>
-				</div><!--/span-->
-
-			</div><!--/row-->
-
-
-			<div class="row-fluid sortable"><!--/span-->
-			
-			</div><!--/row-->
-			
-			<div class="row-fluid sortable"><!--/span-->
-
-			</div><!--/row-->
-    
+		  
+       
 					<!-- content ends -->
-			</div><!--/#content.span10-->
+		  </div><!--/#content.span10-->
 				</div><!--/fluid-row-->
 				
 		<hr>
@@ -157,7 +197,10 @@
 			</div>
 		</div>
 
-	<jsp:include page="/IngSoft/general/inferior.jsp" />		
+		<footer>
+		  <p class="pull-left"><a href="http://usman.it/free-responsive-admin-template">Conan 3000</a> &copy;  2013</p>
+          <p class="pull-right">Powered by: <a href="http://usman.it/free-responsive-admin-template">Las dos virgenes</a></p>
+		</footer>
 		
 	</div><!--/.fluid-container-->
 
@@ -234,7 +277,14 @@
 	<script src="js/jquery.history.js"></script>
 	<!-- application script for Charisma demo -->
 	<script src="js/charisma.js"></script>
-	
-		
+	<script>
+	function loadContent() 
+{ 
+   $("#includedContent").load("menu.html"); 
+} 
+
+
+	</script>
+		<script>loadContent()</script> 
 </body>
 </html>
