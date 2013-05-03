@@ -256,6 +256,7 @@
 									No disponible
 								  </label>
 								  
+								    <div style="clear:both"></div> 
 								  
 								  <label class="radio">
 									<input  disabled=""  type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
