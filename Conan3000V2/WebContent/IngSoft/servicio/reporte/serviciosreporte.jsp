@@ -106,7 +106,7 @@
                               <div class="control-group">
                                   
                                   
-                                  <label class="control-label" for="typeahead7">Código de Servicio: </label>
+                                  <label class="control-label" for="typeahead7">C&oacutedigo de Servicio: </label>
                                   <div class="controls">
                                       <input type="text" class="span6 typeahead" id="typeahead7"  data-provide="typeahead" >
                                           </div>
