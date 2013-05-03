@@ -143,9 +143,26 @@
 	}
 	function alt_agregar(){
 		var form=document.getElementById("frmAlternativo");
-		form.accion="Agregar";
+		form.accion.value="Agregar";
 		form.submit();
-	
+	}
+	function alt_consultar(cod){
+		var form=document.getElementById("frmAlternativo");
+		form.accion.value="Consultar";
+		form.codigo.value=cod;
+		form.submit();
+	}
+	function alt_modificar(cod){
+		var form=document.getElementById("frmAlternativo");
+		form.accion.value="Modificar";
+		form.codigo.value=cod;
+		form.submit();
+	}
+	function alt_eliminar(cod){
+		var form=document.getElementById("frmAlternativo");
+		form.accion.value="Eliminar";
+		form.codigo.value=cod;
+		form.submit();
 	}
 	</script>			
 </head>
@@ -307,23 +324,22 @@
 
                           			<td class="center">
                           				<a class="btn btn-success"
-                          					href="#">
+                          					href="javascript:alt_consultar(<%=((ResultadoEventoBeanData)resultados.get(i)).getCodigo()%>)">
                           					<i
                           						class="icon-zoom-in icon-white">
                           					</i>
 
                           				</a>
                           				<a class="btn btn-info"
-                          					href="modificarevento.jsp">
+                          					href="javascript:alt_modificar(<%=((ResultadoEventoBeanData)resultados.get(i)).getCodigo()%>)">
                           					<i
                           						class="icon-edit icon-white">
                           					</i>
-
+ 
                           				</a>
                           				<a class="btn btn-danger"
-                          					href="eliminarevento.jsp">
-                          					<i
-                          						class="icon-trash icon-white">
+                          					href="javascript:alt_eliminar(<%=((ResultadoEventoBeanData)resultados.get(i)).getCodigo()%>)">
+                          					<i class="icon-trash icon-white">
                           					</i>
 
                           				</a>

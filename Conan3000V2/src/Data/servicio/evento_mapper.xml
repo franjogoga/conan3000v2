@@ -7,7 +7,9 @@
   <cache />
 
 <select id="searchPlantillaEvento" parameterType="IngSoft.servicio.bean.CriterioEventoBeanData" resultType="IngSoft.servicio.bean.ResultadoEventoBeanData">
-select tipo_evento.nombre as tipo
+select 
+plantilla_evento.id_plantilla_evento as codigo
+,tipo_evento.nombre as tipo
 ,plantilla_evento.nombre as nombre
 ,plantilla_evento.lim_inicio as limInicio
 ,plantilla_evento.lim_fin as limFin
