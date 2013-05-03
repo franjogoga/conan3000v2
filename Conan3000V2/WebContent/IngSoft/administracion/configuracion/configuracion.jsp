@@ -90,7 +90,7 @@
 			        <h2><i class=" icon-cog"></i> CONFIGURACION DEPARTAMENTO</h2>
 					  	<div class="box-icon">
 							<a href="#" class="btn btn-setting btn-round"><i class="icon-cog"></i></a>
-							<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
+							<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-down"></i></a>
 							<!--   <a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>  -->
 						</div>
 		          </div>
@@ -105,7 +105,7 @@
                                 <div class="control-group">
                                  <p class="help-block">Escriba sobre la casilla el  departamento y luego presione enter. </p>
                                  <p></p>
-                                    <label class="control-label" for="textarea2">Agregar :</label>
+                                    <label class="control-label" for="textarea2">Lista :</label>
 			                          <div class="controls">
 			                            <textarea name="textarea" rows="3" id="textarea2" style="resize:none"></textarea>
 			                          </div>
@@ -136,7 +136,7 @@
 			        <h2><i class=" icon-cog"></i> CONFIGURACION PROVINCIA</h2>
 					  	<div class="box-icon">
 							<a href="#" class="btn btn-setting btn-round"><i class="icon-cog"></i></a>
-							<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
+							<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-down"></i></a>
 							<!--   <a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>  -->
 						</div>
 		          </div>
@@ -149,7 +149,7 @@
                                 <div class="control-group">
                                 <p class="help-block">Escriba sobre la casilla la provincia y luego presione enter. </p>
                                 <p></p>
-                                    <label class="control-label" for="textarea2">Agregar :</label>
+                                    <label class="control-label" for="textarea2">Lista :</label>
 			                          <div class="controls">
 			                            <textarea name="textarea" rows="3" id="textarea2" style="resize:none"></textarea>
 			                          </div>
@@ -178,7 +178,7 @@
 			        <h2><i class=" icon-cog"></i> CONFIGURACION DITRITO</h2>
 					  	<div class="box-icon">
 							<a href="#" class="btn btn-setting btn-round"><i class="icon-cog"></i></a>
-							<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
+							<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-down"></i></a>
 							<!--   <a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>  -->
 						</div>
 		          </div>
@@ -191,7 +191,7 @@
                                 <div class="control-group">
                                 <p class="help-block">Escriba sobre la casilla el distrito y luego presione enter. </p>
                                 <p></p>
-                                    <label class="control-label" for="textarea2">Agregar :</label>
+                                    <label class="control-label" for="textarea2">Lista :</label>
 			                          <div class="controls">
 			                            <textarea name="textarea" rows="3" id="textarea2" style="resize:none"></textarea>
 			                          </div>
@@ -225,7 +225,7 @@
 			        <h2><i class=" icon-cog"></i> CONFIGURACION TIPO DE AMBIENTES</h2>
 					  	<div class="box-icon">
 							<a href="#" class="btn btn-setting btn-round"><i class="icon-cog"></i></a>
-							<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
+							<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-down"></i></a>
 							<!--   <a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>  -->
 						</div>
 		          </div>
@@ -238,7 +238,7 @@
                                 <div class="control-group">
                                 <p class="help-block">Escriba sobre la casilla el tipo de ambiente y luego presione enter. </p>
                                 <p></p>
-                                    <label class="control-label" for="textarea2">Agregar :</label>
+                                    <label class="control-label" for="textarea2">Lista :</label>
 			                          <div class="controls">
 			                            <textarea name="textarea" rows="3" id="textarea2" style="resize:none"></textarea>
 			                          </div>
@@ -270,7 +270,7 @@
 			        <h2><i class=" icon-cog"></i> CONFIGURACION TIPO DE ACTIVIDADES</h2>
 					  	<div class="box-icon">
 							<a href="#" class="btn btn-setting btn-round"><i class="icon-cog"></i></a>
-							<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
+							<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-down"></i></a>
 							<!--   <a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>  -->
 						</div>
 		          </div>
@@ -283,7 +283,7 @@
                                 <div class="control-group">
                                 <p class="help-block">Escriba sobre la casilla el tipo de actividad y luego presione enter. </p>
                                 <p></p>
-                                    <label class="control-label" for="textarea2">Agregar :</label>
+                                    <label class="control-label" for="textarea2">Lista :</label>
 			                          <div class="controls">
 			                            <textarea name="textarea" rows="3" id="textarea2" style="resize:none"></textarea>
 			                          </div>
@@ -314,7 +314,7 @@
 			        <h2><i class=" icon-cog"></i> CONFIGURACION TIPO DE CANCHAS</h2>
 					  	<div class="box-icon">
 							<a href="#" class="btn btn-setting btn-round"><i class="icon-cog"></i></a>
-							<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
+							<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-down"></i></a>
 							<!--   <a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>  -->
 						</div>
 		          </div>
@@ -327,7 +327,7 @@
                                 <div class="control-group">
                                 <p class="help-block">Escriba sobre la casilla el tipo de cancha y luego presione enter.</p>
                                 <p></p>
-                                    <label class="control-label" for="textarea2">Agregar :</label>
+                                    <label class="control-label" for="textarea2">Lista :</label>
 			                          <div class="controls">
 			                            <textarea name="textarea" rows="3" id="textarea2" style="resize:none"></textarea>
 			                          </div>
@@ -359,7 +359,7 @@
 			        <h2><i class=" icon-cog"></i> CONFIGURACION TIPO DE CONCESIONAIOS</h2>
 					  	<div class="box-icon">
 							<a href="#" class="btn btn-setting btn-round"><i class="icon-cog"></i></a>
-							<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
+							<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-down"></i></a>
 							<!--   <a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>  -->
 						</div>
 		          </div>
@@ -372,7 +372,7 @@
                                 <div class="control-group">
                                  <p class="help-block">Escriba sobre la casilla el tipo de consecionario y luego presione enter. </p>
                                  <p></p>
-                                    <label class="control-label" for="textarea2">Agregar :</label>
+                                    <label class="control-label" for="textarea2">Lista :</label>
 			                          <div class="controls">
 			                            <textarea name="textarea" rows="3" id="textarea2" style="resize:none"></textarea>
 			                          </div>
