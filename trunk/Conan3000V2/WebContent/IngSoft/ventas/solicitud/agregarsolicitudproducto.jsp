@@ -137,6 +137,23 @@
 					        
 				          </tr>
 				        </thead>
+				        
+				            <tbody>
+					      <tr>
+					        <td></td>
+					          <td ></td>
+					            <td ></td>
+					          <td class="center"><b>Total</b></td>
+					        <td class="center"><b>600.00</b></td>
+					     
+					   
+                        					
+                        
+					        <td > </td>
+				          </tr>
+                               
+				       </tbody>	 
+				        
 					    <tbody>
 					      <tr>
 					        <td>Gaseosa Coca-Cola</td>
@@ -148,24 +165,35 @@
                         					
                         
 					        <td class="center"> <a class="btn btn-info" href="modificarsolicitudproducto.jsp"> <i class="icon-edit icon-white"></i> Modificar </a> <a class="btn btn-danger" href="eliminarsolicitudproducto.jsp"> <i class="icon-trash icon-white"></i> Eliminar </a></td>
-				      
-				        </thead>
-					    <tbody>
+				         
+				       </tbody>
+				       
+					          
+		               <tbody>
 					      <tr>
-					        <td>Gaseosa Inca-Cola</td>
+					         <td>Galleta</td>
 					          <td class="center">2.00</td>
 					            <td class="center">100</td>
 					          <td class="center">16/06/13</td>
-					        <td class="center">200.00</td>
-					   
-                        					
-                        
-					        <td class="center"> <a class="btn btn-info" href="modificarsolicitudproducto.jsp"> <i class="icon-edit icon-white"></i> Modificar </a> <a class="btn btn-danger" href="eliminarsolicitudproducto.jsp"> <i class="icon-trash icon-white"></i> Eliminar </a></td>
+					        <td class="center">400.00</td> 
+					     		 <td class="center"> <a class="btn btn-info" href="modificarsolicitudproducto.jsp"> <i class="icon-edit icon-white"></i> Modificar </a> <a class="btn btn-danger" href="eliminarsolicitudproducto.jsp"> <i class="icon-trash icon-white"></i> Eliminar </a></td>			       
 				          </tr>
-                          
+                         
 				        </tbody>
+		                
 				      </table>
-                  </div>
+				      
+				        </tbody>
+				        
+				      
+				         
+                 
+                  <div class="form-actions">
+                 
+			              <button   type="submit" class="btn btn-primary">Finalizar</button>
+			            
+		                </div>
+			           
 		        </div>
 		      </div>
               
