@@ -95,7 +95,7 @@
 						</div>
 		          </div>
 			      <div class="box-content" style="display: none;">
-			        <form class="form-horizontal">
+			        <form class="form-horizontal"  action="#">
 			          <fieldset>
 					  
 					  <!--    ----------------------------------------------------------------------------------------------    -->
@@ -105,7 +105,7 @@
                                 <div class="control-group">
                                  <p class="help-block">Escriba sobre la casilla el  departamento y luego presione enter. </p>
                                  <p></p>
-                                    <label class="control-label" for="textarea2">Lista :</label>
+                                    <label class="control-label" for="textarea2">Agregar :</label>
 			                          <div class="controls">
 			                            <textarea name="textarea" rows="3" id="textarea2" style="resize:none"></textarea>
 			                          </div>
@@ -149,7 +149,7 @@
                                 <div class="control-group">
                                 <p class="help-block">Escriba sobre la casilla la provincia y luego presione enter. </p>
                                 <p></p>
-                                    <label class="control-label" for="textarea2">Lista :</label>
+                                    <label class="control-label" for="textarea2">Agregar :</label>
 			                          <div class="controls">
 			                            <textarea name="textarea" rows="3" id="textarea2" style="resize:none"></textarea>
 			                          </div>
@@ -191,7 +191,7 @@
                                 <div class="control-group">
                                 <p class="help-block">Escriba sobre la casilla el distrito y luego presione enter. </p>
                                 <p></p>
-                                    <label class="control-label" for="textarea2">Lista :</label>
+                                    <label class="control-label" for="textarea2">Agregar :</label>
 			                          <div class="controls">
 			                            <textarea name="textarea" rows="3" id="textarea2" style="resize:none"></textarea>
 			                          </div>
@@ -238,7 +238,7 @@
                                 <div class="control-group">
                                 <p class="help-block">Escriba sobre la casilla el tipo de ambiente y luego presione enter. </p>
                                 <p></p>
-                                    <label class="control-label" for="textarea2">Lista :</label>
+                                    <label class="control-label" for="textarea2">Agregar :</label>
 			                          <div class="controls">
 			                            <textarea name="textarea" rows="3" id="textarea2" style="resize:none"></textarea>
 			                          </div>
@@ -283,7 +283,7 @@
                                 <div class="control-group">
                                 <p class="help-block">Escriba sobre la casilla el tipo de actividad y luego presione enter. </p>
                                 <p></p>
-                                    <label class="control-label" for="textarea2">Lista :</label>
+                                    <label class="control-label" for="textarea2">Agregar :</label>
 			                          <div class="controls">
 			                            <textarea name="textarea" rows="3" id="textarea2" style="resize:none"></textarea>
 			                          </div>
@@ -327,7 +327,7 @@
                                 <div class="control-group">
                                 <p class="help-block">Escriba sobre la casilla el tipo de cancha y luego presione enter.</p>
                                 <p></p>
-                                    <label class="control-label" for="textarea2">Lista :</label>
+                                    <label class="control-label" for="textarea2">Agregar :</label>
 			                          <div class="controls">
 			                            <textarea name="textarea" rows="3" id="textarea2" style="resize:none"></textarea>
 			                          </div>
@@ -372,7 +372,7 @@
                                 <div class="control-group">
                                  <p class="help-block">Escriba sobre la casilla el tipo de consecionario y luego presione enter. </p>
                                  <p></p>
-                                    <label class="control-label" for="textarea2">Lista :</label>
+                                    <label class="control-label" for="textarea2">Agregar :</label>
 			                          <div class="controls">
 			                            <textarea name="textarea" rows="3" id="textarea2" style="resize:none"></textarea>
 			                          </div>
