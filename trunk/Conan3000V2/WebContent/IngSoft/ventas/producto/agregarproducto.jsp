@@ -105,7 +105,7 @@
 							  <div class="control-group">
 			                <label class="control-label" for="textarea2">Descripci&oacute;n:</label>
 			                <div class="controls">
-			                  <textarea name="textarea" class="" id="textarea" ></textarea>
+			                  <textarea name="textarea" class="" id="textarea" style="resize:none" ></textarea>
 		                    </div>
 		                  </div>
 							  
