@@ -128,14 +128,11 @@
 								<label class="control-label" for="typeahead3">Estado</label>
 								<div class="controls">
 								  <label class="radio">
-									<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
-									Activo
+									<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">Disponible
 								  </label>
 								  <div style="clear:both"></div>
 								  <label class="radio">
-									<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-									Inactivo
-								  </label>
+									<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">No Disponible</label>
 								</div>
 							  </div>
 							
