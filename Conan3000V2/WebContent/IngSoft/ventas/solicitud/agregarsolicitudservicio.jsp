@@ -129,49 +129,72 @@
 					    <thead>
 					      <tr>
 					        <th>Nombre</th>
+					        <th>Fecha</th>
 					        <th>Precio</th>
 					        
-					        <th>Fecha</th>
+					        
 					       
 					         <th>Acci&oacute;n</th>
 					        
 				          </tr>
 				        </thead>
+				        
+				        
+				       
+				        
+				        
 					    <tbody>
 					      <tr>
-					        <td>Limpieza</td>
-					          <td class="center">1000.00</td>
+					        <td>         </td>
+					          <th class="center">Total:</th>
 					           
-					          <td class="center">16/06/13</td>
+					          <th class="center">3000.00</th>
 					        
-					   
-                        					
-                        
-					        <td class="center"> <a class="btn btn-info" href="modificarsolicitudservicio.jsp"> <i class="icon-edit icon-white"></i> Modificar </a> <a class="btn btn-danger" href="eliminarsolicitudservicio.jsp"> <i class="icon-trash icon-white"></i> Eliminar </a></td>
+					        <td class="center" >   </td>
+					        
+				      		</tr>
+				       </tbody>
+				       
 				      
+				       
+				       
+				            <tbody>
+					      <tr>
+					        <td class="center">Limpieza</td>
+					        <td class="center">16/06/13</td>
+					          <td class="center">1000.00</td>
+					          
+					          
+					     <td class="center" > <a class="btn btn-info" href="modificarsolicitudservicio.jsp"> <i class="icon-edit icon-white"></i> Modificar </a> <a class="btn btn-danger" href="eliminarsolicitudservicio.jsp"> <i class="icon-trash icon-white"></i> Eliminar </a></td>
+
+					     	
+					  			  
+				          </tr>
+                               
+				       </tbody>	
 				       
 					    <tbody>
 					      <tr>
 					        <td>Seguridad</td>
+					        <td class="center">16/06/13</td>
 					          <td class="center">2000.00</td>
-					            
-					          <td class="center">16/06/13</td>
-					        
-					   
-                        					
-                        
-					        <td class="center"> <a class="btn btn-info" href="modificarsolicitudservicio.jsp"> <i class="icon-edit icon-white"></i> Modificar </a> <a class="btn btn-danger" href="eliminarsolicitudservicio.jsp"> <i class="icon-trash icon-white"></i> Eliminar </a></td>
+					          
+					     	  
+					        <td class="center" > <a class="btn btn-info" href="modificarsolicitudservicio.jsp"> <i class="icon-edit icon-white"></i> Modificar </a> <a class="btn btn-danger" href="eliminarsolicitudservicio.jsp"> <i class="icon-trash icon-white"></i> Eliminar </a></td>
 				          </tr>
-                          
-                          
-                          
-                          
-                          
-                          
 				        </tbody>
+				        
+				       
+				        
+
 				      </table>
                   </div>
+                    
+                  
+                  
 		        </div>
+		        
+		         
 		      </div>
               
 			  <!--/row-->
