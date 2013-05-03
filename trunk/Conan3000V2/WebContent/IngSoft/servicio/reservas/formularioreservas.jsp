@@ -2,14 +2,7 @@
 <html lang="en">
 <head>
 	<!--
-		Charisma v1.0.0
-
-		Copyright 2012 Muhammad Usman
-		Licensed under the Apache License v2.0
-		http://www.apache.org/licenses/LICENSE-2.0
-
-		http://usman.it
-		http://twitter.com/halalit_usman
+		Formulario para llenar los datos de la reserva.
 	-->
 	<meta charset="utf-8">
 	<title>Conan3000</title>
@@ -48,6 +41,8 @@
 	<!--[if lt IE 9]>
 	  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
+
+
 
 	<!-- The fav icon -->
 	<link rel="shortcut icon" href="img/favicon.ico">
@@ -89,15 +84,23 @@
 				<div class="box span12">
 					<div class="box-header well" data-original-title>
 						<h2><i class="icon-edit"></i> MANTENIMIENTO DE RESERVAS</h2>
-						<div class="box-icon">
-							<a href="#" class="btn btn-setting btn-round"><i class="icon-cog"></i></a>
-							<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
-							<a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>
-						</div>
+						
 					</div>
 					<div class="box-content">
 						<form class="form-horizontal">
 						  <fieldset>
+							
+							<!-- Last name: <input type="text" name="lname" disabled><br> -->
+							
+							<div class="control-group">
+							  <label class="control-label" for="typeahead">Codigo de Reserva </label>
+							  <div class="controls">
+								<input type="text" class="span6 typeahead" id="typeahead"  data-provide="typeahead" value="RES001" data-items="4" name="idreserva" disabled >
+								
+							  </div>
+							</div>
+							
+							
 							
 					<div class="control-group">
 							  <label class="control-label" for="typeahead">Nombre del socio </label>
@@ -105,8 +108,8 @@
 								<input type="text" class="span6 typeahead" id="typeahead"  data-provide="typeahead" data-items="4" data-source='["Alarcon Mendieta Carlos Alberto","Aragón  Sanchez Felipe","Atiti Bustamante Pedro","Colorado Gutierrez Dania","Dante Chacón Fiorella"]'>
 								
 							  </div>
-							</div
-                              ><div class="control-group">
+							</div>
+                              <div class="control-group">
 								<label class="control-label" for="focusedInput">Email</label>
 								<div class="controls">
 								  <input class="input-xlarge focused" id="focusedInput" type="text" value="">
