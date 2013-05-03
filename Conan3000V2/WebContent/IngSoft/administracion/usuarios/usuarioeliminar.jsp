@@ -169,18 +169,35 @@
                                     </div>
                                 </div>
 								
-								<div class="control-group">
-                                  <label class="control-label" for="selectError">Estado:</label>
-                                  <div class="controls">
-                                      <select name="selectError" id="selectError1" data-rel="chosen" disabled="">
-                                          <option> Activado </option>
-                                          <option> Desactivado </option>
-                                          <option> Suspendido</option>
-                                          <option> Futbol </option>
-                                          <option> Tenis </option>
-                                      </select>
-                                  </div>
-						      </div>
+								 <div class="control-group">
+								<label class="control-label">Estado:</label>
+								
+								<div class="controls">
+								
+								  <label class="radio">
+									<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="" disabled="">
+									Activo
+								  </label>
+								  
+										 <div style="clear:both"></div> 
+								  
+								  
+								  <label class="radio">
+									<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+									Inactivo
+								  </label>
+								  
+								         <div style="clear:both"></div>  
+								  
+								  <label class="radio">
+									<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+									Cancelado
+								  </label>
+								  
+								  
+								</div>
+								
+							  </div>
 			            <div class="form-actions">
 			              <button type="submit" class="btn btn-primary">Eliminar</button>
 			              <button type="reset" class="btn">Cancelar</button>

@@ -109,10 +109,10 @@
                                   <div class="controls">
                                       <select name="selectError" id="selectError" data-rel="chosen">
                                           <option> Administrador </option>
-                                          <option> Ventas </option>
-                                          <option> Voley </option>
-                                          <option> Futbol </option>
-                                          <option> Tenis </option>
+                                          <option> Vendedor </option>
+                                          <option> Servicios </option>
+                                          <option> Registrador </option>
+                                          <option> Almacén </option>
                                       </select>
                                   </div>
 						      </div>
@@ -166,18 +166,35 @@
                                     </div>
                                 </div>
 								
-								<div class="control-group">
-                                  <label class="control-label" for="selectError">Estado:</label>
-                                  <div class="controls">
-                                      <select name="selectError" id="selectError1" data-rel="chosen">
-                                          <option> Activado </option>
-                                          <option> Desactivado </option>
-                                          <option> Suspendido</option>
-                                          <option> Futbol </option>
-                                          <option> Tenis </option>
-                                      </select>
-                                  </div>
-						      </div>
+								 <div class="control-group">
+								<label class="control-label">Estado:</label>
+								
+								<div class="controls">
+								
+								  <label class="radio">
+									<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
+									Activo
+								  </label>
+								  
+										 <div style="clear:both"></div> 
+								  
+								  
+								  <label class="radio">
+									<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+									Inactivo
+								  </label>
+								  
+								         <div style="clear:both"></div>  
+								  
+								  <label class="radio">
+									<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+									Cancelado
+								  </label>
+								  
+								  
+								</div>
+								
+							  </div>
 		          
 			            <div class="form-actions">
 			              <button type="submit" class="btn btn-primary">Agregar</button>
