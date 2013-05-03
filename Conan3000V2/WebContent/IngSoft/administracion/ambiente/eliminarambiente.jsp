@@ -121,6 +121,20 @@
                             <textarea name="textarea2" rows="3" id="textarea2" disabled="" style="resize:none" placeholder="Área: 200 metros cuadrados."></textarea>
                           </div>
                         </div>
+          				<div class="control-group">
+								<label class="control-label" for="typeahead3">Estado:</label>
+								<div class="controls">
+								  <label class="radio">
+									<input type="radio" disabled="disabled" "optionsRadios" id="optionsRadios1" value="option1" checked="">
+									Activo
+								  </label>
+								  <div style="clear:both"></div>
+								  <label class="radio">
+									<input type="radio" disabled="disabled" name="optionsRadios" id="optionsRadios2" value="option2">
+									Inactivo
+								  </label>
+								</div>
+							  </div>
                         <div class="form-actions">
                           <button type="submit" class="btn btn-primary">Eliminar</button>
                           <button type="reset" class="btn">Cancelar</button>

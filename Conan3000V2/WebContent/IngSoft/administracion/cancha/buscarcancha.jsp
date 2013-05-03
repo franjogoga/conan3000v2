@@ -144,6 +144,7 @@
                               <th>Nombre</th>
                               <th>Tipo de Cancha</th>
                               <th>Ambiente</th>
+                              <th>Estado</th>
                               <th>Acci&oacuten</th>
                             </tr>
                           </thead>
@@ -152,18 +153,27 @@
                               <td>Cancha A</td>
                               <td class="center">Futsal</td>
                               <td class="center">Polideportivo</td>
+                              <td class="center">
+									 <span class="label label-success">Activo</span>
+							  </td>
                               <td class="center"><a class="btn btn-success" href="#"> <i class="icon-zoom-in icon-white"></i> Ver </a> <a class="btn btn-info" href="modificarcancha.jsp"> <i class="icon-edit icon-white"></i> Modificar </a> <a class="btn btn-danger" href="eliminarcancha.jsp"> <i class="icon-trash icon-white"></i> Eliminar </a></td>
                             </tr>
                             <tr>
                               <td>Cancha C</td>
                               <td class="center">F&uactetbol</td>
                               <td class="center">Zona deportiva</td>
+                              <td class="center">
+									 <span class="label label-success">Activo</span>
+							  </td>
                               <td class="center"><a class="btn btn-success" href="#"> <i class="icon-zoom-in icon-white"></i> Ver </a> <a class="btn btn-info" href="modificarcancha.jsp"> <i class="icon-edit icon-white"></i> Modificar </a> <a class="btn btn-danger" href="eliminarcancha.jsp"> <i class="icon-trash icon-white"></i> Eliminar </a></td>
                             </tr>
                             <tr>
                               <td>Cancha D</td>
                               <td class="center">Voley</td>
                               <td class="center">Polideportivo</td>
+                              <td class="center">
+									 <span class="label">Inactivo</span>
+							  </td>
                               <td class="center"><a class="btn btn-success" href="#"> <i class="icon-zoom-in icon-white"></i> Ver </a> <a class="btn btn-info" href="modificarcancha.jsp"> <i class="icon-edit icon-white"></i> Modificar </a> <a class="btn btn-danger" href="eliminarcancha.jsp"> <i class="icon-trash icon-white"></i> Eliminar </a></td>
                             </tr>
                           </tbody>
