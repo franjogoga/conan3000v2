@@ -78,7 +78,7 @@
 			  <!-- content starts -->
 			  <div>
 			    <ul class="breadcrumb">
-			      <li> <a href="/Conan3000V2/IngSoft/general/index.jsp">Home</a> / <a href="/Conan3000V2/IngSoft/ventas/solicitud/solicitud.jsp">Solicitudes</a> / Solicitud Servicio</li>
+			      <li> <a href="/Conan3000V2/IngSoft/general/index.jsp">Home</a> / <a href="/Conan3000V2/IngSoft/ventas/solicitud/solicitud.jsp">Solicitudes</a> / Solicitud de Servicio</li>
 		        </ul>
 		      </div>
 			  <div class="row-fluid sortable">
