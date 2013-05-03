@@ -629,7 +629,7 @@ function cambiarClase(elemento){
                       
   </div><!--/span-->
 			
-			</div><!--/row-->
+			<!-- </div><!--/row--> 
 
 			<div id="tablaBungalow" class="box-content"; style="display:none">						
 						<table class="table table-striped table-bordered bootstrap-datatable datatable">
