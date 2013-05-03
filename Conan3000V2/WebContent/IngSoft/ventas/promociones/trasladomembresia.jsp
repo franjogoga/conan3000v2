@@ -124,7 +124,7 @@
 			                   <input type="text"  disabled class="span6 typeahead" id="typeahead7" value=""  data-provide="typeahead" > 
 			        
 			        
-						 <a  class="btn btn-primary" href="agregarmembresia.jsp"> <i class="icon icon-add icon-white"></i> Agregar</a>  
+						 <a  class="btn btn-primary" href="../socio/agregarsocio.jsp"> <i class="icon icon-add icon-white"></i> Agregar</a>  
 						      
 					     		                </div>
 		                </div>
@@ -161,7 +161,8 @@
 			           
 			            <div class="form-actions">
 			              <button type="submit" class="btn btn-primary">Aceptar</button>
-			              <button type="reset" class="btn"><a href="buscarmembresia.jsp">Cancelar</a></button>
+			               <a  class="btn" href="../membresia/buscarmembresia.jsp">  Cancelar</a>  
+			             
 		                </div>
 		              </fieldset>
 		            </form>
