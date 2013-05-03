@@ -108,7 +108,27 @@
 			                  <input type="text" value="2000.00" class="span6 typeahead" id="typeahead6"  data-provide="typeahead" data-items="4" >
 		                    </div>
 		                  </div>
-			        	                		                  		                   
+			        	                
+			        	<div class="control-group">
+								<label class="control-label" for="typeahead3">Estado</label>
+								<div class="controls">
+								  <label class="radio">
+									<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
+									Registrado
+								  </label>
+								  <div style="clear:both"></div>
+								  <label class="radio">
+									<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+									Anulado
+								  </label>
+								  
+								  <div style="clear:both"></div>
+								  <label class="radio">
+									<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+									Pendiente
+								  </label>
+								</div>
+							  </div>                		                  		                   
 							 
 						
 			            
