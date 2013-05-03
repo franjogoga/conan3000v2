@@ -1,6 +1,8 @@
 package IngSoft.servicio.bean;
 
-public class TipoEventoMiniBeanData {
+import java.io.Serializable;
+
+public class TipoEventoMiniBeanData implements Serializable{
 	private int codigo;
 	private String nombre;
 	public int getCodigo() {

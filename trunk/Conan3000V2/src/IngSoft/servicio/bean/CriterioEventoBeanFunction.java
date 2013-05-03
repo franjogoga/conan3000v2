@@ -35,11 +35,14 @@ public class CriterioEventoBeanFunction {
 	
 	public Vector<ResultadoEventoBeanData> buscarPlantillaEvento(CriterioEventoBeanData criterioEventoData){		
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+		Vector<ResultadoEventoBeanData> resultadosV=null;
+		try{		
 		List<ResultadoEventoBeanData> resultados=sqlsesion.selectList("searchPlantillaEvento",criterioEventoData);
 		System.out.println(resultados.size());
-		Vector<ResultadoEventoBeanData> resultadosV= new Vector<>(resultados);
-		System.out.println(resultadosV.size());
-		sqlsesion.close();
+		resultadosV= new Vector<>(resultados);
+		System.out.println(resultadosV.size());}
+		finally{
+		sqlsesion.close();}
 		return resultadosV;
 		
 	}

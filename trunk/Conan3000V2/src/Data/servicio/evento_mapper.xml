@@ -47,10 +47,12 @@ left JOIN tipo_evento on tipo_evento.id_tipo_evento=plantilla_evento.id_tipo_eve
 	from 
 	tipo_evento
 </select>
-<insert id="insertPlantillaEvento" parameterType="IngSoft.servicio.bean.EventoBeanData" >
+<insert id="insertPlantillaEvento" parameterType="IngSoft.servicio.bean.EventoBeanData" flushCache="true">
 	insert into plantilla_evento(id_plantilla_evento,nombre,lim_inicio,lim_fin,id_tipo_evento)
 	values (#{codigo},#{nombre},#{limiteInicio},#{limiteFin},#{idTipo})
 </insert>
-
+<select id="getNextCodigo" resultType="java.lang.String">
+	select max(id_plantilla_evento)+1 from plantilla_evento	
+</select>
 
 </mapper>

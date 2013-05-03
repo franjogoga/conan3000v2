@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import IngSoft.general.CoAccion;
 import IngSoft.servicio.bean.AmbienteMiniBeanData;
+import IngSoft.servicio.bean.EventoBeanData;
 import IngSoft.servicio.bean.EventoBeanFuncion;
 import IngSoft.servicio.bean.SedeMiniBeanData;
 import IngSoft.servicio.bean.TipoEventoMiniBeanData;
@@ -18,7 +19,13 @@ public class AccionAgregarEvento extends CoAccion {
 	public void ejecutar(ServletContext sc, HttpServletRequest request,
 			HttpServletResponse response) {
 		// TODO Auto-generated method stub
-		EventoBeanFuncion eventoFunction= new EventoBeanFuncion();
+		int tipo=Integer.parseInt(request.getParameter("tipo"));
+		if(tipo==2){
+			EventoBeanFuncion eventoFuncion= EventoBeanFuncion.getInstance();
+			EventoBeanData eventoData=eventoFuncion.crearEvento(request, response);
+			eventoFuncion.agregarEvento(eventoData);
+		}
+		EventoBeanFuncion eventoFunction= EventoBeanFuncion.getInstance();
 		Vector<SedeMiniBeanData> sedeMiniData=eventoFunction.getSedes();
 		Vector<TipoEventoMiniBeanData> tipoEventoMiniData=eventoFunction.getTipoEvento();
 		Vector<AmbienteMiniBeanData> AmbienteMiniData=eventoFunction.getAmbientes();

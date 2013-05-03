@@ -1,8 +1,9 @@
 package IngSoft.servicio.bean;
 
+import java.io.Serializable;
 import java.sql.Date;
 
-public class CriterioEventoBeanData {
+public class CriterioEventoBeanData implements Serializable{
 	private String nombre;
 	private int tipo;
 	private Date limInicio;
