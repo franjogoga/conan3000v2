@@ -227,7 +227,7 @@
 			                            <textarea name="textarea" rows="3" id="textarea2" style="resize:none"></textarea>
 			                          </div>
                                     </div>
-                                </div>
+                               
 						
 						
 						
