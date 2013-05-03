@@ -164,6 +164,7 @@
                               <th>Raz&oacuten Social</th>
                               <th>Tipo</th>
                               <th>Sede</th>
+                              <th>Estado</th>
                               <th>Acci&oacuten</th>
                             </tr>
                           </thead>
@@ -173,6 +174,9 @@
                               <td>Per&uacute Campe&oacuten</td>
                               <td class="center">Criolla</td>
                               <td class="center">Chosica</td>
+                              <td class="center">
+									 <span class="label label-success">Activo</span>
+							  </td>                              
                               <td class="center"><a class="btn btn-success" href="#"> <i class="icon-zoom-in icon-white"></i> Ver </a> <a class="btn btn-info" href="modificarconcesionario.jsp"> <i class="icon-edit icon-white"></i> Modificar </a> <a class="btn btn-danger" href="eliminarconcesionario.jsp"> <i class="icon-trash icon-white"></i> Eliminar </a></td>
                             </tr>
                             <tr>
@@ -180,6 +184,9 @@
                               <td>Pastelicia</td>
                               <td class="center">Pasteler&iacutea</td>
                               <td class="center">Chosica</td>
+                              <td class="center">
+									 <span class="label label-success">Activo</span>
+							  </td>
                               <td class="center"><a class="btn btn-success" href="#"> <i class="icon-zoom-in icon-white"></i> Ver </a> <a class="btn btn-info" href="modificarconcesionario.jsp"> <i class="icon-edit icon-white"></i> Modificar </a> <a class="btn btn-danger" href="eliminarconcesionario.jsp"> <i class="icon-trash icon-white"></i> Eliminar </a></td>
                             </tr>
                             <tr>
@@ -187,6 +194,9 @@
                               <td>Pizzas Saul</td>
                               <td class="center">Pastas</td>
                               <td class="center">Chosica</td>
+                              <td class="center">
+									 <span class="label label-success">Activo</span>
+							  </td>
                               <td class="center"><a class="btn btn-success" href="#"> <i class="icon-zoom-in icon-white"></i> Ver </a> <a class="btn btn-info" href="modificarconcesionario.jsp"> <i class="icon-edit icon-white"></i> Modificar </a> <a class="btn btn-danger" href="eliminarconcesionario.jsp"> <i class="icon-trash icon-white"></i> Eliminar </a></td>
                             </tr>
                           </tbody>

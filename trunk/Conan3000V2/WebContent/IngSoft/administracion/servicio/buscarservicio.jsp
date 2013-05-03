@@ -131,12 +131,16 @@
                           <tbody>
                             <tr>
                               <td>Sauna</td>
-                              <td>Estado 1</td>
+                              <td class="center">
+									 <span class="label label-success">Activo</span>
+							  </td>
                               <td class="center"><a class="btn btn-success" href="#"> <i class="icon-zoom-in icon-white"></i> Ver </a> <a class="btn btn-info" href="modificarservicio.jsp"> <i class="icon-edit icon-white"></i> Modificar </a> <a class="btn btn-danger" href="eliminarservicio.jsp"> <i class="icon-trash icon-white"></i> Eliminar </a></td>
                             </tr>
                             <tr>
                               <td>Biblioteca</td>
-                              <td>Estado 2</td>
+                              <td class="center">
+									 <span class="label label-success">Activo</span>
+  	   						  </td>
 	                          <td class="center"><a class="btn btn-success" href="#"> <i class="icon-zoom-in icon-white"></i> Ver </a> <a class="btn btn-info" href="modificarservicio.jsp"> <i class="icon-edit icon-white"></i> Modificar </a> <a class="btn btn-danger" href="eliminarservicio.jsp"> <i class="icon-trash icon-white"></i> Eliminar </a></td>
                             </tr>
                           </tbody>

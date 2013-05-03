@@ -117,7 +117,7 @@
 		                  </div>
 			             
 								<div class="control-group">
-								<label class="control-label" for="typeahead3">Estado</label>
+								<label class="control-label" for="typeahead3">Estado:</label>
 								<div class="controls">
 								  <label class="radio">
 									<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">

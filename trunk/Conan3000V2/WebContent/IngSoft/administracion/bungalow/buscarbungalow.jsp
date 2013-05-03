@@ -147,6 +147,7 @@
                               <th>N&uacutem. de Divisiones</th>
                               <th>&Aacuterea del Bungalow (m2)</th>
                               <th>Ambiente</th>
+                              <th>Estado</th>
                               <th>Acci&oacuten</th>
                             </tr>
                           </thead>
@@ -156,6 +157,9 @@
                               <td class="center">3</td>
                               <td class="center">40</td>
                               <td class="center">Zona de Bungalows</td>
+                              <td class="center">
+									 <span class="label label-success">Activo</span>
+							  </td>
                               <td class="center"><a class="btn btn-success" href="#"> <i class="icon-zoom-in icon-white"></i> Ver </a> <a class="btn btn-info" href="modificarbungalow.jsp"> <i class="icon-edit icon-white"></i> Modificar </a> <a class="btn btn-danger" href="eliminarbungalow.jsp"> <i class="icon-trash icon-white"></i> Eliminar </a></td>
                             </tr>
                             <tr>
@@ -163,6 +167,9 @@
                               <td class="center">4</td>
                               <td class="center">40</td>
                               <td class="center">Zona de Bungalows</td>
+                              <td class="center">
+									 <span class="label label-success">Activo</span>
+							  </td>
                               <td class="center"><a class="btn btn-success" href="#"> <i class="icon-zoom-in icon-white"></i> Ver </a> <a class="btn btn-info" href="modificarbungalow.jsp"> <i class="icon-edit icon-white"></i> Modificar </a> <a class="btn btn-danger" href="eliminarbungalow.jsp"> <i class="icon-trash icon-white"></i> Eliminar </a></td>
                             </tr>
                             <tr>
@@ -170,6 +177,9 @@
                               <td class="center">3</td>
                               <td class="center">20</td>
                               <td class="center">Zona de Bungalows</td>
+                              <td class="center">
+									 <span class="label label-success">Activo</span>
+							  </td>
                               <td class="center"><a class="btn btn-success" href="#"> <i class="icon-zoom-in icon-white"></i> Ver </a> <a class="btn btn-info" href="modificarbungalow.jsp"> <i class="icon-edit icon-white"></i> Modificar </a> <a class="btn btn-danger" href="eliminarbungalow.jsp"> <i class="icon-trash icon-white"></i> Eliminar </a></td>
                             </tr>
                           </tbody>

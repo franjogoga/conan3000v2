@@ -143,6 +143,7 @@
                               <th>Nombre</th>
                               <th>Tipo</th>
                               <th>Sede</th>
+                              <th>Estado</th>
                               <th>Acci&oacuten</th>
                             </tr>
                           </thead>
@@ -151,18 +152,27 @@
                               <td>Zona deportiva</td>
                               <td class="center">Deportivo</td>
                               <td class="center">Chosica</td>
+                              <td class="center">
+									 <span class="label label-success">Activo</span>
+							  </td>
                               <td class="center"><a class="btn btn-success" href="#"> <i class="icon-zoom-in icon-white"></i> Ver </a> <a class="btn btn-info" href="modificarambiente.jsp"> <i class="icon-edit icon-white"></i> Modificar </a> <a class="btn btn-danger" href="eliminarambiente.jsp"> <i class="icon-trash icon-white"></i> Eliminar </a></td>
                             </tr>
                             <tr>
                               <td>Polideportivo</td>
                               <td class="center">Deportivo</td>
                               <td class="center">Chosica</td>
+                              <td class="center">
+									 <span class="label">Inactivo</span>
+							  </td>
                               <td class="center"><a class="btn btn-success" href="#"> <i class="icon-zoom-in icon-white"></i> Ver </a> <a class="btn btn-info" href="modificarambiente.jsp"> <i class="icon-edit icon-white"></i> Modificar </a> <a class="btn btn-danger" href="eliminarambiente.jsp"> <i class="icon-trash icon-white"></i> Eliminar </a></td>
                             </tr>
                             <tr>
                               <td>Sala de juegos</td>
                               <td class="center">Recreativo</td>
                               <td class="center">Chosica</td>
+                              <td class="center">
+									 <span class="label label-success">Activo</span>
+							  </td>
                               <td class="center"><a class="btn btn-success" href="#"> <i class="icon-zoom-in icon-white"></i> Ver </a> <a class="btn btn-info" href="modificarambiente.jsp"> <i class="icon-edit icon-white"></i> Modificar </a> <a class="btn btn-danger" href="eliminarambiente.jsp"> <i class="icon-trash icon-white"></i> Eliminar </a></td>
                             </tr>
                           </tbody>
