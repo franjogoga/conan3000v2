@@ -50,11 +50,27 @@ left JOIN tipo_evento on tipo_evento.id_tipo_evento=plantilla_evento.id_tipo_eve
 	tipo_evento
 </select>
 <insert id="insertPlantillaEvento" parameterType="IngSoft.servicio.bean.EventoBeanData" flushCache="true">
-	insert into plantilla_evento(id_plantilla_evento,nombre,lim_inicio,lim_fin,id_tipo_evento)
-	values (#{codigo},#{nombre},#{limiteInicio},#{limiteFin},#{idTipo})
+	insert into plantilla_evento(id_plantilla_evento,nombre,lim_inicio,lim_fin,id_tipo_evento,estado)
+	values (#{codigo},#{nombre},#{limiteInicio},#{limiteFin},#{idTipo},'A')
 </insert>
 <select id="getNextCodigo" resultType="java.lang.String">
 	select max(id_plantilla_evento)+1 from plantilla_evento	
 </select>
+<select id="getAmbientesId" parameterType="int" resultType="java.lang.String">
+select id_tipo_ambiente  from plantilla_eventoxtipo_ambiente where id_plantilla_evento= #{codigo};
+</select>
 
+<select id="getSedesId" parameterType="int" resultType="java.lang.String">
+select id_sede  from plantilla_eventoxsede where id_plantilla_evento= #{codigo};
+</select>
+
+<select id="getPLantillaEvento" parameterType="int" resultType="IngSoft.servicio.bean.EventoBeanData">
+select 
+plantilla_evento.id_plantilla_evento as codigo
+,tipo_evento.nombre as tipo
+,plantilla_evento.nombre as nombre
+,plantilla_evento.lim_inicio as limInicio
+,plantilla_evento.lim_fin as limFin
+from plantilla_evento  pe where estado='A' and  pe.id_plantilla_evento=#{codigo}; 
+</select>
 </mapper>
