@@ -66,11 +66,11 @@ select id_sede  from plantilla_eventoxsede where id_plantilla_evento= #{codigo};
 
 <select id="getPLantillaEvento" parameterType="int" resultType="IngSoft.servicio.bean.EventoBeanData">
 select 
-plantilla_evento.id_plantilla_evento as codigo
-,tipo_evento.nombre as tipo
-,plantilla_evento.nombre as nombre
-,plantilla_evento.lim_inicio as limInicio
-,plantilla_evento.lim_fin as limFin
+id_plantilla_evento as codigo
+,id_tipo_evento as idTipo
+,nombre as nombre
+,lim_inicio as limiteInicio
+,lim_fin as limiteFin
 from plantilla_evento  pe where estado='A' and  pe.id_plantilla_evento=#{codigo}; 
 </select>
 </mapper>

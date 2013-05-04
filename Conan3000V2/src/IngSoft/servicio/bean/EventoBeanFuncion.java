@@ -26,9 +26,7 @@ public class EventoBeanFuncion {
 	       return EventoFuncion;
 	   }
 	   
-	   private EventoBeanFuncion() {
-	     
-	   }
+	   private EventoBeanFuncion() {}
 	
 	public EventoBeanData crearEvento(HttpServletRequest request, HttpServletResponse response){
 		EventoBeanData eventoData= new EventoBeanData();
@@ -71,9 +69,11 @@ public class EventoBeanFuncion {
 			eventoData= sqlsesion.selectOne("getPLantillaEvento",codigo);
 			//eventoData.setCodigo(Integer.parseInt((String)sqlsesion.selectOne("getNextCodigo")));
 			//sqlsesion.insert("insertPlantillaEvento",eventoData);
-			String temp[] = null;
-			eventoData.setIdSede(sqlsesion.selectList("getSedesId",codigo).toArray(temp));
-			eventoData.setIdAmbientes(sqlsesion.selectList("getAmbientesId",codigo).toArray(temp));
+			List<String> temp = null;
+			temp=sqlsesion.selectList("getSedesId",codigo);
+			eventoData.setIdSede(temp.toArray(new String[temp.size()]));
+			temp=sqlsesion.selectList("getAmbientesId",codigo);
+			eventoData.setIdAmbientes(temp.toArray(new String[temp.size()]));
 			
 		}
 		finally{
