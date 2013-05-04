@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.ibatis.session.SqlSession;
 
+import IngSoft.general.CoException;
 import IngSoft.general.MyBatisSesion;
 
 public class EventoBeanFuncion {	
@@ -44,15 +45,24 @@ public class EventoBeanFuncion {
 		return eventoData;		
 	} 
 	
-	public boolean agregarEvento(EventoBeanData eventoData){
+	public boolean agregarEvento(EventoBeanData eventoData) throws CoException {
 		boolean resultado=false;		
 		l.lock();
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
 			eventoData.setCodigo(Integer.parseInt((String)sqlsesion.selectOne("getNextCodigo")));
 			sqlsesion.insert("insertPlantillaEvento",eventoData);
+			sqlsesion.insert("insertPlantillaEventoSedes",eventoData);
+			
 			resultado=true;
 		}
+		catch(Exception a)		
+		{sqlsesion.rollback();
+		a.printStackTrace();
+			throw CoException.set("Error: Nombre de evento repetido", "SMSEvento?accion=Agregar&tipo=1");
+			
+		}
+		
 		finally{
 			sqlsesion.commit();
 			sqlsesion.close();
@@ -73,8 +83,7 @@ public class EventoBeanFuncion {
 			temp=sqlsesion.selectList("getSedesId",codigo);
 			eventoData.setIdSede(temp.toArray(new String[temp.size()]));
 			temp=sqlsesion.selectList("getAmbientesId",codigo);
-			eventoData.setIdAmbientes(temp.toArray(new String[temp.size()]));
-			
+			eventoData.setIdAmbientes(temp.toArray(new String[temp.size()]));			
 		}
 		finally{
 			sqlsesion.close();
