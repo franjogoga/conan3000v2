@@ -38,9 +38,9 @@ public class CriterioEventoBeanFunction {
 		Vector<ResultadoEventoBeanData> resultadosV=null;
 		try{		
 		List<ResultadoEventoBeanData> resultados=sqlsesion.selectList("searchPlantillaEvento",criterioEventoData);
-		System.out.println(resultados.size());
+	
 		resultadosV= new Vector<>(resultados);
-		System.out.println(resultadosV.size());}
+		}
 		finally{
 		sqlsesion.close();}
 		return resultadosV;

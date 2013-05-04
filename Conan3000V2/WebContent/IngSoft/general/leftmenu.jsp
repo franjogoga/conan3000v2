@@ -30,6 +30,7 @@
 
 
                         <li><a class="ajax-link" href="/Conan3000V2/IngSoft/administracion/invitados/invitadobuscar.jsp"><i class="icon-wrench"></i><span class="hidden-tablet"> Invitados</span></a></li>
+                        <li><a class="ajax-link" href="/Conan3000V2/IngSoft/administracion/invitados/visitaregistrar.jsp"><i class="icon-wrench"></i><span class="hidden-tablet"> Visitas</span></a></li>
                         <li><a class="ajax-link" href="/Conan3000V2/IngSoft/servicio/reservas/buscarreserva.jsp"><i class="icon-wrench"></i><span class="hidden-tablet"> Reservas</span></a></li>
                         <li><a class="ajax-link" href="/Conan3000V2/IngSoft/ventas/pago/buscarpago.jsp"><i class="icon-wrench"></i><span class="hidden-tablet"> Pagos</span></a></li>                                                                    
                         <li><a class="ajax-link" href="/Conan3000V2/IngSoft/servicio/reporte/generarreportes.jsp"><i class="icon-wrench"></i><span class="hidden-tablet"> Reportes</span></a></li>
@@ -40,5 +41,8 @@
                         <li><a class="ajax-link" href="/Conan3000V2/IngSoft/ventas/solicitud/solicitud.jsp"><i class="icon-wrench"></i><span class="hidden-tablet"> Solicitudes	</span></a></li>
                         <li><a class="ajax-link" href="/Conan3000V2/IngSoft/servicio/juridica/juridicabuscar.jsp"><i class="icon-wrench"></i><span class="hidden-tablet"> Persona Juridica	</span></a></li>
                         <li><a class="ajax-link" href="/Conan3000V2/IngSoft/ventas/ventaproducto/buscarventaproducto.jsp"><i class="icon-wrench"></i><span class="hidden-tablet"> Venta de Productos</span></a></li>
+                        <li><a class="ajax-link" href="/Conan3000V2/IngSoft/administracion/cuotasmultas/cuotaagregar.jsp"><i class="icon-wrench"></i><span class="hidden-tablet"> Cuotas</span></a></li>
+                        <li><a class="ajax-link" href="/Conan3000V2/IngSoft/administracion/cuotasmultas/multaagregar.jsp"><i class="icon-wrench"></i><span class="hidden-tablet"> Multas</span></a></li>
+                        <li><a class="ajax-link" href="/Conan3000V2/IngSoft/administracion/socio/suspensionregistrar.jsp"><i class="icon-wrench"></i><span class="hidden-tablet"> Suspender Socio</span></a></li>
 				</div><!--/.well -->
 			</div><!--/span-->

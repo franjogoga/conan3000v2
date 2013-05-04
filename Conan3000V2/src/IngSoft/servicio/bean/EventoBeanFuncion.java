@@ -64,6 +64,24 @@ public class EventoBeanFuncion {
 		return resultado;
 	}
 	
+	public EventoBeanData consultarEvento(int codigo){
+		EventoBeanData eventoData=null;
+		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+		try{
+			eventoData= sqlsesion.selectOne("getPLantillaEvento",codigo);
+			//eventoData.setCodigo(Integer.parseInt((String)sqlsesion.selectOne("getNextCodigo")));
+			//sqlsesion.insert("insertPlantillaEvento",eventoData);
+			String temp[] = null;
+			eventoData.setIdSede(sqlsesion.selectList("getSedesId",codigo).toArray(temp));
+			eventoData.setIdAmbientes(sqlsesion.selectList("getAmbientesId",codigo).toArray(temp));
+			
+		}
+		finally{
+			sqlsesion.close();
+		}
+		return eventoData;
+	}
+	
 	public Vector<SedeMiniBeanData> getSedes(){
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		List<SedeMiniBeanData> resultados=sqlsesion.selectList("searchSedeMini");

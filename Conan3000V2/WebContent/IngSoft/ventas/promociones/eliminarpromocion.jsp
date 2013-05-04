@@ -133,7 +133,7 @@
 			              <div class="control-group">
 			                <label class="control-label" for="textarea2">Descripci&oacute;n:</label>
 			                <div class="controls">
-			                  <textarea name="textarea" rows="3" disabled class="" id="textarea2">Descuento si reservas 2 bungalow.</textarea>
+			                  <textarea name="textarea" rows="3" disabled class="" id="textarea2" style="resize:none">Descuento si reservas 2 bungalow.</textarea>
 		                    </div>
 		                  </div>
 			            </div>
