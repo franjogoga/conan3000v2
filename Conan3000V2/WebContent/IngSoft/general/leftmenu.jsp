@@ -39,6 +39,6 @@
                         <li><a class="ajax-link" href="/Conan3000V2/IngSoft/ventas/servicioproveedor/buscarservicio.jsp"><i class="icon-wrench"></i><span class="hidden-tablet"> Servicio de Proveedor </span></a></li>
                         <li><a class="ajax-link" href="/Conan3000V2/IngSoft/ventas/solicitud/solicitud.jsp"><i class="icon-wrench"></i><span class="hidden-tablet"> Solicitudes	</span></a></li>
                         <li><a class="ajax-link" href="/Conan3000V2/IngSoft/servicio/juridica/juridicabuscar.jsp"><i class="icon-wrench"></i><span class="hidden-tablet"> Persona Juridica	</span></a></li>
-                        <!--   <li><a class="ajax-link" href="#"><i class="icon-wrench"></i><span class="hidden-tablet"> Venta de Productos</span></a></li> -->
+                        <li><a class="ajax-link" href="/Conan3000V2/IngSoft/ventas/ventaproducto/buscarventaproducto.jsp"><i class="icon-wrench"></i><span class="hidden-tablet"> Venta de Productos</span></a></li>
 				</div><!--/.well -->
 			</div><!--/span-->
