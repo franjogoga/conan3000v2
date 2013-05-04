@@ -145,6 +145,21 @@
 			<locationURI>JS</locationURI>
 		</link>
 		<link>
+			<name>WebContent/IngSoft/administracion/cuotasmultas/css</name>
+			<type>2</type>
+			<locationURI>CSS</locationURI>
+		</link>
+		<link>
+			<name>WebContent/IngSoft/administracion/cuotasmultas/img</name>
+			<type>2</type>
+			<locationURI>IMG</locationURI>
+		</link>
+		<link>
+			<name>WebContent/IngSoft/administracion/cuotasmultas/js</name>
+			<type>2</type>
+			<locationURI>JS</locationURI>
+		</link>
+		<link>
 			<name>WebContent/IngSoft/administracion/empleados/css</name>
 			<type>2</type>
 			<locationURI>CSS</locationURI>
@@ -261,6 +276,21 @@
 		</link>
 		<link>
 			<name>WebContent/IngSoft/servicio/evento/js</name>
+			<type>2</type>
+			<locationURI>JS</locationURI>
+		</link>
+		<link>
+			<name>WebContent/IngSoft/servicio/juridica/css</name>
+			<type>2</type>
+			<locationURI>CSS</locationURI>
+		</link>
+		<link>
+			<name>WebContent/IngSoft/servicio/juridica/img</name>
+			<type>2</type>
+			<locationURI>IMG</locationURI>
+		</link>
+		<link>
+			<name>WebContent/IngSoft/servicio/juridica/js</name>
 			<type>2</type>
 			<locationURI>JS</locationURI>
 		</link>
@@ -400,6 +430,21 @@
 			<locationURI>JS</locationURI>
 		</link>
 		<link>
+			<name>WebContent/IngSoft/ventas/servicioproveedor/css</name>
+			<type>2</type>
+			<locationURI>CSS</locationURI>
+		</link>
+		<link>
+			<name>WebContent/IngSoft/ventas/servicioproveedor/img</name>
+			<type>2</type>
+			<locationURI>IMG</locationURI>
+		</link>
+		<link>
+			<name>WebContent/IngSoft/ventas/servicioproveedor/js</name>
+			<type>2</type>
+			<locationURI>JS</locationURI>
+		</link>
+		<link>
 			<name>WebContent/IngSoft/ventas/socio/css</name>
 			<type>2</type>
 			<locationURI>CSS</locationURI>
@@ -411,6 +456,36 @@
 		</link>
 		<link>
 			<name>WebContent/IngSoft/ventas/socio/js</name>
+			<type>2</type>
+			<locationURI>JS</locationURI>
+		</link>
+		<link>
+			<name>WebContent/IngSoft/ventas/solicitud/css</name>
+			<type>2</type>
+			<locationURI>CSS</locationURI>
+		</link>
+		<link>
+			<name>WebContent/IngSoft/ventas/solicitud/img</name>
+			<type>2</type>
+			<locationURI>IMG</locationURI>
+		</link>
+		<link>
+			<name>WebContent/IngSoft/ventas/solicitud/js</name>
+			<type>2</type>
+			<locationURI>JS</locationURI>
+		</link>
+		<link>
+			<name>WebContent/IngSoft/ventas/ventaproducto/css</name>
+			<type>2</type>
+			<locationURI>CSS</locationURI>
+		</link>
+		<link>
+			<name>WebContent/IngSoft/ventas/ventaproducto/img</name>
+			<type>2</type>
+			<locationURI>IMG</locationURI>
+		</link>
+		<link>
+			<name>WebContent/IngSoft/ventas/ventaproducto/js</name>
 			<type>2</type>
 			<locationURI>JS</locationURI>
 		</link>
