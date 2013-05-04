@@ -5,12 +5,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import IngSoft.general.CoAccion;
+import IngSoft.general.CoException;
 
 public class AccionModificarEvento extends CoAccion {
 
 	@Override
 	public void ejecutar(ServletContext sc, HttpServletRequest request,
-			HttpServletResponse response) {
+			HttpServletResponse response) throws CoException{
 		// TODO Auto-generated method stub
 		this.direccionar(sc, request, response, "/IngSoft/servicio/evento/modificarevento.jsp");
 	}

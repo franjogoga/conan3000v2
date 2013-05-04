@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import IngSoft.general.CoAccion;
+import IngSoft.general.CoException;
 import IngSoft.servicio.bean.AmbienteMiniBeanData;
 import IngSoft.servicio.bean.EventoBeanData;
 import IngSoft.servicio.bean.EventoBeanFuncion;
@@ -17,7 +18,7 @@ public class AccionAgregarEvento extends CoAccion {
 
 	@Override
 	public void ejecutar(ServletContext sc, HttpServletRequest request,
-			HttpServletResponse response) {
+			HttpServletResponse response) throws CoException {
 		// TODO Auto-generated method stub
 		int tipo=Integer.parseInt(request.getParameter("tipo"));
 		if(tipo==2){

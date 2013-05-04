@@ -1,7 +1,4 @@
 <!DOCTYPE html>
-<%@page import="IngSoft.servicio.bean.TipoEventoMiniBeanData"%>
-<%@page import="IngSoft.servicio.bean.AmbienteMiniBeanData"%>
-<%@page import="IngSoft.servicio.bean.SedeMiniBeanData"%>
 <html lang="en">
 <head>
 	<!--
@@ -15,14 +12,13 @@
 		http://twitter.com/halalit_usman
 	-->
 	<meta charset="utf-8">
-	<title>Agregar Evento</title>
+	<title>Template</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
 	<meta name="author" content="Muhammad Usman">
+	
 	<!--The beans  -->
-	<jsp:useBean id="sedes" scope="request"class="java.util.Vector"></jsp:useBean>
-	<jsp:useBean id="ambientes" scope="request"class="java.util.Vector"></jsp:useBean>
-	<jsp:useBean id="tiposEvento" scope="request"class="java.util.Vector"></jsp:useBean>
+	<jsp:useBean id="exception" scope="request"class="IngSoft.general.CoException"></jsp:useBean>
 	
 	<!-- The styles -->
 	<link id="bs-css" href="css/bootstrap-cerulean.css" rel="stylesheet">
@@ -58,35 +54,7 @@
 
 	<!-- The fav icon -->
 	<link rel="shortcut icon" href="img/conan_logo.png">
-	<script>
-		function validar(form){
-			if(form.txtNombreEvento.value.length <=0)return false;
-			if(form.fFecIncio.value.length<=0)return false;
-			if(form.fFecFin.value.lengtht<=0)return false;
-			if(form.cmbSedes.value.length<=0)return false;
-			if(form.cmbAmbientes.value.length<=0)return false;
-	return true;
 		
-		
-		}
-	
-	function alt_fecha(obj){
-	obj.value=obj.value.slice(0,5);
-	
-	}
-	
-	function alt_submit(){
-		var form= document.frmData;
-		if(validar(form)) form.submit();
-		else alert("Uno o mas campos estan vacios");
-			
-			}
-		
-		
-		
-			//document.fmrData.submit();
-
-	</script>	
 </head>
 
 <body>
@@ -108,102 +76,9 @@
 			
 			<div id="content" class="span10">
 			<!-- content starts -->
-			
-
-			<div>
-				<ul class="breadcrumb">
-					<li>
-						<a href="/Conan3000V2/IngSoft/general/index.jsp">Home</a> <span class="divider">/</span>
-					</li>
-					<li>
-						<a href="buscarevento.jsp">Mantenimiento de Eventos</a> <span class="divider">/</span>
-					</li>
-					<li>
-						Agregar de Eventos
-					</li>
-				</ul>
-			</div>
-			
-			<div class="row-fluid sortable">
-				<div class="box span12">
-					<div class="box-header well" data-original-title>
-					  <h2><i class="icon-plus-sign"></i>AGREGAR EVENTO</h2>
-				  </div>
-					<div class="box-content">
-						<form class="form-horizontal" action="<%= response.encodeURL("SMSEvento")%>" name="frmData" method="post">
-						<input type="hidden" name="accion" value="Agregar"></input>
-						<input type="hidden" name="tipo" value="2"></input>
-						  <fieldset>
-						    <div class="control-group">
-						      <label class="control-label" for="typeahead7">Nombre de evento(*): </label>
-						      <div class="controls">
-						        <input type="text" class="span6 typeahead" id="txtNombreEvento"  data-provide="typeahead"  id="txtNombreEvento" name="txtNombreEvento" >
-					          </div>
-					        </div>
-						    
-							<div class="control-group">
-								<label class="control-label" for="selectS1">Tipo de Evento(*):</label>
-								<div class="controls">
-								  <select id="selectS1" data-rel="chosen" id="cmbTipo" name="cmbTipo">
-									<%for(int i=0;i<tiposEvento.size();i++){ %>
-										<option value="<%= ((TipoEventoMiniBeanData)tiposEvento.get(i)).getCodigo()%>" <%=i==0?"selected":""%>><%= ((TipoEventoMiniBeanData)tiposEvento.get(i)).getNombre()%></option>
-									<%} %>										
-								  </select>
-								</div>
-							  </div>
-							  <div class="control-group">
-								<label class="control-label" for="selectM1">Sedes relacionadas(*):</label>
-								<div class="controls">
-								  <select id="selectM1" multiple data-rel="chosen" id="cmbSedes" name="cmbSedes" >
-									<%for(int i=0;i<sedes.size();i++){ %>
-										<option value="<%= ((SedeMiniBeanData)sedes.get(i)).getCodigo()%>"><%= ((SedeMiniBeanData)sedes.get(i)).getNombre()%></option>
-									<%} %>																
-								  </select>
-								</div>
-							  </div>
-							   <div class="control-group">
-								<label class="control-label" for="selectM2">Ambientes relacionados(*):</label>
-								<div class="controls">
-								  <select id="selectM2" multiple data-rel="chosen" id="cmbAmbientes" name="cmbAmbientes">
-									<%for(int i=0;i<ambientes.size();i++){ %>
-										<option value="<%= ((AmbienteMiniBeanData)ambientes.get(i)).getCodigo()%>"><%= ((AmbienteMiniBeanData)ambientes.get(i)).getNombre()%></option>
-									<%} %>										
-								  </select>
-								</div>
-							  </div>
-							  <div class="control-group">
-							  <label class="control-label" for="date01">Limite Inicio(*):</label>
-							  <div class="controls">
-								<input type="text" class="input-xlarge datepicker" id="fFecIncio" value="01/01"  name="fFecIncio" onchange="alt_fecha(this)">
-							  </div>
-							</div>
-							
-							<div class="control-group">
-							  <label class="control-label" for="date02">Limite Fin(*):</label>
-							  <div class="controls">
-								<input type="text" class="input-xlarge datepicker" id="fFecFin" value="31/12"  name="fFecFin" onchange="alt_fecha(this)">
-							  </div>
-							</div>
-						    <div class="form-actions">
-							  <button type="button" class="btn btn-primary" onclick="javascript:alt_submit()">Agregar</button>
-							  <button type="button" class="btn" onclick="location.href='buscarevento.jsp'" >Cancelar</button>
-							</div>
-						  </fieldset>
-					  </form>   
-					<span style="font-size:70%">(*)Campos Obligatorios</span>
-				  </div>
-				</div><!--/span-->
-
-			</div><!--/row-->
-
-
-			<div class="row-fluid sortable"><!--/span-->
-			
-			</div><!--/row-->
-			
-			<div class="row-fluid sortable"><!--/span-->
-
-			</div><!--/row-->		 
+			<div id="content" class="span10">
+			<!-- content starts -->
+				 <h1 style="color:red" align=""><%=exception.getMensage()%><h2>
 					<!-- content ends -->
 			</div><!--/#content.span10-->
 				</div><!--/fluid-row-->
@@ -223,7 +98,7 @@
 				<a href="#" class="btn btn-primary">Save changes</a>
 			</div>
 		</div>
-		<br/>
+
 		<jsp:include page="/IngSoft/general/inferior.jsp" />
 		
 	</div><!--/.fluid-container-->

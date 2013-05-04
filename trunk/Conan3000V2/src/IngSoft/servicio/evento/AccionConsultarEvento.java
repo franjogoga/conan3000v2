@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import IngSoft.general.CoAccion;
+import IngSoft.general.CoException;
 import IngSoft.servicio.bean.AmbienteMiniBeanData;
 import IngSoft.servicio.bean.EventoBeanData;
 import IngSoft.servicio.bean.EventoBeanFuncion;
@@ -18,7 +19,7 @@ public class AccionConsultarEvento extends CoAccion {
 
 	@Override
 	public void ejecutar(ServletContext sc, HttpServletRequest request,
-			HttpServletResponse response) {
+			HttpServletResponse response)  throws CoException{
 		EventoBeanFuncion eventoFuncion= EventoBeanFuncion.getInstance();
 		EventoBeanData eventoData=eventoFuncion.consultarEvento(Integer.valueOf(request.getParameter("codigo")));
 		Vector<SedeMiniBeanData> sedeMiniData=eventoFuncion.getSedes();
@@ -28,6 +29,7 @@ public class AccionConsultarEvento extends CoAccion {
 		request.setAttribute("ambientes",AmbienteMiniData );
 		request.setAttribute("tiposEvento",tipoEventoMiniData);
 		request.setAttribute("evento", eventoData);
+
 		this.direccionar(sc, request, response, "/IngSoft/servicio/evento/consultarevento.jsp");
 		
 
