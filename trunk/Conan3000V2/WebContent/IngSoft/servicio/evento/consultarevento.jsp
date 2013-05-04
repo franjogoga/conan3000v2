@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="IngSoft.servicio.bean.TipoEventoMiniBeanData"%>
 <%@page import="IngSoft.servicio.bean.AmbienteMiniBeanData"%>
 <%@page import="IngSoft.servicio.bean.SedeMiniBeanData"%>
@@ -15,11 +17,12 @@
 		http://twitter.com/halalit_usman
 	-->
 	<meta charset="utf-8">
-	<title>Agregar Evento</title>
+	<title>Consultar Evento</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
 	<meta name="author" content="Muhammad Usman">
 	<!--The beans  -->
+	<jsp:useBean id="evento" scope="request"class="IngSoft.servicio.bean.EventoBeanData"></jsp:useBean>
 	<jsp:useBean id="sedes" scope="request"class="java.util.Vector"></jsp:useBean>
 	<jsp:useBean id="ambientes" scope="request"class="java.util.Vector"></jsp:useBean>
 	<jsp:useBean id="tiposEvento" scope="request"class="java.util.Vector"></jsp:useBean>
@@ -80,6 +83,20 @@
 			//document.fmrData.submit();
 
 	</script>	
+	<%! public boolean  encontrar(int a, String[] b){
+		for(int i=0;i<b.length;i++){
+			if(Integer.valueOf(b[i])==a) return true;	
+		}
+		
+		SimpleDateFormat DF= new SimpleDateFormat("dd/MM");
+	
+	return false;
+	}
+	public String formatear(java.util.Date date){
+		SimpleDateFormat DF= new SimpleDateFormat("dd/MM");
+		return DF.format(date);
+	}
+	%>
 </head>
 
 <body>
@@ -130,7 +147,7 @@
 						    <div class="control-group">
 						      <label class="control-label" for="typeahead7">Nombre de evento(*): </label>
 						      <div class="controls">
-						        <input type="text" class="span6 typeahead" id="txtNombreEvento"  data-provide="typeahead"  name="txtNombreEvento" disabled >
+						        <input type="text" class="span6 typeahead" id="txtNombreEvento"  data-provide="typeahead"  name="txtNombreEvento" disabled value="<%=evento.getNombre()%>">
 					          </div>
 					        </div>
 							<div class="control-group">
@@ -138,7 +155,7 @@
 								<div class="controls">
 								  <select id="selectS1" data-rel="chosen" name="cmbTipo" disabled>
 									<%for(int i=0;i<tiposEvento.size();i++){ %>
-										<option value="<%= ((TipoEventoMiniBeanData)tiposEvento.get(i)).getCodigo()%>" <%=i==0?"selected":""%>><%= ((TipoEventoMiniBeanData)tiposEvento.get(i)).getNombre()%></option>
+										<option value="<%= ((TipoEventoMiniBeanData)tiposEvento.get(i)).getCodigo()%>"  <%=evento.getIdTipo()== ((TipoEventoMiniBeanData)tiposEvento.get(i)).getCodigo()?"selected":"" %>><%= ((TipoEventoMiniBeanData)tiposEvento.get(i)).getNombre()%></option>
 									<%} %>										
 								  </select>
 								</div>
@@ -148,7 +165,7 @@
 								<div class="controls">
 								  <select id="selectM1" multiple data-rel="chosen" name="cmbSedes" disabled>
 									<%for(int i=0;i<sedes.size();i++){ %>
-										<option value="<%= ((SedeMiniBeanData)sedes.get(i)).getCodigo()%>"><%= ((SedeMiniBeanData)sedes.get(i)).getNombre()%></option>
+										<option value="<%= ((SedeMiniBeanData)sedes.get(i)).getCodigo()%>" <%=encontrar(((SedeMiniBeanData)sedes.get(i)).getCodigo(), evento.getIdSede())?"selected":""%>><%= ((SedeMiniBeanData)sedes.get(i)).getNombre()%></option>
 									<%} %>																
 								  </select>
 								</div>
@@ -158,7 +175,7 @@
 								<div class="controls">
 								  <select id="selectM2" multiple data-rel="chosen" name="cmbAmbientes" disabled>
 									<%for(int i=0;i<ambientes.size();i++){ %>
-										<option value="<%= ((AmbienteMiniBeanData)ambientes.get(i)).getCodigo()%>"><%= ((AmbienteMiniBeanData)ambientes.get(i)).getNombre()%></option>
+										<option value="<%= ((AmbienteMiniBeanData)ambientes.get(i)).getCodigo()%>" <%=encontrar(((AmbienteMiniBeanData)ambientes.get(i)).getCodigo(), evento.getIdAmbientes())?"selected":""%>><%= ((AmbienteMiniBeanData)ambientes.get(i)).getNombre()%></option>
 									<%} %>										
 								  </select>
 								</div>
@@ -166,19 +183,19 @@
 							  <div class="control-group">
 							  <label class="control-label" for="date01">Limite Inicio(*):</label>
 							  <div class="controls">
-								<input type="text" class="input-xlarge datepicker" id="date01" value="01/01"  obl="true" name="fFecIncio" onchange="alt_fecha(this)" disabled>
+								<input type="text" class="input-xlarge datepicker" id="date01" value="<%=formatear(new Date(evento.getLimiteInicio().getTime())) %>"  name="fFecIncio" onchange="alt_fecha(this)" disabled>
 							  </div>
 							</div>
 							
 							<div class="control-group">
 							  <label class="control-label" for="date02">Limite Fin(*):</label>
 							  <div class="controls">
-								<input type="text" class="input-xlarge datepicker" id="date02" value="31/12" name="fFecFin" onchange="alt_fecha(this)" disabled>
+								<input type="text" class="input-xlarge datepicker" id="date02" value="<%=formatear(new Date(evento.getLimiteFin().getTime())) %>" name="fFecFin" onchange="alt_fecha(this)" disabled>
 							  </div>
 							</div>
 						    <div class="form-actions" >
 							 <!--  <button type="submit" class="btn btn-primary">Agregar</button> -->
-							  <button type="reset" class="btn" >Cancelar</button>
+							  <button type="button" class="btn" onclick="location.href='buscarevento.jsp'" >Regresar</button>
 							</div>
 						  </fieldset>
 					  </form>   
