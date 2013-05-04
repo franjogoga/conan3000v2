@@ -75,54 +75,75 @@
 			<!-- content starts -->
 			<div id="content" class="span10">
 			<!-- content starts -->
- <div>
-		      <ul class="breadcrumb">
-		        <li> <a href="#">Home</a> <span class="divider">/</span> </li>
-		        <li> <a href="#">Mantenimiento de Persona Jurídica</a> <span class="divider">/</span> </li>
-		        <li> Busqueda de Persona Jur&iacute;dica </li>
-	          </ul>
-	        </div>
-		    <div class="row-fluid sortable">
-		      <div class="box span12">
-		        <div class="box-header well" data-original-title>
-		          <h2><i class="icon-search"></i> BUSCAR PERSONA JUR&Iacute;DICA</h2>
-		          <div class="box-icon"><a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a> <a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a> </div>
-	            </div>
-		        <div class="box-content">
-		          <form class="form-horizontal">
-		            <fieldset>
-		              <div class="control-group">
-						      <label class="control-label" for="typeahead7">C&oacutedigo: </label>
-						      <div class="controls">
-						        <input type="text" class="span6 typeahead" id="typeahead7"  data-provide="typeahead" >
-					          </div>
-					        </div>
-							
-					  <div class="control-group">
-		                <label class="control-label" for="typeahead">Raz&ocute;n Social:</label>
-		                <div class="controls">
-		                  <input type="text" class="span6 typeahead" id="typeahead">
-                          <p class="help-block">Escriba sobre la casilla la raz&oacute;n social para ser autocompletado</p>
-		                </div>
-						
-						
-	               
-							
-                    <div class="control-group">
+	<div>
+			    <ul class="breadcrumb">
+			      <li> <a href="#">Home</a> / <a href="#">Mantenimiento de Persona Jur&iacute;dica</a> / Modificar Persona Jur&iacute;dica</li>
+		        </ul>
+		      </div>
+			  <div class="row-fluid sortable">
+			    <div class="box span12">
+			      <div class="box-header well" data-original-title>
+			        <h2>MODIFICAR PERSONA JUR&Iacute;DICA</h2>
+					</div>
+					<div class="box-content">
+						<form class="form-horizontal">
+						  <fieldset>
+						                               
+                            <div class="control-group">
+                                  
+                                  
+                                  <label class="control-label" for="typeahead7">Raz&oacute;n Social: </label>
+                                  <div class="controls">
+                                      <input type="text" class="span6 typeahead" id="typeahead7"  data-provide="typeahead" >
+                                          </div>
+                              </div>
+							  
+							  
+							  <div class="control-group">
+                                  
+                                  
+                                  <label class="control-label" for="typeahead7">RUC: </label>
+                                  <div class="controls">
+                                      <input type="text" class="span6 typeahead" id="typeahead7"  data-provide="typeahead" >
+                                          </div>
+                              </div>
+                              
+                              
+                                
+                            
+						<div class="control-group">
 			              <label class="control-label" for="typeahead7">Fecha Registro: </label>
 			              <div class="controls">
 			                <input type="text" class="input-xlarge datepicker" id="date01" value="02/16/2012">
 		                  </div>
 		                </div>							
-                              
-                              
-                  <div class="control-group">
+                                
+								                                                    
+                                                      
+                                                             
+                                
+                                
+                                                               
+                                <div class="control-group">
+                                    <label class="control-label" for="textarea2">Descripci&oacuten:</label>
+                                    <div class="controls">
+                                   
+                                        <!--
+                                        <textarea class="cleditor" id="textarea2" rows="3"></textarea>
+                                        -->
+                                        
+                                        <textarea class="" id="textarea2" rows="3"></textarea>
+                                   
+                                    </div>
+                                </div>
+                                
+                                <div class="control-group">
 								<label class="control-label">Estado:</label>
 								
 								<div class="controls">
 								
 								  <label class="radio">
-									<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
+									<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="" disabled="">
 									Activo
 								  </label>
 								  
@@ -144,51 +165,34 @@
 								  
 								</div>
 								
-							  </div>  
-						  <div class="form-actions">
-		                <button type="submit" class="btn btn-primary">Buscar</button>		                
-	                  </div>
-					  		
-		               
-	                </fieldset>
-	              </form>
-	            </div>
-	          </div>
-		      <!--/span-->
-	        </div>
-		    <!--/row-->
-		    <div class="row-fluid sortable">
-		      <div class="box span12">
-		        <div class="box-header well" data-original-title>
-		          <h2><i class="icon-th-list"></i> RESULTADOS</h2>
-	            </div>
-		        <div class="box-content">
-		          <table class="table table-striped table-bordered bootstrap-datatable datatable">
-		            <!-- agregar nuevo boton -->
-		            <div  align="right"> <a class="btn btn-primary" href="juridicaagregar.jsp"> <i class="icon icon-add icon-white"></i> Agregar </a> </div>
-		            <thead>
-		              <tr>
-		                <th width="13%">Raz&oacute;n Social</th>
-		                <th width="17%">C&oacutedigo</th>
-		                <th width="11%">Estado</th>
-		                <th width="27%">Acci&oacuten</th>
-	                  </tr>
-	                </thead>
-		            <tbody>
-		              <tr>
-		                <td>Juan L&oacutepez</td>
-		                <td class="center">USU_00232 </td>
-		                <td class="center"><span class="label label-success">Activo</span></td>
-		                <td class="center"><a class="btn btn-success" href="#"> <i class="icon-zoom-in icon-white"></i> Ver </a> <a class="btn btn-info" href="juridicamodificar.jsp"> <i class="icon-edit icon-white"></i> Modificar </a> <a class="btn btn-danger" href="invitadoeliminar.jsp"> <i class="icon-trash icon-white"></i> Eliminar </a></td>
-	                  </tr>
-		              
-	                </tbody>
-	              </table>
-	            </div>
-	          </div>
-		      <!--/span-->
-	        </div>
-		    <!--/row-->				 
+							  </div>	
+                                                            
+                             
+		          
+			            <div class="form-actions">
+			              <button type="submit" class="btn btn-primary">Guardar</button>
+			              <button type="reset" class="btn">Cancelar</button>
+		                </div>
+						
+					
+		              </fieldset>
+		            </form>
+		          </div>
+		        </div>
+				
+			    <!--/span-->
+		      </div>
+			  <!--/row-->
+			  <div class="row-fluid sortable">
+			    <!--/span-->
+		      </div>
+			  <!--/row-->
+			  <div class="row-fluid sortable">
+			    <!--/span-->
+		      </div>
+			  <!--/row-->
+			 
+				 
 					<!-- content ends -->
 			</div><!--/#content.span10-->
 				</div><!--/fluid-row-->
