@@ -14,11 +14,18 @@
         <servlet-name>SMSEvento</servlet-name>
 	<servlet-class>IngSoft.servicio.evento.SMSEvento</servlet-class>
 </servlet>
-
+  <servlet id="Servlet_0002">
+        <servlet-name>SMASede</servlet-name>
+	<servlet-class>IngSoft.administracion.sede.SMASede</servlet-class>
+</servlet>
 
 
 <servlet-mapping id="ServletMapping_0001">
         <servlet-name>SMSEvento</servlet-name>
 <url-pattern>/IngSoft/servicio/evento/SMSEvento</url-pattern>
+</servlet-mapping>
+<servlet-mapping id="ServletMapping_0002">
+        <servlet-name>SMASede</servlet-name>
+<url-pattern>/IngSoft/administracion/sede/SMASede</url-pattern>
 </servlet-mapping>
 </web-app>
