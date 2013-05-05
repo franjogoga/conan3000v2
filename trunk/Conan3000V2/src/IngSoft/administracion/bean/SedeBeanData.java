@@ -1,6 +1,8 @@
 package IngSoft.administracion.bean;
 
-public class SedeBeanData {
+import java.io.Serializable;
+
+public class SedeBeanData implements Serializable{
 	
 	int codigo;
 	String nombre;
@@ -11,7 +13,7 @@ public class SedeBeanData {
 	
 	public int getCodido() {
 		
-		System.out.print("--> SedeBeanData ");
+		System.out.print("--> SedeBeanData ---> getCodido");
 		
 		return codigo;
 	}
