@@ -10,7 +10,7 @@
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
   
-  <servlet id="Servlet_0001">
+<servlet id="Servlet_0001">
         <servlet-name>SMSEvento</servlet-name>
 	<servlet-class>IngSoft.servicio.evento.SMSEvento</servlet-class>
 </servlet>
@@ -21,6 +21,10 @@
 <servlet id="Servlet_0003">
         <servlet-name>SMVPromocion</servlet-name>
 	<servlet-class>IngSoft.venta.promocion.SMVPromocion</servlet-class>
+</servlet>
+<servlet id="Servlet_0004">
+        <servlet-name>SMSSorteo</servlet-name>
+	<servlet-class>IngSoft.servicio.sorteo.SMSSorteo</servlet-class>
 </servlet>
 
 
@@ -36,5 +40,9 @@
 <servlet-mapping id="ServletMapping_0003">
         <servlet-name>SMVPromocion</servlet-name>
 <url-pattern>/IngSoft/venta/promocion/SMVPromocion</url-pattern>
+</servlet-mapping>
+<servlet-mapping id="ServletMapping_0004">
+        <servlet-name>SMSSorteo</servlet-name>
+<url-pattern>/IngSoft/servicio/sorteo/SMSSorteo</url-pattern>
 </servlet-mapping>
 </web-app>
