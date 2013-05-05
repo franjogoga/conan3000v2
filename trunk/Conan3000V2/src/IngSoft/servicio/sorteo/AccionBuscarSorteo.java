@@ -22,7 +22,7 @@ public class AccionBuscarSorteo extends CoAccion {
 		Vector<ResultadoSorteoBeanData> resultados=new CriterioSorteoBeanFuncion().buscarPlantillaSorteo(criterioSorteoData);
 
 		request.setAttribute("resultados", resultados);
-		this.direccionar(sc, request, response, "/IngSoft/servicio/evento/buscarevento.jsp");
+		this.direccionar(sc, request, response, "/IngSoft/servicio/evento/buscarsorteo.jsp");
 		
 	}
 
