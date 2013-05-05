@@ -3,7 +3,7 @@
 <head>
 
 	<meta charset="utf-8">
-	<title>Sorteo</title>
+	<title>CONAN 3000</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
 	<meta name="author" content="Dos virgenes">
@@ -143,7 +143,7 @@
 		                <td class="center">15/05/2013</td>
 						<td class="center">Los Olivos</td>					
 		                <td class="center">Activo</td>
-		                <td class="center"><a class="btn btn-success" href="#"> <i class="icon-zoom-in icon-white"></i> Ver </a> <a class="btn btn-info" href="modificarempleado.jsp"> <i class="icon-edit icon-white"></i> Modificar </a> <a class="btn btn-danger" href="eliminarempleado.jsp"> <i class="icon-trash icon-white"></i> Eliminar </a></td>
+		                <td class="center"><a class="btn btn-success" href="#"> <i class="icon-zoom-in icon-white"></i> Ver </a> <a class="btn btn-info" href="modificarsorteo.jsp"> <i class="icon-edit icon-white"></i> Modificar </a> <a class="btn btn-danger" href="eliminarsorteo.jsp"> <i class="icon-trash icon-white"></i> Eliminar </a></td>
 	                  </tr>	
 	                  				  
 		              <tr>
@@ -152,7 +152,7 @@
 		                <td class="center">13/06/2013</td>
 						<td class="center">Cercado</td>					
 		                <td class="center">Activo</td>
-		                <td class="center"><a class="btn btn-success" href="#"> <i class="icon-zoom-in icon-white"></i> Ver </a> <a class="btn btn-info" href="modificarempleado.jsp"> <i class="icon-edit icon-white"></i> Modificar </a> <a class="btn btn-danger" href="eliminarempleado.jsp"> <i class="icon-trash icon-white"></i> Eliminar </a></td>
+		                <td class="center"><a class="btn btn-success" href="#"> <i class="icon-zoom-in icon-white"></i> Ver </a> <a class="btn btn-info" href="modificarsorteo.jsp"> <i class="icon-edit icon-white"></i> Modificar </a> <a class="btn btn-danger" href="eliminarsorteo.jsp"> <i class="icon-trash icon-white"></i> Eliminar </a></td>
 	                  </tr>
 		             
 		              <tr>
@@ -161,7 +161,7 @@
 		                <td class="center">20/12/2013</td>
 						<td class="center">Miraflores</td>					
 		                <td class="center">Activo</td>
-		                <td class="center"><a class="btn btn-success" href="#"> <i class="icon-zoom-in icon-white"></i> Ver </a> <a class="btn btn-info" href="modificarempleado.jsp"> <i class="icon-edit icon-white"></i> Modificar </a> <a class="btn btn-danger" href="eliminarempleado.jsp"> <i class="icon-trash icon-white"></i> Eliminar </a></td>
+		                <td class="center"><a class="btn btn-success" href="#"> <i class="icon-zoom-in icon-white"></i> Ver </a> <a class="btn btn-info" href="modificarsorteo.jsp"> <i class="icon-edit icon-white"></i> Modificar </a> <a class="btn btn-danger" href="eliminarsorteo.jsp"> <i class="icon-trash icon-white"></i> Eliminar </a></td>
 	                  </tr>
 	                  
 	                </tbody>
