@@ -122,7 +122,7 @@
 							<div class="control-group">
 							  <label class="control-label" for="date01">Fecha de Nac. (*):</label>
 							  <div class="controls">
-								<input type="text" class="input-xlarge datepicker" id="date01" value="02/16/12">
+								<input type="text" class="input-xlarge datepicker" id="date01" value="02/16/12" readonly="true">
 							  </div>
 							</div>
 
