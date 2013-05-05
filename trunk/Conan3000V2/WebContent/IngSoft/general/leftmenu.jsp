@@ -6,10 +6,7 @@
    						
 						<li><a class="ajax-link" href="/Conan3000V2/IngSoft/administracion/configuracion/configuracion.jsp"><i class="icon-wrench"></i><span class="hidden-tablet"> Configuracion</span></a></li>   						
 
-   						<li><a class="ajax-link" href="/Conan3000V2/IngSoft/administracion/perfiles/agregarperfil.jsp"><i class="icon-wrench"></i><span class="hidden-tablet"> Perfiles</span></a></li>
-
-
-
+   						<li><a class="ajax-link" href="/Conan3000V2/IngSoft/administracion/perfiles/buscarperfil.jsp"><i class="icon-wrench"></i><span class="hidden-tablet"> Perfiles</span></a></li>
    						<li><a class="ajax-link" href="/Conan3000V2/IngSoft/administracion/sedes/buscarsede.jsp"><i class="icon-wrench"></i><span class="hidden-tablet"> Sedes</span></a></li>   						
 						<li><a class="ajax-link" href="/Conan3000V2/IngSoft/administracion/empleados/buscarempleado.jsp"><i class="icon-wrench"></i><span class="hidden-tablet"> Empleados</span></a></li>
 						<li><a class="ajax-link" href="/Conan3000V2/IngSoft/administracion/usuarios/usuariobuscar.jsp"><i class="icon-wrench"></i><span class="hidden-tablet"> Usuarios</span></a></li>
