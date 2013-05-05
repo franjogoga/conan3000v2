@@ -53,6 +53,26 @@
 	<!-- The fav icon -->
 	<link rel="shortcut icon" href="img/favicon.ico">
 		
+		
+		
+		
+		
+		
+		
+	<script> 
+	
+	function alt_eliminar(cod){
+		var form=document.getElementById("frmSede");
+		form.accion.value="Consultar";
+		form.codigo.value=cod;
+		form.submit();
+	}
+	
+	
+	
+	
+	
+	</script>	
 </head>
 
 <body>
@@ -179,8 +199,8 @@
 			  <!--/row-->
 			  
 			  
-			  <!-- nuevo  -->
-			  <form id="frmSede" name="frmSede"  method="post" action=" " >
+			  <!-- nuevo  aquiiiiiiiiiiiii-->
+			  <form id="frmSede" name="frmSede"  method="post" action="SMASede" >
 			  
 			   <input   type ="hidden" name="accion"  value="Consultar"></imput>
 			   <input   type ="hidden" name="codigo"  value="1"></imput>
@@ -245,7 +265,7 @@
 										<i class="icon-edit icon-white"></i>
 										Modificar
 									</a>
-									<a class="btn btn-danger" href="eliminarsede.jsp">
+									<a class="btn btn-danger" href="javascript:alt_eliminar(1)">
 										<i class="icon-trash icon-white"></i>
 										Eliminar
 									</a>
