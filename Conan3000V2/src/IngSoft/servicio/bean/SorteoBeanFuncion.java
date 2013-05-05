@@ -26,6 +26,7 @@ public class SorteoBeanFuncion {
 	public SorteoBeanData crearSorteo(HttpServletRequest request, HttpServletResponse response){
 		SorteoBeanData sorteoData= new SorteoBeanData();
 		try{
+			sorteoData.setIdSede(request.getParameterValues("cmbSedes"));
 			sorteoData.setFechaInicio(new Date(DF.parse(request.getParameter("fFecIncio")+"/0000").getTime()));
 			sorteoData.setFechaFin(new Date(DF.parse(request.getParameter("fFecIncio")+"/0000").getTime()));
 			sorteoData.setFechaSorteo(new Date(DF.parse(request.getParameter("fFecIncio")+"/0000").getTime()));
@@ -87,6 +88,26 @@ public class SorteoBeanFuncion {
 			}
 				
 			return resultado;
+		}
+		public Vector<SedeMiniBeanData> getSedes(){
+			SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+			List<SedeMiniBeanData> resultados=sqlsesion.selectList("searchSedeMini");
+			sqlsesion.close();
+			return new Vector<>(resultados);
+		}
+		
+		public Vector<AmbienteMiniBeanData> getAmbientes(){
+			SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+			List<AmbienteMiniBeanData> resultados=sqlsesion.selectList("searchAmbienteMini");
+			sqlsesion.close();
+			return new Vector<>(resultados);
+		}
+		
+		public Vector<TipoEventoMiniBeanData> getTipoEvento(){
+			SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+			List<TipoEventoMiniBeanData> resultados=sqlsesion.selectList("searchTipoEventoMini");
+			sqlsesion.close();
+			return new Vector<>(resultados);
 		}
 
 }
