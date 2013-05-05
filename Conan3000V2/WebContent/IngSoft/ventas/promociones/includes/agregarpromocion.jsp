@@ -6,12 +6,12 @@ function validaCorreo(valor)
 	else return false;
 }
 
-function validaNoVacio(valor,minimo, maximo){
+function esCorrecto(valor,minimo, maximo){
 	
 	if(valor.length>maximo){ 
 		return false;
 	}else{
-		if(valor.length<minimo){
+		if(valor.length<=minimo){
 			return false;
 		}else{
 			return true;	
@@ -25,16 +25,18 @@ function validarEntero(valor){
  
  valor = parseInt(valor); 
  	if (isNaN(valor)) { 
-       	 return “” null;
+       	 return null;
  	}else{ 
        	 return valor; 
  	}
 }
 
-function validaForm(){
-	var form=document.formulario;
-	if(form.txtNombre.value=""){
+function validaForm(form){
+	if(!esCorrecto(form.txtNombre.value,1,100)){
 		alert("La casilla nombre no ha sido llenada");
+	}else{
+		alert("No se ue hago aqui");
+		
 	}
 	
 }
@@ -54,12 +56,12 @@ function validaForm(){
 			        <h2><i class="icon-plus-sign"></i>AGREGAR PROMOCI&Oacute;N</h2>
 		          </div>
 			      <div class="box-content">
-			        <form class="form-horizontal" method="post">
+			        <form class="form-horizontal" method="post" name="frmPromocion">
 			          <fieldset>
 			            <div class="control-group">
 			              <label class="control-label" for="typeahead7">Nombre Promoci&oacute;n(*):</label>
 			              <div class="controls">
-			                <input type="text" name="txtNombrePromocion" class="span6 typeahead" id="typeahead7"  data-provide="typeahead" >
+			                <input type="text" name="txtNombre" class="span6 typeahead" id="typeahead7"  data-provide="typeahead" >
 		                  </div>
 		                </div>
 			            <div class="control-group">
@@ -84,7 +86,7 @@ function validaForm(){
 		                  </div>
 			            </div>
 			            <div class="form-actions">
-			              <button type="button" class="btn btn-primary" name="btnAgregar" onClick="javascript:validaForm();">Agregar</button>
+			              <button type="button" class="btn btn-primary" name="btnAgregar" onClick="javascript:validaForm(this);">Agregar</button>
 			              <button type="reset" class="btn"><a href="buscarpromocion.jsp" name="btnCancelar">Cancelar</a></button>
 		                </div>
 		              </fieldset>
