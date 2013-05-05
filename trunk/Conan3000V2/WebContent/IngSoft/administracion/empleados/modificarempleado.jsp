@@ -92,9 +92,9 @@
 			          <fieldset>			            							
 							
 							<div class="control-group">
-							  <label class="control-label" for="codigo">C&oacute;digo (*):</label>							  
+							  <label class="control-label" for="codigo">C&oacute;digo :</label>							  
 							  <div class="controls">
-								<input type="text" class="span6 typeahead" id="codigo"  data-provide="typeahead" data-items="4" value="EMP001"></input>								
+								<input type="text" class="span6 typeahead" id="codigo"  data-provide="typeahead" data-items="4" value="EMP001" disabled=""></input>								
 							  </div>
 							</div>
 							
