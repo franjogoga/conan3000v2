@@ -12,7 +12,7 @@
 		http://twitter.com/halalit_usman
 	-->
 	<meta charset="utf-8">
-	<title>Agregar Familiar</title>
+	<title>Buscar Familiar</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
 	<meta name="author" content="Muhammad Usman">
@@ -56,15 +56,14 @@
 </head>
 
 <body>
-		<jsp:include page="/IngSoft/general/superior.jsp" />
+				<jsp:include page="/IngSoft/general/superior.jsp" />
 		<div class="container-fluid">
 		<div class="row-fluid">
 				
 			<!-- left menu starts -->
 			<jsp:include page="/IngSoft/general/leftmenu.jsp" />
-						<!-- left menu ends -->
-            
-             
+						<!-- left menu ends -->  
+           			
 		  <noscript>
 				<div class="alert alert-block span10">
 					<h4 class="alert-heading">Warning!</h4>
@@ -76,53 +75,46 @@
 			  <!-- content starts -->
 			  <div>
 			    <ul class="breadcrumb">
-			      <li> <a href="#">Home</a> / <a href="#">Mantenimiento de Familiares</a> / Agregar Familiar</li>
+			      <li> <a href="#">Home</a> / <a href="#">Mantenimiento de Familiares</a> / Busqueda de Familiar</li>
 		        </ul>
 		      </div>
 			  <div class="row-fluid sortable">
 			    <div class="box span12">
 			      <div class="box-header well" data-original-title>
-			        <h2><i class="icon-plus-sign"></i>AGREGAR FAMILIAR</h2>
-		          </div>
+			        <h2><i class="icon-search"></i>BUSCAR FAMILIAR</h2>
+			      </div>
 			      <div class="box-content">
 			        <form class="form-horizontal">
 			          <fieldset>
-			             <div class="control-group">
-			                <label class="control-label" for="typeahead9">Socio (*): </label>
+		                <div class="control-group">
+			                <label class="control-label" for="typeahead9">Socio:</label>
 			                <div class="controls">
-			                  <input type="text" class="span6 typeahead" id="typeahead9"  data-provide="typeahead" data-items="4" >
+			                  <input type="text" class="span6 typeahead" id="typeahead9" value="Liz Diaz"  data-provide="typeahead" data-items="4" >
 			                  <p class="help-block">Escriba sobre la casilla un nombre de socio para ser autocompletado</p>
-		                    </div>
-		                  </div>
-			            <div class="control-group">
-			              <label class="control-label" for="typeahead7">Socio Asociado:</label>
-			              <div class="controls">
-			                <input type="text" disabled="disabled" class="span6 typeahead" id="typeahead7" value="SOC_0234"  data-provide="typeahead">
-		                  </div>
-		                </div>
-			         
+	                      </div>
+	                    </div>
+		                <div class="control-group"></div>
 			              <div class="control-group">
-			                <label class="control-label" for="typeahead6">Nombres(*):</label>
+			                <label class="control-label" for="typeahead6">Nombres:</label>
 			                <div class="controls">
 			                  <input type="text" class="span6 typeahead" id="typeahead6"  data-provide="typeahead" data-items="4" >
 		                    </div>
-		                  </div>
+	                    </div>
 			              <div class="control-group">
-			                <label class="control-label" for="typeahead4">Apellido Paterno(*):</label>
+			                <label class="control-label" for="typeahead4">Apellido Paterno:</label>
 			                <div class="controls">
 			                  <input type="text" class="span6 typeahead" id="typeahead4"  data-provide="typeahead" data-items="4" >
 		                    </div>
 		                  </div>
 			              <div class="control-group">
-			                <label class="control-label" for="typeahead8">Apellido Materno(*):</label>
+			                <label class="control-label" for="typeahead8">Apellido Materno:</label>
 			                <div class="controls">
 			                  <input type="text" class="span6 typeahead" id="typeahead8"  data-provide="typeahead" data-items="4" >
 		                    </div>
 		                  </div>
 			              <div class="control-group">
-			                		                  		                      
-		                         	<div class="control-group">
-								<label class="control-label" for="typeahead3">Tipo de Documento(*):</label>
+			               <div class="control-group">
+								<label class="control-label" for="typeahead3">Tipo de Documento:</label>
 								<div class="controls">
 								  <label class="radio">
 									<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
@@ -140,43 +132,10 @@
 								  </label>
 								</div>
 							  </div>
-							  
-							    <div class="control-group">
-			                <label class="control-label" for="typeahead8">N&uacute;mero de Doc.(*):</label>
-			                <div class="controls">
-			                  <input type="text" class="span6 typeahead" id="typeahead8"  data-provide="typeahead" data-items="4" >
-		                    </div>
-		                  </div>
-		                
-			            
-			              <div class="control-group">
-			                <div class="control-group">
-			                  <label class="control-label" for="selectError">Parentesco:</label>
-			                  <div class="controls">
-			                    <select name="selectError" id="selectError" data-rel="chosen">
-			                      <option selected>Hija</option>
-			                      <option>Option 2</option>
-			                      <option>Option 3</option>
-			                      <option>Option 4</option>
-			                      <option>Option 5</option>
-		                        </select>
-		                      </div>
-		                    </div>
-			                <label class="control-label" for="typeahead10">Tel&eacute;fono/Celular:</label>
-			                <div class="controls">
-			                  <input type="text" class="span6 typeahead" id="typeahead10"  data-provide="typeahead" data-items="4">
-		                    </div>
-		                  </div>
-			              <div class="control-group">
-			                <label class="control-label" for="typeahead2">Correo electr&oacute;nico:</label>
-			                <div class="controls">
-			                  <input type="text" class="span6 typeahead" id="typeahead2"  data-provide="typeahead" data-items="4" >
-		                    </div>
-		                  </div>
-		                </div>
-			            <div class="form-actions">
-			              <button type="submit" class="btn btn-primary">Agregar</button>
+			                <div class="form-actions">
+			              <button type="submit" class="btn btn-primary">Buscar</button>
 			              <button type="reset" class="btn"><a href="buscarfamiliar.jsp">Cancelar</a></button>
+		                </div>
 		                </div>
 		              </fieldset>
 		            </form>
@@ -187,7 +146,58 @@
 			  <!--/row-->
 			  <div class="row-fluid sortable">
 			    <!--/span-->
+                <div class="box span12">
+			      <div class="box-header well" data-original-title>
+			        <h2><i class="icon-th-list"></i>RESULTADOS</h2>
+		          </div>
+			      <div class="box-content">
+                  <table class="table table-striped table-bordered bootstrap-datatable datatable">
+					    <!-- agregar nuevo boton -->
+					    <div align="right"> <a class="btn btn-primary" href="agregarfamiliar.jsp"> <i class="icon icon-add icon-white"></i> Agregar </a> </div>
+					    <thead>
+					      <tr>
+					        <th>Parentesco</th>
+					        <th>Nombres</th>
+					        <th>Apellido Paterno</th>
+					        <th>Apellido Materno</th>
+					        <th>DNI</th>
+					        <th>Teléfono</th>
+					        <th>Correo electrónico</th>
+                            <th>Acción</th>
+                            
+                         
+				          </tr>
+				        </thead>
+					    <tbody>
+					      <tr>
+					        <td>Padre</td>
+					        <td class="center">Jose</td>
+					        <td class="center">Diaz</td>
+					        <td class="center">Haro</td>
+					        <td class="center">45678734</td>
+					        <td class="center">&nbsp;</td>
+					        <td class="center">jdh@gmail.com</td>
+                               
+					        <td class="center"><a class="btn btn-success" href="#"> <i class="icon-zoom-in icon-white"></i> Ver </a> <a class="btn btn-info" href="modificarfamiliar.jsp"> <i class="icon-edit icon-white"></i> Modificar </a> <a class="btn btn-danger" href="eliminarfamiliar.jsp"> <i class="icon-trash icon-white"></i> Eliminar </a></td>
+				          </tr>
+                          <tr>
+					        <td>Madre</td>
+					        <td class="center">Jenny</td>
+					        <td class="center">Castillo</td>
+					        <td class="center">Mogrovejo</td>
+					        <td class="center">45076489</td>
+					        <td class="center">5673456</td>
+					        <td class="center">&nbsp;</td>
+                               
+					        <td class="center"><a class="btn btn-success" href="#"> <i class="icon-zoom-in icon-white"></i> Ver </a> <a class="btn btn-info" href="modificarfamiliar.jsp"> <i class="icon-edit icon-white"></i> Modificar </a> <a class="btn btn-danger" href="eliminarfamiliar.jsp"> <i class="icon-trash icon-white"></i> Eliminar </a></td>
+				          </tr>
+                          
+				        </tbody>
+				      </table>
+                  </div>
+		        </div>
 		      </div>
+              
 			  <!--/row-->
 			  <div class="row-fluid sortable">
 			    <!--/span-->
@@ -199,13 +209,13 @@
        
 					<!-- content ends -->
 		  </div><!--/#content.span10-->
-				</div><!--/fluid-row-->
+				<!--/fluid-row-->
 				
 		<hr>
 
 		<div class="modal hide fade" id="myModal">
 			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal">Ã—</button>
+				<button type="button" class="close" data-dismiss="modal">×</button>
 				<h3>Settings</h3>
 			</div>
 			<div class="modal-body">
@@ -217,7 +227,10 @@
 			</div>
 		</div>
 
-		<jsp:include page="/IngSoft/general/inferior.jsp" />
+		<footer>
+		  <p class="pull-left"><a href="http://usman.it/free-responsive-admin-template">Conan 3000</a> &copy;  2013</p>
+          <p class="pull-right">Powered by: <a href="http://usman.it/free-responsive-admin-template">Las dos virgenes</a></p>
+		</footer>
 		
 	</div><!--/.fluid-container-->
 
