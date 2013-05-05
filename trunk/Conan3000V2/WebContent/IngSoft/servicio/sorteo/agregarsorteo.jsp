@@ -89,7 +89,7 @@
 			          <fieldset>
 
 									<div class="control-group">
-										<label class="control-label" for="nombres">Codigo:</label>
+										<label class="control-label" for="nombres">Nombre del Sorteo(*):</label>
 										<div class="controls">
 											<input type="text" class="span6 typeahead" id="nombres"
 												data-provide="typeahead" data-items="4"></input>
