@@ -11,7 +11,7 @@
 				<jsp:include page="/IngSoft/general/noscript.jsp" />
 				<div id="content" class="span10">
 				    <!-- content starts -->
-				   <jsp:include page="includes/buscarpromocion.jsp" />
+				   <jsp:include page="includes/verpromocion.jsp" />
 				    <!-- content ends -->
 				</div>
 			 </div>
@@ -22,4 +22,3 @@
 		<jsp:include page="/IngSoft/general/jsexternal.jsp" />
 </body>
 </html>
-
