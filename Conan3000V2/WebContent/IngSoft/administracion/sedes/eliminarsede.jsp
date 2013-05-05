@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="IngSoft.administracion.bean.ActividadBeanData"%>
+
 <html lang="en">
 <head>
 	<!--
@@ -16,6 +20,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
 	<meta name="author" content="Muhammad Usman">
+
+    <jsp:useBean id="sede" scope="request"class="IngSoft.administracion.bean.SedeBeanData"></jsp:useBean>
+
 
 	<!-- The styles -->
 	<link id="bs-css" href="css/bootstrap-cerulean.css" rel="stylesheet">
@@ -92,9 +99,12 @@
 					  
 					  <!--    ----------------------------------------------------------------------------------------------    -->
 							<div class="control-group">
+							
+						
+							
 							  <label class="control-label" for="typeahead7">Nombre: </label>
 							  <div class="controls">
-								<input disabled="" type="text" class="span6 typeahead" id="typeahead7"  data-provide="typeahead" >
+								<input disabled="" type="text" class="span6 typeahead" id="typeahead7"  data-provide="typeahead" value="<%=sede.getNombre()%>">
 							  </div>
 							</div>
 						
