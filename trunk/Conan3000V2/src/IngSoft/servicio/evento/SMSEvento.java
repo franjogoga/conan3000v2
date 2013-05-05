@@ -1,4 +1,4 @@
-package IngSoft.servicio.evento;
+   package IngSoft.servicio.evento;
 
 import IngSoft.general.CoServlet;
 
