@@ -68,10 +68,10 @@
 						<a href="#">Inicio</a> <span class="divider">/</span>
 					</li>
 					<li>
-						<a href="#">Mantenimiento de Empleados</a> <span class="divider">/</span>
+						<a href="#">Mantenimiento de Sorteos</a> <span class="divider">/</span>
 					</li>
 					<li>
-						Eliminar Empleado
+						Eliminar Sorteo
 					</li>
 				</ul>
 			</div>

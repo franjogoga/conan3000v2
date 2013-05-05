@@ -87,9 +87,18 @@
 			      <div class="box-content">
 			        <form class="form-horizontal">
 			          <fieldset>
-			  								
-													
-							<div class="control-group">
+
+									<div class="control-group">
+										<label class="control-label" for="nombres">Codigo:</label>
+										<div class="controls">
+											<input type="text" class="span6 typeahead" id="nombres"
+												data-provide="typeahead" data-items="4"></input>
+										</div>
+									</div>
+
+
+
+									<div class="control-group">
 								<label class="control-label" for="selectsede">Sede (*):</label>
 								<div class="controls">
 								  <select name="selectsede" id="selectsede" data-rel="chosen">
