@@ -7,7 +7,7 @@ public class SMSEvento extends CoServlet{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -8594038457439090712L;
+//	private static final long serialVersionUID = -8594038457439090712L;
 
 	@Override
 	protected void initAcciones() {
