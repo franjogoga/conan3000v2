@@ -6,8 +6,8 @@ public class PromocionBeanData {
 
 	private int codigo;
 	private String nombre;
-	private Date fechainicio;
-	private Date fechafin;
+	private Date fechaInicio;
+	private Date fechaFin;
 	private String descripcion;
 	private String estado;
 	
@@ -27,20 +27,20 @@ public class PromocionBeanData {
 		this.nombre = nombre;
 	}
 	
-	public Date getFechainicio() {
-		return fechainicio;
+	public Date getFechaInicio() {
+		return fechaInicio;
 	}
 	
-	public void setFechainicio(Date fechainicio) {
-		this.fechainicio = fechainicio;
+	public void setFechaInicio(Date fechaInicio) {
+		this.fechaInicio = fechaInicio;
 	}
 	
-	public Date getFechafin() {
-		return fechafin;
+	public Date getFechaFin() {
+		return fechaFin;
 	}
 	
-	public void setFechafin(Date fechafin) {
-		this.fechafin = fechafin;
+	public void setFechafin(Date fechaFin) {
+		this.fechaFin = fechaFin;
 	}
 	
 	public String getDescripcion() {
