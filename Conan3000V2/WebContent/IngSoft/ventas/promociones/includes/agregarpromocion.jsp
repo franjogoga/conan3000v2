@@ -1,3 +1,45 @@
+<script>
+function validaCorreo(valor)
+{
+	var reg=/(^[a-zA-Z0-9._-]{1,30})@([a-zA-Z0-9.-]{1,30}$)/;
+	if(reg.test(valor)) return true;
+	else return false;
+}
+
+function validaNoVacio(valor,minimo, maximo){
+	
+	if(valor.length>maximo){ 
+		return false;
+	}else{
+		if(valor.length<minimo){
+			return false;
+		}else{
+			return true;	
+		}
+
+	}
+
+}
+
+function validarEntero(valor){ 
+ 
+ valor = parseInt(valor); 
+ 	if (isNaN(valor)) { 
+       	 return “” null;
+ 	}else{ 
+       	 return valor; 
+ 	}
+}
+
+function validaForm(){
+	var form=document.formulario;
+	if(form.txtNombre.value=""){
+		alert("La casilla nombre no ha sido llenada");
+	}
+	
+}
+</script>
+
 <!-- content starts -->
 			  <div>
 			    <ul class="breadcrumb">
@@ -12,39 +54,38 @@
 			        <h2><i class="icon-plus-sign"></i>AGREGAR PROMOCI&Oacute;N</h2>
 		          </div>
 			      <div class="box-content">
-			        <form class="form-horizontal">
+			        <form class="form-horizontal" method="post">
 			          <fieldset>
 			            <div class="control-group">
 			              <label class="control-label" for="typeahead7">Nombre Promoci&oacute;n(*):</label>
 			              <div class="controls">
-			                <input type="text" class="span6 typeahead" id="typeahead7"  data-provide="typeahead" >
+			                <input type="text" name="txtNombrePromocion" class="span6 typeahead" id="typeahead7"  data-provide="typeahead" >
 		                  </div>
 		                </div>
 			            <div class="control-group">
 			              <div class="control-group">
 			                <label class="control-label" for="date01">Fecha de inicio(*):</label>
 			                <div class="controls">
-			                  <input type="text" class="input-xlarge datepicker" id="date01" value="" readonly="true">
+			                  <input type="text" name="fFechaInicio" class="input-xlarge datepicker" id="date01" value="" readonly="true">
 		                    </div>
 		                  </div>
 			              <div class="control-group">
 			                <label class="control-label" for="date02">Fecha de fin(*):</label>
 			                <div class="controls">
-			                  <input type="text" class="input-xlarge datepicker" id="date02" value="" readonly="true">
+			                  <input type="text" name="fFechaFin" class="input-xlarge datepicker" id="date02" value="" readonly="true">
 		                    </div>
 		                  </div>
-			             
-			            
+			             		            
 			              <div class="control-group">
 			                <label class="control-label" for="textarea2">Descripci&oacute;n:</label>
 			                <div class="controls">
-			                  <textarea name="textarea" class="" id="textarea2" style="resize:none"></textarea>
+			                  <textarea name="txtDescripcion" class="" id="textarea2" style="resize:none"></textarea>
 		                    </div>
 		                  </div>
 			            </div>
 			            <div class="form-actions">
-			              <button type="submit" class="btn btn-primary">Agregar</button>
-			              <button type="reset" class="btn"><a href="buscarpromocion.jsp">Cancelar</a></button>
+			              <button type="button" class="btn btn-primary" name="btnAgregar" onClick="javascript:validaForm();">Agregar</button>
+			              <button type="reset" class="btn"><a href="buscarpromocion.jsp" name="btnCancelar">Cancelar</a></button>
 		                </div>
 		              </fieldset>
 		            </form>
@@ -52,6 +93,7 @@
 		        </div>
 			    <!--/span-->
 		      </div>
+		      
 			  <!--/row-->
 			  <div class="row-fluid sortable">
 			    <!--/span-->
