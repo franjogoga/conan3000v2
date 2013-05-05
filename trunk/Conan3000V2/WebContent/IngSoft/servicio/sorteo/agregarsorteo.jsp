@@ -3,7 +3,7 @@
 <head>
 
 	<meta charset="utf-8">
-	<title>CONAN 3000</title>
+	<title>Agregar Sorteo</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
 	<meta name="author" content="Dos Virgenes">
@@ -70,10 +70,10 @@
 						<a href="#">Inicio</a> <span class="divider">/</span>
 					</li>
 					<li>
-						<a href="#">Mantenimiento de Empleados</a> <span class="divider">/</span>
+						<a href="#">Mantenimiento de Sorteo</a> <span class="divider">/</span>
 					</li>
 					<li>
-						Agregar Empleado
+						Agregar Sorteo
 					</li>
 				</ul>
 			</div>
@@ -81,106 +81,13 @@
 			  <div class="row-fluid sortable">
 			    <div class="box span12">
 			      <div class="box-header well" data-original-title>
-			        <h2> AGREGAR EMPLEADO</h2>
+			        <h2> AGREGAR SORTEO</h2>
 		          </div>
 				  
 			      <div class="box-content">
 			        <form class="form-horizontal">
 			          <fieldset>
-							
-							<div class="control-group">
-							  <label class="control-label" for="nombres">Nombres (*):</label>							  
-							  <div class="controls">
-								<input type="text" class="span6 typeahead" id="nombres"  data-provide="typeahead" data-items="4" ></input>								
-							  </div>
-							</div>
-							
-							<div class="control-group">
-							  <label class="control-label" for="paterno">Apellido Paterno (*):</label>							  
-							  <div class="controls">
-								<input type="text" class="span6 typeahead" id="paterno"  data-provide="typeahead" data-items="4" ></input>								
-							  </div>
-							</div>
-							
-							<div class="control-group">
-							  <label class="control-label" for="materno">Apellido Materno (*):</label>							  
-							  <div class="controls">
-								<input type="text" class="span6 typeahead" id="materno"  data-provide="typeahead" data-items="4" ></input>								
-							  </div>
-							</div>
-							
-							<div class="control-group">
-							  <label class="control-label" for="fechanacimiento">Fecha de Nac. (*):</label>
-							  <div class="controls">
-								<input type="text" class="input-xlarge datepicker" id="fechanacimiento" value="02/16/12">
-							  </div>
-							</div>
-							
-							<div class="control-group">
-							<label class="control-label" for="dni">Tipo de Documento (*):</label>
-							<div class="controls">
-							  <label class="radio">
-								<input type="radio" name="optionsRadios" id="dni" value="dni" checked="">
-								DNI
-							  </label>					
-							  <div style="clear:both"></div>		  
-							  <label class="radio">
-								<input type="radio" name="optionsRadios" id="carnet" value="carnet">
-								Carnet de extranjería
-							  </label>
-							  <div style="clear:both"></div>
-							  <label class="radio">
-								<input type="radio" name="optionsRadios" id="pasaporte" value="pasaporte">
-								Pasaporte
-							  </label>
-							</div>
-						  </div>						
-
-							<div class="control-group">
-							  <label class="control-label" for="numerodocumento">N&uacute;mero de Documento (*):</label>							  
-							  <div class="controls">
-								<input type="text" class="span6 typeahead" id="numerodocumento" data-provide="typeahead" data-items="4" ></input>								
-							  </div>
-							</div>
-							
-							<div class="control-group">
-								<label class="control-label" for="selectpuesto">Puesto (*):</label>
-								<div class="controls">
-								  <select name="selectpuesto" id="selectpuesto" data-rel="chosen">
-									<option>Puesto 1</option>
-									<option>Puesto 2</option>
-									<option>Puesto 3</option>
-									<option>Puesto 4</option>
-									<option>Puesto 4</option>
-								  </select>
-								</div>
-							</div>																			
-							
-							<div class="control-group">
-								<label class="control-label" for="selecthorario">Horario de Trabajo (*):</label>
-								<div class="controls">
-								  <select name="selecthorario" id="selecthorario" data-rel="chosen">
-									<option>Horario 1</option>
-									<option>Horario 2</option>
-									<option>Horario 3</option>
-									<option>Horario 4</option>
-									<option>Horario 5</option>
-								  </select>
-								</div>
-							</div>
-							
-							<div class="control-group">
-								<label class="control-label" for="selectarea">&Aacute;rea (*):</label>
-								<div class="controls">
-								  <select name="selectarea" id="selectarea" data-rel="chosen">
-									<option>Area 1</option>
-									<option>Area 2</option>
-									<option>Area 3</option>
-									<option>Area 4</option>
-									<option>Area 5</option>
-								  </select>
-								</div>
-							</div>						
+			  								
 													
 							<div class="control-group">
 								<label class="control-label" for="selectsede">Sede (*):</label>
@@ -193,7 +100,30 @@
 									<option>Sede 5</option>
 								  </select>
 								</div>
-							</div>																										
+							</div>
+							
+							<div class="control-group">
+							  <label class="control-label" for="nombres">Codigo:</label>							  
+							  <div class="controls">
+								<input type="text" class="span6 typeahead" id="nombres"  data-provide="typeahead" data-items="4" ></input>								
+							  </div>
+							</div>
+							
+						
+							<div class="control-group">
+							  <label class="control-label" for="fechaInicio">Fecha de Inicio. (*):</label>
+							  <div class="controls">
+								<input type="text" class="input-xlarge datepicker" id="fechaInicio" value="01/05/12">
+							  </div>
+							</div>
+							
+							<div class="control-group">
+							  <label class="control-label" for="fechaFin">Fecha de Fin. (*):</label>
+							  <div class="controls">
+								<input type="text" class="input-xlarge datepicker" id="fechaFin" value="12/05/13">
+							  </div>
+							</div>
+																																
 						
 			            <div class="form-actions">
 			              <button type="submit" class="btn btn-primary">Agregar</button>
