@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Data.venta.promocion">
+
+  <cache />
+  
+<!-- Agregar plantilla promocion -->
+<insert id="insertPromocion" parameterType="IngSoft.venta.bean.PromocionBeanData" flushCache="true">
+	insert into Promocion(idPromocion,nombre,fechainicio,fechafin,descripcion,estado)
+	values (#{codigo},#{nombre},#{fechaInicio},#{fechaFin},#{descripcion},'activo')
+</insert>
+
+<select id="getNextCodigo" resultType="java.lang.String">
+	select max(idPromocion)+1 from Promocion
+</select>
+
+ <!-- <insert id="insertPlantillaEventoSedes" parameterType="IngSoft.servicio.bean.EventoBeanData" flushCache="true">
+ insert into plantilla_eventoxsede(id_plantilla_evento,id_sede) values(#{codigo},
+ <foreach item="idSede" index="i" collection="idSede" separator="),(#{codigo}," close=")">
+ 	#{idSede}
+ </foreach>
+</insert>
+
+ -->
+
+
+ <!-- Fin agregar  -->
+ 
+</mapper>
