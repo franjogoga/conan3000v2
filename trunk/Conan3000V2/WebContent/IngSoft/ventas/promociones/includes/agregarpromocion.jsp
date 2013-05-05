@@ -31,16 +31,68 @@ function validarEntero(valor){
  	}
 }
 
-function validaForm(form){
-	if(!esCorrecto(form.txtNombre.value,1,100)){
-		alert("La casilla nombre no ha sido llenada");
-	}else{
-		alert("No se ue hago aqui");
+function generaMensaje(cadena){
+	var i;
+	var mensaje="Los siguientes campos no han sido llenados correctamente\n";
+	for(i=0;i<cadena.lenght;i++){
+		if(i+1<cadena.lenght){
+			mensaje+=cadena[i]+', ';
+			
+		}else{
+			mensaje=+cadena[i];
+			
+		}
 		
 	}
+	return mensaje;
 	
 }
+
+
+function crearAlert(cadena){
+	mensaje=generaMensaje(cadena);
+	$(document).ready(function() {
+		apprise(mensaje, {'animate':true}, function(r) {
+
+			if(r) { 
+			
+			} else { 
+		
+			}
+		});
+	});
+}
+
+function validaForm(){
+	var form=document.frmPromocion;
+	var cadena= new Array();
+	var i=0;
+	if(!esCorrecto(form.txtNombre.value,1,100)){
+		cadena[i]="nombre";
+		i++; 
+	}
+	if(!esCorrecto(form.fFechaInicio.value,1,10)){
+		cadena[i]="Fecha Inicio";
+		i++;
+	}
+	if(!esCorrecto(form.fFechaFin.value,1,10)){
+		cadena[i]="Fecha Fin";
+		i++;
+	}
+	if(!esCorrecto(form.txtDescripcion.value,1,100)){
+		cadena[i]="Descripcion";
+		i++;
+	}
+	
+	crearAlert(cadena);
+	
+
+}
+
+
 </script>
+
+
 
 <!-- content starts -->
 			  <div>
@@ -86,7 +138,7 @@ function validaForm(form){
 		                  </div>
 			            </div>
 			            <div class="form-actions">
-			              <button type="button" class="btn btn-primary" name="btnAgregar" onClick="javascript:validaForm(this);">Agregar</button>
+			              <button type="button" class="btn btn-primary" name="btnAgregar" onClick="javascript:validaForm();">Agregar</button>
 			              <button type="reset" class="btn"><a href="buscarpromocion.jsp" name="btnCancelar">Cancelar</a></button>
 		                </div>
 		              </fieldset>

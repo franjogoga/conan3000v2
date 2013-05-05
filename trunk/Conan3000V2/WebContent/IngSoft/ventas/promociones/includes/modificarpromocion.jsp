@@ -12,26 +12,26 @@
 			        <h2> MODIFICAR PROMOCI&Oacute;N</h2>
 		          </div>
 			      <div class="box-content">
-			        <form class="form-horizontal">
+			        <form class="form-horizontal" name="frmPromocion" method="Post">
 			          <fieldset>
 			         
 			            <div class="control-group">
 			              <label class="control-label" for="typeahead7">Nombre Promoci&oacute;n:</label>
 			              <div class="controls">
-			                <input type="text" class="span6 typeahead" id="typeahead7"  data-provide="typeahead" >
+			                <input type="text" class="span6 typeahead" id="typeahead7" name="txtNombrePromocion" data-provide="typeahead" >
 		                  </div>
 		                </div>
 			            <div class="control-group">
 			              <div class="control-group">
 			                <label class="control-label" for="date01">Fecha de inicio:</label>
 			                <div class="controls">
-			                  <input type="text" class="input-xlarge datepicker" id="date01" value="" readonly="true" >
+			                  <input type="text" class="input-xlarge datepicker" id="date01" name="fFechaInicio" value="" readonly="true" >
 		                    </div>
 		                  </div>
 			              <div class="control-group">
 			                <label class="control-label" for="date02">Fecha de fin:</label>
 			                <div class="controls">
-			                  <input type="text" class="input-xlarge datepicker" id="date02" value="" readonly="true">
+			                  <input type="text" class="input-xlarge datepicker" id="date02" name="fFechaFin" value="" readonly="true">
 		                    </div>
 		                  </div>
 			             
@@ -39,12 +39,12 @@
 								<label class="control-label" for="typeahead3">Estado:</label>
 								<div class="controls">
 								  <label class="radio">
-									<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
+									<input type="radio" id="rEstado" name="rEstado" value="option1" >
 									Activo
 								  </label>
 								  <div style="clear:both"></div>
 								  <label class="radio">
-									<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+									<input type="radio" id="rEstado" name="rEstado" value="option2">
 									Inactivo
 								  </label>
 								</div>
@@ -54,12 +54,12 @@
 			              <div class="control-group">
 			                <label class="control-label" for="textarea2">Descripci&oacute;n:</label>
 			                <div class="controls">
-			                  <textarea name="textarea" rows="3" class="" id="textarea2" style="resize:none"></textarea>
+			                  <textarea name="txtDescripcion" rows="3" class="" id="txtDescripcion" style="resize:none"></textarea>
 		                    </div>
 		                  </div>
 			            </div>
 			            <div class="form-actions">
-			              <button type="submit" class="btn btn-primary">Modificar</button>
+			              <button type="button" class="btn btn-primary" onclick="javascript:validaForm();">Modificar</button>
 			              <button type="reset" class="btn"><a href="buscarpromocion.jsp">Cancelar</a></button>
 		                </div>
 		              </fieldset>
