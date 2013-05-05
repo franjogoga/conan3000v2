@@ -26,6 +26,6 @@
 </servlet-mapping>
 <servlet-mapping id="ServletMapping_0002">
         <servlet-name>SMASede</servlet-name>
-<url-pattern>/IngSoft/administracion/sede/SMASede</url-pattern>
+<url-pattern>/IngSoft/administracion/sedes/SMASede</url-pattern>
 </servlet-mapping>
 </web-app>
