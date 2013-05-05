@@ -79,7 +79,7 @@
 			  <div class="row-fluid sortable">
 			    <div class="box span12">
 			      <div class="box-header well" data-original-title>
-			        <h2> ELIMINAR EMPLEADO</h2>
+			        <h2> ELIMINAR SORTEO</h2>
 		          </div>
 				  
 			      <div class="box-content">
@@ -87,105 +87,19 @@
 			          <fieldset>
 							
 							<div class="control-group">
-							  <label class="control-label" for="typeahead">C&oacute;digo :</label>							  
+							  <label class="control-label" for="typeahead">C&oacute;digo del Sorteo :</label>							  
 							  <div class="controls">
-								<input type="text" class="span6 typeahead" id="typeahead"  data-provide="typeahead" data-items="4" value="EMP001" disabled=""></input>								
+								<input type="text" class="span6 typeahead" id="codigoSorteo"  data-provide="typeahead" data-items="4" value="SOR001" disabled=""></input>								
 							  </div>
 							</div>
 							
 							<div class="control-group">
-							  <label class="control-label" for="typeahead">Nombres :</label>							  
+							  <label class="control-label" for="typeahead">Nombre del Sorteo :</label>							  
 							  <div class="controls">
-								<input type="text" class="span6 typeahead" id="typeahead"  data-provide="typeahead" data-items="4" value="Juan" disabled=""></input>								
+								<input type="text" class="span6 typeahead" id="nombreSorteo"  data-provide="typeahead" data-items="4" value="Dia de la Madre" disabled=""></input>								
 							  </div>
 							</div>
-							
-							<div class="control-group">
-							  <label class="control-label" for="typeahead">Apellido Paterno :</label>							  
-							  <div class="controls">
-								<input type="text" class="span6 typeahead" id="typeahead"  data-provide="typeahead" data-items="4" value="P&eacute;rez" disabled=""></input>								
-							  </div>
-							</div>
-							
-							<div class="control-group">
-							  <label class="control-label" for="typeahead">Apellido Materno :</label>							  
-							  <div class="controls">
-								<input type="text" class="span6 typeahead" id="typeahead"  data-provide="typeahead" data-items="4" value="Garc&iacute;a" disabled=""></input>								
-							  </div>
-							</div>
-							
-							<div class="control-group">
-							  <label class="control-label" for="date01">Fecha de Nacimiento :</label>
-							  <div class="controls">
-								<input type="text" class="input-xlarge datepicker" id="date01" value="02/16/12" disabled="">
-							  </div>
-							</div>
-
-							<div class="control-group">
-							<label class="control-label" for="dni">Tipo de Documento :</label>
-							<div class="controls">
-							  <label class="radio">
-								<input type="radio" name="optionsRadios" id="dni" value="dni" checked="" disabled="">
-								DNI
-							  </label>					
-							  <div style="clear:both"></div>		  
-							  <label class="radio">
-								<input type="radio" name="optionsRadios" id="carnet" value="carnet" disabled="">
-								Carnet de extranjería
-							  </label>
-							  <div style="clear:both"></div>
-							  <label class="radio">
-								<input type="radio" name="optionsRadios" id="pasaporte" value="pasaporte" disabled="">
-								Pasaporte
-							  </label>
-							</div>
-						  </div>						
-
-							<div class="control-group">
-							  <label class="control-label" for="numerodocumento">N&uacute;mero de Documento :</label>							  
-							  <div class="controls">
-								<input type="text" class="span6 typeahead" id="numerodocumento" data-provide="typeahead" data-items="4" value=12345678 disabled=""></input>								
-							  </div>
-							</div>
-							
-							<div class="control-group">
-								<label class="control-label" for="selectError">Puesto :</label>
-								<div class="controls">
-								  <select name="selectError5" id="selectError5" data-rel="chosen" disabled="">
-									<option>Puesto 1</option>
-									<option>Puesto 2</option>
-									<option>Puesto 3</option>
-									<option>Puesto 4</option>
-									<option>Puesto 4</option>
-								  </select>
-								</div>
-							</div>
-																									
-							<div class="control-group">
-								<label class="control-label" for="selectError">Horario de Trabajo :</label>
-								<div class="controls">
-								  <select id="selectError6" data-rel="chosen" disabled="">
-									<option>Horario 1</option>
-									<option>Horario 2</option>
-									<option>Horario 3</option>
-									<option>Horario 4</option>
-									<option>Horario 5</option>
-								  </select>
-								</div>
-							</div>
-							
-							<div class="control-group">
-								<label class="control-label" for="selectarea">&Aacute;rea :</label>
-								<div class="controls">
-								  <select name="selectarea" id="selectarea" data-rel="chosen" disabled="">
-									<option>Area 1</option>
-									<option>Area 2</option>
-									<option>Area 3</option>
-									<option>Area 4</option>
-									<option>Area 5</option>
-								  </select>
-								</div>
-							</div>	
+						
 							
 							<div class="control-group">
 								<label class="control-label" for="selectError">Sede :</label>
