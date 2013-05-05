@@ -83,6 +83,13 @@
 		        <div class="box-content">
 		          <form class="form-horizontal">
 		            <fieldset>		              			 
+		            
+		            	<div class="control-group">
+						  <label class="control-label" for="typeahead">C&oacute;digo :</label>							  
+						  <div class="controls">
+							<input type="text" class="span6 typeahead" id="typeahead"  data-provide="typeahead" data-items="4" ></input>								
+						  </div>
+						</div>
 						
 						<div class="control-group">
 						  <label class="control-label" for="typeahead">Nombres :</label>							  
