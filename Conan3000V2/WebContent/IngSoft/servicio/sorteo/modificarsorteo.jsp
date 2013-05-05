@@ -73,10 +73,10 @@
 						<a href="#">Inicio</a> <span class="divider">/</span>
 					</li>
 					<li>
-						<a href="#">Mantenimiento de Empleados</a> <span class="divider">/</span>
+						<a href="#">Mantenimiento de Sorteos</a> <span class="divider">/</span>
 					</li>
 					<li>
-						Modificar Empleado
+						Modificar Sorteo
 					</li>
 				</ul>
 			</div>
@@ -84,7 +84,7 @@
 			  <div class="row-fluid sortable">
 			    <div class="box span12">
 			      <div class="box-header well" data-original-title>
-			        <h2> MODIFICAR EMPLEADO</h2>
+			        <h2> MODIFICAR SORTEO</h2>
 		          </div>
 				  
 			      <div class="box-content">
@@ -92,108 +92,22 @@
 			          <fieldset>			            							
 							
 							<div class="control-group">
-							  <label class="control-label" for="codigo">C&oacute;digo (*):</label>							  
+							  <label class="control-label" for="codigo">C&oacute;digo:</label>							  
 							  <div class="controls">
-								<input type="text" class="span6 typeahead" id="codigo"  data-provide="typeahead" data-items="4" value="EMP001"></input>								
+								<input type="text" class="span6 typeahead" id="codigoSorteo"  data-provide="typeahead" data-items="4" value="EMP001"></input>								
 							  </div>
 							</div>
 							
 							<div class="control-group">
-							  <label class="control-label" for="typeahead">Nombres (*):</label>							  
+							  <label class="control-label" for="typeahead">Nombre del Sorteo:</label>							  
 							  <div class="controls">
-								<input type="text" class="span6 typeahead" id="typeahead"  data-provide="typeahead" data-items="4" value="Juan"></input>								
+								<input type="text" class="span6 typeahead" id="nombreSorteo"  data-provide="typeahead" data-items="4" value="Juan"></input>								
 							  </div>
 							</div>
-							
-							<div class="control-group">
-							  <label class="control-label" for="typeahead">Apellido Paterno (*):</label>							  
-							  <div class="controls">
-								<input type="text" class="span6 typeahead" id="typeahead"  data-provide="typeahead" data-items="4" value="P&eacute;rez"></input>								
-							  </div>
-							</div>
-							
-							<div class="control-group">
-							  <label class="control-label" for="typeahead">Apellido Materno (*):</label>							  
-							  <div class="controls">
-								<input type="text" class="span6 typeahead" id="typeahead"  data-provide="typeahead" data-items="4" value="Garc&iacute;a"></input>								
-							  </div>
-							</div>
-							
-							<div class="control-group">
-							  <label class="control-label" for="date01">Fecha de Nac. (*):</label>
-							  <div class="controls">
-								<input type="text" class="input-xlarge datepicker" id="date01" value="02/16/12">
-							  </div>
-							</div>
-
-							<div class="control-group">
-							<label class="control-label" for="dni">Tipo de Documento (*):</label>
-							<div class="controls">
-							  <label class="radio">
-								<input type="radio" name="optionsRadios" id="dni" value="dni" checked="">
-								DNI
-							  </label>					
-							  <div style="clear:both"></div>		  
-							  <label class="radio">
-								<input type="radio" name="optionsRadios" id="carnet" value="carnet">
-								Carnet de extranjería
-							  </label>
-							  <div style="clear:both"></div>
-							  <label class="radio">
-								<input type="radio" name="optionsRadios" id="pasaporte" value="pasaporte">
-								Pasaporte
-							  </label>
-							</div>
-						  </div>						
-
-							<div class="control-group">
-							  <label class="control-label" for="numerodocumento">N&uacute;mero de Documento (*):</label>							  
-							  <div class="controls">
-								<input type="text" class="span6 typeahead" id="numerodocumento" data-provide="typeahead" data-items="4" value=12345678></input>								
-							  </div>
-							</div>
-							
-							<div class="control-group">
-								<label class="control-label" for="selectError">Puesto (*):</label>
-								<div class="controls">
-								  <select name="selectError5" id="selectError5" data-rel="chosen">
-									<option>Puesto 1</option>
-									<option>Puesto 2</option>
-									<option>Puesto 3</option>
-									<option>Puesto 4</option>
-									<option>Puesto 4</option>
-								  </select>
-								</div>
-							</div>																	
-							
-							<div class="control-group">
-								<label class="control-label" for="selectError">Horario de Trabajo (*):</label>
-								<div class="controls">
-								  <select id="selectError6" data-rel="chosen">
-									<option>Horario 1</option>
-									<option>Horario 2</option>
-									<option>Horario 3</option>
-									<option>Horario 4</option>
-									<option>Horario 5</option>
-								  </select>
-								</div>
-							</div>
-							
-							<div class="control-group">
-								<label class="control-label" for="selectarea">&Aacute;rea (*):</label>
-								<div class="controls">
-								  <select name="selectarea" id="selectarea" data-rel="chosen">
-									<option>Area 1</option>
-									<option>Area 2</option>
-									<option>Area 3</option>
-									<option>Area 4</option>
-									<option>Area 5</option>
-								  </select>
-								</div>
-							</div>	
-							
-							<div class="control-group">
-								<label class="control-label" for="selectError">Sede (*):</label>
+						
+						 
+						 <div class="control-group">
+								<label class="control-label" for="selectError">Sede:</label>
 								<div class="controls">
 								  <select id="selectError7" data-rel="chosen">
 									<option>Sede 1</option>
@@ -203,23 +117,25 @@
 									<option>Sede 5</option>
 								  </select>
 								</div>
-							</div>			
-							
-							<div class="control-group">
-							<label class="control-label">Estado</label>
-							<div class="controls">
-							  <label class="radio">
-								<input type="radio" name="opcionactivo" id="opcionactivo" value="activo" checked="">
-								Activo
-							  </label>
-							  <div style="clear:both"></div>
-							  <label class="radio">
-								<input type="radio" name="opcioninactivo" id="opcioninactivo" value="inactivo">
-								Inactivo
-							  </label>
 							</div>
-						  </div>			
-						
+						 
+							<div class="control-group">
+										<label class="control-label" for="fechaInicio">Fecha de Inicio::</label>
+										<div class="controls">
+											<input type="text" class="input-xlarge datepicker"
+												id="fechaInicio" value="01/05/12">
+										</div>
+						    </div>
+
+						<div class="control-group">
+										<label class="control-label" for="fechaFin">Fecha Fin:</label>
+										<div class="controls">
+											<input type="text" class="input-xlarge datepicker"
+												id="fechaFin" value="12/05/13">
+										</div>
+						</div>
+									
+												
 			            <div class="form-actions">
 			              <button type="submit" class="btn btn-primary">Guardar</button>
 			              <button type="reset" class="btn">Cancelar</button>
