@@ -72,6 +72,56 @@ public class EventoBeanFuncion {
 		return resultado;
 	}
 	
+	public boolean eliminarEvento(int codigo) throws CoException {
+		boolean resultado=false;		
+		
+		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+		try{
+		
+			sqlsesion.update("deletePLantillaEvento",codigo);
+			
+			resultado=true;
+		}
+		catch(Exception a)		
+		{sqlsesion.rollback();
+		a.printStackTrace();
+			throw CoException.set("Error: No se pudo eliminar la plantilla intente de nuevo", "SMSEvento?accion=Agregar&tipo=1");
+			
+		}
+		
+		finally{
+			sqlsesion.commit();
+			sqlsesion.close();					
+		}
+			
+		return resultado;
+	}
+	
+	public void modificarEvento(EventoBeanData evento,String[] antSede,String[] antAmb) throws CoException {
+			
+		
+		
+//		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+//		try{
+//		
+//		
+//			
+//		
+//		}
+//		catch(Exception a)		
+//		{sqlsesion.rollback();
+//		a.printStackTrace();
+//			throw CoException.set("Error: No se pudo modificar la plantilla intente de nuevo", "SMSEvento?accion=Modificar&tipo=1");
+//			
+//		}
+//		
+//		finally{
+//			sqlsesion.commit();
+//			sqlsesion.close();					
+//		}
+			
+		return ;
+	}
 	public EventoBeanData consultarEvento(int codigo){
 		EventoBeanData eventoData=null;
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();

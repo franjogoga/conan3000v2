@@ -28,8 +28,9 @@ left JOIN tipo_evento on tipo_evento.id_tipo_evento=plantilla_evento.id_tipo_eve
     <if test="limFin != null">
         AND plantilla_evento.lim_fin &lt;= #{limFin}
     </if>
+    AND plantilla_evento.estado='A'
 </where>
-
+order by 1 asc
 </select>
 <select id="searchSedeMini" resultType="IngSoft.servicio.bean.SedeMiniBeanData">
 	select id_sede as codigo
@@ -49,6 +50,7 @@ left JOIN tipo_evento on tipo_evento.id_tipo_evento=plantilla_evento.id_tipo_eve
 	from 
 	tipo_evento
 </select>
+
 <!-- Agregar plantilla evento -->
 <insert id="insertPlantillaEvento" parameterType="IngSoft.servicio.bean.EventoBeanData" flushCache="true">
 	insert into plantilla_evento(id_plantilla_evento,nombre,lim_inicio,lim_fin,id_tipo_evento,estado)
@@ -63,7 +65,8 @@ left JOIN tipo_evento on tipo_evento.id_tipo_evento=plantilla_evento.id_tipo_eve
  	#{idSede}
  </foreach>
 </insert>
- <!--  -->
+ <!-- Fin agregar  -->
+ 
 <select id="getAmbientesId" parameterType="int" resultType="java.lang.String">
 select id_tipo_ambiente  from plantilla_eventoxtipo_ambiente where id_plantilla_evento= #{codigo};
 </select>
@@ -79,6 +82,21 @@ id_plantilla_evento as codigo
 ,nombre as nombre
 ,lim_inicio as limiteInicio
 ,lim_fin as limiteFin
-from plantilla_evento  pe where estado='A' and  pe.id_plantilla_evento=#{codigo}; 
+from plantilla_evento  pe where pe.estado='A' and  pe.id_plantilla_evento=#{codigo}; 
 </select>
+<!-- Modificar elemento -->
+<update id="updatePLantillaEvento" parameterType="IngSoft.servicio.bean.EventoBeanData">
+update plantilla_evento set nombre=#{nombre}
+ ,id_tipo=#{idtipo}
+ ,lim_inicio=#{limiteInicio}
+ ,lim_fin=#{limiteFin}
+ where id_plantilla_evento= #{codigo}
+</update>
+
+<!-- Fin modificar -->
+<!--Eliminar evento -->
+<update id="deletePLantillaEvento" parameterType="int">
+update plantilla_evento set estado='I' where id_plantilla_evento= #{codigo}
+</update>
+<!-- Fin eliminar -->
 </mapper>
