@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Data.servicio.sorteo">
+
+  <cache />
+
+<select id="searchPlantillaSorteo" parameterType="IngSoft.servicio.bean.CriterioSorteoBeanData" resultType="IngSoft.servicio.bean.ResultadoSorteoBeanData">
+select 
+sorteo.nombre,
+sorteo.fechaIni,
+sorteo.fechaFin,
+sorteo.fechaSorteo,
+sorteo.estado 
+from sorteo ,sede 
+<where>
+<if test="nombre != null ">
+        sorteo.nombre  like  #{nombre}
+    </if>
+    <if test="fechaIni != null">
+        AND sorteo.fechaIni &gt;= #{fechaIni}
+    </if>
+    <if test="fechaFin != null">
+        AND sorteo.fechaFin &lt;= #{fechaFin}
+    </if>
+</where>
+order by 1 asc
+</select>
+<select id="searchSedeMini" resultType="IngSoft.servicio.bean.SedeMiniBeanData">
+	select idSede as codigo
+	,nombre 
+	from 
+	sede
+</select>
+
+<!-- Agregar plantilla Sorteo -->
+<insert id="insertPlantillaSorteo" parameterType="IngSoft.servicio.bean.SorteoBeanData" flushCache="true">
+	insert into sorteo(nombre,fechaIni,fechaFin,estado,idSede)
+	values (#{nombre},#{fechaIni},#{fechaFin},#{estado},#{idSede})
+</insert>
+
+ <!-- Fin agregar  -->
+ 
+<!--
+<select id="getPLantillaSorteo" parameterType="int" resultType="IngSoft.servicio.bean.SorteoBeanData">
+select 
+id_plantilla_evento as codigo
+,id_tipo_evento as idTipo
+,nombre as nombre
+,lim_inicio as limiteInicio
+,lim_fin as limiteFin
+from plantilla_evento  pe where pe.estado='A' and  pe.id_plantilla_evento=#{codigo}; 
+</select>
+ Modificar elemento 
+<update id="updatePLantillaEvento" parameterType="IngSoft.servicio.bean.EventoBeanData">
+update plantilla_evento set nombre=#{nombre}
+ ,id_tipo=#{idtipo}
+ ,lim_inicio=#{limiteInicio}
+ ,lim_fin=#{limiteFin}
+ where id_plantilla_evento= #{codigo}
+</update>
+
+ Fin modificar 
+Eliminar evento 
+<update id="deletePLantillaEvento" parameterType="int">
+update plantilla_evento set estado='I' where id_plantilla_evento= #{codigo}
+</update>
+ Fin eliminar 
+</mapper>-->
