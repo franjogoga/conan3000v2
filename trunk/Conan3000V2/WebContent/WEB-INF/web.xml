@@ -18,6 +18,11 @@
         <servlet-name>SMASede</servlet-name>
 	<servlet-class>IngSoft.administracion.sede.SMASede</servlet-class>
 </servlet>
+<servlet id="Servlet_0003">
+        <servlet-name>SMVPromocion</servlet-name>
+	<servlet-class>IngSoft.venta.promocion.SMVPromocion</servlet-class>
+</servlet>
+
 
 
 <servlet-mapping id="ServletMapping_0001">
@@ -27,5 +32,9 @@
 <servlet-mapping id="ServletMapping_0002">
         <servlet-name>SMASede</servlet-name>
 <url-pattern>/IngSoft/administracion/sedes/SMASede</url-pattern>
+</servlet-mapping>
+<servlet-mapping id="ServletMapping_0003">
+        <servlet-name>SMVPromocion</servlet-name>
+<url-pattern>/IngSoft/venta/promocion/SMVPromocion</url-pattern>
 </servlet-mapping>
 </web-app>
