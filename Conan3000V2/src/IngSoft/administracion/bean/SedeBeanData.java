@@ -6,7 +6,13 @@ public class SedeBeanData {
 	String nombre;
 	
 	
+
+	
+	
 	public int getCodido() {
+		
+		System.out.print("--> SedeBeanData ");
+		
 		return codigo;
 	}
 	public void setCodigo(int codigo) {
