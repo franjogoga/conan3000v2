@@ -5,6 +5,7 @@ import java.util.Date;
 
 public class SorteoBeanData implements Serializable {
 	private int codigo;
+	private String[] idSede;
 	private Date fechaInicio;
 	private Date fechaFin;
 	private Date fechaSorteo;
@@ -14,6 +15,12 @@ public class SorteoBeanData implements Serializable {
 	private int[] socios;
 	private int[] ganadores;
 	
+	public String[] getIdSede() {
+		return idSede;
+	}
+	public void setIdSede(String[] idSede) {
+		this.idSede = idSede;
+	}
 	public int getCodigo() {
 		return codigo;
 	}
