@@ -202,6 +202,7 @@
 		                
 		              </fieldset>
 		            </form>
+		            (*) Campos Obligatorios
 		          </div>
 		        </div>
 			    <!--/span-->
