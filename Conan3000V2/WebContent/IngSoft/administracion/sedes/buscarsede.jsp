@@ -179,6 +179,20 @@
 			  <!--/row-->
 			  
 			  
+			  <!-- nuevo  -->
+			  <form id="frmSede" name="frmSede"  method="post" action=" " >
+			  
+			   <input   type ="hidden" name="accion"  value="Consultar"></imput>
+			   <input   type ="hidden" name="codigo"  value="1"></imput>
+			   
+			   
+			  </form>
+			  
+			  <!--  -->
+			  
+			  
+			  
+			  
 			  
 			  <div class="row-fluid sortable">
 			     <div class="box span12">
