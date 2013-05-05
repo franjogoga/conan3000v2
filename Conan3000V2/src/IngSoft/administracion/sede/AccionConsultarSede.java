@@ -16,10 +16,11 @@ public class AccionConsultarSede extends CoAccion{
 			HttpServletResponse response) throws CoException {
 		// TODO Auto-generated method stub
 		SedeBeanFuncion s= SedeBeanFuncion.getInstans();
-		int codigo=0;
-		SedeBeanData d= s.getSede(codigo);
+		//int codigo=0;
+		SedeBeanData d= s.getSede(1);
 		
-		System.out.print("----> " + d.getNombre());
+		System.out.print(" AccionConsulta ----> " + d.getNombre());
+		
 		request.setAttribute("sede", d);
 		
 		this.direccionar(sc, request, response, "/IngSoft/administracion/sedes/eliminarsede.jsp");
