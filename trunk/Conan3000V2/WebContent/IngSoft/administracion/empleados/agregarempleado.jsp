@@ -5,7 +5,7 @@
 	<meta charset="utf-8">
 	<title>CONAN 3000</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
+	<meta name="description" content="Dos Virgenes">
 	<meta name="author" content="Dos Virgenes">
 
 	<!-- The styles -->
@@ -112,7 +112,7 @@
 							<div class="control-group">
 							  <label class="control-label" for="fechanacimiento">Fecha de Nac. (*):</label>
 							  <div class="controls">
-								<input type="text" class="input-xlarge datepicker" id="fechanacimiento" value="02/16/12">
+								<input type="text" class="input-xlarge datepicker" id="fechanacimiento" readonly="true" value="02/16/12">
 							  </div>
 							</div>
 							
