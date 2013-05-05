@@ -37,7 +37,7 @@ order by 1 asc
 <!-- Agregar plantilla Sorteo -->
 <insert id="insertPlantillaSorteo" parameterType="IngSoft.servicio.bean.SorteoBeanData" flushCache="true">
 	insert into sorteo(nombre,fechaIni,fechaFin,estado,idSede)
-	values (#{nombre},#{fechaIni},#{fechaFin},#{estado},#{idSede})
+	values (#{nombre},#{fechaIni},#{fechaFin},'ACTIVADO',#{idSede})
 </insert>
 
  <!-- Fin agregar  -->
