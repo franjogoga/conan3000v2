@@ -39,7 +39,7 @@
 </servlet-mapping>
 <servlet-mapping id="ServletMapping_0003">
         <servlet-name>SMVPromocion</servlet-name>
-<url-pattern>/IngSoft/venta/promocion/SMVPromocion</url-pattern>
+<url-pattern>/IngSoft/venta/promociones/SMVPromocion</url-pattern>
 </servlet-mapping>
 <servlet-mapping id="ServletMapping_0004">
         <servlet-name>SMSSorteo</servlet-name>
