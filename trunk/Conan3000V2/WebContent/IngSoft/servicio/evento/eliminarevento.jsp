@@ -1,4 +1,9 @@
 <!DOCTYPE html>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="IngSoft.servicio.bean.TipoEventoMiniBeanData"%>
+<%@page import="IngSoft.servicio.bean.SedeMiniBeanData"%>
+<%@page import="IngSoft.servicio.bean.AmbienteMiniBeanData"%>
+<%@page import="java.util.Date"%>
 <html lang="en">
 <head>
 	<!--
@@ -16,7 +21,11 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
 	<meta name="author" content="Muhammad Usman">
-
+	<!--The beans  -->
+	<jsp:useBean id="evento" scope="request"class="IngSoft.servicio.bean.EventoBeanData"></jsp:useBean>
+	<jsp:useBean id="sedes" scope="request"class="java.util.Vector"></jsp:useBean>
+	<jsp:useBean id="ambientes" scope="request"class="java.util.Vector"></jsp:useBean>
+	<jsp:useBean id="tiposEvento" scope="request"class="java.util.Vector"></jsp:useBean>
 	<!-- The styles -->
 	<link id="bs-css" href="css/bootstrap-cerulean.css" rel="stylesheet">
 	<style type="text/css">
@@ -51,7 +60,35 @@
 
 	<!-- The fav icon -->
 	<link rel="shortcut icon" href="img/conan_logo.png">
+	<script>
+	function alt_fecha(obj){
+	obj.value=obj.value.slice(0,5);
+	
+	}
+	
+	function alt_submit(){
+		var form= document.frmDelete;
+		var r=confirm("¿Esta seguro que desea borrar este evento?");
+		if(r==true){form.submit();}
+			}	
+
+
+	</script>	
+	
+	<%! public boolean  encontrar(int a, String[] b){
+		for(int i=0;i<b.length;i++){
+			if(Integer.valueOf(b[i])==a) return true;	
+		}
 		
+		SimpleDateFormat DF= new SimpleDateFormat("dd/MM");
+	
+	return false;
+	}
+	public String formatear(java.util.Date date){
+		SimpleDateFormat DF= new SimpleDateFormat("dd/MM");
+		return DF.format(date);
+	}
+	%>	
 </head>
 
 <body>
@@ -96,60 +133,64 @@
 					  <h2><i class="icon-trash"></i>ELIMINAR EVENTO</h2>
 				  </div>
 					<div class="box-content">
-						<form class="form-horizontal">
+						<form class="form-horizontal" name="frmDelete"  action="<%= response.encodeURL("SMSEvento")%>" method="post">
+						<input type="hidden" name="codigo" value="<%=evento.getCodigo()%>"></input>
+						<input type="hidden" name="accion" value="Eliminar"></input>
+						<input type="hidden" name="tipo" value="2"></input>
 						  <fieldset>
 						    <div class="control-group">
 						      <label class="control-label" for="disabledInput">Nombre de evento: </label>
 						      <div class="controls">
-						        <input class="input-xlarge disabled" id="disabledInput" type="text" placeholder="Disabled input here.." disabled="" value="Fiesta de fin de año">
+						        <input class="input-xlarge disabled" id="disabledInput" type="text" placeholder="Disabled input here.." disabled id="txtNombreEvento" name="txtNombreEvento" value="<%=evento.getNombre()%>">
 					          </div>
 					        </div>
 						    
 							<div class="control-group">
 								<label class="control-label" for="selectError">Tipo de Evento</label>
 								<div class="controls">
-								  <select id="selectError" data-rel="chosen" disabled>
-									<option selected>Interno</option>
-									<option>Externo</option>									
+								  <select id="selectError" data-rel="chosen" id="cmbTipo" name="cmbTipo" disabled>
+									<%for(int i=0;i<tiposEvento.size();i++){ %>
+										<option value="<%= ((TipoEventoMiniBeanData)tiposEvento.get(i)).getCodigo()%>"  <%=evento.getIdTipo()== ((TipoEventoMiniBeanData)tiposEvento.get(i)).getCodigo()?"selected":"" %>><%= ((TipoEventoMiniBeanData)tiposEvento.get(i)).getNombre()%></option>
+									<%} %>									
 								  </select>
 								</div>
 							  </div>
 							  <div class="control-group">
 								<label class="control-label" for="selectError1">Sedes relacionadas</label>
 								<div class="controls">
-								  <select id="selectError1" multiple data-rel="chosen" disabled>
-									<option selected>Campo</option>
-									<option selected>Playa</option>																	
+								  <select id="selectError1" multiple data-rel="chosen" id="cmbSedes" name="cmbSedes" disabled>
+									<%for(int i=0;i<sedes.size();i++){ %>
+										<option value="<%= ((SedeMiniBeanData)sedes.get(i)).getCodigo()%>" <%=encontrar(((SedeMiniBeanData)sedes.get(i)).getCodigo(), evento.getIdSede())?"selected":""%>><%= ((SedeMiniBeanData)sedes.get(i)).getNombre()%></option>
+									<%} %>																	
 								  </select>
 								</div>
 							  </div>
 							   <div class="control-group">
 								<label class="control-label" for="selectError2">Ambientes relacionados</label>
 								<div class="controls">
-								  <select id="selectError2" multiple data-rel="chosen" disabled>
-									<option>Cancha de tenis</option>
-									<option>Cancha de futbol</option>
-									<option>Piscina</option>
-									<option selected>Bungalow</option>									
+								  <select id="selectError2" multiple data-rel="chosen" id="cmbAmbientes" name="cmbAmbientes" disabled>
+									<%for(int i=0;i<ambientes.size();i++){ %>
+										<option value="<%= ((AmbienteMiniBeanData)ambientes.get(i)).getCodigo()%>" <%=encontrar(((AmbienteMiniBeanData)ambientes.get(i)).getCodigo(), evento.getIdAmbientes())?"selected":""%>><%= ((AmbienteMiniBeanData)ambientes.get(i)).getNombre()%></option>
+									<%} %>										
 								  </select>
 								</div>
 							  </div>
 							  <div class="control-group">
 							  <label class="control-label" for="date01">Limite Inicio</label>
 							  <div class="controls">
-								<input type="text" class="input-xlarge datepicker" id="date01" value="29/12" disabled>
+								<input type="text" class="input-xlarge datepicker" id="fFecIncio"  value="<%=formatear(new Date(evento.getLimiteInicio().getTime())) %>"  name="fFecIncio" onchange="alt_fecha(this)" disabled>
 							  </div>
 							</div>
 							
 							<div class="control-group">
 							  <label class="control-label" for="date02">Limite Fin</label>
 							  <div class="controls">
-								<input type="text" class="input-xlarge datepicker" id="date02" value="29/12" disabled>
+								<input type="text" class="input-xlarge datepicker" id="fFecFin" name="fFecFin" value="<%=formatear(new Date(evento.getLimiteFin().getTime())) %>" onchange="alt_fecha(this)" disabled>
 							  </div>
 							</div>
 						    <div class="form-actions">
-							  <button type="submit" class="btn btn-primary">Eliminar</button>
-							  <button type="reset" class="btn">Cancelar</button>
+							  <button type="button" class="btn btn-primary" onclick="javascript:alt_submit()">Eliminar</button>
+							  <button type="button" class="btn" onclick="location.href='buscarevento.jsp'" >Cancelar</button>
 							</div>
 						  </fieldset>
 					  </form>   

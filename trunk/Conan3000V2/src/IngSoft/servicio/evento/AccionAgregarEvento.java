@@ -25,6 +25,7 @@ public class AccionAgregarEvento extends CoAccion {
 			EventoBeanFuncion eventoFuncion= EventoBeanFuncion.getInstance();
 			EventoBeanData eventoData=eventoFuncion.crearEvento(request, response);
 			eventoFuncion.agregarEvento(eventoData);
+			this.direccionar(sc, request, response, "/IngSoft/servicio/evento/buscarevento.jsp");
 		}
 		EventoBeanFuncion eventoFunction= EventoBeanFuncion.getInstance();
 		Vector<SedeMiniBeanData> sedeMiniData=eventoFunction.getSedes();

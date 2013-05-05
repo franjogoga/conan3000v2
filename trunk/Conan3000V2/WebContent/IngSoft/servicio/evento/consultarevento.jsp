@@ -84,7 +84,7 @@
 
 	</script>	
 	<%! public boolean  encontrar(int a, String[] b){
-		for(int i=0;i<b.length;i++){
+		for(int i=0;i<b.length;i++){			
 			if(Integer.valueOf(b[i])==a) return true;	
 		}
 		
