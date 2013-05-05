@@ -19,6 +19,8 @@ public class SedeBeanFuncion {
 		if (sede==null)   
 				{
 			      sede = new  SedeBeanFuncion();
+			      
+			      System.out.print("--> SedeBeanFuncion");
 				}
 		
 		return sede;
