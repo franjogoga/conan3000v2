@@ -1,95 +1,123 @@
 <!DOCTYPE html>
+<%@page import="IngSoft.servicio.bean.SedeMiniBeanData"%>
 <html lang="en">
 <head>
 
-	<meta charset="utf-8">
-	<title>Agregar Sorteo</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
-	<meta name="author" content="Dos Virgenes">
+<meta charset="utf-8">
+<title>Agregar Sorteo</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description"
+	content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
+<meta name="author" content="Dos Virgenes">
+<!--The beans  -->
+<jsp:useBean id="sedes" scope="request"class="java.util.Vector"></jsp:useBean>
 
-	<!-- The styles -->
-	<link id="bs-css" href="css/bootstrap-cerulean.css" rel="stylesheet">    
-	<style type="text/css">
-	  body {
-		padding-bottom: 40px;
-	  }
-	  .sidebar-nav {
-		padding: 9px 0;
-	  }
-	</style>
-	<link href="css/bootstrap-responsive.css" rel="stylesheet">
-	<link href="css/charisma-app.css" rel="stylesheet">
-	<link href="css/jquery-ui-1.8.21.custom.css" rel="stylesheet">
-	<link href='css/fullcalendar.css' rel='stylesheet'>
-	<link href='css/fullcalendar.print.css' rel='stylesheet'  media='print'>
-	<link href='css/chosen.css' rel='stylesheet'>
-	<link href='css/uniform.default.css' rel='stylesheet'>
-	<link href='css/colorbox.css' rel='stylesheet'>
-	<link href='css/jquery.cleditor.css' rel='stylesheet'>
-	<link href='css/jquery.noty.css' rel='stylesheet'>
-	<link href='css/noty_theme_default.css' rel='stylesheet'>
-	<link href='css/elfinder.min.css' rel='stylesheet'>
-	<link href='css/elfinder.theme.css' rel='stylesheet'>
-	<link href='css/jquery.iphone.toggle.css' rel='stylesheet'>
-	<link href='css/opa-icons.css' rel='stylesheet'>
-	<link href='css/uploadify.css' rel='stylesheet'>
+<!-- The styles -->
+<link id="bs-css" href="css/bootstrap-cerulean.css" rel="stylesheet">
+<style type="text/css">
+body {
+	padding-bottom: 40px;
+}
 
-	<!-- The HTML5 shim, for IE6-8 support of HTML5 elements -->
-	<!--[if lt IE 9]>
+.sidebar-nav {
+	padding: 9px 0;
+}
+</style>
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/charisma-app.css" rel="stylesheet">
+<link href="css/jquery-ui-1.8.21.custom.css" rel="stylesheet">
+<link href='css/fullcalendar.css' rel='stylesheet'>
+<link href='css/fullcalendar.print.css' rel='stylesheet' media='print'>
+<link href='css/chosen.css' rel='stylesheet'>
+<link href='css/uniform.default.css' rel='stylesheet'>
+<link href='css/colorbox.css' rel='stylesheet'>
+<link href='css/jquery.cleditor.css' rel='stylesheet'>
+<link href='css/jquery.noty.css' rel='stylesheet'>
+<link href='css/noty_theme_default.css' rel='stylesheet'>
+<link href='css/elfinder.min.css' rel='stylesheet'>
+<link href='css/elfinder.theme.css' rel='stylesheet'>
+<link href='css/jquery.iphone.toggle.css' rel='stylesheet'>
+<link href='css/opa-icons.css' rel='stylesheet'>
+<link href='css/uploadify.css' rel='stylesheet'>
+
+<!-- The HTML5 shim, for IE6-8 support of HTML5 elements -->
+<!--[if lt IE 9]>
 	  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
 
-	<!-- The fav icon -->
-	<link rel="shortcut icon" href="img/conan_logo.png">
-		
+<!-- The fav icon -->
+<link rel="shortcut icon" href="img/conan_logo.png">
+
 </head>
 
 <body>
-		
-		<jsp:include page="/IngSoft/general/superior.jsp" />
-		<div class="container-fluid">
+
+	<jsp:include page="/IngSoft/general/superior.jsp" />
+	<div class="container-fluid">
 		<div class="row-fluid">
-				
+
 			<!-- left menu starts -->
 			<jsp:include page="/IngSoft/general/leftmenu.jsp" />
-						<!-- left menu ends -->                                  
-			
-		  <noscript>
+			<!-- left menu ends -->
+
+			<noscript>
 				<div class="alert alert-block span10">
 					<h4 class="alert-heading">Warning!</h4>
-					<p>You need to have <a href="http://en.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript</a> enabled to use this site.</p>
+					<p>
+						You need to have <a href="http://en.wikipedia.org/wiki/JavaScript"
+							target="_blank">JavaScript</a> enabled to use this site.
+					</p>
 				</div>
 			</noscript>
-			
+
 			<div id="content" class="span10">
-			  <!-- content starts -->
-			  <div>
-				<ul class="breadcrumb">
-					<li>
-						<a href="#">Inicio</a> <span class="divider">/</span>
-					</li>
-					<li>
-						<a href="#">Mantenimiento de Sorteo</a> <span class="divider">/</span>
-					</li>
-					<li>
-						Agregar Sorteo
-					</li>
-				</ul>
-			</div>
-			  
-			  <div class="row-fluid sortable">
-			    <div class="box span12">
-			      <div class="box-header well" data-original-title>
-			        <h2> AGREGAR SORTEO</h2>
-		          </div>
-				  
-			      <div class="box-content">
-			        <form class="form-horizontal">
-			          <fieldset>
+				<!-- content starts -->
+				<div>
+					<ul class="breadcrumb">
+						<li><a href="#">Inicio</a> <span class="divider">/</span></li>
+						<li><a href="#">Mantenimiento de Sorteo</a> <span
+							class="divider">/</span></li>
+						<li>Agregar Sorteo</li>
+					</ul>
+				</div>
+
+				<div class="row-fluid sortable">
+					<div class="box span12">
+						<div class="box-header well" data-original-title>
+							<h2>AGREGAR SORTEO</h2>
+						</div>
+
+						<div class="box-content">
+							<form name='frmSorteo' id='frmSorteo' action='SMSSorteo'
+								class="form-horizontal">
+								<input type="hidden" name="accion" value="Agregar"></input> 
+								<input type="hidden" name="tipo" value="2"></input>
+								<fieldset>
+						    <div class="control-group">
+						      <label class="control-label" for="typeahead7">Nombre del sorteo(*): </label>
+						      <div class="controls">
+						        <input type="text" class="span6 typeahead" id="txtNombreSorteo"  data-provide="typeahead"  id="txtNombreEvento" name="txtNombreEvento" >
+					          </div>
+					        </div>
+									<div class="control-group">
+										<label class="control-label" for="selectM1">Sede (*):</label>
+										<div class="controls">
+											<select id="selectM1" multiple data-rel="chosen"
+												id="cmbSedes" name="cmbSedes">
+												<%
+													for (int i = 0; i <sedes.size(); i++) {
+												%>
+												<option
+													value="<%=((SedeMiniBeanData)sedes.get(i)).getCodigo()%>"><%=((SedeMiniBeanData)sedes.get(i)).getNombre()%></option>
+												<%
+													}
+												%>
+											</select>
+										</div>
+									</div>
 
 									<div class="control-group">
-										<label class="control-label" for="nombres">Nombre del Sorteo(*):</label>
+										<label class="control-label" for="nombres">Codigo:</label>
 										<div class="controls">
 											<input type="text" class="span6 typeahead" id="nombres"
 												data-provide="typeahead" data-items="4"></input>
@@ -97,61 +125,41 @@
 									</div>
 
 
-
 									<div class="control-group">
-								<label class="control-label" for="selectsede">Sede (*):</label>
-								<div class="controls">
-								  <select name="selectsede" id="selectsede" data-rel="chosen">
-									<option>Sede 1</option>
-									<option>Sede 2</option>
-									<option>Sede 3</option>
-									<option>Sede 4</option>
-									<option>Sede 5</option>
-								  </select>
-								</div>
-							</div>
-							
-							<div class="control-group">
-							  <label class="control-label" for="nombres">Codigo:</label>							  
+							  <label class="control-label" for="date01">Fecha Inicio(*):</label>
 							  <div class="controls">
-								<input type="text" class="span6 typeahead" id="nombres"  data-provide="typeahead" data-items="4" ></input>								
-							  </div>
-							</div>
-							
-						
-							<div class="control-group">
-							  <label class="control-label" for="fechaInicio">Fecha de Inicio. (*):</label>
-							  <div class="controls">
-								<input type="text" class="input-xlarge datepicker" id="fechaInicio" value="01/05/12">
+								<input type="text" class="input-xlarge datepicker" id="fFecIncio" value="01/01"  name="fFecIncio" onchange="alt_fecha(this)">
 							  </div>
 							</div>
 							
 							<div class="control-group">
-							  <label class="control-label" for="fechaFin">Fecha de Fin. (*):</label>
+							  <label class="control-label" for="date02">Fecha Fin(*):</label>
 							  <div class="controls">
-								<input type="text" class="input-xlarge datepicker" id="fechaFin" value="12/05/13">
+								<input type="text" class="input-xlarge datepicker" id="fFecFin" value="31/12"  name="fFecFin" onchange="alt_fecha(this)">
 							  </div>
 							</div>
-																																
-						
-			            <div class="form-actions">
-			              <button type="submit" class="btn btn-primary">Agregar</button>
-			              <button type="reset" class="btn">Cancelar</button>
-		                </div>
-		                
-		              </fieldset>
-		            </form>
-		          </div>
-		        </div>
-			    <!--/span-->
-		      </div>
-			  <!--/row-->
-			 		 		  
-       
-					<!-- content ends -->
-		  </div><!--/#content.span10-->
-				</div><!--/fluid-row-->
-				
+
+
+							<div class="form-actions">
+							  <button type="button" class="btn btn-primary" onclick="javascript:alt_submit()">Agregar</button>
+							  <button type="button" class="btn" onclick="location.href='buscarsorteo.jsp'" >Cancelar</button>
+							</div>
+
+								</fieldset>
+							</form>
+						</div>
+					</div>
+					<!--/span-->
+				</div>
+				<!--/row-->
+
+
+				<!-- content ends -->
+			</div>
+			<!--/#content.span10-->
+		</div>
+		<!--/fluid-row-->
+
 		<hr>
 
 		<div class="modal hide fade" id="myModal">
@@ -163,17 +171,24 @@
 				<p>Here settings can be configured...</p>
 			</div>
 			<div class="modal-footer">
-				<a href="#" class="btn" data-dismiss="modal">Cerrar</a>
-				<a href="#" class="btn btn-primary">Guardar Cambios</a>
+				<a href="#" class="btn" data-dismiss="modal">Cerrar</a> <a href="#"
+					class="btn btn-primary">Guardar Cambios</a>
 			</div>
 		</div>
 
 		<footer>
-		  <p class="pull-left"><a href="http://usman.it/free-responsive-admin-template">Conan 3000</a> &copy;  2013</p>
-          <p class="pull-right">Powered by: <a href="http://usman.it/free-responsive-admin-template">Dos V&iacute;rgenes</a></p>
+			<p class="pull-left">
+				<a href="http://usman.it/free-responsive-admin-template">Conan
+					3000</a> &copy; 2013
+			</p>
+			<p class="pull-right">
+				Powered by: <a href="http://usman.it/free-responsive-admin-template">Dos
+					V&iacute;rgenes</a>
+			</p>
 		</footer>
-		
-	</div><!--/.fluid-container-->
+
+	</div>
+	<!--/.fluid-container-->
 
 	<!-- external javascript
 	================================================== -->
@@ -251,6 +266,6 @@
 	<script>	
 
 	</script>
-		<script>loadContent()</script> 
+	<script>loadContent()</script>
 </body>
 </html>
