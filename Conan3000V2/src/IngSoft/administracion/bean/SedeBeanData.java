@@ -2,15 +2,15 @@ package IngSoft.administracion.bean;
 
 public class SedeBeanData {
 	
-	int codido;
+	int codigo;
 	String nombre;
 	
 	
 	public int getCodido() {
-		return codido;
+		return codigo;
 	}
-	public void setCodido(int codido) {
-		this.codido = codido;
+	public void setCodigo(int codigo) {
+		this.codigo = codigo;
 	}
 	public String getNombre() {
 		return nombre;

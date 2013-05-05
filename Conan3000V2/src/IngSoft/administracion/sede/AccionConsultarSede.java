@@ -19,6 +19,7 @@ public class AccionConsultarSede extends CoAccion{
 		int codigo=0;
 		SedeBeanData d= s.getSede(codigo);
 		
+		System.out.print("----> " + d.getNombre());
 		request.setAttribute("sede", d);
 		
 		this.direccionar(sc, request, response, "/IngSoft/administracion/sedes/eliminarsede.jsp");
