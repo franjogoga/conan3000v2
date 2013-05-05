@@ -4,19 +4,19 @@ import java.util.Date;
 
 public class PromocionBeanData {
 
-	private int idPromocion;
+	private int codigo;
 	private String nombre;
 	private Date fechainicio;
 	private Date fechafin;
 	private String descripcion;
 	private String estado;
 	
-	public int getIdPromocion() {
-		return idPromocion;
+	public int getCodigo() {
+		return codigo;
 	}
 	
-	public void setIdPromocion(int idPromocion) {
-		this.idPromocion = idPromocion;
+	public void setIdPromocion(int codigo) {
+		this.codigo = codigo;
 	}
 	
 	public String getNombre() {
