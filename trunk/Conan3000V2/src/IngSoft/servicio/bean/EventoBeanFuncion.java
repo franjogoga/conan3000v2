@@ -34,7 +34,7 @@ public class EventoBeanFuncion {
 		try{		
 		eventoData.setIdAmbientes(request.getParameterValues("cmbAmbientes"));
 		eventoData.setIdSede(request.getParameterValues("cmbSedes"));
-		eventoData.setIdTipo(Integer.parseInt(request.getParameter("cmbTipo")));
+		eventoData.setIdTipo(request.getParameter("cmbTipo"));
 		eventoData.setNombre(request.getParameter("txtNombreEvento"));
 		eventoData.setLimiteInicio(new Date(DF.parse(request.getParameter("fFecIncio")+"/0000").getTime()));
 		eventoData.setLimiteFin(new Date(DF.parse(request.getParameter("fFecFin")+"/0000").getTime()));
@@ -50,9 +50,16 @@ public class EventoBeanFuncion {
 		l.lock();
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
-			eventoData.setCodigo(Integer.parseInt((String)sqlsesion.selectOne("getNextCodigo")));
-			sqlsesion.insert("insertPlantillaEvento",eventoData);
-			sqlsesion.insert("insertPlantillaEventoSedes",eventoData);
+			String codigo= (String)sqlsesion.selectOne("Data.servicio.evento.getNextCodigo");
+			if(codigo!=null){
+			int cod= Integer.parseInt(codigo.substring(3))+1;
+			String defecto= "000000";
+			String temp= defecto.substring(0, defecto.length()-String.valueOf(cod).length()).concat(String.valueOf(cod));
+			
+			eventoData.setCodigo(codigo.substring(0,3).concat(temp));}
+			else eventoData.setCodigo("PEV000001");
+			sqlsesion.insert("Data.servicio.evento.insertPlantillaEvento",eventoData);
+			sqlsesion.insert("Data.servicio.evento.insertPlantillaEventoSedes",eventoData);
 			
 			resultado=true;
 		}
@@ -78,7 +85,7 @@ public class EventoBeanFuncion {
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
 		
-			sqlsesion.update("deletePLantillaEvento",codigo);
+			sqlsesion.update("Data.servicio.evento.deletePLantillaEvento",codigo);
 			
 			resultado=true;
 		}
@@ -122,17 +129,17 @@ public class EventoBeanFuncion {
 			
 		return ;
 	}
-	public EventoBeanData consultarEvento(int codigo){
+	public EventoBeanData consultarEvento(String codigo){
 		EventoBeanData eventoData=null;
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
-			eventoData= sqlsesion.selectOne("getPLantillaEvento",codigo);
+			eventoData= sqlsesion.selectOne("Data.servicio.evento.getPLantillaEvento",codigo);
 			//eventoData.setCodigo(Integer.parseInt((String)sqlsesion.selectOne("getNextCodigo")));
 			//sqlsesion.insert("insertPlantillaEvento",eventoData);
 			List<String> temp = null;
-			temp=sqlsesion.selectList("getSedesId",codigo);
+			temp=sqlsesion.selectList("Data.servicio.evento.getSedesId",codigo);
 			eventoData.setIdSede(temp.toArray(new String[temp.size()]));
-			temp=sqlsesion.selectList("getAmbientesId",codigo);
+			temp=sqlsesion.selectList("Data.servicio.evento.getAmbientesId",codigo);
 			eventoData.setIdAmbientes(temp.toArray(new String[temp.size()]));			
 		}
 		finally{
@@ -143,21 +150,21 @@ public class EventoBeanFuncion {
 	
 	public Vector<SedeMiniBeanData> getSedes(){
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
-		List<SedeMiniBeanData> resultados=sqlsesion.selectList("searchSedeMini");
+		List<SedeMiniBeanData> resultados=sqlsesion.selectList("Data.servicio.evento.searchSedeMini");
 		sqlsesion.close();
 		return new Vector<>(resultados);
 	}
 	
 	public Vector<AmbienteMiniBeanData> getAmbientes(){
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
-		List<AmbienteMiniBeanData> resultados=sqlsesion.selectList("searchAmbienteMini");
+		List<AmbienteMiniBeanData> resultados=sqlsesion.selectList("Data.servicio.evento.searchAmbienteMini");
 		sqlsesion.close();
 		return new Vector<>(resultados);
 	}
 	
 	public Vector<TipoEventoMiniBeanData> getTipoEvento(){
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
-		List<TipoEventoMiniBeanData> resultados=sqlsesion.selectList("searchTipoEventoMini");
+		List<TipoEventoMiniBeanData> resultados=sqlsesion.selectList("Data.servicio.evento.searchTipoEventoMini");
 		sqlsesion.close();
 		return new Vector<>(resultados);
 	}

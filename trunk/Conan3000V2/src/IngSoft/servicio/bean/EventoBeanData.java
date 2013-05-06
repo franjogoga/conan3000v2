@@ -5,18 +5,18 @@ import java.util.Date;
 
 public class EventoBeanData implements Serializable{
 	
-	private int codigo;
+	private String codigo;
 	private String nombre;
-	private int idTipo;
+	private String idTipo;
 	private String[] idSede;
 	private String[] idAmbientes;
 	private Date limiteInicio;
 	private Date limiteFin;
 	
-	public int getCodigo() {
+	public String getCodigo() {
 		return codigo;
 	}
-	public void setCodigo(int codigo) {
+	public void setCodigo(String codigo) {
 		this.codigo = codigo;
 	}
 	public String getNombre() {
@@ -25,10 +25,10 @@ public class EventoBeanData implements Serializable{
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public int getIdTipo() {
+	public String getIdTipo() {
 		return idTipo;
 	}
-	public void setIdTipo(int idTipo) {
+	public void setIdTipo(String idTipo) {
 		this.idTipo = idTipo;
 	}
 	public String[] getIdSede() {

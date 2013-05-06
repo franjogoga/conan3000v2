@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.sql.Date;
 
 public class ResultadoEventoBeanData implements Serializable{
-	private int codigo;
+	private String codigo;
 	private String nombre; 
 	private String tipo;
 	private Date limInicio;
@@ -33,10 +33,10 @@ public class ResultadoEventoBeanData implements Serializable{
 	public void setLimFin(Date limFin) {
 		this.limFin = limFin;
 	}
-	public int getCodigo() {
+	public String getCodigo() {
 		return codigo;
 	}
-	public void setCodigo(int codigo) {
+	public void setCodigo(String codigo) {
 		this.codigo = codigo;
 	}
 	
