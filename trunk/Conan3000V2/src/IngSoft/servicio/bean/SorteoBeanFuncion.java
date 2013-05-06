@@ -52,7 +52,7 @@ public class SorteoBeanFuncion {
 			catch(Exception a)		
 			{sqlsesion.rollback();
 			a.printStackTrace();
-				throw CoException.set("Error: Nombre de sorteo repetido", "SMSEvento?accion=Agregar&tipo=1");
+				throw CoException.set("Error: Nombre de sorteo repetido", "SMSSorteo?accion=Agregar&tipo=1");
 				
 			}
 			
@@ -91,23 +91,10 @@ public class SorteoBeanFuncion {
 		}
 		public Vector<SedeMiniBeanData> getSedes(){
 			SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
-			List<SedeMiniBeanData> resultados=sqlsesion.selectList("searchSedeMini");
+			List<SedeMiniBeanData> resultados=sqlsesion.selectList("searchSedeMini2");
 			sqlsesion.close();
 			return new Vector<>(resultados);
 		}
 		
-		public Vector<AmbienteMiniBeanData> getAmbientes(){
-			SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
-			List<AmbienteMiniBeanData> resultados=sqlsesion.selectList("searchAmbienteMini");
-			sqlsesion.close();
-			return new Vector<>(resultados);
-		}
-		
-		public Vector<TipoEventoMiniBeanData> getTipoEvento(){
-			SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
-			List<TipoEventoMiniBeanData> resultados=sqlsesion.selectList("searchTipoEventoMini");
-			sqlsesion.close();
-			return new Vector<>(resultados);
-		}
 
 }
