@@ -67,11 +67,12 @@ function validaForm(){
 	var form=document.frmPromocion;
 	var cadena= new Array();
 	var i=0;
-	if(!esCorrecto(form.txtNombre.value,1,100)){
+	if(!esCorrecto(form.txtNombrePromocion.value,1,100)){
 		cadena[i]="nombre";
 		i++; 
 	}
-	if(!esCorrecto(form.fFechaInicio.value,1,10)){
+	
+	if(!esCorrecto(form.fFechInicio.value,1,10)){
 		cadena[i]="Fecha Inicio";
 		i++;
 	}
@@ -86,8 +87,36 @@ function validaForm(){
 	
 	crearAlert(cadena);
 	
+	
+	
+	
+	
+	
 
 }
+
+
+		function validar(form){
+			if(form.txtNombrePromocion.value.length <=0)return false;
+			if(form.fFechInicio.value.length<=0)return false;
+			if(form.fFechFin.value.lengtht<=0)return false;
+			if(form.txtDescripcion.value.length<=0)return false;
+			//if(form.cmbAmbientes.value.length<=0)return false;
+	return true;
+		
+		
+		}
+
+
+
+
+function alt_submit(){
+		var form= document.frmPromocion;
+		if(validar(form)) form.submit();
+		else alert("Uno o mas campos estan vacios");
+			
+}
+
 
 
 </script>
@@ -108,38 +137,41 @@ function validaForm(){
 			        <h2><i class="icon-plus-sign"></i>AGREGAR PROMOCI&Oacute;N</h2>
 		          </div>
 			      <div class="box-content">
-			        <form class="form-horizontal" method="post" name="frmPromocion">
+			        <form class="form-horizontal" name="frmPromocion" method="POST" action="SMVPromocion">
+			        <input type="hidden" name="accion" value="Agregar"></input>
+					<input type="hidden" name="tipo" value="2"></input>
+			        
 			          <fieldset>
 			            <div class="control-group">
 			              <label class="control-label" for="typeahead7">Nombre Promoci&oacute;n(*):</label>
 			              <div class="controls">
-			                <input type="text" name="txtNombre" class="span6 typeahead" id="typeahead7"  data-provide="typeahead" >
+			                <input type="text" name="txtNombrePromocion" class="span6 typeahead" id="txtNombrePromocion"  data-provide="typeahead" >
 		                  </div>
 		                </div>
 			            <div class="control-group">
 			              <div class="control-group">
 			                <label class="control-label" for="date01">Fecha de inicio(*):</label>
 			                <div class="controls">
-			                  <input type="text" name="fFechaInicio" class="input-xlarge datepicker" id="date01" value="" readonly="true">
+			                  <input type="text" name="fFechInicio" class="input-xlarge datepicker" id="fFechInicio" value="" readonly="true">
 		                    </div>
 		                  </div>
 			              <div class="control-group">
 			                <label class="control-label" for="date02">Fecha de fin(*):</label>
 			                <div class="controls">
-			                  <input type="text" name="fFechaFin" class="input-xlarge datepicker" id="date02" value="" readonly="true">
+			                  <input type="text" name="fFechFin" class="input-xlarge datepicker" id="fFechFin" value="" readonly="true">
 		                    </div>
 		                  </div>
 			             		            
 			              <div class="control-group">
 			                <label class="control-label" for="textarea2">Descripci&oacute;n:</label>
 			                <div class="controls">
-			                  <textarea name="txtDescripcion" class="" id="textarea2" style="resize:none"></textarea>
+			                  <textarea name="txtDescripcion" class="" id="txtDescripcion" style="resize:none"></textarea>
 		                    </div>
 		                  </div>
 			            </div>
 			            <div class="form-actions">
-			              <button type="button" class="btn btn-primary" name="btnAgregar" onClick="javascript:validaForm();">Agregar</button>
-			              <button type="reset" class="btn"><a href="buscarpromocion.jsp" name="btnCancelar">Cancelar</a></button>
+			                  <button type="button" class="btn btn-primary" onclick="javascript:alt_submit()">Agregar</button>
+							  <button type="button" class="btn" onclick="location.href='buscarpromocion.jsp'" >Cancelar</button>
 		                </div>
 		              </fieldset>
 		            </form>
