@@ -27,9 +27,8 @@ from sorteo ,sede
 </where>
 order by 1 asc
 </select>
-<select id="searchSedeMini" resultType="IngSoft.servicio.bean.SedeMiniBeanData">
-	select idSede as codigo
-	,nombre 
+<select id="searchSedeMini2" resultType="IngSoft.servicio.bean.SedeMiniBeanData">
+	select nombre 
 	from 
 	sede
 </select>
