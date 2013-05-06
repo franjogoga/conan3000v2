@@ -28,7 +28,7 @@ public class AccionModificarEvento extends CoAccion {
 			String antAmb[]=request.getParameter("txtLAmbiente").toString().split("/");
 			eventoFuncion.modificarEvento(eventoData, antSede, antAmb);
 		}	
-		EventoBeanData eventoData=eventoFuncion.consultarEvento(Integer.valueOf(request.getParameter("codigo")));
+		EventoBeanData eventoData=eventoFuncion.consultarEvento(request.getParameter("codigo"));
 		Vector<SedeMiniBeanData> sedeMiniData=eventoFuncion.getSedes();
 		Vector<TipoEventoMiniBeanData> tipoEventoMiniData=eventoFuncion.getTipoEvento();
 		Vector<AmbienteMiniBeanData> AmbienteMiniData=eventoFuncion.getAmbientes();

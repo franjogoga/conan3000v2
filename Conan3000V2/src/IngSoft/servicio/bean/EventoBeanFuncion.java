@@ -60,6 +60,7 @@ public class EventoBeanFuncion {
 			else eventoData.setCodigo("PEV000001");
 			sqlsesion.insert("Data.servicio.evento.insertPlantillaEvento",eventoData);
 			sqlsesion.insert("Data.servicio.evento.insertPlantillaEventoSedes",eventoData);
+			sqlsesion.insert("Data.servicio.evento.insertPlantillaEventoAmbiente",eventoData);
 			
 			resultado=true;
 		}
@@ -79,7 +80,7 @@ public class EventoBeanFuncion {
 		return resultado;
 	}
 	
-	public boolean eliminarEvento(int codigo) throws CoException {
+	public boolean eliminarEvento(String codigo) throws CoException {
 		boolean resultado=false;		
 		
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
