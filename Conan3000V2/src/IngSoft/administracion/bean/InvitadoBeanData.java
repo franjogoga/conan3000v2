@@ -1,12 +1,14 @@
 package IngSoft.administracion.bean;
 
-public class InvitadoBeanData {
+import java.io.Serializable;
+
+public class InvitadoBeanData implements Serializable {
 	int codigo;
 	String nombre;
-	
-	
-	public int getCodigo( ) {
-		System.out.print("Paso 1  InvitadoBeanData ");
+	public int getCodigo() {
+		
+		
+		System.out.print("--- InvitadoBeanData ");
 		return codigo;
 	}
 	public void setCodigo(int codigo) {
@@ -18,9 +20,6 @@ public class InvitadoBeanData {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	
-	
-	
 	
 	
 
