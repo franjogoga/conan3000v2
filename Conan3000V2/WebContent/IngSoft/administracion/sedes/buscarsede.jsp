@@ -58,7 +58,7 @@
 		
 		
 		
-		
+	<!--  nuevo XD frmSede  se crea abajo -->
 	<script> 
 	
 	function alt_eliminar(cod){
@@ -199,7 +199,7 @@
 			  <!--/row-->
 			  
 			  
-			  <!-- nuevo  aquiiiiiiiiiiiii-->
+			  <!-- nuevo  aquiiiiii    creamos un formulario frmSede-->
 			  <form id="frmSede" name="frmSede"  method="post" action="SMASede" >
 			  
 			   <input   type ="hidden" name="accion"  value="Consultar"></imput>
