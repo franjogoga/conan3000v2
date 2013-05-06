@@ -53,6 +53,34 @@
 	<!-- The fav icon -->
 	<link rel="shortcut icon" href="img/favicon.ico">
 		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<script> 
+	
+	function alt_eliminar(cod){
+		var form=document.getElementById("frmInvitado");
+		form.accion.value="Consultar";
+		form.codigo.value=cod;
+		form.submit();
+	}
+	
+	
+	
+	
+	
+	</script>	
 </head>
 
 <body>
@@ -168,6 +196,24 @@
 		      <!--/span-->
 	        </div>
 		    <!--/row-->
+		    
+		     <!-- nuevo  aquiiiiiiiiiiiii creamos un formlario frmInvitado --> 
+			  <form id="frmInvitado" name="frmInvitado"  method="post" action="SMAInvitado" >
+			  
+			   <input   type ="hidden" name="accion"  value="Consultar"></imput>
+			   <input   type ="hidden" name="codigo"  value="1"></imput>
+			   
+			   
+			  </form>
+			  
+			  <!--  -->
+		    
+		    
+		    
+		    
+		    
+		    
+		    
 		    <div class="row-fluid sortable">
 		      <div class="box span12">
 		        <div class="box-header well" data-original-title>
@@ -190,7 +236,7 @@
 		                <td>Juan L&oacutepez</td>
 		                <td class="center">USU_00232 </td>
 		                <td class="center"><span class="label label-success">Activo</span></td>
-		                <td class="center"><a class="btn btn-success" href="#"> <i class="icon-zoom-in icon-white"></i> Ver </a> <a class="btn btn-info" href="invitadomodificar.jsp"> <i class="icon-edit icon-white"></i> Modificar </a> <a class="btn btn-danger" href="invitadoeliminar.jsp"> <i class="icon-trash icon-white"></i> Eliminar </a></td>
+		                <td class="center"><a class="btn btn-success" href="#"> <i class="icon-zoom-in icon-white"></i> Ver </a> <a class="btn btn-info" href="invitadomodificar.jsp"> <i class="icon-edit icon-white"></i> Modificar </a> <a class="btn btn-danger" href="javascript:alt_eliminar(1)"> <i class="icon-trash icon-white"></i> Eliminar </a></td>
 	                  </tr>
 		              
 	                </tbody>
