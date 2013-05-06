@@ -174,14 +174,14 @@
 							  <div class="control-group">
 							  <label class="control-label" for="date01">Limite Inicio(*):</label>
 							  <div class="controls">
-								<input type="text" class="input-xlarge datepicker" id="fFecIncio" value="01/01"  name="fFecIncio" onchange="alt_fecha(this)">
+								<input type="text" class="input-xlarge datepicker" id="fFecIncio" readonly="true" value="01/01"  name="fFecIncio" onchange="alt_fecha(this)">
 							  </div>
 							</div>
 							
 							<div class="control-group">
 							  <label class="control-label" for="date02">Limite Fin(*):</label>
 							  <div class="controls">
-								<input type="text" class="input-xlarge datepicker" id="fFecFin" value="31/12"  name="fFecFin" onchange="alt_fecha(this)">
+								<input type="text" class="input-xlarge datepicker" id="fFecFin" readonly="true" value="31/12"  name="fFecFin" onchange="alt_fecha(this)">
 							  </div>
 							</div>
 						    <div class="form-actions">

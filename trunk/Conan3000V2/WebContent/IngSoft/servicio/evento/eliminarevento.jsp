@@ -75,13 +75,10 @@
 
 	</script>	
 	
-	<%! public boolean  encontrar(int a, String[] b){
-		for(int i=0;i<b.length;i++){
-			if(Integer.valueOf(b[i])==a) return true;	
+	<%! public boolean  encontrar(String a, String[] b){
+		for(int i=0;i<b.length;i++){			
+			if(b[i].equals(a)) return true;	
 		}
-		
-		SimpleDateFormat DF= new SimpleDateFormat("dd/MM");
-	
 	return false;
 	}
 	public String formatear(java.util.Date date){
@@ -178,14 +175,14 @@
 							  <div class="control-group">
 							  <label class="control-label" for="date01">Limite Inicio</label>
 							  <div class="controls">
-								<input type="text" class="input-xlarge datepicker" id="fFecIncio"  value="<%=formatear(new Date(evento.getLimiteInicio().getTime())) %>"  name="fFecIncio" onchange="alt_fecha(this)" disabled>
+								<input type="text" class="input-xlarge datepicker" id="fFecIncio"  readonly="true" value="<%=formatear(new Date(evento.getLimiteInicio().getTime())) %>"  name="fFecIncio" onchange="alt_fecha(this)" disabled>
 							  </div>
 							</div>
 							
 							<div class="control-group">
 							  <label class="control-label" for="date02">Limite Fin</label>
 							  <div class="controls">
-								<input type="text" class="input-xlarge datepicker" id="fFecFin" name="fFecFin" value="<%=formatear(new Date(evento.getLimiteFin().getTime())) %>" onchange="alt_fecha(this)" disabled>
+								<input type="text" class="input-xlarge datepicker" id="fFecFin" name="fFecFin" readonly="true" value="<%=formatear(new Date(evento.getLimiteFin().getTime())) %>" onchange="alt_fecha(this)" disabled>
 							  </div>
 							</div>
 						    <div class="form-actions">
