@@ -2,7 +2,25 @@
 <html lang="en">
 <head>
 <jsp:include page="/IngSoft/general/header.jsp" />
-<script type="text/javascript" src="js/apprise-1.5.full.js"></script>
+</head>
+<body>
+		<jsp:include page="/IngSoft/general/superior.jsp" />
+		<div class="container-fluid">
+			<div class="row-fluid">
+				<jsp:include page="/IngSoft/general/leftmenu.jsp" />
+				<jsp:include page="/IngSoft/general/noscript.jsp" />
+				<div id="content" class="span10">
+				    <!-- content starts -->
+				   <jsp:include page="includes/modificarpromocion.jsp" />
+				    <!-- content ends -->
+				</div>
+			 </div>
+		<hr>
+			<jsp:include page="includes/modal.jsp" />
+			<jsp:include page="/IngSoft/general/footer.jsp" />
+		</div>
+		<jsp:include page="/IngSoft/general/jsexternal.jsp" />
+		<script type="text/javascript" src="js/apprise-1.5.full.js"></script>
 <link rel="stylesheet" href="css/apprise.css" type="text/css" />
 <script>
 function validaCorreo(valor)
@@ -85,28 +103,97 @@ return false;
 }
 
 
+function inicializa(){
+	document.getElementById("errNombrePromocion").style.display='none';
+	document.getElementById("errFechaInicio").style.display='none';
+	document.getElementById("errFechaFin").style.display='none';
+	document.getElementById("errEstado").style.display='none';
+	document.getElementById("errDescripcion").style.display='none';
+	
+}
+
+function MostrarErrorDiv(id){
+	document.getElementById(id).style.display='block';	
+}
+function MostrarErrorDivInput(id){
+	document.getElementById(id).setAttribute("class", "control-group error");	
+}
+function MostrarOkDivInput(id){
+	document.getElementById(id).setAttribute("class", "control-group success");	
+}
+function MostrarErrorDivInnerHtml(id,valor){
+	document.getElementById(id).innerHTML=valor;	
+}
+function validarxId(id){
+	MostrarErrorDivInput("dv"+id);
+	MostrarErrorDiv("err"+id);
+	MostrarErrorDivInnerHtml("err"+id,mensaje);
+}
+
 function validaForm(){
 	var form=document.frmPromocion;
+
 	var cadena= new Array();
 	var i=0;
 	var error=true;
 	if(!esCorrecto(form.txtNombrePromocion.value,1,100)){
-		form.txtNombrePromocion.setAttribute('id', 'inputError');
-		$('body').append(form.txtNombrePromocion);
-		cadena[i]="La casilla Nombre debe tener entre 1 a 100 caracteres";
+		mensaje="La casilla Nombre debe tener entre 1 a 100 caracteres";
+		casilla="Nombre";
+		id="NombrePromocion";
+		validarxId(id);
+		cadena[i]=casilla;
 		i++; 
+	}else{
+		id="NombrePromocion";
+		MostrarOkDivInput(id);
 	}
+	
 	if(!esCorrecto(form.fFechaInicio.value,1,10)){
-		cadena[i]="La casilla Fecha Inicio no ha sido llenado correctamente";
+		mensaje="La casilla Fecha Inicio no ha sido llenado correctamente";
+		casilla="Fecha Inicio";
+		id="FechaInicio";
+		validarxId(id);
+		cadena[i]=casilla;
 		i++;
+	}else{
+		id="FechaInicio";
+		MostrarOkDivInput(id);
 	}
+	
 	if(!esCorrecto(form.fFechaFin.value,1,10)){
-		cadena[i]="La casilla Fecha Fin no ha sido llenado correctamente";
+		mensaje="La casilla Fecha Fin no ha sido llenado correctamente";
+		casilla="Fecha Fin";
+		id="FechaFin";
+		validarxId(id);
+		cadena[i]=casilla;
 		i++;
+	}else{
+		id="FechaFin";
+		MostrarOkDivInput(id);
 	}
-	if(!esCorrecto(form.txtDescripcion.value,1,100)){
-		cadena[i]="la casilla Descripcion debe tener entre 1 a 100 caracteres";
+	
+	if(!inputRadioLleno(form.rEstado)){
+		mensaje="La casilla Estado no ha sido seleccionado";
+		casilla="Estado";
+		id="Estado";
+		validarxId(id);
+		cadena[i]=casilla;
 		i++;
+	}else{
+		id="Estado";
+		MostrarOkDivInput(id);
+	}
+	
+	if(!esCorrecto(form.txtDescripcion.value,1,100)){
+		mensaje="La casilla Descripcion debe tener entre 1 a 100 caracteres";
+		casilla="Descripcion";
+		id="Descripcion";
+		validarxId(id);
+		cadena[i]=casilla;
+		i++;
+	}else{
+		id="Descripcion";
+		MostrarOkDivInput(id);
 	}
 	
 	//No tocar
@@ -117,27 +204,12 @@ function validaForm(){
 }
 
 
+inicializa();
+
 </script>
 
-
-</head>
-<body>
-		<jsp:include page="/IngSoft/general/superior.jsp" />
-		<div class="container-fluid">
-			<div class="row-fluid">
-				<jsp:include page="/IngSoft/general/leftmenu.jsp" />
-				<jsp:include page="/IngSoft/general/noscript.jsp" />
-				<div id="content" class="span10">
-				    <!-- content starts -->
-				   <jsp:include page="includes/modificarpromocion.jsp" />
-				    <!-- content ends -->
-				</div>
-			 </div>
-		<hr>
-			<jsp:include page="includes/modal.jsp" />
-			<jsp:include page="/IngSoft/general/footer.jsp" />
-		</div>
-		<jsp:include page="/IngSoft/general/jsexternal.jsp" />
+		
+		
 </body>
 </html>
 
