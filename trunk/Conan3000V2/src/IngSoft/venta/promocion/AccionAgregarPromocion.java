@@ -22,10 +22,10 @@ public class AccionAgregarPromocion extends CoAccion {
 					PromocionBeanFuncion promocionFuncion= PromocionBeanFuncion.getInstance();
 					PromocionBeanData promocionData=promocionFuncion.crearPromocion(request, response);
 					promocionFuncion.agregarPromocion(promocionData);
-					this.direccionar(sc, request, response, "/IngSoft/venta/promociones/buscarpromocion.jsp");
+					this.direccionar(sc, request, response, "/IngSoft/ventas/promociones/buscarpromocion.jsp");
 				}
 				
-				this.direccionar(sc, request, response, "/IngSoft/venta/promociones/agregarpromocion.jsp");
+				this.direccionar(sc, request, response, "/IngSoft/ventas/promociones/agregarpromocion.jsp");
 					
 				//EventoBeanFuncion eventoFunction= EventoBeanFuncion.getInstance();
 				//Vector<SedeMiniBeanData> sedeMiniData=eventoFunction.getSedes();
