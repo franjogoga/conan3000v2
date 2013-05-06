@@ -57,7 +57,7 @@ order by 1 asc
 	values (#{codigo},#{nombre},#{limiteInicio},#{limiteFin},#{idTipo},'A')
 </insert>
 <select id="getNextCodigo" resultType="java.lang.String">
-	select max(IdPlantillaEvento)+1 from PLANTILLA_EVENTO	
+	select max(IdPlantillaEvento) from PLANTILLA_EVENTO	
 </select>
 <insert id="insertPlantillaEventoSedes" parameterType="IngSoft.servicio.bean.EventoBeanData" flushCache="true">
  insert into SEDExPLANTILLA(IdPlantillaEvento,IdSede) values(#{codigo},

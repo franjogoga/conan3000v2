@@ -21,6 +21,7 @@
 <servlet id="Servlet_0003">
         <servlet-name>SMVPromocion</servlet-name>
 	<servlet-class>IngSoft.venta.promocion.SMVPromocion</servlet-class>
+				   
 </servlet>
 <servlet id="Servlet_0004">
         <servlet-name>SMSSorteo</servlet-name>

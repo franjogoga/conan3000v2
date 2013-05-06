@@ -325,6 +325,21 @@
 			<locationURI>JS</locationURI>
 		</link>
 		<link>
+			<name>WebContent/IngSoft/servicio/sorteo/css</name>
+			<type>2</type>
+			<locationURI>CSS</locationURI>
+		</link>
+		<link>
+			<name>WebContent/IngSoft/servicio/sorteo/img</name>
+			<type>2</type>
+			<locationURI>IMG</locationURI>
+		</link>
+		<link>
+			<name>WebContent/IngSoft/servicio/sorteo/js</name>
+			<type>2</type>
+			<locationURI>JS</locationURI>
+		</link>
+		<link>
 			<name>WebContent/IngSoft/ventas/familia/css</name>
 			<type>2</type>
 			<locationURI>CSS</locationURI>
