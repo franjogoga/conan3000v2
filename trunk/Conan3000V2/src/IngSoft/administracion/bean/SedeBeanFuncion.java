@@ -49,26 +49,5 @@ public class SedeBeanFuncion {
 
 	
 	
-	
-	/*
-	public EventoBeanData consultarEvento(int codigo){
-		EventoBeanData eventoData=null;
-		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
-		try{
-			eventoData= sqlsesion.selectOne("getPLantillaEvento",codigo);
-			//eventoData.setCodigo(Integer.parseInt((String)sqlsesion.selectOne("getNextCodigo")));
-			//sqlsesion.insert("insertPlantillaEvento",eventoData);
-			List<String> temp = null;
-			temp=sqlsesion.selectList("getSedesId",codigo);
-			eventoData.setIdSede(temp.toArray(new String[temp.size()]));
-			temp=sqlsesion.selectList("getAmbientesId",codigo);
-			eventoData.setIdAmbientes(temp.toArray(new String[temp.size()]));			
-		}
-		finally{
-			sqlsesion.close();
-		}
-		return eventoData;
-	}
-	 * 
-	 * */
+
 }
