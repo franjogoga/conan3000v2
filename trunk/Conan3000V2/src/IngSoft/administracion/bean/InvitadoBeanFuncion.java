@@ -5,7 +5,7 @@ import org.apache.ibatis.session.SqlSession;
 import IngSoft.general.MyBatisSesion;
 
 public class InvitadoBeanFuncion {
-	
+
 static private InvitadoBeanFuncion invitado= null;
 	
 	
@@ -42,4 +42,5 @@ static private InvitadoBeanFuncion invitado= null;
 		return i;
 	}
 
+	
 }
