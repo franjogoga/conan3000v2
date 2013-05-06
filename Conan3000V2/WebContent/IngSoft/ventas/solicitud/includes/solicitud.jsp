@@ -1,8 +1,10 @@
 			  <!-- content starts -->
-			  <div>
+			 	  <div>
 			    <ul class="breadcrumb">
-			      <li> <a href="#">Home</a> / <a href="#">Solicitud </a> </li>
-		        </ul>
+		        <li> <a href="../../general/index.jsp">Home</a> <span class="divider">/</span></li>
+		        <li>Solicitud </li>
+		       
+	          </ul>
 		      </div>
 			  <div class="row-fluid sortable">
 			    <div class="box span12">
@@ -15,7 +17,7 @@
 			                 <div class="control-group">
 			                <label class="control-label" for="selectError">Tipo de Solicitud(*):</label>
 			                <div class="controls">
-			                  <select name="selectError" id="selectError" data-rel="chosen">
+			                  <select name="cmbTiposolicitud" id="selectError" data-rel="chosen">
 			                    <option selected>Productos</option>
 			                    <option>Socio</option>
 			                     <option>Servicio de proveedores</option>
@@ -26,8 +28,8 @@
                       
 			                <div class="control-group">
 							  <div class="controls">
-								<button type="submit" class="btn btn-primary">Aceptar</button>
-                                <button class="btn">Cancelar</button>
+								<button name="btnAceptar" type="submit" class="btn btn-primary">Aceptar</button>
+                                <button name="btnCancelar" class="btn">Cancelar</button>
 							  </div>
 							</div>
 			             
