@@ -1,9 +1,13 @@
 			  <!-- content starts -->
-			  <div>
+			 
+		       <div>
 			    <ul class="breadcrumb">
-			      <li> <a href="#">Home</a> / <a href="#">Solicitudes</a> / Solicitud Producto</li>
-		        </ul>
-		      </div>
+		        <li> <a href="../../general/index.jsp">Home</a> <span class="divider">/</span></li>
+		        <li> <a href="solicitud.jsp">Solicitudes </a> <span class="divider">/</span></li>
+		        <li>Agregar Producto</li>
+	          </ul>
+		      </div>  
+		      
 			  <div class="row-fluid sortable">
 			    <div class="box span12">
 			      <div class="box-header well" data-original-title>
@@ -16,7 +20,7 @@
 			           <div class="control-group">
 			                <label class="control-label" for="typeahead9">Nombre(*): </label>
 			                <div class="controls">
-			                  <input type="text" class="span6 typeahead" id="typeahead9"  data-provide="typeahead" data-items="4" >
+			                  <input type="text" name="txtNombre" class="span6 typeahead" id="typeahead9"  data-provide="typeahead" data-items="4" >
 			                  <p class="help-block">Escriba sobre la casilla un nombre de producto para ser autocompletado</p>
 		                    </div>
 		                  </div>
@@ -24,16 +28,17 @@
 			            <div class="control-group">
 			                <label class="control-label" for="typeahead4">Cantidad(*):</label>
 			                <div class="controls">
-			                  <input type="text" class="span6 typeahead" id="typeahead4"  data-provide="typeahead" data-items="4" >
+			                  <input type="text" name="txtCantidad" class="span6 typeahead" id="typeahead4"  data-provide="typeahead" data-items="4" >
 		                    </div>
 		                  </div>
 		                  
 		               		              			          
 			            <div class="form-actions">
-			              <button type="submit" class="btn btn-primary">Agregar</button>
-			              <button type="reset" class="btn"><a href="solicitud.jsp">Cancelar</a></button>
+			              <button name="btnAgregar" type="submit" class="btn btn-primary">Agregar</button>
+			              <button name="btnCancelar" type="reset" class="btn"><a href="solicitud.jsp">Cancelar</a></button>
 		                </div>
 		              </fieldset>
+		               (*) Campos Obligatorios</div>
 		            </form>
 		          </div>
 		        </div>
@@ -113,7 +118,7 @@
                  
                   <div class="form-actions">
                  
-			              <button   type="submit" class="btn btn-primary">Finalizar</button>
+			              <button  name="btnFinalizar" type="submit" class="btn btn-primary">Finalizar</button>
 			            
 		                </div>
 			           

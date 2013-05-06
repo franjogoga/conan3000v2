@@ -1,9 +1,11 @@
 			  <!-- content starts -->
-			  <div>
+			    <div>
 			    <ul class="breadcrumb">
-			      <li> <a href="/Conan3000V2/IngSoft/general/index.jsp">Home</a> / <a href="/Conan3000V2/IngSoft/ventas/solicitud/solicitud.jsp">Solicitudes</a> / Solicitud de Servicio</li>
-		        </ul>
-		      </div>
+		        <li> <a href="../../general/index.jsp">Home</a> <span class="divider">/</span></li>
+		        <li> <a href="solicitud.jsp">Solicitudes </a> <span class="divider">/</span></li>
+		       <li>Agregar Servicio</li>
+	          </ul>
+		      </div>  
 			  <div class="row-fluid sortable">
 			    <div class="box span12">
 			      <div class="box-header well" data-original-title>

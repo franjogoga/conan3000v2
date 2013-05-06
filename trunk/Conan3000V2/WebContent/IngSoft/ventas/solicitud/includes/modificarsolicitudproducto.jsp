@@ -1,9 +1,13 @@
 			  <!-- content starts -->
-			  <div>
+			   <div>
 			    <ul class="breadcrumb">
-			      <li> <a href="#">Home</a> / <a href="#">Solicitud de Productos </a> / Modificar Solicitud de Productos</li>
-		        </ul>
-		      </div>
+		        <li> <a href="../../general/index.jsp">Home</a> <span class="divider">/</span></li>
+		        <li> <a href="solicitud.jsp">Solicitudes </a> <span class="divider">/</span></li>
+		        <li> <a href="agregarsolicitudproducto.jsp">Solicitud Producto </a> <span class="divider">/</span></li>
+		        <li>Modificar Producto </li>
+		      
+	          </ul>
+		      </div> 
 			  <div class="row-fluid sortable">
 			    <div class="box span12">
 			      <div class="box-header well" data-original-title>
@@ -15,7 +19,7 @@
 			             <div class="control-group">
 			                <label class="control-label" for="typeahead9">Nombre(*): </label>
 			                <div class="controls">
-			                  <input type="text" class="span6 typeahead" id="typeahead9"  data-provide="typeahead" data-items="4" >
+			                  <input name="txtNombre" type="text" class="span6 typeahead" id="typeahead9"  data-provide="typeahead" data-items="4" >
 			                  <p class="help-block">Escriba sobre la casilla un nombre de producto para ser autocompletado</p>
 		                    </div>
 		                  </div>
@@ -23,27 +27,27 @@
 		                      <div class="control-group">
 			              <label class="control-label" for="typeahead7">C&oacute;digo producto:</label>
 			              <div class="controls">
-			                <input type="text" disabled class="span6 typeahead" id="typeahead7" value="SOC_2739"  data-provide="typeahead" > 
+			                <input name="txtCodigo" type="text" disabled class="span6 typeahead" id="typeahead7" value="SOC_2739"  data-provide="typeahead" > 
 			              </div>
 		                </div>
 			         			         
 			              <div class="control-group">
 			                <label  class="control-label" for="typeahead6">Precio Unitario:</label>
 			                <div class="controls">
-			                  <input  disabled type="text" class="span6 typeahead" id="typeahead6"  data-provide="typeahead" data-items="4" >
+			                  <input name="txtPrecio" disabled type="text" class="span6 typeahead" id="typeahead6"  data-provide="typeahead" data-items="4" >
 		                    </div>
 		                  </div>
 			              <div class="control-group">
 			                <label class="control-label" for="typeahead4">Cantidad:</label>
 			                <div class="controls">
-			                  <input type="text" class="span6 typeahead" id="typeahead4"  data-provide="typeahead" data-items="4" >
+			                  <input name="txtCantidad" type="text" class="span6 typeahead" id="typeahead4"  data-provide="typeahead" data-items="4" >
 		                    </div>
 		                  </div>
 		                  
 		                  <div class="control-group">
 							  <label class="control-label" for="date01">Fecha:</label>
 							  <div class="controls">
-								<input disabled type="text" class="input-xlarge datepicker" id="date01" value="02/16/12">
+								<input name="fFecha" disabled type="text" class="input-xlarge datepicker" id="date01" value="02/16/12">
 							  </div>
 							</div>
 		                  
@@ -51,19 +55,16 @@
 			              <div class="control-group">
 			                <label  class="control-label" for="typeahead8">Monto:</label>
 			                <div class="controls">
-			                  <input disabled type="text" class="span6 typeahead" id="typeahead8"  data-provide="typeahead" data-items="4" >
+			                  <input name="txtMonto" disabled type="text" class="span6 typeahead" id="typeahead8"  data-provide="typeahead" data-items="4" >
 		                    </div>
-		                  </div>
-			              <div class="control-group">
-			                		                  		                      
-		                         
-									            
-			       
+		                     </div>
+			                        
 			            <div class="form-actions">
-			              <button type="submit" class="btn btn-primary">Modificar</button>
-			              <button type="reset" class="btn"><a href="agregarsolicitudproducto.jsp">Cancelar</a></button>
+			              <button name="btnModificar" type="submit" class="btn btn-primary">Modificar</button>
+			              <button name="btnCancelar" type="reset" class="btn"><a href="agregarsolicitudproducto.jsp">Cancelar</a></button>
 		                </div>
 		              </fieldset>
+		                (*) Campos Obligatorios
 		            </form>
 		          </div>
 		        </div>

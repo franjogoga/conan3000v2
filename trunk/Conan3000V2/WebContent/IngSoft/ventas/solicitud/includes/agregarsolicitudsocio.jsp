@@ -1,17 +1,13 @@
 			  <!-- content starts -->
+			
 			  <div>
 			    <ul class="breadcrumb">
-			      
-			        
-			          <!-- content starts -->
-			          
-			           
-			              <li><a href="/Conan3000V2/IngSoft/general/index.jsp">Home / </a><a href="solicitud.jsp"> Solicitud / </a>Agregar Solicitud de Socio
-			           
-			              </li>
-			              
-			              
-		                </ul>
+		        <li> <a href="../../general/index.jsp">Home</a> <span class="divider">/</span></li>
+		        <li> <a href="solicitud.jsp">Solicitudes </a> <span class="divider">/</span></li>
+		       <li>Agregar Socio</li>
+	          </ul>
+		      </div>  
+			
 		              <div class="row-fluid sortable">
 			            <div class="box span12">
 			              <div class="box-header well" data-original-title>
@@ -92,7 +88,7 @@
 		                        </div>
 		                      </fieldset>
 		                    </form>
-                            (*) Datos Obligatorios
+                           (*) Campos Obligatorios
 		                  </div>
 		                </div>
 			            <!--/span-->
