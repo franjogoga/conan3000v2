@@ -250,21 +250,21 @@
 
                           			<td class="center">
                           				<a class="btn btn-success"
-                          					href="javascript:alt_consultar(<%=((ResultadoEventoBeanData)resultados.get(i)).getCodigo()%>)">
+                          					href="javascript:alt_consultar('<%=((ResultadoEventoBeanData)resultados.get(i)).getCodigo()%>')">
                           					<i
                           						class="icon-zoom-in icon-white">
                           					</i>
 Ver
                           				</a>
                           				<a class="btn btn-info"
-                          					href="javascript:alt_modificar(<%=((ResultadoEventoBeanData)resultados.get(i)).getCodigo()%>)">
+                          					href="javascript:alt_modificar('<%=((ResultadoEventoBeanData)resultados.get(i)).getCodigo()%>')">
                           					<i
                           						class="icon-edit icon-white">
                           					</i>
  Modificar
                           				</a>
                           				<a class="btn btn-danger"
-                          					href="javascript:alt_eliminar(<%=((ResultadoEventoBeanData)resultados.get(i)).getCodigo()%>)">
+                          					href="javascript:alt_eliminar('<%=((ResultadoEventoBeanData)resultados.get(i)).getCodigo()%>')">
                           					<i class="icon-trash icon-white">
                           					</i>
 		Eliminar

@@ -83,13 +83,10 @@
 			//document.fmrData.submit();
 
 	</script>	
-	<%! public boolean  encontrar(int a, String[] b){
+	<%! public boolean  encontrar(String a, String[] b){
 		for(int i=0;i<b.length;i++){			
-			if(Integer.valueOf(b[i])==a) return true;	
+			if(b[i].equals(a)) return true;	
 		}
-		
-		SimpleDateFormat DF= new SimpleDateFormat("dd/MM");
-	
 	return false;
 	}
 	public String formatear(java.util.Date date){
@@ -155,7 +152,7 @@
 								<div class="controls">
 								  <select id="selectS1" data-rel="chosen" name="cmbTipo" disabled>
 									<%for(int i=0;i<tiposEvento.size();i++){ %>
-										<option value="<%= ((TipoEventoMiniBeanData)tiposEvento.get(i)).getCodigo()%>"  <%=evento.getIdTipo()== ((TipoEventoMiniBeanData)tiposEvento.get(i)).getCodigo()?"selected":"" %>><%= ((TipoEventoMiniBeanData)tiposEvento.get(i)).getNombre()%></option>
+										<option value="<%= ((TipoEventoMiniBeanData)tiposEvento.get(i)).getCodigo()%>"  <%=evento.getIdTipo().equalsIgnoreCase(((TipoEventoMiniBeanData)tiposEvento.get(i)).getCodigo()) ?"selected":"" %>><%= ((TipoEventoMiniBeanData)tiposEvento.get(i)).getNombre()%></option>
 									<%} %>										
 								  </select>
 								</div>
@@ -199,7 +196,7 @@
 							</div>
 						  </fieldset>
 					  </form>   
-					<span style="font-size:70%">(*)Campos Obligatorios</span>
+					
 				  </div>
 				</div><!--/span-->
 
