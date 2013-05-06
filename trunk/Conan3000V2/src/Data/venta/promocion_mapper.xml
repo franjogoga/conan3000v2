@@ -12,7 +12,7 @@
 	values (#{codigo},#{nombre},#{fechaInicio},#{fechaFin},#{descripcion},'activo')
 </insert>
 
-<select id="getNextCodigo" resultType="java.lang.String">
+<select id="getNextCodigo2" resultType="java.lang.String">
 	select max(idPromocion)+1 from Promocion
 </select>
 
