@@ -23,12 +23,12 @@ public class AccionAgregarSorteo extends CoAccion{
 			SorteoBeanFuncion sorteoFuncion= SorteoBeanFuncion.getInstance();
 			SorteoBeanData sorteoData=sorteoFuncion.crearSorteo(request, response);
 			sorteoFuncion.agregarSorteo(sorteoData);
-			this.direccionar(sc, request, response, "/IngSoft/servicio/evento/buscarsorteo.jsp");
+			this.direccionar(sc, request, response, "/IngSoft/servicio/sorteo/buscarsorteo.jsp");
 		}
 		SorteoBeanFuncion sorteoFunction= SorteoBeanFuncion.getInstance();
 		Vector<SedeMiniBeanData> sedeMiniData=sorteoFunction.getSedes();
 		request.setAttribute("sedes",sedeMiniData);
-		this.direccionar(sc, request, response, "/IngSoft/servicio/evento/agregarsorteo.jsp");
+		this.direccionar(sc, request, response, "/IngSoft/servicio/sorteo/agregarsorteo.jsp");
 	}
 
 }
