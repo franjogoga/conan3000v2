@@ -55,8 +55,9 @@ public class PromocionBeanFuncion {
 		boolean resultado=false;		
 		l.lock();
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+		
 		try{
-			promocionData.setIdPromocion(Integer.parseInt((String)sqlsesion.selectOne("getNextCodigo")));
+			promocionData.setIdPromocion(Integer.parseInt((String)sqlsesion.selectOne("getNextCodigo2")));
 			sqlsesion.insert("insertPromocion",promocionData);
 			//sqlsesion.insert("insertPlantillaEventoSedes",eventoData);
 			
@@ -66,7 +67,6 @@ public class PromocionBeanFuncion {
 		{sqlsesion.rollback();
 		a.printStackTrace();
 			//throw CoException.set("Error: Nombre de promocion repetido", "SMVPromocion?accion=Agregar&tipo=1");
-			
 		}
 		
 		finally{
@@ -74,7 +74,6 @@ public class PromocionBeanFuncion {
 			sqlsesion.close();
 			l.unlock();					
 		}
-			
 		return resultado;
 	}
 	
