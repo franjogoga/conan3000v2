@@ -24,7 +24,7 @@ public class AccionConsultarInvitado extends CoAccion {
 		
 		request.setAttribute("Invitado", d);
 		
-		this.direccionar(sc, request, response, "/IngSoft/administracion/invitados/invitadoeliminar.jsp");
+		this.direccionar(sc, request, response, "/IngSoft/administracion/invitado/invitadoeliminar.jsp");
 		
 		
 		
