@@ -22,7 +22,7 @@
 			                  <p class="help-block">Escriba sobre la casilla un nombre de socio para ser autocompletado</p>
 	                      </div>
 	                    </div>
-		                <div class="control-group"></div>
+		              
 			              <div class="control-group">
 			                <label class="control-label" for="typeahead6">Nombres:</label>
 			                <div class="controls">
