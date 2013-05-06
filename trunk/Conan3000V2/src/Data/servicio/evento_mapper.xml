@@ -8,95 +8,101 @@
 
 <select id="searchPlantillaEvento" parameterType="IngSoft.servicio.bean.CriterioEventoBeanData" resultType="IngSoft.servicio.bean.ResultadoEventoBeanData">
 select 
-plantilla_evento.id_plantilla_evento as codigo
-,tipo_evento.nombre as tipo
-,plantilla_evento.nombre as nombre
-,plantilla_evento.lim_inicio as limInicio
-,plantilla_evento.lim_fin as limFin
-from plantilla_evento 
-left JOIN tipo_evento on tipo_evento.id_tipo_evento=plantilla_evento.id_tipo_evento 
+PLANTILLA_EVENTO.IdPlantillaEvento as codigo
+,TIPO_EVENTO.nombre as tipo
+,PLANTILLA_EVENTO.nombre as nombre
+,PLANTILLA_EVENTO.FechaInicio as limInicio
+,PLANTILLA_EVENTO.FechaFin as limFin
+from PLANTILLA_EVENTO 
+left JOIN TIPO_EVENTO on TIPO_EVENTO.IdTipoEvento=PLANTILLA_EVENTO.IdTipoEvento 
 <where>
 <if test="nombre != null ">
-        plantilla_evento.nombre  like  #{nombre}
+        PLANTILLA_EVENTO.nombre  like  #{nombre}
     </if>
     <if test="tipo != null and tipo>0">
-        AND tipo_evento.id_tipo_evento = #{tipo}
+        AND TIPO_EVENTO.IdTipoEvento = #{tipo}
     </if>
     <if test="limInicio != null">
-        AND plantilla_evento.lim_inicio &gt;= #{limInicio}
+        AND PLANTILLA_EVENTO.FechaInicio &gt;= #{limInicio}
     </if>
     <if test="limFin != null">
-        AND plantilla_evento.lim_fin &lt;= #{limFin}
+        AND PLANTILLA_EVENTO.FechaFin &lt;= #{limFin}
     </if>
-    AND plantilla_evento.estado='A'
+    AND PLANTILLA_EVENTO.Estado='A'
 </where>
 order by 1 asc
 </select>
 <select id="searchSedeMini" resultType="IngSoft.servicio.bean.SedeMiniBeanData">
-	select id_sede as codigo
-	,nombre 
+	select IdSede as codigo
+	,Nombre 
 	from 
-	sede
+	SEDE
 </select>
 <select id="searchAmbienteMini" resultType="IngSoft.servicio.bean.AmbienteMiniBeanData">
-	select id_tipo_ambiente as codigo
-	,nombre 
+	select IdTipoAmbiente as codigo
+	,Nombre 
 	from 
-	tipo_ambiente
+	TIPO_AMBIENTE
 </select>
 <select id="searchTipoEventoMini" resultType="IngSoft.servicio.bean.TipoEventoMiniBeanData">
-	select id_tipo_evento as codigo
-	,nombre 
+	select IdTipoEvento as codigo
+	,Nombre 
 	from 
-	tipo_evento
+	TIPO_EVENTO
 </select>
 
 <!-- Agregar plantilla evento -->
 <insert id="insertPlantillaEvento" parameterType="IngSoft.servicio.bean.EventoBeanData" flushCache="true">
-	insert into plantilla_evento(id_plantilla_evento,nombre,lim_inicio,lim_fin,id_tipo_evento,estado)
+	insert into PLANTILLA_EVENTO(IdPlantillaEvento,Nombre,FechaInicio,FechaFin,IdTipoEvento,Estado)
 	values (#{codigo},#{nombre},#{limiteInicio},#{limiteFin},#{idTipo},'A')
 </insert>
 <select id="getNextCodigo" resultType="java.lang.String">
-	select max(id_plantilla_evento)+1 from plantilla_evento	
+	select max(IdPlantillaEvento)+1 from PLANTILLA_EVENTO	
 </select>
 <insert id="insertPlantillaEventoSedes" parameterType="IngSoft.servicio.bean.EventoBeanData" flushCache="true">
- insert into plantilla_eventoxsede(id_plantilla_evento,id_sede) values(#{codigo},
+ insert into SEDExPLANTILLA(IdPlantillaEvento,IdSede) values(#{codigo},
  <foreach item="idSede" index="i" collection="idSede" separator="),(#{codigo}," close=")">
  	#{idSede}
  </foreach>
 </insert>
+<insert id="insertPlantillaEventoAmbiente" parameterType="IngSoft.servicio.bean.EventoBeanData" flushCache="true">
+ insert into AMBIENTExPLANTILLA(IdPlantillaEvento,IdAmbiente) values(#{codigo},
+ <foreach item="idAmbientes" index="i" collection="idAmbientes" separator="),(#{codigo}," close=")">
+ 	#{idAmbientes}
+ </foreach>
+</insert>
  <!-- Fin agregar  -->
  
-<select id="getAmbientesId" parameterType="int" resultType="java.lang.String">
-select id_tipo_ambiente  from plantilla_eventoxtipo_ambiente where id_plantilla_evento= #{codigo};
+<select id="getAmbientesId" parameterType="java.lang.String"  resultType="java.lang.String">
+select IdAmbiente from AMBIENTExPLANTILLA where IdPlantillaEvento= #{codigo};
 </select>
 
-<select id="getSedesId" parameterType="int" resultType="java.lang.String">
-select id_sede  from plantilla_eventoxsede where id_plantilla_evento= #{codigo};
+<select id="getSedesId" parameterType="java.lang.String"  resultType="java.lang.String">
+select IdSede  from SEDExPLANTILLA where IdPlantillaEvento= #{codigo};
 </select>
 
-<select id="getPLantillaEvento" parameterType="int" resultType="IngSoft.servicio.bean.EventoBeanData">
+<select id="getPLantillaEvento" parameterType="java.lang.String"  resultType="IngSoft.servicio.bean.EventoBeanData">
 select 
-id_plantilla_evento as codigo
-,id_tipo_evento as idTipo
-,nombre as nombre
-,lim_inicio as limiteInicio
-,lim_fin as limiteFin
-from plantilla_evento  pe where pe.estado='A' and  pe.id_plantilla_evento=#{codigo}; 
+IdPlantillaEvento as codigo
+,IdTipoEvento as idTipo
+,Nombre as nombre
+,FechaInicio as limiteInicio
+,FechaFin as limiteFin
+from PLANTILLA_EVENTO  pe where pe.Estado='A' and  pe.IdPlantillaEvento=#{codigo}; 
 </select>
 <!-- Modificar elemento -->
 <update id="updatePLantillaEvento" parameterType="IngSoft.servicio.bean.EventoBeanData">
-update plantilla_evento set nombre=#{nombre}
- ,id_tipo=#{idtipo}
- ,lim_inicio=#{limiteInicio}
- ,lim_fin=#{limiteFin}
- where id_plantilla_evento= #{codigo}
+update PLANTILLA_EVENTO set nombre=#{nombre}
+ ,IdTipoEvento=#{idtipo}
+ ,FechaInicio=#{limiteInicio}
+ ,FechaFin=#{limiteFin}
+ where IdPlantillaEvento= #{codigo}
 </update>
 
 <!-- Fin modificar -->
 <!--Eliminar evento -->
-<update id="deletePLantillaEvento" parameterType="int">
-update plantilla_evento set estado='I' where id_plantilla_evento= #{codigo}
+<update id="deletePLantillaEvento" parameterType="java.lang.String" >
+update PLANTILLA_EVENTO set Estado='I' where IdPlantillaEvento= #{codigo}
 </update>
 <!-- Fin eliminar -->
 </mapper>
