@@ -91,7 +91,7 @@ public class SorteoBeanFuncion {
 		}
 		public Vector<SedeMiniBeanData> getSedes(){
 			SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
-			List<SedeMiniBeanData> resultados=sqlsesion.selectList("searchSedeMini2");
+			List<SedeMiniBeanData> resultados=sqlsesion.selectList("searchSedeMini");
 			sqlsesion.close();
 			return new Vector<>(resultados);
 		}
