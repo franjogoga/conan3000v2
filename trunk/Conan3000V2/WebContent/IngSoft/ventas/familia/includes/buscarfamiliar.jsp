@@ -1,8 +1,11 @@
 <!-- content starts -->
-			  <div>
+			  
+		       <div>
 			    <ul class="breadcrumb">
-			      <li> <a href="#">Home</a> / <a href="#">Mantenimiento de Familiares</a> / Busqueda de Familiar</li>
-		        </ul>
+		        <li> <a href="../../general/index.jsp">Home</a> <span class="divider">/</span></li>
+		        <li>Mantenimiento de Familiares  </li>
+		       
+	          </ul>
 		      </div>
 			  <div class="row-fluid sortable">
 			    <div class="box span12">
@@ -59,8 +62,9 @@
 								</div>
 							  </div>
 			                <div class="form-actions">
-			              <button type="submit" class="btn btn-primary">Buscar</button>
-			              <button type="reset" class="btn"><a href="buscarfamiliar.jsp">Cancelar</a></button>
+			               <a  name="btnBuscar" class="btn btn-primary" href="">Buscar</a>  
+			               <a  name="btnCancelar" class="btn" href="buscarfamiliar.jsp">Cancelar</a>  
+			           
 		                </div>
 		                </div>
 		              </fieldset>
