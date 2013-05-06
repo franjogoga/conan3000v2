@@ -1,13 +1,13 @@
 package IngSoft.administracion.invitado;
 
-import IngSoft.administracion.sede.AccionConsultarSede;
+import IngSoft.administracion.invitado.AccionConsultarInvitado;
 import IngSoft.general.CoServlet;
 
 public class SMAInvitado extends CoServlet{
 	
 	@Override
 	protected void initAcciones() {
-		acciones.put("Consultar", new AccionConsultarSede());
+		acciones.put("Consultar", new AccionConsultarInvitado());
 		
 		System.out.print("--> SMAInvitado ");
 		
