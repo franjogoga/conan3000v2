@@ -200,8 +200,8 @@
 		     <!-- nuevo  aquiiiiiiiiiiiii creamos un formlario frmInvitado --> 
 			  <form id="frmInvitado" name="frmInvitado"  method="post" action="SMAInvitado" >
 			  
-			   <input   type ="hidden" name="accion"  value="Consultar"></imput>
-			   <input   type ="hidden" name="codigo"  value="1"></imput>
+			   <input   type ="hidden" name="accion"  value="Consultar"></input>
+			   <input   type ="hidden" name="codigo"  value="1"></input>
 			   
 			   
 			  </form>
