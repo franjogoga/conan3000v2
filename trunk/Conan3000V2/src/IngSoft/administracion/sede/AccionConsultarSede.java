@@ -16,7 +16,7 @@ public class AccionConsultarSede extends CoAccion{
 			HttpServletResponse response) throws CoException {
 		// TODO Auto-generated method stub
 		SedeBeanFuncion s= SedeBeanFuncion.getInstans();
-		//int codigo=0;
+		int codigo=Integer.parseInt( request.getParameter("codigo") );
 		SedeBeanData d= s.getSede(1);
 		
 		System.out.print(" AccionConsulta ----> " + d.getNombre());
