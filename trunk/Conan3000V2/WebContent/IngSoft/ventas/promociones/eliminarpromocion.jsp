@@ -1,9 +1,11 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
 <jsp:include page="/IngSoft/general/header.jsp" />
 </head>
 <body>
+
 		<jsp:include page="/IngSoft/general/superior.jsp" />
 		<div class="container-fluid">
 			<div class="row-fluid">
@@ -11,7 +13,7 @@
 				<jsp:include page="/IngSoft/general/noscript.jsp" />
 				<div id="content" class="span10">
 				    <!-- content starts -->
-				   <jsp:include page="includes/eliminarpromocion.jsp" />
+				   <jsp:include page="includes/eliminarpromocion.jsp"/>
 				    <!-- content ends -->
 				</div>
 			 </div>
