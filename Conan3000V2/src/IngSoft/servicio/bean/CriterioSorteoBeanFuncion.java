@@ -20,9 +20,9 @@ public class CriterioSorteoBeanFuncion {
 		CriterioSorteoBeanData criterioSorteoData= new CriterioSorteoBeanData();
 		criterioSorteoData.setNombre(request.getParameter("txtNombre")+"%");
 		try {
-			criterioSorteoData.setFechaIni(new Date(DF.parse(request.getParameter("date01")+"/0000").getTime()));
-			criterioSorteoData.setFechaFin(new Date(DF.parse(request.getParameter("date02")+"/0000").getTime()));
-			//System.out.println(criterioEventoData.getLimFin());
+			criterioSorteoData.setFechaIni(new Date(DF.parse(request.getParameter("date01")).getTime()));
+			criterioSorteoData.setFechaFin(new Date(DF.parse(request.getParameter("date02")).getTime()));
+			criterioSorteoData.setFechaSorteo(new Date(DF.parse(request.getParameter("date03")).getTime()));
 			
 		} catch (ParseException e) {
 			e.printStackTrace();
