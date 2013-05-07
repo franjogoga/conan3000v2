@@ -1,15 +1,31 @@
 <!DOCTYPE html>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="IngSoft.servicio.bean.SedeMiniBeanData"%>
+<%@page import="IngSoft.servicio.bean.AmbienteMiniBeanData"%>
+<%@page import="java.util.Date"%>
 <html lang="en">
 <head>
+	<!--
+		Charisma v1.0.0
 
+		Copyright 2012 Muhammad Usman
+		Licensed under the Apache License v2.0
+		http://www.apache.org/licenses/LICENSE-2.0
+
+		http://usman.it
+		http://twitter.com/halalit_usman
+	-->
 	<meta charset="utf-8">
-	<title>CONAN 3000</title>
+	<title>Eliminar Sorteo</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
-	<meta name="author" content="Dos Virgenes">
-
+	<meta name="author" content="Muhammad Usman">
+	<!--The beans  -->
+	<jsp:useBean id="sorteo" scope="request"class="IngSoft.servicio.bean.SorteoBeanData"></jsp:useBean>
+	<jsp:useBean id="sedes" scope="request"class="java.util.Vector"></jsp:useBean>
+	<jsp:useBean id="ambientes" scope="request"class="java.util.Vector"></jsp:useBean>
 	<!-- The styles -->
-	<link id="bs-css" href="css/bootstrap-cerulean.css" rel="stylesheet">    
+	<link id="bs-css" href="css/bootstrap-cerulean.css" rel="stylesheet">
 	<style type="text/css">
 	  body {
 		padding-bottom: 40px;
@@ -35,13 +51,42 @@
 	<link href='css/opa-icons.css' rel='stylesheet'>
 	<link href='css/uploadify.css' rel='stylesheet'>
 
+	<!-- The HTML5 shim, for IE6-8 support of HTML5 elements -->
+	<!--[if lt IE 9]>
+	  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
 	<!-- The fav icon -->
 	<link rel="shortcut icon" href="img/conan_logo.png">
-		
+	<script>
+	function alt_fecha(obj){
+	obj.value=obj.value.slice(0,5);
+	
+	}
+	
+	function alt_submit(){
+		var form= document.frmDelete;
+		var r=confirm("¿Esta seguro que desea borrar este sorteo?");
+		if(r==true){form.submit();}
+			}	
+
+
+	</script>	
+	
+	<%! public boolean  encontrar(String a, String[] b){
+		for(int i=0;i<b.length;i++){			
+			if(b[i].equals(a)) return true;	
+		}
+	return false;
+	}
+	public String formatear(java.util.Date date){
+		SimpleDateFormat DF= new SimpleDateFormat("dd/MM");
+		return DF.format(date);
+	}
+	%>	
 </head>
 
 <body>
-		
 		<jsp:include page="/IngSoft/general/superior.jsp" />
 		<div class="container-fluid">
 		<div class="row-fluid">
@@ -49,108 +94,98 @@
 			<!-- left menu starts -->
 			<jsp:include page="/IngSoft/general/leftmenu.jsp" />
 						<!-- left menu ends -->
-            
-            
-           
 			
-		  <noscript>
+			
+			<noscript>
 				<div class="alert alert-block span10">
 					<h4 class="alert-heading">Warning!</h4>
 					<p>You need to have <a href="http://en.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript</a> enabled to use this site.</p>
 				</div>
 			</noscript>
 			
+
 			<div id="content" class="span10">
-			  <!-- content starts -->
-			  <div>
+			<!-- content starts -->
+			
+
+			<div>
 				<ul class="breadcrumb">
 					<li>
-						<a href="#">Inicio</a> <span class="divider">/</span>
+						<a href="#">Home</a> <span class="divider">/</span>
 					</li>
 					<li>
 						<a href="#">Mantenimiento de Sorteos</a> <span class="divider">/</span>
 					</li>
 					<li>
-						Eliminar Sorteo
+						Eliminar Sorteos
 					</li>
 				</ul>
 			</div>
-			  
-			  <div class="row-fluid sortable">
-			    <div class="box span12">
-			      <div class="box-header well" data-original-title>
-			        <h2> ELIMINAR SORTEO</h2>
-		          </div>
-				  
-			      <div class="box-content">
-			        <form class="form-horizontal">
-			          <fieldset>
-							
-							<div class="control-group">
-							  <label class="control-label" for="typeahead">C&oacute;digo del Sorteo :</label>							  
-							  <div class="controls">
-								<input type="text" class="span6 typeahead" id="codigoSorteo"  data-provide="typeahead" data-items="4" value="SOR001" disabled=""></input>								
-							  </div>
-							</div>
-							
-							<div class="control-group">
-							  <label class="control-label" for="typeahead">Nombre del Sorteo :</label>							  
-							  <div class="controls">
-								<input type="text" class="span6 typeahead" id="nombreSorteo"  data-provide="typeahead" data-items="4" value="Dia de la Madre" disabled=""></input>								
-							  </div>
-							</div>
-						
-							
-							<div class="control-group">
-								<label class="control-label" for="selectError">Sede :</label>
+			
+			<div class="row-fluid sortable">
+				<div class="box span12">
+					<div class="box-header well" data-original-title>
+					  <h2><i class="icon-trash"></i>ELIMINAR SORTEO</h2>
+				  </div>
+					<div class="box-content">
+						<form class="form-horizontal" name="frmDelete"  action="<%= response.encodeURL("SMSSorteo")%>" method="post">
+						<input type="hidden" name="codigo" value="<%=sorteo.getCodigo()%>"></input>
+						<input type="hidden" name="accion" value="Eliminar"></input>
+						<input type="hidden" name="tipo" value="2"></input>
+						  <fieldset>
+						    <div class="control-group">
+						      <label class="control-label" for="disabledInput">Nombre de sorteo: </label>
+						      <div class="controls">
+						        <input class="input-xlarge disabled" id="disabledInput" type="text" placeholder="Disabled input here.." disabled id="txtNombreSorteo" name="txtNombreSorteo" value="<%=sorteo.getNombre()%>">
+					          </div>
+					        </div>
+
+							  <div class="control-group">
+								<label class="control-label" for="selectError1">Sedes relacionadas</label>
 								<div class="controls">
-								  <select id="selectError7" data-rel="chosen" disabled="">
-									<option>Sede 1</option>
-									<option>Sede 2</option>
-									<option>Sede 3</option>
-									<option>Sede 4</option>
-									<option>Sede 5</option>
+								  <select id="selectError1" multiple data-rel="chosen" id="cmbSedes" name="cmbSedes" disabled>
+									<%for(int i=0;i<sedes.size();i++){ %>
+										<option value="<%= ((SedeMiniBeanData)sedes.get(i)).getCodigo()%>" <%=encontrar(((SedeMiniBeanData)sedes.get(i)).getCodigo(), sorteo.getIdSede())?"selected":""%>><%= ((SedeMiniBeanData)sedes.get(i)).getNombre()%></option>
+									<%} %>																	
 								  </select>
 								</div>
-							</div>		
+							  </div>
+
+							  <div class="control-group">
+							  <label class="control-label" for="date01">Fecha Inicio</label>
+							  <div class="controls">
+								<input type="text" class="input-xlarge datepicker" id="fFecIncio"  readonly="true" value="<%=formatear(new Date(sorteo.getLimiteInicio().getTime())) %>"  name="fFecIncio" onchange="alt_fecha(this)" disabled>
+							  </div>
+							</div>
 							
 							<div class="control-group">
-							<label class="control-label">Estado :</label>
-							<div class="controls">
-							  <label class="radio">
-								<input type="radio" name="opcionactivo" id="opcionactivo" value="activo" checked="" disabled="">
-								Activo
-							  </label>
-							  <div style="clear:both"></div>
-							  <label class="radio">
-								<input type="radio" name="opcioninactivo" id="opcioninactivo" value="inactivo" disabled="">
-								Inactivo
-							  </label>
+							  <label class="control-label" for="date02">Fecha Fin</label>
+							  <div class="controls">
+								<input type="text" class="input-xlarge datepicker" id="fFecFin" name="fFecFin" readonly="true" value="<%=formatear(new Date(sorteo.getLimiteFin().getTime())) %>" onchange="alt_fecha(this)" disabled>
+							  </div>
 							</div>
-						  </div>				
-						
-			            <div class="form-actions">
-			              <button type="submit" class="btn btn-primary">Eliminar</button>
-			              <button type="reset" class="btn">Cancelar</button>
-		                </div>
-		              </fieldset>
-		            </form>
-		          </div>
-		        </div>
-			    <!--/span-->
-		      </div>
-			  <!--/row-->
-			  <div class="row-fluid sortable">
-			    <!--/span-->
-		      </div>
-			  <!--/row-->
-			  <div class="row-fluid sortable">
-			    <!--/span-->
-		      </div>
-			  <!--/row-->			 		  
-       
+						    <div class="form-actions">
+							  <button type="button" class="btn btn-primary" onclick="javascript:alt_submit()">Eliminar</button>
+							  <button type="button" class="btn" onclick="location.href='buscarsorteo.jsp'" >Cancelar</button>
+							</div>
+						  </fieldset>
+					  </form>   
+
+				  </div>
+				</div><!--/span-->
+
+			</div><!--/row-->
+
+
+			<div class="row-fluid sortable"><!--/span-->
+			
+			</div><!--/row-->
+			
+			<div class="row-fluid sortable"><!--/span-->
+
+			</div><!--/row-->		 
 					<!-- content ends -->
-		  </div><!--/#content.span10-->
+			</div><!--/#content.span10-->
 				</div><!--/fluid-row-->
 				
 		<hr>
@@ -164,15 +199,12 @@
 				<p>Here settings can be configured...</p>
 			</div>
 			<div class="modal-footer">
-				<a href="#" class="btn" data-dismiss="modal">Cerrar</a>
-				<a href="#" class="btn btn-primary">Guardar Cambios</a>
+				<a href="#" class="btn" data-dismiss="modal">Close</a>
+				<a href="#" class="btn btn-primary">Save changes</a>
 			</div>
 		</div>
 
-		<footer>
-		  <p class="pull-left"><a href="http://usman.it/free-responsive-admin-template">Conan 3000</a> &copy;  2013</p>
-          <p class="pull-right">Powered by: <a href="http://usman.it/free-responsive-admin-template">Dos V&iacute;rgenes</a></p>
-		</footer>
+		<jsp:include page="/IngSoft/general/inferior.jsp" />
 		
 	</div><!--/.fluid-container-->
 
@@ -249,9 +281,7 @@
 	<script src="js/jquery.history.js"></script>
 	<!-- application script for Charisma demo -->
 	<script src="js/charisma.js"></script>
-	<script>	
-
-	</script>
-		<script>loadContent()</script> 
+	
+		
 </body>
 </html>

@@ -139,7 +139,7 @@
 					        <div class="control-group">
 								<label class="control-label" for="selectM1">Sede (*):</label>
 								<div class="controls">
-								  <select id="selectM1" multiple data-rel="chosen" id="cmbSedes" name="cmbSedes" >
+								  <select id="selectM1"  data-rel="chosen" id="cmbSedes" name="cmbSedes" >
 									<%for(int i=0;i<sedes.size();i++){ %>
 										<option><%= ((SedeMiniBeanData)sedes.get(i)).getNombre()%></option>
 									<%} %>															
@@ -150,16 +150,21 @@
 						    <div class="control-group">
 							  <label class="control-label" for="date01">Fecha Inicio(*):</label>
 							  <div class="controls">
-								<input type="text" class="input-xlarge datepicker" id="fFecIncio" value="01/01"  name="fFecIncio" onchange="alt_fecha(this)">
+								<input type="text" class="input-xlarge datepicker" id="fFecIncio"  name="fFecIncio" >
 							  </div>
 							</div>
 							<div class="control-group">
 							  <label class="control-label" for="date02">Fecha Fin(*):</label>
 							  <div class="controls">
-								<input type="text" class="input-xlarge datepicker" id="fFecFin" value="31/12"  name="fFecFin" onchange="alt_fecha(this)">
+								<input type="text" class="input-xlarge datepicker" id="fFecFin"  name="fFecFin" >
 							  </div>
 							</div>
-							
+							<div class="control-group">
+							  <label class="control-label" for="date03">Fecha Sorteo(*):</label>
+							  <div class="controls">
+								<input type="text" class="input-xlarge datepicker" id="fFecSorteo"   name="fFecSorteo" >
+							  </div>
+							</div>
 							<div class="form-actions">
 							  <button type="button" class="btn btn-primary" onclick="javascript:alt_submit()">Agregar</button>
 							  <button type="button" class="btn" onclick="location.href='buscarsorteo.jsp'" >Cancelar</button>
