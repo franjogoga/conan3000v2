@@ -14,7 +14,7 @@ sorteo.fechaIni as fechaIni,
 sorteo.fechaFin as fechaFin,
 sorteo.fechaSorteo fechaSorteo,
 sorteo.estado as estado
-from sorteo 
+from SORTEO 
 <where>
 <if test="nombre != null ">
         sorteo.nombre  like  #{nombre}
@@ -36,10 +36,12 @@ order by 1 asc
 
 <!-- Agregar plantilla Sorteo -->
 <insert id="insertPlantillaSorteo" parameterType="IngSoft.servicio.bean.SorteoBeanData" flushCache="true">
-	insert into sorteo(nombre,fechaIni,fechaFin,estado,idSede)
-	values (#{nombre},#{fechaIni},#{fechaFin},'ACTIVADO',#{idSede})
+	insert into SORTEO(idSede,idSorteo,FechaInicioIncr,Descripcion,FechaFinInscr,FechaSorteo, Estado)
+	values (#{idSede},#{idSorteo},#{fechaInicio},#{descripcion},#{fechaFin},#{fechaSorteo},'ACTIVADO')
 </insert>
-
+<select id="getNextCodigo" resultType="java.lang.String">
+	select max(IdSorteo) from SORTEO	
+</select>
  <!-- Fin agregar  -->
  
 <!--
