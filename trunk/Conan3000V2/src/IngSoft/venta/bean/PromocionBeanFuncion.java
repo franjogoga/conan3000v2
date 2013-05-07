@@ -2,8 +2,7 @@ package IngSoft.venta.bean;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;
-import java.util.List;
-import java.util.Vector;
+
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -14,11 +13,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import IngSoft.general.CoException;
 import IngSoft.general.MyBatisSesion;
-import IngSoft.servicio.bean.AmbienteMiniBeanData;
-import IngSoft.servicio.bean.EventoBeanData;
-import IngSoft.servicio.bean.EventoBeanFuncion;
-import IngSoft.servicio.bean.SedeMiniBeanData;
-import IngSoft.servicio.bean.TipoEventoMiniBeanData;
+
 
 public class PromocionBeanFuncion {
 	static private PromocionBeanFuncion PromocionFuncion=null;
@@ -39,7 +34,7 @@ public class PromocionBeanFuncion {
 		//promocionData.setIdPromocion(request.getParameterValues(""));Integer.parseInt
 		//promocionData.setIdSede(request.getParameterValues("cmbSedes"));
 		//promocionData.setNombre((request.getParameter("cmbTipo")));
-		promocionData.setNombre(request.getParameter("txtNombreEvento"));
+		promocionData.setNombre(request.getParameter("txtNombrePromocion"));
 		promocionData.setFechaInicio(new Date(DF.parse(request.getParameter("fFechInicio")+"/0000").getTime()));
 		promocionData.setFechafin(new Date(DF.parse(request.getParameter("fFechFin")+"/0000").getTime()));
 		promocionData.setDescripcion(request.getParameter("txtDescripcion"));
@@ -57,7 +52,17 @@ public class PromocionBeanFuncion {
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		
 		try{
-			promocionData.setIdPromocion(Integer.parseInt((String)sqlsesion.selectOne("getNextCodigo2")));
+			String codigo= (String)sqlsesion.selectOne("Data.venta.promocion.getNextCodigo");
+			if(codigo!=null){
+			int cod= Integer.parseInt(codigo.substring(3))+1;
+			String defecto= "000000";
+			String temp= defecto.substring(0, defecto.length()-String.valueOf(cod).length()).concat(String.valueOf(cod));
+			
+			promocionData.setIdPromocion(codigo.substring(0,3).concat(temp));}
+			else promocionData.setIdPromocion("PRO000001");
+			
+			
+			
 			sqlsesion.insert("insertPromocion",promocionData);
 			//sqlsesion.insert("insertPlantillaEventoSedes",eventoData);
 			
@@ -77,13 +82,13 @@ public class PromocionBeanFuncion {
 		return resultado;
 	}
 	
-	/*public boolean eliminarEvento(int codigo) throws CoException {
+	public boolean eliminarPromocion(PromocionBeanData promocionData) throws CoException {
 		boolean resultado=false;		
 		
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
 		
-			sqlsesion.update("deletePLantillaEvento",codigo);
+			sqlsesion.update("deletePLantillaPromocion",promocionData.getCodigo());
 			
 			resultado=true;
 		}
@@ -102,9 +107,13 @@ public class PromocionBeanFuncion {
 		return resultado;
 	}
 	
-	public void modificarEvento(EventoBeanData evento,String[] antSede,String[] antAmb) throws CoException {
-	*/		
-		
+	
+			
+	
+
+	
+	//public void modificarEvento(PromociconBeanData promocion,String[] antSede,String[] antAmb) throws CoException {
+	
 		
 //		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 //		try{
