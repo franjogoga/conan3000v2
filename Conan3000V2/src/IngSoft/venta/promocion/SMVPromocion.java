@@ -16,7 +16,7 @@ public class SMVPromocion extends CoServlet{
 		//acciones.put("Consultar", new AccionConsultarPromocion());
 		acciones.put("Agregar", new AccionAgregarPromocion());
 		//acciones.put("Modificar", new AccionModificarEvento());
-		//acciones.put("Eliminar", new AccionEliminarEvento());
+		acciones.put("Eliminar", new AccionEliminarPromocion());
 	}
 	
 	
