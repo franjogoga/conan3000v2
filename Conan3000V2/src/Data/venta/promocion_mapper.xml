@@ -12,7 +12,7 @@
 	values (#{codigo},#{nombre},#{fechaInicio},#{fechaFin},#{descripcion},'activo')
 </insert>
 
-<select id="getNextCodigo" resultType="java.lang.String">
+<select id="getNextCodigo2" resultType="java.lang.String">
 	select max(IdPromocion) from PROMOCION
 </select>
 
@@ -28,7 +28,7 @@
 
 <!--Eliminar evento -->
 <update id="deletePLantillaPromocion" parameterType="java.lang.String" >
-update PLANTILLA_PROMOCION set Estado='I' where IdPlantillaPromocion= #{codigo}
+update PLANTILLA_PROMOCION set Estado='Inactivo' where IdPlantillaPromocion= #{codigo}
 </update>
 <!-- Fin eliminar -->
 
@@ -36,4 +36,3 @@ update PLANTILLA_PROMOCION set Estado='I' where IdPlantillaPromocion= #{codigo}
 
 </mapper>
  
-</mapper>
