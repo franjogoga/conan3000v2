@@ -8,7 +8,7 @@
   
 <!-- Agregar plantilla promocion -->
 <insert id="insertPromocion" parameterType="IngSoft.venta.bean.PromocionBeanData" flushCache="true">
-	insert into Promocion(idPromocion,nombre,fechainicio,fechafin,descripcion,estado)
+	insert into Promocion(idPromocion,Nombre,FechaInicio,FechaFin,Descripcion,Estado)
 	values (#{codigo},#{nombre},#{fechaInicio},#{fechaFin},#{descripcion},'activo')
 </insert>
 
