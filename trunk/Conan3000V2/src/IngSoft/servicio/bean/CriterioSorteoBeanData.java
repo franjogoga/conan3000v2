@@ -3,13 +3,19 @@ package IngSoft.servicio.bean;
 import java.sql.Date;
 
 public class CriterioSorteoBeanData {
-	
+	private String codigo;
 	private String nombre;
 	private Date fechaIni;
 	private Date fechaFin;
 	private Date fechaSorteo;
 	private String estado;
-
+	
+	public String getCodigo() {
+		return codigo;
+	}
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
+	}
 	public Date getFechaSorteo() {
 		return fechaSorteo;
 	}
@@ -41,5 +47,6 @@ public class CriterioSorteoBeanData {
 	public void setFechaFin(Date fechaFin) {
 		this.fechaFin = fechaFin;
 	}
+
 
 }
