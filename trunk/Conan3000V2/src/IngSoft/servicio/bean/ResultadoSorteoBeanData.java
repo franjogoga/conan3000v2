@@ -1,12 +1,15 @@
 package IngSoft.servicio.bean;
 
+import java.io.Serializable;
 import java.sql.Date;
 
-public class ResultadoSorteoBeanData {
+public class ResultadoSorteoBeanData implements Serializable {
 	private int codigo;
 	private String nombre;
 	private Date fechaIni;
 	private Date fechaFin;
+	private Date fechaSorteo;
+	private String estado;
 	
 	public int getCodigo() {
 		return codigo;
@@ -14,6 +17,19 @@ public class ResultadoSorteoBeanData {
 	public void setCodigo(int codigo) {
 		this.codigo = codigo;
 	}
+	public Date getFechaSorteo() {
+		return fechaSorteo;
+	}
+	public void setFechaSorteo(Date fechaSorteo) {
+		this.fechaSorteo = fechaSorteo;
+	}
+	public String getEstado() {
+		return estado;
+	}
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+
 	public String getNombre() {
 		return nombre;
 	}
