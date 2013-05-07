@@ -16,19 +16,12 @@
 	select max(IdPromocion) from PROMOCION
 </select>
 
- <!-- <insert id="insertPlantillaEventoSedes" parameterType="IngSoft.servicio.bean.EventoBeanData" flushCache="true">
- insert into plantilla_eventoxsede(id_plantilla_evento,id_sede) values(#{codigo},
- <foreach item="idSede" index="i" collection="idSede" separator="),(#{codigo}," close=")">
- 	#{idSede}
- </foreach>
-</insert>
 
--->
  <!-- Fin agregar  -->
 
-<!--Eliminar evento -->
-<update id="deletePLantillaPromocion" parameterType="java.lang.String" >
-update PLANTILLA_PROMOCION set Estado='Inactivo' where IdPlantillaPromocion= #{codigo}
+<!--Eliminar promocion -->
+<update id="deletePromocion" parameterType="IngSoft.venta.bean.PromocionBeanData" flushCache="true" >
+update PROMOCION set Estado='Inactivo' where IdPromocion= #{codigo}
 </update>
 <!-- Fin eliminar -->
 
