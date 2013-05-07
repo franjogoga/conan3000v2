@@ -26,11 +26,11 @@ public class SorteoBeanFuncion {
 	public SorteoBeanData crearSorteo(HttpServletRequest request, HttpServletResponse response){
 		SorteoBeanData sorteoData= new SorteoBeanData();
 		try{
-			sorteoData.setIdSede(request.getParameterValues("cmbSedes"));
+			sorteoData.setIdSede(request.getParameter("cmbSedes"));
 			sorteoData.setFechaInicio(new Date(DF.parse(request.getParameter("fFecIncio")).getTime()));
 			sorteoData.setFechaFin(new Date(DF.parse(request.getParameter("fFecIncio")).getTime()));
-			sorteoData.setFechaSorteo(new Date(DF.parse(request.getParameter("fFecIncio")).getTime()));
-			sorteoData.setDesc(request.getParameter("txtDescSorteo"));
+			sorteoData.setFechaSorteo(new Date(DF.parse(request.getParameter("fFecSorteo")).getTime()));
+			sorteoData.setDescripcion(request.getParameter("txtNombreSorteo"));
 			sorteoData.setEstado(request.getParameter("txtCodigoSorteo"));
 			}catch(Exception e){
 				e.printStackTrace();		
@@ -43,9 +43,16 @@ public class SorteoBeanFuncion {
 			l.lock();
 			SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 			try{
-				sorteoData.setCodigo(Integer.parseInt((String)sqlsesion.selectOne("getNextCodigo")));
+				String codigo= (String)sqlsesion.selectOne("Data.servicio.sorteo.getNextCodigo");
+				if(codigo!=null){
+				int cod= Integer.parseInt(codigo.substring(3))+1;
+				String defecto= "000000";
+				String temp= defecto.substring(0, defecto.length()-String.valueOf(cod).length()).concat(String.valueOf(cod));
+				
+				sorteoData.setCodigo(codigo.substring(0,3).concat(temp));}
+				else sorteoData.setCodigo("PSO000001");
+				
 				sqlsesion.insert("insertPlantillaSorteo",sorteoData);
-				sqlsesion.insert("insertPlantillaSorteoSedes",sorteoData);
 				
 				resultado=true;
 			}
@@ -89,9 +96,27 @@ public class SorteoBeanFuncion {
 				
 			return resultado;
 		}
+		
+		public SorteoBeanData consultarSorteo(int codigo){
+			SorteoBeanData sorteoData=null;
+			SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+			try{
+				sorteoData= sqlsesion.selectOne("getPLantillaSorteo",codigo);
+				//eventoData.setCodigo(Integer.parseInt((String)sqlsesion.selectOne("getNextCodigo")));
+				//sqlsesion.insert("insertPlantillaEvento",eventoData);
+				List<String> temp = null;
+				temp=sqlsesion.selectList("getSedesId",codigo);
+				//sorteoData.setIdSede();
+			}
+			finally{
+				sqlsesion.close();
+			}
+			return sorteoData;
+		}
+		
 		public Vector<SedeMiniBeanData> getSedes(){
 			SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
-			List<SedeMiniBeanData> resultados=sqlsesion.selectList("searchSedeMini2");
+			List<SedeMiniBeanData> resultados=sqlsesion.selectList("Data.servicio.evento.searchSedeMini");
 			sqlsesion.close();
 			return new Vector<>(resultados);
 		}

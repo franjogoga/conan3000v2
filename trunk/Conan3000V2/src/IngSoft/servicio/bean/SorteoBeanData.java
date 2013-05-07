@@ -4,28 +4,42 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class SorteoBeanData implements Serializable {
-	private int codigo;
-	private String[] idSede;
+	private String idSorteo;
+	private String idSede;
+	private String nombre;
 	private Date fechaInicio;
 	private Date fechaFin;
 	private Date fechaSorteo;
-	private String desc;
+	private String descripcion;
 	private String estado;
 	private int[] bungalows;
 	private int[] socios;
 	private int[] ganadores;
 	
-	public String[] getIdSede() {
+	public String getCodigo() {
+		return idSorteo;
+	}
+	public void setCodigo(String codigo) {
+		this.idSorteo = codigo;
+	}
+	public String getNombre() {
+		return nombre;
+	}
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getIdSorteo() {
+		return idSorteo;
+	}
+	public void setIdSorteo(String idSorteo) {
+		this.idSorteo = idSorteo;
+	}
+	public String getIdSede() {
 		return idSede;
 	}
-	public void setIdSede(String[] idSede) {
+	public void setIdSede(String idSede) {
 		this.idSede = idSede;
-	}
-	public int getCodigo() {
-		return codigo;
-	}
-	public void setCodigo(int codigo) {
-		this.codigo = codigo;
 	}
 	public int[] getBungalows() {
 		return bungalows;
@@ -65,11 +79,11 @@ public class SorteoBeanData implements Serializable {
 	public void setFechaSorteo(Date fechaSorteo) {
 		this.fechaSorteo = fechaSorteo;
 	}
-	public String getDesc() {
-		return desc;
+	public String getDescripcion() {
+		return descripcion;
 	}
-	public void setDesc(String desc) {
-		this.desc = desc;
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
 	}
 	public String getEstado() {
 		return estado;
