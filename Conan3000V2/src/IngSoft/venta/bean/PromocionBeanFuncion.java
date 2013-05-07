@@ -52,7 +52,7 @@ public class PromocionBeanFuncion {
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		
 		try{
-			String codigo= (String)sqlsesion.selectOne("Data.venta.promocion.getNextCodigo");
+			String codigo= (String)sqlsesion.selectOne("Data.venta.promocion.getNextCodigo2");
 			if(codigo!=null){
 			int cod= Integer.parseInt(codigo.substring(3))+1;
 			String defecto= "000000";
