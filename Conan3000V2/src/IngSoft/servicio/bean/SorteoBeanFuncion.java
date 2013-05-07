@@ -27,9 +27,9 @@ public class SorteoBeanFuncion {
 		SorteoBeanData sorteoData= new SorteoBeanData();
 		try{
 			sorteoData.setIdSede(request.getParameterValues("cmbSedes"));
-			sorteoData.setFechaInicio(new Date(DF.parse(request.getParameter("fFecIncio")+"/0000").getTime()));
-			sorteoData.setFechaFin(new Date(DF.parse(request.getParameter("fFecIncio")+"/0000").getTime()));
-			sorteoData.setFechaSorteo(new Date(DF.parse(request.getParameter("fFecIncio")+"/0000").getTime()));
+			sorteoData.setFechaInicio(new Date(DF.parse(request.getParameter("fFecIncio")).getTime()));
+			sorteoData.setFechaFin(new Date(DF.parse(request.getParameter("fFecIncio")).getTime()));
+			sorteoData.setFechaSorteo(new Date(DF.parse(request.getParameter("fFecIncio")).getTime()));
 			sorteoData.setDesc(request.getParameter("txtDescSorteo"));
 			sorteoData.setEstado(request.getParameter("txtCodigoSorteo"));
 			}catch(Exception e){
