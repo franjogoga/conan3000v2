@@ -8,12 +8,13 @@
 
 <select id="searchPlantillaSorteo" parameterType="IngSoft.servicio.bean.CriterioSorteoBeanData" resultType="IngSoft.servicio.bean.ResultadoSorteoBeanData">
 select 
-sorteo.nombre,
-sorteo.fechaIni,
-sorteo.fechaFin,
-sorteo.fechaSorteo,
-sorteo.estado 
-from sorteo ,sede 
+sorteo.idSorteo as codigo,
+sorteo.nombre as nombre,
+sorteo.fechaIni as fechaIni,
+sorteo.fechaFin as fechaFin,
+sorteo.fechaSorteo fechaSorteo,
+sorteo.estado as estado
+from sorteo 
 <where>
 <if test="nombre != null ">
         sorteo.nombre  like  #{nombre}
