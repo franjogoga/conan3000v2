@@ -8,12 +8,12 @@
   
 <!-- Agregar plantilla promocion -->
 <insert id="insertPromocion" parameterType="IngSoft.venta.bean.PromocionBeanData" flushCache="true">
-	insert into Promocion(idPromocion,Nombre,FechaInicio,FechaFin,Descripcion,Estado)
+	insert into PROMOCION(IdPromocion,Nombre,FechaInicio,FechaFin,Descripcion,Estado)
 	values (#{codigo},#{nombre},#{fechaInicio},#{fechaFin},#{descripcion},'activo')
 </insert>
 
-<select id="getNextCodigo2" resultType="java.lang.String">
-	select max(idPromocion)+1 from Promocion
+<select id="getNextCodigo" resultType="java.lang.String">
+	select max(IdPromocion) from PROMOCION
 </select>
 
  <!-- <insert id="insertPlantillaEventoSedes" parameterType="IngSoft.servicio.bean.EventoBeanData" flushCache="true">
@@ -23,9 +23,17 @@
  </foreach>
 </insert>
 
- -->
-
-
+-->
  <!-- Fin agregar  -->
+
+<!--Eliminar evento -->
+<update id="deletePLantillaPromocion" parameterType="java.lang.String" >
+update PLANTILLA_PROMOCION set Estado='I' where IdPlantillaPromocion= #{codigo}
+</update>
+<!-- Fin eliminar -->
+
+
+
+</mapper>
  
 </mapper>
