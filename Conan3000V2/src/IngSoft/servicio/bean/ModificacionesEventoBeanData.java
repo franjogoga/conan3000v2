@@ -1,6 +1,7 @@
 package IngSoft.servicio.bean;
 
 public class ModificacionesEventoBeanData {
+	private String codigo;
 	private String cambio;
 	private String antiguo;
 	private String nuevo;	
@@ -21,5 +22,11 @@ public class ModificacionesEventoBeanData {
 	}
 	public void setNuevo(String nuevo) {
 		this.nuevo = nuevo;
+	}
+	public String getCodigo() {
+		return codigo;
+	}
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
 	}
 }
