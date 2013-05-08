@@ -18,7 +18,7 @@ import IngSoft.servicio.bean.ResultadoEventoBeanData;
 public class CriterioPromocionBeanFunction {
 
 	SimpleDateFormat DF = new SimpleDateFormat("dd/MM/yyyy");
-	
+
 	public CriterioPromocionBeanData crearCriterio(HttpServletRequest request, HttpServletResponse response){
 		
 		CriterioPromocionBeanData criterioPromocionData= new CriterioPromocionBeanData();
