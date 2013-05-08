@@ -93,12 +93,29 @@ from PLANTILLA_EVENTO  pe where pe.Estado='A' and  pe.IdPlantillaEvento=#{codigo
 <!-- Modificar elemento -->
 <update id="updatePLantillaEvento" parameterType="IngSoft.servicio.bean.EventoBeanData">
 update PLANTILLA_EVENTO set nombre=#{nombre}
- ,IdTipoEvento=#{idtipo}
+ ,IdTipoEvento=#{idTipo}
  ,FechaInicio=#{limiteInicio}
  ,FechaFin=#{limiteFin}
  where IdPlantillaEvento= #{codigo}
 </update>
-
+<insert id="insertPlantillaEventoSedesUpdate" parameterType="IngSoft.servicio.bean.ModificacionesEventoBeanData" >
+insert into SEDExPLANTILLA(IdPlantillaEvento,IdSede) values(#{codigo},#{nuevo})
+</insert>
+<update id="updatePlantillaEventoSedes" parameterType="IngSoft.servicio.bean.ModificacionesEventoBeanData">
+update SEDExPLANTILLA set IdSede=#{nuevo} where IdPlantillaEvento=#{codigo} and IdSede=#{antiguo}
+</update>
+<delete id="deletePlantillaEventoSede" parameterType="IngSoft.servicio.bean.ModificacionesEventoBeanData">
+delete from SEDExPLANTILLA where IdPlantillaEvento=#{codigo} and IdSede=#{antiguo}
+</delete>
+<insert id="insertPlantillaEventoAmbienteUpdate" parameterType="IngSoft.servicio.bean.ModificacionesEventoBeanData">
+insert into AMBIENTExPLANTILLA(IdPlantillaEvento,IdAmbiente) values(#{codigo},#{nuevo})
+</insert>
+<update id="updatePlantillaEventoAmbiente" parameterType="IngSoft.servicio.bean.ModificacionesEventoBeanData">
+update AMBIENTExPLANTILLA set IdAmbiente=#{nuevo} where IdPlantillaEvento=#{codigo} and IdAmbiente=#{antiguo}
+</update>
+<delete id="deletePlantillaEventoAmbiente" parameterType="IngSoft.servicio.bean.ModificacionesEventoBeanData">
+delete from AMBIENTExPLANTILLA where IdPlantillaEvento=#{codigo} and IdAmbiente=#{antiguo}
+</delete>
 <!-- Fin modificar -->
 <!--Eliminar evento -->
 <update id="deletePLantillaEvento" parameterType="java.lang.String" >

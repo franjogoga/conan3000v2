@@ -106,11 +106,12 @@ public class EventoBeanFuncion {
 		return resultado;
 	}
 	
-	private Vector<ModificacionesBeanData> generaListaCambios(String[] ant , String[] nue){
-			Vector<ModificacionesBeanData> mods=new Vector<ModificacionesBeanData>();
-			Vector antV= new Vector(Arrays.asList(ant));
-			Vector nueV= new Vector(Arrays.asList(nue));
-			
+	private Vector<ModificacionesEventoBeanData> generaListaCambios(String[] ant , String[] nue ,String cod){
+			Vector<ModificacionesEventoBeanData> mods=new Vector<ModificacionesEventoBeanData>();
+			Vector<String> antV= new Vector<String>(Arrays.asList(ant));
+			Vector<String> nueV= new Vector<String>(Arrays.asList(nue));
+			antV.remove("");
+			nueV.remove("");
 			for(int i=0;i<antV.size();i++){
 				if(nueV.remove(antV.get(i))){
 				antV.remove(i);
@@ -125,41 +126,57 @@ public class EventoBeanFuncion {
 			}
 			while(true){
 				if(antV.size()==0 && nueV.size()==0) break;
-				ModificacionesBeanData cambio= new ModificacionesBeanData();
+				ModificacionesEventoBeanData cambio= new ModificacionesEventoBeanData();
 				if(antV.size()==0 || "".equals((String)antV.get(0)) ) {
 					cambio.setCambio("I");
 					cambio.setNuevo((String)nueV.get(0));
 					nueV.remove(nueV.get(0));
+					cambio.setCodigo(cod);
+					mods.add(cambio);
+					continue;					
 					}
 				if(nueV.size()==0 || "".equals((String)nueV.get(0)) ) {
 					cambio.setCambio("D");
 					cambio.setAntiguo((String)antV.get(0));
-					antV.remove(antV.get(0));}					
+					antV.remove(antV.get(0));
+					cambio.setCodigo(cod);
+					mods.add(cambio);
+					continue;}					
 				else {
 				cambio.setCambio("U");
 				cambio.setAntiguo((String)antV.get(0));
 				cambio.setNuevo((String)nueV.get(0));
 				antV.remove(antV.get(0));
 				nueV.remove(nueV.get(0));
+				cambio.setCodigo(cod);
+				mods.add(cambio);
+				continue;
 				}
-				mods.add(cambio);			
+							
 			}
 		
 		return mods;
 	}
 	
 	public void modificarEvento(EventoBeanData evento,String[] antSede,String[] antAmb) throws CoException {
-			
-		
-		
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
-			Vector<ModificacionesBeanData> mods;
-			mods= this.generaListaCambios(antSede, evento.getIdSede());
-			System.out.println("Sedes="+mods.size());
-			mods= this.generaListaCambios(antAmb, evento.getIdAmbientes());
-			System.out.println("Ambs="+mods.size());
-			sqlsesion.update("Data.servicio.evento.updatePLantillaEvento");
+			Vector<ModificacionesEventoBeanData> mods;
+			mods= this.generaListaCambios(antSede, evento.getIdSede(),evento.getCodigo());
+			for(int i=0;i<mods.size();i++){
+				if("I".equals(mods.get(i).getCambio())) sqlsesion.insert("Data.servicio.evento.insertPlantillaEventoSedesUpdate",(ModificacionesEventoBeanData)mods.get(i));
+				if("U".equals(mods.get(i).getCambio())) sqlsesion.delete("Data.servicio.evento.updatePlantillaEventoSedes",(ModificacionesEventoBeanData)mods.get(i));	
+				if("D".equals(mods.get(i).getCambio())) sqlsesion.update("Data.servicio.evento.deletePlantillaEventoSede",(ModificacionesEventoBeanData)mods.get(i));	
+			}		
+		//	System.out.println("Sedes="+mods.size());
+			mods= this.generaListaCambios(antAmb, evento.getIdAmbientes(),evento.getCodigo());
+			for(int i=0;i<mods.size();i++){
+				if("I".equals(mods.get(i).getCambio())) sqlsesion.insert("Data.servicio.evento.insertPlantillaEventoAmbienteUpdate",(ModificacionesEventoBeanData)mods.get(i));
+				if("U".equals(mods.get(i).getCambio())) sqlsesion.delete("Data.servicio.evento.updatePlantillaEventoAmbiente",(ModificacionesEventoBeanData)mods.get(i));	
+				if("D".equals(mods.get(i).getCambio())) sqlsesion.update("Data.servicio.evento.deletePlantillaEventoAmbiente",(ModificacionesEventoBeanData)mods.get(i));	
+			}
+		//	System.out.println("Ambs="+mods.size());
+			sqlsesion.update("Data.servicio.evento.updatePLantillaEvento",evento);
 			
 			
 		
