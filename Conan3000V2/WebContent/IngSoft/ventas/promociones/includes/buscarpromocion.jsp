@@ -9,7 +9,7 @@
 
 <!-- content starts -->
 
-			  <div>		        
+			  <div>		       
 		        <ul class="breadcrumb">
 		        <li> <a href="../../general/index.jsp">Home</a> <span class="divider">/</span></li>
 		        <li> <a href="buscarpromocion.jsp">Mantenimiento de Promociones</a> <span class="divider">/</span></li>
