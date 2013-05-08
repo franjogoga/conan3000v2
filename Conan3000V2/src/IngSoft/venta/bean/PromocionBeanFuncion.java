@@ -1,5 +1,6 @@
 package IngSoft.venta.bean;
 
+import java.util.List;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 
@@ -13,6 +14,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import IngSoft.general.CoException;
 import IngSoft.general.MyBatisSesion;
+import IngSoft.servicio.bean.EventoBeanData;
 
 
 public class PromocionBeanFuncion {
@@ -35,8 +37,8 @@ public class PromocionBeanFuncion {
 		//promocionData.setIdSede(request.getParameterValues("cmbSedes"));
 		//promocionData.setNombre((request.getParameter("cmbTipo")));
 		promocionData.setNombre(request.getParameter("txtNombrePromocion"));
-		promocionData.setFechaInicio(new Date(DF.parse(request.getParameter("fFechInicio")+"/0000").getTime()));
-		promocionData.setFechafin(new Date(DF.parse(request.getParameter("fFechFin")+"/0000").getTime()));
+		promocionData.setFechaInicio(new Date(DF.parse(request.getParameter("fFechInicio")).getTime()));
+		promocionData.setFechafin(new Date(DF.parse(request.getParameter("fFechFin")).getTime()));
 		promocionData.setDescripcion(request.getParameter("txtDescripcion"));
 		}catch(Exception e){
 			e.printStackTrace();
@@ -60,9 +62,7 @@ public class PromocionBeanFuncion {
 			
 			promocionData.setIdPromocion(codigo.substring(0,3).concat(temp));}
 			else promocionData.setIdPromocion("PRO000001");
-			
-			
-			
+			//insertPromocion esta en promocion mapper
 			sqlsesion.insert("insertPromocion",promocionData);
 			//sqlsesion.insert("insertPlantillaEventoSedes",eventoData);
 			
@@ -140,24 +140,24 @@ public class PromocionBeanFuncion {
 	
 	
 	
-/*	public EventoBeanData consultarEvento(int codigo){
-		EventoBeanData eventoData=null;
+	public PromocionBeanData consultarPromocion(String codigo){
+		PromocionBeanData PromocionData=null;
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
-			eventoData= sqlsesion.selectOne("getPLantillaEvento",codigo);
+			PromocionData= sqlsesion.selectOne("Data.venta.promocion.getPLantillaEvento",codigo);
 			//eventoData.setCodigo(Integer.parseInt((String)sqlsesion.selectOne("getNextCodigo")));
 			//sqlsesion.insert("insertPlantillaEvento",eventoData);
-			List<String> temp = null;
-			temp=sqlsesion.selectList("getSedesId",codigo);
-			eventoData.setIdSede(temp.toArray(new String[temp.size()]));
-			temp=sqlsesion.selectList("getAmbientesId",codigo);
-			eventoData.setIdAmbientes(temp.toArray(new String[temp.size()]));			
+			//List<String> temp = null;
+			//temp=sqlsesion.selectList("Data.servicio.evento.getSedesId",codigo);
+			//eventoData.setIdSede(temp.toArray(new String[temp.size()]));
+			//temp=sqlsesion.selectList("Data.servicio.evento.getAmbientesId",codigo);
+			//eventoData.setIdAmbientes(temp.toArray(new String[temp.size()]));			
 		}
 		finally{
 			sqlsesion.close();
 		}
-		return eventoData;
-	}*/
+		return PromocionData;
+	}
 	
 	/*public Vector<SedeMiniBeanData> getSedes(){
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
