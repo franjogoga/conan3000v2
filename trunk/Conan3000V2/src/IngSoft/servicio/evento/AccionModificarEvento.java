@@ -28,7 +28,7 @@ public class AccionModificarEvento extends CoAccion {
 			String antSede[]=((String)request.getParameter("txtLSede")).split("/");
 			String antAmb[]=((String)request.getParameter("txtLAmbiente")).split("/");
 			EventoBeanData eventoData=eventoFuncion.crearEvento(request, response);
-									
+			eventoData.setCodigo(request.getParameter("codigo"));
 			eventoFuncion.modificarEvento(eventoData, antSede, antAmb);
 			this.direccionar(sc, request, response, "/IngSoft/servicio/evento/buscarevento.jsp");
 		}	

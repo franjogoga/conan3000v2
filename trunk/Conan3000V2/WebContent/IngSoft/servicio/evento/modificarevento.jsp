@@ -174,7 +174,7 @@
 								<div class="controls">
 								  <select id="selectError" data-rel="chosen" id="cmbTipo" name="cmbTipo">
 									<%for(int i=0;i<tiposEvento.size();i++){ %>
-										<option value="<%= ((TipoEventoMiniBeanData)tiposEvento.get(i)).getCodigo()%>"  <%=evento.getIdTipo()== ((TipoEventoMiniBeanData)tiposEvento.get(i)).getCodigo()?"selected":"" %>><%= ((TipoEventoMiniBeanData)tiposEvento.get(i)).getNombre()%></option>
+										<option value="<%= ((TipoEventoMiniBeanData)tiposEvento.get(i)).getCodigo()%>"  <%=evento.getIdTipo().equals(((TipoEventoMiniBeanData)tiposEvento.get(i)).getCodigo()) ?"selected":"" %>><%= ((TipoEventoMiniBeanData)tiposEvento.get(i)).getNombre()%></option>
 									<%} %>								
 								  </select>
 								</div>
