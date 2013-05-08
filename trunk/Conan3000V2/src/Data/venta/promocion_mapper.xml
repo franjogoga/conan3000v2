@@ -56,7 +56,7 @@ update Promocion set Nombre=#{nombre}
 
  
  
- 
+
 
 <!--Eliminar promocion -->
 <update id="deletePromocion" parameterType="IngSoft.venta.bean.PromocionBeanData" flushCache="true" >
