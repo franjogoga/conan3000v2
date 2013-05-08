@@ -17,17 +17,27 @@ public class AccionEliminarPromocion extends CoAccion {
 			HttpServletResponse response) throws CoException {
 		// TODO Auto-generated method stub
 		// TODO Auto-generated method stub
-				int tipo=Integer.parseInt(request.getParameter("tipo"));
-				if(tipo==2){
-					PromocionBeanFuncion promocionFuncion= PromocionBeanFuncion.getInstance();
-					PromocionBeanData promocionData=promocionFuncion.crearPromocion(request, response);
-					promocionFuncion.eliminarPromocion(promocionData);
-					this.direccionar(sc, request, response, "/IngSoft/ventas/promociones/buscarpromocion.jsp");
-				}
-				
-				this.direccionar(sc, request, response, "/IngSoft/ventas/promociones/eliminarpromocion.jsp");
+		if(Integer.valueOf(request.getParameter("tipo"))==2){
+			
+			PromocionBeanFuncion promocionFuncion= PromocionBeanFuncion.getInstance();
+			promocionFuncion.eliminarPromocion(request.getParameter("codigo"));
+			this.direccionar(sc, request, response, "/IngSoft/ventas/promociones/buscarpromocion.jsp");
+		}
+		if(Integer.valueOf(request.getParameter("tipo"))==1){
+		PromocionBeanFuncion promocionFuncion= PromocionBeanFuncion.getInstance();
+		PromocionBeanData promocionData=promocionFuncion.consultarPromocion(request.getParameter("codigo"));
+		
+				request.setAttribute("promocion", promocionData);
+		this.direccionar(sc, request, response, "/IngSoft/ventas/promociones/eliminarpromocion.jsp");
+		}
+		this.direccionar(sc, request, response, "/IngSoft/ventas/promociones/buscarpromocion.jsp");
 					
 				
 	}
 
 }
+
+
+
+	
+

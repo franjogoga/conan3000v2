@@ -79,13 +79,13 @@ public class PromocionBeanFuncion {
 		return resultado;
 	}
 	
-	public boolean eliminarPromocion(PromocionBeanData promocionData) throws CoException {
+	public boolean eliminarPromocion(String codigo) throws CoException {
 		boolean resultado=false;		
 		
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
 		
-			sqlsesion.update("Data.venta.promocion.deletePromocion",promocionData.getCodigo());
+			sqlsesion.update("Data.venta.promocion.deletePromocion",codigo);
 			
 			resultado=true;
 		}
@@ -106,7 +106,18 @@ public class PromocionBeanFuncion {
 	
 	
 			
-	
+	public PromocionBeanData consultarPromocion(String codigo){
+		PromocionBeanData promocionData=null;
+		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+		try{
+			promocionData= sqlsesion.selectOne("Data.venta.promocion.getPLantillaPromocion",codigo);
+				
+		}
+		finally{
+			sqlsesion.close();
+		}
+		return promocionData;
+	}
 
 	
 	//public void modificarEvento(PromociconBeanData promocion,String[] antSede,String[] antAmb) throws CoException {
@@ -136,25 +147,7 @@ public class PromocionBeanFuncion {
 //	}
 	
 	
-	
-	public PromocionBeanData consultarPromocion(String codigo){
-		PromocionBeanData PromocionData=null;
-		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
-		try{
-			PromocionData= sqlsesion.selectOne("Data.venta.promocion.getPLantillaEvento",codigo);
-			//eventoData.setCodigo(Integer.parseInt((String)sqlsesion.selectOne("getNextCodigo")));
-			//sqlsesion.insert("insertPlantillaEvento",eventoData);
-			//List<String> temp = null;
-			//temp=sqlsesion.selectList("Data.servicio.evento.getSedesId",codigo);
-			//eventoData.setIdSede(temp.toArray(new String[temp.size()]));
-			//temp=sqlsesion.selectList("Data.servicio.evento.getAmbientesId",codigo);
-			//eventoData.setIdAmbientes(temp.toArray(new String[temp.size()]));			
-		}
-		finally{
-			sqlsesion.close();
-		}
-		return PromocionData;
-	}
+
 	
 	/*public Vector<SedeMiniBeanData> getSedes(){
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();

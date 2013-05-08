@@ -1,9 +1,8 @@
 
 <%@page import="java.text.SimpleDateFormat"%>
-<%@page import="IngSoft.venta.bean.PromocionBeanFuncion"%>
-<%@page import="IngSoft.venta.bean.PromocionBeanData"%>
 <%@page import="java.util.Date"%>
-<%@page import="java.util.Vector"%>
+  <jsp:useBean id="promocion" scope="request"class="IngSoft.venta.bean.PromocionBeanData"></jsp:useBean>
+
 
 	<script>
 	function alt_fecha(obj){
@@ -36,7 +35,7 @@
 
 <!-- content starts -->
 			  <div>
-			  <jsp:useBean id="promocion" scope="request"class="IngSoft.venta.bean.PromocionBeanData"></jsp:useBean>
+			
 			    <ul class="breadcrumb">
 		        <li> <a href="../../general/index.jsp">Home</a> <span class="divider">/</span></li>
 		        
@@ -52,7 +51,6 @@
 			      <div class="box-content">
 			  			        <form class="form-horizontal" name="frmDelete"  action="<%= response.encodeURL("SMVPromocion")%>" method="post">
 						<input type="hidden" name="codigo" value="<%=promocion.getCodigo()%>" ></input>
-						
 						<input type="hidden" name="accion" value="Eliminar"></input>
 						<input type="hidden" name="tipo" value="2"></input>
 			          <fieldset>

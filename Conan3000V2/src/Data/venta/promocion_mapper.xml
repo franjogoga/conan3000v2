@@ -59,7 +59,7 @@ update Promocion set Nombre=#{nombre}
 
 
 <!--Eliminar promocion -->
-<update id="deletePromocion" parameterType="IngSoft.venta.bean.PromocionBeanData" flushCache="true" >
+<update id="deletePromocion" parameterType="java.lang.String" >
 update PROMOCION set Estado='Inactivo' where IdPromocion= #{codigo}
 </update>
 <!-- Fin eliminar -->
