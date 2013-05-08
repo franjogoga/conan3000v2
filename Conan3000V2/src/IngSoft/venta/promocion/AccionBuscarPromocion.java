@@ -25,8 +25,7 @@ public class AccionBuscarPromocion extends CoAccion {
 		CriterioPromocionBeanData criterioPromocionData =new CriterioPromocionBeanFunction().crearCriterio(request,response);
 		Vector<ResultadoPromocionBeanData> resultados=new CriterioPromocionBeanFunction().buscarPlantillaPromocion(criterioPromocionData);
 		
-		
-		//que es "resultados"
+		//request.setAttribute(name, o)
 		request.setAttribute("resultados", resultados);
 		this.direccionar(sc, request, response, "/IngSoft/ventas/promociones/buscarpromocion.jsp");
 		
