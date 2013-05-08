@@ -8,22 +8,22 @@
 
 <select id="searchPlantillaSorteo" parameterType="IngSoft.servicio.bean.CriterioSorteoBeanData" resultType="IngSoft.servicio.bean.ResultadoSorteoBeanData">
 select 
-sorteo.idSorteo as codigo,
-sorteo.nombre as nombre,
-sorteo.fechaIni as fechaIni,
-sorteo.fechaFin as fechaFin,
-sorteo.fechaSorteo fechaSorteo,
-sorteo.estado as estado
+SORTEO.IdSede as codigo,
+SORTEO.Descripcion as nombre,
+SORTEO.FechaInicioIncr as fechaIni,
+SORTEO.FechaFinInscr as fechaFin,
+SORTEO.FechaSorteo fechaSorteo,
+SORTEO.Estado as estado
 from SORTEO 
 <where>
 <if test="nombre != null ">
-        sorteo.nombre  like  #{nombre}
+        SORTEO.Descripcion like  #{nombre}
     </if>
     <if test="fechaIni != null">
-        AND sorteo.fechaIni &gt;= #{fechaIni}
+        AND SORTEO.FechaInicioIncr &gt;= #{fechaIni}
     </if>
     <if test="fechaFin != null">
-        AND sorteo.fechaFin &lt;= #{fechaFin}
+        AND SORTEO.FechaFinInscr &lt;= #{fechaFin}
     </if>
 </where>
 order by 1 asc
