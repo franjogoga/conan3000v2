@@ -21,12 +21,12 @@ public class AccionEliminarSorteo extends CoAccion {
 		if(Integer.valueOf(request.getParameter("tipo"))==2){
 			
 			SorteoBeanFuncion sorteoFuncion= SorteoBeanFuncion.getInstance();
-			sorteoFuncion.eliminarSorteo(Integer.valueOf(request.getParameter("codigo")));
+			sorteoFuncion.eliminarSorteo(request.getParameter("codigo"));
 			this.direccionar(sc, request, response, "/IngSoft/servicio/sorteo/buscarsorteo.jsp");
 		}
 		if(Integer.valueOf(request.getParameter("tipo"))==1){
 		SorteoBeanFuncion sorteoFuncion= SorteoBeanFuncion.getInstance();
-		SorteoBeanData sorteoData=sorteoFuncion.consultarSorteo(Integer.valueOf(request.getParameter("codigo")));
+		SorteoBeanData sorteoData=sorteoFuncion.consultarSorteo(request.getParameter("codigo"));
 		Vector<SedeMiniBeanData> sedeMiniData=sorteoFuncion.getSedes();
 		request.setAttribute("sedes",sedeMiniData );
 		request.setAttribute("sorteo", sorteoData);
