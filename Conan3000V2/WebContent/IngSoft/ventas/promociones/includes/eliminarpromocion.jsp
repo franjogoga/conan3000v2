@@ -3,6 +3,8 @@
 <%@page import="IngSoft.venta.bean.PromocionBeanFuncion"%>
 <%@page import="IngSoft.venta.bean.PromocionBeanData"%>
 <%@page import="java.util.Date"%>
+<%@page import="java.util.Vector"%>
+
 	<script>
 	function alt_fecha(obj){
 	obj.value=obj.value.slice(0,5);
@@ -74,24 +76,10 @@
 		                    </div>
 		                  </div>
 
-			           				<div class="control-group">
-								<label class="control-label" for="typeahead3">Estado</label>
-								<div class="controls">
-								  <label class="radio">
-									<input type="radio" disabled="disabled" "optionsRadios" id="optionsRadios1" value="option1" checked="">
-									Activo
-								  </label>
-								  <div style="clear:both"></div>
-								  <label class="radio">
-									<input type="radio" disabled="disabled" name="optionsRadios" id="optionsRadios2" value="option2">
-									Inactivo
-								  </label>
-								</div>
-							  </div>
 			              <div class="control-group">
 			                <label class="control-label" for="textarea2">Descripci&oacute;n:</label>
 			                <div class="controls">
-			                  <textarea name="textarea" rows="3" disabled class="" id="txtDescripcion" value="<%=promocion.getDescripcion()%>"  style="resize:none">Descuento si reservas 2 bungalow.</textarea>
+			                  <textarea name="textarea" rows="3" disabled class="" id="txtDescripcion" value="<%=promocion.getDescripcion()%>"  style="resize:none"></textarea>
 		                    </div>
 		                  </div>
 			            </div>
