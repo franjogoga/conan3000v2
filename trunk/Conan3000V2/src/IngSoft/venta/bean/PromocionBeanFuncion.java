@@ -16,7 +16,6 @@ import IngSoft.general.CoException;
 import IngSoft.general.MyBatisSesion;
 import IngSoft.servicio.bean.EventoBeanData;
 
-
 public class PromocionBeanFuncion {
 	static private PromocionBeanFuncion PromocionFuncion=null;
 	private Lock l= new ReentrantLock();     
