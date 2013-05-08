@@ -22,11 +22,15 @@ public class AccionModificarEvento extends CoAccion {
 		// TODO Auto-generated method stub
 		EventoBeanFuncion eventoFuncion= EventoBeanFuncion.getInstance();
 		if(Integer.valueOf(request.getParameter("tipo"))==2){
+			//System.out.println(request.getParameter("txtLSede"));
+			//System.out.println(request.getParameter("txtLAmbiente"));
+			
+			String antSede[]=((String)request.getParameter("txtLSede")).split("/");
+			String antAmb[]=((String)request.getParameter("txtLAmbiente")).split("/");
 			EventoBeanData eventoData=eventoFuncion.crearEvento(request, response);
-			eventoFuncion.agregarEvento(eventoData);
-			String antSede[]=request.getParameter("txtLSede").toString().split("/");
-			String antAmb[]=request.getParameter("txtLAmbiente").toString().split("/");
+									
 			eventoFuncion.modificarEvento(eventoData, antSede, antAmb);
+			this.direccionar(sc, request, response, "/IngSoft/servicio/evento/buscarevento.jsp");
 		}	
 		EventoBeanData eventoData=eventoFuncion.consultarEvento(request.getParameter("codigo"));
 		Vector<SedeMiniBeanData> sedeMiniData=eventoFuncion.getSedes();
