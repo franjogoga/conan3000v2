@@ -106,7 +106,7 @@
 		String a="";
 		for(int i=0;i<t.length;i++)
 			a= a.concat(t[i]+"/");
-			a=a.substring(0, a.length()-1);
+			if(a.length()>0) a=a.substring(0, a.length()-1);
 		return a;
 	}
 	%>
@@ -155,9 +155,9 @@
 					  <h2><i class="icon-edit"></i>MODIFICAR EVENTO</h2>
 				  </div>
 					<div class="box-content">
-						<form class="form-horizontal" name="frmUpdate">
-						<input type="hidden" value="<%=generarCadena(evento.getIdSede()) %>" nombre="txtLSede"></input>
-						<input type="hidden" value="<%=generarCadena(evento.getIdAmbientes()) %>" nombre="txtLAmbiente"></input>
+						<form class="form-horizontal" name="frmUpdate" method="post">
+						<input type="hidden" name="txtLSede" value="<%=generarCadena(evento.getIdSede())%>" ></input>
+						<input type="hidden" name="txtLAmbiente"value="<%=generarCadena(evento.getIdAmbientes()) %>" ></input>
 						<input type="hidden" name="codigo" value="<%=evento.getCodigo()%>"></input>
 						<input type="hidden" name="accion" value="Modificar"></input>
 						<input type="hidden" name="tipo" value="2"></input>
