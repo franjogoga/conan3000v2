@@ -13,7 +13,6 @@ PROMOCION.IdPromocion as codigo
 ,PROMOCION.FechaFin as limFin
 ,PROMOCION.Nombre as nombre
 ,PROMOCION.Estado as estado
-,PROMOCION.Descripcion as descripcion
 from PROMOCION 
 <where>
 	<if test="nombre != null ">
@@ -64,15 +63,17 @@ update PROMOCION set Estado='Inactivo' where IdPromocion= #{codigo}
 </update>
 <!-- Fin eliminar -->
 
-<select id="getPLantillaPromocion" parameterType="java.lang.String"  resultType="IngSoft.venta.bean.PromocionBeanData">
+<select id="getPlantillaPromocion" parameterType="java.lang.String"  resultType="IngSoft.venta.bean.PromocionBeanData">
 select 
 IdPromocion as codigo
 ,Nombre as nombre
-,FechaInicio as limiteInicio
-,FechaFin as limiteFin
+,FechaInicio as fechaInicio
+,FechaFin as fechaFin
 ,Descripcion as descripcion
 ,Estado as estado
-from PROMOCION pe  where pe.Estado='activo' and  pe.IdPromocion=#{codigo}; 
+from PROMOCION  where IdPromocion=#{codigo}; 
+
+
 </select>
 
 
