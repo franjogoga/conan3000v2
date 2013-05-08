@@ -5,6 +5,29 @@
 <mapper namespace="Data.venta.promocion">
 
   <cache />
+
+<select id="searchPlantillaPromocion" parameterType="IngSoft.venta.bean.CriterioPromocionBeanData" resultType="IngSoft.venta.bean.ResultadoPromocionBeanData">
+select 
+PROMOCION.IdPromocion as codigo
+,PROMOCION.FechaInicio as limInicio
+,PROMOCION.FechaFin as limFin
+,PROMOCION.Nombre as nombre
+,PROMOCION.Estado as estado
+,PROMOCION.Descripcion as descripcion
+from PROMOCION 
+<where>
+	<if test="nombre != null ">
+        PROMOCION.nombre  like  #{nombre}
+    </if>
+    <if test="limInicio != null">
+        AND PROMOCION.FechaInicio &gt;= #{limInicio}
+    </if>
+    <if test="limFin != null">
+        AND PROMOCION.FechaFin &lt;= #{limFin}
+    </if>
+</where>
+</select>
+
   
 <!-- Agregar plantilla promocion -->
 <insert id="insertPromocion" parameterType="IngSoft.venta.bean.PromocionBeanData" flushCache="true">
@@ -18,12 +41,40 @@
 
 
  <!-- Fin agregar  -->
+ 
+ <!-- Modificar elemento -->
+<update id="updatePromocion" parameterType="IngSoft.venta.bean.PromocionBeanData">
+update Promocion set Nombre=#{nombre}
+ ,FechaInicio=#{fechaInicio}
+ ,FechaFin=#{fechaFin}
+ ,Descripcion=#{descripcion}
+ ,Estado=#{estado]
+ where IdPromocion= #{codigo}
+</update>
+
+<!-- Fin modificar -->
+
+ 
+ 
+ 
 
 <!--Eliminar promocion -->
 <update id="deletePromocion" parameterType="IngSoft.venta.bean.PromocionBeanData" flushCache="true" >
 update PROMOCION set Estado='Inactivo' where IdPromocion= #{codigo}
 </update>
 <!-- Fin eliminar -->
+
+<select id="getPLantillaPromocion" parameterType="java.lang.String"  resultType="IngSoft.venta.bean.PromocionBeanData">
+select 
+IdPromocion as codigo
+,Nombre as nombre
+,FechaInicio as limiteInicio
+,FechaFin as limiteFin
+,Descripcion as descripcion
+,Estado as estado
+from PROMOCION pe  where pe.Estado='activo' and  pe.IdPromocion=#{codigo}; 
+</select>
+
 
 
 
