@@ -6,8 +6,8 @@ public class CriterioPromocionBeanData {
 	
 	private String codigo;
 	private String nombre;
-	private Date fechaInicio;
-	private Date fechaFin;
+	private Date limInicio;
+	private Date limFin;
 	private String estado;
 	
 	public String getCodigo() {
@@ -26,22 +26,23 @@ public class CriterioPromocionBeanData {
 		this.nombre = nombre;
 	}
 	
-	public Date getFechaInicio() {
-		return fechaInicio;
+
+	public Date getLimInicio() {
+		return limInicio;
 	}
-	
-	public void setFechaInicio(Date fechaInicio) {
-		this.fechaInicio = fechaInicio;
+
+	public void setLimInicio(Date limInicio) {
+		this.limInicio = limInicio;
 	}
-	
-	public Date getFechaFin() {
-		return fechaFin;
+
+	public Date getLimFin() {
+		return limFin;
 	}
-	
-	public void setFechafin(Date fechaFin) {
-		this.fechaFin = fechaFin;
+
+	public void setLimFin(Date limFin) {
+		this.limFin = limFin;
 	}
-	
+
 	public String getEstado() {
 		return estado;
 	}
