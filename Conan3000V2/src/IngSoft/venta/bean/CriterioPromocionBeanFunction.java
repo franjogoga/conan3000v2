@@ -22,12 +22,16 @@ public class CriterioPromocionBeanFunction {
 	public CriterioPromocionBeanData crearCriterio(HttpServletRequest request, HttpServletResponse response){
 		
 		CriterioPromocionBeanData criterioPromocionData= new CriterioPromocionBeanData();
-		criterioPromocionData.setNombre(request.getParameter("txtNombrePromocion")+"%");
+		
 		//criterioPromocionData.setTipo(Integer.parseInt(request.getParameter("cmbTipoEvento")==null?"0":request.getParameter("cmbTipoEvento")));
 
 		try {
-			criterioPromocionData.setFechaInicio(new Date(DF.parse(request.getParameter("fFechInicio")+"/0000").getTime()));
-			criterioPromocionData.setFechafin(new Date(DF.parse(request.getParameter("fFechFin")+"/0000").getTime()));
+			
+			criterioPromocionData.setNombre(request.getParameter("txtNombrePromocion")+"%");
+			
+			criterioPromocionData.setLimInicio(new Date(DF.parse(request.getParameter("fFechInicio")).getTime()));
+			criterioPromocionData.setLimFin(new Date(DF.parse(request.getParameter("fFechFin")).getTime()));
+			
 			//System.out.println(criterioEventoData.getLimFin());
 			
 		} catch (ParseException e) {
@@ -40,7 +44,6 @@ public class CriterioPromocionBeanFunction {
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		Vector<ResultadoPromocionBeanData> resultadosV=null;
 		try{		
-
 		List<ResultadoPromocionBeanData> resultados=sqlsesion.selectList("searchPlantillaPromocion",criterioPromocionData);
 	
 		resultadosV= new Vector<>(resultados);
