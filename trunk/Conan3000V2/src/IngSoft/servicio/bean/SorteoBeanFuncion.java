@@ -72,7 +72,7 @@ public class SorteoBeanFuncion {
 			return resultado;
 		}
 		
-		public boolean eliminarSorteo(int codigo) throws CoException {
+		public boolean eliminarSorteo(String codigo) throws CoException {
 			boolean resultado=false;		
 			
 			SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
@@ -97,23 +97,22 @@ public class SorteoBeanFuncion {
 			return resultado;
 		}
 		
-		public SorteoBeanData consultarSorteo(int codigo){
+		public SorteoBeanData consultarSorteo(String codigo){
 			SorteoBeanData sorteoData=null;
 			SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 			try{
-				sorteoData= sqlsesion.selectOne("getPLantillaSorteo",codigo);
+				sorteoData= sqlsesion.selectOne("Data.servicio.sorteo.getPLantillaSorteo",codigo);
 				//eventoData.setCodigo(Integer.parseInt((String)sqlsesion.selectOne("getNextCodigo")));
 				//sqlsesion.insert("insertPlantillaEvento",eventoData);
-				List<String> temp = null;
-				temp=sqlsesion.selectList("getSedesId",codigo);
-				//sorteoData.setIdSede();
+				//List<String> temp = null;
+				//temp=sqlsesion.selectList("Data.servicio.sorteo.getSedesId",codigo);
+				//sorteoData.setIdSede(idSede)setIdSede(temp.toArray(new String[temp.size()]));		
 			}
 			finally{
 				sqlsesion.close();
 			}
 			return sorteoData;
 		}
-		
 		public Vector<SedeMiniBeanData> getSedes(){
 			SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 			List<SedeMiniBeanData> resultados=sqlsesion.selectList("Data.servicio.evento.searchSedeMini");
