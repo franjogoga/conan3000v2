@@ -161,7 +161,12 @@
 								<input type="text" class="input-xlarge datepicker" id="date02" name="date02"  >
 							  </div>
 							</div>
-		
+							<div class="control-group">
+							  <label class="control-label" for="date03">Fecha Sorteo</label>
+							  <div class="controls">
+								<input type="text" class="input-xlarge datepicker" id="date03" name="date03"  >
+							  </div>
+							</div>
 							
 							<div class="form-actions">
 							  <button type="submit" class="btn btn-primary">Buscar</button>
