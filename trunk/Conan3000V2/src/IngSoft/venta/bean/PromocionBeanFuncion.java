@@ -33,9 +33,7 @@ public class PromocionBeanFuncion {
 	public PromocionBeanData crearPromocion(HttpServletRequest request, HttpServletResponse response){
 		PromocionBeanData promocionData= new PromocionBeanData();
 		try{		
-		//promocionData.setIdPromocion(request.getParameterValues(""));Integer.parseInt
-		//promocionData.setIdSede(request.getParameterValues("cmbSedes"));
-		//promocionData.setNombre((request.getParameter("cmbTipo")));
+	
 		promocionData.setNombre(request.getParameter("txtNombrePromocion"));
 		promocionData.setFechaInicio(new Date(DF.parse(request.getParameter("fFechInicio")).getTime()));
 		promocionData.setFechafin(new Date(DF.parse(request.getParameter("fFechFin")).getTime()));
@@ -88,14 +86,14 @@ public class PromocionBeanFuncion {
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
 		
-			sqlsesion.update("deletePLantillaPromocion",promocionData.getCodigo());
+			sqlsesion.update("Data.venta.promocion.deletePromocion",promocionData.getCodigo());
 			
 			resultado=true;
 		}
 		catch(Exception a)		
 		{sqlsesion.rollback();
 		a.printStackTrace();
-			throw CoException.set("Error: No se pudo eliminar la plantilla intente de nuevo", "SMSEvento?accion=Agregar&tipo=1");
+			throw CoException.set("Error: No se pudo eliminar la plantilla intente de nuevo", "SMVPromocion?accion=Agregar&tipo=1");
 			
 		}
 		
