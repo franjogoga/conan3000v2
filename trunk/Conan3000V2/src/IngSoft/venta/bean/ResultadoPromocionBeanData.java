@@ -1,13 +1,14 @@
 package IngSoft.venta.bean;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class ResultadoPromocionBeanData {
+public class ResultadoPromocionBeanData implements Serializable {
 	
 	private String codigo;
 	private String nombre;
-	private Date fechaInicio;
-	private Date fechaFin;
+	private Date limInicio;
+	private Date limFin;
 	private String estado;
 	
 	public String getCodigo() {
@@ -26,27 +27,28 @@ public class ResultadoPromocionBeanData {
 		this.nombre = nombre;
 	}
 	
-	public Date getFechaInicio() {
-		return fechaInicio;
+
+	public Date getLimInicio() {
+		return limInicio;
 	}
-	
-	public void setFechaInicio(Date fechaInicio) {
-		this.fechaInicio = fechaInicio;
+
+	public void setLimInicio(Date limInicio) {
+		this.limInicio = limInicio;
 	}
-	
-	public Date getFechaFin() {
-		return fechaFin;
+
+	public Date getLimFin() {
+		return limFin;
 	}
-	
-	public void setFechafin(Date fechaFin) {
-		this.fechaFin = fechaFin;
+
+	public void setLimFin(Date limFin) {
+		this.limFin = limFin;
 	}
-	
+
 	public String getEstado() {
 		return estado;
 	}
 	
 	public void setEstado(String estado) {
 		this.estado = estado;
-	}
+	}		
 }
