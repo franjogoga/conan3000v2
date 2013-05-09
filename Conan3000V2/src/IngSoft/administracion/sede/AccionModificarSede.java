@@ -14,7 +14,7 @@ import IngSoft.administracion.bean.SedeBeanData;
 import IngSoft.administracion.bean.SedeBeanFuncion;
 
 
-public class AccionEliminarSede extends CoAccion{
+public class AccionModificarSede extends CoAccion{
 
 	@Override
 	public void ejecutar(ServletContext sc, HttpServletRequest request,
@@ -24,7 +24,7 @@ public class AccionEliminarSede extends CoAccion{
 		SedeBeanFuncion sedeFuncion= SedeBeanFuncion.getInstance(); 
 		SedeBeanData sedeData=sedeFuncion.consultarEvento(request.getParameter("codigo"));	
 		request.setAttribute("sede",sedeData );
-		this.direccionar(sc, request, response, "/IngSoft/administracion/sedes/eliminarsede.jsp");
+		this.direccionar(sc, request, response, "/IngSoft/administracion/sedes/modificarsede.jsp");
 		
 
 	}
