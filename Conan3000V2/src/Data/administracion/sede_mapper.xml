@@ -38,19 +38,19 @@ order by 1 asc
 
 
 
-<!-- Agregar sede -->
+<!-- Agregar sede 
 <insert id="insertPlantillaSede" parameterType="IngSoft.administracion.bean.SedeBeanData" flushCache="true">
 	insert into SEDE(IdSede,Nombre,Direccion,Telefono,AreaTerreno,IdDistrito)
 	values (#{codigo},#{nombre},#{direccion},#{telefono},#{areaterreno},#{idDistrito})
 </insert>
-<!-- Fin Agregar -->
+ Fin Agregar -->
 
 
-<!--Eliminar evento -->
+<!--Eliminar evento 
 <update id="deletePLantillaSede" parameterType="java.lang.String" >
 update SEDE set Estado='I' where IdPlantillaEvento= #{codigo}
 </update>
-<!-- Fin eliminar -->
+Fin eliminar -->
 
 
 
