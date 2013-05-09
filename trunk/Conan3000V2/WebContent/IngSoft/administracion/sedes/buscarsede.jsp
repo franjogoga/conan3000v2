@@ -1,4 +1,12 @@
 <!DOCTYPE html>
+
+<!--  paso 2 configurarion link  + v ariables de retorno -->
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Calendar"%>
+<%@page import="IngSoft.administracion.bean.ResultadoSedeBeanData"%>
+<%@page import="java.util.Vector"%>
+<!--  fin paso 2  -->
+
 <html lang="en">
 <head>
 	<!--
@@ -12,14 +20,16 @@
 		http://twitter.com/halalit_usman
 	-->
 	<meta charset="utf-8">
-	<title>Conan3000</title>
+	<title>Buscar Evento</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
 	<meta name="author" content="Muhammad Usman">
+	<!--The beans  -->
+	<jsp:useBean id="resultados" scope="request"class="java.util.Vector"></jsp:useBean>
+
 
 	<!-- The styles -->
 	<link id="bs-css" href="css/bootstrap-cerulean.css" rel="stylesheet">
-    
 	<style type="text/css">
 	  body {
 		padding-bottom: 40px;
@@ -28,6 +38,7 @@
 		padding: 9px 0;
 	  }
 	</style>
+	<link href="css/bootstrap-responsive.css" rel="stylesheet">
 	<link href="css/bootstrap-responsive.css" rel="stylesheet">
 	<link href="css/charisma-app.css" rel="stylesheet">
 	<link href="css/jquery-ui-1.8.21.custom.css" rel="stylesheet">
@@ -51,43 +62,50 @@
 	<![endif]-->
 
 	<!-- The fav icon -->
-	<link rel="shortcut icon" href="img/favicon.ico">
-		
-		
-		
-		
-		
-		
-	<!--  nuevo XD frmSede  se crea abajo -->
-	<script> 
+	<link rel="shortcut icon" href="img/conan_logo.png">
 	
-	function alt_eliminar(cod){
-		var form=document.getElementById("frmSede");
+	
+	<script>
+	function alt_fecha(obj){
+	obj.value=obj.value.slice(0,5);
+	
+	}
+	function alt_agregar(){
+		var form=document.getElementById("frmAlternativo");
+		form.accion.value="Agregar";
+		form.submit();
+	}
+	function alt_consultar(cod){
+		var form=document.getElementById("frmAlternativo");
 		form.accion.value="Consultar";
 		form.codigo.value=cod;
 		form.submit();
 	}
-	
-	
-	
-	
-	
-	</script>	
+	function alt_modificar(cod){
+		var form=document.getElementById("frmAlternativo");
+		form.accion.value="Modificar";
+		form.codigo.value=cod;
+		form.submit();
+	}
+	function alt_eliminar(cod){
+		var form=document.getElementById("frmAlternativo");
+		form.accion.value="Eliminar";
+		form.codigo.value=cod;
+		form.submit();
+	}
+	</script>			
 </head>
 
 <body>
-		<jsp:include page="/IngSoft/general/superior.jsp" />
+	<jsp:include page="/IngSoft/general/superior.jsp" />
 		<div class="container-fluid">
 		<div class="row-fluid">
 				
 			<!-- left menu starts -->
 			<jsp:include page="/IngSoft/general/leftmenu.jsp" />
 						<!-- left menu ends -->
-            
-            
-           
 			
-		  <noscript>
+			<noscript>
 				<div class="alert alert-block span10">
 					<h4 class="alert-heading">Warning!</h4>
 					<p>You need to have <a href="http://en.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript</a> enabled to use this site.</p>
@@ -95,220 +113,210 @@
 			</noscript>
 			
 			<div id="content" class="span10">
-			  <!-- content starts -->
-			  <div>
-			    <ul class="breadcrumb">
-			      <li> <a href="#">Home</a> / <a href="#">Mantenimiento de Sede</a> / Buscar Sede</li>
-		        </ul>
-		      </div>
-			  <div class="row-fluid sortable">
-			    <div class="box span12">
-			      <div class="box-header well" data-original-title>
-			        <h2><i class="icon-search"></i> BUSCAR SEDE</h2>
-					  	<div class="box-icon">
-							<a href="#" class="btn btn-setting btn-round"><i class="icon-cog"></i></a>
+			<!-- content starts -->
+			
+
+			<div>
+				<ul class="breadcrumb">
+					<li>
+						<a href="/Conan3000V2/IngSoft/general/index.jsp">Home</a> <span class="divider">/</span>
+					</li>
+					<li>
+						Mantenimiento de Sede 
+					</li>
+					
+				</ul>
+			</div>
+			
+			<div class="row-fluid sortable">
+				<div class="box span12">
+					<div class="box-header well" data-original-title>
+						<h2><i class="icon-search"></i> BUSCAR SEDE</h2>
+						<div class="box-icon">
 							<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
 							<a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>
 						</div>
-		          </div>
-			      <div class="box-content">
-			        <form class="form-horizontal">
-			          <fieldset>
-					  
-					  <!--    ----------------------------------------------------------------------------------------------    -->
+					</div>
+					<div class="box-content">
+						<!-- <form class="form-horizontal" name="frmCriteriosBusqueda" id="frmCriteriosBusqueda"  method="post" onsubmit="xmlhttpPost('/Conan3000V2/IngSoft/servicio/evento/SMSEvento?accion=Buscar', 'frmCriteriosBusqueda', 'resultadoBusqueda','<img >');
+		 return false;"> -->
+		 
+		 <!--  paso 1  configuracion de link + variables -->													 <!-- nos linkea al archivo SMASede -->
+		 <form class="form-horizontal" name="frmCriteriosBusqueda" id="frmCriteriosBusqueda"  method="post" action="<%= response.encodeURL("SMASede")%>">
+		                                      <!-- Buscar  variable  que pasa al archivo SMASede   -->	
+		 <input type="hidden" name="accion" value="Buscar"></input>
+						  <fieldset>
+							
 							<div class="control-group">
-							  <label class="control-label" for="typeahead7">Nombre: </label>
-							  <div class="controls">
-								<input   type="text" class="span6 typeahead" id="typeahead7"  data-provide="typeahead" >
+							  <label class="control-label" for="typeahead">Nombre:</label>
+							  <div class="controls">									   <!-- txtNombre  variable     -->	
+								<input type="text" class="span6 typeahead" id="typeahead" name="txtNombre">
 							  </div>
 							</div>
-						
-						
-							  <div class="control-group">
-                                  <label class="control-label" for="selectError">Departamento:</label>
-                                  <div class="controls">
-                                      <select    name="selectError1" id="selectError" data-rel="chosen">
-                                          <option> Lima </option>
-                                          <option> Arequipa </option>
-                                          <option> Puno </option>
-                                          <option> Ica </option>
-                                          <option> Piura </option>
-                                      </select>
-                                  </div>
-						      </div>
-						      
-						      
-							  <div class="control-group">
-                                  <label class="control-label" for="selectError10">Provincia:</label>
-                                  <div class="controls">
-                                      <select    name="selectError1" id="selectError10" data-rel="chosen">
-                                          <option> Lima </option>
-                                          <option> Arequipa </option>
-                                          <option> Puno </option>
-                                          <option> Ica </option>
-                                          <option> Piura </option>
-                                      </select>
-                                  </div>
-						      </div>
-						      
-						      
-                              
-							  <div class="control-group">
-                                  <label class="control-label" for="selectError20">Distrito:</label>
-                                  <div class="controls">
-                                      <select    name="selectError20" id="selectError20" data-rel="chosen">
-                                          <option> Magdalena </option>
-                                          <option> San Isidro </option>
-                                          <option> Miraflores </option>
-                                          <option> Surco </option>
-                                          <option> Jesus Maria </option>
-                                      </select>
-                                  </div>
-						      </div>
-						  
-						    <div class="control-group">
-						      <label class="control-label" for="typeahead7">Direccion: </label>
-						      <div class="controls">
-						        <input    type="text" class="span6 typeahead" id="typeahead7"  data-provide="typeahead" >
-					          </div>
-					        </div>
 							
-							  <div class="control-group">
-							    <label class="control-label" for="typeahead6">Telefono: </label>
-							    <div class="controls">
-							      <input     type="text" class="span6 typeahead" id="typeahead6"  data-provide="typeahead" data-items="4" data-source='["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Dakota","North Carolina","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"]'>
-						        </div>
-						      </div>
-                                
-                                
-                                
+							 <div class="control-group">
+								<label class="control-label" for="selectError">Departamento:</label>
+								<div class="controls">
+																						   <!-- cmbDepartamento  variable     -->	
+							 		<select id="selectError1" data-rel="chosen" name="cmbDepartamento">
+								  	<option selected value="DEP000001">Lima</option>							
+								  </select>
+								</div>
+							  </div>
+							  
+							 <div class="control-group">
+								<label class="control-label" for="selectError">Provincia:</label>
+								<div class="controls">
+																					 <!-- cmbProvincia  variable     -->	
+							 		<select id="selectError2" data-rel="chosen" name="cmbProvincia">
+								  	<option selected value="PRO000001">Lima</option>								
+								  </select>
+								</div>
+							  </div>
+							  
+							 <div class="control-group">
+								<label class="control-label" for="selectError">Distrito:</label>
+								<div class="controls">
+																					 <!-- cmbDistrito  variable     -->	
+							 		<select id="selectError3" data-rel="chosen" name="cmbDistrito">
+								  	<option selected value="DIS000001">Chosica</option>
+									<option value="DIS000002">Molina</option>								
+								  </select>
+								</div>
+							  </div>
+							  
+							<div class="form-actions">
+							  <button type="submit" class="btn btn-primary">Buscar</button>
+							  <button type="reset" class="btn">Cancelar</button>
+							</div>
+						  </fieldset>
+						</form>   
 
-						<!--    ----------------------------------------------------------------------------------------------    -->
-						
-						
-			            <div class="form-actions">
-			              <button type="submit" class="btn btn-primary">Buscar</button>
-			              <button type="reset" class="btn">Cancelar</button>
-		                </div>
-		              </fieldset>
-		            </form>
-		          </div>
-		        </div>
-			    <!--/span-->
-		      </div>
-			  <!--/row-->
-			  
-			  
-			  <!-- nuevo  aquiiiiii    creamos un formulario frmSede-->
-			  <form id="frmSede" name="frmSede"  method="post" action="SMASede" >
-			  
-			   <input   type ="hidden" name="accion"  value="Consultar"></imput>
-			   <input   type ="hidden" name="codigo"  value="1"></imput>
-			   
-			   
-			  </form>
-			  
-			  <!--  -->
-			  
-			  
-			  
-			  
-			  
-			  <div class="row-fluid sortable">
-			     <div class="box span12">
-					<div class="box-header well" data-original-title>
-						<h2><i class="icon-th-list"></i> RESULTADO </h2>
-                        <!--
-						<div class="box-icon">
-							<a href="#" class="btn btn-setting btn-round"><i class="icon-cog"></i></a>
-							<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
-							<a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>
-						</div>
-						-->
-                    
 					</div>
-			  
+					
+				</div><!--/span-->
+
+			</div><!--/row-->
+			 <!-- fin  paso 1  --> 
+			
+			
+
+		    <!--  paso 3  configuracion de link + variables -->				  <!-- nos linkea al archivo SMASede -->
+			<form id="frmAlternativo" name="frmAlternativo" method="post" action="<%= response.encodeURL("SMASede")%>">
+			<input type="hidden" name="accion" value="Agregar"></input>
+			<input type="hidden" name="codigo" value=""></input>
+			<input type="hidden" name="tipo" value="1"></input>
+			</form>
+			<!--  fin paso 3 -->
+			
+			
+            <!--  paso 2 configurarion link  + v ariables de retorno -->
+            
+			<div class="row-fluid sortable">		
+				<div class="box span12">
+					<div class="box-header well" data-original-title>
+						<h2><i></i> RESULTADOS</h2>
+                        
+						
+					</div>           
 					<div class="box-content">
                         <table class="table table-striped table-bordered bootstrap-datatable datatable">
-                         
-                                                     
+                            <!-- agregar nuevo boton -->
+                            
+                            
                             <div align="right">
                             
-                                <a class="btn btn-primary" href="agregarsede.jsp">
+                                <a class="btn btn-primary" href="javascript:alt_agregar()">
                                     <i class="icon icon-add icon-white"></i>
                                     Agregar
                                 </a>
                               
-                             </div> 
-                         
+                             </div>          
                           <thead>
 							  <tr>
-								  <th>Nombre</th>
-								  <th>Provincia</th>
-								  <th>Distrito</th>
-								 
-								  <th>Accion</th>
-							  </tr>
-						  </thead>   
-						  <tbody>
-							<tr>
-								<td>Sede1</td>
-								<td class="center">Lima</td>
-								<td class="center">Molina</td>
+								    <th>Nombre</th>
+							        <th>Departamento</th>
+							        <th>Provincia</th>
+							        <th>Distrito</th>			        							      							        
+							        <th>Accion</th>
 							
-								<td class="center">
-									<a class="btn btn-success" href="">
-										<i class="icon-zoom-in icon-white"></i>
-										Ver
-									</a>
-									<a class="btn btn-info" href="modificarsede.jsp">
-										<i class="icon-edit icon-white"></i>
-										Modificar
-									</a>
-									<a class="btn btn-danger" href="javascript:alt_eliminar(1)">
-										<i class="icon-trash icon-white"></i>
-										Eliminar
-									</a>
-								</td>
-							</tr>
-							</tr>
-						  </tbody>
-					  </table>            
-					</div>
-				</div>
-				<!--/span-->
-		      </div>
-			  <!--/row-->
-			  
-			  
-			  
-			  
-			  
-			  
-			  
-			  
-			  
-			  
-			  
-			  
-			  
-			  <div class="row-fluid sortable">
-			    <!--/span-->
-		      </div>
-			  <!--/row-->
-			 
+							  </tr>
+						  </thead>
+                          <element>
+                          	<tbody id="resultadoBusqueda">
+                          		<% 
+                          			for(int i=0; i<resultados.size() ;i++){
+                          		%>
+                          		<tr>
+                          			<td>
+                          				<%=
+                          					((ResultadoSedeBeanData)resultados.get(i)).getNombre()
+                          				%>
+                          			</td>
+                          			<td class="center">
+                          				<%=
+                          					((ResultadoSedeBeanData)resultados.get(i)).getDepartamento()
+                          				%>
+                          			</td>
+                          			<td class="center">
+                          				<%=
+                          					((ResultadoSedeBeanData)resultados.get(i)).getProvincia()
+                          				%>
+                          			</td>
+                          			<td class="center">
+                          				<%=
+                          					((ResultadoSedeBeanData)resultados.get(i)).getDistrito()              
+                          				%>
+                          			</td>
 
-		  
-       
+                          			<td class="center">
+                          				<a class="btn btn-success"
+                          					href="javascript:alt_consultar('<%=((ResultadoSedeBeanData)resultados.get(i)).getCodigo()%>')">
+                          					<i
+                          						class="icon-zoom-in icon-white">
+                          					</i> 
+                          					Ver
+                          				</a>
+                          				<a class="btn btn-info"
+                          					href="javascript:alt_modificar('<%=((ResultadoSedeBeanData)resultados.get(i)).getCodigo()%>')">
+                          					<i
+                          						class="icon-edit icon-white">
+                          					</i>
+                          					Modificar
+                          				</a>
+                          				<a class="btn btn-danger"
+                          					href="javascript:alt_eliminar('<%=((ResultadoSedeBeanData)resultados.get(i)).getCodigo()%>')">
+                          					<i class="icon-trash icon-white">
+                          					</i>
+                          					Eliminar
+                          				</a>
+                          			</td>
+                          		</tr>
+
+
+                          		<%}%>
+
+                          	</tbody>
+                          </element>
+                        </table>       
+					</div>
+				</div><!--/span-->
+				
+				
+			</div><!--/row-->
+		   <!-- fin paso 2 -->
+    
 					<!-- content ends -->
-		  </div><!--/#content.span10-->
+			</div><!--/#content.span10-->
 				</div><!--/fluid-row-->
+				
+				
 				
 		<hr>
 
 		<div class="modal hide fade" id="myModal">
 			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal">×</button>
+				<button type="button" class="close" data-dismiss="modal">Ã—</button>
 				<h3>Settings</h3>
 			</div>
 			<div class="modal-body">
@@ -319,19 +327,16 @@
 				<a href="#" class="btn btn-primary">Save changes</a>
 			</div>
 		</div>
-
-		<footer>
-		 Conan 3000 © 2013 <p class="pull-right">Powered by: <a href="http://usman.it/free-responsive-admin-template">Las dos virgenes</a></p>
-		</footer>
+		<jsp:include page="/IngSoft/general/inferior.jsp" />
+		
 		
 	</div><!--/.fluid-container-->
-
-	<!-- external javascript
+		<!-- external javascript
 	================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->
 
 	<!-- jQuery -->
-	<script src="js/jquery-1.7.2.min.js"></script>
+    <script src="js/jquery-1.7.2.min.js"></script>
 	<!-- jQuery UI -->
 	<script src="js/jquery-ui-1.8.21.custom.min.js"></script>
 	<!-- transition / effect library -->
@@ -399,14 +404,8 @@
 	<script src="js/jquery.history.js"></script>
 	<!-- application script for Charisma demo -->
 	<script src="js/charisma.js"></script>
-	<script>
-	function loadContent() 
-{ 
-   $("#includedContent").load("menu.html"); 
-} 
+	
+	<script src="js/ajaxsbmt.js"></script>
 
-
-	</script>
-		<script>loadContent()</script> 
 </body>
 </html>
