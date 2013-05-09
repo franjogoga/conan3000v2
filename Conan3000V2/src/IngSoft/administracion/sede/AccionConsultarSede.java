@@ -21,12 +21,12 @@ public class AccionConsultarSede extends CoAccion{
 			HttpServletResponse response)  throws CoException{
 		
 		
-		SedeBeanFuncion eventoFuncion= SedeBeanFuncion.getInstance();
+		SedeBeanFuncion sedeFuncion= SedeBeanFuncion.getInstance();
 		
 		 System.out.print("--- AccionConsultarSede 1 -->"+  request.getParameter("codigo") ) ;
 		 
 		 
-		SedeBeanData sedeData=eventoFuncion.consultarEvento(request.getParameter("codigo"));
+		SedeBeanData sedeData=sedeFuncion.consultarEvento(request.getParameter("codigo"));
 
 		 System.out.print("--- -------- AccionConsultarSede 2-->"+  sedeData.getDepartamento() ) ;
 	
