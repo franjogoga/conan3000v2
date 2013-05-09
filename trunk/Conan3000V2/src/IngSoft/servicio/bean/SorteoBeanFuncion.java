@@ -49,8 +49,8 @@ public class SorteoBeanFuncion {
 				String defecto= "000000";
 				String temp= defecto.substring(0, defecto.length()-String.valueOf(cod).length()).concat(String.valueOf(cod));
 				
-				sorteoData.setCodigo(codigo.substring(0,3).concat(temp));}
-				else sorteoData.setCodigo("PSO000001");
+				sorteoData.setIdSorteo(codigo.substring(0,3).concat(temp));}
+				else sorteoData.setIdSorteo("PSO000001");
 				
 				sqlsesion.insert("insertPlantillaSorteo",sorteoData);
 				
@@ -85,7 +85,7 @@ public class SorteoBeanFuncion {
 			catch(Exception a)		
 			{sqlsesion.rollback();
 			a.printStackTrace();
-				throw CoException.set("Error: No se pudo eliminar la plantilla intente de nuevo", "SMSEvento?accion=Agregar&tipo=1");
+				throw CoException.set("Error: No se pudo eliminar la plantilla intente de nuevo", "SMSSorteo?accion=Agregar&tipo=1");
 				
 			}
 			
@@ -102,17 +102,13 @@ public class SorteoBeanFuncion {
 			SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 			try{
 				sorteoData= sqlsesion.selectOne("Data.servicio.sorteo.getPLantillaSorteo",codigo);
-				//eventoData.setCodigo(Integer.parseInt((String)sqlsesion.selectOne("getNextCodigo")));
-				//sqlsesion.insert("insertPlantillaEvento",eventoData);
-				//List<String> temp = null;
-				//temp=sqlsesion.selectList("Data.servicio.sorteo.getSedesId",codigo);
-				//sorteoData.setIdSede(idSede)setIdSede(temp.toArray(new String[temp.size()]));		
 			}
 			finally{
 				sqlsesion.close();
 			}
 			return sorteoData;
 		}
+		
 		public Vector<SedeMiniBeanData> getSedes(){
 			SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 			List<SedeMiniBeanData> resultados=sqlsesion.selectList("Data.servicio.evento.searchSedeMini");
