@@ -8,15 +8,15 @@ public class SMASede extends CoServlet{
 	
 	@Override
 	protected void initAcciones() {
-		acciones.put("Consultar", new AccionConsultarSede());
+		acciones.put("Buscar", new AccionBuscarSede());
+		acciones.put("Eliminar", new AccionEliminarSede());
 		
-		System.out.print("--> SMASede ");
 		
 		/*
 		acciones.put("Consultar", new AccionConsultarEvento());
 		acciones.put("Agregar", new AccionAgregarEvento());
 		acciones.put("Modificar", new AccionModificarEvento());
-		acciones.put("Eliminar", new AccionEliminarEvento());
+		
 	*/
 	}
 	
