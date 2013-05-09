@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="IngSoft.administracion.bean.SedeBeanData"%>
+
 <html lang="en">
 <head>
 	<!--
@@ -12,14 +16,16 @@
 		http://twitter.com/halalit_usman
 	-->
 	<meta charset="utf-8">
-	<title>Conan3000</title>
+	<title>Modificar Sede</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
 	<meta name="author" content="Muhammad Usman">
+	<!--The beans  -->
+	<jsp:useBean id="sede" scope="request"class="IngSoft.administracion.bean.SedeBeanData"></jsp:useBean>
 
+	
 	<!-- The styles -->
 	<link id="bs-css" href="css/bootstrap-cerulean.css" rel="stylesheet">
-    
 	<style type="text/css">
 	  body {
 		padding-bottom: 40px;
@@ -51,8 +57,40 @@
 	<![endif]-->
 
 	<!-- The fav icon -->
-	<link rel="shortcut icon" href="img/favicon.ico">
+	<link rel="shortcut icon" href="img/conan_logo.png">
+	<script>
+		function procesar(form,indice){
+			
 		
+		
+		}
+	
+	function alt_fecha(obj){
+	obj.value=obj.value.slice(0,5);
+	
+	}
+	
+	function alt_submit(){
+		
+			
+			}
+		
+		
+		
+			//document.fmrData.submit();
+
+	</script>	
+	<%! public boolean  encontrar(String a, String[] b){
+		for(int i=0;i<b.length;i++){			
+			if(b[i].equals(a)) return true;	
+		}
+	return false;
+	}
+	public String formatear(java.util.Date date){
+		SimpleDateFormat DF= new SimpleDateFormat("dd/MM");
+		return DF.format(date);
+	}
+	%>
 </head>
 
 <body>
@@ -63,11 +101,9 @@
 			<!-- left menu starts -->
 			<jsp:include page="/IngSoft/general/leftmenu.jsp" />
 						<!-- left menu ends -->
-            
-            
-           
 			
-		  <noscript>
+			
+			<noscript>
 				<div class="alert alert-block span10">
 					<h4 class="alert-heading">Warning!</h4>
 					<p>You need to have <a href="http://en.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript</a> enabled to use this site.</p>
@@ -75,153 +111,130 @@
 			</noscript>
 			
 			<div id="content" class="span10">
-			  <!-- content starts -->
-			  <div>
-			    <ul class="breadcrumb">
-			      <li> <a href="#">Home</a> / <a href="#">Mantenimiento de Sede</a> / Modificar Sede</li>
-		        </ul>
-		      </div>
-			  <div class="row-fluid sortable">
-			    <div class="box span12">
-			      <div class="box-header well" data-original-title>
-			        <h2>MODIFICAR SEDE</h2>
-		          </div>
-			      <div class="box-content">
-			        <form class="form-horizontal">
-			          <fieldset>
-					  
-					  <!--    ----------------------------------------------------------------------------------------------    -->
-							<div class="control-group">
-							  <label class="control-label" for="typeahead7">Nombre(*): </label>
-							  <div class="controls">
-								<input   type="text" class="span6 typeahead" id="typeahead7"  data-provide="typeahead" >
-							  </div>
-							</div>
+			<!-- content starts -->
+			
 
-
-							  <div class="control-group">
-                                  <label class="control-label" for="selectError">Departamento(*):</label>
-                                  <div class="controls">
-                                      <select    name="selectError1" id="selectError" data-rel="chosen">
-                                          <option> Lima </option>
-                                          <option> Arequipa </option>
-                                          <option> Puno </option>
-                                          <option> Ica </option>
-                                          <option> Piura </option>
-                                      </select>
-                                  </div>
-						      </div>
-
-
-
-
+			<div>
+				<ul class="breadcrumb">
+					<li>
+						<a href="/Conan3000V2/IngSoft/general/index.jsp">Home</a> <span class="divider">/</span>
+					</li>
+					<li>
+						<a href="buscarsede.jsp">Mantenimiento de Sede</a> <span class="divider">/</span>
+					</li>
+					<li>
+						Modificar de Sede
+					</li>
+				</ul>
+			</div>
+			
+			<div class="row-fluid sortable">
+				<div class="box span12">
+					<div class="box-header well" data-original-title>
+					  <h2><i class="icon-plus-sign"></i>MODIFICAR SEDE</h2>
+				  </div>
+					<div class="box-content">
 						
-							  <div class="control-group">
-                                  <label class="control-label" for="selectError10">Provincia(*):</label>
-                                  <div class="controls">
-                                      <select    name="selectError1" id="selectError10" data-rel="chosen">
-                                          <option> Lima </option>
-                                          <option> Arequipa </option>
-                                          <option> Puno </option>
-                                          <option> Ica </option>
-                                          <option> Piura </option>
-                                      </select>
-                                  </div>
-						      </div>
-                              
-							  <div class="control-group">
-                                  <label class="control-label" for="selectError20">Distrito(*):</label>
-                                  <div class="controls">
-                                      <select    name="selectError20" id="selectError20" data-rel="chosen">
-                                          <option> Magdalena </option>
-                                          <option> San Isidro </option>
-                                          <option> Miraflores </option>
-                                          <option> Surco </option>
-                                          <option> Jesus Maria </option>
-                                      </select>
-                                  </div>
-						      </div>
+						<form class="form-horizontal" action="<%= response.encodeURL("SMASede")%>" name="frmData" method="post">
+						<input type="hidden" name="accion" value="Consultar"></input>
+						
+						<input type="hidden" name="tipo" value="2"></input>
+						  <fieldset>
 						  
 						    <div class="control-group">
-						      <label class="control-label" for="typeahead7">Direccion(*): </label>
+						      <label class="control-label" for="typeahead7">Nombre: </label>
 						      <div class="controls">
-						        <input    type="text" class="span6 typeahead" id="typeahead7"  data-provide="typeahead" >
+						        <input type="text" class="span6 typeahead" id="txtNombresede"  data-provide="typeahead"  name="txtNombresede" value="<%= sede.getNombre()%>">
 					          </div>
 					        </div>
-							
-							  <div class="control-group">
-							    <label class="control-label" for="typeahead6">Telefono(*): </label>
-							    <div class="controls">
-							      <input     type="text" class="span6 typeahead" id="typeahead6"  data-provide="typeahead" data-items="4" data-source='["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Dakota","North Carolina","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"]'>
-						        </div>
-						      </div>
-                                
-                                
-                                
-							  <div class="control-group">
-                                  <label class="control-label" for="typeahead10">Area: </label>
-							    <div class="controls">
-							      <input      type="text" class="span6 typeahead" id="typeahead10"  data-provide="typeahead" data-items="4" data-source='["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Dakota","North Carolina","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"]'>
-						        </div>
-						      </div>
 
 
 
-						
-						
-							  <div class="control-group">
-								<label class="control-label">Estado</label>
-								
+							 <div class="control-group">
+								<label class="control-label" for="selectError">Departamento:</label>
 								<div class="controls">
-								
-								  <label class="radio">
-									<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
-									Dispoible
-								  </label>
-								  
-								   <div style="clear:both"></div> 
-								  
-								  
-								  <label class="radio">
-									<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-									No disponible
-								  </label>
-								 
-
-								  
+																						   <!-- cmbDepartamento  variable     -->	
+							 		<select id="selectError11" data-rel="chosen" name="cmbDepartamento">
+								  	<option  selected value=""><%=sede.getDepartamento()%></option>							
+								  </select>
 								</div>
-								
-							  </div>	
-				
-						
-						<!--    ----------------------------------------------------------------------------------------------    -->
-						
-						
-			            <div class="form-actions">
-			              <button type="submit" class="btn btn-primary">Guardar</button>
-			              <button type="reset" class="btn">Cancelar</button>
-		                </div>
-		              </fieldset>
-		            </form>
-		          </div>
-		        </div>
-			    <!--/span-->
-		      </div>
-			  <!--/row-->
-			  <div class="row-fluid sortable">
-			    <!--/span-->
-		      </div>
-			  <!--/row-->
-			  <div class="row-fluid sortable">
-			    <!--/span-->
-		      </div>
-			  <!--/row-->
-			 
+							  </div>
+							  
+							 <div class="control-group">
+								<label class="control-label" for="selectError">Provincia:</label>
+								<div class="controls">
+																						   <!-- cmbDepartamento  variable     -->	
+							 		<select  id="selectError12" data-rel="chosen" name="cmbDepartamento">
+								  	<option  selected value=""><%=sede.getProvincia()%></option>							
+								  </select>
+								</div>
+							  </div>
 
-		  
-       
+
+							 <div class="control-group">
+								<label class="control-label" for="selectError">Distrito:</label>
+								<div class="controls">
+																						   <!-- cmbDepartamento  variable     -->	
+							 		<select  id="selectError13" data-rel="chosen" name="cmbDepartamento">
+								  	<option  selected value="<%=sede.getCodigo()%>"><%=sede.getDistrito()%></option>							
+								  </select>
+								</div>
+							  </div>
+
+	
+
+						    <div class="control-group">
+						      <label class="control-label" for="typeahead7">Direccion: </label>
+						      <div class="controls">
+						        <input type="text" class="span6 typeahead" id="txtNombreEvento"  data-provide="typeahead"  name="txtNombreEvento" disabled value="<%=sede.getDireccion()%>">
+					          </div>
+					        </div>
+
+
+
+						    <div class="control-group">
+						      <label class="control-label" for="typeahead7">Telefono: </label>
+						      <div class="controls">
+						        <input type="text" class="span6 typeahead" id="txtNombreEvento"  data-provide="typeahead"  name="txtNombreEvento" disabled value="<%=sede.getTelefono()%>">
+					          </div>
+					        </div>
+
+
+
+						    <div class="control-group">
+						      <label class="control-label" for="typeahead7">AreaTereno: </label>
+						      <div class="controls">
+						        <input type="text" class="span6 typeahead" id="txtNombreEvento"  data-provide="typeahead"  name="txtNombreEvento" disabled value="<%=sede.getAreaterreno()%>">
+					          </div>
+					        </div>
+					        
+					        
+					          
+						    <div class="form-actions">
+							  <button type="button" class="btn btn-primary" onclick="javascript:alt_submit()">Guardar</button>
+							  <button type="button" class="btn" onclick="location.href='buscarsede.jsp'" >Cancelar</button>
+							</div>
+							
+							
+							
+						  </fieldset>
+					  </form>   
+					
+				  </div>
+				</div><!--/span-->
+
+			</div><!--/row-->
+
+
+			<div class="row-fluid sortable"><!--/span-->
+			
+			</div><!--/row-->
+			
+			<div class="row-fluid sortable"><!--/span-->
+
+			</div><!--/row-->		 
 					<!-- content ends -->
-		  </div><!--/#content.span10-->
+			</div><!--/#content.span10-->
 				</div><!--/fluid-row-->
 				
 		<hr>
@@ -234,15 +247,13 @@
 			<div class="modal-body">
 				<p>Here settings can be configured...</p>
 			</div>
-			<div class="modal-footer">
+			<div class="modal-footer" >
 				<a href="#" class="btn" data-dismiss="modal">Close</a>
 				<a href="#" class="btn btn-primary">Save changes</a>
 			</div>
 		</div>
-
-		<footer>
-		 Conan 3000 © 2013 <p class="pull-right">Powered by: <a href="http://usman.it/free-responsive-admin-template">Las dos virgenes</a></p>
-		</footer>
+		<br/>
+		<jsp:include page="/IngSoft/general/inferior.jsp" />
 		
 	</div><!--/.fluid-container-->
 
@@ -319,14 +330,7 @@
 	<script src="js/jquery.history.js"></script>
 	<!-- application script for Charisma demo -->
 	<script src="js/charisma.js"></script>
-	<script>
-	function loadContent() 
-{ 
-   $("#includedContent").load("menu.html"); 
-} 
-
-
-	</script>
-		<script>loadContent()</script> 
+	
+		
 </body>
 </html>
