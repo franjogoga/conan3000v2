@@ -8,7 +8,7 @@
 
 <select id="searchPlantillaSorteo" parameterType="IngSoft.servicio.bean.CriterioSorteoBeanData" resultType="IngSoft.servicio.bean.ResultadoSorteoBeanData">
 select 
-SORTEO.IdSede as codigo,
+SORTEO.IdSorteo as codigo,
 SORTEO.Descripcion as nombre,
 SORTEO.FechaInicioIncr as fechaIni,
 SORTEO.FechaFinInscr as fechaFin,
@@ -44,16 +44,22 @@ order by 1 asc
 </select>
  <!-- Fin agregar  -->
  
-<!--
-<select id="getPLantillaSorteo" parameterType="int" resultType="IngSoft.servicio.bean.SorteoBeanData">
+<select id="getSedeId" parameterType="java.lang.String"  resultType="java.lang.String">
+select IdSede from SORTEO where IdSorteo= #{codigo};
+</select> 
+
+<select id="getPLantillaSorteo" parameterType="String" resultType="IngSoft.servicio.bean.SorteoBeanData">
 select 
-id_plantilla_evento as codigo
-,id_tipo_evento as idTipo
-,nombre as nombre
-,lim_inicio as limiteInicio
-,lim_fin as limiteFin
-from plantilla_evento  pe where pe.estado='A' and  pe.id_plantilla_evento=#{codigo}; 
+IdSorteo as idSorteo,
+IdSede as idSede,
+Descripcion as descripcion,
+FechaInicioIncr as fechaInicio,
+FechaFinInscr as fechaFin,
+FechaSorteo as fechaSorteo,
+Estado as estado
+from SORTEO s where s.IdSorteo=#{codigo}; 
 </select>
+<!--
  Modificar elemento 
 <update id="updatePLantillaEvento" parameterType="IngSoft.servicio.bean.EventoBeanData">
 update plantilla_evento set nombre=#{nombre}
@@ -65,9 +71,10 @@ update plantilla_evento set nombre=#{nombre}
 
  Fin modificar 
 Eliminar evento 
-<update id="deletePLantillaEvento" parameterType="int">
-update plantilla_evento set estado='I' where id_plantilla_evento= #{codigo}
-</update>
- Fin eliminar 
 -->
+<update id="deletePLantillaEvento" parameterType="String">
+DELETE FROM SORTEO where IdSorteo= #{codigo}
+</update>
+
+
 </mapper>
