@@ -186,7 +186,7 @@
 						    <div class="control-group">
 						      <label class="control-label" for="typeahead7">Direccion: </label>
 						      <div class="controls">
-						        <input type="text" class="span6 typeahead" id="txtNombreEvento"  data-provide="typeahead"  name="txtNombreEvento" disabled value="<%=sede.getDireccion()%>">
+						        <input type="text" class="span6 typeahead" id="txtNombreEvento"  data-provide="typeahead"  name="txtNombreEvento"  value="<%=sede.getDireccion()%>">
 					          </div>
 					        </div>
 
@@ -195,7 +195,7 @@
 						    <div class="control-group">
 						      <label class="control-label" for="typeahead7">Telefono: </label>
 						      <div class="controls">
-						        <input type="text" class="span6 typeahead" id="txtNombreEvento"  data-provide="typeahead"  name="txtNombreEvento" disabled value="<%=sede.getTelefono()%>">
+						        <input type="text" class="span6 typeahead" id="txtNombreEvento"  data-provide="typeahead"  name="txtNombreEvento"  value="<%=sede.getTelefono()%>">
 					          </div>
 					        </div>
 
@@ -204,7 +204,7 @@
 						    <div class="control-group">
 						      <label class="control-label" for="typeahead7">AreaTereno: </label>
 						      <div class="controls">
-						        <input type="text" class="span6 typeahead" id="txtNombreEvento"  data-provide="typeahead"  name="txtNombreEvento" disabled value="<%=sede.getAreaterreno()%>">
+						        <input type="text" class="span6 typeahead" id="txtNombreEvento"  data-provide="typeahead"  name="txtNombreEvento"  value="<%=sede.getAreaterreno()%>">
 					          </div>
 					        </div>
 					        
