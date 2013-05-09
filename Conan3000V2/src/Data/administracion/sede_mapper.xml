@@ -5,8 +5,54 @@
 <mapper namespace="Data.administracion.sede">
 
   <cache />
- <select id="getSede" parameterType="int" resultType="IngSoft.administracion.bean.SedeBeanData"> 
-SELECT codigo, nombre FROM `sede` WHERE codigo=#{codigo} 
-  </select>
+  
+<select id="searchPlantillaSede" parameterType="IngSoft.administracion.bean.CriterioSedeBeanData" resultType="IngSoft.administracion.bean.ResultadoSedeBeanData">
+select 
+SEDE.IdSede as codigo
+,SEDE.NOMBRE as nombre
+,DEPARTAMENTO.NOMBRE as departamento
+,PROVINCIA.NOMBRE as provincia
+,DISTRITO.NOMBRE as distrito
+from DEPARTAMENTO  , PROVINCIA  , DISTRITO  , SEDE 
+<where>
+   <!--  <if test="nombre != null ">
+        SEDE.NOMBRE  like  #{nombre}
+    </if>
+    <if test="departamento != null ">
+        AND DEPARTAMENTO.IdDepartamento = #{departamento}
+    </if>
+    <if test="provincia != null">
+        AND PROVINCIA.NOMBRE = #{provincia}
+    </if>
+    <if test="distrito != null">
+        AND DISTRITO.NOMBRE  = #{distrito}
+    </if>
+     --> 
+        AND  DEPARTAMENTO.IdDepartamento = PROVINCIA.IdDepartamento 
+        AND  PROVINCIA.IdProvincia = DISTRITO.IdProvincia 
+        AND  DISTRITO.IdDistrito = SEDE.IdDistrito
+
+</where>
+order by 1 asc
+</select>
+
+
+
+<!-- Agregar sede -->
+<insert id="insertPlantillaSede" parameterType="IngSoft.administracion.bean.SedeBeanData" flushCache="true">
+	insert into SEDE(IdSede,Nombre,Direccion,Telefono,AreaTerreno,IdDistrito)
+	values (#{codigo},#{nombre},#{direccion},#{telefono},#{areaterreno},#{idDistrito})
+</insert>
+<!-- Fin Agregar -->
+
+
+<!--Eliminar evento -->
+<update id="deletePLantillaSede" parameterType="java.lang.String" >
+update SEDE set Estado='I' where IdPlantillaEvento= #{codigo}
+</update>
+<!-- Fin eliminar -->
+
+
+
 
 </mapper>
