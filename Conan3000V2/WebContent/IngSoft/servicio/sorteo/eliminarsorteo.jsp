@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="IngSoft.servicio.bean.SedeMiniBeanData"%>
-<%@page import="IngSoft.servicio.bean.AmbienteMiniBeanData"%>
 <%@page import="java.util.Date"%>
 <html lang="en">
 <head>
@@ -23,7 +22,6 @@
 	<!--The beans  -->
 	<jsp:useBean id="sorteo" scope="request"class="IngSoft.servicio.bean.SorteoBeanData"></jsp:useBean>
 	<jsp:useBean id="sedes" scope="request"class="java.util.Vector"></jsp:useBean>
-	<jsp:useBean id="ambientes" scope="request"class="java.util.Vector"></jsp:useBean>
 	<!-- The styles -->
 	<link id="bs-css" href="css/bootstrap-cerulean.css" rel="stylesheet">
 	<style type="text/css">
@@ -66,7 +64,7 @@
 	
 	function alt_submit(){
 		var form= document.frmDelete;
-		var r=confirm("¿Esta seguro que desea borrar este sorteo?");
+		var r=confirm("¿Esta seguro que desea borrar este evento?");
 		if(r==true){form.submit();}
 			}	
 
@@ -117,7 +115,7 @@
 						<a href="#">Mantenimiento de Sorteos</a> <span class="divider">/</span>
 					</li>
 					<li>
-						Eliminar Sorteos
+						Eliminar de Sorteos
 					</li>
 				</ul>
 			</div>
@@ -128,42 +126,19 @@
 					  <h2><i class="icon-trash"></i>ELIMINAR SORTEO</h2>
 				  </div>
 					<div class="box-content">
-						<form class="form-horizontal" name="frmDelete"  action="<%= response.encodeURL("SMSSorteo")%>" method="post">
-						<input type="hidden" name="codigo" value="<%=sorteo.getCodigo()%>"></input>
+						<form class="form-horizontal" name="frmDelete2"  action="<%= response.encodeURL("SMSSorteo")%>" method="post">
+						<input type="hidden" name="codigo" value="<%=sorteo.getIdSorteo()%>"></input>
 						<input type="hidden" name="accion" value="Eliminar"></input>
-						<input type="hidden" name="tipo" value="2"></input>
+						<input type="hidden" name="tipo" value="1"></input>
 						  <fieldset>
 						    <div class="control-group">
 						      <label class="control-label" for="disabledInput">Nombre de sorteo: </label>
 						      <div class="controls">
-						        <input class="input-xlarge disabled" id="disabledInput" type="text" placeholder="Disabled input here.." disabled id="txtNombreSorteo" name="txtNombreSorteo" value="<%=sorteo.getNombre()%>">
+						        <input class="input-xlarge disabled" id="disabledInput" type="text" placeholder="Disabled input here.." disabled id="txtNombreSorteo" name="txtNombreSorteo" value="<%=sorteo.getIdSede()%>">
 					          </div>
 					        </div>
-
-							  <div class="control-group">
-								<label class="control-label" for="selectError1">Sedes relacionadas</label>
-								<div class="controls">
-								  <select id="selectError1" multiple data-rel="chosen" id="cmbSedes" name="cmbSedes" disabled>
-									<%for(int i=0;i<sedes.size();i++){ %>
-										<option value="<%= ((SedeMiniBeanData)sedes.get(i)).getCodigo()%>" <%=encontrar(((SedeMiniBeanData)sedes.get(i)).getCodigo(), sorteo.getIdSede())?"selected":""%>><%= ((SedeMiniBeanData)sedes.get(i)).getNombre()%></option>
-									<%} %>																	
-								  </select>
-								</div>
-							  </div>
-
-							  <div class="control-group">
-							  <label class="control-label" for="date01">Fecha Inicio</label>
-							  <div class="controls">
-								<input type="text" class="input-xlarge datepicker" id="fFecIncio"  readonly="true" value="<%=formatear(new Date(sorteo.getLimiteInicio().getTime())) %>"  name="fFecIncio" onchange="alt_fecha(this)" disabled>
-							  </div>
-							</div>
+						    
 							
-							<div class="control-group">
-							  <label class="control-label" for="date02">Fecha Fin</label>
-							  <div class="controls">
-								<input type="text" class="input-xlarge datepicker" id="fFecFin" name="fFecFin" readonly="true" value="<%=formatear(new Date(sorteo.getLimiteFin().getTime())) %>" onchange="alt_fecha(this)" disabled>
-							  </div>
-							</div>
 						    <div class="form-actions">
 							  <button type="button" class="btn btn-primary" onclick="javascript:alt_submit()">Eliminar</button>
 							  <button type="button" class="btn" onclick="location.href='buscarsorteo.jsp'" >Cancelar</button>
