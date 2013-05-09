@@ -16,12 +16,6 @@ public class SorteoBeanData implements Serializable {
 	private int[] socios;
 	private int[] ganadores;
 	
-	public String getCodigo() {
-		return idSorteo;
-	}
-	public void setCodigo(String codigo) {
-		this.idSorteo = codigo;
-	}
 	public String getNombre() {
 		return nombre;
 	}
