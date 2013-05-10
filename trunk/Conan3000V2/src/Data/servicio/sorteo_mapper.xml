@@ -72,7 +72,7 @@ update plantilla_evento set nombre=#{nombre}
  Fin modificar 
 Eliminar evento 
 -->
-<update id="deletePLantillaEvento" parameterType="String">
+<update id="deletePLantillaSorteo" parameterType="String">
 DELETE FROM SORTEO where IdSorteo= #{codigo}
 </update>
 
