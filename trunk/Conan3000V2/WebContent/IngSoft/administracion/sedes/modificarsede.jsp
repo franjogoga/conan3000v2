@@ -61,7 +61,7 @@
 	<script>
 		function validar(form){
 			if(form.txtNombre.value.length <=0)return false;
-			if(form.txtDirecion.value.length<=0)return false;
+			if(form.txtDireccion.value.length<=0)return false;
 			if(form.txtTelefono.value.lengtht<=0)return false;
 			if(form.txtAreaterreno.value.length<=0)return false;
 			
