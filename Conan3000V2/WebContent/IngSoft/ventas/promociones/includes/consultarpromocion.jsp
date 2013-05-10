@@ -159,6 +159,15 @@
 								<input type="text" class="input-xlarge datepicker" id="fFechFin" name="fFecFin" value="<%=formatear(new Date(promocion.getFechaFin().getTime())) %>"  onchange="alt_fecha(this)" disabled>
 							  </div>
 							</div>
+							
+							<div class="control-group">
+			                <label class="control-label" for="textarea2">Descripci&oacute;n:</label>
+			                <div class="controls">
+			                  <textarea name="textarea" rows="3" disabled class="" id="txtDescripcion" style="resize:none"><%=promocion.getDescripcion()%></textarea>
+		                    </div>
+		                  </div>
+			            	</div>
+							
 						    <div class="form-actions" >
 							 <!--  <button type="submit" class="btn btn-primary">Agregar</button> -->
 							  <button type="button" class="btn" onclick="location.href='buscarpromocion.jsp'" >Regresar</button>
