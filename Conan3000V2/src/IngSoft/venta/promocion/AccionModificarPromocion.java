@@ -24,19 +24,15 @@ public class AccionModificarPromocion extends CoAccion{
 		// TODO Auto-generated method stub
 		PromocionBeanFuncion PromocionFuncion= PromocionBeanFuncion.getInstance();
 		if(Integer.valueOf(request.getParameter("tipo"))==2){
-			//System.out.println(request.getParameter("txtLSede"));
-			//System.out.println(request.getParameter("txtLAmbiente"));
-			
-			//String antSede[]=((String)request.getParameter("txtLSede")).split("/");
-			//String antAmb[]=((String)request.getParameter("txtLAmbiente")).split("/");
+	
 			PromocionBeanData PromocionData=PromocionFuncion.crearPromocion(request, response);
 			PromocionData.setIdPromocion(request.getParameter("codigo"));
-			PromocionFuncion.modificarPromocion(eventoData, antSede, antAmb);
-			this.direccionar(sc, request, response, "/IngSoft/servicio/evento/buscarevento.jsp");
+			PromocionFuncion.modificarPromocion(PromocionData);
+			this.direccionar(sc, request, response, "/IngSoft/ventas/promociones/buscarpromocion.jsp");
 		}	
 		PromocionBeanData PromocionData=PromocionFuncion.consultarPromocion(request.getParameter("codigo"));
 
 		request.setAttribute("promocion", PromocionData);
-		this.direccionar(sc, request, response, "/IngSoft/venta/promociones/modificarpromocion.jsp");
+		this.direccionar(sc, request, response, "/IngSoft/ventas/promociones/modificarpromocion.jsp");
 	}
 }
