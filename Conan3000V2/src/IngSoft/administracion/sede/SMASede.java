@@ -12,6 +12,7 @@ public class SMASede extends CoServlet{
 		acciones.put("Consultar", new AccionConsultarSede());
 		acciones.put("Eliminar", new  AccionEliminarSede());
 		acciones.put("Modificar", new AccionModificarSede());
+		acciones.put("Agregar", new AccionAgregarSede());
 		
 
 	}
