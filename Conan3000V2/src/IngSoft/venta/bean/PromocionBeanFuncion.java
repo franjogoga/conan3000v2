@@ -40,7 +40,18 @@ public class PromocionBeanFuncion {
 		promocionData.setFechaInicio(new Date(DF.parse(request.getParameter("fFechInicio")).getTime()));
 		promocionData.setFechafin(new Date(DF.parse(request.getParameter("fFechFin")).getTime()));
 		promocionData.setDescripcion(request.getParameter("txtDescripcion"));
-		}catch(Exception e){
+		if (request.getParameter("rButton")!=null){
+		String est;
+		est=request.getParameter("rButton");
+		promocionData.setEstado(est);}
+		
+		//if(request.getParameter("rButton").equals("option1")) {
+		//promocionData.setEstado(request.getParameter("option1"));}
+          // else if (request.getParameter("rButton").equals("option2"))
+            //	promocionData.setEstado(request.getParameter("option2"));
+         	
+		}
+		catch(Exception e){
 			e.printStackTrace();
 			
 		}
