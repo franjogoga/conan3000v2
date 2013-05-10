@@ -43,18 +43,15 @@ from PROMOCION
  
  <!-- Modificar elemento -->
 <update id="updatePromocion" parameterType="IngSoft.venta.bean.PromocionBeanData">
-update Promocion set Nombre=#{nombre}
+update PROMOCION set Nombre=#{nombre}
  ,FechaInicio=#{fechaInicio}
  ,FechaFin=#{fechaFin}
  ,Descripcion=#{descripcion}
- ,Estado=#{estado]
  where IdPromocion= #{codigo}
 </update>
 
 <!-- Fin modificar -->
 
- 
- 
 
 
 <!--Eliminar promocion -->
