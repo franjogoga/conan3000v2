@@ -3,6 +3,9 @@
 <html lang="en">
 <head>
 <jsp:include page="/IngSoft/general/header.jsp" />
+<!-- The fav icon -->
+	<link rel="shortcut icon" href="img/conan_logo.png">
+
 </head>
 <body>
 
