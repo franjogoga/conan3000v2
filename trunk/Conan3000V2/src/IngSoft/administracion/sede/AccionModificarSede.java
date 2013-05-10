@@ -20,12 +20,23 @@ public class AccionModificarSede extends CoAccion{
 	public void ejecutar(ServletContext sc, HttpServletRequest request,
 			HttpServletResponse response)  throws CoException{
 		
+		if(Integer.valueOf(request.getParameter("tipo"))==2){
 		
+			
+		SedeBeanFuncion sedeFuncion= SedeBeanFuncion.getInstance();
+		SedeBeanData sedeoData=sedeFuncion.crearSedeModificada(request, response);
+		sedeFuncion.modificarSede(sedeoData);
+		
+		this.direccionar(sc, request, response, "/IngSoft/administracion/sedes/buscarsede.jsp");
+		
+		}
+		else
+		{
 		SedeBeanFuncion sedeFuncion= SedeBeanFuncion.getInstance(); 
 		SedeBeanData sedeData=sedeFuncion.consultarEvento(request.getParameter("codigo"));	
 		request.setAttribute("sede",sedeData );
 		this.direccionar(sc, request, response, "/IngSoft/administracion/sedes/modificarsede.jsp");
-		
+		}
 
 	}
 

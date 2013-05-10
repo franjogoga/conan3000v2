@@ -61,6 +61,30 @@ public class SedeBeanFuncion {
 		return sedeData;		
 	}
 	
+	public SedeBeanData crearSedeModificada(HttpServletRequest request, HttpServletResponse response){
+		SedeBeanData sedeData= new SedeBeanData();
+		try{		
+			
+
+		sedeData.setCodigo(        request.getParameter("codigo") );	
+		sedeData.setNombre(        request.getParameter("txtNombre") );
+		sedeData.setDireccion(     request.getParameter("txtDireccion") );
+		sedeData.setTelefono(      Long.parseLong(request.getParameter("txtTelefono") )    );
+		sedeData.setAreaterreno(   Double.parseDouble(request.getParameter("txtAreaterreno")) );
+		sedeData.setEstado(        request.getParameter("optionsRadios"));
+
+
+		}catch(Exception e){
+			e.printStackTrace();
+			
+		}
+		return sedeData;		
+	}
+	
+	
+	
+	
+	
 	
 	public boolean agregarSede(SedeBeanData sedeData) throws CoException {
 		boolean resultado=false;		
@@ -112,6 +136,44 @@ public class SedeBeanFuncion {
 	}
 	
 
+	
+	public boolean modificarSede(SedeBeanData sedeData) throws CoException {
+		boolean resultado=false;		
+		
+		l.lock();
+		
+		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+		
+		try{
+
+			
+			sqlsesion.insert("Data.administracion.sede.modificarPlantillaSede",sedeData);
+
+			
+			resultado=true;
+		}
+		catch(Exception a)		
+		{sqlsesion.rollback();
+		a.printStackTrace();
+			throw CoException.set("Error: Nose pudo modificar la plantilla ", "SMASede?accion=Agregar&tipo=1");
+			
+		}
+		
+		finally{
+			sqlsesion.commit();
+			sqlsesion.close();
+			l.unlock();				
+		}
+			
+		return resultado;
+	}
+	
+	
+	
+	
+	
+	
+	
 	public SedeBeanData consultarEvento(String codigo){
 		SedeBeanData sedeData=null;
 		
