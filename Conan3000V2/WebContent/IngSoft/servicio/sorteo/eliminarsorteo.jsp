@@ -20,8 +20,8 @@
 	<meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
 	<meta name="author" content="Muhammad Usman">
 	<!--The beans  -->
-	<jsp:useBean id="sorteo" scope="request"class="IngSoft.servicio.bean.SorteoBeanData"></jsp:useBean>
-	<jsp:useBean id="sedes" scope="request"class="java.util.Vector"></jsp:useBean>
+	<jsp:useBean id="sorteo" scope="request" class="IngSoft.servicio.bean.SorteoBeanData"></jsp:useBean>
+	<jsp:useBean id="sedes" scope="request" class="java.util.Vector"></jsp:useBean>
 	<!-- The styles -->
 	<link id="bs-css" href="css/bootstrap-cerulean.css" rel="stylesheet">
 	<style type="text/css">
@@ -71,12 +71,7 @@
 
 	</script>	
 	
-	<%! public boolean  encontrar(String a, String[] b){
-		for(int i=0;i<b.length;i++){			
-			if(b[i].equals(a)) return true;	
-		}
-	return false;
-	}
+	<%! 
 	public String formatear(java.util.Date date){
 		SimpleDateFormat DF= new SimpleDateFormat("dd/MM");
 		return DF.format(date);
@@ -126,19 +121,41 @@
 					  <h2><i class="icon-trash"></i>ELIMINAR SORTEO</h2>
 				  </div>
 					<div class="box-content">
-						<form class="form-horizontal" name="frmDelete2"  action="<%= response.encodeURL("SMSSorteo")%>" method="post">
-						<input type="hidden" name="codigo" value="<%=sorteo.getIdSorteo()%>"></input>
+						<form class="form-horizontal" name="frmDelete"  action="<%=response.encodeURL("SMSSorteo")%>" method="post">
+						<input type="hidden" name="codigo" value="<%=sorteo.getIdSorteo()%>"></input>						
 						<input type="hidden" name="accion" value="Eliminar"></input>
-						<input type="hidden" name="tipo" value="1"></input>
+						<input type="hidden" name="tipo" value="2"></input>
 						  <fieldset>
 						    <div class="control-group">
 						      <label class="control-label" for="disabledInput">Nombre de sorteo: </label>
 						      <div class="controls">
-						        <input class="input-xlarge disabled" id="disabledInput" type="text" placeholder="Disabled input here.." disabled id="txtNombreSorteo" name="txtNombreSorteo" value="<%=sorteo.getIdSede()%>">
+						        <input class="input-xlarge disabled" id="disabledInput" type="text" placeholder="Disabled input here.." disabled id="txtNombreSorteo" name="txtNombreSorteo" value="<%=sorteo.getDescripcion()%>">
 					          </div>
 					        </div>
-						    
-							
+							<div class="control-group">
+						      <label class="control-label" for="disabledInput">Sede: </label>
+						      <div class="controls">
+						        <input class="input-xlarge disabled" id="disabledInput" type="text" placeholder="Disabled input here.." disabled id="txtNombreSede" name="txtNombreSede" value="<%=sorteo.getIdSede()%>">
+					          </div>
+					        </div>
+							<div class="control-group">
+						      <label class="control-label" for="disabledInput">Fecha Inicio: </label>
+						      <div class="controls">
+								<input type="text" class="input-xlarge datepicker" id="fFecIncio"  readonly="true" value="<%=formatear(new Date(sorteo.getFechaInicio().getTime())) %>"  name="fFecIncio" onchange="alt_fecha(this)" disabled>
+					          </div>
+					        </div>
+					        							<div class="control-group">
+						      <label class="control-label" for="disabledInput">Fecha Fin: </label>
+						      <div class="controls">
+								<input type="text" class="input-xlarge datepicker" id="fFecIncio"  readonly="true" value="<%=formatear(new Date(sorteo.getFechaFin().getTime())) %>"  name="fFecFin" onchange="alt_fecha(this)" disabled>
+					          </div>
+					        </div>
+					        							<div class="control-group">
+						      <label class="control-label" for="disabledInput">Fecha Sorteo: </label>
+						      <div class="controls">
+								<input type="text" class="input-xlarge datepicker" id="fFecIncio"  readonly="true" value="<%=formatear(new Date(sorteo.getFechaSorteo().getTime())) %>"  name="fFecSorteo" onchange="alt_fecha(this)" disabled>
+					          </div>
+					        </div>							
 						    <div class="form-actions">
 							  <button type="button" class="btn btn-primary" onclick="javascript:alt_submit()">Eliminar</button>
 							  <button type="button" class="btn" onclick="location.href='buscarsorteo.jsp'" >Cancelar</button>
