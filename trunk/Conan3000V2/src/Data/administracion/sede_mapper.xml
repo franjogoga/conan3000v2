@@ -66,11 +66,15 @@ order by 1 asc
  <!-- Fin Agregar -->
 
 
-<!--Eliminar evento 
+
+
+<!--Eliminar sede -->
+
 <update id="deletePLantillaSede" parameterType="java.lang.String" >
-update SEDE set Estado='I' where IdPlantillaEvento= #{codigo}
+update SEDE set Estado='Eliminado' where IdSede= #{codigo}
 </update>
-Fin eliminar -->
+<!-- Fin eliminar -->
+
 
 
 

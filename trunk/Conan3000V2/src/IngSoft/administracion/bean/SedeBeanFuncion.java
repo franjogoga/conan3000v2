@@ -135,6 +135,31 @@ public class SedeBeanFuncion {
 	
 	
 	
+	public boolean eliminarSede(String codigo) throws CoException {
+		boolean resultado=false;		
+		
+		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+		try{
+		
+			sqlsesion.update("Data.administracion.sede.deletePLantillaSede",codigo);
+			
+			resultado=true;
+		}
+		catch(Exception a)		
+		{sqlsesion.rollback();
+		a.printStackTrace();
+			throw CoException.set("Error: No se pudo eliminar la plantilla intente de nuevo", "SMASede?accion=Agregar&tipo=1");
+			
+		}
+		
+		finally{
+			sqlsesion.commit();
+			sqlsesion.close();					
+		}
+			
+		return resultado;
+	}
+	
 	
 
 }
