@@ -1,5 +1,8 @@
 package IngSoft.administracion.bean;
 
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -12,7 +15,7 @@ public class SedeBeanFuncion {
 	
 	
 	
-	//static private SedeBeanFuncion sede= null;
+	private Lock l= new ReentrantLock();  
 
 	static private SedeBeanFuncion sedeFuncion=null;
 
@@ -62,6 +65,8 @@ public class SedeBeanFuncion {
 	public boolean agregarSede(SedeBeanData sedeData) throws CoException {
 		boolean resultado=false;		
 		
+		l.lock();
+		
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		
 		try{
@@ -81,7 +86,11 @@ public class SedeBeanFuncion {
 			sedeData.setCodigo(codigo.substring(0,3).concat(temp));
 			}
 			else sedeData.setCodigo("SED000001");
-			sqlsesion.insert("Data.servicio.evento.insertPlantillaSede",sedeData);
+			
+			
+			System.out.print("  SedeBeanFuncion ---> sedeData--> "+ sedeData.getCodigo() );
+			
+			sqlsesion.insert("Data.administracion.sede.insertPlantillaSede",sedeData);
 
 			
 			resultado=true;
@@ -96,7 +105,7 @@ public class SedeBeanFuncion {
 		finally{
 			sqlsesion.commit();
 			sqlsesion.close();
-							
+			l.unlock();				
 		}
 			
 		return resultado;
