@@ -73,7 +73,7 @@
 			          <fieldset>
 			         
 			            <div class="control-group" id="dvNombrePromocion">
-			              <label class="control-label" for="typeahead7">Nombre Promoci&oacute;n:</label>
+			              <label class="control-label" for="typeahead7">Nombre  de Promoci&oacute;n:</label>
 			              <div class="controls">
 			                <input type="text" class="span6 typeahead" id="txtNombrePromocion" name="txtNombrePromocion" value="<%=promocion.getNombre()%>">
 		                  <span class="help-inline" id="errNombrePromocion">Please correct the error</span>
