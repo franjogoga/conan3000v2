@@ -21,9 +21,8 @@
 	<meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
 	<meta name="author" content="Muhammad Usman">
 	<!--The beans  -->
-	<jsp:useBean id="sede" scope="request"class="IngSoft.administracion.bean.SedeBeanData"></jsp:useBean>
+<jsp:useBean id="sede" scope="request"class="IngSoft.administracion.bean.SedeBeanData"></jsp:useBean>
 
-	
 	<!-- The styles -->
 	<link id="bs-css" href="css/bootstrap-cerulean.css" rel="stylesheet">
 	<style type="text/css">
@@ -59,27 +58,20 @@
 	<!-- The fav icon -->
 	<link rel="shortcut icon" href="img/conan_logo.png">
 	<script>
-		function procesar(form,indice){
-			
-		
-		
-		}
-	
 	function alt_fecha(obj){
 	obj.value=obj.value.slice(0,5);
 	
 	}
 	
 	function alt_submit(){
-		
-			
-			}
-		
-		
-		
-			//document.fmrData.submit();
+		var form= document.frmDelete;
+		var r=confirm("¿Esta seguro que desea borrar este evento?");
+		if(r==true){form.submit();}
+			}	
+
 
 	</script>	
+	
 	<%! public boolean  encontrar(String a, String[] b){
 		for(int i=0;i<b.length;i++){			
 			if(b[i].equals(a)) return true;	
@@ -110,6 +102,7 @@
 				</div>
 			</noscript>
 			
+
 			<div id="content" class="span10">
 			<!-- content starts -->
 			
@@ -117,10 +110,10 @@
 			<div>
 				<ul class="breadcrumb">
 					<li>
-						<a href="/Conan3000V2/IngSoft/general/index.jsp">Home</a> <span class="divider">/</span>
+						<a href="#">Home</a> <span class="divider">/</span>
 					</li>
 					<li>
-						<a href="buscarsede.jsp">Mantenimiento de Sede</a> <span class="divider">/</span>
+						<a href="#">Mantenimiento de Sede</a> <span class="divider">/</span>
 					</li>
 					<li>
 						Eliminar de Sede
@@ -131,13 +124,14 @@
 			<div class="row-fluid sortable">
 				<div class="box span12">
 					<div class="box-header well" data-original-title>
-					  <h2><i class="icon-plus-sign"></i>ELIMINAR SEDE</h2>
+					  <h2><i class="icon-trash"></i>ELIMINAR SEDE</h2>
 				  </div>
 					<div class="box-content">
+						<form class="form-horizontal" name="frmDelete"  action="<%= response.encodeURL("SMASede")%>" method="post">
 						
-						<form class="form-horizontal" action="<%= response.encodeURL("SMASede")%>" name="frmData" method="post">
-						<input type="hidden" name="accion" value="Consultar"></input>
 						
+						<input type="hidden" name="codigo" value="<%=sede.getCodigo()%>"></input>
+						<input type="hidden" name="accion" value="Eliminar"></input>
 						<input type="hidden" name="tipo" value="2"></input>
 						  <fieldset>
 						  
@@ -233,12 +227,12 @@
 								</div>
 								
 							  </div>	
-							   
-					        
-
-							
-						<!--    ----------------------------------------------------------------------------------------------    -->
-						
+							   			  
+	
+	
+	
+	
+	
 							
 						    <div class="form-actions">
 							  <button type="button" class="btn btn-primary" onclick="javascript:alt_submit()">Eliminar</button>
@@ -246,10 +240,9 @@
 							</div>
 							
 							
-							
 						  </fieldset>
 					  </form>   
-					
+
 				  </div>
 				</div><!--/span-->
 
@@ -271,18 +264,18 @@
 
 		<div class="modal hide fade" id="myModal">
 			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal">Ã—</button>
+				<button type="button" class="close" data-dismiss="modal">×</button>
 				<h3>Settings</h3>
 			</div>
 			<div class="modal-body">
 				<p>Here settings can be configured...</p>
 			</div>
-			<div class="modal-footer" >
+			<div class="modal-footer">
 				<a href="#" class="btn" data-dismiss="modal">Close</a>
 				<a href="#" class="btn btn-primary">Save changes</a>
 			</div>
 		</div>
-		<br/>
+
 		<jsp:include page="/IngSoft/general/inferior.jsp" />
 		
 	</div><!--/.fluid-container-->
