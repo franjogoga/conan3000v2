@@ -92,19 +92,19 @@
 								<label class="control-label" for="typeahead3">Estado</label>
 								<div class="controls">
 								  <label class="radio">
-									<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
+									<input type="radio" name="rButton"  value="option1" checked="checked">
 									Activo
 								  </label>
 								  <div style="clear:both"></div>
 								  <label class="radio">
-									<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+									<input type="radio" name="rButton"  value="option2">
 									Inactivo
 								  </label>
 								</div>
 							  </div>
 			            </div>
 			            <div class="form-actions">
-			              <button type="submit" class="btn btn-primary">Buscar</button>
+			              <button type="submit" value="Ok"class="btn btn-primary">Buscar</button>
 			              <button type="submit" class="btn"><a href="buscarpromocion.jsp">Cancelar</a></button>
 		                </div>
 		              </fieldset>
