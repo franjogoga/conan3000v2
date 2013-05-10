@@ -236,7 +236,8 @@
 								    <th>Nombre</th>
 							        <th>Departamento</th>
 							        <th>Provincia</th>
-							        <th>Distrito</th>			        							      							        
+							        <th>Distrito</th>
+							        <th>Estado</th>		        							      							        
 							        <th>Accion</th>
 							
 							  </tr>
@@ -266,6 +267,28 @@
                           				<%=
                           					((ResultadoSedeBeanData)resultados.get(i)).getDistrito()              
                           				%>
+                          			</td>
+
+                          			
+                          			<td class="center">
+                          			
+	                          			
+								           <%
+									 
+												  if( ((ResultadoSedeBeanData)resultados.get(i)).getEstado().equalsIgnoreCase("disponible") ){    
+								 out.print(" <span class='label label-success'> " + ((ResultadoSedeBeanData)resultados.get(i)).getEstado()   +"   </span>       ");
+												  }
+												  else { 
+								 out.print(" <span class='label label-warning'> " + ((ResultadoSedeBeanData)resultados.get(i)).getEstado()   +"   </span>       ");
+													
+												  }
+									  
+									   
+									 
+		                          					            
+	                          				%>
+	                          			
+                          			
                           			</td>
 
                           			<td class="center">
