@@ -65,7 +65,7 @@
 	
 	function alt_submit(){
 		var form= document.frmDelete;
-		var r=confirm("¿Esta seguro que desea Eliminar esta Sede ?");
+		var r=confirm("¿Esta seguro que desea eliminar esta Sede ?");
 		if(r==true){form.submit();}
 			}	
 
