@@ -20,8 +20,8 @@ SEDE.IdSede as codigo
 ,DISTRITO.NOMBRE as distrito
 from DEPARTAMENTO  , PROVINCIA  , DISTRITO  , SEDE 
 WHERE
-
-         DEPARTAMENTO.IdDepartamento = PROVINCIA.IdDepartamento 
+        SEDE.Nombre  like  #{nombre}
+        AND  DEPARTAMENTO.IdDepartamento = PROVINCIA.IdDepartamento 
         AND  PROVINCIA.IdProvincia = DISTRITO.IdProvincia 
         AND  DISTRITO.IdDistrito = SEDE.IdDistrito
 
