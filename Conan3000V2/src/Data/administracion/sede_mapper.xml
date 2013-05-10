@@ -8,7 +8,7 @@
   
   
 <select id="getNextCodigo" resultType="java.lang.String">
-	select max(IdPlantillaEvento) from SEDE	
+	select LAST(IdSede) from SEDE;
 </select>
   
   
