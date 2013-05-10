@@ -2,6 +2,9 @@
 <html lang="en">
 <head>
 <jsp:include page="/IngSoft/general/header.jsp" />
+<!-- The fav icon -->
+<link rel="shortcut icon" href="img/conan_logo.png">
+
 </head>
 <body>
 		<jsp:include page="/IngSoft/general/superior.jsp" />
@@ -131,7 +134,7 @@ function validarxId(id){
 }
 
 function validaForm(){
-	var form=document.frmPromocion;
+	var form=document.frmUpdate;
 
 	var cadena= new Array();
 	var i=0;
@@ -148,7 +151,7 @@ function validaForm(){
 		MostrarOkDivInput(id);
 	}
 	
-	if(!esCorrecto(form.fFechaInicio.value,1,10)){
+	if(!esCorrecto(form.fFechInicio.value,1,10)){
 		mensaje="La casilla Fecha Inicio no ha sido llenado correctamente";
 		casilla="Fecha Inicio";
 		id="FechaInicio";
@@ -160,7 +163,7 @@ function validaForm(){
 		MostrarOkDivInput(id);
 	}
 	
-	if(!esCorrecto(form.fFechaFin.value,1,10)){
+	if(!esCorrecto(form.fFechFin.value,1,10)){
 		mensaje="La casilla Fecha Fin no ha sido llenado correctamente";
 		casilla="Fecha Fin";
 		id="FechaFin";
