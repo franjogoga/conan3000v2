@@ -209,7 +209,7 @@
 						    <div class="control-group">
 						      <label class="control-label" for="typeahead7">Direccion(*): </label>
 						      <div class="controls">
-						        <input type="text" class="span6 typeahead" id="txtNombreEvento"  data-provide="typeahead"  name="txtDirecion"  value="<%=sede.getDireccion()%>">
+						        <input type="text" class="span6 typeahead" id="txtNombreEvento"  data-provide="typeahead"  name="txtDireccion"  value="<%=sede.getDireccion()%>">
 					          </div>
 					        </div>
 
