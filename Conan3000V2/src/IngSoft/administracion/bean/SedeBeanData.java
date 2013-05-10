@@ -13,6 +13,8 @@ public class SedeBeanData implements Serializable{
 	String departamento;
 	String provincia;
 	String distrito;
+	
+	
 	public String getCodigo() {
 		return codigo;
 	}
