@@ -12,8 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.ibatis.session.SqlSession;
 
 import IngSoft.general.MyBatisSesion;
-import IngSoft.servicio.bean.CriterioEventoBeanData;
-import IngSoft.servicio.bean.ResultadoEventoBeanData;
+
 
 public class CriterioPromocionBeanFunction {
 
@@ -29,6 +28,22 @@ public class CriterioPromocionBeanFunction {
 			
 			criterioPromocionData.setLimInicio(new Date(DF.parse(request.getParameter("fFechInicio")).getTime()));
 			criterioPromocionData.setLimFin(new Date(DF.parse(request.getParameter("fFechFin")).getTime()));
+			if (request.getParameter("rButton")!=null){
+			String est;
+			est=request.getParameter("rButton");
+			criterioPromocionData.setEstado(est);}
+			
+			//if(request.getParameter("rButton").equals("option1")) {
+			//	  criterioPromocionData.setEstado(request.getParameter("option1"));}
+			  //          else 
+			//            	criterioPromocionData.setEstado(request.getParameter("option2"));
+			
+			
+				
+			
+		
+		//criterioPromocionData.setTipo(Integer.parseInt(request.getParameter("cmbTipoEvento")==null?"0":request.getParameter("cmbTipoEvento")));
+		
 			
 			//System.out.println(criterioPromocionData.getLimFin());
 			
