@@ -234,31 +234,44 @@
 					        </div>
 					        
 					        
-					        
-							  <div class="control-group">
-								<label class="control-label">Estado</label>
-								
+							<div class="control-group">
+								<label class="control-label">Estado <% if( sede.getEstado().equalsIgnoreCase("disponible") );  out.print("disponibleeee!!!"); %> </label>
 								<div class="controls">
-								
 								  <label class="radio">
-									<input   type="radio" name="optionsRadios" id="optionsRadios1" value="Dispoible" checked="">
-									Dispoible
-								  </label>
+								  <%
+								 
+								  if( sede.getEstado().equalsIgnoreCase("disponible") ){
+									  out.print(" <input   type='radio' name='optionsRadios' id='optionsRadios1' value='Disponible' checked=''  >");
+								  }
+								  else
+								  {  out.print(" <input   type='radio' name='optionsRadios' id='optionsRadios1' value='Disponible'  >");
+								  }
 								  
+								   
+								  %>
+								Disponible
+								  </label>
+								 
 								    <div style="clear:both"></div>   
-								  
-								  
+								 
+								 
 								  <label class="radio">
-									<input  type="radio" name="optionsRadios" id="optionsRadios2" value="No Dispoible">
-									No disponible
+								 
+								  <%
+								  if( sede.getEstado().equalsIgnoreCase("no disponible") ){
+									  out.print(" <input   type='radio' name='optionsRadios' id='optionsRadios2' value='No Disponible' checked=''  >");
+								  }
+								  else
+								  {  out.print(" <input   type='radio' name='optionsRadios' id='optionsRadios2' value='No Disponible'  >");
+								  }
+								  %>
+								No disponible
 								  </label>
-
-								  
-								  
-								</div>
 								
-							  </div>
-							
+								 
+								 
+								</div>
+							</div>
 							
 							
 							
