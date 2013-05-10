@@ -5,10 +5,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Vector;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import org.apache.ibatis.session.SqlSession;
 
 import IngSoft.general.MyBatisSesion;
@@ -16,14 +14,14 @@ import IngSoft.general.MyBatisSesion;
 
 public class CriterioPromocionBeanFunction {
 
-	SimpleDateFormat DF = new SimpleDateFormat("dd/MM/YYYY");
+	SimpleDateFormat DF = new SimpleDateFormat("dd/MM/yyyy");
 
 	public CriterioPromocionBeanData crearCriterio(HttpServletRequest request, HttpServletResponse response){
 		
 		CriterioPromocionBeanData criterioPromocionData= new CriterioPromocionBeanData();
 		
 		//criterioPromocionData.setTipo(Integer.parseInt(request.getParameter("cmbTipoEvento")==null?"0":request.getParameter("cmbTipoEvento")));
-		criterioPromocionData.setNombre(request.getParameter("txtNombrePromocion")+"%");
+		criterioPromocionData.setNombre(request.getParameter("txtNombrePromocion"));
 		try {		
 			
 			criterioPromocionData.setLimInicio(new Date(DF.parse(request.getParameter("fFechInicio")).getTime()));
@@ -45,6 +43,9 @@ public class CriterioPromocionBeanFunction {
 		//criterioPromocionData.setTipo(Integer.parseInt(request.getParameter("cmbTipoEvento")==null?"0":request.getParameter("cmbTipoEvento")));
 		
 			
+			
+			criterioPromocionData.setEstado(request.getParameterValues("optionsRadios")+"%");
+			
 			//System.out.println(criterioPromocionData.getLimFin());
 			
 		} catch (ParseException e) {
@@ -58,7 +59,7 @@ public class CriterioPromocionBeanFunction {
 		Vector<ResultadoPromocionBeanData> resultadosV=null;
 		try{		
 		List<ResultadoPromocionBeanData> resultados=sqlsesion.selectList("searchPlantillaPromocion",criterioPromocionData);
-	
+						
 		resultadosV= new Vector<>(resultados);
 		}
 		finally{
