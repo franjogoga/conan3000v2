@@ -38,36 +38,6 @@
 	<!-- The fav icon -->
 	<link rel="shortcut icon" href="img/conan_logo.png">
 
-<script>
-	function alt_fecha(obj){
-	obj.value=obj.value.slice(0,5);
-	
-	}
-	function alt_agregar(){
-		var form=document.getElementById("frmAlternativo");
-		form.accion.value="Agregar";
-		form.submit();
-	}
-	
-	function alt_consultar(cod){
-		var form=document.getElementById("frmAlternativo");
-		form.accion.value="Consultar";
-		form.codigo.value=cod;
-		form.submit();
-	}
-	function alt_modificar(cod){
-		var form=document.getElementById("frmAlternativo");
-		form.accion.value="Modificar";
-		form.codigo.value=cod;
-		form.submit();
-	}
-	function alt_eliminar(cod){
-		var form=document.getElementById("frmAlternativo");
-		form.accion.value="Eliminar";
-		form.codigo.value=cod;
-		form.submit();
-	}
-	</script>	
 
 </head>
 <body>
