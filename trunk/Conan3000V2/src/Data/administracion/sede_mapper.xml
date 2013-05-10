@@ -8,9 +8,8 @@
   
   
 <select id="getNextCodigo" resultType="java.lang.String">
-	select LAST(IdSede) from SEDE;
+	select max(IdSede) from SEDE	
 </select>
-  
   
 <select id="searchPlantillaSede" parameterType="IngSoft.administracion.bean.CriterioSedeBeanData" resultType="IngSoft.administracion.bean.ResultadoSedeBeanData">
 select 
