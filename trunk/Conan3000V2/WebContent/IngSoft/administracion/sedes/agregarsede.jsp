@@ -51,7 +51,38 @@
 	<![endif]-->
 
 	<!-- The fav icon -->
-	<link rel="shortcut icon" href="img/favicon.ico">
+	<link rel="shortcut icon" href="img/conan_logo.png">
+	<script>
+		function validar(form){
+			if(form.txtNombre.value.length <=0)return false;
+			if(form.txtDireccion.value.length<=0)return false;
+			if(form.cmbDepartamento.value.lengtht<=0)return false;
+			if(form.cmbProvincia.value.length<=0)return false;
+			if(form.cmbDireccion.value.length<=0)return false;
+	return true;
+		
+		
+		}
+	
+	function alt_fecha(obj){
+	obj.value=obj.value.slice(0,5);
+	
+	}
+	
+	function alt_submit(){
+		var form= document.frmData;
+		if(validar(form)) form.submit();
+		else alert("Uno o mas campos estan vacios");
+			
+			}
+		
+		
+		
+			//document.fmrData.submit();
+
+	</script>		
+		
+		
 		
 </head>
 
@@ -87,91 +118,86 @@
 			        <h2>AGREGAR SEDE</h2>
 		          </div>
 			      <div class="box-content">
-			        <form class="form-horizontal">
+			      
+			      
+			      
+						<form class="form-horizontal" action="<%= response.encodeURL("SMASede")%>" name="frmData" method="post">
+						<input type="hidden" name="accion" value="Agregar"></input>
+						<input type="hidden" name="tipo" value="2"></input>
+			        
+			        
 			          <fieldset>
 					  
 					  <!--    ----------------------------------------------------------------------------------------------    -->
 							<div class="control-group">
 							  <label class="control-label" for="typeahead7">Nombre(*): </label>
 							  <div class="controls">
-								<input   type="text" class="span6 typeahead" id="typeahead7"  data-provide="typeahead" >
+								<input   type="text" class="span6 typeahead" id="typeahead7"  data-provide="typeahead"  id="txtNombre" name="txtNombre" >
 							  </div>
 							</div>
 
 
 
 
-							  <div class="control-group">
-                                  <label class="control-label" for="selectError">Departamento(*):</label>
-                                  <div class="controls">
-                                      <select    name="selectError1" id="selectError" data-rel="chosen">
-                                          <option> Lima </option>
-                                          <option> Arequipa </option>
-                                          <option> Puno </option>
-                                          <option> Ica </option>
-                                          <option> Piura </option>
-                                      </select>
-                                  </div>
-						      </div>
-
-
-
-
-
-
-							  <div class="control-group">
-                                  <label class="control-label" for="selectError10">Provincia(*):</label>
-                                  <div class="controls">
-                                      <select    name="selectError1" id="selectError10" data-rel="chosen">
-                                          <option> Lima </option>
-                                          <option> Arequipa </option>
-                                          <option> Puno </option>
-                                          <option> Ica </option>
-                                          <option> Piura </option>
-                                      </select>
-                                  </div>
-						      </div>
-                              
-							  <div class="control-group">
-                                  <label class="control-label" for="selectError20">Distrito(*):</label>
-                                  <div class="controls">
-                                      <select    name="selectError20" id="selectError20" data-rel="chosen">
-                                          <option> Magdalena </option>
-                                          <option> San Isidro </option>
-                                          <option> Miraflores </option>
-                                          <option> Surco </option>
-                                          <option> Jesus Maria </option>
-                                      </select>
-                                  </div>
-						      </div>
+							 <div class="control-group">
+								<label class="control-label" for="selectError">Departamento(*):</label>
+								<div class="controls">
+																						   <!-- cmbDepartamento  variable     -->	
+							 		<select id="selectError1" data-rel="chosen" name="cmbDepartamento">
+								  	<option selected value="DEP000001">Lima</option>							
+								  </select>
+								</div>
+							  </div>
+							  
+							 <div class="control-group">
+								<label class="control-label" for="selectError">Provincia(*):</label>
+								<div class="controls">
+																					 <!-- cmbProvincia  variable     -->	
+							 		<select id="selectError2" data-rel="chosen" name="cmbProvincia">
+								  	<option selected value="PRO000001">Lima</option>								
+								  </select>
+								</div>
+							  </div>
+							  
+							 <div class="control-group">
+								<label class="control-label" for="selectError">Distrito(*):</label>
+								<div class="controls">
+																					 <!-- cmbDistrito  variable     -->	
+							 		<select id="selectError3" data-rel="chosen" name="cmbDistrito">
+								  	<option selected value="DIS000001">Chosica</option>							
+								  </select>
+								</div>
+							  </div>
+							  
+							  
 						  
 						    <div class="control-group">
 						      <label class="control-label" for="typeahead7">Direccion(*): </label>
 						      <div class="controls">
-						        <input    type="text" class="span6 typeahead" id="typeahead7"  data-provide="typeahead" >
+						        <input    type="text" class="span6 typeahead" id="typeahead7"  data-provide="typeahead" id="txtNombre" name="txtDireccion" >
 					          </div>
 					        </div>
 							
-							  <div class="control-group">
-							    <label class="control-label" for="typeahead6">Telefono(*): </label>
-							    <div class="controls">
-							      <input     type="text" class="span6 typeahead" id="typeahead6"  data-provide="typeahead" data-items="4" data-source='["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Dakota","North Carolina","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"]'>
-						        </div>
-						      </div>
+						    <div class="control-group">
+						      <label class="control-label" for="typeahead7">Telefono: </label>
+						      <div class="controls">
+						        <input    type="text" class="span6 typeahead" id="typeahead7"  data-provide="typeahead" id="txtNombre" name="txtTelefono" >
+					          </div>
+					        </div>
                                 
                                 
                                 
-							  <div class="control-group">
-                                  <label class="control-label" for="typeahead10">Area: </label>
-							    <div class="controls">
-							      <input      type="text" class="span6 typeahead" id="typeahead10"  data-provide="typeahead" data-items="4" data-source='["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Dakota","North Carolina","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"]'>
-						        </div>
-						      </div>
+						    <div class="control-group">
+						      <label class="control-label" for="typeahead7">Area de Terreno: </label>
+						      <div class="controls">
+						        <input    type="text" class="span6 typeahead" id="typeahead7"  data-provide="typeahead" id="txtNombre" name="txtAreaterreno" >
+					          </div>
+					        </div>
 
 
 
 						
-						
+						<!-- por defecto es disponible
 						
 							  <div class="control-group">
 								<label class="control-label">Estado</label>
@@ -179,15 +205,15 @@
 								<div class="controls">
 								
 								  <label class="radio">
-									<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
-									Dispoible
+									<input type="radio" name="optionsRadios" id="optionsRadios1" value="Disponible" checked="">
+									Disponible
 								  </label>
 								  
 								    <div style="clear:both"></div>   
 								  
 								  
 								  <label class="radio">
-									<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+									<input type="radio" name="optionsRadios" id="optionsRadios2" value="No disponible">
 									No disponible
 								  </label>
 
@@ -197,15 +223,16 @@
 								
 							  </div>	
 				
-						
+						 -->
 						
 						<!--    ----------------------------------------------------------------------------------------------    -->
 						
 						
-			            <div class="form-actions">
-			              <button type="submit" class="btn btn-primary">Agregar</button>
-			              <button type="reset" class="btn">Cancelar</button>
-		                </div>
+						    <div class="form-actions">
+							  <button type="button" class="btn btn-primary" onclick="javascript:alt_submit()">Agregar</button>
+							  <button type="button" class="btn" onclick="location.href='buscarsede.jsp'" >Cancelar</button>
+							</div>
+							
 						(*)Campos Obligatorios
 		              </fieldset>
 		            </form>

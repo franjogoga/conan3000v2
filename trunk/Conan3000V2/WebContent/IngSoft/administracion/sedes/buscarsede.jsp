@@ -179,8 +179,7 @@
 								<div class="controls">
 																					 <!-- cmbDistrito  variable     -->	
 							 		<select id="selectError3" data-rel="chosen" name="cmbDistrito">
-								  	<option selected value="DIS000001">Chosica</option>
-									<option value="DIS000002">Molina</option>								
+								  	<option selected value="DIS000001">Chosica</option>							
 								  </select>
 								</div>
 							  </div>
