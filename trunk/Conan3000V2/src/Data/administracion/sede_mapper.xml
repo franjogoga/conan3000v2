@@ -24,6 +24,7 @@ WHERE
         AND  DEPARTAMENTO.IdDepartamento = PROVINCIA.IdDepartamento 
         AND  PROVINCIA.IdProvincia = DISTRITO.IdProvincia 
         AND  DISTRITO.IdDistrito = SEDE.IdDistrito
+        AND  SEDE.Estado !='Eliminado'
 
 order by 1 asc
 </select>
