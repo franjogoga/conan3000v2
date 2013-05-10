@@ -79,4 +79,22 @@ update SEDE set Estado='Eliminado' where IdSede= #{codigo}
 
 
 
+<!--Modificar sede -->
+
+<update id="modificarPlantillaSede" parameterType="java.lang.String" >
+update SEDE 
+set
+Nombre=#{nombre} ,
+Direccion=#{direccion} ,
+Telefono=#{telefono} ,
+AreaTerreno=#{areaterreno} ,
+IdDistrito='DIS000001' ,
+Estado=#{estado}
+
+where IdSede= #{codigo}
+</update>
+<!-- Fin eliminar -->
+
+
+
 </mapper>

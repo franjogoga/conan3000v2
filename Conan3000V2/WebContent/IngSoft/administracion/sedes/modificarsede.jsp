@@ -20,9 +20,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
 	<meta name="author" content="Muhammad Usman">
+	
 	<!--The beans  -->
 	<jsp:useBean id="sede" scope="request"class="IngSoft.administracion.bean.SedeBeanData"></jsp:useBean>
-
 	
 	<!-- The styles -->
 	<link id="bs-css" href="css/bootstrap-cerulean.css" rel="stylesheet">
@@ -59,8 +59,13 @@
 	<!-- The fav icon -->
 	<link rel="shortcut icon" href="img/conan_logo.png">
 	<script>
-		function procesar(form,indice){
+		function validar(form){
+			if(form.txtNombre.value.length <=0)return false;
+			if(form.txtDirecion.value.length<=0)return false;
+			if(form.txtTelefono.value.lengtht<=0)return false;
+			if(form.txtAreaterreno.value.length<=0)return false;
 			
+	return true;
 		
 		
 		}
@@ -71,7 +76,9 @@
 	}
 	
 	function alt_submit(){
-		
+		var form= document.frmUpdate;
+		if(validar(form)) form.submit();
+		else alert("Uno o mas campos estan vacios");
 			
 			}
 		
@@ -90,7 +97,16 @@
 		SimpleDateFormat DF= new SimpleDateFormat("dd/MM");
 		return DF.format(date);
 	}
+	
+	public String generarCadena(String[] t){
+		String a="";
+		for(int i=0;i<t.length;i++)
+			a= a.concat(t[i]+"/");
+			if(a.length()>0) a=a.substring(0, a.length()-1);
+		return a;
+	}
 	%>
+		
 </head>
 
 <body>
@@ -110,6 +126,7 @@
 				</div>
 			</noscript>
 			
+		
 			<div id="content" class="span10">
 			<!-- content starts -->
 			
@@ -117,10 +134,10 @@
 			<div>
 				<ul class="breadcrumb">
 					<li>
-						<a href="/Conan3000V2/IngSoft/general/index.jsp">Home</a> <span class="divider">/</span>
+						<a href="#">Home</a> <span class="divider">/</span>
 					</li>
 					<li>
-						<a href="buscarsede.jsp">Mantenimiento de Sede</a> <span class="divider">/</span>
+						<a href="buscarevento.jsp">Mantenimiento de Sede</a> <span class="divider">/</span>
 					</li>
 					<li>
 						Modificar de Sede
@@ -131,20 +148,26 @@
 			<div class="row-fluid sortable">
 				<div class="box span12">
 					<div class="box-header well" data-original-title>
-					  <h2><i class="icon-plus-sign"></i>MODIFICAR SEDE</h2>
+					  <h2><i class="icon-edit"></i>MODIFICAR SEDE</h2>
 				  </div>
 					<div class="box-content">
+					
+					
+						<form class="form-horizontal" name="frmUpdate" action="<%= response.encodeURL("SMASede")%>" method="post">
 						
-						<form class="form-horizontal" action="<%= response.encodeURL("SMASede")%>" name="frmData" method="post">
-						<input type="hidden" name="accion" value="Consultar"></input>
-						
+						<input type="hidden" name="codigo" value="<%=sede.getCodigo()%>"></input>
+						<input type="hidden" name="accion" value="Modificar"></input>
 						<input type="hidden" name="tipo" value="2"></input>
+						  
+						  
+						  
 						  <fieldset>
+						  
 						  
 						    <div class="control-group">
 						      <label class="control-label" for="typeahead7">Nombre(*): </label>
 						      <div class="controls">
-						        <input type="text" class="span6 typeahead" id="txtNombresede"  data-provide="typeahead"  name="txtNombresede" value="<%= sede.getNombre()%>">
+						        <input type="text" class="span6 typeahead" id="txtNombresede"  data-provide="typeahead"  name="txtNombre" value="<%= sede.getNombre()%>">
 					          </div>
 					        </div>
 
@@ -186,7 +209,7 @@
 						    <div class="control-group">
 						      <label class="control-label" for="typeahead7">Direccion(*): </label>
 						      <div class="controls">
-						        <input type="text" class="span6 typeahead" id="txtNombreEvento"  data-provide="typeahead"  name="txtNombreEvento"  value="<%=sede.getDireccion()%>">
+						        <input type="text" class="span6 typeahead" id="txtNombreEvento"  data-provide="typeahead"  name="txtDirecion"  value="<%=sede.getDireccion()%>">
 					          </div>
 					        </div>
 
@@ -195,7 +218,7 @@
 						    <div class="control-group">
 						      <label class="control-label" for="typeahead7">Telefono: </label>
 						      <div class="controls">
-						        <input type="text" class="span6 typeahead" id="txtNombreEvento"  data-provide="typeahead"  name="txtNombreEvento"  value="<%=sede.getTelefono()%>">
+						        <input type="text" class="span6 typeahead" id="txtNombreEvento"  data-provide="typeahead"  name="txtTelefono"  value="<%=sede.getTelefono()%>">
 					          </div>
 					        </div>
 
@@ -204,7 +227,7 @@
 						    <div class="control-group">
 						      <label class="control-label" for="typeahead7">AreaTereno: </label>
 						      <div class="controls">
-						        <input type="text" class="span6 typeahead" id="txtNombreEvento"  data-provide="typeahead"  name="txtNombreEvento"  value="<%=sede.getAreaterreno()%>">
+						        <input type="text" class="span6 typeahead" id="txtNombreEvento"  data-provide="typeahead"  name="txtAreaterreno"  value="<%=sede.getAreaterreno()%>">
 					          </div>
 					        </div>
 					        
@@ -216,7 +239,7 @@
 								<div class="controls">
 								
 								  <label class="radio">
-									<input  disabled="" type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
+									<input   type="radio" name="optionsRadios" id="optionsRadios1" value="Dispoible" checked="">
 									Dispoible
 								  </label>
 								  
@@ -224,7 +247,7 @@
 								  
 								  
 								  <label class="radio">
-									<input disabled="" type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+									<input  type="radio" name="optionsRadios" id="optionsRadios2" value="No Dispoible">
 									No disponible
 								  </label>
 
@@ -233,18 +256,19 @@
 								</div>
 								
 							  </div>
-					        
-					          
+							
+							
+							
+							
+							
+							
 						    <div class="form-actions">
 							  <button type="button" class="btn btn-primary" onclick="javascript:alt_submit()">Guardar</button>
 							  <button type="button" class="btn" onclick="location.href='buscarsede.jsp'" >Cancelar</button>
 							</div>
-							
-							(*)Campos Obligatorios
-							
 						  </fieldset>
 					  </form>   
-					
+
 				  </div>
 				</div><!--/span-->
 
@@ -272,12 +296,12 @@
 			<div class="modal-body">
 				<p>Here settings can be configured...</p>
 			</div>
-			<div class="modal-footer" >
+			<div class="modal-footer">
 				<a href="#" class="btn" data-dismiss="modal">Close</a>
 				<a href="#" class="btn btn-primary">Save changes</a>
 			</div>
 		</div>
-		<br/>
+
 		<jsp:include page="/IngSoft/general/inferior.jsp" />
 		
 	</div><!--/.fluid-container-->
