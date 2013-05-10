@@ -60,11 +60,11 @@
 	<link rel="shortcut icon" href="img/conan_logo.png">
 	<script>
 		function validar(form){
-			if(form.txtNombreEvento.value.length <=0)return false;
-			if(form.fFecIncio.value.length<=0)return false;
-			if(form.fFecFin.value.lengtht<=0)return false;
-			if(form.cmbSedes.value.length<=0)return false;
-			if(form.cmbAmbientes.value.length<=0)return false;
+			if(form.txtNombre.value.length <=0)return false;
+			if(form.cmbDepartamento.value.length<=0)return false;
+			if(form.cmbProvincia.value.lengtht<=0)return false;
+			if(form.cmbDistrito.value.length<=0)return false;
+			if(form.txtDireccion.value.length<=0)return false;
 	return true;
 		
 		
@@ -130,7 +130,10 @@
 					  <h2><i class="icon-plus-sign"></i>AGREGAR SEDE</h2>
 				  </div>
 					<div class="box-content">
-						<form class="form-horizontal" action="<%= response.encodeURL("SMASede")%>" name="frmData" method="post">
+						
+						
+					<form class="form-horizontal" name="frmData" id="frmData"  method="post" action="<%= response.encodeURL("SMASede")%>">
+						
 						<input type="hidden" name="accion" value="Agregar"></input>
 						<input type="hidden" name="tipo" value="2"></input>
 						
@@ -182,14 +185,14 @@
 						    <div class="control-group">
 						      <label class="control-label" for="typeahead7">Direccion(*): </label>
 						      <div class="controls">
-						        <input    type="text" class="span6 typeahead" id="typeahead7"  data-provide="typeahead" id="txtNombre" name="txtDireccion" >
+						        <input    type="text" class="span6 typeahead" id="typeahead7"  data-provide="typeahead" id="txtDireccion" name="txtDireccion" >
 					          </div>
 					        </div>
 							
 						    <div class="control-group">
 						      <label class="control-label" for="typeahead7">Telefono: </label>
 						      <div class="controls">
-						        <input    type="text" class="span6 typeahead" id="typeahead7"  data-provide="typeahead" id="txtNombre" name="txtTelefono" >
+						        <input    type="text" class="span6 typeahead" id="typeahead7"  data-provide="typeahead" id="txtTelefono" name="txtTelefono" >
 					          </div>
 					        </div>
                                 
@@ -198,14 +201,14 @@
 						    <div class="control-group">
 						      <label class="control-label" for="typeahead7">Area de Terreno: </label>
 						      <div class="controls">
-						        <input    type="text" class="span6 typeahead" id="typeahead7"  data-provide="typeahead" id="txtNombre" name="txtAreaterreno" >
+						        <input    type="text" class="span6 typeahead" id="typeahead7"  data-provide="typeahead" id="txtAreaterreno" name="txtAreaterreno" >
 					          </div>
 					        </div>
 				
 				
 						    <div class="form-actions">
 							  <button type="button" class="btn btn-primary" onclick="javascript:alt_submit()">Agregar</button>
-							  <button type="button" class="btn" onclick="location.href='buscarevento.jsp'" >Cancelar</button>
+							  <button type="button" class="btn" onclick="location.href='buscarsede.jsp'" >Cancelar</button>
 							</div>
 						  </fieldset>
 					  </form>   
