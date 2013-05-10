@@ -6,6 +6,12 @@
 
   <cache />
   
+  
+<select id="getNextCodigo" resultType="java.lang.String">
+	select max(IdPlantillaEvento) from SEDE	
+</select>
+  
+  
 <select id="searchPlantillaSede" parameterType="IngSoft.administracion.bean.CriterioSedeBeanData" resultType="IngSoft.administracion.bean.ResultadoSedeBeanData">
 select 
 SEDE.IdSede as codigo
@@ -62,17 +68,15 @@ order by 1 asc
 
 
 
+<!-- Agregar plantilla sede -->
 
-
-
-
-
-<!-- Agregar sede 
 <insert id="insertPlantillaSede" parameterType="IngSoft.administracion.bean.SedeBeanData" flushCache="true">
-	insert into SEDE(IdSede,Nombre,Direccion,Telefono,AreaTerreno,IdDistrito)
-	values (#{codigo},#{nombre},#{direccion},#{telefono},#{areaterreno},#{idDistrito})
+	insert into SEDE (IdSede,Nombre,Direccion,Telefono,AreaTerreno,IdDistrito,Estado)
+	values (#{codigo},#{nombre},#{direccion},#{telefono},#{areaterreno},'DIS000001','Disponible')
 </insert>
- Fin Agregar -->
+
+
+ <!-- Fin Agregar -->
 
 
 <!--Eliminar evento 
