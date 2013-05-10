@@ -116,7 +116,7 @@
 						<a href="/Conan3000V2/IngSoft/general/index.jsp">Home</a> <span class="divider">/</span>
 					</li>
 					<li>
-						<a href="buscarevento.jsp">Mantenimiento de Sede</a> <span class="divider">/</span>
+						<a href="buscarsede.jsp">Mantenimiento de Sede</a> <span class="divider">/</span>
 					</li>
 					<li>
 						Agregar de Sede
