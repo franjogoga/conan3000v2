@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<%@page import="IngSoft.servicio.bean.TipoEventoMiniBeanData"%>
+<%@page import="IngSoft.servicio.bean.AmbienteMiniBeanData"%>
+<%@page import="IngSoft.servicio.bean.SedeMiniBeanData"%>
 <html lang="en">
 <head>
 	<!--
@@ -12,14 +15,17 @@
 		http://twitter.com/halalit_usman
 	-->
 	<meta charset="utf-8">
-	<title>Conan3000</title>
+	<title>Agregar Sede</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
 	<meta name="author" content="Muhammad Usman">
-
+	<!--The beans  -->
+	<jsp:useBean id="sedes" scope="request"class="java.util.Vector"></jsp:useBean>
+	<jsp:useBean id="ambientes" scope="request"class="java.util.Vector"></jsp:useBean>
+	<jsp:useBean id="tiposEvento" scope="request"class="java.util.Vector"></jsp:useBean>
+	
 	<!-- The styles -->
 	<link id="bs-css" href="css/bootstrap-cerulean.css" rel="stylesheet">
-    
 	<style type="text/css">
 	  body {
 		padding-bottom: 40px;
@@ -54,11 +60,11 @@
 	<link rel="shortcut icon" href="img/conan_logo.png">
 	<script>
 		function validar(form){
-			if(form.txtNombre.value.length <=0)return false;
-			if(form.txtDireccion.value.length<=0)return false;
-			if(form.cmbDepartamento.value.lengtht<=0)return false;
-			if(form.cmbProvincia.value.length<=0)return false;
-			if(form.cmbDireccion.value.length<=0)return false;
+			if(form.txtNombreEvento.value.length <=0)return false;
+			if(form.fFecIncio.value.length<=0)return false;
+			if(form.fFecFin.value.lengtht<=0)return false;
+			if(form.cmbSedes.value.length<=0)return false;
+			if(form.cmbAmbientes.value.length<=0)return false;
 	return true;
 		
 		
@@ -80,10 +86,7 @@
 		
 			//document.fmrData.submit();
 
-	</script>		
-		
-		
-		
+	</script>	
 </head>
 
 <body>
@@ -94,11 +97,9 @@
 			<!-- left menu starts -->
 			<jsp:include page="/IngSoft/general/leftmenu.jsp" />
 						<!-- left menu ends -->
-            
-            
-           
 			
-		  <noscript>
+			
+			<noscript>
 				<div class="alert alert-block span10">
 					<h4 class="alert-heading">Warning!</h4>
 					<p>You need to have <a href="http://en.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript</a> enabled to use this site.</p>
@@ -106,29 +107,36 @@
 			</noscript>
 			
 			<div id="content" class="span10">
-			  <!-- content starts -->
-			  <div>
-			    <ul class="breadcrumb">
-			      <li> <a href="#">Home</a> / <a href="#">Mantenimiento de Sede</a> / Agregar Sede</li>
-		        </ul>
-		      </div>
-			  <div class="row-fluid sortable">
-			    <div class="box span12">
-			      <div class="box-header well" data-original-title>
-			        <h2>AGREGAR SEDE</h2>
-		          </div>
-			      <div class="box-content">
-			      
-			      
-			      
+			<!-- content starts -->
+			
+
+			<div>
+				<ul class="breadcrumb">
+					<li>
+						<a href="/Conan3000V2/IngSoft/general/index.jsp">Home</a> <span class="divider">/</span>
+					</li>
+					<li>
+						<a href="buscarevento.jsp">Mantenimiento de Sede</a> <span class="divider">/</span>
+					</li>
+					<li>
+						Agregar de Sede
+					</li>
+				</ul>
+			</div>
+			
+			<div class="row-fluid sortable">
+				<div class="box span12">
+					<div class="box-header well" data-original-title>
+					  <h2><i class="icon-plus-sign"></i>AGREGAR SEDE</h2>
+				  </div>
+					<div class="box-content">
 						<form class="form-horizontal" action="<%= response.encodeURL("SMASede")%>" name="frmData" method="post">
 						<input type="hidden" name="accion" value="Agregar"></input>
 						<input type="hidden" name="tipo" value="2"></input>
-			        
-			        
-			          <fieldset>
-					  
-					  <!--    ----------------------------------------------------------------------------------------------    -->
+						
+						  <fieldset>
+				
+				
 							<div class="control-group">
 							  <label class="control-label" for="typeahead7">Nombre(*): </label>
 							  <div class="controls">
@@ -193,68 +201,30 @@
 						        <input    type="text" class="span6 typeahead" id="typeahead7"  data-provide="typeahead" id="txtNombre" name="txtAreaterreno" >
 					          </div>
 					        </div>
-
-
-
-						
-						<!-- por defecto es disponible
-						
-							  <div class="control-group">
-								<label class="control-label">Estado</label>
-								
-								<div class="controls">
-								
-								  <label class="radio">
-									<input type="radio" name="optionsRadios" id="optionsRadios1" value="Disponible" checked="">
-									Disponible
-								  </label>
-								  
-								    <div style="clear:both"></div>   
-								  
-								  
-								  <label class="radio">
-									<input type="radio" name="optionsRadios" id="optionsRadios2" value="No disponible">
-									No disponible
-								  </label>
-
-								  
-								  
-								</div>
-								
-							  </div>	
 				
-						 -->
-						
-						<!--    ----------------------------------------------------------------------------------------------    -->
-						
-						
+				
 						    <div class="form-actions">
 							  <button type="button" class="btn btn-primary" onclick="javascript:alt_submit()">Agregar</button>
-							  <button type="button" class="btn" onclick="location.href='buscarsede.jsp'" >Cancelar</button>
+							  <button type="button" class="btn" onclick="location.href='buscarevento.jsp'" >Cancelar</button>
 							</div>
-							
-						(*)Campos Obligatorios
-		              </fieldset>
-		            </form>
-		          </div>
-		        </div>
-			    <!--/span-->
-		      </div>
-			  <!--/row-->
-			  <div class="row-fluid sortable">
-			    <!--/span-->
-		      </div>
-			  <!--/row-->
-			  <div class="row-fluid sortable">
-			    <!--/span-->
-		      </div>
-			  <!--/row-->
-			 
+						  </fieldset>
+					  </form>   
+					<span style="font-size:70%">(*)Campos Obligatorios</span>
+				  </div>
+				</div><!--/span-->
 
-		  
-       
+			</div><!--/row-->
+
+
+			<div class="row-fluid sortable"><!--/span-->
+			
+			</div><!--/row-->
+			
+			<div class="row-fluid sortable"><!--/span-->
+
+			</div><!--/row-->		 
 					<!-- content ends -->
-		  </div><!--/#content.span10-->
+			</div><!--/#content.span10-->
 				</div><!--/fluid-row-->
 				
 		<hr>
@@ -272,10 +242,8 @@
 				<a href="#" class="btn btn-primary">Save changes</a>
 			</div>
 		</div>
-
-		<footer>
-		 Conan 3000 © 2013 <p class="pull-right">Powered by: <a href="http://usman.it/free-responsive-admin-template">Las dos virgenes</a></p>
-		</footer>
+		<br/>
+		<jsp:include page="/IngSoft/general/inferior.jsp" />
 		
 	</div><!--/.fluid-container-->
 
@@ -352,14 +320,7 @@
 	<script src="js/jquery.history.js"></script>
 	<!-- application script for Charisma demo -->
 	<script src="js/charisma.js"></script>
-	<script>
-	function loadContent() 
-{ 
-   $("#includedContent").load("menu.html"); 
-} 
-
-
-	</script>
-		<script>loadContent()</script> 
+	
+		
 </body>
 </html>
