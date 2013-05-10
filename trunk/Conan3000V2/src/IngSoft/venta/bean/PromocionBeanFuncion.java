@@ -121,83 +121,18 @@ public class PromocionBeanFuncion {
 		return promocionData;
 	}
 
-	private Vector<ModificacionesEventoBeanData> generaListaCambios(String[] ant , String[] nue ,String cod){
-		Vector<ModificacionesEventoBeanData> mods=new Vector<ModificacionesEventoBeanData>();
-		Vector<String> antV= new Vector<String>(Arrays.asList(ant));
-		Vector<String> nueV= new Vector<String>(Arrays.asList(nue));
-		antV.remove("");
-		nueV.remove("");
-		for(int i=0;i<antV.size();i++){
-			if(nueV.remove(antV.get(i))){
-			antV.remove(i);
-			i--;}
-		}
-		for(int i=0;i<nueV.size();i++){
-			if(antV.remove(nueV.get(i))){
-				nueV.remove(i);
-				i--;
-			}
-			
-		}
-		while(true){
-			if(antV.size()==0 && nueV.size()==0) break;
-			ModificacionesEventoBeanData cambio= new ModificacionesEventoBeanData();
-			if(antV.size()==0 || "".equals((String)antV.get(0)) ) {
-				cambio.setCambio("I");
-				cambio.setNuevo((String)nueV.get(0));
-				nueV.remove(nueV.get(0));
-				cambio.setCodigo(cod);
-				mods.add(cambio);
-				continue;					
-				}
-			if(nueV.size()==0 || "".equals((String)nueV.get(0)) ) {
-				cambio.setCambio("D");
-				cambio.setAntiguo((String)antV.get(0));
-				antV.remove(antV.get(0));
-				cambio.setCodigo(cod);
-				mods.add(cambio);
-				continue;}					
-			else {
-			cambio.setCambio("U");
-			cambio.setAntiguo((String)antV.get(0));
-			cambio.setNuevo((String)nueV.get(0));
-			antV.remove(antV.get(0));
-			nueV.remove(nueV.get(0));
-			cambio.setCodigo(cod);
-			mods.add(cambio);
-			continue;
-			}
-						
-		}
-	
-	return mods;
-}
 
-	/*public void modificarPromocion(PromocionBeanData promocion,String[] antSede,String[] antAmb) throws CoException {
+	public void modificarPromocion(PromocionBeanData promocion) throws CoException {
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
-			Vector<ModificacionesPromocionBeanData> mods;
-			mods= this.generaListaCambios(antSede, promocion.getCodigo(),//promocion.getCodigo());
-			
-			for(int i=0;i<mods.size();i++){
-				if("I".equals(mods.get(i).getCambio())) sqlsesion.insert("Data.servicio.evento.insertPlantillaEventoSedesUpdate",(ModificacionesPromocionBeanData)mods.get(i));
-				if("U".equals(mods.get(i).getCambio())) sqlsesion.delete("Data.servicio.evento.updatePlantillaEventoSedes",(ModificacionesPromocionBeanData)mods.get(i));	
-				if("D".equals(mods.get(i).getCambio())) sqlsesion.update("Data.servicio.evento.deletePlantillaEventoSede",(ModificacionesPromocionBeanData)mods.get(i));	
-			}		
-		//	System.out.println("Sedes="+mods.size());
-			mods= this.generaListaCambios(antAmb, evento.getIdAmbientes(),evento.getCodigo());
-			for(int i=0;i<mods.size();i++){
-				if("I".equals(mods.get(i).getCambio())) sqlsesion.insert("Data.servicio.evento.insertPlantillaEventoAmbienteUpdate",(ModificacionesEventoBeanData)mods.get(i));
-				if("U".equals(mods.get(i).getCambio())) sqlsesion.delete("Data.servicio.evento.updatePlantillaEventoAmbiente",(ModificacionesEventoBeanData)mods.get(i));	
-				if("D".equals(mods.get(i).getCambio())) sqlsesion.update("Data.servicio.evento.deletePlantillaEventoAmbiente",(ModificacionesEventoBeanData)mods.get(i));	
-			}
+					
 		//	System.out.println("Ambs="+mods.size());
-			sqlsesion.update("Data.servicio.evento.updatePLantillaEvento",evento);
+			sqlsesion.update("Data.venta.promocion.updatePromocion",promocion);
 		}
 		catch(Exception a)		
 		{sqlsesion.rollback();
 		a.printStackTrace();
-			throw CoException.set("Error: No se pudo modificar la plantilla intente de nuevo", "SMSEvento?accion=Modificar&tipo=1");
+			throw CoException.set("Error: No se pudo modificar la plantilla intente de nuevo", "SMVPromocion?accion=Modificar&tipo=1");
 			
 		}
 		
@@ -206,6 +141,6 @@ public class PromocionBeanFuncion {
 			sqlsesion.close();					
 		}			
 		return ;
-	}*/
+	}
 	
 }
