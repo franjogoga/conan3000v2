@@ -24,10 +24,17 @@ public class AccionAgregarSede extends CoAccion {
 		
 		int tipo=Integer.parseInt(request.getParameter("tipo"));
 		
+		
+		
 		if(tipo==2){
+			
+			
 			
 		SedeBeanFuncion sedeFuncion= SedeBeanFuncion.getInstance();
 		SedeBeanData sedeoData=sedeFuncion.crearSede(request, response);
+		
+		
+		System.out.print(" AccionAgregarSede  ---> "+ tipo );
 		
 		sedeFuncion.agregarSede(sedeoData);
 		
