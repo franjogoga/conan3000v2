@@ -17,22 +17,20 @@ import IngSoft.servicio.bean.ResultadoEventoBeanData;
 
 public class CriterioPromocionBeanFunction {
 
-	SimpleDateFormat DF = new SimpleDateFormat("dd/MM/yyyy");
+	SimpleDateFormat DF = new SimpleDateFormat("dd/MM/YYYY");
 
 	public CriterioPromocionBeanData crearCriterio(HttpServletRequest request, HttpServletResponse response){
 		
 		CriterioPromocionBeanData criterioPromocionData= new CriterioPromocionBeanData();
 		
 		//criterioPromocionData.setTipo(Integer.parseInt(request.getParameter("cmbTipoEvento")==null?"0":request.getParameter("cmbTipoEvento")));
-
-		try {
-			
-			criterioPromocionData.setNombre(request.getParameter("txtNombrePromocion")+"%");
+		criterioPromocionData.setNombre(request.getParameter("txtNombrePromocion")+"%");
+		try {		
 			
 			criterioPromocionData.setLimInicio(new Date(DF.parse(request.getParameter("fFechInicio")).getTime()));
 			criterioPromocionData.setLimFin(new Date(DF.parse(request.getParameter("fFechFin")).getTime()));
 			
-			//System.out.println(criterioEventoData.getLimFin());
+			//System.out.println(criterioPromocionData.getLimFin());
 			
 		} catch (ParseException e) {
 			e.printStackTrace();
