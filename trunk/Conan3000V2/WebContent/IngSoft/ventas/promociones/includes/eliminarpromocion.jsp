@@ -1,7 +1,7 @@
 
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
-  <jsp:useBean id="promocion" scope="request"class="IngSoft.venta.bean.PromocionBeanData"></jsp:useBean>
+  
 
 
 	<script>
@@ -26,7 +26,7 @@
 	return false;
 	}
 	public String formatear(java.util.Date date){
-		SimpleDateFormat DF= new SimpleDateFormat("dd/MM");
+		SimpleDateFormat DF= new SimpleDateFormat("dd/MM/YYYY");
 		return DF.format(date);
 	}
 	%>	
@@ -34,6 +34,7 @@
 
 
 <!-- content starts -->
+<jsp:useBean id="promocion" scope="request"class="IngSoft.venta.bean.PromocionBeanData"></jsp:useBean>
 			  <div>
 			
 			    <ul class="breadcrumb">
@@ -64,23 +65,24 @@
 			              <div class="control-group">
 			                <label class="control-label" for="date01">Fecha de inicio:</label>
 			                <div class="controls">
-			                  <input type="text" disabled class="input-xlarge datepicker" id="fFechInicio" name="fFechaInicio" readonly="true" value="<%=formatear(new Date(promocion.getFechaInicio().getTime())) %>" onchange="alt_fecha(this)" disabled>>
+			                  <input type="text" disabled class="input-xlarge datepicker" id="fFechInicio" name="fFechInicio" readonly="true" value="<%=formatear(new Date(promocion.getFechaInicio().getTime())) %>" onchange="alt_fecha(this)" disabled>>
 		                    </div>
 		                  </div>
 			              <div class="control-group">
-			                <label class="control-label" for="date01">Fecha de fin:</label>
+			                <label class="control-label" for="date02">Fecha de fin:</label>
 			                <div class="controls">
-			                  <input type="text" disabled class="input-xlarge datepicker"  id="fFechFin" name="fFechaFin" readonly="true" value="<%=formatear(new Date(promocion.getFechaFin().getTime())) %>" onchange="alt_fecha(this)" disabled>
+			                  <input type="text" disabled class="input-xlarge datepicker"  id="fFechFin" name="fFechFin" readonly="true" value="<%=formatear(new Date(promocion.getFechaFin().getTime())) %>" onchange="alt_fecha(this)" disabled>
 		                    </div>
 		                  </div>
 
 			              <div class="control-group">
 			                <label class="control-label" for="textarea2">Descripci&oacute;n:</label>
 			                <div class="controls">
-			                  <textarea name="textarea" rows="3" disabled class="" id="txtDescripcion" value="<%=promocion.getDescripcion()%>"  style="resize:none"></textarea>
+			                  <textarea name="textarea" rows="3" disabled class="" id="txtDescripcion" style="resize:none">"<%=promocion.getDescripcion()%>"</textarea>
 		                    </div>
 		                  </div>
 			            </div>
+			            
 			            <div class="form-actions">
 			              <button type="submit" class="btn btn-primary" onclick="javascript:alt_submit()" >Eliminar</button>
 			              <button type="reset" class="btn" onclick="location.href='buscarpromocion.jsp'">Cancelar</a></button>
