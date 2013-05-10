@@ -35,7 +35,7 @@ public class SedeBeanFuncion {
 		SedeBeanData sedeData= new SedeBeanData();
 		try{		
 			
-			System.out.print("  SedeBeanFuncion ---> "+ request.getParameter("txtNombre"));
+			System.out.print("  SedeBeanFuncion ---> crearSede  -->nombre == "+ request.getParameter("txtNombre"));
 			
 		sedeData.setNombre(    request.getParameter("txtNombre") );
 		sedeData.setDireccion(    request.getParameter("txtDireccion") );
@@ -43,9 +43,9 @@ public class SedeBeanFuncion {
 		sedeData.setAreaterreno( Double.parseDouble(request.getParameter("txtAreaterreno")) );
 		
 		
-		sedeData.setDepartamento(    request.getParameter("cmbDepartamento") );
-		sedeData.setProvincia(    request.getParameter("cmbProvincia") );
-		sedeData.setDireccion(    request.getParameter("cmbDireccion") );
+		//sedeData.setDepartamento(    request.getParameter("cmbDepartamento") );
+		//sedeData.setProvincia(    request.getParameter("cmbProvincia") );
+		//sedeData.setDireccion(    request.getParameter("cmbDireccion") );
 		
 		//						            para combobox
 		//sedeData.setDireccion( request.getParameterValues("cmbSedes")     );
@@ -67,9 +67,9 @@ public class SedeBeanFuncion {
 		try{
 			
 			// conesta sentencia podemos tener el codigo
-			String codigo= (String)sqlsesion.selectOne("Data.administracion.sede.getNextCodigo");
+			String codigo = (String)sqlsesion.selectOne("Data.administracion.sede.getNextCodigo");
 			
-			
+			System.out.print("  SedeBeanFuncion ---> "+ codigo );
 			
 			
 			if(codigo!=null)
