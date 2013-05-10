@@ -142,7 +142,7 @@
 						  <fieldset>
 						  
 						    <div class="control-group">
-						      <label class="control-label" for="typeahead7">Nombre: </label>
+						      <label class="control-label" for="typeahead7">Nombre(*): </label>
 						      <div class="controls">
 						        <input type="text" class="span6 typeahead" id="txtNombresede"  data-provide="typeahead"  name="txtNombresede" value="<%= sede.getNombre()%>">
 					          </div>
@@ -151,7 +151,7 @@
 
 
 							 <div class="control-group">
-								<label class="control-label" for="selectError">Departamento:</label>
+								<label class="control-label" for="selectError">Departamento(*):</label>
 								<div class="controls">
 																						   <!-- cmbDepartamento  variable     -->	
 							 		<select id="selectError11" data-rel="chosen" name="cmbDepartamento">
@@ -161,7 +161,7 @@
 							  </div>
 							  
 							 <div class="control-group">
-								<label class="control-label" for="selectError">Provincia:</label>
+								<label class="control-label" for="selectError">Provincia(*):</label>
 								<div class="controls">
 																						   <!-- cmbDepartamento  variable     -->	
 							 		<select  id="selectError12" data-rel="chosen" name="cmbDepartamento">
@@ -172,7 +172,7 @@
 
 
 							 <div class="control-group">
-								<label class="control-label" for="selectError">Distrito:</label>
+								<label class="control-label" for="selectError">Distrito(*):</label>
 								<div class="controls">
 																						   <!-- cmbDepartamento  variable     -->	
 							 		<select  id="selectError13" data-rel="chosen" name="cmbDepartamento">
@@ -184,7 +184,7 @@
 	
 
 						    <div class="control-group">
-						      <label class="control-label" for="typeahead7">Direccion: </label>
+						      <label class="control-label" for="typeahead7">Direccion(*): </label>
 						      <div class="controls">
 						        <input type="text" class="span6 typeahead" id="txtNombreEvento"  data-provide="typeahead"  name="txtNombreEvento"  value="<%=sede.getDireccion()%>">
 					          </div>
@@ -209,13 +209,38 @@
 					        </div>
 					        
 					        
+					        
+							  <div class="control-group">
+								<label class="control-label">Estado</label>
+								
+								<div class="controls">
+								
+								  <label class="radio">
+									<input  disabled="" type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
+									Dispoible
+								  </label>
+								  
+								    <div style="clear:both"></div>   
+								  
+								  
+								  <label class="radio">
+									<input disabled="" type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+									No disponible
+								  </label>
+
+								  
+								  
+								</div>
+								
+							  </div>
+					        
 					          
 						    <div class="form-actions">
 							  <button type="button" class="btn btn-primary" onclick="javascript:alt_submit()">Guardar</button>
 							  <button type="button" class="btn" onclick="location.href='buscarsede.jsp'" >Cancelar</button>
 							</div>
 							
-							
+							(*)Campos Obligatorios
 							
 						  </fieldset>
 					  </form>   
