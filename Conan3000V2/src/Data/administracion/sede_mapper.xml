@@ -37,6 +37,7 @@ SEDE.IdSede as codigo
 ,SEDE.DIRECCION as direccion
 ,SEDE.TELEFONO as telefono
 ,SEDE.AREATERRENO as areaterreno
+,SEDE.ESTADO as estado
 ,DEPARTAMENTO.NOMBRE as departamento
 ,PROVINCIA.NOMBRE as provincia
 ,DISTRITO.NOMBRE as distrito
