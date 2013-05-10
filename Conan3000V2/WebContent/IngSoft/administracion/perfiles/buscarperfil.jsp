@@ -1,24 +1,33 @@
 <!DOCTYPE html>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Calendar"%>
+<%@page import="IngSoft.administracion.bean.ResultadoPerfilBeanData"%>
+<%@page import="java.util.Vector"%>
+
 <html lang="en">
 <head>
 
 	<meta charset="utf-8">
-	<title>CONAN 3000</title>
+	<title>Buscar Perfil</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
-	<meta name="author" content="Muhammad Usman">
+	<meta name="description" content="Dos Virgenes, pagina de administrador">
+	<meta name="author" content="Dos Virgenes">
+	
+	<!--The Beans-->
+	<jsp:useBean id="resultados" scope="request" class="java.util.Vector"></jsp:useBean>
 
 	<!-- The styles -->
 	<link id="bs-css" href="css/bootstrap-cerulean.css" rel="stylesheet">
     
 	<style type="text/css">
-	  body {
-		padding-bottom: 40px;
-	  }
-	  .sidebar-nav {
-		padding: 9px 0;
-	  }
+		body {
+			padding-bottom: 40px;
+		}
+		.sidebar-nav {
+			padding: 9px 0;
+		}
 	</style>
+	
 	<link href="css/bootstrap-responsive.css" rel="stylesheet">
 	<link href="css/charisma-app.css" rel="stylesheet">
 	<link href="css/jquery-ui-1.8.21.custom.css" rel="stylesheet">
@@ -36,161 +45,184 @@
 	<link href='css/opa-icons.css' rel='stylesheet'>
 	<link href='css/uploadify.css' rel='stylesheet'>
 
-	<!-- The fav icon -->
+	<!-- The conan3000 icon -->
 	<link rel="shortcut icon" href="img/conan_logo.png">
-		
+	
+	<script>	
+	function alt_agregar(){
+		var form=document.getElementById("frmPerfil");
+		form.accion.value="Agregar";
+		form.submit();
+	}
+	function alt_consultar(cod){
+		var form=document.getElementById("frmPerfil");
+		form.accion.value="Consultar";
+		form.codigo.value=cod;
+		form.submit();
+	}
+	function alt_modificar(cod){
+		var form=document.getElementById("frmPerfil");
+		form.accion.value="Modificar";
+		form.codigo.value=cod;
+		form.submit();
+	}
+	function alt_eliminar(cod){
+		var form=document.getElementById("frmPerfil");
+		form.accion.value="Eliminar";
+		form.codigo.value=cod;
+		form.submit();
+	}
+	</script>		
 </head>
 
 <body>
-		<jsp:include page="/IngSoft/general/superior.jsp" />
-		<div class="container-fluid">
+	<jsp:include page="/IngSoft/general/superior.jsp" />
+	<div class="container-fluid">
 		<div class="row-fluid">
 				
 			<!-- left menu starts -->
 			<jsp:include page="/IngSoft/general/leftmenu.jsp" />
-						<!-- left menu ends -->		
-      
+			<!-- left menu ends -->		      
 			
-		  <noscript>
+			<noscript>
 				<div class="alert alert-block span10">
-					<h4 class="alert-heading">Warning!</h4>
-					<p>You need to have <a href="http://en.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript</a> enabled to use this site.</p>
+					<h4 class="alert-heading">Advertencia!</h4>
+					<p>Necesitas tener <a href="http://es.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript</a> activado para usar este sitio.</p>
 				</div>
 			</noscript>
-		  <div id="content" class="span10">
-		    <!-- content starts -->
-		    <div>
-		      <ul class="breadcrumb">
-					<li>
-						<a href="#">Inicio</a> <span class="divider">/</span>
-					</li>
-					<li>
-						<a href="#">Mantenimiento de Perfil de Usuario</a> <span class="divider">/</span>
-					</li>
-					<li>
-						Buscar Perfil de Usuario
-					</li>
-				</ul>
-	        </div>
-			
-		    <div class="row-fluid sortable">
-		      <div class="box span12">
-		        <div class="box-header well" data-original-title>
-		          <h2><i class="icon-search"></i> BUSCAR PERFIL DE USUARIO</h2>
-		          <div class="box-icon"><a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a> <a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a> </div>
-	            </div>
-		        <div class="box-content">
-		          <form class="form-horizontal">
-		            <fieldset>		              			 
-						
-						<div class="control-group">
-						  <label class="control-label" for="typeahead">Perfil :</label>							  
-						  <div class="controls">
-							<input type="text" class="span6 typeahead" id="typeahead"  data-provide="typeahead" data-items="4" ></input>								
-						  </div>
+		
+			<div id="content" class="span10">
+				<!-- content starts -->
+				<div>
+					<ul class="breadcrumb">
+						<li>
+							<a href="/Conan3000V2/IngSoft/general/index.jsp">Inicio</a> <span class="divider">/</span>
+						</li>
+						<li>
+							<a href="#">Mantenimiento de Perfil de Usuario</a> <span class="divider">/</span>
+						</li>
+						<li>
+							Buscar Perfil de Usuario
+						</li>
+					</ul>
+				</div>
+								
+				<div class="row-fluid sortable">
+					<div class="box span12">
+						<div class="box-header well" data-original-title>
+							<h2><i class="icon-search"></i> BUSCAR PERFIL DE USUARIO</h2>
+							<div class="box-icon">
+								<a href="#" class="btn btn-minimize btn-round">
+									<i class="icon-chevron-up"></i>
+								</a>								
+							</div>
 						</div>
 						
-						<div class="control-group">
-						  <label class="control-label" for="typeahead">Descripci&oacute;n :</label>							  
-						  <div class="controls">
-							<input type="text" class="span6 typeahead" id="typeahead"  data-provide="typeahead" data-items="4" ></input>								
-						  </div>
-						</div>		
+						<div class="box-content">
+							<form class="form-horizontal" name="frmCriterioBusquedaPerfil" id="frmCriterioBusquedaPerfil" method="post" action="<%=response.encodeURL("SMSPerfil")%>">
+								<input type="hidden" name="accion" value="Buscar"></input>
+								
+								<fieldset>		              			 
 						
-						<div class="control-group">
-								<label class="control-label">Estado :</label>
-								<div class="controls">
-								  <label class="radio">
-									<input type="radio" name="optionsRadios" id="optionsRadios1" value="activo" checked="">
-									Activo
-								  </label>
-								  <div style="clear:both"></div>
-								  <label class="radio">
-									<input type="radio" name="optionsRadios" id="optionsRadios2" value="inactivo">
-									Inactivo
-								  </label>
+									<div class="control-group">
+										<label class="control-label" for="txtNombre">Perfil :</label>							  
+										<div class="controls">
+											<input type="text" class="span6 typeahead" id="txtNombre" name="txtNombre"></input>								
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label class="control-label" for="txtDescripcion">Descripci&oacute;n :</label>							  
+										<div class="controls">
+											<input type="text" class="span6 typeahead" id="txtDescripcion" name="txtDescripcion"></input>								
+										</div>
+									</div>															
+									  
+									<div class="form-actions">
+										<button type="submit" class="btn btn-primary">Buscar</button>
+										<button type="reset" class="btn">Cancelar</button>                
+									</div>
+					  
+								</fieldset>
+							</form>
+						</div> <!-- box content-->
+					</div> <!-- box span12-->		      
+				</div> <!-- row-fluid sortable-->		    
+						
+				<form id="frmPerfil" name="frmPerfil" method="post" action="<%=response.encodeURL("SMSPerfil")%>">
+					<input type="hidden" name="accion" value="Agregar"></input>
+					<input type="hidden" name="codigo" value=""></input>					
+				</form>		
+				
+				<div class="row-fluid sortable">
+					<div class="box span12">
+						<div class="box-header well" data-original-title>
+							<h2><i class="icon-th-list"></i> RESULTADOS</h2>
+						</div>
+						
+						<div class="box-content">
+							<table class="table table-striped table-bordered bootstrap-datatable datatable">
+								<!-- agregar nuevo boton -->
+								<div  align="right">
+									<a class="btn btn-primary" href="javascript:alt_agregar()"> 
+										<i class="icon icon-add icon-white"></i> Agregar 
+									</a> 
 								</div>
-							  </div>
-						
-					  
-						<div class="form-actions">
-						<button type="submit" class="btn btn-primary">Buscar</button>
-						<button type="reset" class="btn">Cancelar</button>                
-						</div>
-					  
-	                </fieldset>
-	              </form>
-	            </div>
-	          </div>
-		      <!--/span-->
-	        </div>
-		    <!--/row-->
-						
-		    <div class="row-fluid sortable">
-		      <div class="box span12">
-		        <div class="box-header well" data-original-title>
-		          <h2><i class="icon-th-list"></i> RESULTADOS</h2>
-	            </div>
-		        <div class="box-content">
-		          <table class="table table-striped table-bordered bootstrap-datatable datatable">
-		            <!-- agregar nuevo boton -->
-		            <div  align="right"> <a class="btn btn-primary" href="agregarperfil.jsp"> <i class="icon icon-add icon-white"></i> Agregar </a> </div>
-					
-		            <thead>
-		              <tr>
-		                <th width="17%">Perfil</th>
-		                <th width="20%">Descripci&oacute;n</th>		                	               
-		                <th width="20%">Estado</th>
-		                <th width="35%">Acci&oacute;n</th>
-	                  </tr>
-	                </thead>
-					
-		            <tbody>
-		            
-					  <tr>
-		                <td>ADM</td>
-		                <td class="center">Administrador total del sistema</td>
-		                <td class="center">Activo</td>
-		                <td class="center"><a class="btn btn-success" href="#"> <i class="icon-zoom-in icon-white"></i> Ver </a> <a class="btn btn-info" href="modificarperfil.jsp"> <i class="icon-edit icon-white"></i> Modificar </a> <a class="btn btn-danger" href="eliminarperfil.jsp"> <i class="icon-trash icon-white"></i> Eliminar </a></td>
-	                  </tr>					  
-		              <tr>
-		                <td>PROF</td>
-		                <td class="center">Profesor de cursos</td>
-		                <td class="center">Inactivo</td>		                
-		                <td class="center"><a class="btn btn-success" href="#"> <i class="icon-zoom-in icon-white"></i> Ver </a> <a class="btn btn-info" href="modificarperfil.jsp"> <i class="icon-edit icon-white"></i> Modificar </a> <a class="btn btn-danger" href="eliminarperfil.jsp"> <i class="icon-trash icon-white"></i> Eliminar </a></td>
-	                  </tr>
-		              
-	                </tbody>
-	              </table>
-	            </div>
-	          </div>
-		      <!--/span-->
-	        </div>
-		    <!--/row-->
-		    <!-- content ends -->
-	      </div>
-		  <!--/#content.span10-->
-				</div><!--/fluid-row-->
+								
+								<thead>
+									<tr>
+										<th width="17%">Perfil</th>
+										<th width="20%">Descripci&oacute;n</th>		                	               									
+										<th width="35%">Acci&oacute;n</th>
+									</tr>
+								</thead>
+								
+								<tbody id="resultadoBusqueda">	
+									<% for(int i=0; i<resultados.size(); i++) { %>
+									<tr>
+										<td><%=((ResultadoPerfilBeanData)resultados.get(i)).getNombre()%></td>
+										<td class="center"><%=((ResultadoPerfilBeanData)resultados.get(i)).getDescripcion()%></td>
+										<td class="center">
+											<a class="btn btn-success" href="javascript:alt_consultar('<%=((ResultadoPerfilBeanData)resultados.get(i)).getCodigo()%>')"> 
+												<i class="icon-zoom-in icon-white"></i> Ver 
+											</a>
+											<a class="btn btn-info" href="javascript:alt_modificar('<%=((ResultadoPerfilBeanData)resultados.get(i)).getCodigo()%>')">
+												<i class="icon-edit icon-white"></i> Modificar
+											</a>
+											<a class="btn btn-danger" href="javascript:alt_eliminar('<%=((ResultadoPerfilBeanData)resultados.get(i)).getCodigo()%>')">
+												<i class="icon-trash icon-white"></i> Eliminar
+											</a>
+										</td>
+									</tr>					  
+									<%}%>					  
+								</tbody>							
+							</table>
+						</div> <!-- box content-->
+					</div> <!-- box span12-->
+				</div> <!-- row-fluis soportable -->
+		    
+			</div> <!-- content  span10 -->		  
+		</div><!--/fluid-row-->
 				
 		<hr>
 
 		<div class="modal hide fade" id="myModal">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal">×</button>
-				<h3>Settings</h3>
+				<h3>Opciones</h3>
 			</div>
 			<div class="modal-body">
-				<p>Here settings can be configured...</p>
+				<p>Aqui las opciones pueden ser configuradas...</p>
 			</div>
 			<div class="modal-footer">
-				<a href="#" class="btn" data-dismiss="modal">Close</a>
-				<a href="#" class="btn btn-primary">Save changes</a>
+				<a href="#" class="btn" data-dismiss="modal">Cerrar</a>
+				<a href="#" class="btn btn-primary">Guardar Cambios</a>
 			</div>
 		</div>
 
 		<footer>
-		  <p class="pull-left"><a href="http://usman.it/free-responsive-admin-template">Conan 3000</a> &copy;  2013</p>
-          <p class="pull-right">Powered by: <a href="http://usman.it/free-responsive-admin-template">Dos V&iacute;rgenes</a></p>
+			<p class="pull-left"><a href="#">Conan 3000</a> &copy;  2013</p>
+			<p class="pull-right">Powered by: <a href="#">Dos V&iacute;rgenes</a></p>
 		</footer>
 		
 	</div><!--/.fluid-container-->
@@ -268,14 +300,14 @@
 	<script src="js/jquery.history.js"></script>
 	<!-- application script for Charisma demo -->
 	<script src="js/charisma.js"></script>
+	
 	<script>
 	function loadContent() 
-{ 
-   $("#includedContent").load("menu.html"); 
-} 
-
-
+	{ 
+	   $("#includedContent").load("menu.html"); 
+	} 
 	</script>
-		<script>loadContent()</script> 
+	
+	<script>loadContent()</script> 
 </body>
 </html>
