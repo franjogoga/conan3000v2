@@ -235,7 +235,7 @@
 					        
 					        
 							<div class="control-group">
-								<label class="control-label">Estado <% if( sede.getEstado().equalsIgnoreCase("disponible") );  out.print("disponibleeee!!!"); %> </label>
+								<label class="control-label">Estado </label>
 								<div class="controls">
 								  <label class="radio">
 								  <%
