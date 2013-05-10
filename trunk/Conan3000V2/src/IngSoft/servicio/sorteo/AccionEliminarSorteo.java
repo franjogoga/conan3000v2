@@ -29,7 +29,7 @@ public class AccionEliminarSorteo extends CoAccion {
 		SorteoBeanData sorteoData=sorteoFuncion.consultarSorteo(request.getParameter("codigo"));
 		Vector<SedeMiniBeanData> sedeMiniData=sorteoFuncion.getSedes();
 		request.setAttribute("sedes",sedeMiniData );
-		request.setAttribute("evento", sorteoData);
+		request.setAttribute("sorteo", sorteoData);
 		this.direccionar(sc, request, response, "/IngSoft/servicio/sorteo/eliminarsorteo.jsp");
 		}		
 		this.direccionar(sc, request, response, "/IngSoft/servicio/sorteo/buscarsorteo.jsp");
