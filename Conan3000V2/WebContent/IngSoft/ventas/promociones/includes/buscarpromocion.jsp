@@ -3,10 +3,48 @@
 <%@page import="IngSoft.venta.bean.ResultadoPromocionBeanData"%>
 <%@page import="java.util.Vector"%>
 
+<script>
+	function alt_fecha(obj){
+	obj.value=obj.value.slice(0,5);
+	
+	}
+	function alt_agregar(){
+		var form=document.getElementById("frmAlternativo");
+		form.accion.value="Agregar";
+		form.submit();
+	}
+	
+	function alt_consultar(cod){
+		var form=document.getElementById("frmAlternativo");
+		form.accion.value="Consultar";
+		form.codigo.value=cod;
+		form.submit();
+	}
+	function alt_modificar(cod){
+		var form=document.getElementById("frmAlternativo");
+		form.accion.value="Modificar";
+		form.codigo.value=cod;
+		form.submit();
+	}
+	function alt_eliminar(cod){
+		var form=document.getElementById("frmAlternativo");
+		form.accion.value="Eliminar";
+		form.codigo.value=cod;
+		form.submit();
+	}
+	</script>	
+
+
+
 <!--The beans  -->
 <jsp:useBean id="resultados" scope="request"class="java.util.Vector"></jsp:useBean>
 
-
+	<noscript>
+				<div class="alert alert-block span10">
+					<h4 class="alert-heading">Warning!</h4>
+					<p>You need to have <a href="http://en.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript</a> enabled to use this site.</p>
+				</div>
+	</noscript>
 <!-- content starts -->
 
 			  <div>		       
@@ -38,14 +76,14 @@
 		                     
 			                <label class="control-label" for="date01">Fecha de inicio:</label>
 			                <div class="controls">
-			                  <input type="text" class="input-xlarge datepicker" id="fFechInicio" name="fFechInicio" value="16/02">
+			                  <input type="text" class="input-xlarge datepicker" id="fFechInicio" name="fFechInicio">
 			                  
 		                    </div>
 		                  </div>
 			              <div class="control-group">
 			                <label class="control-label" for="date02">Fecha de fin:</label>
 			                <div class="controls">
-			                  <input type="text" class="input-xlarge datepicker" id="fFechFin" name="fFechFin" value="16/04" >
+			                  <input type="text" class="input-xlarge datepicker" id="fFechFin" name="fFechFin"  >
 		                    </div>
 		                  </div>
 			          
@@ -110,7 +148,7 @@
 				        <element>
 					    <tbody id="resultadobusqueda">
 					    
-					    <%SimpleDateFormat df= new SimpleDateFormat("dd/MM"); 
+					    <%SimpleDateFormat df= new SimpleDateFormat("dd/MM/YYYY"); 
                           			for(int i=0;
                           			i<resultados.size();i++){
                          %>
