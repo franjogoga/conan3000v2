@@ -204,29 +204,12 @@
 					        
 					        
 						
-							  <div class="control-group">
-								<label class="control-label">Estado</label>
-								
-								<div class="controls">
-								
-								  <label class="radio">
-									<input  disabled="" type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
-									Dispoible
-								  </label>
-								  
-								    <div style="clear:both"></div>   
-								  
-								  
-								  <label class="radio">
-									<input disabled="" type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-									No disponible
-								  </label>
-
-								  
-								  
-								</div>
-								
-							  </div>	
+						    <div class="control-group">
+						      <label class="control-label" for="typeahead7">Estado: </label>
+						      <div class="controls">
+						        <input type="text" class="span6 typeahead" id="txtNombresede"  data-provide="typeahead"  name="txtNombresede" disabled value="<%= sede.getEstado()%>">
+					          </div>
+					        </div>   
 							   			  
 	
 	
