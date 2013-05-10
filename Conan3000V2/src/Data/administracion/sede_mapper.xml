@@ -18,6 +18,7 @@ SEDE.IdSede as codigo
 ,DEPARTAMENTO.NOMBRE as departamento
 ,PROVINCIA.NOMBRE as provincia
 ,DISTRITO.NOMBRE as distrito
+,SEDE.ESTADO as estado
 from DEPARTAMENTO  , PROVINCIA  , DISTRITO  , SEDE 
 WHERE
         SEDE.Nombre  like  #{nombre}
