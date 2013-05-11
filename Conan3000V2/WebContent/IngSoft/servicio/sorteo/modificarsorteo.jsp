@@ -1,15 +1,31 @@
 <!DOCTYPE html>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="IngSoft.servicio.bean.SedeMiniBeanData"%>
+<%@page import="java.util.Date"%>
 <html lang="en">
 <head>
+	<!--
+		Charisma v1.0.0
 
+		Copyright 2012 Muhammad Usman
+		Licensed under the Apache License v2.0
+		http://www.apache.org/licenses/LICENSE-2.0
+
+		http://usman.it
+		http://twitter.com/halalit_usman
+	-->
 	<meta charset="utf-8">
-	<title>CONAN 3000</title>
+	<title>Modificar Sorteo</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
-	<meta name="author" content="Dos Virgenes">
-
+	<meta name="author" content="Muhammad Usman">
+	
+	<!--The beans  -->
+	<jsp:useBean id="sorteo" scope="request"class="IngSoft.servicio.bean.SorteoBeanData"></jsp:useBean>
+	<jsp:useBean id="sedes" scope="request"class="java.util.Vector"></jsp:useBean>
+	
 	<!-- The styles -->
-	<link id="bs-css" href="css/bootstrap-cerulean.css" rel="stylesheet">    
+	<link id="bs-css" href="css/bootstrap-cerulean.css" rel="stylesheet">
 	<style type="text/css">
 	  body {
 		padding-bottom: 40px;
@@ -42,11 +58,56 @@
 
 	<!-- The fav icon -->
 	<link rel="shortcut icon" href="img/conan_logo.png">
+	<script>
+		function validar(form){
+			if(form.txtNombreSorteo.value.length <=0)return false;
+			if(form.fFecInicio.value.length<=0)return false;
+			if(form.fFecFin.value.lengtht<=0)return false;
+			if(form.fFecSorteo.value.lengtht<=0)return false;			
+			if(form.cmbSedes.value.length<=0)return false;
+	return true;
+		
+		
+		}
+	
+	function alt_fecha(obj){
+	obj.value=obj.value.slice(0,5);
+	
+	}
+	
+	function alt_submit(){
+		var form= document.frmUpdate;
+		if(validar(form)) form.submit();
+		else alert("Uno o mas campos estan vacios");
+			
+			}
+		
+		
+		
+			//document.fmrData.submit();
+
+	</script>	
+	<%! public boolean  encontrar(String a, String b){
+		if (a.equals(b)) return true;
+		return false;
+	}
+	public String formatear(java.util.Date date){
+		SimpleDateFormat DF= new SimpleDateFormat("dd/MM");
+		return DF.format(date);
+	}
+	
+	public String generarCadena(String[] t){
+		String a="";
+		for(int i=0;i<t.length;i++)
+			a= a.concat(t[i]+"/");
+			if(a.length()>0) a=a.substring(0, a.length()-1);
+		return a;
+	}
+	%>
 		
 </head>
 
 <body>
-		
 		<jsp:include page="/IngSoft/general/superior.jsp" />
 		<div class="container-fluid">
 		<div class="row-fluid">
@@ -54,132 +115,124 @@
 			<!-- left menu starts -->
 			<jsp:include page="/IngSoft/general/leftmenu.jsp" />
 						<!-- left menu ends -->
-            
-            
-           
 			
-		  <noscript>
+			
+			<noscript>
 				<div class="alert alert-block span10">
 					<h4 class="alert-heading">Warning!</h4>
 					<p>You need to have <a href="http://en.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript</a> enabled to use this site.</p>
 				</div>
 			</noscript>
 			
+		
 			<div id="content" class="span10">
-			  <!-- content starts -->
-			  <div>
+			<!-- content starts -->
+			
+
+			<div>
 				<ul class="breadcrumb">
 					<li>
-						<a href="#">Inicio</a> <span class="divider">/</span>
+						<a href="#">Home</a> <span class="divider">/</span>
 					</li>
 					<li>
-						<a href="#">Mantenimiento de Sorteos</a> <span class="divider">/</span>
+						<a href="buscarevento.jsp">Mantenimiento de Sorteos</a> <span class="divider">/</span>
 					</li>
 					<li>
 						Modificar Sorteo
 					</li>
 				</ul>
 			</div>
-			  
-			  <div class="row-fluid sortable">
-			    <div class="box span12">
-			      <div class="box-header well" data-original-title>
-			        <h2> MODIFICAR SORTEO</h2>
-		          </div>
-				  
-			      <div class="box-content">
-			        <form class="form-horizontal">
-			          <fieldset>			            							
-							
+			
+			<div class="row-fluid sortable">
+				<div class="box span12">
+					<div class="box-header well" data-original-title>
+					  <h2><i class="icon-edit"></i>MODIFICAR SORTEO</h2>
+				  </div>
+					<div class="box-content">
+						<form class="form-horizontal" name="frmUpdate" method="post">
+						<input type="hidden" name="txtLSede" value="<%=sorteo.getIdSede()%>" ></input>
+						<input type="hidden" name="codigo" value="<%=sorteo.getIdSorteo()%>"></input>
+						<input type="hidden" name="accion" value="Modificar"></input>
+						<input type="hidden" name="tipo" value="2"></input>
+						  <fieldset>
+						    <div class="control-group">
+						      <label class="control-label" for="typeahead7">Nombre de sorteo: </label>
+						      <div class="controls">
+						        <input type="text" class="span6 typeahead"   data-provide="typeahead" id="txtNombreSorteo" name="txtNombreSorteo" value="<%=sorteo.getDescripcion()%>">
+					          </div>
+					        </div>
 							<div class="control-group">
-							  <label class="control-label" for="codigo">C&oacute;digo:</label>							  
-							  <div class="controls">
-								<input type="text" class="span6 typeahead" id="codigoSorteo"  data-provide="typeahead" data-items="4" value="EMP001"></input>								
-							  </div>
-							</div>
-							
-							<div class="control-group">
-							  <label class="control-label" for="typeahead">Nombre del Sorteo:</label>							  
-							  <div class="controls">
-								<input type="text" class="span6 typeahead" id="nombreSorteo"  data-provide="typeahead" data-items="4" value="Juan"></input>								
-							  </div>
-							</div>
-						
-						 
-						 <div class="control-group">
-								<label class="control-label" for="selectError">Sede:</label>
+								<label class="control-label" for="selectError1">Sede </label>
 								<div class="controls">
-								  <select id="selectError7" data-rel="chosen">
-									<option>Sede 1</option>
-									<option>Sede 2</option>
-									<option>Sede 3</option>
-									<option>Sede 4</option>
-									<option>Sede 5</option>
+								  <select   data-rel="chosen" id="cmbSedes" name="cmbSedes" >
+									<%for(int i=0;i<sedes.size();i++){ %>
+										<option value="<%= ((SedeMiniBeanData)sedes.get(i)).getNombre()%>" <%=encontrar(((SedeMiniBeanData)sedes.get(i)).getNombre(), sorteo.getIdSede())?"selected":""%>><%= ((SedeMiniBeanData)sedes.get(i)).getNombre()%></option>
+									<%} %>																	
 								  </select>
 								</div>
+							  </div>
+							
+							  
+							  <div class="control-group">
+							  <label class="control-label" for="date01">Fecha Inicio</label>
+							  <div class="controls">
+								<input type="text" class="input-xlarge datepicker" id="fFecInicio"   value="<%=formatear(new Date(sorteo.getFechaInicio().getTime())) %>"  name="fFecInicio" onchange="alt_fecha(this)">
+							  </div>
 							</div>
-						 
+							
 							<div class="control-group">
-										<label class="control-label" for="fechaInicio">Fecha de Inicio::</label>
-										<div class="controls">
-											<input type="text" class="input-xlarge datepicker"
-												id="fechaInicio" value="01/05/12">
-										</div>
-						    </div>
+							  <label class="control-label" for="date02">Fecha Fin</label>
+							  <div class="controls">
+								<input type="text" class="input-xlarge datepicker" id="fFecFin" name="fFecFin"  value="<%=formatear(new Date(sorteo.getFechaFin().getTime())) %>" onchange="alt_fecha(this)">
+							  </div>
+							</div>
+							<div class="control-group">
+							  <label class="control-label" for="date03">Fecha Sorteo</label>
+							  <div class="controls">
+								<input type="text" class="input-xlarge datepicker" id="fFecSorteo" name="fFecSorteo"  value="<%=formatear(new Date(sorteo.getFechaSorteo().getTime())) %>" onchange="alt_fecha(this)">
+							  </div>
+							</div>
+						    <div class="form-actions">
+							  <button type="button" class="btn btn-primary" onclick="javascript:alt_submit()">Guardar</button>
+							  <button type="button" class="btn" onclick="location.href='buscarsorteo.jsp'" >Cancelar</button>
+							</div>
+						  </fieldset>
+					  </form>   
 
-						<div class="control-group">
-										<label class="control-label" for="fechaFin">Fecha Fin:</label>
-										<div class="controls">
-											<input type="text" class="input-xlarge datepicker"
-												id="fechaFin" value="12/05/13">
-										</div>
-						</div>
-									
-												
-			            <div class="form-actions">
-			              <button type="submit" class="btn btn-primary">Guardar</button>
-			              <button type="reset" class="btn">Cancelar</button>
-		                </div>
-		              </fieldset>
-		            </form>
-		          </div>
-		        </div>
-			    <!--/span-->
-		      </div>
-			  <!--/row-->
-			  <div class="row-fluid sortable">
-			    <!--/span-->
-		      </div>
-			  <!--/row-->
-			  <div class="row-fluid sortable">
-			    <!--/span-->
-		      </div>
-			  <!--/row-->			 		  
-       
+				  </div>
+				</div><!--/span-->
+
+			</div><!--/row-->
+
+
+			<div class="row-fluid sortable"><!--/span-->
+			
+			</div><!--/row-->
+			
+			<div class="row-fluid sortable"><!--/span-->
+
+			</div><!--/row-->		 
 					<!-- content ends -->
-		  </div><!--/#content.span10-->
+			</div><!--/#content.span10-->
 				</div><!--/fluid-row-->
 				
 		<hr>
 
 		<div class="modal hide fade" id="myModal">
 			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal">×</button>
+				<button type="button" class="close" data-dismiss="modal">Ã—</button>
 				<h3>Settings</h3>
 			</div>
 			<div class="modal-body">
 				<p>Here settings can be configured...</p>
 			</div>
 			<div class="modal-footer">
-				<a href="#" class="btn" data-dismiss="modal">Cerrar</a>
-				<a href="#" class="btn btn-primary">Guardar Cambios</a>
+				<a href="#" class="btn" data-dismiss="modal">Close</a>
+				<a href="#" class="btn btn-primary">Save changes</a>
 			</div>
 		</div>
 
-		<footer>
-		  <p class="pull-left"><a href="http://usman.it/free-responsive-admin-template">Conan 3000</a> &copy;  2013</p>
-          <p class="pull-right">Powered by: <a href="http://usman.it/free-responsive-admin-template">Dos V&iacute;rgenes</a></p>
-		</footer>
+		<jsp:include page="/IngSoft/general/inferior.jsp" />
 		
 	</div><!--/.fluid-container-->
 
@@ -256,9 +309,7 @@
 	<script src="js/jquery.history.js"></script>
 	<!-- application script for Charisma demo -->
 	<script src="js/charisma.js"></script>
-	<script>	
-
-	</script>
-		<script>loadContent()</script> 
+	
+		
 </body>
 </html>
