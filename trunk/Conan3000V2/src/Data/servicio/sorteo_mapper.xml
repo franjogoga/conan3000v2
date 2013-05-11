@@ -76,5 +76,19 @@ Eliminar evento
 DELETE FROM SORTEO where IdSorteo= #{codigo}
 </update>
 
+<insert id="insertPlantillaSorteoSedesUpdate" parameterType="IngSoft.servicio.bean.ModificacionesSorteoBeanData" >
+insert into SORTEO(IdSorteo,IdSede) values(#{codigo},#{nuevo})
+</insert>
+<update id="updatePlantillaSorteo" parameterType="IngSoft.servicio.bean.ModificacionesSorteoBeanData">
+update SORTEO 
+	set IdSede=#{idSede}, 
+	set FechaInicioIncr=#{fechaInicio},
+	set FechaFinInscr=#{fechaFin},
+	set FechaSorteo=#{fechaSorteo}
+	where IdSorteo=#{idSorteo} 
+</update>
+<delete id="deletePlantillaSorteoSede" parameterType="IngSoft.servicio.bean.ModificacionesEventoBeanData">
+delete from SORTEO where IdSorteo=#{codigo} and IdSede=#{antiguo}
+</delete>
 
 </mapper>
