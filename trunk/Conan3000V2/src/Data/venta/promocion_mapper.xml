@@ -24,6 +24,9 @@ from PROMOCION
     <if test="limFin != null">
         AND PROMOCION.FechaFin &lt;= #{limFin}
     </if>
+    <if test="estado != null">
+        AND PROMOCION.Estado = #{estado}
+    </if>
 </where>
 </select>
 
