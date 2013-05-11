@@ -8,13 +8,16 @@ import java.util.Vector;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.ibatis.session.SqlSession;
+import org.eclipse.persistence.internal.libraries.antlr.runtime.DFA;
 
 import IngSoft.general.MyBatisSesion;
 
 
 public class CriterioPromocionBeanFunction {
 
+
 	SimpleDateFormat DF = new SimpleDateFormat("dd/MM/yyyy");
+	
 
 	public CriterioPromocionBeanData crearCriterio(HttpServletRequest request, HttpServletResponse response){
 		
@@ -24,8 +27,8 @@ public class CriterioPromocionBeanFunction {
 		criterioPromocionData.setNombre(request.getParameter("txtNombrePromocion"));
 		try {		
 			
-			criterioPromocionData.setLimInicio(new Date(DF.parse(request.getParameter("fFechInicio")).getTime()));
-			criterioPromocionData.setLimFin(new Date(DF.parse(request.getParameter("fFechFin")).getTime()));
+			criterioPromocionData.setLimInicio(new Date(DF.parse(request.getParameter("fFechInicio").equals("")?"01/01/0000":request.getParameter("fFechInicio")).getTime()));
+			criterioPromocionData.setLimFin(new Date(DF.parse(request.getParameter("fFechFin").equals("")?"31/12/4000":request.getParameter("fFechFin")).getTime()));
 			if (request.getParameter("rButton")!=null){
 			String est;
 			est=request.getParameter("rButton");
