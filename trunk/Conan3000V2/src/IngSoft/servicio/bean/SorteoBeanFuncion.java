@@ -2,6 +2,7 @@ package IngSoft.servicio.bean;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Vector;
 import java.util.concurrent.locks.Lock;
@@ -27,8 +28,8 @@ public class SorteoBeanFuncion {
 		SorteoBeanData sorteoData= new SorteoBeanData();
 		try{
 			sorteoData.setIdSede(request.getParameter("cmbSedes"));
-			sorteoData.setFechaInicio(new Date(DF.parse(request.getParameter("fFecIncio")).getTime()));
-			sorteoData.setFechaFin(new Date(DF.parse(request.getParameter("fFecIncio")).getTime()));
+			sorteoData.setFechaInicio(new Date(DF.parse(request.getParameter("fFecInicio")).getTime()));
+			sorteoData.setFechaFin(new Date(DF.parse(request.getParameter("fFecFin")).getTime()));
 			sorteoData.setFechaSorteo(new Date(DF.parse(request.getParameter("fFecSorteo")).getTime()));
 			sorteoData.setDescripcion(request.getParameter("txtNombreSorteo"));
 			sorteoData.setEstado(request.getParameter("txtCodigoSorteo"));
@@ -116,5 +117,85 @@ public class SorteoBeanFuncion {
 			return new Vector<>(resultados);
 		}
 		
+		private Vector<ModificacionesSorteoBeanData> generaListaCambios(String ant , String nue ,String cod){
+			Vector<ModificacionesSorteoBeanData> mods=new Vector<ModificacionesSorteoBeanData>();
+			Vector<String> antV= new Vector<String>(Arrays.asList(ant));
+			Vector<String> nueV= new Vector<String>(Arrays.asList(nue));
+			antV.remove("");
+			nueV.remove("");
+			for(int i=0;i<antV.size();i++){
+				if(nueV.remove(antV.get(i))){
+				antV.remove(i);
+				i--;}
+			}
+			for(int i=0;i<nueV.size();i++){
+				if(antV.remove(nueV.get(i))){
+					nueV.remove(i);
+					i--;
+				}
+				
+			}
+			while(true){
+				if(antV.size()==0 && nueV.size()==0) break;
+				ModificacionesSorteoBeanData cambio= new ModificacionesSorteoBeanData();
+				if(antV.size()==0 || "".equals((String)antV.get(0)) ) {
+					cambio.setCambio("I");
+					cambio.setNuevo((String)nueV.get(0));
+					nueV.remove(nueV.get(0));
+					cambio.setIdSorteo(cod);
+					mods.add(cambio);
+					continue;					
+					}
+				if(nueV.size()==0 || "".equals((String)nueV.get(0)) ) {
+					cambio.setCambio("D");
+					cambio.setAntiguo((String)antV.get(0));
+					antV.remove(antV.get(0));
+					cambio.setIdSorteo(cod);
+					mods.add(cambio);
+					continue;}					
+				else {
+				cambio.setCambio("U");
+				cambio.setAntiguo((String)antV.get(0));
+				cambio.setNuevo((String)nueV.get(0));
+				antV.remove(antV.get(0));
+				nueV.remove(nueV.get(0));
+				cambio.setIdSorteo(cod);
+				mods.add(cambio);
+				continue;
+				}
+							
+			}
+		
+		return mods;
+	}
+		
+		public void modificarSorteo(SorteoBeanData sorteo,String antSede) throws CoException {
+			SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+			try{
+				/*Vector<ModificacionesSorteoBeanData> mods;
+				mods= this.generaListaCambios(antSede, sorteo.getIdSede(),sorteo.getIdSorteo());
+				for(int i=0;i<mods.size();i++){
+					if("I".equals(mods.get(i).getCambio())) sqlsesion.insert("Data.servicio.sorteo.insertPlantillaSorteoSedesUpdate",(ModificacionesSorteoBeanData)mods.get(i));
+					if("U".equals(mods.get(i).getCambio())) sqlsesion.update("Data.servicio.sorteo.updatePlantillaSorteoSedes",(ModificacionesSorteoBeanData)mods.get(i));	
+					if("D".equals(mods.get(i).getCambio())) sqlsesion.delete("Data.servicio.sorteo.deletePlantillaSorteoSede",(ModificacionesSorteoBeanData)mods.get(i));	
+				}	*/	
+
+				sqlsesion.update("Data.servicio.sorteo.updatePLantillaSorteo",sorteo);
+				
+			}
+			catch(Exception a)		
+			{sqlsesion.rollback();
+			a.printStackTrace();
+				throw CoException.set("Error: No se pudo modificar la plantilla intente de nuevo", "SMSSorteo?accion=Modificar&tipo=1");
+				
+			}
+			
+			finally{
+				sqlsesion.commit();
+				sqlsesion.close();					
+			}
+				
+			return ;
+		}
 
 }
