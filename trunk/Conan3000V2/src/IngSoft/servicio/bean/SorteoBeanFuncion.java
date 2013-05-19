@@ -52,9 +52,7 @@ public class SorteoBeanFuncion {
 				
 				sorteoData.setIdSorteo(codigo.substring(0,3).concat(temp));}
 				else sorteoData.setIdSorteo("PSO000001");
-				
 				sqlsesion.insert("insertPlantillaSorteo",sorteoData);
-				
 				resultado=true;
 			}
 			catch(Exception a)		
