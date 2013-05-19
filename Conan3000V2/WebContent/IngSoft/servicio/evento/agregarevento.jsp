@@ -58,6 +58,7 @@
 
 	<!-- The fav icon -->
 	<link rel="shortcut icon" href="img/conan_logo.png">
+	<script src="evento.js"></script>
 	<script>
 		function validar(form){
 			if(form.txtNombreEvento.value.length <=0)return false;
@@ -70,22 +71,14 @@
 		
 		}
 	
-	function alt_fecha(obj){
-	obj.value=obj.value.slice(0,5);
-	
-	}
 	
 	function alt_submit(){
 		var form= document.frmData;
 		if(validar(form)) form.submit();
-		else alert("Uno o mas campos estan vacios");
-			
+		else alert("Uno o mas campos estan vacios");			
 			}
-		
-		
-		
-			//document.fmrData.submit();
-
+			
+			
 	</script>	
 </head>
 
@@ -137,7 +130,7 @@
 						    <div class="control-group">
 						      <label class="control-label" for="typeahead7">Nombre de evento(*): </label>
 						      <div class="controls">
-						        <input type="text" class="span6 typeahead" id="txtNombreEvento"  data-provide="typeahead"  id="txtNombreEvento" name="txtNombreEvento" >
+						        <input type="text" class="span6 typeahead" id="txtNombreEvento"  data-provide="typeahead"  id="txtNombreEvento" name="txtNombreEvento" onkeypress="return alfanumerico(event);">
 					          </div>
 					        </div>
 						    
