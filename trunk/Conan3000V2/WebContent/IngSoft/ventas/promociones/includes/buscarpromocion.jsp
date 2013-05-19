@@ -68,7 +68,7 @@
 			            <div class="control-group">
 			              <div class="control-group">
 			                <div class="control-group">
-			                  <label class="control-label" for="typeahead2">Nombre Promoci&oacute;n:</label>
+			                  <label class="control-label" for="typeahead2">Nombre de Promoci&oacute;n:</label>
 			                  <div class="controls">
 			                    <input type="text" class="span6 typeahead" id="txtNombrePromocion"  name="txtNombrePromocion" data-provide="typeahead" >
 		                      </div>
@@ -76,14 +76,14 @@
 		                     
 			                <label class="control-label" for="date01">Fecha de inicio:</label>
 			                <div class="controls">
-			                  <input type="text" class="input-xlarge datepicker" id="fFechInicio" name="fFechInicio">
+			                  <input type="text" class="input-xlarge datepicker" id="fFechInicio" name="fFechInicio" value="01/01/2013">
 			                  
 		                    </div>
 		                  </div>
 			              <div class="control-group">
 			                <label class="control-label" for="date02">Fecha de fin:</label>
 			                <div class="controls">
-			                  <input type="text" class="input-xlarge datepicker" id="fFechFin" name="fFechFin"  >
+			                  <input type="text" class="input-xlarge datepicker" id="fFechFin" name="fFechFin" value="31/12/2013">
 		                    </div>
 		                  </div>
 			          
@@ -92,19 +92,19 @@
 								<label class="control-label" for="typeahead3">Estado</label>
 								<div class="controls">
 								  <label class="radio">
-									<input type="radio" name="rButton"  value="activo" checked="checked">
+									<input type="radio" name="rButton" id="optionsRadios1" value="activo" checked="checked">
 									Activo
 								  </label>
 								  <div style="clear:both"></div>
 								  <label class="radio">
-									<input type="radio" name="rButton"  value="Inactivo">
+									<input type="radio" name="rButton" id="optionsRadios2" value="Inactivo">
 									Inactivo
 								  </label>
 								</div>
 							  </div>
 			            </div>
 			            <div class="form-actions">
-			              <button type="submit" value="Ok"class="btn btn-primary">Buscar</button>
+			              <button type="submit" class="btn btn-primary">Buscar</button>
 			              <button type="submit" class="btn"><a href="buscarpromocion.jsp">Cancelar</a></button>
 		                </div>
 		              </fieldset>
