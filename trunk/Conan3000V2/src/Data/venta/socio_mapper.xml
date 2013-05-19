@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Data.venta.promocion">
+
+  <cache />
+
+<!-- <select id="searchPlantillaPromocion" parameterType="IngSoft.venta.bean.CriterioPromocionBeanData" resultType="IngSoft.venta.bean.ResultadoPromocionBeanData">
+select 
+PROMOCION.IdPromocion as codigo
+,PROMOCION.FechaInicio as limInicio
+,PROMOCION.FechaFin as limFin
+,PROMOCION.Nombre as nombre
+,PROMOCION.Estado as estado
+from PROMOCION 
+<where>
+	<if test="nombre != null ">
+        PROMOCION.nombre  like  #{nombre}
+    </if>
+    <if test="limInicio != null">
+        AND PROMOCION.FechaInicio &gt;= #{limInicio}
+    </if>
+    <if test="limFin != null">
+        AND PROMOCION.FechaFin &lt;= #{limFin}
+    </if>
+    <if test="estado != null">
+        AND PROMOCION.Estado like #{estado}
+    </if>
+      
+</where>
+</select>
+ -->
+  
+<!-- Agregar plantilla socio -->
+<insert id="insertSocio" parameterType="IngSoft.venta.bean.SocioBeanData" flushCache="true">
+	insert into SOCIO(IdSocio,IdPerfil,Direccion,Correo,TelefonoFijo,IdSolicitudIngreso,IdDistrito,TelefonoCelular)
+	values (#{codigo},'PER000010',#{direccion},#{correoElectronico},#{telefonoFijo},'SOL000001',#{IdDistrito},#{telefonoCelular})
+</insert>
+
+<!-- <insert id="insertSocio" parameterType="IngSoft.venta.bean.SocioBeanData" flushCache="true">
+	insert into SOCIO(IdSocio,IdPerfil,Direccion,Correo,TelefonoFijo,IdSolicitudIngreso)
+	values (#{codigo},#{nombre},#{fechaInicio},#{fechaFin},#{descripcion},'Activo')
+</insert>
+ --> 
+
+<select id="getNextCodigo3" resultType="java.lang.String">
+	select max(IdSocio) from SOCIO
+</select>
+
+
+ <!-- Fin agregar  -->
+ 
+</mapper>
+ 
