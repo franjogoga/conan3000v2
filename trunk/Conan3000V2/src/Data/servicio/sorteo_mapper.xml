@@ -82,12 +82,12 @@ DELETE FROM SORTEO where IdSorteo= #{codigo}
 <insert id="insertPlantillaSorteoSedesUpdate" parameterType="IngSoft.servicio.bean.ModificacionesSorteoBeanData" >
 insert into SORTEO(IdSorteo,IdSede) values(#{codigo},#{nuevo})
 </insert>
-<update id="updatePlantillaSorteo" parameterType="IngSoft.servicio.bean.ModificacionesSorteoBeanData">
+<update id="updatePlantillaSorteo" parameterType="IngSoft.servicio.bean.SorteoBeanData">
 update SORTEO 
 	set IdSede=#{idSede}, 
-	set FechaInicioIncr=#{fechaInicio},
-	set FechaFinInscr=#{fechaFin},
-	set FechaSorteo=#{fechaSorteo}
+	FechaInicioIncr=#{fechaInicio},
+	FechaFinInscr=#{fechaFin},
+	FechaSorteo=#{fechaSorteo}
 	where IdSorteo=#{idSorteo} 
 </update>
 <delete id="deletePlantillaSorteoSede" parameterType="IngSoft.servicio.bean.ModificacionesEventoBeanData">
