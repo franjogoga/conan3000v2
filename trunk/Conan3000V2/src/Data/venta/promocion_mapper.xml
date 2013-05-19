@@ -25,8 +25,10 @@ from PROMOCION
         AND PROMOCION.FechaFin &lt;= #{limFin}
     </if>
     <if test="estado != null">
-        AND PROMOCION.Estado = #{estado}
+        AND PROMOCION.Estado like #{estado}
     </if>
+    AND PROMOCION.Estado='activo'
+    
 </where>
 </select>
 
@@ -34,7 +36,7 @@ from PROMOCION
 <!-- Agregar plantilla promocion -->
 <insert id="insertPromocion" parameterType="IngSoft.venta.bean.PromocionBeanData" flushCache="true">
 	insert into PROMOCION(IdPromocion,Nombre,FechaInicio,FechaFin,Descripcion,Estado)
-	values (#{codigo},#{nombre},#{fechaInicio},#{fechaFin},#{descripcion},'activo')
+	values (#{codigo},#{nombre},#{fechaInicio},#{fechaFin},#{descripcion},'Activo')
 </insert>
 
 <select id="getNextCodigo2" resultType="java.lang.String">
@@ -75,8 +77,6 @@ from PROMOCION  where IdPromocion=#{codigo};
 
 
 </select>
-
-
 
 
 </mapper>
