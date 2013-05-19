@@ -166,7 +166,7 @@
 								<div class="controls">
 								  <select   data-rel="chosen" id="cmbSedes" name="cmbSedes" >
 									<%for(int i=0;i<sedes.size();i++){ %>
-										<option value="<%= ((SedeMiniBeanData)sedes.get(i)).getNombre()%>" <%=encontrar(((SedeMiniBeanData)sedes.get(i)).getNombre(), sorteo.getIdSede())?"selected":""%>><%= ((SedeMiniBeanData)sedes.get(i)).getNombre()%></option>
+										<option value="<%= ((SedeMiniBeanData)sedes.get(i)).getCodigo()%>" <%=encontrar(((SedeMiniBeanData)sedes.get(i)).getNombre(), sorteo.getIdSede())?"selected":""%>><%= ((SedeMiniBeanData)sedes.get(i)).getNombre()%></option>
 									<%} %>																	
 								  </select>
 								</div>
@@ -176,20 +176,20 @@
 							  <div class="control-group">
 							  <label class="control-label" for="date01">Fecha Inicio</label>
 							  <div class="controls">
-								<input type="text" class="input-xlarge datepicker" id="fFecInicio"   value="<%=formatear(new Date(sorteo.getFechaInicio().getTime())) %>"  name="fFecInicio" onchange="alt_fecha(this)">
+								<input type="text" class="input-xlarge datepicker" id="fFecInicio" name="fFecInicio" value="<%=formatear(new Date(sorteo.getFechaInicio().getTime())) %>" >
 							  </div>
 							</div>
 							
 							<div class="control-group">
 							  <label class="control-label" for="date02">Fecha Fin</label>
 							  <div class="controls">
-								<input type="text" class="input-xlarge datepicker" id="fFecFin" name="fFecFin"  value="<%=formatear(new Date(sorteo.getFechaFin().getTime())) %>" onchange="alt_fecha(this)">
+								<input type="text" class="input-xlarge datepicker" id="fFecFin" name="fFecFin"  value="<%=formatear(new Date(sorteo.getFechaFin().getTime())) %>" >
 							  </div>
 							</div>
 							<div class="control-group">
 							  <label class="control-label" for="date03">Fecha Sorteo</label>
 							  <div class="controls">
-								<input type="text" class="input-xlarge datepicker" id="fFecSorteo" name="fFecSorteo"  value="<%=formatear(new Date(sorteo.getFechaSorteo().getTime())) %>" onchange="alt_fecha(this)">
+								<input type="text" class="input-xlarge datepicker" id="fFecSorteo" name="fFecSorteo"  value="<%=formatear(new Date(sorteo.getFechaSorteo().getTime())) %>" >
 							  </div>
 							</div>
 						    <div class="form-actions">
