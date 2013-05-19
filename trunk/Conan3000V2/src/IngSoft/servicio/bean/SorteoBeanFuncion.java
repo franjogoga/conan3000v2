@@ -178,7 +178,7 @@ public class SorteoBeanFuncion {
 					if("D".equals(mods.get(i).getCambio())) sqlsesion.delete("Data.servicio.sorteo.deletePlantillaSorteoSede",(ModificacionesSorteoBeanData)mods.get(i));	
 				}	*/	
 
-				sqlsesion.update("Data.servicio.sorteo.updatePLantillaSorteo",sorteo);
+				sqlsesion.update("Data.servicio.sorteo.updatePlantillaSorteo",sorteo);
 				
 			}
 			catch(Exception a)		
