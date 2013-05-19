@@ -27,8 +27,7 @@ from PROMOCION
     <if test="estado != null">
         AND PROMOCION.Estado like #{estado}
     </if>
-    AND PROMOCION.Estado='activo'
-    
+      
 </where>
 </select>
 
