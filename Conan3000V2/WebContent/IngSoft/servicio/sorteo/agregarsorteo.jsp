@@ -57,7 +57,7 @@
 	<script>
 		function validar(form){
 			if(form.txtNombreSorteo.value.length <=0)return false;
-			if(form.fFecIncio.value.length<=0)return false;
+			if(form.fFecInicio.value.length<=0)return false;
 			if(form.fFecFin.value.lengtht<=0)return false;
 			if(form.cmbSedes.value.length<=0)return false;
 	return true;
@@ -141,7 +141,7 @@
 								<div class="controls">
 								  <select id="selectM1"  data-rel="chosen" id="cmbSedes" name="cmbSedes" >
 									<%for(int i=0;i<sedes.size();i++){ %>
-										<option><%= ((SedeMiniBeanData)sedes.get(i)).getNombre()%></option>
+										<option value="<%= ((SedeMiniBeanData)sedes.get(i)).getCodigo()%>"><%= ((SedeMiniBeanData)sedes.get(i)).getNombre()%></option>
 									<%} %>															
 								  </select>
 								</div>
@@ -150,7 +150,7 @@
 						    <div class="control-group">
 							  <label class="control-label" for="date01">Fecha Inicio(*):</label>
 							  <div class="controls">
-								<input type="text" class="input-xlarge datepicker" id="fFecIncio"  name="fFecIncio" >
+								<input type="text" class="input-xlarge datepicker" id="fFecInicio"  name="fFecInicio" >
 							  </div>
 							</div>
 							<div class="control-group">
