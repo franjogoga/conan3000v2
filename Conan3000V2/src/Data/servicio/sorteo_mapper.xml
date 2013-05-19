@@ -42,6 +42,9 @@ order by 1 asc
 <select id="getNextCodigo" resultType="java.lang.String">
 	select max(IdSorteo) from SORTEO	
 </select>
+<select id="getNextCodigoSorteo" parameterType="java.lang.String" resultType="java.lang.String">
+	select IdSede from SEDE where upper(IdSede) like '%#{idSede}%'	
+</select>
  <!-- Fin agregar  -->
  
 <select id="getSedeId" parameterType="java.lang.String"  resultType="java.lang.String">
