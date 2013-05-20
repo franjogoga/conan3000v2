@@ -8,8 +8,8 @@
 								<!-- <li class="item-117"><a href="/Conan3000V2/Club/servicio/evento/solicitarevento.jsp">Servicios</a></li> -->
 								<li class="item-117 deeper parent"><span class="separator">Servicios</span>
 									<ul>
-										<li class="item-119"><a href="/Conan3000V2/Club/servicio/evento/solicitarevento.jsp">Para empresas</a></li>
-										
+										<li class="item-119"><a href="/Conan3000V2/Club/servicio/evento/solicitareventoempresa.jsp">Para empresas</a></li>
+										<li class="item-119"><a href="/Conan3000V2/Club/servicio/evento/solicitareventosocio.jsp">Para socios</a></li>																				
 									</ul></li>
 								<li class="item-118 deeper parent"><span class="separator">Galeria</span>
 									<ul>
