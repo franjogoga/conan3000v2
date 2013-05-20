@@ -21,6 +21,7 @@
        <mapper resource="Data/venta/promocion_mapper.xml"/>
        <mapper resource="Data/venta/socio_mapper.xml"/>
        <mapper resource="Data/servicio/sorteo_mapper.xml"/>
+       <mapper resource="Data/administracion/perfil_mapper.xml"/>
        
   </mappers>
 </configuration>
