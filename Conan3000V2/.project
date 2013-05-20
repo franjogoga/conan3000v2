@@ -175,21 +175,6 @@
 			<locationURI>JS</locationURI>
 		</link>
 		<link>
-			<name>WebContent/IngSoft/administracion/invitados/css</name>
-			<type>2</type>
-			<locationURI>CSS</locationURI>
-		</link>
-		<link>
-			<name>WebContent/IngSoft/administracion/invitados/img</name>
-			<type>2</type>
-			<locationURI>IMG</locationURI>
-		</link>
-		<link>
-			<name>WebContent/IngSoft/administracion/invitados/js</name>
-			<type>2</type>
-			<locationURI>JS</locationURI>
-		</link>
-		<link>
 			<name>WebContent/IngSoft/administracion/perfiles/css</name>
 			<type>2</type>
 			<locationURI>CSS</locationURI>
@@ -201,21 +186,6 @@
 		</link>
 		<link>
 			<name>WebContent/IngSoft/administracion/perfiles/js</name>
-			<type>2</type>
-			<locationURI>JS</locationURI>
-		</link>
-		<link>
-			<name>WebContent/IngSoft/administracion/sedes/css</name>
-			<type>2</type>
-			<locationURI>CSS</locationURI>
-		</link>
-		<link>
-			<name>WebContent/IngSoft/administracion/sedes/img</name>
-			<type>2</type>
-			<locationURI>IMG</locationURI>
-		</link>
-		<link>
-			<name>WebContent/IngSoft/administracion/sedes/js</name>
 			<type>2</type>
 			<locationURI>JS</locationURI>
 		</link>
