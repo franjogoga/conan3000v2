@@ -36,7 +36,7 @@ public class AccionConsultarSede extends CoAccion{
 
 
 
-		this.direccionar(sc, request, response, "/IngSoft/administracion/sedes/consultarsede.jsp");
+		this.direccionar(sc, request, response, "/IngSoft/administracion/sede/consultarsede.jsp");
 		
 
 	}
