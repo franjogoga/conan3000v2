@@ -23,7 +23,7 @@ public class AccionBuscarSede extends CoAccion{
 		Vector<ResultadoSedeBeanData> resultados=new CriterioSedeBeanFunction().buscarPlantillaEvento(criterioSedeData);
 
 		request.setAttribute("resultados", resultados);
-		this.direccionar(sc, request, response, "/IngSoft/administracion/sedes/buscarsede.jsp");
+		this.direccionar(sc, request, response, "/IngSoft/administracion/sede/buscarsede.jsp");
 		
 	}
 

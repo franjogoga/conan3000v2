@@ -24,7 +24,7 @@ public class AccionEliminarSede extends CoAccion{
 			sedeFuncion.eliminarSede(request.getParameter("codigo"));
 			
 			
-			this.direccionar(sc, request, response, "/IngSoft/administracion/sedes/buscarsede.jsp");
+			this.direccionar(sc, request, response, "/IngSoft/administracion/sede/buscarsede.jsp");
 		}
 		else
 		{
@@ -34,7 +34,7 @@ public class AccionEliminarSede extends CoAccion{
 		SedeBeanData sedeData=sedeFuncion.consultarEvento(request.getParameter("codigo"));	
 		request.setAttribute("sede",sedeData );
 		
-		this.direccionar(sc, request, response, "/IngSoft/administracion/sedes/eliminarsede.jsp");
+		this.direccionar(sc, request, response, "/IngSoft/administracion/sede/eliminarsede.jsp");
 		}
 
 	}

@@ -27,7 +27,7 @@ public class AccionModificarSede extends CoAccion{
 		SedeBeanData sedeoData=sedeFuncion.crearSedeModificada(request, response);
 		sedeFuncion.modificarSede(sedeoData);
 		
-		this.direccionar(sc, request, response, "/IngSoft/administracion/sedes/buscarsede.jsp");
+		this.direccionar(sc, request, response, "/IngSoft/administracion/sede/buscarsede.jsp");
 		
 		}
 		else
@@ -35,7 +35,7 @@ public class AccionModificarSede extends CoAccion{
 		SedeBeanFuncion sedeFuncion= SedeBeanFuncion.getInstance(); 
 		SedeBeanData sedeData=sedeFuncion.consultarEvento(request.getParameter("codigo"));	
 		request.setAttribute("sede",sedeData );
-		this.direccionar(sc, request, response, "/IngSoft/administracion/sedes/modificarsede.jsp");
+		this.direccionar(sc, request, response, "/IngSoft/administracion/sede/modificarsede.jsp");
 		}
 
 	}
