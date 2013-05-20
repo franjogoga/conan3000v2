@@ -2,24 +2,15 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="Data.administracion.perfiles">
+<mapper namespace="Data.administracion.perfil">
 	<cache />
 		
 	<select id="searchPerfil" parameterType="IngSoft.administracion.bean.CriterioPerfilBeanData" resultType="IngSoft.administracion.bean.ResultadoPerfilBeanData">
 		select PERFIL.IdPerfil as codigo, PERFIL.Nombre as nombre, PERFIL.Descripcion as descripcion
-		from PERFIL		
-	</select>
-	<where>
-		<if test="codigo != null">
-			PERFIL.IdPerfil like #{codigo}
-		</if>
-		<if test="nombre != null">
-			PERFIL.Nombre like #{nombre}
-		</if>
-		<if test="descripcion != null">
+		from PERFIL
+		where PERFIL.Nombre like #{nombre} and
 			PERFIL.Descripcion like #{descripcion}
-		</if>
-	</where>
-	order by 1 asc
-	<!-- Buscar -->
+		order by 1 asc
+	</select>
+	
 </mapper>
