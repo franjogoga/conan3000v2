@@ -53,6 +53,37 @@
 	<!-- The fav icon -->
 	<link rel="shortcut icon" href="img/favicon.ico">
 		
+		
+	<script>
+	function alt_fecha(obj){
+	obj.value=obj.value.slice(0,5);
+	
+	}
+	function alt_agregar(){
+		var form=document.getElementById("frmSocio");
+		form.accion.value="Agregar";
+		form.submit();
+	}
+	
+	function alt_consultar(cod){
+		var form=document.getElementById("frmSocio");
+		form.accion.value="Consultar";
+		form.codigo.value=cod;
+		form.submit();
+	}
+	function alt_modificar(cod){
+		var form=document.getElementById("frmSocio");
+		form.accion.value="Modificar";
+		form.codigo.value=cod;
+		form.submit();
+	}
+	function alt_eliminar(cod){
+		var form=document.getElementById("frmSocio");
+		form.accion.value="Eliminar";
+		form.codigo.value=cod;
+		form.submit();
+	}
+	</script>		
 </head>
 
 <style type="text/css" media="screen"> 
@@ -101,7 +132,12 @@
 			        <h2><i class="icon-user"></i>TRASLADO DE MEMBRES&Iacute;çA</h2>
 		          </div>
 			      <div class="box-content">
-			        <form class="form-horizontal">
+			        <form class="form-horizontal" id="frmSocio" name="frmSocio" method="POST" action="<%= response.encodeURL("SMVSocio")%>">
+			        	    <input type="hidden" name="accion" value="Agregar"></input>
+			  				<input type="hidden" name="codigo" value=""></input>
+			 				<input type="hidden" name="tipo" value="1"></input>
+			        
+			        
 			          <fieldset>
 			           <div class="control-group">
 			                <label class="control-label" for="typeahead9">Socio(*): </label>
@@ -124,13 +160,12 @@
 			                   <input type="text"  disabled class="span6 typeahead" id="typeahead7" value=""  data-provide="typeahead" > 
 			        
 			        
-						 <a  class="btn btn-primary" href="../socio/agregarsocio.jsp"> <i class="icon icon-add icon-white"></i> Agregar</a>  
+						 <a  class="btn btn-primary" href="javascript:alt_agregar()"> <i class="icon icon-add icon-white"></i> Agregar</a>  
 						      
-					     		                </div>
+					     </div>
 		                </div>
 		                
-			     
-			            
+		                
                         <div class="control-group">
 							  <label class="control-label" for="date01">Fecha(*):</label>
 							  <div class="controls">
