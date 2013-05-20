@@ -3,6 +3,7 @@
 <%@page import="java.util.Calendar"%>
 <%@page import="IngSoft.administracion.bean.ResultadoPerfilBeanData"%>
 <%@page import="java.util.Vector"%>
+<%@page import="java.lang.System"%>
 
 <html lang="en">
 <head>
@@ -49,28 +50,28 @@
 	<link rel="shortcut icon" href="img/conan_logo.png">
 	
 	<script>	
-	function alt_agregar(){
-		var form=document.getElementById("frmPerfil");
-		form.accion.value="Agregar";
-		form.submit();
+	function alt_agregar_perfil(){
+		var formPerfil=document.getElementById("frmPerfil");
+		formPerfil.accion.value="Agregar";
+		formPerfil.submit();
 	}
-	function alt_consultar(cod){
-		var form=document.getElementById("frmPerfil");
-		form.accion.value="Consultar";
-		form.codigo.value=cod;
-		form.submit();
+	function alt_consultar_perfil(cod){
+		var formPerfil=document.getElementById("frmPerfil");
+		formPerfil.accion.value="Consultar";
+		formPerfil.codigo.value=cod;
+		formPerfil.submit();
 	}
-	function alt_modificar(cod){
-		var form=document.getElementById("frmPerfil");
-		form.accion.value="Modificar";
-		form.codigo.value=cod;
-		form.submit();
+	function alt_modificar_perfil(cod){
+		var formPerfil=document.getElementById("frmPerfil");
+		formPerfil.accion.value="Modificar";
+		formPerfil.codigo.value=cod;
+		formPerfil.submit();
 	}
-	function alt_eliminar(cod){
-		var form=document.getElementById("frmPerfil");
-		form.accion.value="Eliminar";
-		form.codigo.value=cod;
-		form.submit();
+	function alt_eliminar_perfil(cod){
+		var formPerfil=document.getElementById("frmPerfil");
+		formPerfil.accion.value="Eliminar";
+		formPerfil.codigo.value=cod;
+		formPerfil.submit();
 	}
 	</script>		
 </head>
@@ -90,7 +91,7 @@
 					<p>Necesitas tener <a href="http://es.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript</a> activado para usar este sitio.</p>
 				</div>
 			</noscript>
-		
+			
 			<div id="content" class="span10">
 				<!-- content starts -->
 				<div>
@@ -119,7 +120,7 @@
 						</div>
 						
 						<div class="box-content">
-							<form class="form-horizontal" name="frmCriterioBusquedaPerfil" id="frmCriterioBusquedaPerfil" method="post" action="<%=response.encodeURL("SMSPerfil")%>">
+							<form class="form-horizontal" name="frmCriterioBusquedaPerfil" id="frmCriterioBusquedaPerfil" method="post" action="<%=response.encodeURL("SMAPerfil")%>">
 								<input type="hidden" name="accion" value="Buscar"></input>
 								
 								<fieldset>		              			 
@@ -149,9 +150,10 @@
 					</div> <!-- box span12-->		      
 				</div> <!-- row-fluid sortable-->		    
 						
-				<form id="frmPerfil" name="frmPerfil" method="post" action="<%=response.encodeURL("SMSPerfil")%>">
+				<form id="frmPerfil" name="frmPerfil" method="post" action="<%= response.encodeURL("SMAPerfil")%>">
 					<input type="hidden" name="accion" value="Agregar"></input>
-					<input type="hidden" name="codigo" value=""></input>					
+					<input type="hidden" name="codigo" value=""></input>
+					<input type="hidden" name="tipo" value="1"></input>
 				</form>		
 				
 				<div class="row-fluid sortable">
@@ -183,13 +185,13 @@
 										<td><%=((ResultadoPerfilBeanData)resultados.get(i)).getNombre()%></td>
 										<td class="center"><%=((ResultadoPerfilBeanData)resultados.get(i)).getDescripcion()%></td>
 										<td class="center">
-											<a class="btn btn-success" href="javascript:alt_consultar('<%=((ResultadoPerfilBeanData)resultados.get(i)).getCodigo()%>')"> 
+											<a class="btn btn-success" href="javascript:alt_consultar_perfil('<%=((ResultadoPerfilBeanData)resultados.get(i)).getCodigo()%>')">
 												<i class="icon-zoom-in icon-white"></i> Ver 
 											</a>
-											<a class="btn btn-info" href="javascript:alt_modificar('<%=((ResultadoPerfilBeanData)resultados.get(i)).getCodigo()%>')">
+											<a class="btn btn-info" href="javascript:alt_modificar_perfil('<%=((ResultadoPerfilBeanData)resultados.get(i)).getCodigo()%>')">
 												<i class="icon-edit icon-white"></i> Modificar
 											</a>
-											<a class="btn btn-danger" href="javascript:alt_eliminar('<%=((ResultadoPerfilBeanData)resultados.get(i)).getCodigo()%>')">
+											<a class="btn btn-danger" href="javascript:alt_eliminar_perfil('<%=((ResultadoPerfilBeanData)resultados.get(i)).getCodigo()%>')">
 												<i class="icon-trash icon-white"></i> Eliminar
 											</a>
 										</td>
