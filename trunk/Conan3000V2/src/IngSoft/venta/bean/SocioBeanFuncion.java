@@ -1,7 +1,5 @@
 package IngSoft.venta.bean;
 
-import java.util.List;
-import java.util.Vector;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -86,7 +84,7 @@ public class SocioBeanFuncion {
 		return resultado;
 	}
 	
-	public Vector<SedeMiniBeanData> getSedes(){
+/*	public Vector<SedeMiniBeanData> getSedes(){
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		List<SedeMiniBeanData> resultados=sqlsesion.selectList("Data.servicio.evento.searchSedeMini");
 		sqlsesion.close();
@@ -105,5 +103,5 @@ public class SocioBeanFuncion {
 		List<TipoEventoMiniBeanData> resultados=sqlsesion.selectList("Data.servicio.evento.searchTipoEventoMini");
 		sqlsesion.close();
 		return new Vector<>(resultados);
-	}
+	}*/
 }
