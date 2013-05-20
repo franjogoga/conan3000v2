@@ -20,6 +20,7 @@ public class AccionBuscarPerfil extends CoAccion {
 		CriterioPerfilBeanData criterio = new CriterioPerfilBeanDataFunction().crearCriterio(request, response);
 		Vector<ResultadoPerfilBeanData> resultados = new CriterioPerfilBeanDataFunction().buscarPerfil(criterio);
 		request.setAttribute("resultados", resultados);
+		System.out.println("hola");
 		this.direccionar(sc, request, response, "/IngSoft/administracion/perfiles/buscarperfil.jsp");
 	}
 }
