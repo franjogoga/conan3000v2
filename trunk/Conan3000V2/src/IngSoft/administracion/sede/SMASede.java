@@ -7,7 +7,7 @@ public class SMASede extends CoServlet{
 	
 	
 	@Override
-	protected void initAcciones() {
+	protected void initAcciones() {		
 		acciones.put("Buscar", new AccionBuscarSede());
 		acciones.put("Consultar", new AccionConsultarSede());
 		acciones.put("Eliminar", new  AccionEliminarSede());
