@@ -14,8 +14,9 @@ public class CriterioPerfilBeanDataFunction{
 
 	public CriterioPerfilBeanData crearCriterio(HttpServletRequest request, HttpServletResponse response) {
 		CriterioPerfilBeanData criterio = new CriterioPerfilBeanData();
-		criterio.setNombre(request.getParameter("txtNombre")+"%");
-		criterio.setDescripcion(request.getParameter("txtDescripcion")+"%");
+		System.out.println("entra crear criterio");
+		criterio.setNombre("%"+request.getParameter("txtNombre")+"%");
+		criterio.setDescripcion("%"+request.getParameter("txtDescripcion")+"%");
 		return criterio;
 	}
 	
