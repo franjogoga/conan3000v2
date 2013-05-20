@@ -27,6 +27,11 @@
         <servlet-name>SMSSorteo</servlet-name>
 	<servlet-class>IngSoft.servicio.sorteo.SMSSorteo</servlet-class>
 </servlet>
+<servlet id="Servlet_0005">
+        <servlet-name>SMVSocio</servlet-name>
+	<servlet-class>IngSoft.venta.socio.SMVSocio</servlet-class>
+</servlet>
+
 
 
 
@@ -45,5 +50,9 @@
 <servlet-mapping id="ServletMapping_0004">
         <servlet-name>SMSSorteo</servlet-name>
 <url-pattern>/IngSoft/servicio/sorteo/SMSSorteo</url-pattern>
+</servlet-mapping>
+<servlet-mapping id="ServletMapping_0005">
+        <servlet-name>SMVSocio</servlet-name>
+<url-pattern>/IngSoft/venta/socio/SMVSocio</url-pattern>
 </servlet-mapping>
 </web-app>
