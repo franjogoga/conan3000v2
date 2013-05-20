@@ -5,16 +5,17 @@ import java.io.Serializable;
 public class SocioBeanData implements Serializable{
 
 	private String codigo;
-	private String nombres;
-	private String apellidoPaterno;
-	private String apellidoMaterno;
-	private String fechaNacimiento;
-	private String tipoDocumento;
-	private int numeroDocumento;
+	//private String nombres;
+	//private String apellidoPaterno;
+	//private String apellidoMaterno;
+	//private String fechaNacimiento;
+	//private String tipoDocumento;
+	//private int numeroDocumento;
 	private String correoElectronico;
 	private String direccion;
 	private long telefonoFijo;
 	private long telefonoCelular;
+	private String idSolicitud;
 	private String idDistrito;
 	private String idPerfil;
 	
@@ -28,7 +29,7 @@ public class SocioBeanData implements Serializable{
 		this.codigo = codigo;
 	}
 	
-	public String getNombres() {
+	/*public String getNombres() {
 		return nombres;
 	}
 	
@@ -74,12 +75,20 @@ public class SocioBeanData implements Serializable{
 	
 	public void setNumeroDocumento(int numeroDocumento) {
 		this.numeroDocumento = numeroDocumento;
-	}
+	}*/
 	
 	public String getCorreoElectronico() {
 		return correoElectronico;
 	}
 	
+	public String getIdSolicitud() {
+		return idSolicitud;
+	}
+
+	public void setIdSolicitud(String idSolicitud) {
+		this.idSolicitud = idSolicitud;
+	}
+
 	public void setCorreoElectronico(String correoElectronico) {
 		this.correoElectronico = correoElectronico;
 	}
