@@ -2,10 +2,10 @@ package IngSoft.administracion.bean;
 
 import java.io.Serializable;
 
-public class CriterioPerfilBeanData implements Serializable {
+public class CriterioPerfilBeanData implements Serializable {	
 	private String nombre;
-	private String descripcion;
-	
+	private String descripcion;	
+		
 	public String getNombre() {
 		return nombre;
 	}
