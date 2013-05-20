@@ -53,6 +53,6 @@
 </servlet-mapping>
 <servlet-mapping id="ServletMapping_0005">
         <servlet-name>SMVSocio</servlet-name>
-<url-pattern>/IngSoft/venta/socio/SMVSocio</url-pattern>
+<url-pattern>/IngSoft/ventas/socio/SMVSocio</url-pattern>
 </servlet-mapping>
 </web-app>
