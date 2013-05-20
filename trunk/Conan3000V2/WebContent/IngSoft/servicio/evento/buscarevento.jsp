@@ -131,7 +131,7 @@
 						<h2><i class="icon-search"></i> BUSCAR EVENTO</h2>
 						<div class="box-icon">
 							<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
-							<a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>
+							
 						</div>
 					</div>
 					<div class="box-content">
@@ -144,7 +144,7 @@
 							<div class="control-group">
 							  <label class="control-label" for="typeahead">Nombre de Evento </label>
 							  <div class="controls">
-								<input type="text" class="span6 typeahead" id="typeahead" name="txtNombre">
+								<input type="text" class="span6 typeahead" id="typeahead" name="txtNombre" autofocus>
 							  </div>
 							</div>
 							 <div class="control-group">
