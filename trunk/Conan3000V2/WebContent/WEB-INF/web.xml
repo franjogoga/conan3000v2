@@ -31,7 +31,10 @@
         <servlet-name>SMVSocio</servlet-name>
 	<servlet-class>IngSoft.venta.socio.SMVSocio</servlet-class>
 </servlet>
-
+<servlet id="Servlet_0006">
+        <servlet-name>SMAPerfil</servlet-name>
+	<servlet-class>IngSoft.administracion.perfiles.SMAPerfil</servlet-class>
+</servlet>
 
 
 
@@ -54,5 +57,9 @@
 <servlet-mapping id="ServletMapping_0005">
         <servlet-name>SMVSocio</servlet-name>
 <url-pattern>/IngSoft/ventas/socio/SMVSocio</url-pattern>
+</servlet-mapping>
+<servlet-mapping id="ServletMapping_0006">
+        <servlet-name>SMAPerfil</servlet-name>
+<url-pattern>/IngSoft/administracion/perfiles/SMAPerfil</url-pattern>
 </servlet-mapping>
 </web-app>
