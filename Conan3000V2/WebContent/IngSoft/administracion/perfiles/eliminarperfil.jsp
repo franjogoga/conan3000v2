@@ -41,8 +41,8 @@
 	<link rel="shortcut icon" href="img/conan_logo.png">
 	
 	<script>
-		function alt_submit() {
-			var form = document.frmDelete;
+		function alt_submit_eliminar() {
+			var form = document.frmDeletePerfil;
 			var r = confirm("¿Esta seguro que desea borrar este perfil?");
 			if (r == true) {
 				form.submit();
@@ -92,7 +92,7 @@
 		          		</div>
 				  
 			      		<div class="box-content">
-			        		<form class="form-horizontal" name="frmDelete" action="<%= response.encodeURL("SMAPerfil")%>" method="post">
+			        		<form class="form-horizontal" name="frmDeletePerfil" action="<%= response.encodeURL("SMAPerfil")%>" method="post">
 			          			<input type="hidden" name="codigo" value="<%=perfil.getCodigo()%>"></input>
 								<input type="hidden" name="accion" value="Eliminar"></input>
 								<input type="hidden" name="tipo" value="2"></input>
@@ -113,7 +113,7 @@
 									</div>																				
 							
 						            <div class="form-actions">
-						            	<button type="button" class="btn btn-primary" onclick="javascript:alt_submit()">Eliminar</button>
+						            	<button type="button" class="btn btn-primary" onclick="javascript:alt_submit_eliminar()">Eliminar</button>
 						              	<button type="button" class="btn" onclick="location.href='buscarperfil.jsp'">Cancelar</button>
 					                </div>
 			              		</fieldset>
