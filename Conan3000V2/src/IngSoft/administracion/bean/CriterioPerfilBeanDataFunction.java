@@ -13,8 +13,7 @@ import IngSoft.general.MyBatisSesion;
 public class CriterioPerfilBeanDataFunction{
 
 	public CriterioPerfilBeanData crearCriterio(HttpServletRequest request, HttpServletResponse response) {
-		CriterioPerfilBeanData criterio = new CriterioPerfilBeanData();
-		System.out.println("entra crear criterio");
+		CriterioPerfilBeanData criterio = new CriterioPerfilBeanData();		
 		criterio.setNombre("%"+request.getParameter("txtNombre")+"%");
 		criterio.setDescripcion("%"+request.getParameter("txtDescripcion")+"%");
 		return criterio;
