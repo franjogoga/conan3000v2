@@ -35,6 +35,11 @@
         <servlet-name>SMAPerfil</servlet-name>
 	<servlet-class>IngSoft.administracion.perfiles.SMAPerfil</servlet-class>
 </servlet>
+<servlet id="Servlet_0007">
+        <servlet-name>SMSReserva</servlet-name>
+	<servlet-class>IngSoft.servicio.reserva.SMSReserva</servlet-class>
+</servlet>
+
 
 
 
@@ -61,6 +66,10 @@
 </servlet-mapping>
 <servlet-mapping id="ServletMapping_0006">
         <servlet-name>SMAPerfil</servlet-name>
+<url-pattern>/IngSoft/servicio/reserva/SMSReserva</url-pattern>
+</servlet-mapping>
+<servlet-mapping id="ServletMapping_0007">
+        <servlet-name>SMSReserva</servlet-name>
 <url-pattern>/IngSoft/administracion/perfiles/SMAPerfil</url-pattern>
 </servlet-mapping>
 </web-app>
