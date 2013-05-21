@@ -1,5 +1,7 @@
 package IngSoft.venta.bean;
 
+import java.util.List;
+import java.util.Vector;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -35,7 +37,7 @@ public class SocioBeanFuncion {
 		socioData.setDireccion(request.getParameter("txtDireccion"));
 		socioData.setCorreoElectronico(request.getParameter("txtCorreoElectronico"));
 		socioData.setTelefonoFijo(Long.parseLong(request.getParameter("txtTelefonoFijo")));
-		socioData.setTelefonoFijo(Long.parseLong(request.getParameter("txtTelefonoCelular")));
+		socioData.setTelefonoCelular(Long.parseLong(request.getParameter("txtTelefonoCelular")));
 		socioData.setIdDistrito((request.getParameter("cmdDistrito")));
 		
 		//socioData.setLimiteInicio(new Date(DF.parse(request.getParameter("fFecIncio")+"/0000").getTime()));
@@ -84,13 +86,14 @@ public class SocioBeanFuncion {
 		return resultado;
 	}
 	
-/*	public Vector<SedeMiniBeanData> getSedes(){
+	public Vector<DistritoMiniBeanData> getDistritos(){
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
-		List<SedeMiniBeanData> resultados=sqlsesion.selectList("Data.servicio.evento.searchSedeMini");
+		List<DistritoMiniBeanData> resultados=sqlsesion.selectList("Data.venta.socio.searchDistritoMini");
 		sqlsesion.close();
 		return new Vector<>(resultados);
 	}
 	
+	/*
 	public Vector<AmbienteMiniBeanData> getAmbientes(){
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		List<AmbienteMiniBeanData> resultados=sqlsesion.selectList("Data.servicio.evento.searchAmbienteMini");
