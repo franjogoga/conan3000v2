@@ -20,7 +20,7 @@ public class AccionBuscarSede extends CoAccion{
 			HttpServletResponse response) throws CoException{
 		// TODO Auto-generated method stub
 		CriterioSedeBeanData criterioSedeData =new CriterioSedeBeanFunction().crearCriterio(request,response);
-		Vector<ResultadoSedeBeanData> resultados=new CriterioSedeBeanFunction().buscarPlantillaEvento(criterioSedeData);
+		Vector<ResultadoSedeBeanData> resultados=new CriterioSedeBeanFunction().buscarPlantillaSede(criterioSedeData);
 
 		request.setAttribute("resultados", resultados);
 		this.direccionar(sc, request, response, "/IngSoft/administracion/sede/buscarsede.jsp");
