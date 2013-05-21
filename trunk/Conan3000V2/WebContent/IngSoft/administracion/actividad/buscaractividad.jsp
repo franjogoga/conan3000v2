@@ -1,4 +1,13 @@
 <!DOCTYPE html>
+
+<!--  paso 2 configurarion link  + v ariables de retorno -->
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Calendar"%>
+<%@page import="IngSoft.administracion.bean.ResultadoActividadBeanData"%>
+<%@page import="java.util.Vector"%>
+<!--  fin paso 2  -->
+
+
 <html lang="en">
 <head>
 	<!--
@@ -12,14 +21,16 @@
 		http://twitter.com/halalit_usman
 	-->
 	<meta charset="utf-8">
-	<title>Conan3000</title>
+	<title>Buscar Sede</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
 	<meta name="author" content="Muhammad Usman">
+	<!--The beans  -->
+	<jsp:useBean id="resultados" scope="request"class="java.util.Vector"></jsp:useBean>
+
 
 	<!-- The styles -->
 	<link id="bs-css" href="css/bootstrap-cerulean.css" rel="stylesheet">
-    
 	<style type="text/css">
 	  body {
 		padding-bottom: 40px;
@@ -28,6 +39,7 @@
 		padding: 9px 0;
 	  }
 	</style>
+	<link href="css/bootstrap-responsive.css" rel="stylesheet">
 	<link href="css/bootstrap-responsive.css" rel="stylesheet">
 	<link href="css/charisma-app.css" rel="stylesheet">
 	<link href="css/jquery-ui-1.8.21.custom.css" rel="stylesheet">
@@ -51,14 +63,42 @@
 	<![endif]-->
 
 	<!-- The fav icon -->
-	<link rel="shortcut icon" href="img/favicon.ico">
-		
+	<link rel="shortcut icon" href="img/conan_logo.png">
+	
+	
+	<script>
+	function alt_fecha(obj){
+	obj.value=obj.value.slice(0,5);
+	
+	}
+	function alt_agregar(){
+		var form=document.getElementById("frmAlternativo");
+		form.accion.value="Agregar";
+		form.submit();
+	}
+	function alt_consultar(cod){
+		var form=document.getElementById("frmAlternativo");
+		form.accion.value="Consultar";
+		form.codigo.value=cod;
+		form.submit();
+	}
+	function alt_modificar(cod){
+		var form=document.getElementById("frmAlternativo");
+		form.accion.value="Modificar";
+		form.codigo.value=cod;
+		form.submit();
+	}
+	function alt_eliminar(cod){
+		var form=document.getElementById("frmAlternativo");
+		form.accion.value="Eliminar";
+		form.codigo.value=cod;
+		form.submit();
+	}
+	</script>			
 </head>
 
 <body>
-
-
-		<jsp:include page="/IngSoft/general/superior.jsp" />
+	<jsp:include page="/IngSoft/general/superior.jsp" />
 		<div class="container-fluid">
 		<div class="row-fluid">
 				
@@ -66,8 +106,7 @@
 			<jsp:include page="/IngSoft/general/leftmenu.jsp" />
 						<!-- left menu ends -->
 			
-			
-		  <noscript>
+			<noscript>
 				<div class="alert alert-block span10">
 					<h4 class="alert-heading">Warning!</h4>
 					<p>You need to have <a href="http://en.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript</a> enabled to use this site.</p>
@@ -75,217 +114,220 @@
 			</noscript>
 			
 			<div id="content" class="span10">
-			  <!-- content starts -->
-			  <div>
-			    <ul class="breadcrumb">
-			      <li> <a href="#">Home</a> / <a href="#">Mantenimiento de Actividad</a> / Buscar Actividad</li>
-		        </ul>
-		      </div>
-			  <div class="row-fluid sortable">
-			    <div class="box span12">
-			      <div class="box-header well" data-original-title>
-			        <h2><i class="icon-search"></i> BUSCAR ACTIVIDAD</h2>
-					  	<div class="box-icon">
-							<a href="#" class="btn btn-setting btn-round"><i class="icon-cog"></i></a>
+			<!-- content starts -->
+			
+
+			<div>
+				<ul class="breadcrumb">
+					<li>
+						<a href="/Conan3000V2/IngSoft/general/index.jsp">Home</a> <span class="divider">/</span>
+					</li>
+					<li>
+						Mantenimiento de Actividad 
+					</li>
+					
+				</ul>
+			</div>
+			
+			<div class="row-fluid sortable">
+				<div class="box span12">
+					<div class="box-header well" data-original-title>
+						<h2><i class="icon-search"></i> BUSCAR ACTIVIDAD</h2>
+						<div class="box-icon">
 							<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
-							<a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>
+							<!--  <a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a> -->
 						</div>
-		          </div>
-			      <div class="box-content">
-			        <form class="form-horizontal">
-			          <fieldset>
-					  
-					  <!--    ----------------------------------------------------------------------------------------------    -->
+					</div>
+					<div class="box-content">
+						<!-- <form class="form-horizontal" name="frmCriteriosBusqueda" id="frmCriteriosBusqueda"  method="post" onsubmit="xmlhttpPost('/Conan3000V2/IngSoft/servicio/evento/SMSEvento?accion=Buscar', 'frmCriteriosBusqueda', 'resultadoBusqueda','<img >');
+		 return false;"> -->
+		 
+		 <!--  paso 1  configuracion de link + variables -->													 <!-- nos linkea al archivo SMAActividad -->
+		 <form class="form-horizontal" name="frmCriteriosBusqueda" id="frmCriteriosBusqueda"  method="post" action="<%= response.encodeURL("SMAActividad")%>">
+		                                      <!-- Buscar  variable  que pasa al archivo SMASede   -->	
+		 <input type="hidden" name="accion" value="Buscar"></input>
+						  <fieldset>
+							
 							<div class="control-group">
-							  <label class="control-label" for="typeahead7">Nombre: </label>
-							  <div class="controls">
-								<input type="text" class="span6 typeahead" id="typeahead7"  data-provide="typeahead" >
+							  <label class="control-label" for="typeahead">Nombre:</label>
+							  <div class="controls">									   <!-- txtNombre  variable     -->	
+								<input type="text" class="span6 typeahead" id="typeahead" name="txtNombre">
 							  </div>
 							</div>
-						
-						
-							  <div class="control-group">
-                                  <label class="control-label" for="selectError">Tipo Actividad:</label>
-                                  <div class="controls">
-                                      <select name="selectError" id="selectError" data-rel="chosen">
-                                          <option> Natacion </option>
-                                          <option> Basket </option>
-                                          <option> Voley </option>
-                                          <option> Futbol </option>
-                                          <option> Tenis </option>
-                                      </select>
-                                  </div>
-						      </div>
-						  
-						  
-						  
-						  
-			              <div class="control-group">
-			                <label class="control-label" for="typeahead4">Encargado: </label>
-			                <div class="controls">
-			                  <input type="text" class="span6 typeahead" id="typeahead4"  data-provide="typeahead" data-items="4" >
-		                    </div>
-		                  </div>
+							
+							 <div class="control-group">
+								<label class="control-label" for="selectError">Tipo Actividad:</label>
+								<div class="controls">
+																						   <!-- cmbTipoactividad  variable     -->	
+							 		<select id="selectError1" data-rel="chosen" name="cmbTipoactividad">
+								  	<option selected value="ATC000001">Natacion</option>							
+								  </select>
+								</div>
+							  </div>
+							  
+							<div class="control-group">
+							  <label class="control-label" for="typeahead">Nombre:</label>
+							  <div class="controls">									   <!-- txtEncargado  variable     -->	
+								<input type="text" class="span6 typeahead" id="typeahead" name="txtEncargado">
+							  </div>
+							</div>
+							  
+							<div class="form-actions">
+							  <button type="submit" class="btn btn-primary">Buscar</button>
+							  <button type="reset" class="btn">Cancelar</button>
+							</div>
+						  </fieldset>
+						</form>   
 
-						  
-			              <div class="control-group">
-			                <label class="control-label" for="typeahead8">Ambiente: </label>
-			                <div class="controls">
-			                  <input type="text" class="span6 typeahead" id="typeahead8"  data-provide="typeahead" data-items="4" >
-		                    </div>
-		                  </div>
-						  
-                          <div class="control-group">
-                                    <label class="control-label" for="date01">Fecha Inicio:</label>
-                                    <div class="controls">
-                                        <input type="text" class="input-xlarge datepicker" id="date01" value="02/16/12">
-                                            </div>
-                          </div>
-                                
-                                
-                          <div class="control-group">
-                                    <label class="control-label" for="date01">Fecha fin:</label>
-                                    <div class="controls">
-                                        <input type="text" class="input-xlarge datepicker" id="date01" value="02/16/12">
-                                            </div>
-                          </div>
-								
-                          <div class="control-group">
-                                    <label class="control-label" for="typeahead">Hora inicio:</label>
-                                <div class="controls">
-                                        <input type="text" class="span6 typeahead" id="typeahead"  data-provide="typeahead" data-items="4" data-source='["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Dakota","North Carolina","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"]'>
-                                            <!--
-                                             <p class="help-block">Start typing to activate auto complete!</p>
-                                             
-                                             -->
-								</div>			 
-                          </div>
-                                
-                                
-                          <div class="control-group">
-                                    <label class="control-label" for="typeahead">Hora Fin:</label>
-                                <div class="controls">
-                                        <input type="text" class="span6 typeahead" id="typeahead"  data-provide="typeahead" data-items="4" data-source='["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Dakota","North Carolina","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"]'>
-                                            <!--
-                                             <p class="help-block">Start typing to activate auto complete!</p>
-                                             
-                                             -->
-							    </div>
-                          </div>
-   
-
-						
-						<!--    ----------------------------------------------------------------------------------------------    -->
-						
-						
-			            <div class="form-actions">
-			              <button type="submit" class="btn btn-primary">Buscar</button>
-			              <button type="reset" class="btn">Cancelar</button>
-		                </div>
-		              </fieldset>
-		            </form>
-		          </div>
-		        </div>
-			    <!--/span-->
-		      </div>
-			  <!--/row-->
-			  
-			  
-			  
-			  <div class="row-fluid sortable">
-			     <div class="box span12">
-					<div class="box-header well" data-original-title>
-						<h2><i class="icon-th-list"></i> RESULTADO </h2>
-                        <!--
-						<div class="box-icon">
-							<a href="#" class="btn btn-setting btn-round"><i class="icon-cog"></i></a>
-							<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
-							<a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>
-						</div>
-						-->
-                    
 					</div>
-			  
+					
+				</div><!--/span-->
+
+			</div><!--/row-->
+			 <!-- fin  paso 1  --> 
+			
+			
+
+		    <!--  paso 3  configuracion de link + variables -->				  <!-- nos linkea al archivo SMAActividad -->
+			<form id="frmAlternativo" name="frmAlternativo" method="post" action="<%= response.encodeURL("SMAActividad")%>">
+			<input type="hidden" name="accion" value="Agregar"></input>
+			<input type="hidden" name="codigo" value=""></input>
+			<input type="hidden" name="tipo" value="1"></input>
+			</form>
+			<!--  fin paso 3 -->
+			
+			
+            <!--  paso 2 configurarion link  + v ariables de retorno -->
+            
+			<div class="row-fluid sortable">		
+				<div class="box span12">
+					<div class="box-header well" data-original-title>
+						<h2><i></i> RESULTADOS</h2>
+                        
+						
+					</div>           
 					<div class="box-content">
                         <table class="table table-striped table-bordered bootstrap-datatable datatable">
+                            <!-- agregar nuevo boton -->
                             
                             
                             <div align="right">
                             
-                                <a class="btn btn-primary" href="agregaractividad.jsp">
+                                <a class="btn btn-primary" href="javascript:alt_agregar()">
                                     <i class="icon icon-add icon-white"></i>
                                     Agregar
                                 </a>
                               
-                             </div> 
-                          
-                          
+                             </div>          
                           <thead>
 							  <tr>
-								  <th>Nombre Actividad</th>
-								  <th>Fecha de inicio</th>
-								  <th>Accion</th>
-
-								  
+							        <th>Tipo Actividad</th>
+								    <th>Nombre</th>
+							       
+									 <th>Encargado</th>
+							        <th>Estado</th>	
+							         <th>Fecha Inicio</th>		        							      							        
+							        <th>Accion</th>
+							
 							  </tr>
-						  </thead>   
-						  <tbody>
-							<tr>
-								<td>Worth Name</td>
-								<td class="center">2012/03/01</td>
-								<td class="center">
-									<a class="btn btn-success" href="#">
-										<i class="icon-zoom-in icon-white"></i>
-										Ver
-									</a>
-									<a class="btn btn-info" href="modificaractividad.jsp">
-										<i class="icon-edit icon-white"></i>
-										Modificar
-									</a>
-									<a class="btn btn-danger" href="eliminaractividad.jsp">
-										<i class="icon-trash icon-white"></i>
-										Eliminar
-									</a>
-								</td>
-							</tr>
-							</tr>
-						  </tbody>
-					  </table>            
-					</div>
-				</div>
-				<!--/span-->
-		      </div>
-			  <!--/row-->
-			  
-			  
-			  
-			  
-			  
-			  
-			  
-			  
-			  
-			  
-			  
-			  
-			  
-			  <div class="row-fluid sortable">
-			    <!--/span-->
-		      </div>
-			  <!--/row-->
-			 
+						  </thead>
+                          <element>
+                          	<tbody id="resultadoBusqueda">
+                          		<% 
+                          			for(int i=0; i<resultados.size() ;i++){
+                          		%>
+                          		<tr>
+                          			<td>
+                          				<%=
+                          					((ResultadoActividadBeanData)resultados.get(i)).getTipoactividad()
+                          				%>
+                          			</td>
+                          			<td class="center">
+                          				<%=
+                          					((ResultadoActividadBeanData)resultados.get(i)).getNombre()
+                          				%>
+                          			</td>
+                          			<td class="center">
+                          				<%=
+                          					((ResultadoActividadBeanData)resultados.get(i)).getEncargado()
+                          				%>
+                          			</td>
+                          			<td class="center">
+                          				<%=
+                          					((ResultadoActividadBeanData)resultados.get(i)).getFechainicio()
+                          				%>
+                          			</td>
 
-		  
-       
+                          			
+                          			<td class="center">
+                          			
+	                          			
+								           <%
+									 
+												  if( ((ResultadoActividadBeanData)resultados.get(i)).getEstado().equalsIgnoreCase("disponible") ){    
+								 out.print(" <span class='label label-success'> " + ((ResultadoActividadBeanData)resultados.get(i)).getEstado()   +"   </span>       ");
+												  }
+												  else { 
+								 out.print(" <span class='label label-warning'> " + ((ResultadoActividadBeanData)resultados.get(i)).getEstado()   +"   </span>       ");
+													
+												  }
+									  
+									   
+									 
+		                          					            
+	                          				%>
+	                          			
+                          			
+                          			</td>
+
+                          			<td class="center">
+                          				<a class="btn btn-success"
+                          					href="javascript:alt_consultar('<%=((ResultadoActividadBeanData)resultados.get(i)).getCodigo()%>')">
+                          					<i
+                          						class="icon-zoom-in icon-white">
+                          					</i> 
+                          					Ver
+                          				</a>
+                          				<a class="btn btn-info"
+                          					href="javascript:alt_modificar('<%=((ResultadoActividadBeanData)resultados.get(i)).getCodigo()%>')">
+                          					<i
+                          						class="icon-edit icon-white">
+                          					</i>
+                          					Modificar
+                          				</a>
+                          				<a class="btn btn-danger"
+                          					href="javascript:alt_eliminar('<%=((ResultadoActividadBeanData)resultados.get(i)).getCodigo()%>')">
+                          					<i class="icon-trash icon-white">
+                          					</i>
+                          					Eliminar
+                          				</a>
+                          			</td>
+                          		</tr>
+
+
+                          		<%}%>
+
+                          	</tbody>
+                          </element>
+                        </table>       
+					</div>
+				</div><!--/span-->
+				
+				
+			</div><!--/row-->
+		   <!-- fin paso 2 -->
+    
 					<!-- content ends -->
-		  </div><!--/#content.span10-->
+			</div><!--/#content.span10-->
 				</div><!--/fluid-row-->
+				
+				
 				
 		<hr>
 
 		<div class="modal hide fade" id="myModal">
 			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal">×</button>
+				<button type="button" class="close" data-dismiss="modal">Ã—</button>
 				<h3>Settings</h3>
 			</div>
 			<div class="modal-body">
@@ -296,19 +338,16 @@
 				<a href="#" class="btn btn-primary">Save changes</a>
 			</div>
 		</div>
-
-		<footer>
-		 Conan 3000 © 2013 <p class="pull-right">Powered by: <a href="http://usman.it/free-responsive-admin-template">Las dos virgenes</a></p>
-		</footer>
+		<jsp:include page="/IngSoft/general/inferior.jsp" />
+		
 		
 	</div><!--/.fluid-container-->
-
-	<!-- external javascript
+		<!-- external javascript
 	================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->
 
 	<!-- jQuery -->
-	<script src="js/jquery-1.7.2.min.js"></script>
+    <script src="js/jquery-1.7.2.min.js"></script>
 	<!-- jQuery UI -->
 	<script src="js/jquery-ui-1.8.21.custom.min.js"></script>
 	<!-- transition / effect library -->
@@ -376,14 +415,8 @@
 	<script src="js/jquery.history.js"></script>
 	<!-- application script for Charisma demo -->
 	<script src="js/charisma.js"></script>
-	<script>
-	function loadContent() 
-{ 
-   $("#includedContent").load("menu.html"); 
-} 
+	
+	<script src="js/ajaxsbmt.js"></script>
 
-
-	</script>
-		<script>loadContent()</script> 
 </body>
 </html>
