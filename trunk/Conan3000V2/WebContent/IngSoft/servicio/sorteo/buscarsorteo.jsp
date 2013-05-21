@@ -63,6 +63,11 @@
 	
 	
 	<script>
+	function alfanumerico(e) 
+	{ 
+		var key = window.event.keyCode || event.keyCode;
+		return ((key >= 48 && key <= 57) ||(key >= 97 && key <= 122) ||(key >= 65 && key <=90) ||(key >= 192 && key <=246)||(key <=13) ||(key ==32));
+	} 	
 	function alt_fecha(obj){
 	obj.value=obj.value.slice(0,5);
 	
@@ -144,7 +149,7 @@
 							<div class="control-group">
 							  <label class="control-label" for="typeahead">Nombre de Sorteo </label>
 							  <div class="controls">
-								<input type="text" class="span6 typeahead" id="typeahead" name="txtNombre">
+								<input type="text" class="span6 typeahead" id="typeahead" name="txtNombre" onkeypress="return alfanumerico(event);" autofocus>
 							  </div>
 							</div>
 

@@ -57,6 +57,11 @@
 	<!-- The fav icon -->
 	<link rel="shortcut icon" href="img/conan_logo.png">
 	<script>
+	function alfanumerico(e) 
+	{ 
+		var key = window.event.keyCode || event.keyCode;
+		return ((key >= 48 && key <= 57) ||(key >= 97 && key <= 122) ||(key >= 65 && key <=90) ||(key >= 192 && key <=246)||(key <=13) ||(key ==32));
+	} 
 	function alt_fecha(obj){
 	obj.value=obj.value.slice(0,5);
 	
@@ -129,7 +134,7 @@
 						    <div class="control-group">
 						      <label class="control-label" for="disabledInput">Nombre de sorteo: </label>
 						      <div class="controls">
-						        <input class="input-xlarge disabled" id="disabledInput" type="text" placeholder="Disabled input here.." disabled id="txtNombreSorteo" name="txtNombreSorteo" value="<%=sorteo.getDescripcion()%>">
+						        <input class="input-xlarge disabled" id="disabledInput" type="text" placeholder="Disabled input here.." disabled id="txtNombreSorteo" name="txtNombreSorteo" value="<%=sorteo.getDescripcion()%>" onkeypress="return alfanumerico(event);" autofocus>
 					          </div>
 					        </div>
 							<div class="control-group">
