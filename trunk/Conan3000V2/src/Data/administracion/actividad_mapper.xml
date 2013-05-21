@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Data.administracion.sede">
+
+  <cache />
+  
+  
+<select id="getNextCodigo" resultType="java.lang.String">
+	select max(IdSede) from SEDE	
+</select>
+  
+<select id="searchPlantillaActividad" parameterType="IngSoft.administracion.bean.CriterioActividadBeanData" resultType="IngSoft.administracion.bean.ResultadoActividadBeanData">
+select 
+SEDE.IdSede as codigo
+,SEDE.NOMBRE as nombre
+,DEPARTAMENTO.NOMBRE as departamento
+,PROVINCIA.NOMBRE as provincia
+,DISTRITO.NOMBRE as distrito
+,SEDE.ESTADO as estado
+from DEPARTAMENTO  , PROVINCIA  , DISTRITO  , SEDE 
+WHERE
+        SEDE.Nombre  like  #{nombre}
+        AND  DEPARTAMENTO.IdDepartamento = PROVINCIA.IdDepartamento 
+        AND  PROVINCIA.IdProvincia = DISTRITO.IdProvincia 
+        AND  DISTRITO.IdDistrito = SEDE.IdDistrito
+        AND  SEDE.Estado !='Eliminado'
+
+order by 1 asc
+</select>
+
+
+<select id="getPLantillaActividad" parameterType="java.lang.String"  resultType="IngSoft.administracion.bean.ActividadBeanData">
+select 
+SEDE.IdSede as codigo
+,SEDE.NOMBRE as nombre
+,SEDE.DIRECCION as direccion
+,SEDE.TELEFONO as telefono
+,SEDE.AREATERRENO as areaterreno
+,SEDE.ESTADO as estado
+,DEPARTAMENTO.NOMBRE as departamento
+,PROVINCIA.NOMBRE as provincia
+,DISTRITO.NOMBRE as distrito
+from DEPARTAMENTO  , PROVINCIA  , DISTRITO  , SEDE 
+WHERE
+        SEDE.IdSede = #{codigo}
+        AND  DEPARTAMENTO.IdDepartamento = PROVINCIA.IdDepartamento 
+        AND  PROVINCIA.IdProvincia = DISTRITO.IdProvincia 
+        AND  DISTRITO.IdDistrito = SEDE.IdDistrito
+
+order by 1 asc
+</select>
+
+
+
+
+
+
+
+<!-- Agregar plantilla sede -->
+
+<insert id="insertPlantillaActividad" parameterType="IngSoft.administracion.bean.ActividadBeanData" flushCache="true">
+	insert into SEDE (IdSede,Nombre,Direccion,Telefono,AreaTerreno,IdDistrito,Estado)
+	values (#{codigo},#{nombre},#{direccion},#{telefono},#{areaterreno},'DIS000001','Disponible')
+</insert>
+
+
+ <!-- Fin Agregar -->
+
+
+
+
+<!--Eliminar sede -->
+
+<update id="deletePLantillaActividad" parameterType="java.lang.String" >
+update SEDE set Estado='Eliminado' where IdSede= #{codigo}
+</update>
+<!-- Fin eliminar -->
+
+
+
+
+
+<!--Modificar sede -->
+
+<update id="modificarPlantillaActividad" parameterType="java.lang.String" >
+update SEDE 
+set
+Nombre=#{nombre} ,
+Direccion=#{direccion} ,
+Telefono=#{telefono} ,
+AreaTerreno=#{areaterreno} ,
+IdDistrito='DIS000001' ,
+Estado=#{estado}
+
+where IdSede= #{codigo}
+</update>
+<!-- Fin eliminar -->
+
+
+
+</mapper>
