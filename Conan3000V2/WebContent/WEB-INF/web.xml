@@ -39,6 +39,10 @@
         <servlet-name>SMSReserva</servlet-name>
 	<servlet-class>IngSoft.servicio.reserva.SMSReserva</servlet-class>
 </servlet>
+<servlet id="Servlet_0008">
+        <servlet-name>SMVMembresia</servlet-name>
+	<servlet-class>IngSoft.venta.membresia.SMVMembresia</servlet-class>
+</servlet>
 
 
 
@@ -72,6 +76,11 @@
         <servlet-name>SMSReserva</servlet-name>
 <url-pattern>/IngSoft/servicio/reserva/SMSReserva</url-pattern>
 </servlet-mapping>
+<servlet-mapping id="ServletMapping_0008">
+        <servlet-name>SMVMembresia</servlet-name>
+<url-pattern>/IngSoft/ventas/membresia/SMVMembresia</url-pattern>
+</servlet-mapping>
+
 </web-app>
 
 
