@@ -81,6 +81,10 @@ public class SocioBeanData implements Serializable{
 		return correoElectronico;
 	}
 	
+	public void setCorreoElectronico(String correoElectronico) {
+		this.correoElectronico = correoElectronico;
+	}
+	
 	public String getIdSolicitud() {
 		return idSolicitud;
 	}
@@ -89,9 +93,7 @@ public class SocioBeanData implements Serializable{
 		this.idSolicitud = idSolicitud;
 	}
 
-	public void setCorreoElectronico(String correoElectronico) {
-		this.correoElectronico = correoElectronico;
-	}
+
 	
 	public String getDireccion() {
 		return direccion;
