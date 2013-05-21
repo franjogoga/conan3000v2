@@ -68,17 +68,16 @@
 // }
 
 function cambiarClase(elemento){
-
-//alert("MAY");
-	
-	if (elemento.className == "btn btn-success") {
+if (elemento.className == "btn btn-success") {
 	elemento.className = "btn btn-inverse";
 	elemento.innerHTML=elemento.innerHTML.replace("Reservar&nbsp;&nbsp;&nbsp;","Pendiente");
-	//alert("Entre aqui");
+
 	}
-	else {
+	else 
+	if(elemento.className == "btn btn-inverse") {
 	elemento.className = "btn btn-success";
-	//alert("Entre al else");
+	elemento.innerHTML=elemento.innerHTML.replace("Pendiente","Reservar&nbsp;&nbsp;&nbsp;");
+
 	}
 }
 
@@ -136,6 +135,8 @@ function cambiarClase(elemento){
 						<form class="form-horizontal" name="frmCriteriosBusqueda" id="frmCriteriosBusqueda" method="post" action="<%= response.encodeURL("SMSReserva")%>" onsubmit="xmlhttpPost('/Conan3000V2/IngSoft/servicio/reserva/SMSReserva?accion=Buscar&tipo=2', 'frmCriteriosBusqueda', 'resultadoBusqueda','<img >');return false;">
 						<input type="hidden" name="accion" value="Buscar"></input>
 						<input type="hidden" name="tipo" value="2"></input>
+						<input type="hidden" name="reservas" value=""></input>
+						
 						  <fieldset>
 							
 					<div class="control-group">
@@ -172,7 +173,12 @@ function cambiarClase(elemento){
 				</div><!--/span-->
 
 			</div><!--/row-->
-		
+<div class="row-fluid sortable">
+				<div class="box span12">
+					<div class="box-header well" data-original-title>
+						<h2><i class="icon-edit"></i> RESERVAS</h2>
+						
+					</div>		
 <div  class="box-content"; style="display:inline" name="resultadoBusqueda" id="resultadoBusqueda">
 						
 					  
@@ -185,7 +191,9 @@ function cambiarClase(elemento){
                           <button type="reset" class="btn">Cancelar</button>
                       
 		                </div>
-			
+				</div><!--/span-->
+
+			</div><!--/row-->
 					
 
 				
