@@ -1,5 +1,6 @@
 package IngSoft.administracion.bean;
 
+import java.util.List;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -63,5 +64,31 @@ public class PerfilBeanFunction {
 		return resultado;
 	}
 	
+	public boolean eliminarPerfil(String codigo) throws CoException {
+		boolean resultado = false;
+		SqlSession sesion = MyBatisSesion.metodo().openSession();
+		try {
+			sesion.update("Data.administracion.perfiles.deletePerfil", codigo);
+			resultado = true;
+		} catch (Exception e1){
+			sesion.rollback();
+			e1.printStackTrace();
+			throw CoException.set("Error: No se pudo eliminar el Perfil de Usuario intente nuevamente", "SMAPerfil?accion=Agregar&tipo=1");
+		} finally {
+			sesion.commit();
+			sesion.close();
+		}		
+		return resultado;
+	}
 	
+	public PerfilBeanData consultarPerfil (String codigo) {
+		PerfilBeanData dataPerfil = null;
+		SqlSession sesion = MyBatisSesion.metodo().openSession();
+		try {
+			dataPerfil = sesion.selectOne("Data.administracion.perfiles.getPerfil", codigo);			
+		} finally {
+			sesion.close();
+		}				
+		return dataPerfil;
+	}
 }
