@@ -28,7 +28,7 @@
 
                         <li><a class="ajax-link" href="/Conan3000V2/IngSoft/administracion/invitado/invitadobuscar.jsp"><i class="icon-wrench"></i><span class="hidden-tablet"> Invitados</span></a></li>
                         <li><a class="ajax-link" href="/Conan3000V2/IngSoft/administracion/invitados/visitaregistrar.jsp"><i class="icon-wrench"></i><span class="hidden-tablet"> Visitas</span></a></li>
-                        <li><a class="ajax-link" href="/Conan3000V2/IngSoft/servicio/reservas/buscarreserva.jsp"><i class="icon-wrench"></i><span class="hidden-tablet"> Reservas</span></a></li>
+                        <li><a class="ajax-link" href="/Conan3000V2/IngSoft/servicio/reserva/SMSReserva?accion=Buscar&tipo=1"><i class="icon-wrench"></i><span class="hidden-tablet"> Reservas</span></a></li>
                         <li><a class="ajax-link" href="/Conan3000V2/IngSoft/ventas/pago/buscarpago.jsp"><i class="icon-wrench"></i><span class="hidden-tablet"> Pagos</span></a></li>                                                                    
                         <li><a class="ajax-link" href="/Conan3000V2/IngSoft/servicio/reporte/generarreportes.jsp"><i class="icon-wrench"></i><span class="hidden-tablet"> Reportes</span></a></li>
                         <li><a class="ajax-link" href="/Conan3000V2/IngSoft/administracion/servicio/buscarservicio.jsp"><i class="icon-wrench"></i><span class="hidden-tablet"> Servicios</span></a></li>      

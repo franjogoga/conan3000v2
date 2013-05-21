@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%@page import="IngSoft.servicio.bean.SedeMiniBeanData"%>
 <html lang="en">
 <head>
 	<!--
@@ -10,6 +11,9 @@
 	<meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
 	<meta name="author" content="Muhammad Usman">
 	<script language="javascript" src=""></script>	
+	<!--The beans  -->
+	<jsp:useBean id="sedes" scope="request"class="java.util.Vector"></jsp:useBean>
+	
 	<!-- The styles -->
 	<link id="bs-css" href="css/bootstrap-cerulean.css" rel="stylesheet">
 	<style type="text/css">
@@ -180,18 +184,15 @@ function cambiarClase(elemento){
 						  <fieldset>
 							
 					<div class="control-group">
-								
-							<label class="control-label" for="selectError">Seleccionar Sede</label>
-							<div class="controls">
-							  <select id="selectError7" data-rel="chosen">
-								<option>Sede 1</option>
-								<option>Sede 2</option>
-								<option>Sede 3</option>
-								<option>Sede 4</option>
-								<option>Sede 5</option>
-							  </select>
-							</div>
-						</div>	
+								<label class="control-label" for="cmbSedes">Sedes relacionadas(*):</label>
+								<div class="controls">
+								  <select  data-rel="chosen" id="cmbSedes" name="cmbSedes" >
+									<%for(int i=0;i<sedes.size();i++){ %>
+										<option value="<%= ((SedeMiniBeanData)sedes.get(i)).getCodigo()%>"><%= ((SedeMiniBeanData)sedes.get(i)).getNombre()%></option>
+									<%} %>																
+								  </select>
+								</div>
+							  </div>
 						<div class="control-group">
 						
 								<label class="control-label" for="selectError">Seleccionar servicios</label>
@@ -202,10 +203,14 @@ function cambiarClase(elemento){
 									<option value="tennis">  Cancha de tennis</option>
                                     <option value="fronton"> Cancha de Fronton</option>
 									<option value="bungalow"> Bungalows</option>
+									<option value="bungalow"> pikachu</option>
 								  </select>
 								</div>
 						    </div>
-		
+							<div class="form-actions">
+							  <button type="submit" class="btn btn-primary">Buscar</button>
+			
+							</div>
 						  </fieldset>
 						</form>   
 					</div>
