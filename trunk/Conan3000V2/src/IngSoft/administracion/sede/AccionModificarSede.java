@@ -33,7 +33,7 @@ public class AccionModificarSede extends CoAccion{
 		else
 		{
 		SedeBeanFuncion sedeFuncion= SedeBeanFuncion.getInstance(); 
-		SedeBeanData sedeData=sedeFuncion.consultarEvento(request.getParameter("codigo"));	
+		SedeBeanData sedeData=sedeFuncion.consultarSede(request.getParameter("codigo"));	
 		request.setAttribute("sede",sedeData );
 		this.direccionar(sc, request, response, "/IngSoft/administracion/sede/modificarsede.jsp");
 		}

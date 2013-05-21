@@ -26,7 +26,7 @@ public class AccionConsultarSede extends CoAccion{
 		 System.out.print("--- AccionConsultarSede 1 -->"+  request.getParameter("codigo") ) ;
 		 
 		 
-		SedeBeanData sedeData=sedeFuncion.consultarEvento(request.getParameter("codigo"));
+		SedeBeanData sedeData=sedeFuncion.consultarSede(request.getParameter("codigo"));
 
 		 System.out.print("--- -------- AccionConsultarSede 2-->"+  sedeData.getDepartamento() ) ;
 	

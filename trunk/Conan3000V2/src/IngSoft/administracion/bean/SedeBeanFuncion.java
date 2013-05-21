@@ -174,7 +174,7 @@ public class SedeBeanFuncion {
 	
 	
 	
-	public SedeBeanData consultarEvento(String codigo){
+	public SedeBeanData consultarSede(String codigo){
 		SedeBeanData sedeData=null;
 		
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
