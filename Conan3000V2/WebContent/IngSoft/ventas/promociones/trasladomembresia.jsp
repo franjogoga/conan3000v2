@@ -132,7 +132,7 @@
 			        <h2><i class="icon-user"></i>TRASLADO DE MEMBRES&Iacute;çA</h2>
 		          </div>
 			      <div class="box-content">
-			        <form class="form-horizontal" id="frmSocio" name="frmSocio" method="POST" action="<%= response.encodeURL("SMVSocio")%>">
+			        <form class="form-horizontal" id="frmSocio" name="frmSocio" method="POST" action="<%= response.encodeURL(request.getContextPath()+"/IngSoft/ventas/socio/SMVSocio")%>">
 			        	    <input type="hidden" name="accion" value="Agregar"></input>
 			  				<input type="hidden" name="codigo" value=""></input>
 			 				<input type="hidden" name="tipo" value="1"></input>
