@@ -66,11 +66,11 @@
 </servlet-mapping>
 <servlet-mapping id="ServletMapping_0006">
         <servlet-name>SMAPerfil</servlet-name>
-<url-pattern>/IngSoft/servicio/reserva/SMSReserva</url-pattern>
+<url-pattern>/IngSoft/administracion/perfiles/SMAPerfil</url-pattern>
 </servlet-mapping>
 <servlet-mapping id="ServletMapping_0007">
         <servlet-name>SMSReserva</servlet-name>
-<url-pattern>/IngSoft/administracion/perfiles/SMAPerfil</url-pattern>
+<url-pattern>/IngSoft/servicio/reserva/SMSReserva</url-pattern>
 </servlet-mapping>
 </web-app>
 
