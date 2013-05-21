@@ -17,10 +17,9 @@ public class AccionBuscarPerfil extends CoAccion {
 
 	@Override
 	public void ejecutar(ServletContext sc, HttpServletRequest request, HttpServletResponse response) throws CoException {
-		CriterioPerfilBeanData criterio = new CriterioPerfilBeanDataFunction().crearCriterio(request, response);
-		Vector<ResultadoPerfilBeanData> resultados = new CriterioPerfilBeanDataFunction().buscarPerfil(criterio);
-		request.setAttribute("resultados", resultados);
-		System.out.println("hola");
+		CriterioPerfilBeanData criterio = new CriterioPerfilBeanDataFunction().crearCriterio(request, response);		
+		Vector<ResultadoPerfilBeanData> resultados = new CriterioPerfilBeanDataFunction().buscarPerfil(criterio);		
+		request.setAttribute("resultados", resultados);		
 		this.direccionar(sc, request, response, "/IngSoft/administracion/perfiles/buscarperfil.jsp");
 	}
 }
