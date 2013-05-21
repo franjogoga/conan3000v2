@@ -3,9 +3,9 @@
 <head>
 
 	<meta charset="utf-8">
-	<title>CONAN 3000</title>
+	<title>Agregar Perfil</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
+	<meta name="description" content="Dos Virgenes, perfil de administrador">
 	<meta name="author" content="Dos Virgenes">
 
 	<!-- The styles -->
@@ -42,94 +42,104 @@
 
 	<!-- The fav icon -->
 	<link rel="shortcut icon" href="img/conan_logo.png">
+	<script>
+		function validar(form) {
+			if (form.txtNombre.value.length <= 0) return false;
+			if (form.txtDescripcion.value.length <= 0) return false;
+			return true;
+		}
 		
+		function alt_submit_agregar_perfil(){			
+			var form = document.frmDatos;
+			if (validar(form)) form.submit();
+			else alert("Uno o mas campos estan vacios");
+		}
+	</script>
 </head>
 
 <body>
 		
-		<jsp:include page="/IngSoft/general/superior.jsp" />
-		<div class="container-fluid">
+	<jsp:include page="/IngSoft/general/superior.jsp" />
+	<div class="container-fluid">
 		<div class="row-fluid">
 				
 			<!-- left menu starts -->
 			<jsp:include page="/IngSoft/general/leftmenu.jsp" />
-						<!-- left menu ends -->
-            
-            
-           
+			<!-- left menu ends -->                                   
 			
-		  <noscript>
+			<noscript>
 				<div class="alert alert-block span10">
 					<h4 class="alert-heading">Warning!</h4>
 					<p>You need to have <a href="http://en.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript</a> enabled to use this site.</p>
 				</div>
 			</noscript>
-			
+	
 			<div id="content" class="span10">
-			  <!-- content starts -->
-			  <div>
-				<ul class="breadcrumb">
-					<li>
-						<a href="#">Inicio</a> <span class="divider">/</span>
-					</li>
-					<li>
-						<a href="#">Mantenimiento de Perfiles de Usuario</a> <span class="divider">/</span>
-					</li>
-					<li>
-						Agregar Perfil de Usuario
-					</li>
-				</ul>
-			</div>
+				<!-- content starts -->
+				<div>
+					<ul class="breadcrumb">
+						<li>
+							<a href="#">Inicio</a> <span class="divider">/</span>
+						</li>
+						<li>
+							<a href="#">Mantenimiento de Perfiles de Usuario</a> <span class="divider">/</span>
+						</li>
+						<li>
+							Agregar Perfil de Usuario
+						</li>
+					</ul>
+				</div>
 			  
-			  <div class="row-fluid sortable">
-			    <div class="box span12">
-			      <div class="box-header well" data-original-title>
-			        <h2> AGREGAR PERFIL DE USUARIO</h2>
-		          </div>
+			  	<div class="row-fluid sortable">
+					<div class="box span12">
+						<div class="box-header well" data-original-title>
+					    	<h2> AGREGAR PERFIL DE USUARIO</h2>
+					  	</div>
 				  
-			      <div class="box-content">
-			        <form class="form-horizontal">
-			          <fieldset>
-			            
-						<div class="control-group">
-						  <label class="control-label" for="typeahead">Perfil (*):</label>							  
-						  <div class="controls">
-							<input type="text" class="span6 typeahead" id="typeahead"  data-provide="typeahead" data-items="4" ></input>								
-						  </div>
-						</div>
+			      		<div class="box-content">
+					        <form class="form-horizontal" action="<%= response.encodeURL("SMAPerfil")%>" name="frmDatos" method="post">
+						        <input type="hidden" name="accion" value="Agregar"></input>
+								<input type="hidden" name="tipo" value="2"></input>
+						       	
+						       	<fieldset>					        
+									<div class="control-group">
+									  <label class="control-label" for="txtNombre">Perfil (*):</label>							  
+									  <div class="controls">
+										<input type="text" class="span6 typeahead" id="txtNombre" name="txtNombre"></input>								
+									  </div>
+									</div>
 						
-						<div class="control-group">
-						  <label class="control-label" for="typeahead">Descripci&oacute;n (*):</label>							  
-						  <div class="controls">
-							<input type="text" class="span6 typeahead" id="typeahead"  data-provide="typeahead" data-items="4" ></input>								
-						  </div>
-						</div>																
-										
+									<div class="control-group">
+									  <label class="control-label" for="txtDescripcion">Descripci&oacute;n (*):</label>							  
+									  <div class="controls">
+										<input type="text" class="span6 typeahead" id="txtDescripcion" name="txtDescripcion"></input>								
+									  </div>
+									</div>																										
 						
-			            <div class="form-actions">
-			              <button type="submit" class="btn btn-primary">Agregar</button>
-			              <button type="reset" class="btn">Cancelar</button>
-		                </div>
-		              </fieldset>
-		            </form>
-		            (*) Campos Obligatorios
-		          </div>
-		        </div>
-			    <!--/span-->
-		      </div>
-			  <!--/row-->
-			  <div class="row-fluid sortable">
-			    <!--/span-->
-		      </div>
-			  <!--/row-->
-			  <div class="row-fluid sortable">
-			    <!--/span-->
-		      </div>
-			  <!--/row-->			 		  
+							        <div class="form-actions">
+							           <button type="button" class="btn btn-primary" onclick="javascript:alt_submit_agregar_perfil()">Agregar</button>
+							           <button type="button" class="btn" onclick="location.href='buscarperfil.jsp'">Cancelar</button>
+							        </div>
+						        </fieldset>
+				            </form>
+				            (*) Campos Obligatorios
+				        </div>
+		        	</div> <!--/span-->			    
+		      	</div> <!--/row-->
+			  
+				<div class="row-fluid sortable">
+				  <!--/span-->
+				</div>
+				<!--/row-->
+				
+				<div class="row-fluid sortable">
+				  <!--/span-->
+				</div>
+				<!--/row-->			 		  
        
-					<!-- content ends -->
-		  </div><!--/#content.span10-->
-				</div><!--/fluid-row-->
+				<!-- content ends -->
+		  	</div><!--/#content.span10-->
+		</div><!--/fluid-row-->
 				
 		<hr>
 
