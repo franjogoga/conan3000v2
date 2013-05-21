@@ -1,3 +1,4 @@
+<%@page import="IngSoft.venta.bean.DistritoMiniBeanData"%>
 <script>
 function validaCorreo(valor)
 {
@@ -110,6 +111,8 @@ function alt_submit(){
 
 
 </script>	
+
+<jsp:useBean id="tiposDistrito" scope="request"class="java.util.Vector"></jsp:useBean>
 	
 			  <!-- content starts -->
 			  <div>
@@ -167,11 +170,9 @@ function alt_submit(){
 								<label class="control-label" for="selectdistrito">Distrito (*):</label>
 								<div class="controls">
 								  <select name="cmdDistrito" id="cmdDistrito" data-rel="chosen">
-									<option>Distrito 1</option>
-									<option>Distrito 2</option>
-									<option>Distrito 3</option>
-									<option>Distrito 4</option>
-									<option>Distrito 5</option>
+									<%for(int i=0;i<tiposDistrito.size();i++){ %>
+										<option value="<%= ((DistritoMiniBeanData)tiposDistrito.get(i)).getIdDistrito()%>" <%=i==0?"selected":""%>><%= ((DistritoMiniBeanData)tiposDistrito.get(i)).getNombreDistrito()%></option>
+									<%} %>	
 								  </select>
 								</div>
 							</div>		
