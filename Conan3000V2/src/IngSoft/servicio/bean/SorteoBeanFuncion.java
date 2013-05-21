@@ -77,7 +77,7 @@ public class SorteoBeanFuncion {
 			SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 			try{
 			
-				sqlsesion.delete("deletePLantillaSorteo",codigo);
+				sqlsesion.update("update2PLantillaSorteo",codigo);
 				
 				resultado=true;
 			}
