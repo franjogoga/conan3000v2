@@ -29,7 +29,7 @@ public class CriterioSedeBeanFunction {
 		return criterioSedeData;				
 	}
 	
-	public Vector<ResultadoSedeBeanData> buscarPlantillaEvento(CriterioSedeBeanData criterioSedeData){		
+	public Vector<ResultadoSedeBeanData> buscarPlantillaSede(CriterioSedeBeanData criterioSedeData){		
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		Vector<ResultadoSedeBeanData> resultadosV=null;
 		try{		
