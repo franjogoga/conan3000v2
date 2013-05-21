@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Data.venta.membresia">
+
+  <cache />
+
+<select id="searchPlantillaMembresia" parameterType="IngSoft.venta.bean.CriterioMembresiaBeanData" resultType="IngSoft.venta.bean.ResultadoMembresiaBeanData">
+select 
+MEMBRESIA.IdMembresia as codigo
+,MEMBRESIA.FechaInicio as limInicio
+,MEMBRESIA.FechaFin as limFin
+,MEMBRESIA.Nombre as nombre
+,MEMBRESIA.Estado as estado
+from MEMBRESIA 
+<where>
+	<if test="nombre != null ">
+        MEMBRESIA.nombre  like  #{nombre}
+    </if>
+    <if test="limInicio != null">
+        AND MEMBRESIA.FechaInicio &gt;= #{limInicio}
+    </if>
+    <if test="limFin != null">
+        AND MEMBRESIA.FechaFin &lt;= #{limFin}
+    </if>
+    <if test="estado != null">
+        AND MEMBRESIA.Estado like #{estado}
+    </if>
+      
+</where>
+</select>
+
+  
+<!-- Agregar plantilla membresia -->
+<insert id="insertMembresia" parameterType="IngSoft.venta.bean.MembresiaBeanData" flushCache="true">
+	insert into MEMBRESIA(IdMembresia,Nombre,FechaInicio,FechaFin,Descripcion,Estado)
+	values (#{codigo},#{nombre},#{fechaInicio},#{fechaFin},#{descripcion},'Activo')
+</insert>
+
+<select id="getNextCodigo2" resultType="java.lang.String">
+	select max(IdMembresia) from MEMBRESIA
+</select>
+
+
+ <!-- Fin agregar  -->
+ 
+ <!-- Modificar elemento -->
+<update id="updateMembresia" parameterType="IngSoft.venta.bean.MembresiaBeanData">
+update MEMBRESIA set Nombre=#{nombre}
+ ,FechaInicio=#{fechaInicio}
+ ,FechaFin=#{fechaFin}
+ ,Descripcion=#{descripcion}
+ where IdMembresia= #{codigo}
+</update>
+
+<!-- Fin modificar -->
+
+
+
+<!--Eliminar membresia -->
+<update id="deleteMembresia" parameterType="java.lang.String" >
+update MEMBRESIA set Estado='Inactivo' where IdMembresia= #{codigo}
+</update>
+<!-- Fin eliminar -->
+
+<select id="getPlantillaMembresia" parameterType="java.lang.String"  resultType="IngSoft.venta.bean.MembresiaBeanData">
+select 
+IdMembresia as codigo
+,Nombre as nombre
+,FechaInicio as fechaInicio
+,FechaFin as fechaFin
+,Descripcion as descripcion
+,Estado as estado
+from MEMBRESIA  where IdMembresia=#{codigo}; 
+
+
+</select>
+
+
+</mapper>
+ 
