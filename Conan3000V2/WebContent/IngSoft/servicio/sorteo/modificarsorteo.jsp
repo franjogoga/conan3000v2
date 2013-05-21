@@ -59,6 +59,11 @@
 	<!-- The fav icon -->
 	<link rel="shortcut icon" href="img/conan_logo.png">
 	<script>
+	function alfanumerico(e) 
+	{ 
+		var key = window.event.keyCode || event.keyCode;
+		return ((key >= 48 && key <= 57) ||(key >= 97 && key <= 122) ||(key >= 65 && key <=90) ||(key >= 192 && key <=246)||(key <=13) ||(key ==32));
+	} 
 		function validar(form){
 			if(form.txtNombreSorteo.value.length <=0)return false;
 			if(form.fFecInicio.value.length<=0)return false;
@@ -158,7 +163,7 @@
 						    <div class="control-group">
 						      <label class="control-label" for="typeahead7">Nombre de sorteo: </label>
 						      <div class="controls">
-						        <input type="text" class="span6 typeahead"   data-provide="typeahead" id="txtNombreSorteo" name="txtNombreSorteo" value="<%=sorteo.getDescripcion()%>">
+						        <input type="text" class="span6 typeahead"   data-provide="typeahead" id="txtNombreSorteo" name="txtNombreSorteo" value="<%=sorteo.getDescripcion()%>" onkeypress="return alfanumerico(event);" autofocus>
 					          </div>
 					        </div>
 							<div class="control-group">
