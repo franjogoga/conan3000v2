@@ -17,6 +17,7 @@
   <mappers>
     <mapper resource="Data/servicio/temp_mapper.xml"/>
     <mapper resource="Data/servicio/evento_mapper.xml"/>
+    <mapper resource="Data/administracion/actividad_mapper.xml"/>
     <mapper resource="Data/administracion/sede_mapper.xml"/>
        <mapper resource="Data/venta/promocion_mapper.xml"/>
        <mapper resource="Data/venta/socio_mapper.xml"/>
