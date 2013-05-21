@@ -35,7 +35,7 @@ from PROMOCION
 <!-- Agregar plantilla socio -->
 <insert id="insertSocio" parameterType="IngSoft.venta.bean.SocioBeanData" flushCache="true">
 	insert into SOCIO(IdSocio,IdPerfil,Direccion,Correo,TelefonoFijo,IdSolicitudIngreso,IdDistrito,TelefonoCelular)
-	values (#{codigo},'PER000010',#{direccion},#{correoElectronico},#{telefonoFijo},'SOL000001',#{IdDistrito},#{telefonoCelular})
+	values (#{codigo},'PER000010',#{direccion},#{correoElectronico},#{telefonoFijo},'SOL000001',#{idDistrito},#{telefonoCelular})
 </insert>
 
 <!-- <insert id="insertSocio" parameterType="IngSoft.venta.bean.SocioBeanData" flushCache="true">
@@ -46,6 +46,13 @@ from PROMOCION
 
 <select id="getNextCodigo3" resultType="java.lang.String">
 	select max(IdSocio) from SOCIO
+</select>
+
+<select id="searchDistritoMini" resultType="IngSoft.venta.bean.DistritoMiniBeanData">
+	select IdDistrito as idDistrito
+	,Nombre as nombreDistrito
+	from 
+	DISTRITO
 </select>
 
 
