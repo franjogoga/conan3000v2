@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="Data.administracion.perfil">
+<mapper namespace="Data.administracion.perfiles">
 	<cache />
 		
 	<select id="searchPerfil" parameterType="IngSoft.administracion.bean.CriterioPerfilBeanData" resultType="IngSoft.administracion.bean.ResultadoPerfilBeanData">
@@ -12,5 +12,16 @@
 			PERFIL.Descripcion like #{descripcion}
 		order by 1 asc
 	</select>
+		
+	<select id="getNextCodigo" resultType="java.lang.String">
+		select max(IdPerfil) from PERFIL	
+	</select>
+	
+	<insert id="insertPerfil" parameterType="IngSoft.administracion.bean.PerfilBeanData" flushCache="true">
+		insert into PERFIL(IdPerfil, Nombre, Descripcion)
+		values (#{codigo}, #{nombre}, #{descripcion})
+	</insert>
+	
+	
 	
 </mapper>
