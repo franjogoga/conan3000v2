@@ -166,7 +166,7 @@
 							<table class="table table-striped table-bordered bootstrap-datatable datatable">
 								<!-- agregar nuevo boton -->
 								<div  align="right">
-									<a class="btn btn-primary" href="javascript:alt_agregar()"> 
+									<a class="btn btn-primary" href="javascript:alt_agregar_perfil()"> 
 										<i class="icon icon-add icon-white"></i> Agregar 
 									</a> 
 								</div>
