@@ -35,6 +35,11 @@
         <servlet-name>SMAPerfil</servlet-name>
 	<servlet-class>IngSoft.administracion.perfiles.SMAPerfil</servlet-class>
 </servlet>
+<servlet id="Servlet_0007">
+        <servlet-name>SMAActividad</servlet-name>
+	<servlet-class>IngSoft.administracion.sede.SMAActividad</servlet-class>
+</servlet>
+
 
 
 
@@ -44,7 +49,7 @@
 </servlet-mapping>
 <servlet-mapping id="ServletMapping_0002">
         <servlet-name>SMASede</servlet-name>
-<url-pattern>/IngSoft/administracion/sedes/SMASede</url-pattern>
+<url-pattern>/IngSoft/administracion/sede/SMASede</url-pattern>
 </servlet-mapping>
 <servlet-mapping id="ServletMapping_0003">
         <servlet-name>SMVPromocion</servlet-name>
@@ -63,3 +68,8 @@
 <url-pattern>/IngSoft/administracion/perfiles/SMAPerfil</url-pattern>
 </servlet-mapping>
 </web-app>
+<servlet-mapping id="ServletMapping_0007">
+        <servlet-name>SMAActividad</servlet-name>
+<url-pattern>/IngSoft/administracion/actividad/SMAActividad</url-pattern>
+</servlet-mapping>
+
