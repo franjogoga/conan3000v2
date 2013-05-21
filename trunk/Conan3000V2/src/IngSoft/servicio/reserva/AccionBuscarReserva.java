@@ -21,6 +21,15 @@ public class AccionBuscarReserva extends CoAccion {
 			HttpServletResponse response) throws CoException {
 		int tipo=Integer.parseInt(request.getParameter("tipo"));
 		if(tipo==2){
+			if("bungalow".equals(request.getParameter("cmbServicios")))
+				
+				this.direccionar(sc, request, response, "/IngSoft/servicio/reserva/reservaxdia.jsp");
+			
+			
+			else this.direccionar(sc, request, response, "/IngSoft/servicio/reserva/reservaxhora.jsp");
+			
+		}
+		if(tipo==3){
 			if("bungalow".equals(request.getParameter("cmbServicios"))) 
 				this.direccionar(sc, request, response, "/IngSoft/servicio/reserva/reservaxdia.jsp");
 			else this.direccionar(sc, request, response, "/IngSoft/servicio/reserva/reservaxhora.jsp");
