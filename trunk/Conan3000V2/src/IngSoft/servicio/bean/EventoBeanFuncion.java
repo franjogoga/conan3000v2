@@ -36,7 +36,7 @@ public class EventoBeanFuncion {
 		eventoData.setIdAmbientes(request.getParameterValues("cmbAmbientes"));
 		eventoData.setIdSede(request.getParameterValues("cmbSedes"));
 		eventoData.setIdTipo(request.getParameter("cmbTipo"));
-		eventoData.setNombre(request.getParameter("txtNombreEvento"));
+		eventoData.setNombre(request.getParameter("txtNombreEvento").trim());
 		eventoData.setLimiteInicio(new Date(DF.parse(request.getParameter("fFecIncio")+"/0000").getTime()));
 		eventoData.setLimiteFin(new Date(DF.parse(request.getParameter("fFecFin")+"/0000").getTime()));
 		}catch(Exception e){

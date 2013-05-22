@@ -21,9 +21,9 @@ public class AccionBuscarEvento extends CoAccion{
 		// TODO Auto-generated method stub
 		CriterioEventoBeanData criterioEventoData =new CriterioEventoBeanFunction().crearCriterio(request,response);
 		Vector<ResultadoEventoBeanData> resultados=new CriterioEventoBeanFunction().buscarPlantillaEvento(criterioEventoData);
-
+		
 		request.setAttribute("resultados", resultados);
-		this.direccionar(sc, request, response, "/IngSoft/servicio/evento/buscarevento.jsp");
+		this.direccionar(sc, request, response, "/IngSoft/servicio/evento/resultados.jsp");
 		
 	}
 
