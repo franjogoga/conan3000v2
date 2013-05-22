@@ -59,6 +59,14 @@
 	obj.value=obj.value.slice(0,5);
 	
 	}
+	
+	function alt_agregarMembresia(){
+		var form=document.getElementById("frmMembresia");
+		form.accion.value="Insertar";
+		form.submit();
+	}
+	
+	
 	function alt_agregar(){
 		var form=document.getElementById("frmSocio");
 		form.accion.value="Agregar";
@@ -123,7 +131,11 @@
 			  <!-- content starts -->
 			  <div>
 			    <ul class="breadcrumb">
-			      <li> <a href="#">Home</a> /  <a href="#">Mantenimiento de Membres&iacutea;s</a> / Traslado de Membres&iacutea</li>
+			   			      
+			        <li> <a href="../../general/index.jsp">Home</a> <span class="divider">/</span></li>
+		        <li> <a href="../membresia/buscarmembresia.jsp">Mantenimiento de Membres&iacute;a</a> <span class="divider">/</span></li>
+		        <li>Traslado de Membres&iacute;a</li>
+			      
 		        </ul>
 		      </div>
 			  <div class="row-fluid sortable">
@@ -136,20 +148,23 @@
 			        	    <input type="hidden" name="accion" value="Agregar"></input>
 			  				<input type="hidden" name="codigo" value=""></input>
 			 				<input type="hidden" name="tipo" value="1"></input>
+			 				
+			 				<form class="form-horizontal" id="frmMembresia" name="frmMembresia" method="POST" action="<%= response.encodeURL(request.getContextPath()+"/IngSoft/ventas/membresia/SMVMembresia")%>">
+			        	    <input type="hidden" name="accion" value="Insertar"></input>
+			  				<input type="hidden" name="codigo" value=""></input>
+			 				<input type="hidden" name="tipo" value="1"></input>
+			 				  
+			         </form>
 			        
+			  
 			        
-			          <fieldset>
-			           <div class="control-group">
-			                <label class="control-label" for="typeahead9">Socio(*): </label>
-			                <div class="controls">
-			                  <input type="text" class="span6 typeahead" id="typeahead9"  data-provide="typeahead" data-items="4" >
-			                  <p class="help-block">Escriba sobre la casilla un nombre de socio para ser autocompletado</p>
-		                    </div>
-	                    </div>
+			         <fieldset>
+			        		        
+			         
 			            <div class="control-group">
-			              <label class="control-label" for="typeahead7">Socio asociado:</label>
+			              <label class="control-label" for="typeahead7">Membres&iacute;a del socio:</label>
 			              <div class="controls">
-			                <input type="text" disabled class="span6 typeahead" id="typeahead7" value="SOC_2739"  data-provide="typeahead" > 
+			                <input type="text" disabled class="span6 typeahead" id="typeahead7" value="" name="txtIdMembresiaAntiguo"  data-provide="typeahead" > 
 			              </div>
 		                </div>
                           <div class="control-group">
@@ -157,7 +172,7 @@
 		                <div class="controls">
 		                
 			                  <!-- agregar nuevo boton -->
-			                   <input type="text"  disabled class="span6 typeahead" id="typeahead7" value=""  data-provide="typeahead" > 
+			                   <input type="text"  disabled class="span6 typeahead" id="typeahead7" name="txtIdNuevoSocio" value=""  data-provide="typeahead" > 
 			        
 			        
 						 <a  class="btn btn-primary" href="javascript:alt_agregar()"> <i class="icon icon-add icon-white"></i> Agregar</a>  
@@ -165,18 +180,30 @@
 					     </div>
 		                </div>
 		                
+		                   <div class="control-group">
+			              <label class="control-label" for="typeahead7">Membres&iacute;a del nuevo socio(*):</label>
+		                <div class="controls">
 		                
+			                  <!-- agregar nuevo boton -->
+			                   <input type="text"  disabled class="span6 typeahead" id="typeahead7" name="txtIdMembresiaNuevo" value=""  data-provide="typeahead" > 
+			        
+			        
+						 <a  class="btn btn-primary" href="javascript:alt_agregarMembresia()" > <i class="icon icon-add icon-white" ></i> Agregar</a>  
+						      
+					     </div>
+		                </div>
+		                		                
                         <div class="control-group">
 							  <label class="control-label" for="date01">Fecha(*):</label>
 							  <div class="controls">
-								<input type="text" class="input-xlarge datepicker" id="date01" value="02/16/12">
+								<input type="text" class="input-xlarge datepicker" id="date01" name="fFecha" value="02/16/12">
 							  </div>
 							</div>
                         
                         <div class="control-group">
 			                <label class="control-label" for="selectError">Parentesco(*):</label>
 			                <div class="controls">
-			                  <select name="selectError" id="selectError" data-rel="chosen">
+			                  <select name="selectError" name="cmbParentesco" id="selectError" data-rel="chosen">
 			                    <option selected>Hija(o)</option>
 			                    <option>Madre</option>
 			                    <option>Padre</option>
@@ -190,7 +217,7 @@
 			              <div class="control-group">
 			                <label class="control-label" for="typeahead8">Monto(*):</label>
 			                <div class="controls">
-			                  <input type="text" class="span6 typeahead" id="typeahead8"  data-provide="typeahead" data-items="4" >
+			                  <input type="text" class="span6 typeahead" id="typeahead8" name="txtMonto" data-provide="typeahead" data-items="4" >
 		                    </div>
 		                  </div>
 			           
