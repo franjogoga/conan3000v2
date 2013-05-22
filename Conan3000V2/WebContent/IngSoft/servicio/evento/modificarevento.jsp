@@ -165,7 +165,7 @@
 						    <div class="control-group">
 						      <label class="control-label" for="typeahead7">Nombre de evento: </label>
 						      <div class="controls">
-						        <input type="text" class="span6 typeahead"   data-provide="typeahead" id="txtNombreEvento" name="txtNombreEvento" value="<%=evento.getNombre()%>">
+						        <input type="text" class="span6 typeahead"   data-provide="typeahead" id="txtNombreEvento" name="txtNombreEvento" value="<%=evento.getNombre()%>" onkeypress="return alfanumerico(event);" >
 					          </div>
 					        </div>
 						    
@@ -202,14 +202,14 @@
 							  <div class="control-group">
 							  <label class="control-label" for="date01">Limite Inicio</label>
 							  <div class="controls">
-								<input type="text" class="input-xlarge datepicker" id="fFecIncio"  readonly="true" value="<%=formatear(new Date(evento.getLimiteInicio().getTime())) %>"  name="fFecIncio" onchange="alt_fecha(this)">
+								<input type="text" class="input-xlarge datepicker" id="fFecIncio"  readonly="true" value="<%=formatear(new Date(evento.getLimiteInicio().getTime())) %>"  name="fFecIncio" onchange="alt_fecha(this);verificar_fecha(-1,this,'fFecFin');">
 							  </div>
 							</div>
 							
 							<div class="control-group">
 							  <label class="control-label" for="date02">Limite Fin</label>
 							  <div class="controls">
-								<input type="text" class="input-xlarge datepicker" id="fFecFin" name="fFecFin" readonly="true" value="<%=formatear(new Date(evento.getLimiteFin().getTime())) %>" onchange="alt_fecha(this)">
+								<input type="text" class="input-xlarge datepicker" id="fFecFin" name="fFecFin" readonly="true" value="<%=formatear(new Date(evento.getLimiteFin().getTime())) %>" onchange="alt_fecha(this);verificar_fecha(1,this,'fFecIncio');">
 							  </div>
 							</div>
 						    <div class="form-actions">

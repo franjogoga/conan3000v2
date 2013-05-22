@@ -196,14 +196,14 @@
 							<div class="control-group">
 							  <label class="control-label" for="date01">Fecha Inicio</label>
 							  <div class="controls">
-								<input type="text" class="input-xlarge datepicker" id="date01" name="date01" value="01/01" onchange="alt_fecha(this);verificar_fecha(-1,this,'date02');">
+								<input type="text" class="input-xlarge datepicker" id="date01" name="date01" readonly="readonly" value="01/01" onchange="alt_fecha(this);verificar_fecha(-1,this,'date02');">
 							  </div>
 							</div>
 							
 							<div class="control-group">
 							  <label class="control-label" for="date02">Fecha Fin</label>
 							  <div class="controls">
-								<input type="text" class="input-xlarge datepicker" id="date02" name="date02" value="31/12" onchange="alt_fecha(this);verificar_fecha(1,this,'date01');">
+								<input type="text" class="input-xlarge datepicker" id="date02" readonly="readonly" name="date02" value="31/12" onchange="alt_fecha(this);verificar_fecha(1,this,'date01');">
 							  </div>
 							</div>
 		
@@ -233,7 +233,34 @@
 						
 					</div>           
 					<div class="box-content" id="resultadoBusqueda" onchange="updatetable();">
+                              <table id="mytable" class="table table-striped table-bordered bootstrap-datatable datatable">
+                            <!-- agregar nuevo boton -->
+                            
+                            
+                            <div align="right">
+                            
+                                <a class="btn btn-primary" href="javascript:alt_agregar()">
+                                    <i class="icon icon-add icon-white"></i>
+                                    Agregar
+                                </a>
                               
+                             </div>          
+                          <thead>
+							  <tr>
+								  <th>Tipo Evento</th>
+							        <th>Nombre Evento</th>
+							        <th>Limite de incio (d&iacutea/mes)</th>
+							        <th>Limite de fin (d&iacutea/mes)</th>
+												        							      							        
+							        <th>Acción</th>
+							
+							  </tr>
+						  </thead>
+                          <element>
+                          	<tbody >
+                          	</tbody>
+                          </element>
+                        </table> 
 					</div>
 				</div><!--/span-->
 				
