@@ -19,10 +19,11 @@ import IngSoft.servicio.bean.TipoEventoMiniBeanData;
 public class SocioBeanFuncion {
 
 	static private SocioBeanFuncion SocioFuncion=null;
+	
 	private Lock l= new ReentrantLock();     
 	//SimpleDateFormat DF = new SimpleDateFormat("dd/MM/yyyy");
 	   
-	   public static SocioBeanFuncion getInstance(){
+	   public static SocioBeanFuncion getInstanceS(){
 	       if(SocioFuncion==null) SocioFuncion= new SocioBeanFuncion();
 	       
 	       return SocioFuncion;
