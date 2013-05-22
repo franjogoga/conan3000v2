@@ -92,10 +92,13 @@ public class PerfilBeanFunction {
 		return dataPerfil;
 	}
 	
-	public void modificarPerfil(PerfilBeanData perfil) throws CoException {
+	public boolean modificarPerfil(PerfilBeanData dataPerfil) throws CoException {
+		boolean resultado = false;
+		l.lock();
 		SqlSession sesion = MyBatisSesion.metodo().openSession();
 		try {
-			
+			sesion.update("Data.administracion.perfiles.updatePerfil",dataPerfil);
+			resultado = true;
 		} catch (Exception e2) {
 			sesion.rollback();
 			e2.printStackTrace();
@@ -103,6 +106,8 @@ public class PerfilBeanFunction {
 		} finally {
 			sesion.commit();
 			sesion.close();
+			l.unlock();
 		}
+		return resultado;
 	}
 }
