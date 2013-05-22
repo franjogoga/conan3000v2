@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Data.venta.traslado">
+
+  
+<!-- Agregar plantilla promocion -->
+<insert id="insertTraslado" parameterType="IngSoft.venta.bean.TrasladoBeanData" flushCache="true">
+	insert into TRASLADO_MEMBRESIA(IdTraslado,IdMembresiaNue,IdMembresiaAnt,Fecha,Monto,Parentesco)
+	values (#{idtraslado},#{idmembresiaNuevo},#{idmembresiaAntiguo},#{fecha},#{parentesco},#{monto})
+</insert>
+
+<select id="getNextCodigoT" resultType="java.lang.String">
+	select max(IdTraslado) from TRASLADO_MEMBRESIA
+</select>
+
+
+
+</mapper>
+ 
