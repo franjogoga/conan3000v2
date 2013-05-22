@@ -181,12 +181,12 @@ function alt_submit(){
 								<label class="control-label" for="typeahead5">Tipo de Documento(*):</label>
 								<div class="controls">
 								  <label class="radio">
-									<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" >
+									<input type="radio" name="rButton" id="optionsRadios1" value="DNI" >
 									DNI
 								  </label>
 								  <div style="clear:both">
 								  <label class="radio">
-									<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+									<input type="radio" name="rButton" id="optionsRadios2" value="Carnet de Extranjeria">
 									Carnet de Extranjeria
 								  </label>
 								  </div>
