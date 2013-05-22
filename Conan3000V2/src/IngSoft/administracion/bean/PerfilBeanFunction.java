@@ -91,4 +91,18 @@ public class PerfilBeanFunction {
 		}				
 		return dataPerfil;
 	}
+	
+	public void modificarPerfil(PerfilBeanData perfil) throws CoException {
+		SqlSession sesion = MyBatisSesion.metodo().openSession();
+		try {
+			
+		} catch (Exception e2) {
+			sesion.rollback();
+			e2.printStackTrace();
+			throw CoException.set("Error: No se pudo modificar el perfil de usuario, intente nuevamente", "SMAPerfil?accion=Modificar&tipo=1");
+		} finally {
+			sesion.commit();
+			sesion.close();
+		}
+	}
 }
