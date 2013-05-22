@@ -11,12 +11,12 @@ select
 MEMBRESIA.IdMembresia as codigo
 ,MEMBRESIA.FechaInicio as limInicio
 ,MEMBRESIA.FechaFin as limFin
-,MEMBRESIA.Nombre as nombre
+,CONCAT(PERSONA.Nombres,' ',PERSONA.ApePaterno,' ',PERSONA.ApeMaterno) as nombre
 ,MEMBRESIA.Estado as estado
-from MEMBRESIA 
+from MEMBRESIA, PERSONA
 <where>
 	<if test="nombre != null ">
-        MEMBRESIA.nombre  like  #{nombre}
+        MEMBRESIA.IdSocio=PERSONA.IdPersona and (PERSONA.Nombres LIKE #{nombre} or PERSONA.ApePaterno LIKE #{nombre} or PERSONA.ApeMaterno LIKE #{nombre})
     </if>
     <if test="limInicio != null">
         AND MEMBRESIA.FechaInicio &gt;= #{limInicio}
@@ -25,7 +25,7 @@ from MEMBRESIA
         AND MEMBRESIA.FechaFin &lt;= #{limFin}
     </if>
     <if test="estado != null">
-        AND MEMBRESIA.Estado like #{estado}
+        AND MEMBRESIA.Estado= #{estado}
     </if>
       
 </where>
@@ -34,8 +34,8 @@ from MEMBRESIA
   
 <!-- Agregar plantilla membresia -->
 <insert id="insertMembresia" parameterType="IngSoft.venta.bean.MembresiaBeanData" flushCache="true">
-	insert into MEMBRESIA(IdMembresia,Nombre,FechaInicio,FechaFin,Descripcion,Estado)
-	values (#{codigo},#{nombre},#{fechaInicio},#{fechaFin},#{descripcion},'Activo')
+	insert into MEMBRESIA(IdMembresia,FechaInicio,FechaFin,idSocio,Costo,Estado)
+	values (#{codigo},#{fechaInicio},#{fechaFin},#{descripcion},'Activo')
 </insert>
 
 <select id="getNextCodigo2" resultType="java.lang.String">
