@@ -14,12 +14,13 @@ public class AccionModificarPerfil extends CoAccion {
 	@Override
 	public void ejecutar(ServletContext sc, HttpServletRequest request, HttpServletResponse response) throws CoException {		
 		PerfilBeanFunction funcionPerfil = PerfilBeanFunction.getInstance();
+		System.out.print("entra antes de if");
 		if (Integer.valueOf(request.getParameter("tipo"))==2) {
 			PerfilBeanData dataPerfil=funcionPerfil.crearPerfil(request, response);
 			dataPerfil.setCodigo(request.getParameter("codigo"));
 			funcionPerfil.modificarPerfil(dataPerfil);
 			this.direccionar(sc, request, response, "/IngSoft/administracion/perfiles/buscarperfil.jsp");
-		}
+		}		
 		PerfilBeanData dataPerfil=funcionPerfil.consultarPerfil(request.getParameter("codigo"));
 		request.setAttribute("perfil", dataPerfil);
 		this.direccionar(sc, request, response, "/IngSoft/administracion/perfiles/modificarperfil.jsp");

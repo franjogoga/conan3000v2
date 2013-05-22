@@ -7,7 +7,7 @@ public class SMAPerfil extends CoServlet{
 	protected void initAcciones() {		
 		acciones.put("Buscar", new AccionBuscarPerfil());
 		acciones.put("Consultar", new AccionConsultarPerfil());
-		acciones.put("Agregar", new AccionAgregarPerfil());
+		acciones.put("Agregar", new AccionAgregarPerfil()); 
 		acciones.put("Modificar", new AccionModificarPerfil());
 		acciones.put("Eliminar", new AccionEliminarPerfil());		
 	}
