@@ -159,3 +159,5 @@ function getquerystring(formname) {
 function updatepage(str,responsediv){
 
     document.getElementById(responsediv).innerHTML = str;}
+
+

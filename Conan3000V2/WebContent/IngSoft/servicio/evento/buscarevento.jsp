@@ -60,7 +60,7 @@
 
 	<!-- The fav icon -->
 	<link rel="shortcut icon" href="img/conan_logo.png">
-	
+	<script src="evento.js"></script>
 	
 	<script>
 	function alt_fecha(obj){
@@ -90,6 +90,41 @@
 		form.codigo.value=cod;
 		form.submit();
 	}
+	
+	function updatetable(){		
+			docReady();
+		$('.datatable').dataTable({
+			"sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span12'i><'span12 center'p>>",
+			"sPaginationType": "bootstrap",
+			"oLanguage": {
+			"sLengthMenu": "_MENU_ registros por pagina"
+			},
+			"bDestroy": true
+		} );
+	}
+	
+	function alt_submit(){
+		$("#frmCriteriosBusqueda").submit();
+		$("#boton").trigger("click");
+		
+	}
+	function alt_submit2(){
+		$.ajax({
+		  type: "POST",
+		  url: "/Conan3000V2/IngSoft/servicio/evento/SMSEvento",
+		  data: "accion=" + $(accion).val() + "&tipo=" + $(tipo).val() + "&txtNombre=" + $(txtNombre).val() + "&cmbTipoEvento=" + $(cmbTipoEvento).val() + "&date01=" + $(date01).val()+ "&date02=" + $(date02).val(),
+		  dataType: "html",
+		  success: function(msg){
+			$("#resultadoBusqueda").html(msg);
+			updatetable();
+		  },
+		  error: function(objeto, quepaso, otroobj){
+			alert("ERROR!! Pasó lo siguiente: "+quepaso);
+		  }
+	
+		});
+	}
+	
 	</script>			
 </head>
 
@@ -137,20 +172,21 @@
 					<div class="box-content">
 						<!-- <form class="form-horizontal" name="frmCriteriosBusqueda" id="frmCriteriosBusqueda"  method="post" onsubmit="xmlhttpPost('/Conan3000V2/IngSoft/servicio/evento/SMSEvento?accion=Buscar', 'frmCriteriosBusqueda', 'resultadoBusqueda','<img >');
 		 return false;"> -->
-		 <form class="form-horizontal" name="frmCriteriosBusqueda" id="frmCriteriosBusqueda"  method="post" action="<%= response.encodeURL("SMSEvento")%>">
-		 <input type="hidden" name="accion" value="Buscar"></input>
+		<form class="form-horizontal" name="frmCriteriosBusqueda" id="frmCriteriosBusqueda"  method="post" >
+		 <input type="hidden" id="accion" name="accion" value="Buscar"></input>
+		  <input type="hidden" id="tipo" name="tipo" value="2"></input>
 						  <fieldset>
 							
 							<div class="control-group">
 							  <label class="control-label" for="typeahead">Nombre de Evento </label>
 							  <div class="controls">
-								<input type="text" class="span6 typeahead" id="typeahead" name="txtNombre" autofocus>
+								<input type="text" class="span6 typeahead" id="txtNombre" name="txtNombre" onkeypress="return alfanumerico(event);" autofocus>
 							  </div>
 							</div>
 							 <div class="control-group">
 								<label class="control-label" for="selectError">Tipo de Evento</label>
 								<div class="controls">
-								  <select id="selectError" data-rel="chosen" name="cmbTipoEvento">
+								  <select id="cmbTipoEvento" data-rel="chosen" name="cmbTipoEvento">
 								  	<option selected value="0">Todos</option>
 									<option value="1">Interno</option>
 									<option value="2">Externo</option>									
@@ -160,21 +196,21 @@
 							<div class="control-group">
 							  <label class="control-label" for="date01">Fecha Inicio</label>
 							  <div class="controls">
-								<input type="text" class="input-xlarge datepicker" id="date01" name="date01" value="01/01" onchange="alt_fecha(this)">
+								<input type="text" class="input-xlarge datepicker" id="date01" name="date01" value="01/01" onchange="alt_fecha(this);verificar_fecha(-1,this,'date02');">
 							  </div>
 							</div>
 							
 							<div class="control-group">
 							  <label class="control-label" for="date02">Fecha Fin</label>
 							  <div class="controls">
-								<input type="text" class="input-xlarge datepicker" id="date02" name="date02" value="31/12" onchange="alt_fecha(this)">
+								<input type="text" class="input-xlarge datepicker" id="date02" name="date02" value="31/12" onchange="alt_fecha(this);verificar_fecha(1,this,'date01');">
 							  </div>
 							</div>
 		
 							
 							<div class="form-actions">
-							  <button type="submit" class="btn btn-primary">Buscar</button>
-							  <button type="reset" class="btn">Cancelar</button>
+							  <button type="button" class="btn btn-primary" onclick="alt_submit2();">Buscar</button>
+							  <button type="reset" id="boton"class="btn">Limpiar</button>
 							</div>
 						  </fieldset>
 						</form>   
@@ -196,88 +232,8 @@
                         
 						
 					</div>           
-					<div class="box-content">
-                        <table class="table table-striped table-bordered bootstrap-datatable datatable">
-                            <!-- agregar nuevo boton -->
-                            
-                            
-                            <div align="right">
-                            
-                                <a class="btn btn-primary" href="javascript:alt_agregar()">
-                                    <i class="icon icon-add icon-white"></i>
-                                    Agregar
-                                </a>
+					<div class="box-content" id="resultadoBusqueda" onchange="updatetable();">
                               
-                             </div>          
-                          <thead>
-							  <tr>
-								  <th>Tipo Evento</th>
-							        <th>Nombre Evento</th>
-							        <th>Limite de incio (d&iacutea/mes)</th>
-							        <th>Limite de fin (d&iacutea/mes)</th>
-												        							      							        
-							        <th>Acción</th>
-							
-							  </tr>
-						  </thead>
-                          <element>
-                          	<tbody id="resultadoBusqueda">
-                          		<% SimpleDateFormat df= new SimpleDateFormat("dd/MM"); 
-                          			for(int i=0;
-                          			i<resultados.size();i++){
-                          		%>
-                          		<tr>
-                          			<td>
-                          				<%=
-                          					((ResultadoEventoBeanData)resultados.get(i)).getTipo()
-                          				%>
-                          			</td>
-                          			<td class="center">
-                          				<%=
-                          					((ResultadoEventoBeanData)resultados.get(i)).getNombre()
-                          				%>
-                          			</td>
-                          			<td class="center">
-                          				<%=
-                          					df.format(((ResultadoEventoBeanData)resultados.get(i)).getLimInicio())
-                          				%>
-                          			</td>
-                          			<td class="center">
-                          				<%=
-                          					df.format(((ResultadoEventoBeanData)resultados.get(i)).getLimFin())                  
-                          				%>
-                          			</td>
-
-                          			<td class="center">
-                          				<a class="btn btn-success"
-                          					href="javascript:alt_consultar('<%=((ResultadoEventoBeanData)resultados.get(i)).getCodigo()%>')">
-                          					<i
-                          						class="icon-zoom-in icon-white">
-                          					</i>
-Ver
-                          				</a>
-                          				<a class="btn btn-info"
-                          					href="javascript:alt_modificar('<%=((ResultadoEventoBeanData)resultados.get(i)).getCodigo()%>')">
-                          					<i
-                          						class="icon-edit icon-white">
-                          					</i>
- Modificar
-                          				</a>
-                          				<a class="btn btn-danger"
-                          					href="javascript:alt_eliminar('<%=((ResultadoEventoBeanData)resultados.get(i)).getCodigo()%>')">
-                          					<i class="icon-trash icon-white">
-                          					</i>
-		Eliminar
-                          				</a>
-                          			</td>
-                          		</tr>
-
-
-                          		<%}%>
-
-                          	</tbody>
-                          </element>
-                        </table>       
 					</div>
 				</div><!--/span-->
 				
@@ -385,6 +341,7 @@ Ver
 	<script src="js/charisma.js"></script>
 	
 	<script src="js/ajaxsbmt.js"></script>
-
+	
+	
 </body>
 </html>
