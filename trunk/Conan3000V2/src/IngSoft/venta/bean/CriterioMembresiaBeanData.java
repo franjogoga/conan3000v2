@@ -7,7 +7,7 @@ public class CriterioMembresiaBeanData implements Serializable{
 	
 	private String codigo;
 	private String codigoSocio;
-	private SocioBeanData socio;
+	private String nombre;
 	private Date limInicio;
 	private Date limFin;
 	private String estado;
@@ -20,12 +20,12 @@ public class CriterioMembresiaBeanData implements Serializable{
 		this.codigo = codigo;
 	}
 	
-	public SocioBeanData getSocio() {
-		return socio;
+	public String getNombre() {
+		return nombre;
 	}
 	
-	public void setSocio(SocioBeanData socio) {
-		this.socio = socio;
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 	
 

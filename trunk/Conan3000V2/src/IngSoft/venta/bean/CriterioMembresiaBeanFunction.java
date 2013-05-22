@@ -21,11 +21,17 @@ public class CriterioMembresiaBeanFunction {
 		CriterioMembresiaBeanData criterioMembresiaData= new CriterioMembresiaBeanData();
 		
 		//criterioMembresiaData.setTipo(Integer.parseInt(request.getParameter("cmbTipoEvento")==null?"0":request.getParameter("cmbTipoEvento")));
-		criterioMembresiaData.setCodigo(request.getParameter("idSocio")+"%");
+		criterioMembresiaData.setNombre(request.getParameter("txtSocio")+"%");
 		try {		
 			
-			criterioMembresiaData.setLimInicio(new Date(DF.parse(request.getParameter("fFechInicio")).getTime()));
-			criterioMembresiaData.setLimFin(new Date(DF.parse(request.getParameter("fFechFin")).getTime()));
+			if(request.getParameter("fFechaInicio")!=null)
+			criterioMembresiaData.setLimInicio(new Date(DF.parse(request.getParameter("fFechaInicio")).getTime()));
+			else
+				criterioMembresiaData.setLimInicio(null);
+			if(request.getParameter("fFechaFin")!=null)
+			criterioMembresiaData.setLimFin(new Date(DF.parse(request.getParameter("fFechaFin")).getTime()));
+			else
+				criterioMembresiaData.setLimFin(null);
 			if (request.getParameter("rButton")!=null){
 			String est;
 			est=request.getParameter("rButton");
