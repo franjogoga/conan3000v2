@@ -33,4 +33,10 @@
 		where IdPerfil = #{codigo}
 	</delete>
 	
+	<update id="updatePerfil" parameterType="IngSoft.administracion.bean.PerfilBeanData">
+		update PERFIL
+		set Nombre = #{nombre}, Descripcion = #{descripcion}
+		where IdPerfil = #{codigo}
+	</update>
+	
 </mapper>
