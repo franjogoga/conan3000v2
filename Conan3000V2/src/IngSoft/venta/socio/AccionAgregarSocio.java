@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 import IngSoft.general.CoAccion;
 import IngSoft.general.CoException;
 import IngSoft.venta.bean.DistritoMiniBeanData;
+import IngSoft.venta.bean.PersonaMiniBeanData;
+import IngSoft.venta.bean.PersonaMiniBeanFuncion;
 import IngSoft.venta.bean.SocioBeanData;
 import IngSoft.venta.bean.SocioBeanFuncion;
 
@@ -21,20 +23,27 @@ public class AccionAgregarSocio extends CoAccion{
 		// TODO Auto-generated method stub
 				int tipo=Integer.parseInt(request.getParameter("tipo"));
 				if(tipo==2){
-					SocioBeanFuncion socioFuncion= SocioBeanFuncion.getInstance();
+					SocioBeanFuncion socioFuncion= SocioBeanFuncion.getInstanceS();
 					SocioBeanData socioData=socioFuncion.crearSocio(request, response);
 					socioFuncion.agregarSocio(socioData);
 					
-					String codigo=socioData.getCodigo();
+					PersonaMiniBeanFuncion personaFuncion=PersonaMiniBeanFuncion.getInstanceP();
+					PersonaMiniBeanData personaData=personaFuncion.crearPersona(request, response);
+					personaFuncion.agregarPersona(personaData);
+					
+					
+					request.setAttribute("socio", socioData);
+					//String codigo=socioData.getCodigo();
 					
 					
 					//aca agregar el codigo para que se pase el codigo que se ha generado
 					
-					this.direccionar(sc, request, response, "/IngSoft/ventas/promociones/trasladomembresia.jsp");
+					//this.direccionar(sc, request, response, "/IngSoft/ventas/promociones/trasladomembresia.jsp");
+					this.direccionar(sc, request, response, "/IngSoft/ventas/promociones/minitrasladomembresia.jsp");
 					//request.setAttribute("typeahead7",codigo);
 				
 				}
-				SocioBeanFuncion socioFunction= SocioBeanFuncion.getInstance();
+				SocioBeanFuncion socioFunction= SocioBeanFuncion.getInstanceS();
 				Vector<DistritoMiniBeanData> distritoMiniData=socioFunction.getDistritos();
 				//Vector<TipoEventoMiniBeanData> tipoEventoMiniData=eventoFunction.getTipoEvento();
 				//Vector<AmbienteMiniBeanData> AmbienteMiniData=eventoFunction.getAmbientes();
