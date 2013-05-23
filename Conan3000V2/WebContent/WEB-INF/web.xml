@@ -43,7 +43,10 @@
         <servlet-name>SMVMembresia</servlet-name>
 	<servlet-class>IngSoft.venta.membresia.SMVMembresia</servlet-class>
 </servlet>
-
+<servlet id="Servlet_0009">
+        <servlet-name>SMSJuridica</servlet-name>
+	<servlet-class>IngSoft.servicio.juridica.SMSJuridica</servlet-class>
+</servlet>
 
 
 
@@ -79,6 +82,10 @@
 <servlet-mapping id="ServletMapping_0008">
         <servlet-name>SMVMembresia</servlet-name>
 <url-pattern>/IngSoft/ventas/membresia/SMVMembresia</url-pattern>
+</servlet-mapping>
+<servlet-mapping id="ServletMapping_0009">
+        <servlet-name>SMSJuridica</servlet-name>
+<url-pattern>/IngSoft/servicio/juridica/SMSJuridica</url-pattern>
 </servlet-mapping>
 
 <error-page>
