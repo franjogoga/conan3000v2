@@ -93,10 +93,10 @@
 							  <div class="control-group">
 								<label class="control-label" for="selectError">Tipo de Documento:</label>
 								<div class="controls">
-								  <select id="cmdTipoDocumento" data-rel="chosen" >
+								  <select id="cmdTipoDocumento" name="cmdTipoDocumento" data-rel="chosen" >
 								  
-									<option>DNI</option>
-									<option>Carnet de Extranjeria</option>
+									<option value="DNI">DNI</option>
+									<option value="Carnet de Extranjeria">Carnet de Extranjeria</option>
 								
 								  </select>
 								</div>
