@@ -76,14 +76,14 @@
 		                     
 			                <label class="control-label" for="date01">Fecha de inicio:</label>
 			                <div class="controls">
-			                  <input type="text" class="input-xlarge datepicker" id="fFechInicio" name="fFechInicio" value="01/01/2013">
+			                  <input type="text" class="input-xlarge datepicker" id="fFechInicio" name="fFechInicio" value="01/01/2013" readonly="readonly">
 			                  
 		                    </div>
 		                  </div>
 			              <div class="control-group">
 			                <label class="control-label" for="date02">Fecha de fin:</label>
 			                <div class="controls">
-			                  <input type="text" class="input-xlarge datepicker" id="fFechFin" name="fFechFin" value="31/12/2013">
+			                  <input type="text" class="input-xlarge datepicker" id="fFechFin" name="fFechFin" value="31/12/2013" readonly="readonly">
 		                    </div>
 		                  </div>
 			          
