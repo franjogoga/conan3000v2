@@ -111,7 +111,7 @@ String fecAnoFin="31/12"+dfActual.format(new java.util.Date()); %>
 	        </div>
 	        
 	        
-	        <form id="frmAlternativo" name="frmAlternativo" method="POST" action="<%= response.encodeURL("SMVPromocion")%>">
+	        <form id="frmAlternativo" name="frmAlternativo" method="POST" action="<%= response.encodeURL("SMVMembresia")%>">
 			  <input type="hidden" name="accion" value="Agregar"></input>
 			  <input type="hidden" name="codigo" value=""></input>
 			 <input type="hidden" name="tipo" value="1"></input>

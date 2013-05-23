@@ -32,7 +32,7 @@ public class TrasladoBeanFuncion {
 		try{			
 		trasladoData.setIdMembresiaAntiguo(request.getParameter("txtIdMembresiaAntiguo"));
 		trasladoData.setIdMembresiaNuevo(request.getParameter("txtIdMembresiaNuevo"));
-		trasladoData.setIdnuevosocio(request.getParameter("txtIdNuevoSocio"));
+		
 		trasladoData.setFecha(new Date(DF.parse(request.getParameter("fFecha")).getTime()));
 		trasladoData.setParentesco(request.getParameter("cmbParentesco"));
 		trasladoData.setMonto(Double.parseDouble(request.getParameter("txtMonto")));

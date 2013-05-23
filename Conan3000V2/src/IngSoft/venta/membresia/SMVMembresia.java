@@ -18,6 +18,7 @@ public class SMVMembresia extends CoServlet{
 		acciones.put("Agregar", new AccionAgregarMembresia());
 		acciones.put("Modificar", new AccionModificarMembresia());
 		acciones.put("Eliminar", new AccionEliminarMembresia());
+		acciones.put("Trasladar", new AccionTrasladarMembresia());
 	}
 	
 	
