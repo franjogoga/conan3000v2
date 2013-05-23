@@ -15,6 +15,9 @@
 						<li><a class="ajax-link" href="/Conan3000V2/IngSoft/administracion/actividad/buscaractividad.jsp"><i class="icon-wrench"></i><span class="hidden-tablet"> Actividades</span></a></li>
 						<!--<li><a class="ajax-link" href="/Conan3000V2/IngSoft/servicio/evento/buscarevento.jsp"><i class="icon-wrench"></i><span class="hidden-tablet"> Servicios</span></a></li>-->						
 						<li><a class="ajax-link" href="/Conan3000V2/IngSoft/ventas/proveedor/buscarproveedor.jsp"><i class="icon-wrench"></i><span class="hidden-tablet"> Proveedores</span></a></li>
+						
+						<li><a class="ajax-link" href="/Conan3000V2/IngSoft/servicio/juridica/juridicabuscar.jsp"><i class="icon-wrench"></i><span class="hidden-tablet"> Persona Juridica</span></a></li>
+						
 						<li><a class="ajax-link" href="/Conan3000V2/IngSoft/ventas/producto/buscarproducto.jsp"><i class="icon-wrench"></i><span class="hidden-tablet"> Productos</span></a></li>	
 						<li><a class="ajax-link" href="/Conan3000V2/IngSoft/ventas/promociones/buscarpromocion.jsp"><i class="icon-wrench"></i><span class="hidden-tablet"> Promociones</span></a></li>
 						<li><a class="ajax-link" href="/Conan3000V2/IngSoft/administracion/concesionario/buscarconcesionario.jsp"><i class="icon-wrench"></i><span class="hidden-tablet"> Concesionarios</span></a></li>
