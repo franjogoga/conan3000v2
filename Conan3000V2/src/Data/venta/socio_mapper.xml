@@ -6,31 +6,36 @@
 
   <cache />
 
-<!-- <select id="searchPlantillaPromocion" parameterType="IngSoft.venta.bean.CriterioPromocionBeanData" resultType="IngSoft.venta.bean.ResultadoPromocionBeanData">
+ <select id="searchPlantillaSocio" parameterType="IngSoft.venta.bean.CriterioSocioBeanData" resultType="IngSoft.venta.bean.ResultadoSocioBeanData">
 select 
-PROMOCION.IdPromocion as codigo
-,PROMOCION.FechaInicio as limInicio
-,PROMOCION.FechaFin as limFin
-,PROMOCION.Nombre as nombre
-,PROMOCION.Estado as estado
-from PROMOCION 
+SOCIO.IdSocio as codigo
+,SOCIO.Direccion as direccion
+,PERSONA.Nombres as nombres
+,PERSONA.ApePaterno as apellidoPaterno
+,PERSONA.ApeMaterno as apellidoMaterno
+,PERSONA.TipoDocumento as tipoDocumento
+,PERSONA.NumeroDocumento as numeroDocumento
+from SOCIO,PERSONA
 <where>
-	<if test="nombre != null ">
-        PROMOCION.nombre  like  #{nombre}
+	<if test="nombres != null ">
+        SOCIO.IdSocio=PERSONA.IdPersona and (PERSONA.nombres  like  #{nombres})
     </if>
-    <if test="limInicio != null">
-        AND PROMOCION.FechaInicio &gt;= #{limInicio}
+    <if test="apellidoPaterno != null ">
+        AND (PERSONA.ApePaterno  like  #{apellidoPaterno})
     </if>
-    <if test="limFin != null">
-        AND PROMOCION.FechaFin &lt;= #{limFin}
+    <if test="apellidoMaterno != null ">
+        AND (PERSONA.ApePaterno  like  #{apellidoPaterno})
     </if>
-    <if test="estado != null">
-        AND PROMOCION.Estado like #{estado}
+    <if test="direccion != null">
+        AND SOCIO.Direccion like #{direccion}
+    </if>
+     <if test="tipoDocumento != null">
+        AND PERSONA.TipoDocumento like #{tipoDocumento}
     </if>
       
 </where>
 </select>
- -->
+
   
 <!-- Agregar plantilla socio -->
 <insert id="insertSocio" parameterType="IngSoft.venta.bean.SocioBeanData" flushCache="true">
@@ -38,11 +43,11 @@ from PROMOCION
 	values (#{codigo},'PER000010',#{direccion},#{correoElectronico},#{telefonoFijo},'SOL000001',#{idDistrito},#{telefonoCelular})
 </insert>
 
-<!-- <insert id="insertSocio" parameterType="IngSoft.venta.bean.SocioBeanData" flushCache="true">
-	insert into SOCIO(IdSocio,IdPerfil,Direccion,Correo,TelefonoFijo,IdSolicitudIngreso)
-	values (#{codigo},#{nombre},#{fechaInicio},#{fechaFin},#{descripcion},'Activo')
+<insert id="insertPersona" parameterType="IngSoft.venta.bean.PersonaMiniBeanData" flushCache="true">
+	insert into PERSONA(IdPersona,Nombres,ApePaterno,ApeMaterno,NumeroDocumento,TipoDocumento,FechaNac)
+	values (#{codigo},#{nombres},#{apellidoPaterno},#{apellidoMaterno},#{numeroDocumento},#{tipoDocumento},#{fechaNacimiento})
 </insert>
- --> 
+
 
 <select id="getNextCodigo3" resultType="java.lang.String">
 	select max(IdSocio) from SOCIO
