@@ -41,6 +41,7 @@
 		form.submit();
 	}
 	
+	
 	</script>	
 <%!SimpleDateFormat dfActual= new SimpleDateFormat("/YYYY");
 String fecAnoIni="01/01"+dfActual.format(new java.util.Date());
