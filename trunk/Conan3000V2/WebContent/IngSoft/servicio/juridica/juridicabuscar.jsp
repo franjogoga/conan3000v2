@@ -1,4 +1,10 @@
 <!DOCTYPE html>
+
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Calendar"%>
+<%@page import="IngSoft.servicio.bean.personaJuridicaBeanData"%>
+<%@page import="java.util.Vector"%>
+
 <html lang="en">
 <head>
 	<!--
@@ -12,7 +18,11 @@
 		http://twitter.com/halalit_usman
 	-->
 	<meta charset="utf-8">
-	<title>Template</title>
+	<title>Buscar Persona Juridica</title>
+	
+	<!--The beans  -->
+	<jsp:useBean id="resultados" scope="request"class="java.util.Vector"></jsp:useBean>
+	
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
 	<meta name="author" content="Muhammad Usman">
@@ -52,6 +62,37 @@
 	<!-- The fav icon -->
 	<link rel="shortcut icon" href="img/conan_logo.png">
 		
+		
+		
+			<script>
+	
+	function alt_agregar(){
+		var form=document.getElementById("frmAlternativo");
+		form.accion.value="Agregar";
+		form.submit();
+	}
+	function alt_consultar(cod){
+		var form=document.getElementById("frmAlternativo");
+		form.accion.value="Consultar";
+		form.codigo.value=cod;
+		form.submit();
+	}
+	function alt_modificar(cod){
+		var form=document.getElementById("frmAlternativo");
+		form.accion.value="Modificar";
+		form.codigo.value=cod;
+		form.submit();
+	}
+	function alt_eliminar(cod){
+		var form=document.getElementById("frmAlternativo");
+		form.accion.value="Eliminar";
+		form.codigo.value=cod;
+		form.submit();
+	}
+	</script>	
+		
+		
+		
 </head>
 
 <body>
@@ -88,20 +129,23 @@
 		          <h2><i class="icon-search"></i> BUSCAR PERSONA JUR&Iacute;DICA</h2>
 		          <div class="box-icon"><a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a> <a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a> </div>
 	            </div>
-		        <div class="box-content">
+		        <form class="form-horizontal" name="frmCriteriosBusqueda" id="frmCriteriosBusqueda"  method="post" action="<%= response.encodeURL("SMSJuridica")%>">
+		 		<input type="hidden" name="accion" value="Buscar"></input>
+		          
+		          
 		          <form class="form-horizontal">
 		            <fieldset>
 		              <div class="control-group">
 						      <label class="control-label" for="typeahead7">C&oacutedigo: </label>
 						      <div class="controls">
-						        <input type="text" class="span6 typeahead" id="typeahead7"  data-provide="typeahead" >
+						        <input type="text" class="span6 typeahead" id="txtCodigo"  data-provide="typeahead" >
 					          </div>
 					        </div>
 							
 					  <div class="control-group">
-		                <label class="control-label" for="typeahead">Raz&ocute;n Social:</label>
+		                <label class="control-label" for="typeahead">Raz&oacute;n Social:</label>
 		                <div class="controls">
-		                  <input type="text" class="span6 typeahead" id="typeahead">
+		                  <input type="text" class="span6 typeahead" id="txtRazonSocial">
                           <p class="help-block">Escriba sobre la casilla la raz&oacute;n social para ser autocompletado</p>
 		                </div>
 						
@@ -152,11 +196,26 @@
 		               
 	                </fieldset>
 	              </form>
+	            
+	            
+	            
+	            
+	            
 	            </div>
 	          </div>
 		      <!--/span-->
 	        </div>
 		    <!--/row-->
+		    
+		    <form id="frmAlternativo" name="frmAlternativo" method="post" action="<%= response.encodeURL("SMSJuridica")%>">
+			<input type="hidden" name="accion" value="Agregar"></input>
+			<input type="hidden" name="codigo" value=""></input>
+			<input type="hidden" name="tipo" value="1"></input>
+			</form>
+			
+		    
+		    
+		    
 		    <div class="row-fluid sortable">
 		      <div class="box span12">
 		        <div class="box-header well" data-original-title>
@@ -168,20 +227,50 @@
 		            <div  align="right"> <a class="btn btn-primary" href="juridicaagregar.jsp"> <i class="icon icon-add icon-white"></i> Agregar </a> </div>
 		            <thead>
 		              <tr>
-		                <th width="13%">Raz&oacute;n Social</th>
+		                <th width="13%">Raz&oacuten Social</th>
 		                <th width="17%">C&oacutedigo</th>
-		                <th width="11%">Estado</th>
+		                <th width="11%">RUC</th>
 		                <th width="27%">Acci&oacuten</th>
 	                  </tr>
 	                </thead>
-		            <tbody>
-		              <tr>
-		                <td>Juan L&oacutepez</td>
-		                <td class="center">USU_00232 </td>
-		                <td class="center"><span class="label label-success">Activo</span></td>
-		                <td class="center"><a class="btn btn-success" href="#"> <i class="icon-zoom-in icon-white"></i> Ver </a> <a class="btn btn-info" href="juridicamodificar.jsp"> <i class="icon-edit icon-white"></i> Modificar </a> <a class="btn btn-danger" href="invitadoeliminar.jsp"> <i class="icon-trash icon-white"></i> Eliminar </a></td>
-	                  </tr>
-		              
+		           
+		            <tbody id="resultadoBusqueda">
+		              <% SimpleDateFormat df= new SimpleDateFormat("dd/MM"); 
+                         for(int i=0; 
+                          i<resultados.size(); i++)
+                         { 
+                         %>
+
+									<tr>
+										<td><%=((personaJuridicaBeanData) resultados.get(i))
+						.getRazonSocial()%></td>
+
+										<td class="center"><%=((personaJuridicaBeanData) resultados.get(i))
+						.getCodigo()%></td>
+
+										<td class="center"><span class="label label-success">
+
+												<%=((personaJuridicaBeanData) resultados.get(i))
+						.getRuc()%>
+										</span></td>
+
+										<td class="center"><a class="btn btn-success" href="javascript:alt_consultar('<%=((personaJuridicaBeanData)resultados.get(i)).getCodigo()%>')">
+												<i class="icon-zoom-in icon-white"></i> Ver
+										</a> 
+										
+										<a class="btn btn-info" href="javascript:alt_modificar('<%=((personaJuridicaBeanData)resultados.get(i)).getCodigo()%>')"> <i
+												class="icon-edit icon-white"></i> Modificar
+										</a> 
+										
+										<a class="btn btn-danger" href="javascript:alt_eliminar('<%=((personaJuridicaBeanData)resultados.get(i)).getCodigo()%>')"> <i
+												class="icon-trash icon-white"></i> Eliminar
+										</a></td>
+									</tr>
+
+
+									<%
+										}
+									%>
 	                </tbody>
 	              </table>
 	            </div>

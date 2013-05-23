@@ -87,7 +87,7 @@
 			        <h2>AGREGAR PERSONA JURÍDICA</h2>
 					</div>
 					<div class="box-content">
-						<form class="form-horizontal">
+						<form class="form-horizontal" action="<%= response.encodeURL("SMSJuridica")%>" name="frmData" method="post">
 						  <fieldset>
 						                               
                             
@@ -96,10 +96,11 @@
                                   
                                   
                                   <label class="control-label" for="typeahead7">Raz&oacute;n Social(*): </label>
+                                  
                                   <div class="controls">
                                       <input type="text" class="span6 typeahead" id="typeahead7"  data-provide="typeahead" >
                                           </div>
-                              </div>
+                              	</div>
 							  
 							  
 							  <div class="control-group">
