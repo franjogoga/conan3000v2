@@ -25,8 +25,11 @@ public class CriterioSocioBeanFuncion {
 		criterioSocioData.setNombres(request.getParameter("txtNombres")+"%");
 		criterioSocioData.setApellidoMaterno(request.getParameter("txtApellidoMaterno")+"%");
 		criterioSocioData.setApellidoPaterno(request.getParameter("txtApellidoPaterno")+"%");
-		
-		criterioSocioData.setTipoDocumento(request.getParameter("cmdTipoDocumento"));
+		if (request.getParameter("cmdTipoDocumento")!=null){
+			String est;
+			est=request.getParameter("cmdTipoDocumento");
+			criterioSocioData.setTipoDocumento(est);}
+	
 		
 		//try {		
 			//criterioSocioData.setNumeroDocumento(Long.parseLong(request.getParameter("txtNumeroDocumento")));
