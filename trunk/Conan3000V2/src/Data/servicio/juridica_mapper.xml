@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Data.servicio.juridica">
+
+  <cache />
+
+<select id="searchJuridica" parameterType="IngSoft.servicio.bean.PersonaJuridicaBeanData" resultType="IngSoft.servicio.bean.PersonaJuridicaBeanData">
+
+SELECT IDPERSONAJURIDICA as codigo, RAZONSOCIAL as razonSocial, RUC as ruc, ESTADO as estado 
+
+FROM PERSONA_JURIDICA
+
+WHERE ESTADO = "ACTIVO" AND RUC = 28883282 AND RAZONSOCIAL LIKE "%Query25" ;
+
+<where>
+<if test = "estado != null">
+
+estado = #{estado}
+     
+</if>
+
+<if test = "ruc > 0">
+
+ruc = #{ruc}
+
+</if>
+
+<if test = " razonSocial != null">
+
+razonSocial = #{razonSocial}
+     
+
+</if>
+
+
+</where>
+
+
+order by 1 asc
+</select>
+
+</mapper>
