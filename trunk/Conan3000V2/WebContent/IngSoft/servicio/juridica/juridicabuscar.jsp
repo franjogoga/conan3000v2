@@ -143,14 +143,14 @@
 			 <div class="control-group">
 		                <label class="control-label" for="typeahead">Raz&oacute;n Social:</label>
 		                <div class="controls">
-		                  <input type="text" class="span6 typeahead" id="txtRazonSocial">
+		                  <input type="text" class="span6 typeahead" id="txtRazonSocial" name="txtRazonSocial">
                           <p class="help-block">Escriba sobre la casilla la raz&oacute;n social para ser autocompletado</p>
 		                </div>
 							
 					   <div class="control-group">
 		                <label class="control-label" for="selectError">RUC</label>
 		                <div class="controls">
-		                  <input type="text" class="span6 typeahead" id="txtRuc">
+		                  <input type="text" class="span6 typeahead" id="txtRuc" name="txtRuc">
 	                    </div>
 	                  </div>
 							
