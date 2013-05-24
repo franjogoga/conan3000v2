@@ -17,6 +17,15 @@
 </select>
 
 
+<select id="getPlantillaMembresia" parameterType="java.lang.String"  resultType="IngSoft.venta.bean.MembresiaBeanData">
+select 
+MEMBRESIA.IdMembresia as codigo
+,MEMBRESIA.FechaInicio as limInicio
+,MEMBRESIA.FechaFin as limFin
+,MEMBRESIA.Estado as estado
+from MEMBRESIA  where IdMembresia=#{codigo}; 
+</select>
+
 
 </mapper>
  
