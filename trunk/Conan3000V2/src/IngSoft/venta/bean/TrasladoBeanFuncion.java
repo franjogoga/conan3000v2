@@ -81,6 +81,18 @@ public class TrasladoBeanFuncion {
 		}
 		return resultado;
 	}
+	
+	public TrasladoBeanData consultarTraslado(String codigo){
+		TrasladoBeanData TrasladoData=null;
+		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+		try{
+			TrasladoData= sqlsesion.selectOne("Data.venta.traslado.getPlantillaMembresia",codigo);
+		}
+		finally{
+			sqlsesion.close();
+		}
+		return TrasladoData;
+	}
 
 	
 	
