@@ -62,7 +62,7 @@
 	
 	function alt_agregarMembresia(){
 		var form=document.getElementById("frmMembresia");
-		form.accion.value="Insertar";
+		form.accion.value="Agregar";
 		form.submit();
 	}
 	
@@ -94,6 +94,12 @@
 	</script>		
 </head>
 
+<!--The beans  -->
+	<jsp:useBean id="membresia" scope="request"class="IngSoft.venta.bean.MembresiaBeanData"></jsp:useBean>
+	
+<!--The beans  -->
+	<jsp:useBean id="socio" scope="request"class="IngSoft.venta.bean.SocioBeanData"></jsp:useBean>
+	
 <style type="text/css" media="screen"> 
 .izquierda { 
    
@@ -152,16 +158,25 @@
 			 				
 			 				  
 			         </form>
+			         
+			         <form  id="frmMembresia" name="frmMembresia" method="POST" action="<%= response.encodeURL(request.getContextPath()+"/IngSoft/ventas/membresia/SMVMembresia")%>">
+			        	    <input type="hidden" name="accion" value="Agregar"></input>
+			  				<input type="hidden" name="codigo" value=""></input>
+			 				<input type="hidden" name="tipo" value="1"></input>
+			 				 
+			         </form>
 			        
 			  
-			        
+			        <form class="form-horizontal"  id="frmAlternativo" name="frmAlternativo" method="POST" action="<%= response.encodeURL(request.getContextPath()+"/IngSoft/ventas/membresia/SMVMembresia")%>">
+			         <input type="hidden" name="accion" value="Trasladar"></input>
+			         <input type="hidden" name="tipo" value="2"></input>
 			         <fieldset>
 			        		        
 			         
 			            <div class="control-group">
 			              <label class="control-label" for="typeahead7">Membres&iacute;a del socio:</label>
 			              <div class="controls">
-			                <input type="text" disabled class="span6 typeahead" id="typeahead7" value="" name="txtIdMembresiaAntiguo"  data-provide="typeahead" > 
+			                <input type="text" disabled class="span6 typeahead" id="typeahead7" value="<%=membresia.getIdMembresia() %>" id="txtIdMembresiaAntiguo" name="txtIdMembresiaAntiguo"  data-provide="typeahead" > 
 			              </div>
 		                </div>
                           <div class="control-group">
@@ -169,7 +184,7 @@
 		                <div class="controls">
 		                
 			                  <!-- agregar nuevo boton -->
-			                   <input type="text"  disabled class="span6 typeahead" id="typeahead7" name="txtIdNuevoSocio" value=""  data-provide="typeahead" > 
+			                   <input type="text"  disabled class="span6 typeahead" id="typeahead7" name="txtIdNuevoSocio" value="<%=socio.getCodigo() %>"  data-provide="typeahead" > 
 			        
 			        
 						 <a  class="btn btn-primary" href="javascript:alt_agregar()"> <i class="icon icon-add icon-white"></i> Agregar</a>  
@@ -224,6 +239,7 @@
 			             
 		                </div>
 		              </fieldset>
+		              
 		            </form>
 		          </div>
 		        </div>
