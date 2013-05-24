@@ -12,7 +12,7 @@ public class SMSSorteo extends CoServlet{
 	@Override
 	protected void initAcciones() {
 		acciones.put("Buscar", new AccionBuscarSorteo());
-		//acciones.put("Consultar", new AccionConsultarSorteo());
+		acciones.put("Generar", new AccionGenerarSorteo());
 		acciones.put("Agregar", new AccionAgregarSorteo());
 		acciones.put("Modificar", new AccionModificarSorteo());
 		acciones.put("Eliminar", new AccionEliminarSorteo());
