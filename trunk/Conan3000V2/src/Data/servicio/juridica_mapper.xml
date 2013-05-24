@@ -23,13 +23,13 @@ estado = #{estado}
 
 <if test = "ruc > 0">
 
-ruc = #{ruc}
+and ruc = #{ruc}
 
 </if>
 
 <if test = " razonSocial != null">
 
-razonSocial like #{razonSocial}
+and razonSocial like #{razonSocial}
      
 
 </if>
