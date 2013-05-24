@@ -30,12 +30,12 @@ public class MembresiaBeanFunction {
 		MembresiaBeanData membresiaData= new MembresiaBeanData();
 		try{		
 	
-		membresiaData.setCodigoSocio(request.getParameter("txtCodigoSocio"));
+		membresiaData.setCodigoSocio(request.getParameter("idSocio"));
 		membresiaData.setFechaInicio(new Date(DF.parse(request.getParameter("fFechaInicio")).getTime()));
 		membresiaData.setFechafin(new Date(DF.parse(request.getParameter("fFechaFin")).getTime()));
 		membresiaData.setCosto(Double.parseDouble(request.getParameter("txtCosto")));
-		membresiaData.setPeriodo(request.getParameter("txtPeriodo"));
-		membresiaData.setEstado(request.getParameter("txtEstado"));
+		membresiaData.setPeriodo(request.getParameter("cmbPeriodo"));
+		membresiaData.setEstado(request.getParameter("rButton"));
 		
 		if (request.getParameter("rButton")!=null){
 		String est;
