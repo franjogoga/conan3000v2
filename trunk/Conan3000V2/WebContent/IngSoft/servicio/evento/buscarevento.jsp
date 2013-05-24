@@ -154,7 +154,7 @@
 						<a href="/Conan3000V2/IngSoft/general/index.jsp">Home</a> <span class="divider">/</span>
 					</li>
 					<li>
-						Mantenimiento de Eventos 
+						Mantenimiento de Plantilla Eventos 
 					</li>
 					
 				</ul>
