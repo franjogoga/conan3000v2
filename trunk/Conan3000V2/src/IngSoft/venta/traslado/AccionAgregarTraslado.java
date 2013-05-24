@@ -16,6 +16,7 @@ public class AccionAgregarTraslado extends CoAccion {
 		// TODO Auto-generated method stub
 				int tipo=Integer.parseInt(request.getParameter("tipo"));
 				if(tipo==2){
+					
 					TrasladoBeanFuncion trasladoFuncion= TrasladoBeanFuncion.getInstance();
 					TrasladoBeanData trasladoData=trasladoFuncion.crearTraslado(request, response);
 					trasladoFuncion.agregarTraslado(trasladoData);
