@@ -11,7 +11,7 @@
 						<li><a class="ajax-link" href="/Conan3000V2/IngSoft/administracion/empleados/buscarempleado.jsp"><i class="icon-wrench"></i><span class="hidden-tablet"> Empleados</span></a></li>
 						<li><a class="ajax-link" href="/Conan3000V2/IngSoft/administracion/usuarios/usuariobuscar.jsp"><i class="icon-wrench"></i><span class="hidden-tablet"> Usuarios</span></a></li>
 						<li><a class="ajax-link" href="/Conan3000V2/IngSoft/administracion/ambiente/buscarambiente.jsp"><i class="icon-wrench"></i><span class="hidden-tablet"> Ambientes</span></a></li>
-						<li><a class="ajax-link" href="/Conan3000V2/IngSoft/servicio/evento/buscarevento.jsp"><i class="icon-wrench"></i><span class="hidden-tablet"> Eventos</span></a></li>
+						<li><a class="ajax-link" href="/Conan3000V2/IngSoft/servicio/evento/SMSEvento?accion=Buscar&tipo=1"><i class="icon-wrench"></i><span class="hidden-tablet"> Eventos</span></a></li>
 						<li><a class="ajax-link" href="/Conan3000V2/IngSoft/administracion/actividad/buscaractividad.jsp"><i class="icon-wrench"></i><span class="hidden-tablet"> Actividades</span></a></li>
 						<!--<li><a class="ajax-link" href="/Conan3000V2/IngSoft/servicio/evento/buscarevento.jsp"><i class="icon-wrench"></i><span class="hidden-tablet"> Servicios</span></a></li>-->						
 						<li><a class="ajax-link" href="/Conan3000V2/IngSoft/ventas/proveedor/buscarproveedor.jsp"><i class="icon-wrench"></i><span class="hidden-tablet"> Proveedores</span></a></li>

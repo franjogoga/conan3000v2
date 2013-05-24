@@ -31,7 +31,7 @@ public class CriterioJuridicaBeanFunction {
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		Vector<ResultadoJuridicaBeanData> resultadosV=null;
 		try{		
-		List<ResultadoJuridicaBeanData> resultados = sqlsesion.selectList("searchPlantilla",juridicaData);
+		List<ResultadoJuridicaBeanData> resultados = sqlsesion.selectList("searchJuridica",juridicaData);
 	
 		resultadosV= new Vector<>(resultados);
 		}

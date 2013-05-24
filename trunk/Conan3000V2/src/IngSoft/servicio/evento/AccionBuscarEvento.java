@@ -20,12 +20,20 @@ public class AccionBuscarEvento extends CoAccion{
 	public void ejecutar(ServletContext sc, HttpServletRequest request,
 			HttpServletResponse response) throws CoException{
 		// TODO Auto-generated method stub
+		HttpSession sesion= request.getSession(true);
+		int tipo=Integer.parseInt(request.getParameter("tipo"));
+		if(tipo==2){
 		CriterioEventoBeanData criterioEventoData =new CriterioEventoBeanFunction().crearCriterio(request,response);
 		Vector<ResultadoEventoBeanData> resultados=new CriterioEventoBeanFunction().buscarPlantillaEvento(criterioEventoData);
-		HttpSession sesion= request.getSession(true);
 		
 		sesion.setAttribute("resultados", resultados);
 		this.direccionar(sc, request, response, "/IngSoft/servicio/evento/resultados.jsp");
+		}
+		if(tipo==1){
+			sesion.removeAttribute("resultados");
+			this.direccionar(sc, request, response, "/IngSoft/servicio/evento/buscarevento.jsp");
+			} 
+		
 		
 	}
 

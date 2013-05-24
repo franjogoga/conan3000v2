@@ -62,6 +62,7 @@
 
 	<!-- The fav icon -->
 	<link rel="shortcut icon" href="img/conan_logo.png">
+	<script src="evento.js"></script>
 	<script>
 		function validar(form){
 			if(form.txtNombreEvento.value.length <=0)return false;
