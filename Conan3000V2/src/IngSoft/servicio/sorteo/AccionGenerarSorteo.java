@@ -26,7 +26,7 @@ public class AccionGenerarSorteo extends CoAccion {
 		SorteoBeanData sorteoData=sorteoFuncion.consultarSorteo(request.getParameter("codigo"));
 		if (sorteoFuncion.haySorteo(sorteoData.getIdSorteo())){
 			Vector<SocioInscritoBeanData> listaInscritos=sorteoFuncion.getInscritos(sorteoData.getIdSorteo());
-			int cant_ganadores = sorteoFuncion.getCantidad();
+			int cant_ganadores = sorteoFuncion.getCantidad(sorteoData.getIdSorteo());
 			
 			Vector<SocioInscritoBeanData> listaGanadores=sorteoFuncion.getGanadores(listaInscritos,cant_ganadores,sorteoData.getIdSorteo());
 			Vector<SocioBeanData> nombreGanadores=sorteoFuncion.getNombGanadores(listaGanadores);
