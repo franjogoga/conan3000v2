@@ -65,7 +65,7 @@
 			              <div class="control-group">
 			                <label class="control-label" for="date01">Fecha de inicio:</label>
 			                <div class="controls">
-			                  <input type="text" disabled class="input-xlarge datepicker" id="fFechInicio" name="fFechInicio" readonly="true" value="<%=formatear(new Date(promocion.getFechaInicio().getTime())) %>" onchange="alt_fecha(this)" disabled>>
+			                  <input type="text" disabled class="input-xlarge datepicker" id="fFechInicio" name="fFechInicio" readonly="true" value="<%=formatear(new Date(promocion.getFechaInicio().getTime())) %>" onchange="alt_fecha(this)" disabled>
 		                    </div>
 		                  </div>
 			              <div class="control-group">
@@ -78,7 +78,7 @@
 			              <div class="control-group">
 			                <label class="control-label" for="textarea2">Descripci&oacute;n:</label>
 			                <div class="controls">
-			                  <textarea name="textarea" rows="3" disabled class="" id="txtDescripcion" style="resize:none">"<%=promocion.getDescripcion()%>"</textarea>
+			                  <textarea name="textarea" rows="3" disabled class="" id="txtDescripcion" style="resize:none"><%=promocion.getDescripcion()%></textarea>
 		                    </div>
 		                  </div>
 			            </div>
