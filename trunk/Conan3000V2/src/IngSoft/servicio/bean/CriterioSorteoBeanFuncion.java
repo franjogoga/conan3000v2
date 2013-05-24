@@ -14,7 +14,7 @@ import org.apache.ibatis.session.SqlSession;
 import IngSoft.general.MyBatisSesion;
 
 public class CriterioSorteoBeanFuncion {
-	SimpleDateFormat DF = new SimpleDateFormat("dd/MM/yyyy");
+	SimpleDateFormat DF = new SimpleDateFormat("dd/MM/yyyy"); //
 	
 	public CriterioSorteoBeanData crearCriterio(HttpServletRequest request, HttpServletResponse response){
 		CriterioSorteoBeanData criterioSorteoData= new CriterioSorteoBeanData();
