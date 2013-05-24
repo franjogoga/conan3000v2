@@ -32,7 +32,7 @@ public class AccionAgregarTraslado extends CoAccion {
 				TrasladoBeanFuncion trasladoFunction= TrasladoBeanFuncion.getInstance();
 							
 										
-				this.direccionar(sc, request, response, "/IngSoft/ventas/promociones/trasladomembresia.jsp");
+				this.direccionar(sc, request, response, "/IngSoft/ventas/membresia/trasladomembresia.jsp");
 				}
 }
 
