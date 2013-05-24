@@ -11,7 +11,7 @@ public class SMVTraslado extends CoServlet{
 	protected void initAcciones() {
 
 		acciones.put("Agregar", new AccionAgregarTraslado());
-	
+		acciones.put("Insertar", new AccionConsultarTraslado());
 	}
 	
 }
