@@ -17,7 +17,7 @@
 		http://twitter.com/halalit_usman
 	-->
 	<meta charset="utf-8">
-	<title>Eliminar Evento</title>
+	<title>Eliminar Plantilla de Evento</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
 	<meta name="author" content="Muhammad Usman">
@@ -119,7 +119,7 @@
 						<a href="#">Mantenimiento de Eventos</a> <span class="divider">/</span>
 					</li>
 					<li>
-						Eliminar de Eventos
+						Eliminar Plantilla de Eventos
 					</li>
 				</ul>
 			</div>

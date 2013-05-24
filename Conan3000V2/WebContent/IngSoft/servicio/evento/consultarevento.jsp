@@ -17,7 +17,7 @@
 		http://twitter.com/halalit_usman
 	-->
 	<meta charset="utf-8">
-	<title>Consultar Evento</title>
+	<title>Consultar Plantilla de Evento</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
 	<meta name="author" content="Muhammad Usman">
@@ -126,7 +126,7 @@
 						<a href="buscarevento.jsp">Mantenimiento de Eventos</a> <span class="divider">/</span>
 					</li>
 					<li>
-						Consultar de Evento
+						Consultar Plantilla de Evento
 					</li>
 				</ul>
 			</div>
