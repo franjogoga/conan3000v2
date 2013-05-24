@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%@page import="IngSoft.venta.bean.ResultadoMembresiaBeanData"%>
 <html lang="en">
 <head>
 	<!--
@@ -116,10 +117,13 @@
 </head>
 
 <!--The beans  -->
-	<jsp:useBean id="membresia" scope="request"class="IngSoft.venta.bean.MembresiaBeanData"></jsp:useBean>
+	<jsp:useBean id="membresia" scope="session"class="IngSoft.venta.bean.MembresiaBeanData"></jsp:useBean>
 	
 <!--The beans  -->
 	<jsp:useBean id="socio" scope="request"class="IngSoft.venta.bean.SocioBeanData"></jsp:useBean>
+	
+	<!--The beans  -->
+<jsp:useBean id="resultados" scope="request"class="java.util.Vector"></jsp:useBean>
 	
 	<!--The beans  -->
 	<jsp:useBean id="membresia2" scope="request"class="IngSoft.venta.bean.MembresiaBeanData"></jsp:useBean>
@@ -206,7 +210,7 @@
 			            <div class="control-group">
 			              <label class="control-label" for="typeahead7">Membres&iacute;a del socio:</label>
 			              <div class="controls">
-			                <input type="text" disabled class="span6 typeahead" id="typeahead7" value="<%=socio.getCodigo2() %>" id="txtIdMembresiaAntiguo" name="txtIdMembresiaAntiguo"  data-provide="typeahead" > 
+			                <input type="text" disabled class="span6 typeahead" id="typeahead7" value="<%=membresia.getIdMembresia() %>" id="txtIdMembresiaAntiguo" name="txtIdMembresiaAntiguo"  data-provide="typeahead" > 
 			              </div>
 		                </div>
                           <div class="control-group">
