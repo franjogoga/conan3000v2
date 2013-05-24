@@ -8,8 +8,8 @@
   
 <!-- Agregar plantilla promocion -->
 <insert id="insertTraslado" parameterType="IngSoft.venta.bean.TrasladoBeanData" flushCache="true">
-	insert into TRASLADO_MEMBRESIA(IdTraslado,IdMembresiaNue,IdMembresiaAnt,Fecha,Monto,Parentesco)
-	values (#{idtraslado},#{idmembresiaNuevo},#{idmembresiaAntiguo},#{fecha},#{parentesco},#{monto})
+	insert into TRASLADO_MEMBRESIA(IdMembresiaNue,IdMembresiaAnt,Fecha,Monto,Parentesco)
+	values (#{idmembresiaNuevo},#{idmembresiaAntiguo},#{fecha},#{monto},#{parentesco})
 </insert>
 
 <select id="getNextCodigoT" resultType="java.lang.String">
