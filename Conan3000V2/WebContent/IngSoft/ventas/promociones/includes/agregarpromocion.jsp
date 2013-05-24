@@ -112,8 +112,7 @@ function validaForm(){
 
 function alt_submit(){
 		var form= document.frmPromocion;
-		if(validar(form)) form.submit();
-		else alert("Uno o mas campos estan vacios");
+		if(validaForm()) form.submit();
 			
 }
 
@@ -142,30 +141,33 @@ function alt_submit(){
 					<input type="hidden" name="tipo" value="2"></input>
 			        
 			          <fieldset>
-			            <div class="control-group">
+			             <div class="control-group" id="dvNombrePromocion">
 			              <label class="control-label" for="typeahead7">Nombre Promoci&oacute;n(*):</label>
 			              <div class="controls">
 			                <input type="text" name="txtNombrePromocion" class="span6 typeahead" id="txtNombrePromocion"  data-provide="typeahead" >
+			                <span class="help-inline" id="errNombrePromocion">Please correct the error</span>
 		                  </div>
 		                </div>
-			            <div class="control-group">
-			              <div class="control-group">
-			                <label class="control-label" for="date01">Fecha de inicio(*):</label>
+			           <div class="control-group" id="dvFechaInicio">
+			              <label class="control-label" for="date01">Fecha de inicio(*):</label>
 			                <div class="controls">
 			                  <input type="text" name="fFechInicio" class="input-xlarge datepicker" id="fFechInicio" value="" readonly="true">
+			                  <span class="help-inline" id="errFechaInicio">Please correct the error</span>
 		                    </div>
 		                  </div>
-			              <div class="control-group">
+			              <div class="control-group" id="dvFechaFin">
 			                <label class="control-label" for="date02">Fecha de fin(*):</label>
 			                <div class="controls">
 			                  <input type="text" name="fFechFin" class="input-xlarge datepicker" id="fFechFin" value="" readonly="true">
+			                  <span class="help-inline" id="errFechaFin">Please correct the error</span>
 		                    </div>
 		                  </div>
 			             		            
-			              <div class="control-group">
+			              <div class="control-group" id="dvDescripcion">
 			                <label class="control-label" for="textarea2">Descripci&oacute;n:</label>
 			                <div class="controls">
 			                  <textarea name="txtDescripcion" class="" id="txtDescripcion" style="resize:none"></textarea>
+			                  <span class="help-inline" id="errDescripcion">Please correct the error</span>
 		                    </div>
 		                  </div>
 			            </div>
