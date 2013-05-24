@@ -41,6 +41,12 @@ public class SocioBeanFuncion {
 		socioData.setTelefonoCelular(Long.parseLong(request.getParameter("txtTelefonoCelular")));
 		socioData.setIdDistrito((request.getParameter("cmdDistrito")));
 		
+		MembresiaBeanFunction membresiaFuncion=MembresiaBeanFunction.getInstance();
+		//MembresiaBeanData membresiaData2=membresiaFuncion.crearMembresia(request, response);
+		
+		
+		socioData.setIdMembresia(membresiaFuncion.consultarMembresiaMax());
+		socioData.setCodigo2(request.getParameter("txtIdMembresiaAntiguo"));
 		//socioData.setLimiteInicio(new Date(DF.parse(request.getParameter("fFecIncio")+"/0000").getTime()));
 		//socioData.setLimiteFin(new Date(DF.parse(request.getParameter("fFecFin")+"/0000").getTime()));
 		
@@ -61,10 +67,11 @@ public class SocioBeanFuncion {
 			int cod= Integer.parseInt(codigo.substring(3))+1;
 			String defecto= "000000";
 			String temp= defecto.substring(0, defecto.length()-String.valueOf(cod).length()).concat(String.valueOf(cod));
+			//String codigoM=;
 			
 			socioData.setCodigo(codigo.substring(0,3).concat(temp));}
 			else socioData.setCodigo("SOC000001");
-			
+
 			sqlsesion.insert("Data.venta.socio.insertSocio",socioData);
 			//sqlsesion.insert("Data.servicio.evento.insertPlantillaEventoSedes",eventoData);
 			//sqlsesion.insert("Data.servicio.evento.insertPlantillaEventoAmbiente",eventoData);
