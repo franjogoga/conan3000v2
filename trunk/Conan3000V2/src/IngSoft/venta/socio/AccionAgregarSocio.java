@@ -28,8 +28,8 @@ public class AccionAgregarSocio extends CoAccion{
 				int tipo=Integer.parseInt(request.getParameter("tipo"));
 				if(tipo==2){
 					
-					TrasladoBeanFuncion trasladoFuncion= TrasladoBeanFuncion.getInstance();
-					TrasladoBeanData trasladoData=trasladoFuncion.crearTraslado(request, response);
+					//TrasladoBeanFuncion trasladoFuncion= TrasladoBeanFuncion.getInstance();
+					//TrasladoBeanData trasladoData=trasladoFuncion.crearTraslado(request, response);
 					
 					SocioBeanFuncion socioFuncion= SocioBeanFuncion.getInstanceS();
 					SocioBeanData socioData=socioFuncion.crearSocio(request, response);
@@ -42,7 +42,7 @@ public class AccionAgregarSocio extends CoAccion{
 					
 					//trasladoFuncion.agregarTraslado(trasladoData);
 					
-					request.setAttribute("membresia", trasladoData);
+					//request.setAttribute("membresia", trasladoData);
 					request.setAttribute("socio", socioData);
 
 					this.direccionar(sc, request, response, "/IngSoft/ventas/membresia/trasladomembresia.jsp");
