@@ -38,7 +38,7 @@ function esCorrecto(valor,minimo, maximo){
 	if(valor.length>maximo){ 
 		return false;
 	}else{
-		if(valor.length<=minimo){
+		if(valor.length<minimo){
 			return false;
 		}else{
 			return true;	
@@ -138,7 +138,7 @@ function verificar_fecha(comparacion,fecha1,fecha2){
 			}else{return true;}
 			
 		} 
-	else{ alert("me sali");
+	else{ 
 		validarxId('FechaFin',"Error al comparar fechas");
 		return false;		
 	}			
