@@ -12,9 +12,9 @@ SELECT IDPERSONAJURIDICA as codigo, RAZONSOCIAL as razonSocial, RUC as ruc, ESTA
 
 FROM PERSONA_JURIDICA
 
-WHERE ESTADO = "ACTIVO" AND RUC = 28883282 AND RAZONSOCIAL LIKE "%Query25" ;
 
 <where>
+
 <if test = "estado != null">
 
 estado = #{estado}
@@ -29,7 +29,7 @@ ruc = #{ruc}
 
 <if test = " razonSocial != null">
 
-razonSocial = #{razonSocial}
+razonSocial like #{razonSocial}
      
 
 </if>
