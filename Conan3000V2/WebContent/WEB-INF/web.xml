@@ -47,6 +47,10 @@
         <servlet-name>SMSJuridica</servlet-name>
 	<servlet-class>IngSoft.servicio.juridica.SMSJuridica</servlet-class>
 </servlet>
+<servlet id="Servlet_0010">
+        <servlet-name>SMAAmbiente</servlet-name>
+	<servlet-class>IngSoft.administracion.ambiente.SMAAmbiente</servlet-class>
+</servlet>
 
 
 
@@ -87,7 +91,10 @@
         <servlet-name>SMSJuridica</servlet-name>
 <url-pattern>/IngSoft/servicio/juridica/SMSJuridica</url-pattern>
 </servlet-mapping>
-
+<servlet-mapping id="ServletMapping_0010">
+        <servlet-name>SMAAmbiente</servlet-name>
+<url-pattern>/IngSoft/administracion/ambiente/SMAAmbiente</url-pattern>
+</servlet-mapping>
 <error-page>
 <error-code>404</error-code>
 <location>/IngSoft/general/404.jsp</location>
