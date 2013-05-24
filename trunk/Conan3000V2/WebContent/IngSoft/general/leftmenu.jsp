@@ -44,5 +44,6 @@
                         <li><a class="ajax-link" href="/Conan3000V2/IngSoft/administracion/cuotasmultas/cuotaagregar.jsp"><i class="icon-wrench"></i><span class="hidden-tablet"> Cuotas</span></a></li>
                         <li><a class="ajax-link" href="/Conan3000V2/IngSoft/administracion/cuotasmultas/multaagregar.jsp"><i class="icon-wrench"></i><span class="hidden-tablet"> Multas</span></a></li>
                         <li><a class="ajax-link" href="/Conan3000V2/IngSoft/administracion/socio/suspensionregistrar.jsp"><i class="icon-wrench"></i><span class="hidden-tablet"> Suspender Socio</span></a></li>
+                        <li><a class="ajax-link" href="/Conan3000V2/IngSoft/servicio/sorteo/buscarsorteo.jsp"><i class="icon-wrench"></i><span class="hidden-tablet"> Sorteos</span></a></li>
 				</div><!--/.well -->
 			</div><!--/span-->
