@@ -33,13 +33,13 @@ public class JuridicaBeanFuncion {
 		PersonaJuridicaBeanData JuridicaData= new PersonaJuridicaBeanData(); 
 		
 		try{
-			JuridicaData.setCodigo(request.getParameter("txtCodigo"));
+			//JuridicaData.setCodigo(request.getParameter("txtCodigo"));
 			JuridicaData.setCorreo(request.getParameter("txtCorreo"));
 			JuridicaData.setDireccion(request.getParameter("txtDireccion"));
-			JuridicaData.setEstado(request.getParameter("txtCodigo"));
-			JuridicaData.setRazonSocial(request.getParameter("txtCodigo"));
+			//JuridicaData.setEstado(request.getParameter("txtEstado"));
+			JuridicaData.setRazonSocial(request.getParameter("txtRazonSocial"));
 			JuridicaData.setRuc(Integer.parseInt(request.getParameter("txtRuc")));
-			JuridicaData.setTelefono(Integer.parseInt(request.getParameter("txtCodigo")));
+			JuridicaData.setTelefono(Integer.parseInt(request.getParameter("txtTelefono")));
 			
 			
 		}catch(Exception e){
@@ -53,7 +53,7 @@ public class JuridicaBeanFuncion {
 			l.lock();
 			SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 			try{
-				String Id= (String)sqlsesion.selectOne("Data.servicio.sorteo.getNextCodigo");
+				String Id= (String)sqlsesion.selectOne("Data.servicio.juridica.getNextCodigo");
 				if(Id!=null){
 				int cod= Integer.parseInt(Id.substring(3))+1;
 				String defecto= "000000";
