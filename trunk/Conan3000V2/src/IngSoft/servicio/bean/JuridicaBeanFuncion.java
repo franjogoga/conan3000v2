@@ -81,5 +81,38 @@ public class JuridicaBeanFuncion {
 		}
 		
 		
+		
+		
+		public Vector<PersonaJuridicaBeanData> BuscarJuridica(PersonaJuridicaBeanData JuridicaData) throws CoException {
+		
+		
+			Vector<PersonaJuridicaBeanData> Res = null;
+			//l.lock();
+			SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+			
+			try{
+				JuridicaData.setRazonSocial(JuridicaData.getRazonSocial()+ "%");
+				//sqlsesion.selectList("Data.servicio.juridica.searchJuridica",JuridicaData);
+				List<PersonaJuridicaBeanData> Temp =  sqlsesion.selectList("Data.servicio.juridica.searchJuridica",JuridicaData);
+				Res = new Vector<>(Temp);
+			}
+			catch(Exception a)		
+			{sqlsesion.rollback();
+			a.printStackTrace();
+				throw CoException.set("Error: Nombre de Juridica", "SMSJuridica?accion=Agregar&tipo=1");
+				
+			}
+			
+			finally{
+				sqlsesion.commit();
+				sqlsesion.close();
+				//l.unlock();					
+			}
+				
+			return Res;
+		}
+		
+		
+		
 
 }
