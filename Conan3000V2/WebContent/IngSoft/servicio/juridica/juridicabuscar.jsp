@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-
 <%@page import="java.text.SimpleDateFormat"%>
+
 <%@page import="java.util.Calendar"%>
-<%@page import="IngSoft.servicio.bean.personaJuridicaBeanData"%>
+<%@page import="IngSoft.servicio.bean.PersonaJuridicaBeanData"%>
 <%@page import="java.util.Vector"%>
 
 <html lang="en">
@@ -18,7 +18,7 @@
 		http://twitter.com/halalit_usman
 	-->
 	<meta charset="utf-8">
-	<title>Buscar Persona Juridica</title>
+	<title>Buscar Persona Jurídica</title>
 	
 	<!--The beans  -->
 	<jsp:useBean id="resultados" scope="request"class="java.util.Vector"></jsp:useBean>
@@ -26,6 +26,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
 	<meta name="author" content="Muhammad Usman">
+	<!--The beans  -->
+	
+
 
 	<!-- The styles -->
 	<link id="bs-css" href="css/bootstrap-cerulean.css" rel="stylesheet">
@@ -37,6 +40,7 @@
 		padding: 9px 0;
 	  }
 	</style>
+	<link href="css/bootstrap-responsive.css" rel="stylesheet">
 	<link href="css/bootstrap-responsive.css" rel="stylesheet">
 	<link href="css/charisma-app.css" rel="stylesheet">
 	<link href="css/jquery-ui-1.8.21.custom.css" rel="stylesheet">
@@ -61,9 +65,8 @@
 
 	<!-- The fav icon -->
 	<link rel="shortcut icon" href="img/conan_logo.png">
-		
-		
-		
+	
+	
 			<script>
 	
 	function alt_agregar(){
@@ -89,21 +92,17 @@
 		form.codigo.value=cod;
 		form.submit();
 	}
-	</script>	
-		
-		
-		
+	</script>			
 </head>
 
 <body>
-		<jsp:include page="/IngSoft/general/superior.jsp" />
+	<jsp:include page="/IngSoft/general/superior.jsp" />
 		<div class="container-fluid">
 		<div class="row-fluid">
 				
 			<!-- left menu starts -->
 			<jsp:include page="/IngSoft/general/leftmenu.jsp" />
 						<!-- left menu ends -->
-			
 			
 			<noscript>
 				<div class="alert alert-block span10">
@@ -114,53 +113,49 @@
 			
 			<div id="content" class="span10">
 			<!-- content starts -->
-			<div id="content" class="span10">
-			<!-- content starts -->
- <div>
-		      <ul class="breadcrumb">
-		        <li> <a href="#">Home</a> <span class="divider">/</span> </li>
-		        <li> <a href="#">Mantenimiento de Persona Jurídica</a> <span class="divider">/</span> </li>
-		        <li> Busqueda de Persona Jur&iacute;dica </li>
-	          </ul>
-	        </div>
-		    <div class="row-fluid sortable">
-		      <div class="box span12">
-		        <div class="box-header well" data-original-title>
-		          <h2><i class="icon-search"></i> BUSCAR PERSONA JUR&Iacute;DICA</h2>
-		          <div class="box-icon"><a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a> <a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a> </div>
-	            </div>
-		        <form class="form-horizontal" name="frmCriteriosBusqueda" id="frmCriteriosBusqueda"  method="post" action="<%= response.encodeURL("SMSJuridica")%>">
-		 		<input type="hidden" name="accion" value="Buscar"></input>
-		          
-		          
-		          <form class="form-horizontal">
-		            <fieldset>
-		              <div class="control-group">
-						      <label class="control-label" for="typeahead7">C&oacutedigo: </label>
-						      <div class="controls">
-						        <input type="text" class="span6 typeahead" id="txtCodigo"  data-provide="typeahead" >
-					          </div>
-					        </div>
+			
+
+			<div>
+				<ul class="breadcrumb">
+					<li>
+						<a href="/Conan3000V2/IngSoft/general/index.jsp">Home</a> <span class="divider">/</span>
+					</li>
+					<li>
+						Mantenimiento de Persona Jurídica
+					</li>
+					
+				</ul>
+			</div>
+			
+			<div class="row-fluid sortable">
+				<div class="box span12">
+					<div class="box-header well" data-original-title>
+						<h2><i class="icon-search"></i> BUSCAR PERSONA JURÍDICA</h2>
+						
+					</div>
+					<div class="box-content">
+						<!-- <form class="form-horizontal" name="frmCriteriosBusqueda" id="frmCriteriosBusqueda"  method="post" onsubmit="xmlhttpPost('/Conan3000V2/IngSoft/servicio/evento/SMSEvento?accion=Buscar', 'frmCriteriosBusqueda', 'resultadoBusqueda','<img >');
+		 return false;"> -->
+		 <form class="form-horizontal" name="frmCriteriosBusqueda" id="frmCriteriosBusqueda"  method="post" action="<%= response.encodeURL("SMSSorteo")%>">
+		 <input type="hidden" name="accion" value="Buscar"></input>
+						  <fieldset>
 							
-					  <div class="control-group">
+			 <div class="control-group">
 		                <label class="control-label" for="typeahead">Raz&oacute;n Social:</label>
 		                <div class="controls">
 		                  <input type="text" class="span6 typeahead" id="txtRazonSocial">
                           <p class="help-block">Escriba sobre la casilla la raz&oacute;n social para ser autocompletado</p>
 		                </div>
-						
-						
-	               
 							
-                    <div class="control-group">
-			              <label class="control-label" for="typeahead7">Fecha Registro: </label>
-			              <div class="controls">
-			                <input type="text" class="input-xlarge datepicker" id="date01" value="02/16/2012">
-		                  </div>
-		                </div>							
-                              
-                              
-                  <div class="control-group">
+					   <div class="control-group">
+		                <label class="control-label" for="selectError">RUC</label>
+		                <div class="controls">
+		                  <input type="text" class="span6 typeahead" id="txtRuc">
+	                    </div>
+	                  </div>
+							
+							
+							<div class="control-group">
 								<label class="control-label">Estado:</label>
 								
 								<div class="controls">
@@ -189,37 +184,30 @@
 								</div>
 								
 							  </div>  
-						  <div class="form-actions">
-		                <button type="submit" class="btn btn-primary">Buscar</button>		                
-	                  </div>
-					  		
-		               
-	                </fieldset>
-	              </form>
-	            
-	            
-	            
-	            
-	            
-	            </div>
-	          </div>
-		      <!--/span-->
-	        </div>
-		    <!--/row-->
-		    
-		    <form id="frmAlternativo" name="frmAlternativo" method="post" action="<%= response.encodeURL("SMSJuridica")%>">
+							
+						
+							
+							<div class="form-actions">
+							  <button type="submit" class="btn btn-primary">Buscar</button>
+							  <button type="reset" class="btn">Cancelar</button>
+							</div>
+						  </fieldset>
+						</form>   
+
+					</div>
+					
+				</div><!--/span-->
+
+			</div><!--/row-->
+			<form id="frmAlternativo" name="frmAlternativo" method="post" action="<%= response.encodeURL("SMSSorteo")%>">
 			<input type="hidden" name="accion" value="Agregar"></input>
 			<input type="hidden" name="codigo" value=""></input>
 			<input type="hidden" name="tipo" value="1"></input>
 			</form>
-			
-		    
-		    
-		    
-		    <div class="row-fluid sortable">
-		      <div class="box span12">
-		        <div class="box-header well" data-original-title>
-		          <h2><i class="icon-th-list"></i> RESULTADOS</h2>
+			<div class="row-fluid sortable">		
+				<div class="box span12">
+					<div class="box-header well" data-original-title>
+						<h2><i class="icon-th-list"></i> RESULTADOS</h2>
 	            </div>
 		        <div class="box-content">
 		          <table class="table table-striped table-bordered bootstrap-datatable datatable">
@@ -235,34 +223,35 @@
 	                </thead>
 		           
 		            <tbody id="resultadoBusqueda">
-		              <% SimpleDateFormat df= new SimpleDateFormat("dd/MM"); 
-                         for(int i=0; 
-                          i<resultados.size(); i++)
-                         { 
-                         %>
+		              <%
+		              	SimpleDateFormat df= new SimpleDateFormat("dd/MM"); 
+		                                       for(int i=0; 
+		                                        i<resultados.size(); i++)
+		                                       {
+		              %>
 
 									<tr>
-										<td><%=((personaJuridicaBeanData) resultados.get(i))
+										<td><%=((PersonaJuridicaBeanData) resultados.get(i))
 						.getRazonSocial()%></td>
 
-										<td class="center"><%=((personaJuridicaBeanData) resultados.get(i))
+										<td class="center"><%=((PersonaJuridicaBeanData) resultados.get(i))
 						.getCodigo()%></td>
 
 										<td class="center"><span class="label label-success">
 
-												<%=((personaJuridicaBeanData) resultados.get(i))
+												<%=((PersonaJuridicaBeanData) resultados.get(i))
 						.getRuc()%>
 										</span></td>
 
-										<td class="center"><a class="btn btn-success" href="javascript:alt_consultar('<%=((personaJuridicaBeanData)resultados.get(i)).getCodigo()%>')">
+										<td class="center"><a class="btn btn-success" href="javascript:alt_consultar('<%=((PersonaJuridicaBeanData)resultados.get(i)).getCodigo()%>')">
 												<i class="icon-zoom-in icon-white"></i> Ver
 										</a> 
 										
-										<a class="btn btn-info" href="javascript:alt_modificar('<%=((personaJuridicaBeanData)resultados.get(i)).getCodigo()%>')"> <i
+										<a class="btn btn-info" href="javascript:alt_modificar('<%=((PersonaJuridicaBeanData)resultados.get(i)).getCodigo()%>')"> <i
 												class="icon-edit icon-white"></i> Modificar
 										</a> 
 										
-										<a class="btn btn-danger" href="javascript:alt_eliminar('<%=((personaJuridicaBeanData)resultados.get(i)).getCodigo()%>')"> <i
+										<a class="btn btn-danger" href="javascript:alt_eliminar('<%=((PersonaJuridicaBeanData)resultados.get(i)).getCodigo()%>')"> <i
 												class="icon-trash icon-white"></i> Eliminar
 										</a></td>
 									</tr>
@@ -286,7 +275,7 @@
 
 		<div class="modal hide fade" id="myModal">
 			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal">Ã—</button>
+				<button type="button" class="close" data-dismiss="modal">Ã?</button>
 				<h3>Settings</h3>
 			</div>
 			<div class="modal-body">
