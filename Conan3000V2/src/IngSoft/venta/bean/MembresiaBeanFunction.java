@@ -128,6 +128,43 @@ public class MembresiaBeanFunction {
 		}
 		return membresiaData;
 	}
+	
+public String consultarMembresiaMax() throws CoException {
+		
+		//boolean resultado=false;		
+		//l.lock();
+	String codigo=null;
+		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+		
+		try{
+			codigo= (String)sqlsesion.selectOne("Data.venta.membresia.getNextCodigo2");
+			if(codigo!=null){
+			int cod= Integer.parseInt(codigo.substring(3))+1;
+			String defecto= "000000";
+			String temp= defecto.substring(0, defecto.length()-String.valueOf(cod).length()).concat(String.valueOf(cod));
+			
+			
+			codigo=(codigo.substring(0,3).concat(temp));}
+			//else membresiaData.setCodigo("MEM000001");
+			//insertMembresia esta en membresia mapper
+			//sqlsesion.insert("insertMembresia",membresiaData);
+			//sqlsesion.insert("insertPlantillaEventoSedes",eventoData);
+			
+			//resultado=true;
+		}
+		catch(Exception a)		
+		{sqlsesion.rollback();
+		a.printStackTrace();
+			//throw CoException.set("Error: Nombre de membresia repetido", "SMVMembresia?accion=Agregar&tipo=1");
+		}
+		
+		finally{
+			//sqlsesion.commit();
+			sqlsesion.close();
+			//l.unlock();					
+		}
+		return codigo;
+	}
 
 
 	public void modificarMembresia(MembresiaBeanData membresia) throws CoException {
