@@ -66,13 +66,11 @@ update MEMBRESIA set Estado='Inactivo' where IdMembresia= #{codigo}
 
 <select id="getPlantillaMembresia" parameterType="java.lang.String"  resultType="IngSoft.venta.bean.MembresiaBeanData">
 select 
-IdMembresia as codigo
-,Nombre as nombre
+IdMembresia as idMembresia
 ,FechaInicio as fechaInicio
 ,FechaFin as fechaFin
-,Descripcion as descripcion
 ,Estado as estado
-from MEMBRESIA  where IdMembresia=#{codigo}; 
+from MEMBRESIA  where IdMembresia=#{idMembresia}; 
 
 
 </select>
