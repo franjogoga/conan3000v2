@@ -9,10 +9,14 @@ import javax.servlet.http.HttpServletResponse;
 import IngSoft.general.CoAccion;
 import IngSoft.general.CoException;
 import IngSoft.venta.bean.DistritoMiniBeanData;
+import IngSoft.venta.bean.MembresiaBeanData;
+import IngSoft.venta.bean.MembresiaBeanFunction;
 import IngSoft.venta.bean.PersonaMiniBeanData;
 import IngSoft.venta.bean.PersonaMiniBeanFuncion;
 import IngSoft.venta.bean.SocioBeanData;
 import IngSoft.venta.bean.SocioBeanFuncion;
+import IngSoft.venta.bean.TrasladoBeanData;
+import IngSoft.venta.bean.TrasladoBeanFuncion;
 
 
 public class AccionAgregarSocio extends CoAccion{
@@ -23,6 +27,10 @@ public class AccionAgregarSocio extends CoAccion{
 		// TODO Auto-generated method stub
 				int tipo=Integer.parseInt(request.getParameter("tipo"));
 				if(tipo==2){
+					
+					TrasladoBeanFuncion trasladoFuncion= TrasladoBeanFuncion.getInstance();
+					TrasladoBeanData trasladoData=trasladoFuncion.crearTraslado(request, response);
+					
 					SocioBeanFuncion socioFuncion= SocioBeanFuncion.getInstanceS();
 					SocioBeanData socioData=socioFuncion.crearSocio(request, response);
 					socioFuncion.agregarSocio(socioData);
@@ -32,14 +40,12 @@ public class AccionAgregarSocio extends CoAccion{
 					personaFuncion.agregarPersona(personaData);
 					
 					
+					//trasladoFuncion.agregarTraslado(trasladoData);
+					
+					request.setAttribute("membresia", trasladoData);
 					request.setAttribute("socio", socioData);
-					//String codigo=socioData.getCodigo();
-					
-					
-					//aca agregar el codigo para que se pase el codigo que se ha generado
-					
-					//this.direccionar(sc, request, response, "/IngSoft/ventas/promociones/trasladomembresia.jsp");
-					this.direccionar(sc, request, response, "/IngSoft/ventas/promociones/minitrasladomembresia.jsp");
+
+					this.direccionar(sc, request, response, "/IngSoft/ventas/membresia/trasladomembresia.jsp");
 					//request.setAttribute("typeahead7",codigo);
 				
 				}
