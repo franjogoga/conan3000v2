@@ -79,7 +79,7 @@
 	}
 	function alt_consultar(cod){
 		var form=document.getElementById("frmAlternativo");
-		form.accion.value="Consultar";
+		form.accion.value="Generar";
 		form.codigo.value=cod;
 		form.submit();
 	}
@@ -260,7 +260,7 @@
                           					<i
                           						class="icon-zoom-in icon-white">
                           					</i>
-Ver
+Generar
                           				</a>
                           				<a class="btn btn-info"
                           					href="javascript:alt_modificar('<%=((ResultadoSorteoBeanData)resultados.get(i)).getCodigo()%>')">
