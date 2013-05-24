@@ -1,9 +1,10 @@
 package IngSoft.servicio.bean;
 
-import java.sql.Date;
+import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 import java.util.Vector;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -107,7 +108,52 @@ public class SorteoBeanFuncion {
 			}
 			return sorteoData;
 		}
+		public Vector<SocioInscritoBeanData> getInscritos(String idSorteo){
+			SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+			List<SocioInscritoBeanData> resultados=sqlsesion.selectList("Data.servicio.sorteo.searchInscritos",idSorteo);
+			sqlsesion.close();
+			return new Vector<>(resultados);
+		}
+		public int getCantidad(){
+			
+			return 10;
+		}
+		private Random generator = new Random();
 		
+		public Vector<SocioInscritoBeanData> getGanadores(Vector<SocioInscritoBeanData> listaInscritos,int n, String idSorteo){			
+			String[] Ramdomsocios = new String[n];
+			int indiceRandom;
+			SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+			for (int i=0; i<n; i++){
+				indiceRandom=generator.nextInt(listaInscritos.size());	
+				sqlsesion.update("Data.servicio.sorteo.updateGanadores", listaInscritos.get(indiceRandom));
+				listaInscritos.remove(indiceRandom);
+			}
+			List<SocioInscritoBeanData> resultados=sqlsesion.selectList("Data.servicio.sorteo.searchInscritos",idSorteo);
+			sqlsesion.close();
+			return new Vector<>(resultados);
+		}
+		
+		public Vector<SocioInscritoBeanData> consultaGanadores(String idSorteo){			
+			
+			SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+			
+			List<SocioInscritoBeanData> resultados=sqlsesion.selectList("Data.servicio.sorteo.searchInscritos",idSorteo);
+			sqlsesion.close();
+			return new Vector<>(resultados);
+		}
+		public Vector<SocioBeanData> getNombGanadores(Vector<SocioInscritoBeanData> listaGanadores){			
+			
+			SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+			Vector<SocioBeanData> resultados=new Vector<SocioBeanData>();
+			SocioBeanData socio=new SocioBeanData();
+			for (int i=0; i <listaGanadores.size();i++){
+				socio=sqlsesion.selectOne("Data.servicio.sorteo.searchSocio",listaGanadores.get(i).getIdSocio());
+				resultados.add(socio);
+			}
+			sqlsesion.close();
+			return new Vector<>(resultados);
+		}
 		public Vector<SedeMiniBeanData> getSedes(){
 			SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 			List<SedeMiniBeanData> resultados=sqlsesion.selectList("Data.servicio.evento.searchSedeMini");
@@ -115,6 +161,16 @@ public class SorteoBeanFuncion {
 			return new Vector<>(resultados);
 		}
 		
+		public boolean haySorteo(String idSorteo){
+			SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+			List<BungalowxSorteData> lista=sqlsesion.selectList("Data.servicio.sorteo.searchListaSorteo",idSorteo);
+			sqlsesion.close();
+			for (int i=0;i<lista.size();i++){
+				if (lista.get(i).getIdSocio()==null) return true;
+			}
+			if (lista.size()==0) return false;
+			return false;
+		}
 		private Vector<ModificacionesSorteoBeanData> generaListaCambios(String ant , String nue ,String cod){
 			Vector<ModificacionesSorteoBeanData> mods=new Vector<ModificacionesSorteoBeanData>();
 			Vector<String> antV= new Vector<String>(Arrays.asList(ant));
