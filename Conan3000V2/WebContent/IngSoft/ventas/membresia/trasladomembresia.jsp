@@ -91,6 +91,27 @@
 		form.codigo.value=cod;
 		form.submit();
 	}
+	
+	function validar(form){
+			if(form.fFecha.value.length <=0)return false;
+			if(form.txtMonto.value.length<=0)return false;
+			//if(form.fFechFin.value.lengtht<=0)return false;
+			//if(form.txtDescripcion.value.length<=0)return false;
+			//if(form.cmbAmbientes.value.length<=0)return false;
+	return true;
+		
+		
+		}
+
+
+
+
+	function alt_submit(){
+		var form= document.frmTraslado;
+		if(validar(form)) form.submit();
+		else alert("Uno o mas campos estan vacios");
+			
+}
 	</script>		
 </head>
 
@@ -99,6 +120,9 @@
 	
 <!--The beans  -->
 	<jsp:useBean id="socio" scope="request"class="IngSoft.venta.bean.SocioBeanData"></jsp:useBean>
+	
+	<!--The beans  -->
+	<jsp:useBean id="membresia2" scope="request"class="IngSoft.venta.bean.MembresiaBeanData"></jsp:useBean>
 	
 <style type="text/css" media="screen"> 
 .izquierda { 
@@ -144,6 +168,7 @@
 			      
 		        </ul>
 		      </div>
+		      <%String codigo =membresia.getIdMembresia(); %>
 			  <div class="row-fluid sortable">
 			    <div class="box span12">
 			      <div class="box-header well" data-original-title>
@@ -170,13 +195,18 @@
 			        <form class="form-horizontal"  id="frmAlternativo" name="frmAlternativo" method="POST" action="<%= response.encodeURL(request.getContextPath()+"/IngSoft/ventas/membresia/SMVMembresia")%>">
 			         <input type="hidden" name="accion" value="Trasladar"></input>
 			         <input type="hidden" name="tipo" value="2"></input>
+			         </form>
+			         
+			         <form class="form-horizontal" name="frmTraslado" id="frmTraslado"method="POST" action="<%= response.encodeURL(request.getContextPath()+"/IngSoft/ventas/membresia/SMVTraslado")%>">
+			          <input type="hidden" name="accion" value="Agregar"></input>
+			          <input type="hidden" name="tipo" value="2"></input>
 			         <fieldset>
 			        		        
 			         
 			            <div class="control-group">
 			              <label class="control-label" for="typeahead7">Membres&iacute;a del socio:</label>
 			              <div class="controls">
-			                <input type="text" disabled class="span6 typeahead" id="typeahead7" value="<%=membresia.getIdMembresia() %>" id="txtIdMembresiaAntiguo" name="txtIdMembresiaAntiguo"  data-provide="typeahead" > 
+			                <input type="text" disabled class="span6 typeahead" id="typeahead7" value="<%=socio.getCodigo2() %>" id="txtIdMembresiaAntiguo" name="txtIdMembresiaAntiguo"  data-provide="typeahead" > 
 			              </div>
 		                </div>
                           <div class="control-group">
@@ -197,10 +227,10 @@
 		                <div class="controls">
 		                
 			                  <!-- agregar nuevo boton -->
-			                   <input type="text"  disabled class="span6 typeahead" id="typeahead7" name="txtIdMembresiaNuevo" value=""  data-provide="typeahead" > 
+			                   <input type="text"  disabled class="span6 typeahead" id="txtIdMembresiaNuevo" name="txtIdMembresiaNuevo" value="<%=socio.getIdMembresia()%>"  data-provide="typeahead" > 
 			        
 			        
-						 <a  class="btn btn-primary" href="javascript:alt_agregarMembresia()" > <i class="icon icon-add icon-white" ></i> Agregar</a>  
+						<!--  <a  class="btn btn-primary" href="javascript:alt_agregarMembresia()" > <i class="icon icon-add icon-white" ></i> Agregar</a>   -->
 						      
 					     </div>
 		                </div>
@@ -208,7 +238,7 @@
                         <div class="control-group">
 							  <label class="control-label" for="date01">Fecha(*):</label>
 							  <div class="controls">
-								<input type="text" class="input-xlarge datepicker" id="date01" name="fFecha" value="02/16/12">
+								<input type="text" class="input-xlarge datepicker" id="date01" name="fFecha" id="fFecha"value="02/16/12">
 							  </div>
 							</div>
                         
@@ -229,18 +259,18 @@
 			              <div class="control-group">
 			                <label class="control-label" for="typeahead8">Monto(*):</label>
 			                <div class="controls">
-			                  <input type="text" class="span6 typeahead" id="typeahead8" name="txtMonto" data-provide="typeahead" data-items="4" >
+			                  <input type="text" class="span6 typeahead" id="txtMonto" name="txtMonto" data-provide="typeahead" data-items="4" >
 		                    </div>
 		                  </div>
 			           
 			            <div class="form-actions">
-			              <button type="submit" class="btn btn-primary">Aceptar</button>
+			              <button type="button" class="btn btn-primary" onclick="javascript:alt_submit()">Aceptar</button>
 			               <a  class="btn" href="../membresia/buscarmembresia.jsp">  Cancelar</a>  
 			             
 		                </div>
 		              </fieldset>
-		              
-		            </form>
+		              </form>
+		            
 		          </div>
 		        </div>
 			    <!--/span-->
