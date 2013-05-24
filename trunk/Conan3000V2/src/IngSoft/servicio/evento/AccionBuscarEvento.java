@@ -6,6 +6,7 @@ import java.util.Vector;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import IngSoft.general.CoAccion;
 import IngSoft.general.CoException;
@@ -21,8 +22,9 @@ public class AccionBuscarEvento extends CoAccion{
 		// TODO Auto-generated method stub
 		CriterioEventoBeanData criterioEventoData =new CriterioEventoBeanFunction().crearCriterio(request,response);
 		Vector<ResultadoEventoBeanData> resultados=new CriterioEventoBeanFunction().buscarPlantillaEvento(criterioEventoData);
+		HttpSession sesion= request.getSession(true);
 		
-		request.setAttribute("resultados", resultados);
+		sesion.setAttribute("resultados", resultados);
 		this.direccionar(sc, request, response, "/IngSoft/servicio/evento/resultados.jsp");
 		
 	}

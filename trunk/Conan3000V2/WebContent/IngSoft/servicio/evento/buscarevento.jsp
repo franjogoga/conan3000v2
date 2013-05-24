@@ -22,7 +22,7 @@
 	<meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
 	<meta name="author" content="Muhammad Usman">
 	<!--The beans  -->
-	<jsp:useBean id="resultados" scope="request"class="java.util.Vector"></jsp:useBean>
+	<jsp:useBean id="resultados" scope="session"class="java.util.Vector"></jsp:useBean>
 
 
 	<!-- The styles -->
@@ -233,7 +233,8 @@
 						
 					</div>           
 					<div class="box-content" id="resultadoBusqueda" onchange="updatetable();">
-                              <table id="mytable" class="table table-striped table-bordered bootstrap-datatable datatable">
+                             
+<table id="mytable" class="table table-striped table-bordered bootstrap-datatable datatable">
                             <!-- agregar nuevo boton -->
                             
                             
@@ -258,7 +259,59 @@
 						  </thead>
                           <element>
                           	<tbody >
-                          	</tbody>
+<% SimpleDateFormat df= new SimpleDateFormat("dd/MM"); 
+                          			for(int i=0;
+                          			i<resultados.size();i++){
+                          		%>
+                          		<tr>
+                          			<td>
+                          				<%=
+                          					((ResultadoEventoBeanData)resultados.get(i)).getTipo()
+                          				%>
+                          			</td>
+                          			<td class="center">
+                          				<%=
+                          					((ResultadoEventoBeanData)resultados.get(i)).getNombre()
+                          				%>
+                          			</td>
+                          			<td class="center">
+                          				<%=
+                          					df.format(((ResultadoEventoBeanData)resultados.get(i)).getLimInicio())
+                          				%>
+                          			</td>
+                          			<td class="center">
+                          				<%=
+                          					df.format(((ResultadoEventoBeanData)resultados.get(i)).getLimFin())                  
+                          				%>
+                          			</td>
+
+                          			<td class="center">
+                          				<a class="btn btn-success"
+                          					href="javascript:alt_consultar('<%=((ResultadoEventoBeanData)resultados.get(i)).getCodigo()%>')">
+                          					<i
+                          						class="icon-zoom-in icon-white">
+                          					</i>
+Ver
+                          				</a>
+                          				<a class="btn btn-info"
+                          					href="javascript:alt_modificar('<%=((ResultadoEventoBeanData)resultados.get(i)).getCodigo()%>')">
+                          					<i
+                          						class="icon-edit icon-white">
+                          					</i>
+ Modificar
+                          				</a>
+                          				<a class="btn btn-danger"
+                          					href="javascript:alt_eliminar('<%=((ResultadoEventoBeanData)resultados.get(i)).getCodigo()%>')">
+                          					<i class="icon-trash icon-white">
+                          					</i>
+		Eliminar
+                          				</a>
+                          			</td>
+                          		</tr>
+
+
+                          		<%}%>
+                          		 	</tbody>
                           </element>
                         </table> 
 					</div>

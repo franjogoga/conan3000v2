@@ -4,7 +4,7 @@
 <%@page import="java.util.Vector"%>
 
 <!--The beans  -->
-<jsp:useBean id="resultados" scope="request"class="java.util.Vector"></jsp:useBean>
+<jsp:useBean id="resultados" scope="session"class="java.util.Vector"></jsp:useBean>
 
 <table id="mytable" class="table table-striped table-bordered bootstrap-datatable datatable">
                             <!-- agregar nuevo boton -->
