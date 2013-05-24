@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Date"%>
 <html lang="en">
 <head>
 	<!--
@@ -12,7 +14,7 @@
 		http://twitter.com/halalit_usman
 	-->
 	<meta charset="utf-8">
-	<title>Template</title>
+	<title>Persona Juridica</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
 	<meta name="author" content="Muhammad Usman">
@@ -52,6 +54,62 @@
 	<!-- The fav icon -->
 	<link rel="shortcut icon" href="img/conan_logo.png">
 		
+		
+			<script>
+	function alfanumerico(e) 
+	{ 
+		var key = window.event.keyCode || event.keyCode;
+		return ((key >= 48 && key <= 57) ||(key >= 97 && key <= 122) ||(key >= 65 && key <=90) ||(key >= 192 && key <=246)||(key <=13) ||(key ==32));
+	} 
+		function validar(form){
+			if(form.txtNombreSorteo.value.length <=0)return false;
+			if(form.fFecInicio.value.length<=0)return false;
+			if(form.fFecFin.value.lengtht<=0)return false;
+			if(form.fFecSorteo.value.lengtht<=0)return false;			
+			if(form.cmbSedes.value.length<=0)return false;
+	return true;
+		
+		
+		}
+	
+	function alt_fecha(obj){
+	obj.value=obj.value.slice(0,5);
+	
+	}
+	
+	function alt_submit(){
+		var form= document.frmUpdate;
+		if(validar(form)) form.submit();
+		else alert("Uno o mas campos estan vacios");
+			
+			}
+		
+		
+		
+			//document.fmrData.submit();
+
+	</script>	
+		
+	<%! public boolean  encontrar(String a, String b){
+		if (a.equals(b)) return true;
+		return false;
+	}
+	public String formatear(java.util.Date date){
+		SimpleDateFormat DF= new SimpleDateFormat("dd/MM");
+		return DF.format(date);
+	}
+	
+	public String generarCadena(String[] t){
+		String a="";
+		for(int i=0;i<t.length;i++)
+			a= a.concat(t[i]+"/");
+			if(a.length()>0) a=a.substring(0, a.length()-1);
+		return a;
+	}
+	%>
+
+
+
 </head>
 
 <body>
