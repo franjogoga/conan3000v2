@@ -25,6 +25,7 @@ from SORTEO
     <if test="fechaFin != null">
         AND SORTEO.FechaFinInscr &lt;= #{fechaFin}
     </if>
+        AND SORTEO.Estado &lt;= "ACTIVADO"    
 </where>
 order by 1 asc
 </select>
@@ -33,6 +34,8 @@ order by 1 asc
 	from 
 	sede
 </select>
+
+
 
 <!-- Agregar plantilla Sorteo -->
 <insert id="insertPlantillaSorteo" parameterType="IngSoft.servicio.bean.SorteoBeanData" flushCache="true">
@@ -88,10 +91,42 @@ update SORTEO
 	FechaInicioIncr=#{fechaInicio},
 	FechaFinInscr=#{fechaFin},
 	FechaSorteo=#{fechaSorteo}
-	where IdSorteo=#{idSorteo} 
+	where IdSorteo=#{idSorteo} and
+	Estado="ACTIVADO"
 </update>
-<delete id="deletePlantillaSorteoSede" parameterType="IngSoft.servicio.bean.ModificacionesEventoBeanData">
-delete from SORTEO where IdSorteo=#{codigo} and IdSede=#{antiguo}
-</delete>
+<update id="update2PLantillaSorteo" parameterType="IngSoft.servicio.bean.ModificacionesEventoBeanData">
+update SORTEO set Estado="DESACTIVADO" where IdSorteo=#{codigo}
+</update>
+
+<update id="updateGanadores" parameterType="IngSoft.servicio.bean.SocioInscritoBeanData">
+update BUNGALOWxSORTEO set IdSocio=#{idSocio} where IdSorteo=#{idSorteo}
+</update>
+
+<select id="searchInscritos" parameterType="String" resultType="IngSoft.servicio.bean.SocioInscritoBeanData">
+	select 	IdSocio as idSocio,
+			IdSorteo as idSorteo,
+			Fecha as fecha
+	from INSCRIPCION_SORTEO
+	where IdSorteo=#{idSorteo};
+</select>
+
+
+<select id="searchSocio" parameterType="String" resultType="IngSoft.servicio.bean.SocioBeanData">
+	select 	IdPersona as idSocio,
+			Nombres as nombres,
+			ApePaterno as apePaterno,
+			ApeMaterno as apeMaterno
+	from PERSONA
+	where IdPersona=#{idSocio};
+</select>
+
+<select id="searchListaSorteo" parameterType="String" resultType="IngSoft.servicio.bean.BungalowxSorteData">
+	select 	IdBungalow as idBungalow,
+			IdSorteo as idSorteo,
+			IdSocio as idSocio,
+			Monto as monto
+	from BUNGALOWxSORTEO
+	where IdSorteo=#{idSorteo};
+</select>
 
 </mapper>
