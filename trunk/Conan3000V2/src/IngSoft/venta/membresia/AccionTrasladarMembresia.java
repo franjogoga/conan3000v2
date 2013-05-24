@@ -5,6 +5,7 @@ package IngSoft.venta.membresia;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import IngSoft.general.CoAccion;
 import IngSoft.general.CoException;
@@ -22,8 +23,10 @@ import IngSoft.venta.bean.MembresiaBeanFunction;
 		
 		MembresiaBeanFunction membresiaFuncion= MembresiaBeanFunction.getInstance();
 		MembresiaBeanData membresiaData=membresiaFuncion.consultarMembresia(request.getParameter("codigo"));
+		HttpSession sesion= request.getSession(true);
 		
-		request.setAttribute("membresia", membresiaData);
+		sesion.setAttribute("membresia", membresiaData);
+		
 		this.direccionar(sc, request, response, "/IngSoft/ventas/membresia/trasladomembresia.jsp");
 		}
 		//this.direccionar(sc, request, response, "/IngSoft/ventas/membresiaes/buscarmembresia.jsp");
