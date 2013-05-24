@@ -1,6 +1,9 @@
 package IngSoft.servicio.bean;
+
+import java.io.Serializable;
+
 //
-public class PersonaJuridicaBeanData {
+public class PersonaJuridicaBeanData implements Serializable{
 	private String codigo;
 	private String razonSocial;
 	private long ruc;
