@@ -20,8 +20,7 @@
 	
 	function alt_submit(){
 		var form= document.frmUpdate;
-		if(validar(form)) form.submit();
-		else alert("Uno o mas campos estan vacios");
+		if(validaForm()) form.submit();
 			
 			}
 		
