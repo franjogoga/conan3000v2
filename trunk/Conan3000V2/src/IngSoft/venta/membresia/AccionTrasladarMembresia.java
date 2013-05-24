@@ -19,13 +19,7 @@ import IngSoft.venta.bean.MembresiaBeanFunction;
 			HttpServletResponse response) throws CoException {
 		// TODO Auto-generated method stub
 		
-		if(Integer.valueOf(request.getParameter("tipo"))==2){
-			
-			MembresiaBeanFunction membresiaFuncion= MembresiaBeanFunction.getInstance();
-			membresiaFuncion.eliminarMembresia(request.getParameter("codigo"));
-			this.direccionar(sc, request, response, "/IngSoft/ventas/membresia/buscarmembresia.jsp");
-		}
-		if(Integer.valueOf(request.getParameter("tipo"))==1){
+		
 		MembresiaBeanFunction membresiaFuncion= MembresiaBeanFunction.getInstance();
 		MembresiaBeanData membresiaData=membresiaFuncion.consultarMembresia(request.getParameter("codigo"));
 		
@@ -33,8 +27,13 @@ import IngSoft.venta.bean.MembresiaBeanFunction;
 		this.direccionar(sc, request, response, "/IngSoft/ventas/membresia/trasladomembresia.jsp");
 		}
 		//this.direccionar(sc, request, response, "/IngSoft/ventas/membresiaes/buscarmembresia.jsp");
-					
 				
-	}
+		/*MembresiaBeanFunction MembresiaFuncion= MembresiaBeanFunction.getInstance();
+		MembresiaBeanData MembresiaData=MembresiaFuncion.consultarMembresia(request.getParameter("codigo"));
 
+		request.setAttribute("membresia", MembresiaData);
+
+		this.direccionar(sc, request, response, "/IngSoft/ventas/membresia/trasladomembresia.jsp");
+		*/		
+	
 }
