@@ -134,7 +134,7 @@
 						
 					</div>
 					<div class="box-content">
-						<!-- <form class="form-horizontal" name="frmCriteriosBusqueda" id="frmCriteriosBusqueda"  method="post" onsubmit="xmlhttpPost('/Conan3000V2/IngSoft/servicio/evento/SMSJuridica?accion=Buscar', 'frmCriteriosBusqueda', 'resultadoBusqueda','<img >');
+						<!-- <form class="form-horizontal" name="frmCriteriosBusqueda" id="frmCriteriosBusqueda"  method="post" onsubmit="xmlhttpPost('/Conan3000V2/IngSoft/servicio/evento/SMSEvento?accion=Buscar', 'frmCriteriosBusqueda', 'resultadoBusqueda','<img >');
 		 return false;"> -->
 		 <form class="form-horizontal" name="frmCriteriosBusqueda" id="frmCriteriosBusqueda"  method="post" action="<%= response.encodeURL("SMSSorteo")%>">
 		 <input type="hidden" name="accion" value="Buscar"></input>
@@ -199,7 +199,7 @@
 				</div><!--/span-->
 
 			</div><!--/row-->
-			<form id="frmAlternativo" name="frmAlternativo" method="post" action="<%= response.encodeURL("SMSSorteo")%>">
+			<form id="frmAlternativo" name="frmAlternativo" method="post" action="<%= response.encodeURL("SMSJuridica")%>">
 			<input type="hidden" name="accion" value="Agregar"></input>
 			<input type="hidden" name="codigo" value=""></input>
 			<input type="hidden" name="tipo" value="1"></input>
