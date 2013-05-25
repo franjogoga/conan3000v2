@@ -55,7 +55,8 @@
 					<div class="alert alert-info">
 						Por favor inicie sesi&oacute;n con su Usuario y Contraseña.
 					</div>
-					<form class="form-horizontal" action="/Conan3000V2/IngSoft/general/index.jsp" method="post">
+					<form class="form-horizontal" action="<%= response.encodeURL("GENLogin")%>" method="post">
+					<input type="hidden" name="accion" value="Login"></input>
 						<fieldset>
 							<div class="input-prepend" title="Username" data-rel="tooltip">
 								<span class="add-on"><i class="icon-user"></i></span><input autofocus class="input-large span10" name="username" id="username" type="text" value="admin" />
