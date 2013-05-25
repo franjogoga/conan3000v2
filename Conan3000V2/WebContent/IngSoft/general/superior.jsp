@@ -39,7 +39,7 @@
 					<ul class="dropdown-menu">
 						<li><a href="#">Mi Cuenta</a></li>
 						<li class="divider"></li>
-						<li><a href="/IngSoft/general/login.jsp">Logout</a></li>
+						<li><a href="/Conan3000V2/IngSoft/general/login.jsp">Logout</a></li>
 					</ul>
 				</div>
 				<!-- user dropdown ends -->
