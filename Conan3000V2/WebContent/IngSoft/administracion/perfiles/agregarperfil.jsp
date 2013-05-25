@@ -42,6 +42,9 @@
 
 	<!-- The fav icon -->
 	<link rel="shortcut icon" href="img/conan_logo.png">
+	
+	<script src="perfiles.js"></script>
+	
 	<script>
 		function validar(form) {
 			if (form.txtNombre.value.length <= 0) return false;
@@ -105,14 +108,14 @@
 									<div class="control-group">
 									  <label class="control-label" for="txtNombre">Perfil (*):</label>							  
 									  <div class="controls">
-										<input type="text" class="span6 typeahead" id="txtNombre" name="txtNombre"></input>								
+										<input type="text" class="span6 typeahead" id="txtNombre" name="txtNombre" onkeypress="return alfanumerico(event);" autofocus></input>								
 									  </div>
 									</div>
 						
 									<div class="control-group">
 									  <label class="control-label" for="txtDescripcion">Descripci&oacute;n (*):</label>							  
 									  <div class="controls">
-										<input type="text" class="span6 typeahead" id="txtDescripcion" name="txtDescripcion"></input>								
+										<input type="text" class="span6 typeahead" id="txtDescripcion" name="txtDescripcion" onkeypress="return alfanumerico(event);" autofocus></input>								
 									  </div>
 									</div>																										
 						
