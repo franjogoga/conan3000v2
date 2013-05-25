@@ -26,6 +26,7 @@
        <mapper resource="Data/venta/membresia_mapper.xml"/>
        <mapper resource="Data/servicio/sorteo_mapper.xml"/>
        <mapper resource="Data/administracion/perfil_mapper.xml"/>
+       <mapper resource="Data/administracion/ambiente_mapper.xml"/>
        
   </mappers>
 </configuration>
