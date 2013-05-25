@@ -6,6 +6,14 @@ function alt_submit(){
 		if(validaForm()) form.submit();
 			
 }
+
+function anhadir(cod, name){
+	var form= document.frmMembresia;
+	form.txtSocio.value=name;
+	form.idSocio.value=cod;
+	$.fn.colorbox.close();
+	
+} 
 </script>
 
 
