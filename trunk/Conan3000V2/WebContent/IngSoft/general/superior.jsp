@@ -39,7 +39,7 @@
 					<ul class="dropdown-menu">
 						<li><a href="#">Mi Cuenta</a></li>
 						<li class="divider"></li>
-						<li><a href="login.html">Logout</a></li>
+						<li><a href="login.jsp">Logout</a></li>
 					</ul>
 				</div>
 				<!-- user dropdown ends -->
