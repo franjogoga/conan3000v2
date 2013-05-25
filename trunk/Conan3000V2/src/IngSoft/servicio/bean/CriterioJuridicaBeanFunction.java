@@ -37,7 +37,8 @@ public class CriterioJuridicaBeanFunction {
 		}
 		finally{
 		sqlsesion.close();}
-		return resultadosV;
+		return resultadosV;     
+		
 		
 	}
 
