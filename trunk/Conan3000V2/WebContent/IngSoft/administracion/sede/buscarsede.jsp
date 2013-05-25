@@ -159,7 +159,7 @@
 								<div class="controls">
 																						   <!-- cmbDepartamento  variable     -->	
 							 		<select id="selectError1" data-rel="chosen" name="cmbDepartamento">
-								  	<option selected value="DEP000014">Lima</option>							
+								  	<option selected value="DEP000014">AMAZONAS</option>							
 								  </select>
 								</div>
 							  </div>
@@ -169,7 +169,7 @@
 								<div class="controls">
 																					 <!-- cmbProvincia  variable     -->	
 							 		<select id="selectError2" data-rel="chosen" name="cmbProvincia">
-								  	<option selected value="PRO000127">Lima</option>								
+								  	<option selected value="PRO000127">CHACHAPOYAS</option>								
 								  </select>
 								</div>
 							  </div>
@@ -179,7 +179,7 @@
 								<div class="controls">
 																					 <!-- cmbDistrito  variable     -->	
 							 		<select id="selectError3" data-rel="chosen" name="cmbDistrito">
-								  	<option selected value="DIS000176">Pueblo Libre</option>							
+								  	<option selected value="DIS000176">CHACHAPOYAS</option>							
 								  </select>
 								</div>
 							  </div>
