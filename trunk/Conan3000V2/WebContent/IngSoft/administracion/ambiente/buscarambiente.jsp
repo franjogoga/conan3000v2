@@ -52,7 +52,17 @@
 	<!-- The fav icon -->
 	<link rel="shortcut icon" href="img/favicon.ico">
 		
+	<script>
+	function alt_agregar(){
+		var form=document.getElementById("frmAlternativo");
+		form.accion.value="Agregar";
+		form.submit();
+	}
+	</script>
+		
 </head>
+
+
 
 <body>
 		<jsp:include page="/IngSoft/general/superior.jsp" />
@@ -76,7 +86,7 @@
 			<div>
 				<ul class="breadcrumb">
                   <li> <a href="../../general/index.jsp">Home</a> <span class="divider">/</span> </li>
-                  <li> <a href="#">Mantenimiento de Ambientes</a> <span class="divider">/</span></li>
+                  <li> <a href="buscarambiente.jsp">Mantenimiento de Ambientes</a> <span class="divider">/</span></li>
                   <li>Buscar Ambiente</li>
 				</ul>
 			</div>
@@ -128,6 +138,11 @@
                   </div>
                   <!--/span-->
                 </div>
+                <form id="frmAlternativo" name="frmAlternativo" method="post" action="<%= response.encodeURL("SMAAmbiente")%>">
+				<input type="hidden" name="accion" value="Agregar"></input>
+				<input type="hidden" name="codigo" value=""></input>
+				<input type="hidden" name="tipo" value="1"></input>
+				</form>	
                 <div class="row-fluid sortable">
                   <div class="row-fluid sortable">
                     <div class="box span12">
@@ -137,7 +152,7 @@
                       <div class="box-content">
                         <table class="table table-striped table-bordered bootstrap-datatable datatable">
                           <!-- agregar nuevo boton -->
-                          <div  align="right"> <a class="btn btn-primary" href="agregarambiente.jsp"> <i class="icon icon-add icon-white"></i> Agregar </a> </div>
+                          <div  align="right"> <a class="btn btn-primary" href="javascript:alt_agregar()"> <i class="icon icon-add icon-white"></i> Agregar </a> </div>
                           <thead>
                             <tr>
                               <th>Nombre</th>
@@ -221,12 +236,8 @@
 				<a href="#" class="btn btn-primary">Save changes</a>
 			</div>
 		</div>
-
-		<footer>
-		  <p class="pull-left"><a href="http://usman.it/free-responsive-admin-template">Conan 3000</a> &copy;  2013</p>
-          <p class="pull-right">Powered by: <a href="http://usman.it/free-responsive-admin-template">Las dos v&iacutergenes</a></p>
-		</footer>
-		
+		<jsp:include page="/IngSoft/general/inferior.jsp" />
+				
 	</div><!--/.fluid-container-->
 
 	<!-- external javascript
