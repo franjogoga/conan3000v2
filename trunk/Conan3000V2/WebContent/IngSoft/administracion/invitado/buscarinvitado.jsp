@@ -1,4 +1,10 @@
 <!DOCTYPE html>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Calendar"%>
+<%@page import="IngSoft.administracion.bean.ResultadoPerfilBeanData"%>
+<%@page import="java.util.Vector"%>
+<%@page import="java.lang.System"%>
+
 <html lang="en">
 <head>
 	<!--
@@ -12,10 +18,14 @@
 		http://twitter.com/halalit_usman
 	-->
 	<meta charset="utf-8">
-	<title>Conan3000</title>
+	<title>Buscar Invitado</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
 	<meta name="author" content="Muhammad Usman">
+	
+	<!--The beans  -->
+	<jsp:useBean id="resultados" scope="session"class="java.util.Vector"></jsp:useBean>
+	
 
 	<!-- The styles -->
 	<link id="bs-css" href="css/bootstrap-cerulean.css" rel="stylesheet">
@@ -51,31 +61,35 @@
 	<![endif]-->
 
 	<!-- The fav icon -->
-	<link rel="shortcut icon" href="img/favicon.ico">
+
+	<link rel="shortcut icon" href="img/conan_logo.png">
+	<script src="invitado.js"></script>	
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		<script> 
+	<script> 
 	
-	function alt_eliminar(cod){
-		var form=document.getElementById("frmInvitado");
-		form.accion.value="Consultar";
-		form.codigo.value=cod;
-		form.submit();
+	function alt_agregar_invitado(){
+		var formInvitado=document.getElementById("frmInvitado");
+		formInvitado.accion.value="Agregar";
+		formInvitado.submit();
 	}
-	
+	function alt_consultar_invitado(cod){
+		var formInvitado=document.getElementById("frmInvitado");
+		formInvitado.accion.value="Consultar";
+		formInvitado.codigo.value=cod;
+		formInvitado.submit();
+	}
+	function alt_modificar_invitado(cod){
+		var formInvitado=document.getElementById("frmInvitado");
+		formInvitado.accion.value="Modificar";
+		formInvitado.codigo.value=cod;
+		formInvitado.submit();
+	}
+	function alt_eliminar_invitado(cod){
+		var formInvitado=document.getElementById("frmInvitado");
+		formInvitado.accion.value="Eliminar";
+		formInvitado.codigo.value=cod;
+		formInvitado.submit();
+	}
 	
 	
 	
@@ -105,9 +119,8 @@
 		    <!-- content starts -->
 		    <div>
 		      <ul class="breadcrumb">
-		        <li> <a href="#">Home</a> <span class="divider">/</span> </li>
-		        <li> <a href="#">Mantenimiento de Invitados</a> <span class="divider">/</span> </li>
-		        <li> Busqueda de Invitado </li>
+		        <li> <a href="/Conan3000V2/IngSoft/general/index.jsp">Home</a> <span class="divider">/</span> </li>
+		        <li> Mantenimiento de Invitado </li>
 	          </ul>
 	        </div>
 		    <div class="row-fluid sortable">
