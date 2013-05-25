@@ -36,7 +36,12 @@ order by 1 asc
 </select>
 
 
-
+<select id="cantidadGanadores" parameterType="String" resultType="String">
+	select count(*) 
+	from 
+	BUNGALOWxSORTEO
+	where IdSorteo=#{idSorteo};
+</select>
 <!-- Agregar plantilla Sorteo -->
 <insert id="insertPlantillaSorteo" parameterType="IngSoft.servicio.bean.SorteoBeanData" flushCache="true">
 	insert into SORTEO(idSede,idSorteo,FechaInicioIncr,Descripcion,FechaFinInscr,FechaSorteo, Estado)
