@@ -61,7 +61,7 @@ public class TrasladoBeanFuncion {
 			
 			trasladoData.setIdtraslado((codigo.substring(0,3).concat(temp)));
 			}
-			else trasladoData.setIdtraslado("TRA000001");
+			else trasladoData.setIdMembresiaNuevo("MEM000020");
 			//insertPromocion esta en traslado mapper
 			sqlsesion.insert("insertTraslado",trasladoData);
 			//sqlsesion.insert("insertPlantillaEventoSedes",eventoData);
