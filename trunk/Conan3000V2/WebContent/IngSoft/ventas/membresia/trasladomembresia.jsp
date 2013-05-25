@@ -74,6 +74,7 @@
 		form.submit();
 	}
 	
+	
 	function alt_consultar(cod){
 		var form=document.getElementById("frmSocio");
 		form.accion.value="Consultar";
