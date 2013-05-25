@@ -1,22 +1,18 @@
 <!DOCTYPE html>
+<%@page import="IngSoft.administracion.bean.TipoAmbienteMiniBeanData"%>
+<%@page import="IngSoft.administracion.bean.SedeMiniBeanData"%>
 <html lang="en">
 <head>
-	<!--
-		Charisma v1.0.0
 
-		Copyright 2012 Muhammad Usman
-		Licensed under the Apache License v2.0
-		http://www.apache.org/licenses/LICENSE-2.0
-
-		http://usman.it
-		http://twitter.com/halalit_usman
-	-->
 	<meta charset="utf-8">
 	<title>Conan3000</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
 	<meta name="author" content="Muhammad Usman">
-
+	<!--The beans  -->
+	<jsp:useBean id="sedes" scope="request" class="java.util.Vector"></jsp:useBean>
+	<jsp:useBean id="tiposAmbiente" scope="request" class="java.util.Vector"></jsp:useBean>
+	
 	<!-- The styles -->
 	<link id="bs-css" href="css/bootstrap-cerulean.css" rel="stylesheet">
 	<style type="text/css">
@@ -51,7 +47,28 @@
 
 	<!-- The fav icon -->
 	<link rel="shortcut icon" href="img/favicon.ico">
-		
+	<script>
+	function validar(form){
+			if(form.txtNombreAmbiente.value.length <=0)return false;
+			if(form.cmbTipo.value.length<=0)return false;
+			if(form.cmbSede.value.lengtht<=0)return false;
+			if(form.txtDescripcion.value.length<=0)return false;
+			if(form.txtCaracteristica.value.length<=0)return false;
+	return true;
+	}
+	
+	function alt_fecha(obj){
+	obj.value=obj.value.slice(0,5);
+	
+	}
+	
+	function alt_submit(){
+		var form= document.frmData;
+		if(validar(form)) form.submit();
+		else alert("Uno o mas campos estan vacios");
+	}
+	
+	</script>		
 </head>
 
 <body>
@@ -63,7 +80,7 @@
 			<jsp:include page="/IngSoft/general/leftmenu.jsp" />
 						<!-- left menu ends -->
 			
-			<noscript>
+		<noscript>
 				<div class="alert alert-block span10">
 					<h4 class="alert-heading">Warning!</h4>
 					<p>You need to have <a href="http://en.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript</a> enabled to use this site.</p>
@@ -75,7 +92,7 @@
               <div>
                 <ul class="breadcrumb">
                   <li> <a href="../../general/index.jsp">Home</a> <span class="divider">/</span> </li>
-                  <li> <a href="#">Mantenimiento de Ambientes</a> <span class="divider">/</span></li>
+                  <li> <a href="buscarambiente.jsp">Mantenimiento de Ambientes</a> <span class="divider">/</span></li>
                   <li>Agregar Ambiente</li>
                 </ul>
               </div>
@@ -85,49 +102,55 @@
                     <h2></i>AGREGAR AMBIENTE</h2>
                   </div>
                   <div class="box-content">
-                    <form class="form-horizontal">
+                    <form class="form-horizontal" action="<%= response.encodeURL("SMAAmbiente")%>" name="frmData" method="post">
+                    <input type="hidden" name="accion" value="Agregar"></input>
+					<input type="hidden" name="tipo" value="2"></input>
                       <fieldset>
                         <div class="control-group">
                           <label class="control-label" for="typeahead">Nombre (*):</label>
                           <div class="controls">
-                            <input type="text" class="span6 typeahead" id="typeahead"  data-provide="typeahead" >
+                            <input type="text" class="span6 typeahead" id="txtNombreAmbiente"  data-provide="typeahead" name="txtNombreAmbiente">
                           </div>
                         </div>
                         <div class="control-group">
-                          <label class="control-label" for="selectError">Tipo (*):</label>
+                          <label class="control-label" for="selectS1">Tipo (*):</label>
                           <div class="controls">
-                            <select name="selectError" id="selectError" data-rel="chosen">
-                              <option>Deportivo</option>
-                              <option>Recreativo</option>
-                            </select>
+								  <select data-rel="chosen" id="cmbTipo" name="cmbTipo">			
+								  	<%for(int i=0;i<tiposAmbiente.size();i++){ %>
+										<option value="<%= ((TipoAmbienteMiniBeanData)tiposAmbiente.get(i)).getCodigo()%>" <%=i==0?"selected":""%>><%= ((TipoAmbienteMiniBeanData)tiposAmbiente.get(i)).getNombre()%></option>
+									<%} %>
+								  </select>
                           </div>
                         </div>
                         <div class="control-group">
                           <label class="control-label" for="selectError">Sede (*):</label>
                           <div class="controls">
-                            <select name="selectError2" id="selectError2" data-rel="chosen">
-                              <option>Chosica</option>
+                            <select id="cmbSede" data-rel="chosen" name="cmbSede" >
+								<%for(int i=0;i<sedes.size();i++){ %>
+										<option value="<%= ((SedeMiniBeanData)sedes.get(i)).getCodigo()%>"><%= ((SedeMiniBeanData)sedes.get(i)).getNombre()%></option>
+								<%} %>
                             </select>
                           </div>
                         </div>
                         <div class="control-group">
                   		  <label class="control-label" for="textarea2">Descripci&oacuten (*):</label>
                           <div class="controls">
-                            <textarea name="textarea" rows="3" id="textarea2" style="resize:none"></textarea>
+                            <textarea name="txtDescripcion" rows="3" id="txtDescripcion" style="resize:none"></textarea>
                           </div>
                         </div>
                         <div class="control-group">
                           <label class="control-label" for="textarea2">Caracter&iacutesticas: </label>
                           <div class="controls">
-                            <textarea name="textarea2" rows="3" id="textarea2" style="resize:none"></textarea>
+                            <textarea name="txtCaracteristica" rows="3" id="txtCaracteristica" style="resize:none"></textarea>
                           </div>
                         </div>
                         <div class="form-actions">
-                          <button type="submit" class="btn btn-primary">Agregar</button>
-                          <button type="reset" class="btn">Cancelar</button>
+                          <button type="button" class="btn btn-primary" onclick="javascript:alt_submit()">Agregar</button>
+                          <button type="button" class="btn" onclick="location.href='buscarambiente.jsp'" >Cancelar</button>
                         </div>
                       </fieldset>
-                    </form>(*) Datos Obligatorios
+                    </form>
+					<span style="font-size:70%">(*)Campos Obligatorios</span>
                   </div>
                 </div>
                 <!--/span-->
@@ -163,11 +186,7 @@
 				<a href="#" class="btn btn-primary">Save changes</a>
 			</div>
 		</div>
-
-		<footer>
-		  <p class="pull-left"><a href="http://usman.it/free-responsive-admin-template">Conan 3000</a> &copy;  2013</p>
-          <p class="pull-right">Powered by: <a href="http://usman.it/free-responsive-admin-template">Las dos v&iacutegenes</a></p>
-		</footer>
+		<jsp:include page="/IngSoft/general/inferior.jsp" />
 		
 	</div><!--/.fluid-container-->
 
@@ -243,8 +262,6 @@
 	<!-- history.js for cross-browser state change on ajax -->
 	<script src="js/jquery.history.js"></script>
 	<!-- application script for Charisma demo -->
-	<script src="js/charisma.js"></script>
-	
-		
+	<script src="js/charisma.js"></script>		
 </body>
 </html>

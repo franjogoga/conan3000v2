@@ -120,13 +120,13 @@
                         <div class="control-group">
                           <label class="control-label" for="date01">Fecha inicial de concesi&oacuten (*):</label>
                           <div class="controls">
-                            <input type="text" class="input-xlarge datepicker" id="date01" value="">
+                            <input type="text" class="input-xlarge datepicker" id="date01" value="" readonly="true">
                           </div>
                         </div>
                         <div class="control-group">
                           <label class="control-label" for="date01">Fecha final de concesi&oacuten (*):</label>
                           <div class="controls">
-                            <input type="text" class="input-xlarge datepicker" id="date02" value="">
+                            <input type="text" class="input-xlarge datepicker" id="date02" value="" readonly="true">
                           </div>
                         </div>
                         <div class="control-group">
@@ -176,11 +176,8 @@
 				<a href="#" class="btn btn-primary">Save changes</a>
 			</div>
 		</div>
-
-		<footer>
-		  <p class="pull-left"><a href="http://usman.it/free-responsive-admin-template">Conan 3000</a> &copy;  2013</p>
-          <p class="pull-right">Powered by: <a href="http://usman.it/free-responsive-admin-template">Las dos v&iacutergenes</a></p>
-		</footer>
+		<jsp:include page="/IngSoft/general/inferior.jsp" />
+	
 		
 	</div><!--/.fluid-container-->
 

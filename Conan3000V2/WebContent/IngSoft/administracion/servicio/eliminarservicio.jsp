@@ -154,11 +154,8 @@
 				<a href="#" class="btn btn-primary">Save changes</a>
 			</div>
 		</div>
-
-		<footer>
-		  <p class="pull-left"><a href="http://usman.it/free-responsive-admin-template">Conan 3000</a> &copy;  2013</p>
-          <p class="pull-right">Powered by: <a href="http://usman.it/free-responsive-admin-template">Las dos v&iacutergenes</a></p>
-		</footer>
+		<jsp:include page="/IngSoft/general/inferior.jsp" />
+		
 		
 	</div><!--/.fluid-container-->
 
