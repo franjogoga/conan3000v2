@@ -13,7 +13,7 @@
 </insert>
 
 <select id="getNextCodigoT" resultType="java.lang.String">
-	select max(IdTraslado) from TRASLADO_MEMBRESIA
+	select max(IdMembresiaNue) from TRASLADO_MEMBRESIA
 </select>
 
 
