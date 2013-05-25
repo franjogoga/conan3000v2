@@ -57,7 +57,7 @@
 	<!-- The fav icon -->
 	<link rel="shortcut icon" href="img/conan_logo.png">
 	<script>
-		function validar(form){
+	function validar(form){
 			if(form.txtNombre.value.length <=0)return false;
 			if(form.cmbDepartamento.value.length<=0)return false;
 			if(form.cmbProvincia.value.lengtht<=0)return false;
@@ -153,7 +153,7 @@
 								<div class="controls">
 																						   <!-- cmbDepartamento  variable     -->	
 							 		<select id="selectError1" data-rel="chosen" name="cmbDepartamento">
-								  	<option selected value="DEP000001">Lima</option>							
+								  	<option selected value="DEP000014">Lima</option>							
 								  </select>
 								</div>
 							  </div>
@@ -163,7 +163,7 @@
 								<div class="controls">
 																					 <!-- cmbProvincia  variable     -->	
 							 		<select id="selectError2" data-rel="chosen" name="cmbProvincia">
-								  	<option selected value="PRO000001">Lima</option>								
+								  	<option selected value="PRO000127">Lima</option>								
 								  </select>
 								</div>
 							  </div>
@@ -173,7 +173,7 @@
 								<div class="controls">
 																					 <!-- cmbDistrito  variable     -->	
 							 		<select id="selectError3" data-rel="chosen" name="cmbDistrito">
-								  	<option selected value="DIS000001">Chosica</option>							
+								  	<option selected value="DIS000176">Pueblo Libre</option>							
 								  </select>
 								</div>
 							  </div>
