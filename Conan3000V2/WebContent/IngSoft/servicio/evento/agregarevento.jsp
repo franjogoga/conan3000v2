@@ -131,6 +131,7 @@
 						      <label class="control-label" for="typeahead7">Nombre de evento(*): </label>
 						      <div class="controls">
 						        <input type="text" class="span6 typeahead" id="txtNombreEvento"  data-provide="typeahead"  id="txtNombreEvento" name="txtNombreEvento" onkeypress="return alfanumerico(event);" autofocus>
+													        
 					          </div>
 					        </div>
 						    

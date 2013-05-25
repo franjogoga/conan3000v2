@@ -38,8 +38,9 @@
 					</a>
 					<ul class="dropdown-menu">
 						<li><a href="#">Mi Cuenta</a></li>
-						<li class="divider"></li>
-						<li><a href="/Conan3000V2/IngSoft/general/login.jsp">Logout</a></li>
+						<li class="divider"></li>						
+						<li><a href="<%=request.getContextPath()%>/IngSoft/general/GENLogin?accion=Logout">Logout</a></li>
+						
 					</ul>
 				</div>
 				<!-- user dropdown ends -->
