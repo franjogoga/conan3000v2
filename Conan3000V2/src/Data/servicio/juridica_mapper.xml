@@ -42,7 +42,7 @@ order by 1 asc
 </select>
 
 
-<insert id="insertPlantillaJuridica" parameterType="IngSoft.servicio.juridica.PersonaJuridicaBeanData" flushCache="true">
+<insert id="insertPlantillaJuridica" parameterType="IngSoft.servicio.bean.PersonaJuridicaBeanData" flushCache="true">
 	insert into PERSONA_JURIDICA(IdPersonaJuridica,RazonSocial,Ruc,Direccion,Telefono,Correo, Estado)
 	values (#{codigo},#{razonSocial},#{ruc},#{direccion},#{telefono},#{correo},'ACTIVADO')
 </insert>

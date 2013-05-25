@@ -21,7 +21,7 @@ public class CriterioJuridicaBeanFunction {
 		PersonaJuridicaBeanData juridicaData= new PersonaJuridicaBeanData();
 		
 		juridicaData.setRazonSocial(request.getParameter("txtRazonSocial").trim()+"%");
-		juridicaData.setRuc(Integer.parseInt(request.getParameter("txtRuc")));
+		juridicaData.setRuc(Integer.parseInt(request.getParameter("txtRuc").equals("")?"0":request.getParameter("txtRuc")));
 		juridicaData.setEstado("Activo");
 		
 		return juridicaData;				
