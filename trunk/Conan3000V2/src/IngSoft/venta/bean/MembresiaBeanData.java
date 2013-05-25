@@ -11,11 +11,25 @@ public class MembresiaBeanData implements Serializable {
 	private SocioBeanData socio;
 	private String codigoSocio;
 	private Date fechaInicio;
+	private String descripcion;
 	private Date fechaFin;
 	private Double costo;
 	private String periodo;
 	private String estado;
 	
+	
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
+	public void setFechaFin(Date fechaFin) {
+		this.fechaFin = fechaFin;
+	}
+
 	public String getIdMembresia() {
 		return idMembresia;
 	}
