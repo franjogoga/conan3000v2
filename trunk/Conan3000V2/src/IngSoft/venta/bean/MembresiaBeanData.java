@@ -8,7 +8,7 @@ public class MembresiaBeanData implements Serializable {
 	
 	private String idMembresia;
 	private String codigo;
-	private SocioBeanData socio;
+	private String socio;
 	private String codigoSocio;
 	private Date fechaInicio;
 	private String descripcion;
@@ -54,11 +54,11 @@ public class MembresiaBeanData implements Serializable {
 		this.codigoSocio=codigoSocio;
 	}
 	
-	public SocioBeanData getSocio() {
+	public String getSocio() {
 		return socio;
 	}
 	
-	public void setSocio(SocioBeanData socio) {
+	public void setSocio(String socio) {
 		this.socio=socio;
 	} 
 	
