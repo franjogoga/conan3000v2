@@ -112,6 +112,7 @@
 		  dataType: "html",
 		  beforeSend: function ( xhr ) {
    		  $("#cmbProvincia").html("");
+   		  $("#cmbDistrito").html("");
 			//chosen - improves select
 			$("#cmbProvincia").trigger("liszt:updated");
   		  },
@@ -239,7 +240,7 @@
 								<label class="control-label" for="selectError">Distrito:</label>
 								<div class="controls">
 																					 <!-- cmbDistrito  variable     -->	
-							 		<select data-rel="chosen" id="cmbDistrito" name="cmbDistrito">
+							 		<select data-rel="chosen" id="cmbDistrito" name="cmbDistrito">							 		
 								  		<%for(int i=0;i<distritos.size();i++){ %>
 										<option value="<%= ((DistritoBeanData)distritos.get(i)).getCodigo()%>" <%=i==0?"selected":""%>><%= ((DistritoBeanData)distritos.get(i)).getNombre()%></option>
 									<%} %>						
