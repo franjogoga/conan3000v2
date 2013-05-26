@@ -5,10 +5,11 @@
 <head>
 
 	<meta charset="utf-8">
-	<title>Conan3000</title>
+	<title>Agregar Ambiente</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
 	<meta name="author" content="Muhammad Usman">
+	
 	<!--The beans  -->
 	<jsp:useBean id="sedes" scope="request" class="java.util.Vector"></jsp:useBean>
 	<jsp:useBean id="tiposAmbiente" scope="request" class="java.util.Vector"></jsp:useBean>
@@ -53,7 +54,6 @@
 			if(form.cmbTipo.value.length<=0)return false;
 			if(form.cmbSede.value.lengtht<=0)return false;
 			if(form.txtDescripcion.value.length<=0)return false;
-			if(form.txtCaracteristica.value.length<=0)return false;
 	return true;
 	}
 	
@@ -128,13 +128,13 @@
                           </div>
                         </div>
                         <div class="control-group">
-                  		  <label class="control-label" for="textarea2">Descripci&oacuten (*):</label>
+                  		  <label class="control-label" for="textarea2">Descripci&oacute;n (*):</label>
                           <div class="controls">
                             <textarea name="txtDescripcion" rows="3" id="txtDescripcion" style="resize:none"></textarea>
                           </div>
                         </div>
                         <div class="control-group">
-                          <label class="control-label" for="textarea2">Caracter&iacutesticas: </label>
+                          <label class="control-label" for="textarea2">Caracter&iacute;sticas: </label>
                           <div class="controls">
                             <textarea name="txtCaracteristica" rows="3" id="txtCaracteristica" style="resize:none"></textarea>
                           </div>

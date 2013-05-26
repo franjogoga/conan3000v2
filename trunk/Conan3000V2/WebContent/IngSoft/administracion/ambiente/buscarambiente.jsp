@@ -6,7 +6,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Conan3000</title>
+	<title>Buscar Ambiente</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
 	<meta name="author" content="Muhammad Usman">
@@ -96,8 +96,7 @@
 			<div>
 				<ul class="breadcrumb">
                   <li> <a href="../../general/index.jsp">Home</a> <span class="divider">/</span> </li>
-                  <li> <a href="buscarambiente.jsp">Mantenimiento de Ambientes</a> <span class="divider">/</span></li>
-                  <li>Buscar Ambiente</li>
+                  <li>Mantenimiento de Ambientes</li>
 				</ul>
 			</div>
 			
@@ -182,8 +181,8 @@
                           	<% for(int i=0; i<resultados.size(); i++) { %>
                             <tr>
                               <td><%=((ResultadoAmbienteBeanData)resultados.get(i)).getNombre()%></td>
-                              <td class="center"><%=((ResultadoAmbienteBeanData)resultados.get(i)).getIdTipoAmbiente()%></td>
-                              <td class="center"><%=((ResultadoAmbienteBeanData)resultados.get(i)).getIdSede()%></td>
+                              <td class="center"><%=((ResultadoAmbienteBeanData)resultados.get(i)).getNombreTipoAmbiente()%></td>
+                              <td class="center"><%=((ResultadoAmbienteBeanData)resultados.get(i)).getNombreSede()%></td>
                               <td class="center"><%=((ResultadoAmbienteBeanData)resultados.get(i)).getEstado()%></td>
                               <td class="center">
                               				<a class="btn btn-success" href="javascript:alt_consultar('<%=((ResultadoAmbienteBeanData)resultados.get(i)).getCodigo()%>')">
