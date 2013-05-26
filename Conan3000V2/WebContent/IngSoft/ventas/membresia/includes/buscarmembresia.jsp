@@ -161,7 +161,7 @@ String fecAnoFin="31/12"+dfActual.format(new java.util.Date()); %>
                          df.format(((ResultadoMembresiaBeanData)resultados.get(i)).getLimFin())
                         %>
 		                </td>
-		                <td class="center">600</td>
+		                <td class="center"><%=((ResultadoMembresiaBeanData)resultados.get(i)).getCosto()%></td>
 		                <td class="center"><span class="label label-success">
 		                <%=
                          ((ResultadoMembresiaBeanData)resultados.get(i)).getEstado()
