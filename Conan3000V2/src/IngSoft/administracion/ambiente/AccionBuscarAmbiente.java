@@ -17,8 +17,8 @@ public class AccionBuscarAmbiente extends CoAccion{
 
 	@Override
 	public void ejecutar(ServletContext sc, HttpServletRequest request,HttpServletResponse response) throws CoException{
-		CriterioAmbienteBeanData criterioAmbienteData =new CriterioAmbienteBeanFunction().crearCriterio(request,response);
-		Vector<ResultadoAmbienteBeanData> resultados=new CriterioAmbienteBeanFunction().buscarAmbiente(criterioAmbienteData);
+		CriterioAmbienteBeanData criterioAmbienteData = new CriterioAmbienteBeanFunction().crearCriterio(request,response);
+		Vector<ResultadoAmbienteBeanData> resultados = new CriterioAmbienteBeanFunction().buscarAmbiente(criterioAmbienteData);
 		
 		request.setAttribute("resultados", resultados);
 		this.direccionar(sc, request, response, "/IngSoft/administracion/ambiente/buscarambiente.jsp"); 	
