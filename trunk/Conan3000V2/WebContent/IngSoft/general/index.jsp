@@ -36,7 +36,7 @@
 	<link href='css/uploadify.css' rel='stylesheet'>
 
 	<!-- The conan 3000 icon -->
-	<link rel="shortcut icon" href="img/conan_logo.ico">
+	<link rel="shortcut icon" href="img/conan_logo.png">
 		
 </head>
 
