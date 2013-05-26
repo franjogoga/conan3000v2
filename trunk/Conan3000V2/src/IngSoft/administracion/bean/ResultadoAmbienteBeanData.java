@@ -5,8 +5,8 @@ import java.io.Serializable;
 public class ResultadoAmbienteBeanData implements Serializable{
 	private String codigo;
 	private String nombre; 
-	private String idSede;
-	private String idTipoAmbiente;
+	private String nombreSede;
+	private String nombreTipoAmbiente;
 	private String estado;
 	
 	public String getCodigo() {
@@ -21,17 +21,17 @@ public class ResultadoAmbienteBeanData implements Serializable{
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public String getIdSede() {
-		return idSede;
+	public String getNombreSede() {
+		return nombreSede;
 	}
-	public void setIdSede(String idSede) {
-		this.idSede = idSede;
+	public void setNombreSede(String nombreSede) {
+		this.nombreSede = nombreSede;
 	}
-	public String getIdTipoAmbiente() {
-		return idTipoAmbiente;
+	public String getNombreTipoAmbiente() {
+		return nombreTipoAmbiente;
 	}
-	public void setIdTipoAmbiente(String idTipoAmbiente) {
-		this.idTipoAmbiente = idTipoAmbiente;
+	public void setNombreTipoAmbiente(String nombreTipoAmbiente) {
+		this.nombreTipoAmbiente = nombreTipoAmbiente;
 	}
 	public String getEstado() {
 		return estado;
