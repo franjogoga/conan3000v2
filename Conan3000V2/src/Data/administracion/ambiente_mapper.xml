@@ -5,7 +5,7 @@
 <mapper namespace="Data.administracion.ambiente">
 	<cache />
 
-	<select id="searchAmbiente" parameterType="IngSoft.ambiente.bean.CriterioAmbienteBeanData" resultType="IngSoft.administracion.bean.ResultadoAmbienteBeanData">
+	<select id="searchAmbiente" parameterType="IngSoft.administracion.bean.CriterioAmbienteBeanData" resultType="IngSoft.administracion.bean.ResultadoAmbienteBeanData">
 		select IdAmbiente as codigo, Nombre as nombre, IdSede as idSede, Descripcion as descripcion,
 			   Caracteristicas as caracteristicas, IdTipoAmbiente as idTipoAmbiente, Estado as estado
 		from AMBIENTE
