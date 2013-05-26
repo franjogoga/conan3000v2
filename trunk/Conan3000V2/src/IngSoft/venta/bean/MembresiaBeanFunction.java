@@ -103,7 +103,7 @@ public class MembresiaBeanFunction {
 		catch(Exception a)		
 		{sqlsesion.rollback();
 		a.printStackTrace();
-			throw CoException.set("Error: No se pudo eliminar la plantilla intente de nuevo", "SMVMembresia?accion=Agregar&tipo=1");
+			throw CoException.set("Error: No se pudo eliminar la membresia, intente de nuevo", "SMVMembresia?accion=Agregar&tipo=1");
 			
 		}
 		
@@ -121,7 +121,7 @@ public class MembresiaBeanFunction {
 		MembresiaBeanData membresiaData=null;
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
-			membresiaData= sqlsesion.selectOne("Data.venta.membresia.getPlantillaMembresia",codigo);
+			membresiaData= sqlsesion.selectOne("Data.venta.membresia.getPlantillaMembresia","MEM000001");
 		}
 		finally{
 			sqlsesion.close();
@@ -177,7 +177,7 @@ public String consultarMembresiaMax() throws CoException {
 		catch(Exception a)		
 		{sqlsesion.rollback();
 		a.printStackTrace();
-			throw CoException.set("Error: No se pudo modificar la plantilla intente de nuevo", "SMVMembresia?accion=Modificar&tipo=1");
+			throw CoException.set("Error: No se pudo modificar la membresia, intente de nuevo", "SMVMembresia?accion=Modificar&tipo=1");
 			
 		}
 		
