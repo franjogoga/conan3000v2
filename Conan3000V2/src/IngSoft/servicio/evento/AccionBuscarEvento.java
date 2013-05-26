@@ -12,7 +12,9 @@ import IngSoft.general.CoAccion;
 import IngSoft.general.CoException;
 import IngSoft.servicio.bean.CriterioEventoBeanData;
 import IngSoft.servicio.bean.CriterioEventoBeanFunction;
+import IngSoft.servicio.bean.EventoBeanFuncion;
 import IngSoft.servicio.bean.ResultadoEventoBeanData;
+import IngSoft.servicio.bean.TipoEventoMiniBeanData;
 
 public class AccionBuscarEvento extends CoAccion{
 
@@ -20,17 +22,22 @@ public class AccionBuscarEvento extends CoAccion{
 	public void ejecutar(ServletContext sc, HttpServletRequest request,
 			HttpServletResponse response) throws CoException{
 		// TODO Auto-generated method stub
-		HttpSession sesion= request.getSession(true);
+		//HttpSession sesion= request.getSession(true);
 		int tipo=Integer.parseInt(request.getParameter("tipo"));
 		if(tipo==2){
 		CriterioEventoBeanData criterioEventoData =new CriterioEventoBeanFunction().crearCriterio(request,response);
 		Vector<ResultadoEventoBeanData> resultados=new CriterioEventoBeanFunction().buscarPlantillaEvento(criterioEventoData);
-		
-		sesion.setAttribute("resultados", resultados);
+		EventoBeanFuncion eventoFuncion= EventoBeanFuncion.getInstance();
+		Vector<TipoEventoMiniBeanData> tipoEventoMiniData=eventoFuncion.getTipoEvento();
+		request.setAttribute("tiposEvento",tipoEventoMiniData);
+		request.setAttribute("resultados", resultados);
 		this.direccionar(sc, request, response, "/IngSoft/servicio/evento/resultados.jsp");
 		}
 		if(tipo==1){
-			sesion.removeAttribute("resultados");
+			//sesion.removeAttribute("resultados");
+			EventoBeanFuncion eventoFuncion= EventoBeanFuncion.getInstance();
+			Vector<TipoEventoMiniBeanData> tipoEventoMiniData=eventoFuncion.getTipoEvento();
+			request.setAttribute("tiposEvento",tipoEventoMiniData);
 			this.direccionar(sc, request, response, "/IngSoft/servicio/evento/buscarevento.jsp");
 			} 
 		
