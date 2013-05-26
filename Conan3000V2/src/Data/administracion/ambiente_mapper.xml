@@ -11,13 +11,13 @@
 		from AMBIENTE
 		<where>
 		<if test="nombre != null">
-       		AMBIENTE.nombre  like  #{nombre}
+       		AMBIENTE.Nombre  like  #{nombre}
     	</if>
     	<if test="idTipoAmbiente != null">
        		AND AMBIENTE.IdTipoAmbiente = #{idTipoAmbiente}
     	</if>
     	<if test="idSede != null">
-        	AND AMBIENTE.IdSede &gt;= #{idSede}
+        	AND AMBIENTE.IdSede = #{idSede}
     	</if>
     		AND AMBIENTE.Estado='Activo'
 		</where>
