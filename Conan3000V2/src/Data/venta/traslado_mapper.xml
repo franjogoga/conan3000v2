@@ -12,10 +12,10 @@
 	values (#{idmembresiaNuevo},#{idmembresiaAntiguo},#{fecha},#{monto},#{parentesco})
 </insert>
 
-<select id="getNextCodigoT" resultType="java.lang.String">
+<!--<select id="getNextCodigoT" resultType="java.lang.String">
 	select max(IdMembresiaNue) from TRASLADO_MEMBRESIA
 </select>
-
+-->
 
 <select id="getPlantillaMembresia" parameterType="java.lang.String"  resultType="IngSoft.venta.bean.MembresiaBeanData">
 select 
