@@ -23,15 +23,15 @@ public class AccionBuscarAmbiente extends CoAccion{
 		int tipo= Integer.parseInt(request.getParameter("tipo"));
 		
 		if(tipo==2){
-		CriterioAmbienteBeanData criterioAmbienteData = new CriterioAmbienteBeanFunction().crearCriterio(request,response);
-		Vector<ResultadoAmbienteBeanData> resultados = new CriterioAmbienteBeanFunction().buscarAmbiente(criterioAmbienteData);
-		AmbienteBeanFunction ambienteFunction= AmbienteBeanFunction.getInstance();
-		Vector<SedeMiniBeanData> sedeMiniData=ambienteFunction.getSedes();
-		Vector<TipoAmbienteMiniBeanData> tipoAmbienteMiniData=ambienteFunction.getTipoAmbiente();
-		request.setAttribute("sedes",sedeMiniData);
-		request.setAttribute("tiposAmbiente",tipoAmbienteMiniData);
-		request.setAttribute("resultados", resultados);
-		this.direccionar(sc, request, response, "/IngSoft/administracion/ambiente/buscarambiente.jsp");
+			CriterioAmbienteBeanData criterioAmbienteData = new CriterioAmbienteBeanFunction().crearCriterio(request,response);
+			Vector<ResultadoAmbienteBeanData> resultados = new CriterioAmbienteBeanFunction().buscarAmbiente(criterioAmbienteData);
+			AmbienteBeanFunction ambienteFunction= AmbienteBeanFunction.getInstance();
+			Vector<SedeMiniBeanData> sedeMiniData=ambienteFunction.getSedes();
+			Vector<TipoAmbienteMiniBeanData> tipoAmbienteMiniData=ambienteFunction.getTipoAmbiente();
+			request.setAttribute("sedes",sedeMiniData);
+			request.setAttribute("tiposAmbiente",tipoAmbienteMiniData);
+			request.setAttribute("resultados", resultados);
+			this.direccionar(sc, request, response, "/IngSoft/administracion/ambiente/buscarambiente.jsp");
 		}
 		if(tipo==1){
 			AmbienteBeanFunction ambienteFunction= AmbienteBeanFunction.getInstance();
