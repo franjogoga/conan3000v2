@@ -8,11 +8,20 @@ public class TrasladoBeanData implements Serializable{
 	private String idmembresianuevo;
 	private String idmembresiantiguo;
 	private Date fecha;
+	private Date fechafin;
 	private String parentesco;
 	private double monto;
 
 
 
+
+	public Date getFechafin() {
+		return fechafin;
+	}
+
+	public void setFechafin(Date fechafin) {
+		this.fechafin = fechafin;
+	}
 
 	public String getCodigo() {
 		return codigo;
