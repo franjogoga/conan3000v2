@@ -30,11 +30,15 @@ public class TrasladoBeanFuncion {
 	public TrasladoBeanData crearTraslado(HttpServletRequest request, HttpServletResponse response){
 		
 		TrasladoBeanData trasladoData= new TrasladoBeanData();
-		trasladoData.setIdMembresiaAntiguo(request.getParameter("txtIdMembresiaAntiguo"));
-		trasladoData.setIdMembresiaNuevo(request.getParameter("txtIdMembresiaNuevo"));
+		trasladoData.setIdmembresiantiguo(request.getParameter("txtIdMembresiaAntiguo"));
+		trasladoData.setIdmembresianuevo(request.getParameter("txtIdMembresiaNuevo"));
 		
+		//trasladoData.setIdmembresiantiguo("MEM000032");
+		//trasladoData.setIdmembresianuevo("MEM000033");
 		try{			
 		
+			
+			trasladoData.setCodigo(request.getParameter("txtIdNuevoSocio"));
 		//trasladoData.setIdMembresiaNuevo("MEM000032");
 		trasladoData.setFecha(new Date(DF.parse(request.getParameter("fFecha")).getTime()));
 		trasladoData.setParentesco(request.getParameter("cmbParentesco"));
@@ -66,6 +70,20 @@ public class TrasladoBeanFuncion {
 			//}
 			//else trasladoData.setIdMembresiaNuevo("MEM000020");
 			//insertPromocion esta en traslado mapper
+			String codigo=trasladoData.getIdmembresiantiguo();
+			String codigoNuevo=trasladoData.getIdmembresianuevo();
+			
+			MembresiaBeanData membresiaData=new MembresiaBeanData();
+			membresiaData.setIdMembresia(codigoNuevo);
+			membresiaData.setEstado("Activo");
+			membresiaData.setCosto(trasladoData.getMonto());
+			membresiaData.setFechaInicio(trasladoData.getFecha());
+			membresiaData.setCodigoSocio(trasladoData.getCodigo());
+			
+			
+			sqlsesion.insert("insertNuevaMembresia",membresiaData);
+			sqlsesion.update("updateCodigo", codigo);
+			
 			sqlsesion.insert("insertTraslado",trasladoData);
 			//sqlsesion.insert("insertPlantillaEventoSedes",eventoData);
 			
@@ -85,17 +103,17 @@ public class TrasladoBeanFuncion {
 		return resultado;
 	}
 	
-	public TrasladoBeanData consultarTraslado(String codigo){
-		TrasladoBeanData TrasladoData=null;
-		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
-		try{
-			TrasladoData= sqlsesion.selectOne("Data.venta.traslado.getPlantillaMembresia",codigo);
-		}
-		finally{
-			sqlsesion.close();
-		}
-		return TrasladoData;
-	}
+	//public TrasladoBeanData consultarTraslado(String codigo){
+		//TrasladoBeanData TrasladoData=null;
+		//SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+		//try{
+			//TrasladoData= sqlsesion.selectOne("Data.venta.traslado.getPlantillaMembresia",codigo);
+		//}
+		//finally{
+			//sqlsesion.close();
+		//}
+		//return TrasladoData;
+	//}
 
 	
 	
