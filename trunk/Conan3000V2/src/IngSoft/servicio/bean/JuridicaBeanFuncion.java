@@ -33,7 +33,7 @@ public class JuridicaBeanFuncion {
 		PersonaJuridicaBeanData JuridicaData= new PersonaJuridicaBeanData(); 
 		
 		try{
-			//JuridicaData.setCodigo(request.getParameter("txtCodigo"));
+			//JuridicaData.setCodigo(request.getParameter("txt"));
 			JuridicaData.setCorreo(request.getParameter("txtCorreo"));
 			JuridicaData.setDireccion(request.getParameter("txtDireccion"));
 			//JuridicaData.setEstado(request.getParameter("txtEstado"));
