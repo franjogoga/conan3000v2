@@ -18,7 +18,7 @@ public class CriterioSorteoBeanFuncion {
 	
 	public CriterioSorteoBeanData crearCriterio(HttpServletRequest request, HttpServletResponse response){
 		CriterioSorteoBeanData criterioSorteoData= new CriterioSorteoBeanData();
-		criterioSorteoData.setNombre(request.getParameter("txtNombre")+"%");
+		criterioSorteoData.setNombre(request.getParameter("txtNombre")==null?null:"%"+request.getParameter("txtNombre")+"%");
 		try {
 			criterioSorteoData.setFechaIni(new Date(DF.parse(request.getParameter("date01")).getTime()));
 			criterioSorteoData.setFechaFin(new Date(DF.parse(request.getParameter("date02")).getTime()));
