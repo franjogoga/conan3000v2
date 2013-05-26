@@ -149,11 +149,12 @@ public class SorteoBeanFuncion {
 			Vector<SocioBeanData> resultados=new Vector<SocioBeanData>();
 			SocioBeanData socio=new SocioBeanData();
 			for (int i=0; i <listaGanadores.size();i++){
-				/*socio=sqlsesion.selectOne("Data.servicio.sorteo.searchSocio",listaGanadores.get(i).getIdSocio());*/
-				socio=sqlsesion.selectOne("Data.servicio.sorteo.searchSocio","SOC000001");
+				socio=sqlsesion.selectOne("Data.servicio.sorteo.searchSocio",listaGanadores.get(i).getIdSocio());
+				/*socio=sqlsesion.selectOne("Data.servicio.sorteo.searchSocio","SOC000001");*/
 				resultados.add(socio);
 			}
 			sqlsesion.close();
+			resultados.trimToSize();
 			return new Vector<>(resultados);
 		}
 		public Vector<SedeMiniBeanData> getSedes(){
