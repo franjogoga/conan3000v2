@@ -464,6 +464,7 @@ inicializa();
 			         <form class="form-horizontal" name="frmTraslado" id="frmTraslado"method="POST" action="<%= response.encodeURL(request.getContextPath()+"/IngSoft/ventas/membresia/SMVTraslado")%>">
 			          <input type="hidden" name="accion" value="Agregar"></input>
 			          <input type="hidden" name="tipo" value="2"></input>
+			             <input type="hidden" name="fFechaFin" value="26/05/2014"></input>
 			         <fieldset>
 			        		        
 			         
