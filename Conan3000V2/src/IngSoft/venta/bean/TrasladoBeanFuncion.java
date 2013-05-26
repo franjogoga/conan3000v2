@@ -37,7 +37,7 @@ public class TrasladoBeanFuncion {
 		//trasladoData.setIdmembresianuevo("MEM000033");
 		try{			
 		
-			
+			trasladoData.setFechafin(new Date(DF.parse(request.getParameter("fFechaFin")).getTime()));
 			trasladoData.setCodigo(request.getParameter("txtIdNuevoSocio"));
 		//trasladoData.setIdMembresiaNuevo("MEM000032");
 		trasladoData.setFecha(new Date(DF.parse(request.getParameter("fFecha")).getTime()));
@@ -79,7 +79,7 @@ public class TrasladoBeanFuncion {
 			membresiaData.setCosto(trasladoData.getMonto());
 			membresiaData.setFechaInicio(trasladoData.getFecha());
 			membresiaData.setCodigoSocio(trasladoData.getCodigo());
-			
+			membresiaData.setFechafin(trasladoData.getFechafin());
 			
 			sqlsesion.insert("insertNuevaMembresia",membresiaData);
 			sqlsesion.update("updateCodigo", codigo);
