@@ -126,8 +126,9 @@
                           <label class="control-label" for="selectError">Tipo:</label>
                           <div class="controls">
                             <select name="cmbTipo" id="cmbTipo" data-rel="chosen">
+                            <option selected value="0">Todos</option>
 								<%for(int i=0;i<tiposAmbiente.size();i++){ %>
-										<option value="<%= ((TipoAmbienteMiniBeanData)tiposAmbiente.get(i)).getCodigo()%>" <%=i==0?"selected":""%>><%= ((TipoAmbienteMiniBeanData)tiposAmbiente.get(i)).getNombre()%></option>
+										<option value="<%= ((TipoAmbienteMiniBeanData)tiposAmbiente.get(i)).getCodigo()%>" ><%= ((TipoAmbienteMiniBeanData)tiposAmbiente.get(i)).getNombre()%></option>
 									<%} %>
                             </select>
                           </div>
@@ -136,6 +137,7 @@
                           <label class="control-label" for="selectError">Sede:</label>
                           <div class="controls">
                             <select name="cmbSede" id="cmbSede" data-rel="chosen">
+                            <option selected value="0">Todos</option>
                               <%for(int i=0;i<sedes.size();i++){ %>
 										<option value="<%= ((SedeMiniBeanData)sedes.get(i)).getCodigo()%>"><%= ((SedeMiniBeanData)sedes.get(i)).getNombre()%></option>
 								<%} %>
