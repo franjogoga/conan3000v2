@@ -8,8 +8,15 @@
   
 <!-- Agregar plantilla promocion -->
 <insert id="insertTraslado" parameterType="IngSoft.venta.bean.TrasladoBeanData" flushCache="true">
-	insert into TRASLADO_MEMBRESIA(IdMembresiaNue,IdMembresiaAnt,Fecha,Monto,Parentesco)
-	values (#{idmembresiaNuevo},#{idmembresiaAntiguo},#{fecha},#{monto},#{parentesco})
+	insert into TRASLADO_MEMBRESIA(IdMembresiaAnt,IdMembresiaNue,Fecha,Monto,Parentesco)
+	values (#{idmembresiantiguo},#{idmembresianuevo},#{fecha},#{monto},#{parentesco})
+</insert>
+
+
+
+<insert id="insertNuevaMembresia" parameterType="IngSoft.venta.bean.MembresiaBeanData" flushCache="true">
+	insert into MEMBRESIA(IdMembresia,IdSocio,Costo,FechaInicio,Estado,Vitalicio)
+	values (#{idMembresia},#{codigoSocio},#{costo},#{fechaInicio},'Activo','No')
 </insert>
 
 <!--<select id="getNextCodigoT" resultType="java.lang.String">
@@ -26,6 +33,11 @@ MEMBRESIA.IdMembresia as codigo
 from MEMBRESIA  where IdMembresia=#{codigo}; 
 </select>
 
+
+<update id="updateCodigo" parameterType="IngSoft.venta.bean.MembresiaBeanData">
+update MEMBRESIA set Estado='Inactivo'
+ where IdMembresia= #{codigo}
+</update>
 
 </mapper>
  
