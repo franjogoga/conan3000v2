@@ -11,10 +11,10 @@
 	<meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
 	<meta name="author" content="Muhammad Usman">
 
-	
+	<!--The beans  -->
 	<jsp:useBean id="sedes" scope="request" class="java.util.Vector"></jsp:useBean>
 	<jsp:useBean id="tiposAmbiente" scope="request" class="java.util.Vector"></jsp:useBean>
-	<jsp:useBean id="resultados" scope="session"class="java.util.Vector"></jsp:useBean>
+	<jsp:useBean id="resultados" scope="request"class="java.util.Vector"></jsp:useBean>
 
 	<!-- The styles -->
 	<link id="bs-css" href="css/bootstrap-cerulean.css" rel="stylesheet">
@@ -42,11 +42,6 @@
 	<link href='css/jquery.iphone.toggle.css' rel='stylesheet'>
 	<link href='css/opa-icons.css' rel='stylesheet'>
 	<link href='css/uploadify.css' rel='stylesheet'>
-
-	<!-- The HTML5 shim, for IE6-8 support of HTML5 elements -->
-	<!--[if lt IE 9]>
-	  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
 
 	<!-- The fav icon -->
 	<link rel="shortcut icon" href="img/favicon.ico">
@@ -124,7 +119,7 @@
                         <div class="control-group">
                           <label class="control-label" for="typeahead">Nombre:</label>
                           <div class="controls">
-                            <input type="text" class="span6 typeahead" id="txtNombre" name="txtNombre" data-provide="typeahead" onkeypress="return alfanumerico(event);" autofocus>
+                            <input type="text" class="span6 typeahead" id="txtNombre" name="txtNombre">
                           </div>
                         </div>
                         <div class="control-group">
