@@ -4,6 +4,7 @@ import java.sql.Date;
 
 public class TrasladoBeanData implements Serializable{
 	
+	private String codigo;
 	private String idmembresianuevo;
 	private String idmembresiantiguo;
 	private Date fecha;
@@ -12,6 +13,14 @@ public class TrasladoBeanData implements Serializable{
 
 
 
+
+	public String getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
+	}
 
 	public String getIdmembresianuevo() {
 		return idmembresianuevo;
