@@ -117,7 +117,7 @@ public class AmbienteBeanFunction {
 		return resultado;
 	}
 	
-	public AmbienteBeanData consultarEvento(String codigo){
+	public AmbienteBeanData consultarAmbiente(String codigo){
 		AmbienteBeanData ambienteData=null;
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
