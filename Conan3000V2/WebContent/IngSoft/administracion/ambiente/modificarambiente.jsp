@@ -12,7 +12,7 @@
 		http://twitter.com/halalit_usman
 	-->
 	<meta charset="utf-8">
-	<title>Conan3000</title>
+	<title>Modificar Ambiente</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
 	<meta name="author" content="Muhammad Usman">
@@ -110,13 +110,13 @@
                           </div>
                         </div>
                         <div class="control-group">
-                  		  <label class="control-label" for="textarea2">Descripci&oacuten (*):</label>
+                  		  <label class="control-label" for="textarea2">Descripci&oacute;n (*):</label>
                           <div class="controls">
                             <textarea name="textarea" rows="3" id="textarea2" style="resize:none" placeholder="Complejo deportivo."></textarea>
                           </div>
                         </div>
                         <div class="control-group">
-                          <label class="control-label" for="textarea2">Caracter&iacutesticas: </label>
+                          <label class="control-label" for="textarea2">Caracter&iacute;sticas: </label>
                           <div class="controls">
                             <textarea name="textarea2" rows="3" id="textarea2" style="resize:none" placeholder="Área: 200 metros cuadrados."></textarea>
                           </div>
@@ -140,7 +140,8 @@
                           <button type="reset" class="btn">Cancelar</button>
                         </div>
                       </fieldset>
-                    </form>(*) Datos Obligatorios
+                    </form>
+                    <span style="font-size:70%">(*)Campos Obligatorios</span>
                   </div>
                 </div>
                 <!--/span-->

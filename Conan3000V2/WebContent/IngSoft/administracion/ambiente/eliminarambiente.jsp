@@ -1,22 +1,19 @@
 <!DOCTYPE html>
+<%@page import="IngSoft.administracion.bean.TipoAmbienteMiniBeanData"%>
+<%@page import="IngSoft.administracion.bean.SedeMiniBeanData"%>
 <html lang="en">
 <head>
-	<!--
-		Charisma v1.0.0
-
-		Copyright 2012 Muhammad Usman
-		Licensed under the Apache License v2.0
-		http://www.apache.org/licenses/LICENSE-2.0
-
-		http://usman.it
-		http://twitter.com/halalit_usman
-	-->
 	<meta charset="utf-8">
-	<title>Conan3000</title>
+	<title>Eliminar Ambiente</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
 	<meta name="author" content="Muhammad Usman">
 
+	<!--The beans  -->
+	<jsp:useBean id="sedes" scope="request" class="java.util.Vector"></jsp:useBean>
+	<jsp:useBean id="tiposAmbiente" scope="request" class="java.util.Vector"></jsp:useBean>
+	<jsp:useBean id="ambiente" scope="request" class="IngSoft.administracion.bean.AmbienteBeanData"></jsp:useBean>
+		
 	<!-- The styles -->
 	<link id="bs-css" href="css/bootstrap-cerulean.css" rel="stylesheet">
 	<style type="text/css">
@@ -44,14 +41,24 @@
 	<link href='css/opa-icons.css' rel='stylesheet'>
 	<link href='css/uploadify.css' rel='stylesheet'>
 
-	<!-- The HTML5 shim, for IE6-8 support of HTML5 elements -->
-	<!--[if lt IE 9]>
-	  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
-
 	<!-- The fav icon -->
 	<link rel="shortcut icon" href="img/favicon.ico">
 		
+	<script>
+		function alt_submit_eliminar() {
+			var form = document.frmDelete;
+			var r = confirm("¿Esta seguro que desea eliminar este ambiente?");
+			if (r == true) {
+				form.submit();
+			}
+		}
+	</script>	
+
+	<%! public boolean  encontrar(String a, String b){		
+			if(b.equals(a)) return true;
+			return false;
+		}
+	%>
 </head>
 
 <body>
@@ -82,43 +89,52 @@
               <div class="row-fluid sortable">
                 <div class="box span12">
                   <div class="box-header well" data-original-title>
-                    <h2></i>ELIMINAR AMBIENTE</h2>
+                    <h2>ELIMINAR AMBIENTE</h2>
                   </div>
                   <div class="box-content">
-                    <form class="form-horizontal">
+                    <form class="form-horizontal" name="frmDelete" action="<%= response.encodeURL("SMAAmbiente")%>" method="post">
+                      <input type="hidden" name="codigo" value="<%=ambiente.getCodigo()%>"></input>
+					  <input type="hidden" name="accion" value="Eliminar"></input>
+					  <input type="hidden" name="tipo" value="2"></input>
+			          			
                       <fieldset>
                         <div class="control-group">
                           <label class="control-label" for="disabledInput">Nombre:</label>
                           <div class="controls">
-                            <input class="input-xlarge disabled" id="disabledInput" type="text" placeholder="Polideportivo" disabled="">
+                            <input class="input-xlarge disabled" id="txtNombre" name="txtNombre" value="<%=ambiente.getNombre()%>" type="text" disabled="">
                           </div>
                         </div>
                         <div class="control-group">
                           <label class="control-label" for="selectError">Tipo:</label>
                           <div class="controls">
-                            <select name="selectError" id="selectError" data-rel="chosen" disabled="">
-                              <option>Deportivo</option>
+                            <select name="cmbTipo" id="cmbTipo" data-rel="chosen" disabled>
+                              	<%for(int i=0;i<tiposAmbiente.size();i++){ %>
+										<option value="<%=((TipoAmbienteMiniBeanData)tiposAmbiente.get(i)).getCodigo()%>" <%=encontrar(((TipoAmbienteMiniBeanData)tiposAmbiente.get(i)).getCodigo(), ambiente.getIdTipoAmbiente())?"selected":""%>><%= ((TipoAmbienteMiniBeanData)tiposAmbiente.get(i)).getNombre()%></option>
+								<%} %>
                             </select>
                           </div>
                         </div>
                         <div class="control-group">
                           <label class="control-label" for="selectError">Sede:</label>
                           <div class="controls">
-                            <select name="selectError2" id="selectError2" data-rel="chosen" disabled="">
-                              <option>Chosica</option>
+                            <select name="cmbSede" id="cmbSede" data-rel="chosen" disabled>
+                              	<%for(int i=0;i<sedes.size();i++){ %>
+										<option value="<%=((SedeMiniBeanData)sedes.get(i)).getCodigo()%>" <%=encontrar(((SedeMiniBeanData)sedes.get(i)).getCodigo(),ambiente.getIdSede())?"selected":""%>><%= ((SedeMiniBeanData)sedes.get(i)).getNombre()%></option>
+								<%} %>
                             </select>
                           </div>
                         </div>
                         <div class="control-group">
-                  		  <label class="control-label" for="textarea2">Descripci&oacuten:</label>
+                  		  <label class="control-label" for="textarea2">Descripci&oacute;n:</label>
                           <div class="controls">
-                            <textarea name="textarea" rows="3" id="textarea2" disabled="" style="resize:none" placeholder="Complejo deportivo"></textarea>
+                            <textarea name="txtDescripcion" rows="3" id="txtDescripcion" disabled="" style="resize:none"><%=ambiente.getDescripcion()%></textarea>
+                          
                           </div>
                         </div>
                         <div class="control-group">
-                          <label class="control-label" for="textarea2">Caracter&iacutesticas: </label>
+                          <label class="control-label" for="textarea2">Caracter&iacute;sticas: </label>
                           <div class="controls">
-                            <textarea name="textarea2" rows="3" id="textarea2" disabled="" style="resize:none" placeholder="Área: 200 metros cuadrados."></textarea>
+                            <textarea name="txtCaracteristicas" rows="3" id="txtCaracteristicas" disabled="" style="resize:none"><%=ambiente.getCaracteristicas()%></textarea>
                           </div>
                         </div>
           				<div class="control-group">
@@ -130,14 +146,14 @@
 								  </label>
 								  <div style="clear:both"></div>
 								  <label class="radio">
-									<input type="radio" disabled="disabled" name="optionsRadios" id="optionsRadios2" value="option2">
+									<input type="radio" disabled="disabled" name="optionsRadios" id="optionsRadios2" value="option2" >
 									Inactivo
 								  </label>
 								</div>
 							  </div>
                         <div class="form-actions">
-                          <button type="submit" class="btn btn-primary">Eliminar</button>
-                          <button type="reset" class="btn">Cancelar</button>
+                          <button type="button" class="btn btn-primary" onclick="javascript:alt_submit_eliminar()">Eliminar</button>
+                          <button type="button" class="btn" onclick="location.href='buscarambiente.jsp'">Cancelar</button>
                         </div>
                       </fieldset>
                     </form>
