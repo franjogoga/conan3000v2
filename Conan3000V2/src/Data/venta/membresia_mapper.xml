@@ -13,6 +13,7 @@ MEMBRESIA.IdMembresia as codigo
 ,MEMBRESIA.FechaFin as limFin
 ,CONCAT(PERSONA.Nombres,' ',PERSONA.ApePaterno,' ',PERSONA.ApeMaterno) as nombre
 ,MEMBRESIA.Estado as estado
+,MEMBRESIA.Costo as costo
 from MEMBRESIA, PERSONA
 <where>
 	<if test="nombre != null ">
@@ -35,7 +36,7 @@ from MEMBRESIA, PERSONA
 <!-- Agregar plantilla membresia -->
 <insert id="insertMembresia" parameterType="IngSoft.venta.bean.MembresiaBeanData" flushCache="true">
 	insert into MEMBRESIA(IdMembresia,FechaInicio,FechaFin,idSocio,Costo,Estado)
-	values (#{codigo},#{fechaInicio},#{fechaFin},#{codigoSocio},#{costo},'Activo')
+	values (#{codigo},#{fechaInicio},#{fechaFin},#{codigoSocio},#{costo},#{estado})
 </insert>
 
 <select id="getNextCodigo2" resultType="java.lang.String">
@@ -47,10 +48,11 @@ from MEMBRESIA, PERSONA
  
  <!-- Modificar elemento -->
 <update id="updateMembresia" parameterType="IngSoft.venta.bean.MembresiaBeanData">
-update MEMBRESIA set Nombre=#{nombre}
- ,FechaInicio=#{fechaInicio}
+update MEMBRESIA set FechaInicio=#{fechaInicio}
  ,FechaFin=#{fechaFin}
- ,Descripcion=#{descripcion}
+ ,idSocio=#{codigoSocio}
+ ,Costo=#{costo}
+ ,Estado=#{estado}
  where IdMembresia= #{codigo}
 </update>
 
@@ -60,17 +62,19 @@ update MEMBRESIA set Nombre=#{nombre}
 
 <!--Eliminar membresia -->
 <update id="deleteMembresia" parameterType="java.lang.String" >
-update MEMBRESIA set Estado='Inactivo' where IdMembresia= #{codigo}
+update MEMBRESIA set Estado='Eliminado' where IdMembresia= #{codigo}
 </update>
 <!-- Fin eliminar -->
 
 <select id="getPlantillaMembresia" parameterType="java.lang.String"  resultType="IngSoft.venta.bean.MembresiaBeanData">
 select 
-IdMembresia as idMembresia
-,FechaInicio as fechaInicio
-,FechaFin as fechaFin
-,Estado as estado
-from MEMBRESIA  where IdMembresia=#{idMembresia}; 
+MEMBRESIA.IdMembresia as idMembresia
+,MEMBRESIA.FechaInicio as fechaInicio
+,MEMBRESIA.FechaFin as fechaFin
+,MEMBRESIA.Costo as costo
+,CONCAT(PERSONA.Nombres,' ',PERSONA.ApePaterno,' ',PERSONA.ApeMaterno) as socio
+,MEMBRESIA.Estado as estado
+from MEMBRESIA, PERSONA  where MEMBRESIA.IdMembresia=#{codigo} and MEMBRESIA.IdSocio=PERSONA.IdPersona; 
 
 
 </select>
