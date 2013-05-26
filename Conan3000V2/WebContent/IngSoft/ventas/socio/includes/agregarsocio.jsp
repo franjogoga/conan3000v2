@@ -162,7 +162,7 @@ function alt_submit(){
                                   <div class="control-group">
 			              		<label class="control-label" for="typeahead4">Fecha Nacimiento(*): </label>
 			              		<div class="controls">
-			               		 <input type="text" class="input-xlarge datepicker" id="fFechaNacimiento" name="fFechaNacimiento" value="">
+			               		 <input type="text" class="input-xlarge datepicker" id="fFechaNacimiento" name="fFechaNacimiento" value="" readonly="readonly">
 			             		</div>
 		                		</div>
                          
