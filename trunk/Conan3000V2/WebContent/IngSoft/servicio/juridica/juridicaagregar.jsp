@@ -165,6 +165,8 @@ body {
 													onkeypress="return alfanumerico(event);" autofocus>
 											</div>
 										</div>
+										
+
 
 										<div class="control-group">
 											<label class="control-label" for="typeahead7">Telefono:
