@@ -19,9 +19,10 @@ public class AccionAgregarTraslado extends CoAccion {
 					
 					TrasladoBeanFuncion trasladoFuncion= TrasladoBeanFuncion.getInstance();
 					TrasladoBeanData trasladoData=trasladoFuncion.crearTraslado(request, response);
+					
 					trasladoFuncion.agregarTraslado(trasladoData);
 					
-					String codigo=trasladoData.getIdMembresiaAntiguo();
+					//String codigo=trasladoData.getIdMembresiaAntiguo();
 					
 					
 					//aca agregar el codigo para que se pase el codigo que se ha generado
@@ -30,7 +31,7 @@ public class AccionAgregarTraslado extends CoAccion {
 					//request.setAttribute("typeahead7",codigo);
 				
 				}
-				TrasladoBeanFuncion trasladoFunction= TrasladoBeanFuncion.getInstance();
+				//TrasladoBeanFuncion trasladoFunction= TrasladoBeanFuncion.getInstance();
 							
 										
 				this.direccionar(sc, request, response, "/IngSoft/ventas/membresia/trasladomembresia.jsp");
