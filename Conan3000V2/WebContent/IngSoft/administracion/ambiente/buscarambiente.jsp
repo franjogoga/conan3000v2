@@ -1,21 +1,20 @@
 <!DOCTYPE html>
+<%@page import="IngSoft.administracion.bean.TipoAmbienteMiniBeanData"%>
+<%@page import="IngSoft.administracion.bean.SedeMiniBeanData"%>
+<%@page import="IngSoft.administracion.bean.ResultadoAmbienteBeanData"%>
+<%@page import="java.util.Vector"%>
 <html lang="en">
 <head>
-	<!--
-		Charisma v1.0.0
-
-		Copyright 2012 Muhammad Usman
-		Licensed under the Apache License v2.0
-		http://www.apache.org/licenses/LICENSE-2.0
-
-		http://usman.it
-		http://twitter.com/halalit_usman
-	-->
 	<meta charset="utf-8">
 	<title>Conan3000</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
 	<meta name="author" content="Muhammad Usman">
+
+	
+	<jsp:useBean id="sedes" scope="request" class="java.util.Vector"></jsp:useBean>
+	<jsp:useBean id="tiposAmbiente" scope="request" class="java.util.Vector"></jsp:useBean>
+	<jsp:useBean id="resultados" scope="session"class="java.util.Vector"></jsp:useBean>
 
 	<!-- The styles -->
 	<link id="bs-css" href="css/bootstrap-cerulean.css" rel="stylesheet">
@@ -58,11 +57,27 @@
 		form.accion.value="Agregar";
 		form.submit();
 	}
+	function alt_consultar(cod){
+		var form=document.getElementById("frmAlternativo");
+		form.accion.value="Consultar";
+		form.codigo.value=cod;
+		form.submit();
+	}
+	function alt_modificar(cod){
+		var form=document.getElementById("frmAlternativo");
+		form.accion.value="Modificar";
+		form.codigo.value=cod;
+		form.submit();
+	}
+	function alt_eliminar(cod){
+		var form=document.getElementById("frmAlternativo");
+		form.accion.value="Eliminar";
+		form.codigo.value=cod;
+		form.submit();
+	}
 	</script>
 		
 </head>
-
-
 
 <body>
 		<jsp:include page="/IngSoft/general/superior.jsp" />
@@ -99,38 +114,42 @@
                       <h2><i class="icon-search"></i> BUSCAR AMBIENTE</h2>
                       <div class="box-icon">
 							<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
-							<a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>
 						</div>
                     </div>
                     <div class="box-content">
-                      <form class="form-horizontal">
-                        <fieldset>
+                      <form class="form-horizontal" name="frmCriteriosBusqueda" id="frmCriteriosBusqueda"  method="post" action="<%=response.encodeURL("SMAAmbiente")%>">
+						<input type="hidden" id="accion" name="accion" value="Buscar"></input>
+		  				<input type="hidden" id="tipo" name="tipo" value="2"></input>                      
+                        <fieldset> 
                         <div class="control-group">
                           <label class="control-label" for="typeahead">Nombre:</label>
                           <div class="controls">
-                            <input type="text" class="span6 typeahead" id="typeahead"  data-provide="typeahead" >
+                            <input type="text" class="span6 typeahead" id="txtNombre" name="txtNombre" data-provide="typeahead" onkeypress="return alfanumerico(event);" autofocus>
                           </div>
                         </div>
                         <div class="control-group">
                           <label class="control-label" for="selectError">Tipo:</label>
                           <div class="controls">
-                            <select name="selectError" id="selectError" data-rel="chosen">
-                              <option>Deportivo</option>
-                              <option>Recreativo</option>
+                            <select name="cmbTipo" id="cmbTipo" data-rel="chosen">
+								<%for(int i=0;i<tiposAmbiente.size();i++){ %>
+										<option value="<%= ((TipoAmbienteMiniBeanData)tiposAmbiente.get(i)).getCodigo()%>" <%=i==0?"selected":""%>><%= ((TipoAmbienteMiniBeanData)tiposAmbiente.get(i)).getNombre()%></option>
+									<%} %>
                             </select>
                           </div>
                         </div>
                         <div class="control-group">
                           <label class="control-label" for="selectError">Sede:</label>
                           <div class="controls">
-                            <select name="selectError2" id="selectError2" data-rel="chosen">
-                              <option>Chosica</option>
+                            <select name="cmbSede" id="cmbSede" data-rel="chosen">
+                              <%for(int i=0;i<sedes.size();i++){ %>
+										<option value="<%= ((SedeMiniBeanData)sedes.get(i)).getCodigo()%>"><%= ((SedeMiniBeanData)sedes.get(i)).getNombre()%></option>
+								<%} %>
                             </select>
                           </div>
                         </div>
                         <div class="form-actions">
                           <button type="submit" class="btn btn-primary">Buscar</button>
-                          <button type="reset" class="btn">Cancelar</button>
+                          <button type="reset" id="boton" class="btn">Cancelar</button>
                         </div>
                       </fieldset>
                       </form>
@@ -159,37 +178,29 @@
                               <th>Tipo</th>
                               <th>Sede</th>
                               <th>Estado</th>
-                              <th>Acci&oacuten</th>
+                              <th>Acci&oacute;n</th>
                             </tr>
                           </thead>
-                          <tbody>
+                          <tbody id="resultadoBusqueda">
+                          	<% for(int i=0; i<resultados.size(); i++) { %>
                             <tr>
-                              <td>Zona deportiva</td>
-                              <td class="center">Deportivo</td>
-                              <td class="center">Chosica</td>
+                              <td><%=((ResultadoAmbienteBeanData)resultados.get(i)).getNombre()%></td>
+                              <td class="center"><%=((ResultadoAmbienteBeanData)resultados.get(i)).getIdTipoAmbiente()%></td>
+                              <td class="center"><%=((ResultadoAmbienteBeanData)resultados.get(i)).getIdSede()%></td>
+                              <td class="center"><%=((ResultadoAmbienteBeanData)resultados.get(i)).getEstado()%></td>
                               <td class="center">
-									 <span class="label label-success">Activo</span>
+                              				<a class="btn btn-success" href="javascript:alt_consultar('<%=((ResultadoAmbienteBeanData)resultados.get(i)).getCodigo()%>')">
+												<i class="icon-zoom-in icon-white"></i> Ver 
+											</a>
+											<a class="btn btn-info" href="javascript:alt_modificar('<%=((ResultadoAmbienteBeanData)resultados.get(i)).getCodigo()%>')">
+												<i class="icon-edit icon-white"></i> Modificar
+											</a>
+											<a class="btn btn-danger" href="javascript:alt_eliminar('<%=((ResultadoAmbienteBeanData)resultados.get(i)).getCodigo()%>')">
+												<i class="icon-trash icon-white"></i> Eliminar
+											</a>
 							  </td>
-                              <td class="center"><a class="btn btn-success" href="#"> <i class="icon-zoom-in icon-white"></i> Ver </a> <a class="btn btn-info" href="modificarambiente.jsp"> <i class="icon-edit icon-white"></i> Modificar </a> <a class="btn btn-danger" href="eliminarambiente.jsp"> <i class="icon-trash icon-white"></i> Eliminar </a></td>
-                            </tr>
-                            <tr>
-                              <td>Polideportivo</td>
-                              <td class="center">Deportivo</td>
-                              <td class="center">Chosica</td>
-                              <td class="center">
-									 <span class="label">Inactivo</span>
-							  </td>
-                              <td class="center"><a class="btn btn-success" href="#"> <i class="icon-zoom-in icon-white"></i> Ver </a> <a class="btn btn-info" href="modificarambiente.jsp"> <i class="icon-edit icon-white"></i> Modificar </a> <a class="btn btn-danger" href="eliminarambiente.jsp"> <i class="icon-trash icon-white"></i> Eliminar </a></td>
-                            </tr>
-                            <tr>
-                              <td>Sala de juegos</td>
-                              <td class="center">Recreativo</td>
-                              <td class="center">Chosica</td>
-                              <td class="center">
-									 <span class="label label-success">Activo</span>
-							  </td>
-                              <td class="center"><a class="btn btn-success" href="#"> <i class="icon-zoom-in icon-white"></i> Ver </a> <a class="btn btn-info" href="modificarambiente.jsp"> <i class="icon-edit icon-white"></i> Modificar </a> <a class="btn btn-danger" href="eliminarambiente.jsp"> <i class="icon-trash icon-white"></i> Eliminar </a></td>
-                            </tr>
+							</tr>
+                            <%}%>
                           </tbody>
                         </table>
                       </div>

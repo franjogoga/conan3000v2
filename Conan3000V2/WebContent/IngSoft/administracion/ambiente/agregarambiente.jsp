@@ -57,11 +57,6 @@
 	return true;
 	}
 	
-	function alt_fecha(obj){
-	obj.value=obj.value.slice(0,5);
-	
-	}
-	
 	function alt_submit(){
 		var form= document.frmData;
 		if(validar(form)) form.submit();

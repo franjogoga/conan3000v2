@@ -1,6 +1,5 @@
 package IngSoft.administracion.ambiente;
 
-import java.util.List;
 import java.util.Vector;
 
 import javax.servlet.ServletContext;
@@ -10,31 +9,18 @@ import javax.servlet.http.HttpSession;
 
 import IngSoft.general.CoAccion;
 import IngSoft.general.CoException;
-import IngSoft.servicio.bean.CriterioEventoBeanData;
-import IngSoft.servicio.bean.CriterioEventoBeanFunction;
-import IngSoft.servicio.bean.ResultadoEventoBeanData;
 import IngSoft.administracion.bean.CriterioAmbienteBeanData;
 import IngSoft.administracion.bean.CriterioAmbienteBeanFunction;
-//import IngSoft.amdinistracion.bean.ResultadoAmbienteBeanData;
+import IngSoft.administracion.bean.ResultadoAmbienteBeanData;
 
 public class AccionBuscarAmbiente extends CoAccion{
 
 	@Override
-	public void ejecutar(ServletContext sc, HttpServletRequest request,
-			HttpServletResponse response) throws CoException{
-		// TODO Auto-generated method stub
-		HttpSession sesion= request.getSession(true);
-		int tipo=Integer.parseInt(request.getParameter("tipo"));
-		if(tipo==2){
-		CriterioEventoBeanData criterioEventoData =new CriterioEventoBeanFunction().crearCriterio(request,response);
-		Vector<ResultadoEventoBeanData> resultados=new CriterioEventoBeanFunction().buscarPlantillaEvento(criterioEventoData);
+	public void ejecutar(ServletContext sc, HttpServletRequest request,HttpServletResponse response) throws CoException{
+		CriterioAmbienteBeanData criterioAmbienteData =new CriterioAmbienteBeanFunction().crearCriterio(request,response);
+		Vector<ResultadoAmbienteBeanData> resultados=new CriterioAmbienteBeanFunction().buscarAmbiente(criterioAmbienteData);
 		
-		sesion.setAttribute("resultados", resultados);
-		this.direccionar(sc, request, response, "/IngSoft/servicio/evento/resultados.jsp");
-		}
-		if(tipo==1){
-			sesion.removeAttribute("resultados");
-			this.direccionar(sc, request, response, "/IngSoft/servicio/evento/buscarevento.jsp");
-		} 	
+		request.setAttribute("resultados", resultados);
+		this.direccionar(sc, request, response, "/IngSoft/administracion/ambiente/buscarambiente.jsp"); 	
 	}
 }
