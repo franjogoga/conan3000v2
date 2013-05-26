@@ -195,11 +195,7 @@
 			 				 
 			         </form>
 			        
-			  
-			        <form class="form-horizontal"  id="frmAlternativo" name="frmAlternativo" method="POST" action="<%= response.encodeURL(request.getContextPath()+"/IngSoft/ventas/membresia/SMVMembresia")%>">
-			         <input type="hidden" name="accion" value="Trasladar"></input>
-			         <input type="hidden" name="tipo" value="2"></input>
-			         </form>
+		
 			         
 			         <form class="form-horizontal" name="frmTraslado" id="frmTraslado"method="POST" action="<%= response.encodeURL(request.getContextPath()+"/IngSoft/ventas/membresia/SMVTraslado")%>">
 			          <input type="hidden" name="accion" value="Agregar"></input>
@@ -208,7 +204,7 @@
 			        		        
 			         
 			            <div class="control-group">
-			              <label class="control-label" for="typeahead7">Membres&iacute;a del socio:</label>
+			              <label class="control-label" for="typeahead1">Membres&iacute;a del socio:</label>
 			              <div class="controls">
 			               <!--  <input type="text" disabled class="span6 typeahead" value="membresia.getIdMembresia()"  id="txtIdMembresiaAntiguo" name="txtIdMembresiaAntiguo"  >  -->
 			                	<input type="text"  disabled class="span6 typeahead" id="txtIdMembresiaAntiguo" name="txtIdMembresiaAntiguo" data-provide="typeahead" data-items="4" value="<%=membresia.getIdMembresia()%>" >
@@ -216,7 +212,7 @@
 		                </div>
 		                
                           <div class="control-group">
-			              <label class="control-label" for="typeahead1">Nuevo socio(*):</label>
+			              <label class="control-label" for="typeahead2">Nuevo socio(*):</label>
 		                <div class="controls">
 		                
 			                  <!-- agregar nuevo boton -->
@@ -229,7 +225,7 @@
 		                </div>
 		                
 		                   <div class="control-group">
-			              <label class="control-label" for="typeahead2">Membres&iacute;a del nuevo socio(*):</label>
+			              <label class="control-label" for="typeahead3">Membres&iacute;a del nuevo socio(*):</label>
 		                <div class="controls">
 		                
 			                  <!-- agregar nuevo boton -->
@@ -244,7 +240,7 @@
                         <div class="control-group">
 							  <label class="control-label" for="date01">Fecha(*):</label>
 							  <div class="controls">
-								<input type="text" class="input-xlarge datepicker" id="fFecha" name="fFecha" value="02/16/12">
+								<input type="text" class="input-xlarge datepicker" id="fFecha" name="fFecha" value="01/01/2013" readonly="readonly" >
 							  </div>
 							</div>
                         
@@ -263,7 +259,7 @@
                       
 			              
 			              <div class="control-group">
-			                <label class="control-label" for="typeahead3">Monto(*):</label>
+			                <label class="control-label" for="typeahead4">Monto(*):</label>
 			                <div class="controls">
 			                  <input type="text" class="span6 typeahead" id="txtMonto" name="txtMonto" data-provide="typeahead" data-items="4" >
 		                    </div>
