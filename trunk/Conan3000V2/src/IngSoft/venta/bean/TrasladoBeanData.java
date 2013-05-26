@@ -4,29 +4,31 @@ import java.sql.Date;
 
 public class TrasladoBeanData implements Serializable{
 	
-	private String idmembresiaNuevo;
-	private String idmembresiaAntiguo;
+	private String idmembresianuevo;
+	private String idmembresiantiguo;
 	private Date fecha;
 	private String parentesco;
 	private double monto;
 
 
-	public String getIdMembresiaNuevo() {
-		return idmembresiaNuevo;
-	}
-	
-	public void setIdMembresiaNuevo(String idMembresiaNuevo) {
-		this.idmembresiaNuevo = idMembresiaNuevo;
-	}
-	
-	public String getIdMembresiaAntiguo() {
-		return idmembresiaAntiguo;
-	}
-	
-	public void setIdMembresiaAntiguo(String idMembresiaAntiguo) {
-		this.idmembresiaAntiguo = idMembresiaAntiguo;
-	}
 
+
+	public String getIdmembresianuevo() {
+		return idmembresianuevo;
+	}
+	
+	public void setIdmembresianuevo(String idmembresianuevo) {
+		this.idmembresianuevo = idmembresianuevo;
+	}
+	
+	public String getIdmembresiantiguo() {
+		return idmembresiantiguo;
+	}
+	
+	public void setIdmembresiantiguo(String idmembresiantiguo) {
+		this.idmembresiantiguo = idmembresiantiguo;
+	}
+	
 	public Date getFecha() {
 		return fecha;
 	}
