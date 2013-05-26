@@ -6,9 +6,8 @@
 	<cache />
 
 	<select id="searchAmbiente" parameterType="IngSoft.administracion.bean.CriterioAmbienteBeanData" resultType="IngSoft.administracion.bean.ResultadoAmbienteBeanData">
-		select IdAmbiente as codigo, Nombre as nombre, IdSede as idSede, Descripcion as descripcion,
-			   Caracteristicas as caracteristicas, IdTipoAmbiente as idTipoAmbiente, Estado as estado
-		from AMBIENTE
+		SELECT AMBIENTE.IdAmbiente as codigo, AMBIENTE.Nombre as nombre, SEDE.Nombre as nombreSede, TIPO_AMBIENTE.Nombre as nombreTipoAmbiente, AMBIENTE.Estado as estado
+		FROM AMBIENTE, TIPO_AMBIENTE, SEDE
 		<where>
 		<if test="nombre != null">
        		AMBIENTE.Nombre  like  #{nombre}
@@ -19,9 +18,8 @@
     	<if test="idSede != null">
         	AND AMBIENTE.IdSede = #{idSede}
     	</if>
-    		AND AMBIENTE.Estado='Activo'
+    		AND AMBIENTE.IdSede=SEDE.IdSede AND TIPO_AMBIENTE.IdTipoAmbiente = AMBIENTE.IdTipoAmbiente AND AMBIENTE.Estado='Activo'
 		</where>
-		order by 1 asc
 	</select>
  
  	<select id="searchSedeMini" resultType="IngSoft.administracion.bean.SedeMiniBeanData">
@@ -62,7 +60,7 @@
 	</update>
 
 	<update id="deleteAmbiente" parameterType="java.lang.String" >
-		update AMBIENTE set Estado='Inactivo' where IdAmbiente = #{codigo}
+		update AMBIENTE set Estado='Eliminado' where IdAmbiente = #{codigo}
 	</update>
 	
 </mapper>
