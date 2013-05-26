@@ -126,8 +126,7 @@
 	<!--The beans  -->
 <jsp:useBean id="resultados" scope="request"class="java.util.Vector"></jsp:useBean>
 	
-	<!--The beans  -->
-	<jsp:useBean id="membresia2" scope="request"class="IngSoft.venta.bean.MembresiaBeanData"></jsp:useBean>
+
 	
 <style type="text/css" media="screen"> 
 .izquierda { 
@@ -211,15 +210,17 @@
 			            <div class="control-group">
 			              <label class="control-label" for="typeahead7">Membres&iacute;a del socio:</label>
 			              <div class="controls">
-			                <input type="text" disabled class="span6 typeahead" id="typeahead7" value="<%=membresia.getIdMembresia() %>" id="txtIdMembresiaAntiguo" name="txtIdMembresiaAntiguo"  data-provide="typeahead" > 
+			               <!--  <input type="text" disabled class="span6 typeahead" value="membresia.getIdMembresia()"  id="txtIdMembresiaAntiguo" name="txtIdMembresiaAntiguo"  >  -->
+			                	<input type="text"  disabled class="span6 typeahead" id="txtIdMembresiaAntiguo" name="txtIdMembresiaAntiguo" data-provide="typeahead" data-items="4" value="<%=membresia.getIdMembresia()%>" >
 			              </div>
 		                </div>
+		                
                           <div class="control-group">
-			              <label class="control-label" for="typeahead7">Nuevo socio(*):</label>
+			              <label class="control-label" for="typeahead1">Nuevo socio(*):</label>
 		                <div class="controls">
 		                
 			                  <!-- agregar nuevo boton -->
-			                   <input type="text"  disabled class="span6 typeahead" id="typeahead7" name="txtIdNuevoSocio" value="<%=socio.getCodigo() %>"  data-provide="typeahead" > 
+			                   <input type="text"  disabled class="span6 typeahead" id="txtIdNuevoSocio" name="txtIdNuevoSocio" value="<%=socio.getCodigo() %>"  data-provide="typeahead" > 
 			        
 			        
 						 <a  class="btn btn-primary" href="javascript:alt_agregar()"> <i class="icon icon-add icon-white"></i> Agregar</a>  
@@ -228,12 +229,12 @@
 		                </div>
 		                
 		                   <div class="control-group">
-			              <label class="control-label" for="typeahead7">Membres&iacute;a del nuevo socio(*):</label>
+			              <label class="control-label" for="typeahead2">Membres&iacute;a del nuevo socio(*):</label>
 		                <div class="controls">
 		                
 			                  <!-- agregar nuevo boton -->
-			                   <input type="text"  disabled class="span6 typeahead" id="txtIdMembresiaNuevo" name="txtIdMembresiaNuevo" value="<%=socio.getIdMembresia()%>"  data-provide="typeahead" > 
-			        
+			                   <!-- <input type="text"  disabled class="span6 typeahead" id="txtIdMembresiaNuevo" name="txtIdMembresiaNuevo" value="//socio.getIdMembresia()"  > --> 
+			        			<input type="text"  disabled class="span6 typeahead" id="txtIdMembresiaNuevo" name="txtIdMembresiaNuevo" data-provide="typeahead" data-items="4" value="<%=socio.getIdMembresia()%>" >
 			        
 						<!--  <a  class="btn btn-primary" href="javascript:alt_agregarMembresia()" > <i class="icon icon-add icon-white" ></i> Agregar</a>   -->
 						      
@@ -243,14 +244,14 @@
                         <div class="control-group">
 							  <label class="control-label" for="date01">Fecha(*):</label>
 							  <div class="controls">
-								<input type="text" class="input-xlarge datepicker" id="date01" name="fFecha" id="fFecha"value="02/16/12">
+								<input type="text" class="input-xlarge datepicker" id="fFecha" name="fFecha" value="02/16/12">
 							  </div>
 							</div>
                         
                         <div class="control-group">
 			                <label class="control-label" for="selectError">Parentesco(*):</label>
 			                <div class="controls">
-			                  <select name="selectError" name="cmbParentesco" id="selectError" data-rel="chosen">
+			                  <select  name="cmbParentesco" id="cmbParentesco" data-rel="chosen">
 			                    <option selected>Hija(o)</option>
 			                    <option>Madre</option>
 			                    <option>Padre</option>
@@ -262,7 +263,7 @@
                       
 			              
 			              <div class="control-group">
-			                <label class="control-label" for="typeahead8">Monto(*):</label>
+			                <label class="control-label" for="typeahead3">Monto(*):</label>
 			                <div class="controls">
 			                  <input type="text" class="span6 typeahead" id="txtMonto" name="txtMonto" data-provide="typeahead" data-items="4" >
 		                    </div>
