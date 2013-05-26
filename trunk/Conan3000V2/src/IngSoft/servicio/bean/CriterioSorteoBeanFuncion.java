@@ -20,9 +20,9 @@ public class CriterioSorteoBeanFuncion {
 		CriterioSorteoBeanData criterioSorteoData= new CriterioSorteoBeanData();
 		criterioSorteoData.setNombre(request.getParameter("txtNombre")==null?null:"%"+request.getParameter("txtNombre")+"%");
 		try {
-			criterioSorteoData.setFechaIni(new Date(DF.parse(request.getParameter("date01")).getTime()));
-			criterioSorteoData.setFechaFin(new Date(DF.parse(request.getParameter("date02")).getTime()));
-			criterioSorteoData.setFechaSorteo(new Date(DF.parse(request.getParameter("date03")).getTime()));
+			criterioSorteoData.setFechaIni(new Date(DF.parse(request.getParameter("date01")==null?"00/00/0000":request.getParameter("date01")).getTime()));
+			criterioSorteoData.setFechaFin(new Date(DF.parse(request.getParameter("date02")==null?"01/01/0000":request.getParameter("date02")).getTime()));
+			criterioSorteoData.setFechaSorteo(new Date(DF.parse(request.getParameter("date03")==null?"31/12/9999":request.getParameter("date03")).getTime()));
 			
 		} catch (ParseException e) {
 			e.printStackTrace();
