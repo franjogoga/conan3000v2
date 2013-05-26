@@ -170,7 +170,7 @@
 						    <div class="control-group">
 						      <label class="control-label" for="typeahead7">Nombre(*): </label>
 						      <div class="controls">
-						        <input type="text" class="span6 typeahead" id="txtNombresede"  data-provide="typeahead"  name="txtNombre" value="<%= sede.getNombre()%>">
+						        <input type="text" class="span6 typeahead" id="txtNombresede"  data-provide="typeahead"  name="txtNombre" value="<%= sede.getNombre()%>" onkeypress="return alfanumerico(event);" >
 					          </div>
 					        </div>
 
@@ -212,7 +212,7 @@
 						    <div class="control-group">
 						      <label class="control-label" for="typeahead7">Direccion(*): </label>
 						      <div class="controls">
-						        <input type="text" class="span6 typeahead" id="txtNombreEvento"  data-provide="typeahead"  name="txtDireccion"  value="<%=sede.getDireccion()%>">
+						        <input type="text" class="span6 typeahead" id="txtNombreEvento"  data-provide="typeahead"  name="txtDireccion"  value="<%=sede.getDireccion()%>" onkeypress="return alfanumerico(event);">
 					          </div>
 					        </div>
 
@@ -221,7 +221,7 @@
 						    <div class="control-group">
 						      <label class="control-label" for="typeahead7">Telefono: </label>
 						      <div class="controls">
-						        <input type="text" class="span6 typeahead" id="txtNombreEvento"  data-provide="typeahead"  name="txtTelefono"  value="<%=sede.getTelefono()%>">
+						        <input type="text" class="span6 typeahead" id="txtNombreEvento"  data-provide="typeahead"  name="txtTelefono"  value="<%=sede.getTelefono()%>" onkeypress="return numerico(event);">
 					          </div>
 					        </div>
 
@@ -230,7 +230,7 @@
 						    <div class="control-group">
 						      <label class="control-label" for="typeahead7">AreaTereno: </label>
 						      <div class="controls">
-						        <input type="text" class="span6 typeahead" id="txtNombreEvento"  data-provide="typeahead"  name="txtAreaterreno"  value="<%=sede.getAreaterreno()%>">
+						        <input type="text" class="span6 typeahead" id="txtNombreEvento"  data-provide="typeahead"  name="txtAreaterreno"  value="<%=sede.getAreaterreno()%>" onkeypress="return numerico(event);">
 					          </div>
 					        </div>
 					        

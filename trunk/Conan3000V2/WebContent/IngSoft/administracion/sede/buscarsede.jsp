@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 
 <!--  paso 2 configurarion link  + v ariables de retorno -->
+<%@page import="IngSoft.administracion.bean.ProvinciaBeanData"%>
+<%@page import="IngSoft.administracion.bean.DistritoBeanData"%>
+<%@page import="IngSoft.administracion.bean.DepartamentoBeanData"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Calendar"%>
 <%@page import="IngSoft.administracion.bean.ResultadoSedeBeanData"%>
@@ -27,7 +30,9 @@
 	<meta name="author" content="Muhammad Usman">
 	<!--The beans  -->
 	<jsp:useBean id="resultados" scope="request"class="java.util.Vector"></jsp:useBean>
-
+	<jsp:useBean id="departamentos" scope="request"class="java.util.Vector"></jsp:useBean>
+	<jsp:useBean id="provincias" scope="request"class="java.util.Vector"></jsp:useBean>
+	<jsp:useBean id="distritos" scope="request"class="java.util.Vector"></jsp:useBean>
 
 	<!-- The styles -->
 	<link id="bs-css" href="css/bootstrap-cerulean.css" rel="stylesheet">
@@ -94,6 +99,57 @@
 		form.codigo.value=cod;
 		form.submit();
 	}
+	function updatetable(){		
+			docReady();
+			
+	}
+	
+	function alt_provincia(){
+		$.ajax({
+		  type: "POST",
+		  url: "/Conan3000V2/IngSoft/administracion/sede/SMASede",
+		  data: "accion=Buscar"+ "&tipo=3" + "&cmbDepartamento=" + $(cmbDepartamento).val(),
+		  dataType: "html",
+		  beforeSend: function ( xhr ) {
+   		  $("#cmbProvincia").html("");
+			//chosen - improves select
+			$("#cmbProvincia").trigger("liszt:updated");
+  		  },
+		  success: function(msg){
+			$("#cmbProvincia").html(msg);
+			//chosen - improves select
+			$("#cmbProvincia").trigger("liszt:updated");
+		  },
+		  error: function(objeto, quepaso, otroobj){
+			alert("ERROR!! Pasó lo siguiente: "+quepaso);
+		  }
+	
+		});
+	}
+	function alt_distrito(){
+		$.ajax({
+		  type: "POST",
+		  url: "/Conan3000V2/IngSoft/administracion/sede/SMASede",
+		  data: "accion=Buscar"+ "&tipo=4" + "&cmbProvincia=" + $(cmbProvincia).val(),
+		  dataType: "html",
+		  beforeSend: function ( xhr ) {
+   		  $("#cmbDistrito").html("");
+			//chosen - improves select
+			$("#cmbDistrito").trigger("liszt:updated");
+  		  },
+		  success: function(msg){
+			$("#cmbDistrito").html(msg);
+			//chosen - improves select
+			$("#cmbDistrito").trigger("liszt:updated");
+		  },
+		  error: function(objeto, quepaso, otroobj){
+			alert("ERROR!! Pasó lo siguiente: "+quepaso);
+		  }
+	
+		});
+	}
+	
+	
 	</script>			
 </head>
 
@@ -145,21 +201,24 @@
 		 <form class="form-horizontal" name="frmCriteriosBusqueda" id="frmCriteriosBusqueda"  method="post" action="<%= response.encodeURL("SMASede")%>">
 		                                      <!-- Buscar  variable  que pasa al archivo SMASede   -->	
 		 <input type="hidden" name="accion" value="Buscar"></input>
+		  <input type="hidden" name="tipo" value="2"></input>
 						  <fieldset>
 							
 							<div class="control-group">
 							  <label class="control-label" for="typeahead">Nombre:</label>
 							  <div class="controls">									   <!-- txtNombre  variable     -->	
-								<input type="text" class="span6 typeahead" id="typeahead" name="txtNombre">
+								<input type="text" class="span6 typeahead" id="txtNombre" name="txtNombre">
 							  </div>
 							</div>
 							
 							 <div class="control-group">
 								<label class="control-label" for="selectError">Departamento:</label>
 								<div class="controls">
-																						   <!-- cmbDepartamento  variable     -->	
-							 		<select id="selectError1" data-rel="chosen" name="cmbDepartamento">
-								  	<option selected value="DEP000014">AMAZONAS</option>							
+					             <!-- cmbDepartamento  variable     -->	
+							 		<select data-rel="chosen" id="cmbDepartamento" name="cmbDepartamento" onchange="alt_provincia()">
+								  <%for(int i=0;i<departamentos.size();i++){ %>
+										<option value="<%= ((DepartamentoBeanData)departamentos.get(i)).getCodigo()%>" <%=i==0?"selected":""%>><%= ((DepartamentoBeanData)departamentos.get(i)).getNombre()%></option>
+									<%} %>						
 								  </select>
 								</div>
 							  </div>
@@ -168,8 +227,10 @@
 								<label class="control-label" for="selectError">Provincia:</label>
 								<div class="controls">
 																					 <!-- cmbProvincia  variable     -->	
-							 		<select id="selectError2" data-rel="chosen" name="cmbProvincia">
-								  	<option selected value="PRO000127">CHACHAPOYAS</option>								
+							 		<select  data-rel="chosen" id="cmbProvincia" name="cmbProvincia" onchange="alt_distrito()">
+								  		<%for(int i=0;i<provincias.size();i++){ %>
+										<option value="<%= ((ProvinciaBeanData)provincias.get(i)).getCodigo()%>" <%=i==0?"selected":""%>><%= ((ProvinciaBeanData)provincias.get(i)).getNombre()%></option>
+									<%} %>						
 								  </select>
 								</div>
 							  </div>
@@ -178,8 +239,10 @@
 								<label class="control-label" for="selectError">Distrito:</label>
 								<div class="controls">
 																					 <!-- cmbDistrito  variable     -->	
-							 		<select id="selectError3" data-rel="chosen" name="cmbDistrito">
-								  	<option selected value="DIS000176">CHACHAPOYAS</option>							
+							 		<select data-rel="chosen" id="cmbDistrito" name="cmbDistrito">
+								  		<%for(int i=0;i<distritos.size();i++){ %>
+										<option value="<%= ((DistritoBeanData)distritos.get(i)).getCodigo()%>" <%=i==0?"selected":""%>><%= ((DistritoBeanData)distritos.get(i)).getNombre()%></option>
+									<%} %>						
 								  </select>
 								</div>
 							  </div>

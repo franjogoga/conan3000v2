@@ -1,5 +1,7 @@
 package IngSoft.administracion.bean;
 
+import java.util.List;
+import java.util.Vector;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -222,6 +224,58 @@ public class SedeBeanFuncion {
 		return resultado;
 	}
 	
+	public Vector<DepartamentoBeanData> getDepartamentos() throws CoException {
+		Vector<DepartamentoBeanData> deps= null;
+		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+		try{
+			List<DepartamentoBeanData> temp=sqlsesion.selectList("Data.administracion.sede.getDepartamentos");			
+			deps= new Vector<DepartamentoBeanData>(temp);
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			throw CoException.set("Error: No se pudo obtener la lista de departamentos", "SMASede?accion=Agregar&tipo=1");
+		}
+		finally{
+			sqlsesion.close();
+			
+		}
+		return deps;
+	}
 	
+	public Vector<ProvinciaBeanData> getProvincias(String depCod) throws CoException {
+		Vector<ProvinciaBeanData> provs= null;
+		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+		try{
+			List<ProvinciaBeanData> temp=sqlsesion.selectList("Data.administracion.sede.getProvincias",depCod);			
+			provs= new Vector<ProvinciaBeanData>(temp);
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			throw CoException.set("Error: No se pudo obtener la lista de provincias", "SMASede?accion=Agregar&tipo=1");
+		}
+		finally{
+			sqlsesion.close();
+			
+		}
+		return provs;
+	}
+	
+	public Vector<DistritoBeanData> getDistritos(String provCod) throws CoException {
+		Vector<DistritoBeanData> dist= null;
+		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+		try{
+			List<DistritoBeanData> temp=sqlsesion.selectList("Data.administracion.sede.getDistritos",provCod);			
+			dist= new Vector<DistritoBeanData>(temp);
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			throw CoException.set("Error: No se pudo obtener la lista de provincias", "SMASede?accion=Agregar&tipo=1");
+		}
+		finally{
+			sqlsesion.close();
+			
+		}
+		return dist;
+	}
 
 }

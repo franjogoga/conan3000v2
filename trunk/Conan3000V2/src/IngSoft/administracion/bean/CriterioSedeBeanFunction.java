@@ -13,6 +13,8 @@ import IngSoft.general.MyBatisSesion;
 public class CriterioSedeBeanFunction {
 	
 	
+	
+	
 	public CriterioSedeBeanData crearCriterio(HttpServletRequest request, HttpServletResponse response){
 		
 		CriterioSedeBeanData criterioSedeData= new CriterioSedeBeanData();

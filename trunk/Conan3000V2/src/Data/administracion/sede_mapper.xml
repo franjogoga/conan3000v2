@@ -84,7 +84,7 @@ update SEDE set Estado='Eliminado' where IdSede= #{codigo}
 
 <!--Modificar sede -->
 
-<update id="modificarPlantillaSede" parameterType="java.lang.String" >
+<update id="modificarPlantillaSede" parameterType="IngSoft.administracion.bean.SedeBeanData" >
 update SEDE 
 set
 Nombre=#{nombre} ,
@@ -98,6 +98,33 @@ where IdSede= #{codigo}
 </update>
 <!-- Fin eliminar -->
 
+<!-- departamento,provincia y distrito   -->
+<select id="getDepartamentos" resultType="IngSoft.administracion.bean.DepartamentoBeanData">
+select IdDepartamento as codigo
+, Nombre as nombre
+from 
+DEPARTAMENTO; 
 
+</select>
+
+
+<select id="getProvincias" parameterType="java.lang.String" resultType="IngSoft.administracion.bean.ProvinciaBeanData">
+select IdProvincia as codigo
+, Nombre as nombre
+from 
+PROVINCIA
+where
+idDepartamento like  #{codigo}  
+</select>
+
+<select id="getDistritos" parameterType="java.lang.String" resultType="IngSoft.administracion.bean.DistritoBeanData">
+select IdDistrito as codigo
+, Nombre as nombre
+from 
+DISTRITO
+where
+IdProvincia like  #{codigo}  
+</select>
+<!-- fin departamento,provincia y distrito -->
 
 </mapper>
