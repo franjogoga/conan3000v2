@@ -1,9 +1,5 @@
 package IngSoft.administracion.bean;
 
-import java.sql.Date;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
@@ -15,36 +11,24 @@ import org.apache.ibatis.session.SqlSession;
 import IngSoft.general.MyBatisSesion;
 
 public class CriterioAmbienteBeanFunction {
-	SimpleDateFormat DF = new SimpleDateFormat("dd/MM/yyyy");
 	
 	public CriterioAmbienteBeanData crearCriterio(HttpServletRequest request, HttpServletResponse response){
-		CriterioAmbienteBeanData criterioEventoData= new CriterioAmbienteBeanData();
-		criterioEventoData.setNombre(request.getParameter("txtNombre").trim()+"%");
-		criterioEventoData.setTipo(Integer.parseInt(request.getParameter("cmbTipoEvento")==null?"0":request.getParameter("cmbTipoEvento")));
-
-		try {
-			criterioEventoData.setLimInicio(new Date(DF.parse(request.getParameter("date01")+"/0000").getTime()));
-			criterioEventoData.setLimFin(new Date(DF.parse(request.getParameter("date02")+"/0000").getTime()));
-			//System.out.println(criterioEventoData.getLimFin());
-			
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		return criterioEventoData;				
+		CriterioAmbienteBeanData criterioAmbienteData= new CriterioAmbienteBeanData();
+		criterioAmbienteData.setNombre(request.getParameter("txtNombre")+"%");
+		criterioAmbienteData.setIdTipoAmbiente(request.getParameter("cmbTipo")==null?"0":request.getParameter("cmbTipo"));
+		criterioAmbienteData.setIdSede(request.getParameter("cmbSede")==null?"0":request.getParameter("cmbSede"));
+		return criterioAmbienteData;				
 	}
 	
-	public Vector<ResultadoEventoBeanData> buscarPlantillaEvento(CriterioAmbienteBeanData criterioEventoData){		
+	public Vector<ResultadoAmbienteBeanData> buscarAmbiente(CriterioAmbienteBeanData criterioAmbienteData){		
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
-		Vector<ResultadoEventoBeanData> resultadosV=null;
+		Vector<ResultadoAmbienteBeanData> resultadosV=null;
 		try{		
-		List<ResultadoEventoBeanData> resultados=sqlsesion.selectList("searchPlantillaEvento",criterioEventoData);
-	
-		resultadosV= new Vector<>(resultados);
+			List<ResultadoAmbienteBeanData> resultados = sqlsesion.selectList("searchAmbiente",criterioAmbienteData);
+			resultadosV= new Vector<>(resultados);
 		}
 		finally{
 		sqlsesion.close();}
 		return resultadosV;
-		
 	}
-
 }
