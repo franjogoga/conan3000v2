@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 
+<%@page import="IngSoft.administracion.bean.DepartamentoBeanData"%>
+<%@page import="IngSoft.administracion.bean.ProvinciaBeanData"%>
+<%@page import="IngSoft.administracion.bean.DistritoBeanData"%>
 <html lang="en">
 <head>
 	<!--
@@ -18,9 +21,9 @@
 	<meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
 	<meta name="author" content="Muhammad Usman">
 	<!--The beans  -->
-	<jsp:useBean id="sedes" scope="request"class="java.util.Vector"></jsp:useBean>
-	<jsp:useBean id="ambientes" scope="request"class="java.util.Vector"></jsp:useBean>
-	<jsp:useBean id="tiposEvento" scope="request"class="java.util.Vector"></jsp:useBean>
+		<jsp:useBean id="departamentos" scope="request"class="java.util.Vector"></jsp:useBean>
+	<jsp:useBean id="provincias" scope="request"class="java.util.Vector"></jsp:useBean>
+	<jsp:useBean id="distritos" scope="request"class="java.util.Vector"></jsp:useBean>
 	
 	<!-- The styles -->
 	<link id="bs-css" href="css/bootstrap-cerulean.css" rel="stylesheet">
@@ -79,7 +82,50 @@
 		else alert("Uno o mas campos estan vacios");
 			
 			}
-		
+function alt_provincia(){
+		$.ajax({
+		  type: "POST",
+		  url: "/Conan3000V2/IngSoft/administracion/sede/SMASede",
+		  data: "accion=Buscar"+ "&tipo=3" + "&cmbDepartamento=" + $(cmbDepartamento).val(),
+		  dataType: "html",
+		  beforeSend: function ( xhr ) {
+   		  $("#cmbProvincia").html("");
+			//chosen - improves select
+			$("#cmbProvincia").trigger("liszt:updated");
+  		  },
+		  success: function(msg){
+			$("#cmbProvincia").html(msg);
+			//chosen - improves select
+			$("#cmbProvincia").trigger("liszt:updated");
+		  },
+		  error: function(objeto, quepaso, otroobj){
+			alert("ERROR!! Pasó lo siguiente: "+quepaso);
+		  }
+	
+		});
+	}
+	function alt_distrito(){
+		$.ajax({
+		  type: "POST",
+		  url: "/Conan3000V2/IngSoft/administracion/sede/SMASede",
+		  data: "accion=Buscar"+ "&tipo=4" + "&cmbProvincia=" + $(cmbProvincia).val(),
+		  dataType: "html",
+		  beforeSend: function ( xhr ) {
+   		  $("#cmbDistrito").html("");
+			//chosen - improves select
+			$("#cmbDistrito").trigger("liszt:updated");
+  		  },
+		  success: function(msg){
+			$("#cmbDistrito").html(msg);
+			//chosen - improves select
+			$("#cmbDistrito").trigger("liszt:updated");
+		  },
+		  error: function(objeto, quepaso, otroobj){
+			alert("ERROR!! Pasó lo siguiente: "+quepaso);
+		  }
+	
+		});
+	}		
 		
 		
 			//document.fmrData.submit();
@@ -141,39 +187,43 @@
 							<div class="control-group">
 							  <label class="control-label" for="typeahead7">Nombre(*): </label>
 							  <div class="controls">
-								<input   type="text" class="span6 typeahead" id="typeahead7"  data-provide="typeahead"  id="txtNombre" name="txtNombre" >
+								<input   type="text" class="span6 typeahead" id="typeahead7"  data-provide="typeahead"  id="txtNombre" name="txtNombre" onkeypress="return alfanumerico(event);">
 							  </div>
 							</div>
 
 
-
-
 							 <div class="control-group">
-								<label class="control-label" for="selectError">Departamento(*):</label>
+								<label class="control-label" for="selectError">Departamento:</label>
 								<div class="controls">
-																						   <!-- cmbDepartamento  variable     -->	
-							 		<select id="selectError1" data-rel="chosen" name="cmbDepartamento">
-								  	<option selected value="DEP000014">AMAZONAS</option>							
+					             <!-- cmbDepartamento  variable     -->	
+							 		<select data-rel="chosen" id="cmbDepartamento" name="cmbDepartamento" onchange="alt_provincia()">
+								  <%for(int i=0;i<departamentos.size();i++){ %>
+										<option value="<%= ((DepartamentoBeanData)departamentos.get(i)).getCodigo()%>" <%=i==0?"selected":""%>><%= ((DepartamentoBeanData)departamentos.get(i)).getNombre()%></option>
+									<%} %>						
 								  </select>
 								</div>
 							  </div>
 							  
 							 <div class="control-group">
-								<label class="control-label" for="selectError">Provincia(*):</label>
+								<label class="control-label" for="selectError">Provincia:</label>
 								<div class="controls">
 																					 <!-- cmbProvincia  variable     -->	
-							 		<select id="selectError2" data-rel="chosen" name="cmbProvincia">
-								  	<option selected value="PRO000127">CHACHAPOYAS</option>								
+							 		<select  data-rel="chosen" id="cmbProvincia" name="cmbProvincia" onchange="alt_distrito()">
+								  		<%for(int i=0;i<provincias.size();i++){ %>
+										<option value="<%= ((ProvinciaBeanData)provincias.get(i)).getCodigo()%>" <%=i==0?"selected":""%>><%= ((ProvinciaBeanData)provincias.get(i)).getNombre()%></option>
+									<%} %>						
 								  </select>
 								</div>
 							  </div>
 							  
 							 <div class="control-group">
-								<label class="control-label" for="selectError">Distrito(*):</label>
+								<label class="control-label" for="selectError">Distrito:</label>
 								<div class="controls">
 																					 <!-- cmbDistrito  variable     -->	
-							 		<select id="selectError3" data-rel="chosen" name="cmbDistrito">
-								  	<option selected value="DIS000176">CHACHAPOYAS</option>							
+							 		<select data-rel="chosen" id="cmbDistrito" name="cmbDistrito">
+								  		<%for(int i=0;i<distritos.size();i++){ %>
+										<option value="<%= ((DistritoBeanData)distritos.get(i)).getCodigo()%>" <%=i==0?"selected":""%>><%= ((DistritoBeanData)distritos.get(i)).getNombre()%></option>
+									<%} %>						
 								  </select>
 								</div>
 							  </div>
@@ -183,14 +233,14 @@
 						    <div class="control-group">
 						      <label class="control-label" for="typeahead7">Direccion(*): </label>
 						      <div class="controls">
-						        <input    type="text" class="span6 typeahead" id="typeahead7"  data-provide="typeahead" id="txtDireccion" name="txtDireccion" >
+						        <input    type="text" class="span6 typeahead" id="typeahead7"  data-provide="typeahead" id="txtDireccion" name="txtDireccion" onkeypress="return alfanumerico(event);">
 					          </div>
 					        </div>
 							
 						    <div class="control-group">
 						      <label class="control-label" for="typeahead7">Telefono: </label>
 						      <div class="controls">
-						        <input    type="text" class="span6 typeahead" id="typeahead7"  data-provide="typeahead" id="txtTelefono" name="txtTelefono" >
+						        <input    type="text" class="span6 typeahead" id="typeahead7"  data-provide="typeahead" id="txtTelefono" name="txtTelefono" maxlength="12" onkeypress="return numerico(event);">
 					          </div>
 					        </div>
                                 
@@ -199,7 +249,7 @@
 						    <div class="control-group">
 						      <label class="control-label" for="typeahead7">Area de Terreno: </label>
 						      <div class="controls">
-						        <input    type="text" class="span6 typeahead" id="typeahead7"  data-provide="typeahead" id="txtAreaterreno" name="txtAreaterreno" >
+						        <input    type="text" class="span6 typeahead" id="typeahead7"  data-provide="typeahead" id="txtAreaterreno" name="txtAreaterreno" onkeypress="return numerico(event);">
 					          </div>
 					        </div>
 				
@@ -321,6 +371,8 @@
 	<script src="js/jquery.history.js"></script>
 	<!-- application script for Charisma demo -->
 	<script src="js/charisma.js"></script>
+	<!--utils-->
+	<script src="js/conan3000.js"></script>
 	
 		
 </body>

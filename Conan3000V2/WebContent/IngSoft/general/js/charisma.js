@@ -265,7 +265,9 @@ function docReady(){
 			"sPaginationType": "bootstrap",
 			"oLanguage": {
 			"sLengthMenu": "_MENU_ registros por pagina"
-			}
+				
+			},
+			"bDestroy": true
 		} );
 	$('.btn-close').click(function(e){
 		e.preventDefault();

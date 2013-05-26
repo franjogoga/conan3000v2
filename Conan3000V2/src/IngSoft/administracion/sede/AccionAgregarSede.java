@@ -11,6 +11,9 @@ import IngSoft.general.CoAccion;
 import IngSoft.general.CoException;
 
 
+import IngSoft.administracion.bean.DepartamentoBeanData;
+import IngSoft.administracion.bean.DistritoBeanData;
+import IngSoft.administracion.bean.ProvinciaBeanData;
 import IngSoft.administracion.bean.SedeBeanData;
 import IngSoft.administracion.bean.SedeBeanFuncion;
 
@@ -42,9 +45,12 @@ public class AccionAgregarSede extends CoAccion {
 		
 		this.direccionar(sc, request, response, "/IngSoft/administracion/sede/buscarsede.jsp");
 		}
-
-		
-		
+		Vector<DepartamentoBeanData> departamentos =SedeBeanFuncion.getInstance().getDepartamentos();
+		Vector<ProvinciaBeanData> provincias =SedeBeanFuncion.getInstance().getProvincias(departamentos.get(0).getCodigo());
+		Vector<DistritoBeanData> distritos =SedeBeanFuncion.getInstance().getDistritos(provincias.get(0).getCodigo());			
+		request.setAttribute("distritos", distritos);
+		request.setAttribute("provincias", provincias);
+		request.setAttribute("departamentos", departamentos);		
 		this.direccionar(sc, request, response, "/IngSoft/administracion/sede/agregarsede.jsp");
 	}
 
