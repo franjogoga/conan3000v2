@@ -11,6 +11,7 @@ public class ResultadoMembresiaBeanData implements Serializable {
 	private Date limInicio;
 	private Date limFin;
 	private String estado;
+	private Double costo;
 	
 	public String getCodigo() {
 		return codigo;
@@ -18,6 +19,14 @@ public class ResultadoMembresiaBeanData implements Serializable {
 	
 	public void setCodigo(String codigo) {
 		this.codigo = codigo;
+	}
+	
+	public Double getCosto() {
+		return costo;
+	}
+	
+	public void setCosto(Double costo) {
+		this.costo = costo;
 	}
 	
 	public String getNombre() {
