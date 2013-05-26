@@ -15,8 +15,8 @@
 
 
 <insert id="insertNuevaMembresia" parameterType="IngSoft.venta.bean.MembresiaBeanData" flushCache="true">
-	insert into MEMBRESIA(IdMembresia,IdSocio,Costo,FechaInicio,Estado,Vitalicio)
-	values (#{idMembresia},#{codigoSocio},#{costo},#{fechaInicio},'Activo','No')
+	insert into MEMBRESIA(IdMembresia,IdSocio,Costo,FechaInicio,FechaFin,Estado,Vitalicio)
+	values (#{idMembresia},#{codigoSocio},#{costo},#{fechaInicio},#{fechaFin},'Activo','No')
 </insert>
 
 <!--<select id="getNextCodigoT" resultType="java.lang.String">
