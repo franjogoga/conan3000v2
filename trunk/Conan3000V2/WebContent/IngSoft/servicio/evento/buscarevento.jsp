@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%@page import="IngSoft.servicio.bean.TipoEventoMiniBeanData"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Calendar"%>
 <%@page import="IngSoft.servicio.bean.ResultadoEventoBeanData"%>
@@ -22,8 +23,8 @@
 	<meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
 	<meta name="author" content="Muhammad Usman">
 	<!--The beans  -->
-	<jsp:useBean id="resultados" scope="session"class="java.util.Vector"></jsp:useBean>
-
+	<jsp:useBean id="resultados" scope="request"class="java.util.Vector"></jsp:useBean>
+		<jsp:useBean id="tiposEvento" scope="request"class="java.util.Vector"></jsp:useBean>
 
 	<!-- The styles -->
 	<link id="bs-css" href="css/bootstrap-cerulean.css" rel="stylesheet">
@@ -180,7 +181,7 @@
 							<div class="control-group">
 							  <label class="control-label" for="typeahead">Nombre de Evento </label>
 							  <div class="controls">
-								<input type="text" class="span6 typeahead" id="txtNombre" name="txtNombre" onkeypress="return alfanumerico(event);" autofocus>
+								<input type="text" class="span6 typeahead" id="txtNombre" name="txtNombre" onkeypress="return alfanumerico(event);" autofocus maxlength="50">
 							  </div>
 							</div>
 							 <div class="control-group">
@@ -188,8 +189,9 @@
 								<div class="controls">
 								  <select id="cmbTipoEvento" data-rel="chosen" name="cmbTipoEvento">
 								  	<option selected value="0">Todos</option>
-									<option value="1">Interno</option>
-									<option value="2">Externo</option>									
+									<%for(int i=0;i<tiposEvento.size();i++){ %>
+										<option value="<%= ((TipoEventoMiniBeanData)tiposEvento.get(i)).getCodigo()%>"><%= ((TipoEventoMiniBeanData)tiposEvento.get(i)).getNombre()%></option>
+									<%} %>											
 								  </select>
 								</div>
 							  </div>
