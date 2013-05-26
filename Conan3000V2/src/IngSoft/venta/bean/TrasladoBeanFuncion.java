@@ -28,11 +28,14 @@ public class TrasladoBeanFuncion {
 	   private TrasladoBeanFuncion() {}
 	
 	public TrasladoBeanData crearTraslado(HttpServletRequest request, HttpServletResponse response){
+		
 		TrasladoBeanData trasladoData= new TrasladoBeanData();
-		try{			
 		trasladoData.setIdMembresiaAntiguo(request.getParameter("txtIdMembresiaAntiguo"));
 		trasladoData.setIdMembresiaNuevo(request.getParameter("txtIdMembresiaNuevo"));
 		
+		try{			
+		
+		//trasladoData.setIdMembresiaNuevo("MEM000032");
 		trasladoData.setFecha(new Date(DF.parse(request.getParameter("fFecha")).getTime()));
 		trasladoData.setParentesco(request.getParameter("cmbParentesco"));
 		trasladoData.setMonto(Double.parseDouble(request.getParameter("txtMonto")));
@@ -53,15 +56,15 @@ public class TrasladoBeanFuncion {
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		
 		try{
-			String codigo= (String)sqlsesion.selectOne("Data.venta.traslado.getNextCodigoT");
-			if(codigo!=null){
-			int cod= Integer.parseInt(codigo.substring(3))+1;
-			String defecto= "000000";
-			String temp= defecto.substring(0, defecto.length()-String.valueOf(cod).length()).concat(String.valueOf(cod));
+			//String codigo= (String)sqlsesion.selectOne("Data.venta.traslado.getNextCodigoT");
+			//if(codigo!=null){
+			//int cod= Integer.parseInt(codigo.substring(3))+1;
+			//String defecto= "000000";
+			//String temp= defecto.substring(0, defecto.length()-String.valueOf(cod).length()).concat(String.valueOf(cod));
 			
-			trasladoData.setIdtraslado((codigo.substring(0,3).concat(temp)));
-			}
-			else trasladoData.setIdMembresiaNuevo("MEM000020");
+			//trasladoData.setIdtraslado((codigo.substring(0,3).concat(temp)));
+			//}
+			//else trasladoData.setIdMembresiaNuevo("MEM000020");
 			//insertPromocion esta en traslado mapper
 			sqlsesion.insert("insertTraslado",trasladoData);
 			//sqlsesion.insert("insertPlantillaEventoSedes",eventoData);
