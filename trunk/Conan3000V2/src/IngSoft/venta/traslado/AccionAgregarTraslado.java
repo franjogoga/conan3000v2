@@ -20,6 +20,9 @@ public class AccionAgregarTraslado extends CoAccion {
 					TrasladoBeanFuncion trasladoFuncion= TrasladoBeanFuncion.getInstance();
 					TrasladoBeanData trasladoData=trasladoFuncion.crearTraslado(request, response);
 					
+					//trasladoData.setIdmembresiantiguo(request.getParameter("txtIdMembresiaAntiguo"));
+					//trasladoData.setIdmembresianuevo(request.getParameter("txtIdMembresiaNuevo"));
+					
 					trasladoFuncion.agregarTraslado(trasladoData);
 					
 					//String codigo=trasladoData.getIdMembresiaAntiguo();
