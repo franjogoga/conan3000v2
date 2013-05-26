@@ -6,19 +6,19 @@
 	<cache />
 
 	<select id="searchAmbiente" parameterType="IngSoft.administracion.bean.CriterioAmbienteBeanData" resultType="IngSoft.administracion.bean.ResultadoAmbienteBeanData">
-		SELECT AMBIENTE.IdAmbiente as codigo, AMBIENTE.Nombre as nombre, SEDE.Nombre as nombreSede, TIPO_AMBIENTE.Nombre as nombreTipoAmbiente, AMBIENTE.Estado as estado
-		FROM AMBIENTE, TIPO_AMBIENTE, SEDE
+		SELECT a.IdAmbiente as codigo, a.Nombre as nombre, s.Nombre as nombreSede, ta.Nombre as nombreTipoAmbiente, a.Estado as estado
+		FROM AMBIENTE a, TIPO_AMBIENTE ta, SEDE s
 		<where>
 		<if test="nombre != null">
-       		AMBIENTE.Nombre  like  #{nombre}
+       		a.Nombre  like  #{nombre}
     	</if>
     	<if test="idTipoAmbiente != null ">
-       		AND AMBIENTE.IdTipoAmbiente = #{idTipoAmbiente}
+       		AND a.IdTipoAmbiente = #{idTipoAmbiente}
     	</if>
     	<if test="idSede != null">
-        	AND AMBIENTE.IdSede = #{idSede}
+        	AND a.IdSede = #{idSede}
     	</if>
-    		AND AMBIENTE.IdSede=SEDE.IdSede AND TIPO_AMBIENTE.IdTipoAmbiente = AMBIENTE.IdTipoAmbiente AND AMBIENTE.Estado='Activo'
+    		AND a.IdSede=s.IdSede AND ta.IdTipoAmbiente = a.IdTipoAmbiente AND (a.Estado='Activo' OR a.Estado='Inactivo')
 		</where>
 	</select>
  
@@ -42,10 +42,10 @@
 	</select>
 
 	<select id="getAmbiente" parameterType="java.lang.String"  resultType="IngSoft.administracion.bean.AmbienteBeanData">
-		select IdAmbiente as codigo, Nombre as nombre, IdSede as idSede, Descripcion as descripcion,
+		SELECT IdAmbiente as codigo, Nombre as nombre, IdSede as idSede, Descripcion as descripcion,
 			   Caracteristicas as caracteristicas, IdTipoAmbiente as idTipoAmbiente, Estado as estado
-		from AMBIENTE
-		where Estado = 'Activo' and  IdAmbiente = #{codigo}; 
+		FROM AMBIENTE
+		WHERE (Estado = 'Activo' OR Estado = 'Inactivo') AND  IdAmbiente = #{codigo}; 
 	</select>
 
 	<update id="updateAmbiente" parameterType="IngSoft.administracion.bean.AmbienteBeanData">
@@ -60,7 +60,7 @@
 	</update>
 
 	<update id="deleteAmbiente" parameterType="java.lang.String" >
-		update AMBIENTE set Estado='Eliminado' where IdAmbiente = #{codigo}
+		UPDATE AMBIENTE SET Estado='Eliminado' WHERE IdAmbiente = #{codigo}
 	</update>
 	
 </mapper>
