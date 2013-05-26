@@ -6,8 +6,6 @@ public class ResultadoAmbienteBeanData implements Serializable{
 	private String codigo;
 	private String nombre; 
 	private String idSede;
-	private String descripcion;
-	private String caracteristicas;
 	private String idTipoAmbiente;
 	private String estado;
 	
@@ -28,18 +26,6 @@ public class ResultadoAmbienteBeanData implements Serializable{
 	}
 	public void setIdSede(String idSede) {
 		this.idSede = idSede;
-	}
-	public String getDescripcion() {
-		return descripcion;
-	}
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
-	}
-	public String getCaraceristicas() {
-		return caracteristicas;
-	}
-	public void setCaracteristicas(String caracteristicas) {
-		this.caracteristicas = caracteristicas;
 	}
 	public String getIdTipoAmbiente() {
 		return idTipoAmbiente;
