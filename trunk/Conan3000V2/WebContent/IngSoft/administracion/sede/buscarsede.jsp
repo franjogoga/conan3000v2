@@ -120,6 +120,7 @@
 			$("#cmbProvincia").html(msg);
 			//chosen - improves select
 			$("#cmbProvincia").trigger("liszt:updated");
+			$("#cmbDistrito").trigger("liszt:updated");
 		  },
 		  error: function(objeto, quepaso, otroobj){
 			alert("ERROR!! Pasó lo siguiente: "+quepaso);
