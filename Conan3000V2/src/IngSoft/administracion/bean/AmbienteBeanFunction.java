@@ -74,7 +74,6 @@ public class AmbienteBeanFunction {
 	
 	public boolean eliminarAmbiente(String codigo) throws CoException {
 		boolean resultado=false;
-		
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
 			sqlsesion.update("Data.administracion.ambiente.deleteAmbiente",codigo);
@@ -84,14 +83,11 @@ public class AmbienteBeanFunction {
 			sqlsesion.rollback();
 			a.printStackTrace();
 			throw CoException.set("Error: No se pudo eliminar el ambiente intente de nuevo", "SMAAmbiente?accion=Agregar&tipo=1");	
-		}
-		
+		}		
 		finally{
 			sqlsesion.commit();
 			sqlsesion.close();					
 		}
-			
-		
 		return resultado;
 	}
 
@@ -108,12 +104,10 @@ public class AmbienteBeanFunction {
 			a.printStackTrace();
 			throw CoException.set("Error: No se pudo modificar el ambiente intente de nuevo", "SMAAmbiente?accion=Modificar&tipo=1");
 		}
-		
 		finally{
 			sqlsesion.commit();
 			sqlsesion.close();					
 		}
-			
 		return resultado;
 	}
 	
@@ -121,7 +115,7 @@ public class AmbienteBeanFunction {
 		AmbienteBeanData ambienteData=null;
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
-			ambienteData= sqlsesion.selectOne("Data.administracion.ambiente.getAmbiente",codigo);
+			ambienteData = sqlsesion.selectOne("Data.administracion.ambiente.getAmbiente",codigo);
 		}
 		finally{
 			sqlsesion.close();
