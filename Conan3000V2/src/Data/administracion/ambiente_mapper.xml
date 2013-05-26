@@ -13,7 +13,7 @@
 		<if test="nombre != null">
        		AMBIENTE.Nombre  like  #{nombre}
     	</if>
-    	<if test="idTipoAmbiente != null">
+    	<if test="idTipoAmbiente != null ">
        		AND AMBIENTE.IdTipoAmbiente = #{idTipoAmbiente}
     	</if>
     	<if test="idSede != null">
