@@ -19,7 +19,7 @@ left JOIN TIPO_EVENTO on TIPO_EVENTO.IdTipoEvento=PLANTILLA_EVENTO.IdTipoEvento
 <if test="nombre != null ">
         PLANTILLA_EVENTO.nombre  like  #{nombre}
     </if>
-    <if test="tipo != null and tipo>0">
+    <if test="tipo != null">
         AND TIPO_EVENTO.IdTipoEvento = #{tipo}
     </if>
     <if test="limInicio != null">

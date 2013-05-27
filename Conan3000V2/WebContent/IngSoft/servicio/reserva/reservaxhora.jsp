@@ -1,9 +1,13 @@
+<%@page import="java.util.Date"%>
 <%@page import="IngSoft.servicio.bean.Utils"%>
 <%@page import="java.text.SimpleDateFormat"%>
+<jsp:useBean id="fA" scope="request"class="java.util.Date"></jsp:useBean>
+<jsp:useBean id="fI" scope="request"class="java.util.Date"></jsp:useBean>
 <%!int step=30;
   String horaIni="07:00";
   String horaFin="15:00";
-  
+  String dias[]={"Lunes","Martes","Miercoles","Jueves","Viernes","Sabado","Domingo"};
+  SimpleDateFormat DF=new SimpleDateFormat("dd/MM");
  public String addHora(String hora){
  	try{
  	//System.out.println(hora);
@@ -26,17 +30,14 @@
  	catch(Exception e){
  	return horaFin;} 
  }  
-  %>
-  
-<%!String dias[]={"Lunes","Martes","Miercoles","Jueves","Viernes","Sabado","Domingo"};
-   SimpleDateFormat DF=new SimpleDateFormat("dd/MM");
-   java.util.Date fecIni=Utils.fechaMenos(new java.util.Date(),Integer.valueOf( new SimpleDateFormat("uu").format(new  java.util.Date())).intValue()-1);	
- %>	
+ %>
+
 <table class="table table-striped table-bordered bootstrap-datatable datatable">
 						 <thead>
 							  <tr>
 							  <th>Horas</th>
-							  <%for(int i=0;i<dias.length;i++){%>								  
+							  <% Date fecIni=fA!=null?Utils.fechaMenos(fA,Integer.valueOf( Integer.valueOf( new SimpleDateFormat("uu").format(fA)).intValue()-1)):fI;
+							  for(int i=0;i<dias.length;i++){%>								  
 								  <th><%=dias[i]+" "+DF.format(Utils.fechaMas(fecIni, i)) %></th>
                                   <%}%>
 							  </tr>
