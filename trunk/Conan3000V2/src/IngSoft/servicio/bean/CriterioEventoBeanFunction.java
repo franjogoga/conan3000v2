@@ -20,7 +20,7 @@ public class CriterioEventoBeanFunction {
 	public CriterioEventoBeanData crearCriterio(HttpServletRequest request, HttpServletResponse response){
 		CriterioEventoBeanData criterioEventoData= new CriterioEventoBeanData();
 		criterioEventoData.setNombre(request.getParameter("txtNombre").trim()+"%");
-		criterioEventoData.setTipo(Integer.parseInt(request.getParameter("cmbTipoEvento")==null?"0":request.getParameter("cmbTipoEvento")));
+		criterioEventoData.setTipo(request.getParameter("cmbTipoEvento")==null?null:request.getParameter("cmbTipoEvento"));
 
 		try {
 			criterioEventoData.setLimInicio(new Date(DF.parse(request.getParameter("date01")+"/0000").getTime()));

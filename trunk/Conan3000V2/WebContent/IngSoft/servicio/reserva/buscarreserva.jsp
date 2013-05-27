@@ -173,13 +173,12 @@ if (elemento.className == "btn btn-success") {
 				</div><!--/span-->
 
 			</div><!--/row-->
-<div class="row-fluid sortable">
+<div class="row-fluid sortable">		
 				<div class="box span12">
 					<div class="box-header well" data-original-title>
-						<h2><i class="icon-edit"></i> RESERVAS</h2>
-						
-					</div>		
-<div  class="box-content"; style="display:inline" name="resultadoBusqueda" id="resultadoBusqueda">
+						<h2><i></i> RESERVAS</h2>
+					</div>  	
+<div  class="box-content" name="resultadoBusqueda" id="resultadoBusqueda" style="position:relative">
 						
 					  
 					

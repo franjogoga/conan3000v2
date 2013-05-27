@@ -5,7 +5,7 @@ import java.sql.Date;
 
 public class CriterioEventoBeanData implements Serializable{
 	private String nombre;
-	private int tipo;
+	private String tipo;
 	private Date limInicio;
 	private Date limFin;
 	public String getNombre() {
@@ -14,10 +14,10 @@ public class CriterioEventoBeanData implements Serializable{
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public int getTipo() {
+	public String getTipo() {
 		return tipo;
 	}
-	public void setTipo(int tipo) {
+	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
 	public Date getLimInicio() {
