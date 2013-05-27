@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<%@page import="IngSoft.administracion.bean.TipoAmbienteMiniBeanData"%>
+<%@page import="IngSoft.administracion.bean.SedeMiniBeanData"%>
 <html lang="en">
 <head>
 	<!--
@@ -17,6 +19,11 @@
 	<meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
 	<meta name="author" content="Muhammad Usman">
 
+	<!--The beans  -->
+	<jsp:useBean id="sedes" scope="request" class="java.util.Vector"></jsp:useBean>
+	<jsp:useBean id="tiposAmbiente" scope="request" class="java.util.Vector"></jsp:useBean>
+	<jsp:useBean id="ambiente" scope="request" class="IngSoft.administracion.bean.AmbienteBeanData"></jsp:useBean>
+	
 	<!-- The styles -->
 	<link id="bs-css" href="css/bootstrap-cerulean.css" rel="stylesheet">
 	<style type="text/css">
@@ -51,7 +58,41 @@
 
 	<!-- The fav icon -->
 	<link rel="shortcut icon" href="img/favicon.ico">
+	<script>	
 		
+	function validar(form){
+			if(form.txtNombreAmbiente.value.length <=0)return false;
+			if(form.cmbTipo.value.length<=0)return false;
+			if(form.cmbSede.value.lengtht<=0)return false;
+			if(form.txtDescripcion.value.length<=0)return false;
+	return true;
+	}
+
+	function alt_submit(){
+		var form= document.frmUpdate;
+		if(validar(form)) form.submit();
+		else alert("Uno o mas campos estan vacios");
+	}
+	</script>
+		<%! public boolean  encontrar(String a, String b){		
+			if(b.equals(a)) return true;
+			return false;
+		}
+		
+		public boolean Estado_Activo (String estado){
+			if (estado.equals("Activo"))
+				return true;
+			else
+				return false;
+		}
+		
+		public boolean Estado_Inactivo (String estado){
+			if (estado.equals("Inactivo"))
+				return true;
+			else
+				return false;
+		}
+	%>
 </head>
 
 <body>
@@ -75,7 +116,7 @@
               <div>
                 <ul class="breadcrumb">
                   <li> <a href="../../general/index.jsp">Home</a> <span class="divider">/</span> </li>
-                  <li> <a href="#">Mantenimiento de Ambientes</a> <span class="divider">/</span></li>
+                  <li> <a href="buscarambiente.jsp">Mantenimiento de Ambientes</a> <span class="divider">/</span></li>
                   <li>Modificar Ambiente</li>
                 </ul>
               </div>
@@ -85,59 +126,66 @@
                     <h2></i>MODIFICAR AMBIENTE</h2>
                   </div>
                   <div class="box-content">
-                    <form class="form-horizontal">
+                    <form class="form-horizontal" action="<%= response.encodeURL("SMAAmbiente")%>" name="frmUpdate" method="post">
+                      <input type="hidden" name="codigo" value="<%=ambiente.getCodigo()%>"></input>                      
+                      <input type="hidden" name="accion" value="Modificar"></input>
+					  <input type="hidden" name="tipo" value="2"></input>
                       <fieldset>
                         <div class="control-group">
                           <label class="control-label" for="typeahead">Nombre (*):</label>
                           <div class="controls">
-                            <input type="text" class="span6 typeahead" id="typeahead"  data-provide="typeahead" placeholder="Polideportivo">
+                            <input type="text" class="span6 typeahead" id="txtNombreAmbiente"  name="txtNombreAmbiente" data-provide="typeahead" value="<%=ambiente.getNombre()%>">
                           </div>
                         </div>
                         <div class="control-group">
                           <label class="control-label" for="selectError">Tipo (*):</label>
                           <div class="controls">
-                            <select name="selectError" id="selectError" data-rel="chosen">
-                              <option>Deportivo</option>
+                            <select name="cmbTipo" id="cmbTipo" data-rel="chosen">
+                              	<%for(int i=0;i<tiposAmbiente.size();i++){ %>
+										<option value="<%=((TipoAmbienteMiniBeanData)tiposAmbiente.get(i)).getCodigo()%>" <%=encontrar(((TipoAmbienteMiniBeanData)tiposAmbiente.get(i)).getCodigo(), ambiente.getIdTipoAmbiente())?"selected":""%>><%= ((TipoAmbienteMiniBeanData)tiposAmbiente.get(i)).getNombre()%></option>
+								<%} %>
                             </select>
                           </div>
                         </div>
                         <div class="control-group">
                           <label class="control-label" for="selectError">Sede (*):</label>
                           <div class="controls">
-                            <select name="selectError2" id="selectError2" data-rel="chosen">
-                              <option>Chosica</option>
+                            <select name="cmbSede" id="cmbSede" data-rel="chosen">
+                            	<%for(int i=0;i<sedes.size();i++){ %>
+									<option value="<%=((SedeMiniBeanData)sedes.get(i)).getCodigo()%>" <%=encontrar(((SedeMiniBeanData)sedes.get(i)).getCodigo(),ambiente.getIdSede())?"selected":""%>><%= ((SedeMiniBeanData)sedes.get(i)).getNombre()%></option>
+								<%} %>
                             </select>
                           </div>
                         </div>
                         <div class="control-group">
                   		  <label class="control-label" for="textarea2">Descripci&oacute;n (*):</label>
                           <div class="controls">
-                            <textarea name="textarea" rows="3" id="textarea2" style="resize:none" placeholder="Complejo deportivo."></textarea>
+                            <textarea name="txtDescripcion" rows="3" id="txtDescripcion" style="resize:none"><%=ambiente.getDescripcion()%></textarea>
                           </div>
                         </div>
                         <div class="control-group">
                           <label class="control-label" for="textarea2">Caracter&iacute;sticas: </label>
                           <div class="controls">
-                            <textarea name="textarea2" rows="3" id="textarea2" style="resize:none" placeholder="Área: 200 metros cuadrados."></textarea>
+                            <textarea name="txtCaracteristica" rows="3" id="txtCaracteristica" style="resize:none"><%=ambiente.getCaracteristicas()%></textarea>
                           </div>
                         </div>
                         <div class="control-group">
 								<label class="control-label" for="typeahead3">Estado:</label>
 								<div class="controls">
 								  <label class="radio">
-									<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
+									<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" <%=Estado_Activo(ambiente.getEstado())?"checked":""%>>
 									Activo
 								  </label>
 								  <div style="clear:both"></div>
 								  <label class="radio">
-									<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+									<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2" <%=Estado_Inactivo(ambiente.getEstado())?"checked":""%>>
 									Inactivo
 								  </label>
 								</div>
 							  </div>
                         <div class="form-actions">
-                          <button type="submit" class="btn btn-primary">Guardar</button>
-                          <button type="reset" class="btn">Cancelar</button>
+                          <button type="button" class="btn btn-primary" onclick="javascript:alt_submit()">Guardar</button>
+                          <button type="button" class="btn" onclick="location.href='buscarambiente.jsp'">Cancelar</button>
                         </div>
                       </fieldset>
                     </form>

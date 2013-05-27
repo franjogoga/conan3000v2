@@ -9,7 +9,7 @@ public class SMAAmbiente extends CoServlet{
 		acciones.put("Buscar", new AccionBuscarAmbiente());
 		acciones.put("Consultar", new AccionConsultarAmbiente());
 		acciones.put("Agregar", new AccionAgregarAmbiente());
-		//acciones.put("Modificar", new AccionModificarAmbiente());
+		acciones.put("Modificar", new AccionModificarAmbiente());
 		acciones.put("Eliminar", new AccionEliminarAmbiente());
 	}
 }
