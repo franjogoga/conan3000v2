@@ -55,7 +55,7 @@
 		Descripcion = #{descripcion},
 		Caracteristicas = #{caracteristicas},
 		IdTipoAmbiente = #{idTipoAmbiente},
-		Estado = 'A'
+		Estado = #{estado}
 	 	where IdAmbiente = #{codigo}
 	</update>
 

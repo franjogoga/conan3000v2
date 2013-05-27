@@ -41,6 +41,21 @@ public class AmbienteBeanFunction {
 		return ambienteData;		
 	} 
 	
+	public AmbienteBeanData crearAmbienteModificado(HttpServletRequest request, HttpServletResponse response){
+		AmbienteBeanData ambienteData= new AmbienteBeanData();
+		try{
+		ambienteData.setNombre(request.getParameter("txtNombreAmbiente"));
+		ambienteData.setIdSede(request.getParameter("cmbSede"));
+		ambienteData.setDescripcion(request.getParameter("txtDescripcion"));
+		ambienteData.setCaracteristicas(request.getParameter("txtCaracteristica"));
+		ambienteData.setIdTipoAmbiente(request.getParameter("cmbTipo"));
+		ambienteData.setEstado(request.getParameter("optionsRadios"));
+		}catch(Exception e){
+			e.printStackTrace();	
+		}
+		return ambienteData;		
+	} 
+	
 	public boolean agregarAmbiente(AmbienteBeanData ambienteData) throws CoException {
 		boolean resultado=false;		
 		l.lock();

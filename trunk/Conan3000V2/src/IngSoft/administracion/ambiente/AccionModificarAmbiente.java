@@ -21,7 +21,7 @@ public class AccionModificarAmbiente extends CoAccion {
 			HttpServletResponse response) throws CoException{
 		AmbienteBeanFunction ambienteFunction= AmbienteBeanFunction.getInstance();
 		if(Integer.valueOf(request.getParameter("tipo"))==2){
-			AmbienteBeanData ambienteData = ambienteFunction.crearAmbiente(request, response);
+			AmbienteBeanData ambienteData = ambienteFunction.crearAmbienteModificado(request, response);
 			ambienteData.setCodigo(request.getParameter("codigo"));
 			ambienteFunction.modificarAmbiente(ambienteData);
 			this.direccionar(sc, request, response,"/IngSoft/administracion/ambiente/buscarambiente.jsp");
