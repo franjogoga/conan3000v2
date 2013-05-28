@@ -6,7 +6,7 @@
 						   						
 						<li><a class="ajax-link administracion" href="/Conan3000V2/IngSoft/administracion/actividad/buscaractividad.jsp"><i class="icon-wrench"></i><span class="hidden-tablet"> Actividades</span></a></li>
 						<li><a class="ajax-link administracion" href="/Conan3000V2/IngSoft/administracion/ambiente/SMAAmbiente?accion=Buscar&tipo=1"><i class="icon-wrench"></i><span class="hidden-tablet"> Ambientes</span></a></li>
-						<li><a class="ajax-link administracion" href="/Conan3000V2/IngSoft/administracion/bungalow/buscarbungalow.jsp"><i class="icon-wrench"></i><span class="hidden-tablet"> Bungalows</span></a></li>
+						<li><a class="ajax-link administracion" href="/Conan3000V2/IngSoft/administracion/bungalow/SMABungalow?accion=Buscar&tipo=1"><i class="icon-wrench"></i><span class="hidden-tablet"> Bungalows</span></a></li>
 						<li><a class="ajax-link administracion" href="/Conan3000V2/IngSoft/administracion/cancha/buscarcancha.jsp"><i class="icon-wrench"></i><span class="hidden-tablet"> Canchas </span></a></li>      
 						<li><a class="ajax-link administracion" href="/Conan3000V2/IngSoft/administracion/configuracion/configuracion.jsp"><i class="icon-wrench"></i><span class="hidden-tablet"> Configuracion</span></a></li>   
 						<li><a class="ajax-link administracion" href="/Conan3000V2/IngSoft/administracion/empleados/buscarempleado.jsp"><i class="icon-wrench"></i><span class="hidden-tablet"> Empleados</span></a></li>
