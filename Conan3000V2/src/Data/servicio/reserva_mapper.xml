@@ -7,15 +7,33 @@
   <cache />
 
 <select id="searchBungalowxSede" parameterType="java.lang.String" resultType="IngSoft.servicio.bean.BungalowMiniBeanData">
-select b.IdBungalow as codigo
-,b.Numero as nombre
+select r1.codigoBungalow
+,r1.nombreBungalow
+,r2.codigoSocio
+,r2.Fecha
+from
+(select b.IdBungalow as codigoBungalow
+,b.Numero as nombreBungalow
+,a.IdSede as codigoSede
 from 
 BUNGALOW b 
 left join 
 AMBIENTE a 
 on a.IdAmbiente=b.IdAmbiente
-where a.IdSede like #{codigo}  
-and b.Estado ="ACTIVO"
+where 
+b.Estado ="ACTIVO") r1 
+left join
+(select rb.IdBungalow as codigoBungalow
+,rb.IdReservaBungalow as codigoReserva
+,rb.IdSocio  as codigoSocio
+,bf.Fecha as Fecha
+from 
+RESERVA_BUNGALOW rb,
+BUNGALOWxFECHA bf 
+where bf.IdReservaBungalow=rb.IdReservaBungalow) r2
+on r1.codigoBungalow=r2.codigoBungalow
+where r1.codigoSede like #{codigo}
+order by 2 asc;
 </select>
 
 </mapper>
