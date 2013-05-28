@@ -35,7 +35,7 @@ public class AccionBuscarReserva extends CoAccion {
 		if(tipo==3){
 			try{
 			java.util.Date fecIniAnt= new SimpleDateFormat("dd/MM/yyyy").parse(request.getParameter("fecIni").toString());
-			java.util.Date fecIniNue=Utils.fechaMas(fecIniAnt, 7);
+			java.util.Date fecIniNue=Utils.fechaMas(fecIniAnt, 7);				
 			request.setAttribute("fI", fecIniNue);
 			if("bungalow".equals(request.getParameter("cmbServicios"))) 
 				this.direccionar(sc, request, response, "/IngSoft/servicio/reserva/reservaxdia.jsp");
@@ -60,12 +60,13 @@ public class AccionBuscarReserva extends CoAccion {
 			}
 			
 		}
-		
+		else{
 		ReservaBeanFuncion reservaFuncion= ReservaBeanFuncion.getInstance();
 		Vector<SedeMiniBeanData> sedeMiniData=reservaFuncion.getSedes();
 		request.setAttribute("sedes",sedeMiniData );
 		//request.setAttribute("resultados", resultados);
 		this.direccionar(sc, request, response, "/IngSoft/servicio/reserva/buscarreserva.jsp");
+		}
 	}
 
 }

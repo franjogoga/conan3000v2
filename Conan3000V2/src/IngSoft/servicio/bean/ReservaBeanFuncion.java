@@ -24,4 +24,11 @@ public class ReservaBeanFuncion {
 			sqlsesion.close();
 			return new Vector<>(resultados);
 		}  
+	   
+	   public Vector<BungalowMiniBeanData> getBungalowsXSede(String codSede){
+		   SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+			List<BungalowMiniBeanData> resultados=sqlsesion.selectList("Data.servicio.reserva.searchBungalowxSede",codSede);
+			sqlsesion.close();
+			return new Vector<>(resultados);		   
+	   }
 }
