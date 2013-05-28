@@ -81,7 +81,49 @@ if (elemento.className == "btn btn-success") {
 	}
 }
 
+function ajax_submit(tipo){
+	//alert("accion=Buscar"+"&tipo=" + tipo + "&fecIni=" + $(fecIni).val()+"&cmbServicios"+$('#cmbServicios').val());
+	$.ajax({
+		  type: "POST",
+		  url: "/Conan3000V2/IngSoft/servicio/reserva/SMSReserva",
+		  data: "accion=Buscar"+"&tipo=" + tipo + "&fecIni=" + $(fecIni).val()+"&cmbServicios="+$('#cmbServicios').val(),
+		  dataType: "html",
+		  //beforeSend: function ( xhr ) {
+   		  //$("#resultadoBusqueda").html("<img src='img/ajax-loaders/ajax-loader-7.gif' align='center'></img>");
+  		  //},
+		  success: function(msg){
+			$("#resultadoBusqueda").html(msg);
+			
+		  },
+		  error: function(objeto, quepaso, otroobj){
+			alert("ERROR!! Pasó lo siguiente: "+quepaso);
+		  }
+	
+		});
+}
 
+
+function ajax_search(){
+	//alert("accion=Buscar"+"&tipo=" + tipo + "&fecIni=" + $(fecIni).val()+"&cmbServicios"+$('#cmbServicios').val());
+	$.ajax({
+		  type: "POST",
+		  url: "/Conan3000V2/IngSoft/servicio/reserva/SMSReserva",
+		  data: "accion=Buscar"+"&tipo=2" +"&cmbServicios="+$('#cmbServicios').val(),
+		  dataType: "html",
+		  beforeSend: function ( xhr ) {
+   		  $("#resultadoBusqueda").html("<div align='center'><img src='img/ajax-loaders/ajax-loader-7.gif'></img></div>");
+  		  },
+		  success: function(msg){
+			$("#resultadoBusqueda").html(msg);
+			
+		  },
+		  error: function(objeto, quepaso, otroobj){
+			alert("ERROR!! Pasó lo siguiente: "+quepaso);
+		  }
+	
+		});
+		return false
+}
 </script>	
 
 
@@ -132,7 +174,7 @@ if (elemento.className == "btn btn-success") {
 						
 					</div>
 					<div class="box-content">
-						<form class="form-horizontal" name="frmCriteriosBusqueda" id="frmCriteriosBusqueda" method="post" action="<%= response.encodeURL("SMSReserva")%>" onsubmit="xmlhttpPost('/Conan3000V2/IngSoft/servicio/reserva/SMSReserva?accion=Buscar&tipo=2', 'frmCriteriosBusqueda', 'resultadoBusqueda','<img >');return false;">
+						<form class="form-horizontal" name="frmCriteriosBusqueda" id="frmCriteriosBusqueda" method="post" action="<%= response.encodeURL("SMSReserva")%>" onsubmit="return ajax_search()">
 						<input type="hidden" name="accion" value="Buscar"></input>
 						<input type="hidden" name="tipo" value="2"></input>
 						<input type="hidden" name="reservas" value=""></input>
@@ -154,7 +196,7 @@ if (elemento.className == "btn btn-success") {
 								<label class="control-label" for="selectError">Seleccionar servicios</label>
 								<div class="controls">
 								
-								  <select id="options" data-rel="chosen" onchange="cambiarTabla()" name="cmbServicios">
+								  <select id="cmbServicios" data-rel="chosen" onchange="cambiarTabla()" name="cmbServicios">
 									<option value="futbol"> Cancha de futbol</option>
 									<option value="tennis">  Cancha de tennis</option>
                                     <option value="fronton"> Cancha de Fronton</option>

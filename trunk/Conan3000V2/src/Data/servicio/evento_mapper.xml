@@ -37,18 +37,21 @@ order by 1 asc
 	,Nombre 
 	from 
 	SEDE
+	order by 1
 </select>
 <select id="searchAmbienteMini" resultType="IngSoft.servicio.bean.AmbienteMiniBeanData">
 	select IdTipoAmbiente as codigo
 	,Nombre 
 	from 
-	TIPO_AMBIENTE
+	TIPO_AMBIENTE 
+	order by 1
 </select>
 <select id="searchTipoEventoMini" resultType="IngSoft.servicio.bean.TipoEventoMiniBeanData">
 	select IdTipoEvento as codigo
 	,Nombre 
 	from 
 	TIPO_EVENTO
+	order by 1
 </select>
 
 <!-- Agregar plantilla evento -->

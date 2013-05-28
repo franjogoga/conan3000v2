@@ -17,16 +17,18 @@
   <mappers>
  
     <mapper resource="Data/servicio/evento_mapper.xml"/>
-    <mapper resource="Data/servicio/juridica_mapper.xml"/>    
+    <mapper resource="Data/servicio/juridica_mapper.xml"/>
+    <mapper resource="Data/servicio/sorteo_mapper.xml"/>    
+    <mapper resource="Data/servicio/reserva_mapper.xml"/>
     <mapper resource="Data/administracion/actividad_mapper.xml"/>
     <mapper resource="Data/administracion/sede_mapper.xml"/>
-       <mapper resource="Data/venta/promocion_mapper.xml"/>
-       <mapper resource="Data/venta/socio_mapper.xml"/>
-       <mapper resource="Data/venta/traslado_mapper.xml"/>
-       <mapper resource="Data/venta/membresia_mapper.xml"/>
-       <mapper resource="Data/servicio/sorteo_mapper.xml"/>
-       <mapper resource="Data/administracion/perfil_mapper.xml"/>
-       <mapper resource="Data/administracion/ambiente_mapper.xml"/>
+    <mapper resource="Data/administracion/perfil_mapper.xml"/>
+    <mapper resource="Data/administracion/ambiente_mapper.xml"/>
+    <mapper resource="Data/venta/promocion_mapper.xml"/>
+    <mapper resource="Data/venta/socio_mapper.xml"/>
+    <mapper resource="Data/venta/traslado_mapper.xml"/>
+    <mapper resource="Data/venta/membresia_mapper.xml"/>       
+       
        
   </mappers>
 </configuration>
