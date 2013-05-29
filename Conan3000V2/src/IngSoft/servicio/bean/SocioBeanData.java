@@ -7,7 +7,24 @@ public class SocioBeanData implements Serializable{
 	private String nombres;
 	private String apePaterno;
 	private String apeMaterno;
+	private long telefonoCelular;
+	private long telefonoFijo;
 	
+	
+	
+	
+	public long getTelefonoCelular() {
+		return telefonoCelular;
+	}
+	public void setTelefonoCelular(long telefonoCelular) {
+		this.telefonoCelular = telefonoCelular;
+	}
+	public long getTelefonoFijo() {
+		return telefonoFijo;
+	}
+	public void setTelefonoFijo(long telefonoFijo) {
+		this.telefonoFijo = telefonoFijo;
+	}
 	public String getIdSocio() {
 		return idSocio;
 	}
