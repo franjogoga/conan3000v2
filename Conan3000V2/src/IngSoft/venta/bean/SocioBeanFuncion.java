@@ -35,9 +35,20 @@ public class SocioBeanFuncion {
 		SocioBeanData socioData= new SocioBeanData();
 		try{		
 		//socioData.setNombres(request.getParameter("txtNombres"));
+		//if((request.getParameter("txtDireccion"))!=null){	
 		socioData.setDireccion(request.getParameter("txtDireccion"));
+		//}
+		//else{socioData.setDireccion(" ");}
+		
+		//if((request.getParameter("txtCorreoElectronico"))!=null){	
 		socioData.setCorreoElectronico(request.getParameter("txtCorreoElectronico"));
+		//}
+		//else{socioData.setCorreoElectronico(" ");}
+		
+		//if((request.getParameter("txtTelefonoFijo"))!=null){
 		socioData.setTelefonoFijo(Long.parseLong(request.getParameter("txtTelefonoFijo")));
+		
+		
 		socioData.setTelefonoCelular(Long.parseLong(request.getParameter("txtTelefonoCelular")));
 		socioData.setIdDistrito((request.getParameter("cmdDistrito")));
 		
@@ -71,7 +82,7 @@ public class SocioBeanFuncion {
 			
 			socioData.setCodigo(codigo.substring(0,3).concat(temp));}
 			else socioData.setCodigo("SOC000001");
-
+			//aca validar si el get te da null y hacer otro insert !!!!!!
 			sqlsesion.insert("Data.venta.socio.insertSocio",socioData);
 			//sqlsesion.insert("Data.servicio.evento.insertPlantillaEventoSedes",eventoData);
 			//sqlsesion.insert("Data.servicio.evento.insertPlantillaEventoAmbiente",eventoData);
@@ -93,6 +104,21 @@ public class SocioBeanFuncion {
 			
 		return resultado;
 	}
+	
+	
+	public SocioBeanData consultarSocio(String codigo){
+	SocioBeanData socioData=null;
+	SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+	try{
+		socioData= sqlsesion.selectOne("Data.venta.socio.getPlantillaSocio",codigo);
+	}
+	finally{
+		sqlsesion.close();
+	}
+	return socioData;
+	}
+
+	
 	
 	public Vector<DistritoMiniBeanData> getDistritos(){
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
