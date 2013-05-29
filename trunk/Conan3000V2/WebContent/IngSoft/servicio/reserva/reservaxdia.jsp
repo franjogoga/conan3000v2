@@ -1,8 +1,11 @@
+<%@page import="IngSoft.servicio.bean.ReservaBungalowMiniBeanData"%>
 <%@page import="java.util.Date"%>
 <%@page import="IngSoft.servicio.bean.Utils"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <jsp:useBean id="fA" scope="request"class="java.util.Date"></jsp:useBean>
 <jsp:useBean id="fI" scope="request"class="java.util.Date"></jsp:useBean>
+<jsp:useBean id="reservas" scope="session"class="java.util.Vector"></jsp:useBean>
+
 <%Date fecIni=fI==null?Utils.fechaMenos(fA,Integer.valueOf( Integer.valueOf( new SimpleDateFormat("uu").format(fA)).intValue()-1)):fI; %>
 <div align="center">
 <!--  <button class="btn">Anterior</button><button class="btn" style="position:absolute;
@@ -32,18 +35,42 @@ right:11px">Siguiente</button>-->
 						  </thead>   
 						  <tbody>
 							
-							<% 							
-							for (int j=0;j<8;j++){ %>						
+							<% 				
+							String Bungalow=null;
+							boolean esnull=false;
+							int k=0;			
+							for (int j=0;j<reservas.size();j++){ 
+								if(Bungalow==null || Bungalow.equals(((ReservaBungalowMiniBeanData)reservas.get(j)).getCodigoBungalow())){
+								esnull=false;
+								k=0;%>						
 							<tr>
-								<td>Bungalow <%=j+1%></td>
-								<%for(int i=0;i<7;i++) {%>
+								<td>Bungalow <%=((ReservaBungalowMiniBeanData)reservas.get(j)).getNombreBungalow()%></td>
+								<%}
+								 if(((ReservaBungalowMiniBeanData)reservas.get(j)).getFecha()==null && !esnull){
+								 esnull=true;
+								 for(int i=0;i<dias.length;i++) {%>
 								<td class="center">
-									<a id="<%=DF.format(Utils.fechaMas(fecIni, i))%>" class="btn btn-success" onclick="javascript:cambiarClase(this)">
+									<a id="<%=((ReservaBungalowMiniBeanData)reservas.get(j)).getCodigoBungalow()%><%=DF.format(Utils.fechaMas(fecIni, i))%>" class="btn btn-success" onclick="javascript:cambiarClase(this)">
 										<i class="icon-ok icon-white"></i>  
 										Reservar&nbsp;&nbsp;&nbsp;&nbsp;                                      
 								</a>										
 								</td>
-								<%}%>
+								<%}}
+								else if(!esnull){
+									
+								 	while(Utils.fechaMas(fecIni, k).equals(((ReservaBungalowMiniBeanData)reservas.get(j)).getFecha())||Utils.fechaMas(fecIni, k).before(((ReservaBungalowMiniBeanData)reservas.get(j)).getFecha())){								 	
+								 	%>
+								 	<td class="center">
+									<a id="<%=((ReservaBungalowMiniBeanData)reservas.get(j)).getCodigoBungalow()%><%=DF.format(Utils.fechaMas(fecIni, k))%>" class="btn <%=Utils.fechaMas(fecIni, k).equals(((ReservaBungalowMiniBeanData)reservas.get(j)).getFecha())?"btn-inverse":"btn-success"%>" onclick="javascript:cambiarClase(this)">
+										<i class="icon-ok icon-white"></i>
+										<%=Utils.fechaMas(fecIni, k).equals(((ReservaBungalowMiniBeanData)reservas.get(j)).getFecha())?"Pendiente":"Reservar&nbsp;&nbsp;&nbsp;&nbsp;"%>  										                                      
+									</a>										
+									</td>
+								 	<%k++;
+								 	}	
+									
+								}
+								%>
 								
 							</tr>
 							<%} %>			

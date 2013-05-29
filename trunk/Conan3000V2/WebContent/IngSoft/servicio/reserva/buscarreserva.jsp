@@ -50,35 +50,31 @@
 	<!-- The fav icon -->
 	<link rel="shortcut icon" href="img/favicon.ico">
 		
-		<script> 
-// function cambiarIcono(id){
-
-// var elemento = document.getElementById(id);
-	
-// 	if (elemento.className == "btn btn-success") {
-// 	elemento.className = "btn btn-primary";
-// 	alert("Entre aqui");
-// 	}
-// 	else {
-// 	elemento.className = "btn btn-success";
-// 	alert("Entre al else");
-// 	}
-
-
-// }
-
+	<script> 
+var pendientes="";
+var cancelados="";
 function cambiarClase(elemento){
+
 if (elemento.className == "btn btn-success") {
 	elemento.className = "btn btn-inverse";
 	elemento.innerHTML=elemento.innerHTML.replace("Reservar&nbsp;&nbsp;&nbsp;","Pendiente");
+	var temp=elemento.getAttribute("id")+"@";
+	if(cancelados.search(temp)<0)
+	pendientes=pendientes.concat(temp);
+	else cancelados=cancelados.replace(temp,"");
 
 	}
 	else 
 	if(elemento.className == "btn btn-inverse") {
 	elemento.className = "btn btn-success";
 	elemento.innerHTML=elemento.innerHTML.replace("Pendiente","Reservar&nbsp;&nbsp;&nbsp;");
-
+	var temp=elemento.getAttribute("id")+"@";
+	if(pendientes.search(temp)<0)
+	cancelados=cancelados.concat(temp);
+	else pendientes=pendientes.replace(temp,"");
 	}
+	alert(pendientes+"%%"+cancelados);
+	
 }
 
 function ajax_submit(tipo){
@@ -108,7 +104,7 @@ function ajax_search(){
 	$.ajax({
 		  type: "POST",
 		  url: "/Conan3000V2/IngSoft/servicio/reserva/SMSReserva",
-		  data: "accion=Buscar"+"&tipo=2" +"&cmbServicios="+$('#cmbServicios').val(),
+		  data: "accion=Buscar"+"&tipo=2" +"&cmbServicios="+$('#cmbServicios').val()+"&cmbSedes="+$('#cmbSedes').val(),
 		  dataType: "html",
 		  beforeSend: function ( xhr ) {
    		  $("#resultadoBusqueda").html("<div align='center'><img src='img/ajax-loaders/ajax-loader-7.gif'></img></div>");
@@ -174,7 +170,7 @@ function ajax_search(){
 						
 					</div>
 					<div class="box-content">
-						<form class="form-horizontal" name="frmCriteriosBusqueda" id="frmCriteriosBusqueda" method="post" action="<%= response.encodeURL("SMSReserva")%>" onsubmit="return ajax_search()">
+						<form class="form-horizontal" name="frmCriteriosBusqueda" id="frmCriteriosBusqueda" method="post" onsubmit="return ajax_search()">
 						<input type="hidden" name="accion" value="Buscar"></input>
 						<input type="hidden" name="tipo" value="2"></input>
 						<input type="hidden" name="reservas" value=""></input>
@@ -196,7 +192,7 @@ function ajax_search(){
 								<label class="control-label" for="selectError">Seleccionar servicios</label>
 								<div class="controls">
 								
-								  <select id="cmbServicios" data-rel="chosen" onchange="cambiarTabla()" name="cmbServicios">
+								  <select id="cmbServicios" data-rel="chosen" name="cmbServicios">
 									<option value="futbol"> Cancha de futbol</option>
 									<option value="tennis">  Cancha de tennis</option>
                                     <option value="fronton"> Cancha de Fronton</option>
