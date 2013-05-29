@@ -41,8 +41,6 @@ public class ProveedorBeanData implements Serializable {
 		this.departamento = departamento;
 	}
 
-	
-	
 	public String getIdProveedor() {
 		return idProveedor;
 	}

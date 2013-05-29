@@ -9,13 +9,9 @@ import javax.servlet.http.HttpServletResponse;
 import IngSoft.general.CoAccion;
 import IngSoft.general.CoException;
 import IngSoft.venta.bean.DistritoMiniBeanData;
-import IngSoft.venta.bean.MembresiaBeanFunction;
-import IngSoft.venta.bean.PersonaMiniBeanData;
-import IngSoft.venta.bean.PersonaMiniBeanFuncion;
 import IngSoft.venta.bean.ProveedorBeanData;
 import IngSoft.venta.bean.ProveedorBeanFuncion;
-import IngSoft.venta.bean.SocioBeanData;
-import IngSoft.venta.bean.SocioBeanFuncion;
+
 
 
 public class AccionAgregarProveedor extends CoAccion{
@@ -57,6 +53,6 @@ public class AccionAgregarProveedor extends CoAccion{
 				
 				request.setAttribute("tiposDistrito",distritoMiniData);
 				
-				this.direccionar(sc, request, response, "/IngSoft/ventas/proveedor/agregarproveedor.jsp");
+				this.direccionar(sc, request, response,"/IngSoft/ventas/proveedor/agregarproveedor.jsp");
 				}
 }
