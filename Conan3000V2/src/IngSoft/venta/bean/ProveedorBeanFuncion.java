@@ -46,13 +46,11 @@ public class ProveedorBeanFuncion {
 			proveedorData.setProvincia((request.getParameter("cmdProvincia")));
 			proveedorData.setDepartamento((request.getParameter("cmdDepartamento")));
 			proveedorData.setNomContacto(request.getParameter("txtNombre"));
-			proveedorData.setApMaterno(request.getParameter("txtApMaterno"));
-			proveedorData.setApPaterno(request.getParameter("txtApPaterno"));
+		    proveedorData.setApPaterno(request.getParameter("txtApPaterno"));
 			proveedorData.setTipoDoc(request.getParameter("cmbTipoDoc"));
 			proveedorData.setNumDoc(request.getParameter("txtNumDoc"));
 			
 		
-		ProveedorBeanFuncion proveedorFuncion=ProveedorBeanFuncion.getInstanceS();
 
 		}catch(Exception e){
 			e.printStackTrace();
@@ -77,8 +75,7 @@ public class ProveedorBeanFuncion {
 			else proveedorData.setIdProveedor("PRO000001");
 
 			sqlsesion.insert("Data.venta.proveedor.insertProveedor",proveedorData);
-			//sqlsesion.insert("Data.servicio.evento.insertPlantillaEventoSedes",eventoData);
-			//sqlsesion.insert("Data.servicio.evento.insertPlantillaEventoAmbiente",eventoData);
+		
 			
 			resultado=true;
 		}

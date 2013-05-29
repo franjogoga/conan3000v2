@@ -1,6 +1,109 @@
 <%@page import="IngSoft.venta.bean.DistritoMiniBeanData"%>
 <script>
 
+function validaCorreo(valor)
+{
+	var reg=/(^[a-zA-Z0-9._-]{1,30})@([a-zA-Z0-9.-]{1,30}$)/;
+	if(reg.test(valor)) return true;
+	else return false;
+}
+
+function esCorrecto(valor,minimo, maximo){
+	
+	if(valor.length>maximo){ 
+		return false;
+	}else{
+		if(valor.length<=minimo){
+			return false;
+		}else{
+			return true;	
+		}
+
+	}
+
+}
+
+function validarEntero(valor){ 
+ 
+ valor = parseInt(valor); 
+ 	if (isNaN(valor)) { 
+       	 return null;
+ 	}else{ 
+       	 return valor; 
+ 	}
+}
+
+function generaMensaje(cadena){
+	var i;
+	var mensaje="Los siguientes campos no han sido llenados correctamente\n";
+	for(i=0;i<cadena.lenght;i++){
+		if(i+1<cadena.lenght){
+			mensaje+=cadena[i]+', ';
+			
+		}else{
+			mensaje=+cadena[i];
+			
+		}
+		
+	}
+	return mensaje;
+	
+}
+
+
+function crearAlert(cadena){
+	mensaje=generaMensaje(cadena);
+	$(document).ready(function() {
+		apprise(mensaje, {'animate':true}, function(r) {
+
+			if(r) { 
+			
+			} else { 
+		
+			}
+		});
+	});
+}
+
+function alt_submit(){
+	var form= document.frmProveedor;
+	if(validaForm()) form.submit();
+		
+}
+
+function validaForm(){
+	var form=document.frmPromocion;
+	var cadena= new Array();
+	var i=0;
+	if(!esCorrecto(form.txtRazonSocial.value,1,100)){
+		cadena[i]="Razon";
+		i++; 
+	}
+	
+	if(!esCorrecto(form.txtNombre.value,1,10)){
+		cadena[i]="Nombre";
+		i++;
+	}
+	if(!esCorrecto(form.Telefono.value,1,10)){
+		cadena[i]="Telefono";
+		i++;
+	}
+	if(!esCorrecto(form.txtCorreo.value,1,100)){
+		cadena[i]="Correo";
+		i++;
+	}
+	
+	crearAlert(cadena);
+	
+	
+	
+	
+	
+	
+
+}
+
+
 
 
 </script>	
@@ -20,9 +123,11 @@
 		          <h2>AGREGAR PROVEEDOR</h2>
 	            </div>
 		        <div class="box-content">
-		          <form class="form-horizontal">
+		         <form class="form-horizontal"  name="frmProveedor" method="POST"  action="<%= response.encodeURL("SMVProveedor")%>">
+			                 <input type="hidden" name="accion" value="Agregar"></input>
+							<input type="hidden" name="tipo" value="2"></input>
 		            <fieldset>
-		              <div class="control-group">
+		              <div class="control-group"  id="dvRazonSocial">
 		                <label class="control-label" for="typeahead7">Raz&oacute;n Social (*):</label>
 		                <div class="controls">
 		                  <input type="text" class="span6 typeahead" id="txtRazonSocial" name="txtRazonSocial"  data-provide="typeahead" >
@@ -62,9 +167,10 @@
 		                <div class="control-group">
 		                  <label class="control-label" for="selectError">Distrito:</label>
 		                  <div class="controls">
-		                    <select name="selectError2" id="cmbDistrito" name="cmbDistrito" data-rel="chosen">
-		                      <option>San Miguel</option>
-		                      <option>San Isidro</option>
+		                    <select  id="cmbDistrito" name="cmbDistrito" data-rel="chosen">
+		                     <%for(int i=0;i<tiposDistrito.size();i++){ %>
+										<option value="<%= ((DistritoMiniBeanData)tiposDistrito.get(i)).getIdDistrito()%>" <%=i==0?"selected":""%>><%= ((DistritoMiniBeanData)tiposDistrito.get(i)).getNombreDistrito()%></option>
+									<%} %>	
 	                        </select>
 		                  </div>
 	                    </div>
@@ -120,8 +226,9 @@
 	                    </div>
 	                  </div>
 		              <div class="form-actions">
-		                     <a  name="btnAgregar" class="btn btn-primary" href="">Agregar</a>  
-			               <a  name="btnCancelar" class="btn" href="buscarproveedor.jsp">Cancelar</a>
+		                    <button  type="button"  class="btn btn-primary" onclick="javascript:alt_submit()">Agregar</button>   
+			                      		   <button  type="button"  class="btn" onclick="location.href='buscarproveedor.jsp'">Cancelar</button>  
+			              			              
 	                  </div>
 	                </fieldset>
 	              </form>
