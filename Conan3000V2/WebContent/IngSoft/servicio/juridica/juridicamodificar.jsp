@@ -19,6 +19,11 @@
 	<meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
 	<meta name="author" content="Muhammad Usman">
 
+		<!--The beans  -->
+	<jsp:useBean id="juridica" scope="request"class="IngSoft.servicio.bean.PersonaJuridicaBeanData"></jsp:useBean>
+
+
+
 	<!-- The styles -->
 	<link id="bs-css" href="css/bootstrap-cerulean.css" rel="stylesheet">
 	<style type="text/css">
@@ -55,7 +60,7 @@
 	<link rel="shortcut icon" href="img/conan_logo.png">
 		
 		
-			<script>
+<script>
 	function alfanumerico(e) 
 	{ 
 		var key = window.event.keyCode || event.keyCode;
@@ -144,15 +149,53 @@
 			        <h2>MODIFICAR PERSONA JUR&Iacute;DICA</h2>
 					</div>
 					<div class="box-content">
-						<form class="form-horizontal">
+						<form class="form-horizontal" name="frmUpdate" method="post">
+						<input type="hidden" name="codigo" value="<%=juridica.getCodigo()%>"></input>
+						<input type="hidden" name="accion" value="Modificar"></input>
+						<input type="hidden" name="tipo" value="2"></input>
 						  <fieldset>
 						                               
-                            <div class="control-group">
+                         
+							  
+							  <div class="control-group">
+                                  
+                                  
+                                  <label class="control-label" for="typeahead7">RUC: </label>
+                                  <div class="controls">
+                                      <input type="text" class="span6 typeahead"   data-provide="typeahead" id="txtRuc" name="txtRuc" value="<%=juridica.getRuc()%>">
+                                          </div>
+                              </div>
+                              
+                              
+                                
+                      		
+                                   <div class="control-group">
                                   
                                   
                                   <label class="control-label" for="typeahead7">Raz&oacute;n Social: </label>
                                   <div class="controls">
-                                      <input type="text" class="span6 typeahead" id="typeahead7"  data-provide="typeahead" >
+                                      <input type="text" class="span6 typeahead"   data-provide="typeahead" id="txtRazonSocial" name="txtRazonSocial" value="<%=juridica.getRazonSocial()%>" onkeypress="return alfanumerico(event);" autofocus>
+                                          </div>
+                              </div>
+							  
+							  
+							  
+							  <div class="control-group">
+                                  
+                                  
+                                  <label class="control-label" for="typeahead7">Direccion: </label>
+                                  <div class="controls">
+                                      <input type="text" class="span6 typeahead"   data-provide="typeahead" id="txtDireccion" name="txtDireccion" value="<%=juridica.getDireccion()%>" onkeypress="return alfanumerico(event);" autofocus>
+                                          </div>
+                              </div>
+							  
+							  
+							     <div class="control-group">
+                                  
+                                  
+                                  <label class="control-label" for="typeahead7">Telefono: </label>
+                                  <div class="controls">
+                                      <input type="text" class="span6 typeahead"   data-provide="typeahead" id="txtTelefono" name="txtTelefono" value="<%=juridica.getTelefono()%>">
                                           </div>
                               </div>
 							  
@@ -160,40 +203,14 @@
 							  <div class="control-group">
                                   
                                   
-                                  <label class="control-label" for="typeahead7">RUC: </label>
+                                  <label class="control-label" for="typeahead7">Correo: </label>
                                   <div class="controls">
-                                      <input type="text" class="span6 typeahead" id="typeahead7"  data-provide="typeahead" >
+                                      <input type="text" class="span6 typeahead"   data-provide="typeahead" id="txtCorreo" name="txtCorreo" value="<%=juridica.getCorreo()%>" onkeypress="return alfanumerico(event);" autofocus>
                                           </div>
                               </div>
-                              
-                              
-                                
-                            
-						<div class="control-group">
-			              <label class="control-label" for="typeahead7">Fecha Registro: </label>
-			              <div class="controls">
-			                <input type="text" class="input-xlarge datepicker" id="date01" value="02/16/2012">
-		                  </div>
-		                </div>							
-                                
-								                                                    
-                                                      
-                                                             
-                                
-                                
-                                                               
-                                <div class="control-group">
-                                    <label class="control-label" for="textarea2">Descripci&oacuten:</label>
-                                    <div class="controls">
-                                   
-                                        <!--
-                                        <textarea class="cleditor" id="textarea2" rows="3"></textarea>
-                                        -->
-                                        
-                                        <textarea class="" id="textarea2" rows="3"></textarea>
-                                   
-                                    </div>
-                                </div>
+							  
+							  
+								 
                                 
                                 <div class="control-group">
 								<label class="control-label">Estado:</label>
