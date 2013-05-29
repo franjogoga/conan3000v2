@@ -117,6 +117,32 @@ public class SocioBeanFuncion {
 	}
 	return socioData;
 	}
+	
+	public boolean eliminarSocio(String codigo) throws CoException {
+		boolean resultado=false;		
+		
+		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+		try{
+		
+			sqlsesion.update("Data.venta.socio.deleteSocio",codigo);
+			
+			resultado=true;
+		}
+		catch(Exception a)		
+		{sqlsesion.rollback();
+		a.printStackTrace();
+			throw CoException.set("Error: No se pudo eliminar la plantilla intente de nuevo", "SMVSocio?accion=Agregar&tipo=1");
+			
+		}
+		
+		finally{
+			sqlsesion.commit();
+			sqlsesion.close();					
+		}
+			
+		return resultado;
+	}
+	
 
 	
 	
