@@ -60,6 +60,35 @@ from SOCIO,PERSONA
 	DISTRITO
 </select>
 
+<select id="getPlantillaSocio" parameterType="java.lang.String"  resultType="IngSoft.venta.bean.SocioBeanData">
+select 
+SOCIO.IdSocio as codigo
+,SOCIO.IdSocio as codigo2
+,SOCIO.Direccion as direccion
+,SOCIO.Correo as correoElectronico
+,SOCIO.TelefonoFijo as telefonoFijo
+,SOCIO.TelefonoCelular as telefonoCelular
+from SOCIO  where SOCIO.IdSocio=#{codigo}; 
+</select>
+
+<select id="getPlantillaPersona" parameterType="java.lang.String"  resultType="IngSoft.venta.bean.PersonaMiniBeanData">
+select 
+PERSONA.IdPersona as codigo
+,PERSONA.Nombres as nombres
+,PERSONA.ApePaterno as apellidoPaterno
+,PERSONA.ApeMaterno as apellidoMaterno
+,PERSONA.TipoDocumento as tipoDocumento
+,PERSONA.FechaNac as fechaNacimiento
+,PERSONA.NumeroDocumento as numeroDocumento
+from PERSONA  where PERSONA.IdPersona=#{codigo}; 
+</select>
+
+<!--Eliminar socio -->
+<update id="deleteSocio" parameterType="java.lang.String" >
+update MEMBRESIA set Estado='Inactivo' where MEMBRESIA.IdSocio= #{codigo}
+</update>
+<!-- Fin eliminar -->
+
 
  <!-- Fin agregar  -->
  
