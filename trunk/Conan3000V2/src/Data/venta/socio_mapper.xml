@@ -85,7 +85,7 @@ from PERSONA  where PERSONA.IdPersona=#{codigo};
 
 <!--Eliminar socio -->
 <update id="deleteSocio" parameterType="java.lang.String" >
-update MEMBRESIA set Estado='Inactivo' where MEMBRESIA.IdSocio= #{codigo}
+update MEMBRESIA set Estado='Eliminado' where MEMBRESIA.IdSocio= #{codigo}
 </update>
 <!-- Fin eliminar -->
 
