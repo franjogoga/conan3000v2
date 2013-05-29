@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Data.venta.proveedor">
+
+  <cache />
+
+
+  
+<!-- Agregar plantilla socio -->
+<insert id="insertProveedor" parameterType="IngSoft.venta.bean.ProveedorBeanData" flushCache="true">
+	insert into PROVEEDOR(IdProveedor,RazonSocial,Ruc,Direccion,Telefono,Correo,NombresContacto,ApePaternoContacto,ApeMaternoContacto,TipoDocumentoContacto,NumeroDocumentoContacto,Estado,IdDistrito)
+	values (#{IdProveedor},#{razonSocial},#{ruc},#{direccion},#{telefono},#{nomContacto},#{apPaterno},#{apMaterno},#{estado},#{tipoDoc},#{numDoc},#{distrito})
+</insert>
+
+
+<select id="getNextCodigo4" resultType="java.lang.String">
+	select max(IdProveedor) from PROVEEDOR
+</select>
+
+<select id="searchDistritoMini" resultType="IngSoft.venta.bean.DistritoMiniBeanData">
+	select IdDistrito as idDistrito
+	,Nombre as nombreDistrito
+	from 
+	DISTRITO
+</select>
+
+
+ <!-- Fin agregar  -->
+ 
+</mapper>
+ 
