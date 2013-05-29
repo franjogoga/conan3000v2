@@ -6,6 +6,7 @@ import java.util.Vector;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.mysql.jdbc.Util;
 
@@ -14,6 +15,7 @@ import IngSoft.general.CoException;
 import IngSoft.servicio.bean.CriterioEventoBeanData;
 import IngSoft.servicio.bean.CriterioEventoBeanFunction;
 import IngSoft.servicio.bean.ReservaBeanFuncion;
+import IngSoft.servicio.bean.ReservaBungalowMiniBeanData;
 import IngSoft.servicio.bean.ResultadoEventoBeanData;
 import IngSoft.servicio.bean.SedeMiniBeanData;
 import IngSoft.servicio.bean.Utils;
@@ -24,10 +26,18 @@ public class AccionBuscarReserva extends CoAccion {
 	public void ejecutar(ServletContext sc, HttpServletRequest request,
 			HttpServletResponse response) throws CoException {
 		int tipo=Integer.parseInt(request.getParameter("tipo"));
+		ReservaBeanFuncion reservaFuncion= ReservaBeanFuncion.getInstance();
+		Vector<SedeMiniBeanData> sedeMiniData=reservaFuncion.getSedes();
+		HttpSession sesion= request.getSession(true);
+		request.setAttribute("sedes",sedeMiniData );
+		if(tipo==1)	this.direccionar(sc, request, response, "/IngSoft/servicio/reserva/buscarreserva.jsp");
 		if(tipo==2){
-			request.setAttribute("fA", new java.util.Date());	
-			if("bungalow".equals(request.getParameter("cmbServicios")))			
-				this.direccionar(sc, request, response, "/IngSoft/servicio/reserva/reservaxdia.jsp");		
+			request.setAttribute("fA", new java.util.Date());
+			
+			if("bungalow".equals(request.getParameter("cmbServicios"))){			
+				Vector<ReservaBungalowMiniBeanData> reservas=reservaFuncion.buscarReservasBungalow(request.getParameter("cmbSedes").toString(), new java.util.Date());
+				sesion.setAttribute("reservas",reservas);
+				this.direccionar(sc, request, response, "/IngSoft/servicio/reserva/reservaxdia.jsp");}		
 			else this.direccionar(sc, request, response, "/IngSoft/servicio/reserva/reservaxhora.jsp");
 			
 			
@@ -60,12 +70,9 @@ public class AccionBuscarReserva extends CoAccion {
 			}
 			
 		}
-		else{
-		ReservaBeanFuncion reservaFuncion= ReservaBeanFuncion.getInstance();
-		Vector<SedeMiniBeanData> sedeMiniData=reservaFuncion.getSedes();
-		request.setAttribute("sedes",sedeMiniData );
+		else{	
 		//request.setAttribute("resultados", resultados);
-		this.direccionar(sc, request, response, "/IngSoft/servicio/reserva/buscarreserva.jsp");
+		
 		}
 	}
 

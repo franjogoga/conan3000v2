@@ -6,11 +6,11 @@
 
   <cache />
 
-<select id="searchBungalowxSede" parameterType="java.lang.String" resultType="IngSoft.servicio.bean.BungalowMiniBeanData">
+<select id="searchBungalowxSede" parameterType="hashmap" resultType="IngSoft.servicio.bean.ReservaBungalowMiniBeanData">
 select r1.codigoBungalow
 ,r1.nombreBungalow
 ,r2.codigoSocio
-,r2.Fecha
+,r2.fecha
 from
 (select b.IdBungalow as codigoBungalow
 ,b.Numero as nombreBungalow
@@ -30,7 +30,10 @@ left join
 from 
 RESERVA_BUNGALOW rb,
 BUNGALOWxFECHA bf 
-where bf.IdReservaBungalow=rb.IdReservaBungalow) r2
+where bf.IdReservaBungalow=rb.IdReservaBungalow
+and rb.Estado='ACTIVO'
+and bf.Fecha &gt;= #{fecIni}
+and bf.Fecha &lt;= #{fecFin}) r2
 on r1.codigoBungalow=r2.codigoBungalow
 where r1.codigoSede like #{codigo}
 order by 2 asc;
