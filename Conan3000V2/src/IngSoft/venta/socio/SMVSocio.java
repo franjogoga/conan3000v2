@@ -16,7 +16,7 @@ public class SMVSocio extends CoServlet{
 		acciones.put("Agregar", new AccionAgregarSocio());
 		//acciones.put("AgregarMini", new AccionAgregarMiniSocio()); //este es para el agregar en traslado membresia
 		//acciones.put("Modificar", new AccionModificarPromocion());
-		//acciones.put("Eliminar", new AccionEliminarPromocion());
+		acciones.put("Eliminar", new AccionEliminarSocio());
 		acciones.put("Seleccionar", new AccionSeleccionarSocio());
 	}
 	
