@@ -1,5 +1,53 @@
 			<!-- content starts -->
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
 			
+				<script>
+		function procesar(form,indice){
+			
+		
+		
+		}
+	
+	function alt_fecha(obj){
+	obj.value=obj.value.slice(0,5);
+	
+	}
+	
+	function alt_submit(){
+		
+			
+			}
+		
+		
+		
+			//document.fmrData.submit();
+
+	</script>	
+	<%! public boolean  encontrar(String a, String[] b){
+		for(int i=0;i<b.length;i++){			
+			if(b[i].equals(a)) return true;	
+		}
+	return false;
+	}
+	public String formatear(java.util.Date date){
+		SimpleDateFormat DF= new SimpleDateFormat("dd/MM");
+		return DF.format(date);
+	}
+	%>
+			
+			
+			
+
+
+<!-- content starts -->
+<jsp:useBean id="socio" scope="request"class="IngSoft.venta.bean.SocioBeanData"></jsp:useBean>
+
+
+
+
+<!-- content starts -->
+<jsp:useBean id="persona" scope="request" class="IngSoft.venta.bean.PersonaMiniBeanData"></jsp:useBean>
 
 			<div>
 				<ul class="breadcrumb">
@@ -15,34 +63,34 @@
 						<h2>ELIMINAR SOCIO				  </h2>
 				  </div>
 					<div class="box-content">
-						<form class="form-horizontal">
+						<form class="form-horizontal" name="frmDelete"  action="<%= response.encodeURL("SMVSocio")%>" method="post">
 						  <fieldset>
 						    
 						      <div class="control-group">
 						        <label class="control-label" for="disabledInput">Nombres:</label>
 						        <div class="controls">
-						          <input class="input-xlarge disabled" value="Jonatan" id="disabledInput" type="text" placeholder="Disabled input here" disabled="">
+						          <input class="input-xlarge disabled" value=<%=persona.getNombres() %> id="disabledInput" type="text" placeholder="Disabled input here" disabled="">
 					            </div>
 					          </div>
 					          
 						      <div class="control-group">
 						        <label class="control-label" for="disabledInput">Apellido Paterno:</label>
 						        <div class="controls">
-						          <input class="input-xlarge disabled" value="Gonzales" id="disabledInput" type="text" placeholder="Disabled input here" disabled="">
+						          <input class="input-xlarge disabled" value=<%=persona.getApellidoPaterno() %> id="disabledInput" type="text" placeholder="Disabled input here" disabled="">
 					            </div>
 					          </div>
 						    
 							    <div class="control-group">
 							      <label class="control-label" for="disabledInput">Apellido Materno:</label>
 							      <div class="controls">
-							        <input class="input-xlarge disabled" value="Garcia" id="disabledInput" type="text" placeholder="Disabled input here" disabled="">
+							        <input class="input-xlarge disabled" value=<%=persona.getApellidoMaterno() %> id="disabledInput" type="text" placeholder="Disabled input here" disabled="">
 						          </div>
 						        </div>
 						        
 						        <div class="control-group">
 			              		<label class="control-label" for="typeahead1">Fecha Nacimiento(*): </label>
 			              		<div class="controls">
-			               		 <input type="text" class="input-xlarge datepicker" id="date020" value="02/16/2012" disabled="">
+			               		 <input type="text" class="input-xlarge datepicker" id="date020" value=<%=formatear(new Date(persona.getFechaNacimiento().getTime())) %> disabled="">
 			             		</div>
 		                		</div>
 						        
@@ -64,7 +112,7 @@
                               <div class="control-group">
 			                          <label class="control-label" for="typeahead3">N&uacute;mero de Documento(*): </label>
 			                          <div class="controls">
-			                            <input type="text" class="span6 typeahead" id="typeahead3" value="04583232"  data-provide="typeahead" data-items="4" disabled="">
+			                            <input type="text" class="span6 typeahead" id="typeahead3" value=<%=persona.getNumeroDocumento() %>  data-provide="typeahead" data-items="4" disabled="">
 		                              </div>
                               </div>
                               
@@ -76,13 +124,13 @@
 							      <div class="control-group">
 							        <label class="control-label" for="typeahead4">Correo Electronico: </label>
 							        <div class="controls">
-									    <input class="input-xlarge disabled" value="vie_jonatan@pucp.pe" id="disabledInput" type="text" placeholder="Disabled input here" disabled="">
+									    <input class="input-xlarge disabled" value=<%=socio.getCorreoElectronico() %> id="disabledInput" type="text" placeholder="Disabled input here" disabled="">
 						            </div>
 						          </div>
 							      <div class="control-group">
 							        <label class="control-label" for="disabledInput2">Direcci&oacute;n:</label>
 							        <div class="controls">
-							          <input class="input-xlarge disabled" value="Jr. Vejestorio 1542 Urb. Mangomarca" id="disabledInput2" type="text" placeholder="Disabled input here" disabled="">
+							          <input class="input-xlarge disabled" value=<%=socio.getDireccion() %> id="disabledInput2" type="text" placeholder="Disabled input here" disabled="">
 						            </div>
 						          </div>
 						          
@@ -90,22 +138,23 @@
 						           <div class="control-group">
 						          <label class="control-label" for="typeahead5">Tel&eacute;fono Fijo: </label>
 			                        <div class="controls">
-			                          <input type="text" class="span6 typeahead" id="typeahead5"  value="4423131"data-provide="typeahead" data-items="4" disabled="">
+			                          <input type="text" class="span6 typeahead" id="typeahead5"  value=<%=socio.getTelefonoFijo() %> data-provide="typeahead" data-items="4" disabled="">
 		                            </div>
 		                            </div>
 		                            
 		                             <div class="control-group">
 		                             <label class="control-label" for="typeahead6">Tel&eacute;fono Celular: </label>
 			                        <div class="controls">
-			                          <input type="text" class="span6 typeahead" id="typeahead6"  value="993231413" data-provide="typeahead" data-items="4" disabled="">
+			                          <input type="text" class="span6 typeahead" id="typeahead6"  value=<%=socio.getTelefonoCelular() %> data-provide="typeahead" data-items="4" disabled="">
 		                            </div>
 		                            </div>
 							    
 						        </div>
 						    </div>
 						    <div class="form-actions">
-							  <a  name="btnEliminar" class="btn btn-primary" href="">Eliminar</a>  
-			               <a  name="btnCancelar" class="btn" href="buscarsocio.jsp">Cancelar</a>  
+							  <button type="submit" class="btn btn-primary"  onclick="javascript:alt_submit()">Eliminar</button> 
+			               	  <button  name="btnCancelar" class="btn" href="buscarsocio.jsp">Cancelar</button>  
+			               </div>
 						  </fieldset>
 					  </form>   
 
