@@ -126,7 +126,7 @@
 			  <input type="hidden" name="accion" value="Agregar"></input>
 			  <input type="hidden" name="codigo" value=""></input>
 			 <input type="hidden" name="tipo" value="1"></input>
-			  </form>
+			  
 			  
 			  
 
@@ -237,7 +237,7 @@ Ver
 				</div><!--/span-->
 			
 			</div><!--/row-->
-                
+                </form>
                 
                 
                 
