@@ -21,10 +21,10 @@
 	<meta name="author" content="Muhammad Usman">
 	
 	<!--The beans  -->
-	<jsp:useBean id="socio" scope="request"class="IngSoft.venta.bean.SocioBeanData"></jsp:useBean>
+	<jsp:useBean id="socio" scope="request" class="IngSoft.venta.bean.SocioBeanData"></jsp:useBean>
 	
 	<!--The beans  -->
-	<jsp:useBean id="persona" scope="request"class="IngSoft.venta.bean.PersonaMiniBeanData"></jsp:useBean>
+	<jsp:useBean id="persona" scope="request" class="IngSoft.venta.bean.PersonaMiniBeanData"></jsp:useBean>
 
 
 
@@ -248,8 +248,8 @@
 			<div class="row-fluid sortable"><!--/span-->
 
 			</div><!--/row-->		 
-					<!-- content ends -->
-			</div><!--/#content.span10-->
+					
+			</div>
 				</div><!--/fluid-row-->
 				
 		<hr>
