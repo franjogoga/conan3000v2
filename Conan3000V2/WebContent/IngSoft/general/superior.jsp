@@ -49,9 +49,11 @@
 					<ul class="nav">
 						<li><a href="#">Visitar Sitio</a></li>
 						<li>
+						<!-- 
 							<form class="navbar-search pull-left">
 								<input placeholder="Buscar" class="search-query span2" name="query" type="text">
 							</form>
+						 -->
 						</li>
 					</ul>
 				</div><!--/.nav-collapse -->
