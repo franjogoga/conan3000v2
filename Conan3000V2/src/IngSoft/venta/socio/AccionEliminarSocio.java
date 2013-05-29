@@ -6,6 +6,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import IngSoft.general.CoAccion;
 import IngSoft.general.CoException;
+import IngSoft.venta.bean.PersonaMiniBeanData;
+import IngSoft.venta.bean.PersonaMiniBeanFuncion;
 import IngSoft.venta.bean.PromocionBeanData;
 import IngSoft.venta.bean.PromocionBeanFuncion;
 import IngSoft.venta.bean.SocioBeanData;
@@ -21,7 +23,17 @@ public class AccionEliminarSocio extends CoAccion{
 		if(Integer.valueOf(request.getParameter("tipo"))==2){
 			
 			SocioBeanFuncion socioFuncion= SocioBeanFuncion.getInstanceS();
+			PersonaMiniBeanFuncion personaFuncion= PersonaMiniBeanFuncion.getInstanceP();
+			
+			SocioBeanData SocioData=socioFuncion.consultarSocio("codigo");
+			PersonaMiniBeanData PersonaData=personaFuncion.consultarPersona("codigo");
+			
+			request.setAttribute("socio", SocioData);
+			request.setAttribute("persona", PersonaData);
+			
 			socioFuncion.eliminarSocio(request.getParameter("codigo"));
+			
+			
 			this.direccionar(sc, request, response, "/IngSoft/ventas/socio/buscarsocio.jsp");
 		}
 		
