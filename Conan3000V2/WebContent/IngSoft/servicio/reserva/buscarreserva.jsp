@@ -73,7 +73,6 @@ if (elemento.className == "btn btn-success") {
 	cancelados=cancelados.concat(temp);
 	else pendientes=pendientes.replace(temp,"");
 	}
-	alert(pendientes+"%%"+cancelados);
 	
 }
 
