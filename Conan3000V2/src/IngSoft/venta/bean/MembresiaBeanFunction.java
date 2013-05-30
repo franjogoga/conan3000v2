@@ -121,7 +121,7 @@ public class MembresiaBeanFunction {
 		MembresiaBeanData membresiaData=null;
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
-			membresiaData= sqlsesion.selectOne("Data.venta.membresia.getPlantillaMembresia","MEM000001");
+			membresiaData= sqlsesion.selectOne("Data.venta.membresia.getPlantillaMembresia",codigo);
 		}
 		finally{
 			sqlsesion.close();
