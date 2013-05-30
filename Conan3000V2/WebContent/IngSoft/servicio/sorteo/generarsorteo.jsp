@@ -144,8 +144,8 @@
 							<div class="control-group">
 								<label class="control-label" for="selectS1">Ganadores:</label><br>
 								<div class="controls">
-									<%for(int i=0;i<ganadores.size();i++){ %>
-										<%= ((SocioBeanData)ganadores.get(i)).getNombres() + " " + ((SocioBeanData)ganadores.get(i)).getApePaterno() %> <br>
+									<%for(int i=0;i<lista.size();i++){ %>
+										<%= (lista.get(i)) %> <br>
 									<%} %>										
 								</div>
 							  </div>
