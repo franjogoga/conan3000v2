@@ -3,6 +3,7 @@ package IngSoft.servicio.bean;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 import java.util.Random;
 import java.util.Vector;
@@ -112,7 +113,12 @@ public class SorteoBeanFuncion {
 			SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 			List<SocioInscritoBeanData> resultados=sqlsesion.selectList("Data.servicio.sorteo.searchInscritos",idSorteo);
 			sqlsesion.close();
-			return new Vector<>(resultados);
+			Vector<SocioInscritoBeanData> prueba = new Vector<>();
+			for (int i=0; i<resultados.size();i++){
+				prueba.add(resultados.get(i));
+			}
+			prueba.trimToSize();
+			return new Vector<>(prueba);
 		}
 		public int getCantidad(String idSorteo){
 			SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
@@ -121,27 +127,35 @@ public class SorteoBeanFuncion {
 		}
 		private Random generator = new Random();
 		
-		public Vector<SocioInscritoBeanData> getGanadores(Vector<SocioInscritoBeanData> listaInscritos,int n, String idSorteo){			
-			String[] Ramdomsocios = new String[n];
+		public Vector<String> getGanadores(Vector<SocioInscritoBeanData> listaInscritos,int n, String idSorteo){			
+			Vector<String> Ramdomsocios = new Vector<>();
 			int indiceRandom;
 			SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
-			for (int i=0; i<n; i++){
-				indiceRandom=generator.nextInt(listaInscritos.size());	
+			List<BungalowxSorteData> lista = sqlsesion.selectList("Data.servicio.sorteo.searchListaSorteo",idSorteo);
+			for (int i=0; i<n; i++){				
+				indiceRandom=generator.nextInt(listaInscritos.size());
+				listaInscritos.get(indiceRandom).setIdBungalow(lista.get(i).getIdBungalow());
+				String nombre = sqlsesion.selectOne("Data.servicio.sorteo.selectGanador",listaInscritos.get(indiceRandom).getIdSocio());
+				Ramdomsocios.add(nombre);
 				sqlsesion.update("Data.servicio.sorteo.updateGanadores", listaInscritos.get(indiceRandom));
 				listaInscritos.remove(indiceRandom);
 			}
-			List<SocioInscritoBeanData> resultados=sqlsesion.selectList("Data.servicio.sorteo.searchInscritos",idSorteo);
+			Ramdomsocios.trimToSize();
 			sqlsesion.close();
-			return new Vector<>(resultados);
+			return new Vector<>(Ramdomsocios);
 		}
 		
-		public Vector<SocioInscritoBeanData> consultaGanadores(String idSorteo){			
-			
+		public Vector<String> consultaGanadores(String idSorteo, int n){			
+			Vector<String> Ramdomsocios = new Vector<>();
 			SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
-			
-			List<SocioInscritoBeanData> resultados=sqlsesion.selectList("Data.servicio.sorteo.searchInscritos",idSorteo);
+			List<BungalowxSorteData> lista = sqlsesion.selectList("Data.servicio.sorteo.searchListaSorteo",idSorteo);
+			for (int i=0; i<n; i++){
+				String nombre = sqlsesion.selectOne("Data.servicio.sorteo.selectGanador",lista.get(i).getIdSocio());
+				Ramdomsocios.add(nombre);
+			}
+			Ramdomsocios.trimToSize();
 			sqlsesion.close();
-			return new Vector<>(resultados);
+			return new Vector<>(Ramdomsocios);
 		}
 		public Vector<SocioBeanData> getNombGanadores(Vector<SocioInscritoBeanData> listaGanadores){			
 			
