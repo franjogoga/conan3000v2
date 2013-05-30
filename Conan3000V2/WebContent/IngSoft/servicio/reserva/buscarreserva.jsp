@@ -81,11 +81,12 @@ function ajax_submit(tipo){
 	$.ajax({
 		  type: "POST",
 		  url: "/Conan3000V2/IngSoft/servicio/reserva/SMSReserva",
-		  data: "accion=Buscar"+"&tipo=" + tipo + "&fecIni=" + $(fecIni).val()+"&cmbServicios="+$('#cmbServicios').val(),
+		  data: "accion=Buscar"+"&tipo=" + tipo + "&fecIni=" + $(fecIni).val()+"&cmbServicios="+$('#cmbServicios').val()+"&cmbSedes="+$('#cmbSedes').val()
+		  +"&pendientes="+pendientes+"&cancelados="+cancelados,
 		  dataType: "html",
-		  //beforeSend: function ( xhr ) {
-   		  //$("#resultadoBusqueda").html("<img src='img/ajax-loaders/ajax-loader-7.gif' align='center'></img>");
-  		  //},
+		  beforeSend: function ( xhr ) {
+   		  $("#resultadoBusqueda").html("<div align='center'><img src='img/ajax-loaders/ajax-loader-7.gif'></img></div>");
+  		  },
 		  success: function(msg){
 			$("#resultadoBusqueda").html(msg);
 			

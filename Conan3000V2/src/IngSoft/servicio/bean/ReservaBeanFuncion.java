@@ -1,5 +1,7 @@
 package IngSoft.servicio.bean;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Vector;
@@ -59,5 +61,23 @@ public class ReservaBeanFuncion {
 	   public ReservaBugalowBeanData actualizarReservasPendientes(ReservaBugalowBeanData original,ReservaBugalowBeanData nuevo, java.util.Date fecIni){
 		   
 		   return null;
+	   }
+	   
+	   public Vector<String> filtrarReservaXFechas(Vector<String> source, java.util.Date fecIni, java.util.Date fecFin){
+		   Vector<String> resultados= new Vector<String>();
+		   try{
+		   int a=source.size();
+		   SimpleDateFormat df= new SimpleDateFormat("dd/MM/yyyy");
+		   Date temp;
+		   for(int i=0;i<a;i++){
+			   temp=df.parse(source.get(i).substring(6)+"0001");
+			   if(temp.compareTo(fecIni)>=0 && temp.compareTo(fecFin)<=0) resultados.add(source.get(i));
+			   
+		   }
+		   }catch(Exception e){
+			   e.printStackTrace();
+		   }
+		   resultados.trimToSize();
+		   return resultados;
 	   }
 }
