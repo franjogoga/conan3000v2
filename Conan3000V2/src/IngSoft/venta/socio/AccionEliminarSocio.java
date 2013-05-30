@@ -20,28 +20,33 @@ public class AccionEliminarSocio extends CoAccion{
 			HttpServletResponse response) throws CoException {
 		// TODO Auto-generated method stub
 		
+		SocioBeanFuncion socioFuncion= SocioBeanFuncion.getInstanceS();
+		String codigo=request.getParameter("codigo");	
+		
 		if(Integer.valueOf(request.getParameter("tipo"))==2){
 			
-			SocioBeanFuncion socioFuncion= SocioBeanFuncion.getInstanceS();
-			PersonaMiniBeanFuncion personaFuncion= PersonaMiniBeanFuncion.getInstanceP();
-			
-			SocioBeanData SocioData=socioFuncion.consultarSocio("codigo");
-			PersonaMiniBeanData PersonaData=personaFuncion.consultarPersona("codigo");
-			
-			request.setAttribute("socio", SocioData);
-			request.setAttribute("persona", PersonaData);
-			
-			socioFuncion.eliminarSocio(request.getParameter("codigo"));
+			//SocioBeanData SocioData=socioFuncion.consultarSocio("codigo");
+			//request.setAttribute("socio", SocioData);
+			socioFuncion.eliminarSocio(codigo);
 			
 			
 			this.direccionar(sc, request, response, "/IngSoft/ventas/socio/buscarsocio.jsp");
 		}
 		
 		if(Integer.valueOf(request.getParameter("tipo"))==1){
-		SocioBeanFuncion socioFuncion= SocioBeanFuncion.getInstanceS();
-		SocioBeanData socioData=socioFuncion.consultarSocio(request.getParameter("codigo"));
+			
 		
+		//SocioBeanFuncion socioFuncion= SocioBeanFuncion.getInstanceS();
+		PersonaMiniBeanFuncion personaFuncion= PersonaMiniBeanFuncion.getInstanceP();
+		
+		SocioBeanData socioData=socioFuncion.consultarSocio(codigo);
+		PersonaMiniBeanData PersonaData=personaFuncion.consultarPersona(codigo);
+		
+		
+		request.setAttribute("persona", PersonaData);
 		request.setAttribute("socio", socioData);
+		
+		
 		this.direccionar(sc, request, response, "/IngSoft/ventas/socio/eliminarsocio.jsp");
 		}
 		//this.direccionar(sc, request, response, "/IngSoft/ventas/promociones/buscarpromocion.jsp");				
