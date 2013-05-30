@@ -134,9 +134,17 @@
 					  <h2><i class="icon-plus-sign"></i>CONSULTAR PERSONA JURIDICA</h2>
 				  </div>
 					<div class="box-content">
-						<form class="form-horizontal" action="<%= response.encodeURL("SMSJuridica")%>" name="frmData" method="post">Juridica.getNombre()%>">
+						<form class="form-horizontal" action="<%= response.encodeURL("SMSJuridica")%>" name="frmData" method="post">
 					          </div>
 					        </div>
+					        <div class="control-group">
+                                  
+                                  
+                                  <label class="control-label" for="typeahead7">RAOZON SOCIAL: </label>
+                                  <div class="controls">
+                                      <input type="text" class="span6 typeahead"   data-provide="typeahead" id="txtRuc" name="txtRuc" value="<%=Juridica.getRazonSocial()%>">
+                                          </div>
+                              </div>
 							 <div class="control-group">
                                   
                                   
@@ -219,7 +227,7 @@
 							  </div>	
 						    <div class="form-actions" >
 							 <!--  <button type="submit" class="btn btn-primary">Agregar</button> -->
-							  <button type="button" class="btn" onclick="location.href='buscarevento.jsp'" >Regresar</button>
+							  <button type="button" class="btn" onclick="location.href='juridicabuscar.jsp'" >Regresar</button>
 							</div>
 						  </fieldset>
 					  </form>   
