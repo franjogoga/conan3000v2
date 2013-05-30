@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 
 <!--  paso 2 configurarion link  + v ariables de retorno -->
+
+
+
+
+<%@page import="IngSoft.administracion.bean.TipoActividadMiniBeanData"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Calendar"%>
 <%@page import="IngSoft.administracion.bean.ResultadoActividadBeanData"%>
@@ -21,12 +26,13 @@
 		http://twitter.com/halalit_usman
 	-->
 	<meta charset="utf-8">
-	<title>Buscar Sede</title>
+	<title>Buscar Actividad</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
 	<meta name="author" content="Muhammad Usman">
 	<!--The beans  -->
 	<jsp:useBean id="resultados" scope="request"class="java.util.Vector"></jsp:useBean>
+	<jsp:useBean id="tipoactividades" scope="request"class="java.util.Vector"></jsp:useBean>
 
 
 	<!-- The styles -->
@@ -94,6 +100,38 @@
 		form.codigo.value=cod;
 		form.submit();
 	}
+	function updatetable(){		
+			docReady();
+			
+	}
+	
+	function alt_tipoactividad(){
+		$.ajax({
+		  type: "POST",
+		  url: "/Conan3000V2/IngSoft/administracion/actividad/SMAActividad",
+		  data: "accion=Buscar"+ "&tipo=2" + "&cmbTipoactividad=" + $(cmbTipoactividad).val(),
+		  dataType: "html",
+		  beforeSend: function ( xhr ) {
+   		  $("#cmbProvincia").html("");
+   		  $("#cmbDistrito").html("");
+			//chosen - improves select
+			$("#cmbProvincia").trigger("liszt:updated");
+  		  },
+		  success: function(msg){
+			$("#cmbProvincia").html(msg);
+			//chosen - improves select
+			$("#cmbProvincia").trigger("liszt:updated");
+			$("#cmbDistrito").trigger("liszt:updated");
+		  },
+		  error: function(objeto, quepaso, otroobj){
+			alert("ERROR!! Pasó lo siguiente: "+quepaso);
+		  }
+	
+		});
+	}
+
+	
+	
 	</script>			
 </head>
 
@@ -135,7 +173,6 @@
 						<h2><i class="icon-search"></i> BUSCAR ACTIVIDAD</h2>
 						<div class="box-icon">
 							<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
-							<!--  <a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a> -->
 						</div>
 					</div>
 					<div class="box-content">
@@ -144,33 +181,21 @@
 		 
 		 <!--  paso 1  configuracion de link + variables -->													 <!-- nos linkea al archivo SMAActividad -->
 		 <form class="form-horizontal" name="frmCriteriosBusqueda" id="frmCriteriosBusqueda"  method="post" action="<%= response.encodeURL("SMAActividad")%>">
-		                                      <!-- Buscar  variable  que pasa al archivo SMASede   -->	
+		                                      <!-- Buscar  variable  que pasa al archivo SMAActividad   -->	
 		 <input type="hidden" name="accion" value="Buscar"></input>
+		  <input type="hidden" name="tipo" value="2"></input>
 						  <fieldset>
 							
 							<div class="control-group">
-							  <label class="control-label" for="typeahead">Nombre:</label>
+							  <label class="control-label" for="typeahead">Nombre de Actividad:</label>
 							  <div class="controls">									   <!-- txtNombre  variable     -->	
-								<input type="text" class="span6 typeahead" id="typeahead" name="txtNombre">
+								<input type="text" class="span6 typeahead" id="txtNombre" name="txtNombre">
 							  </div>
 							</div>
 							
-							 <div class="control-group">
-								<label class="control-label" for="selectError">Tipo Actividad:</label>
-								<div class="controls">
-																						   <!-- cmbTipoactividad  variable     -->	
-							 		<select id="selectError1" data-rel="chosen" name="cmbTipoactividad">
-								  	<option selected value="ATC000001">Natacion</option>							
-								  </select>
-								</div>
-							  </div>
+
 							  
-							<div class="control-group">
-							  <label class="control-label" for="typeahead">Nombre:</label>
-							  <div class="controls">									   <!-- txtEncargado  variable     -->	
-								<input type="text" class="span6 typeahead" id="typeahead" name="txtEncargado">
-							  </div>
-							</div>
+
 							  
 							<div class="form-actions">
 							  <button type="submit" class="btn btn-primary">Buscar</button>
@@ -221,12 +246,9 @@
                              </div>          
                           <thead>
 							  <tr>
-							        <th>Tipo Actividad</th>
 								    <th>Nombre</th>
-							       
-									 <th>Encargado</th>
-							        <th>Estado</th>	
-							         <th>Fecha Inicio</th>		        							      							        
+							        <th>Tipo actividad</th>
+							        <th>Estado</th>		        							      							        
 							        <th>Accion</th>
 							
 							  </tr>
@@ -239,22 +261,12 @@
                           		<tr>
                           			<td>
                           				<%=
-                          					((ResultadoActividadBeanData)resultados.get(i)).getTipoactividad()
-                          				%>
-                          			</td>
-                          			<td class="center">
-                          				<%=
                           					((ResultadoActividadBeanData)resultados.get(i)).getNombre()
                           				%>
                           			</td>
                           			<td class="center">
                           				<%=
-                          					((ResultadoActividadBeanData)resultados.get(i)).getEncargado()
-                          				%>
-                          			</td>
-                          			<td class="center">
-                          				<%=
-                          					((ResultadoActividadBeanData)resultados.get(i)).getFechainicio()
+                          					((ResultadoActividadBeanData)resultados.get(i)).getTipoactividad()
                           				%>
                           			</td>
 
