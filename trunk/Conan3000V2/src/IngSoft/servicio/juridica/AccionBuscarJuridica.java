@@ -10,7 +10,9 @@ import IngSoft.general.CoAccion;
 import IngSoft.general.CoException;
 import IngSoft.servicio.bean.*;
 
+import org.apache.ibatis.session.SqlSession;
 
+import IngSoft.general.MyBatisSesion;
 
 public class AccionBuscarJuridica extends CoAccion {
 
@@ -18,11 +20,11 @@ public class AccionBuscarJuridica extends CoAccion {
 	public void ejecutar(ServletContext sc, HttpServletRequest request,
 			HttpServletResponse response) throws CoException {
 		// TODO Auto-generated method stub
-		PersonaJuridicaBeanData JuridicaData =new JuridicaBeanFuncion().crearJuridica(request,response);
+		//PersonaJuridicaBeanData JuridicaData =new JuridicaBeanFuncion().crearJuridica(request,response);
 	
-		
-		PersonaJuridicaBeanData JuridicaData2 =new CriterioJuridicaBeanFunction().crearCriterio(request,response);
-		Vector<ResultadoJuridicaBeanData> resultados= new CriterioJuridicaBeanFunction().buscarPlantillaJuridica(JuridicaData2);
+		CriterioJuridicaBeanFunction criterio = new CriterioJuridicaBeanFunction();
+		PersonaJuridicaBeanData JuridicaData2 =criterio.crearCriterio(request,response);
+		Vector<ResultadoJuridicaBeanData> resultados= criterio.buscarPlantillaJuridica(JuridicaData2);
 
 		request.setAttribute("resultados", resultados);
 		this.direccionar(sc, request, response, "/IngSoft/servicio/juridica/juridicabuscar.jsp");
