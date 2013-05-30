@@ -60,14 +60,11 @@ public class PersonaMiniBeanFuncion {
 			if(codigo!=null){
 			//int cod= Integer.parseInt(codigo.substring(3))+1;
 			//String defecto= "000000";
-			//String temp= defecto.substring(0, defecto.length()-String.valueOf(cod).length()).concat(String.valueOf(cod));
 			
 			personaData.setCodigo(codigo);}
 			else personaData.setCodigo("SOC000001");
 			
 			sqlsesion.insert("Data.venta.socio.insertPersona",personaData);
-			//sqlsesion.insert("Data.servicio.evento.insertPlantillaEventoSedes",eventoData);
-			//sqlsesion.insert("Data.servicio.evento.insertPlantillaEventoAmbiente",eventoData);
 			
 			resultado=true;
 		}
@@ -85,6 +82,26 @@ public class PersonaMiniBeanFuncion {
 		}
 			
 		return resultado;
+	}
+	
+	public void modificarPersona(PersonaMiniBeanData persona) throws CoException {
+		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+		try{
+					
+			sqlsesion.update("Data.venta.socio.updatePersona",persona);
+		}
+		catch(Exception a)		
+		{sqlsesion.rollback();
+		a.printStackTrace();
+			throw CoException.set("Error: No se pudo modificar la plantilla intente de nuevo", "SMVSocio?accion=Modificar&tipo=1");
+			
+		}
+		
+		finally{
+			sqlsesion.commit();
+			sqlsesion.close();					
+		}			
+		return ;
 	}
 	
 	
