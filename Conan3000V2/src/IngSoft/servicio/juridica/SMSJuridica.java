@@ -12,10 +12,10 @@ public class SMSJuridica extends CoServlet{
 	@Override
 	protected void initAcciones() {
 		acciones.put("Buscar", new AccionBuscarJuridica());
-		//acciones.put("Consultar", new AccionConsultarJuridica());
+		acciones.put("Consultar", new AccionConsultarJuridica());
 		acciones.put("Agregar", new AccionAgregarJuridica());
-		//acciones.put("Modificar", new AccionModificarJuridica());
-		//acciones.put("Eliminar", new AccionEliminarJuridica());
+		acciones.put("Modificar", new AccionModificarJuridica());
+		acciones.put("Eliminar", new AccionEliminarJuridica());
 	}
 	
 }
