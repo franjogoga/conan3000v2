@@ -2,8 +2,8 @@
 				<div class="well nav-collapse sidebar-nav">
 					<ul class="nav nav-tabs nav-stacked main-menu">
                         <li><a class="ajax-link" href="/Conan3000V2/IngSoft/general/index.jsp"><i class="icon-home"></i><span class="hidden-tablet"> Home</span></a></li>
-   						<li class="nav-header hidden-tablet" onclick="$('.administracion').slideToggle(800)">Administracion</li>
-						   						
+   						
+   						<a style="CURSOR: hand; text-decoration:none" href="#"> <li class="nav-header hidden-tablet" onclick="$('.administracion').slideToggle(800)">Administracion</li> </a>						   					
 						<li><a class="ajax-link administracion" href="/Conan3000V2/IngSoft/administracion/actividad/buscaractividad.jsp"style="display:none"><i class="icon-wrench"></i><span class="hidden-tablet"> Actividades</span></a></li>
 						<li><a class="ajax-link administracion" href="/Conan3000V2/IngSoft/administracion/ambiente/SMAAmbiente?accion=Buscar&tipo=1"style="display:none"><i class="icon-wrench"></i><span class="hidden-tablet"> Ambientes</span></a></li>
 						<li><a class="ajax-link administracion" href="/Conan3000V2/IngSoft/administracion/bungalow/SMABungalow?accion=Buscar&tipo=1"style="display:none"><i class="icon-wrench"></i><span class="hidden-tablet"> Bungalows</span></a></li>
@@ -21,7 +21,8 @@
 						<li><a class="ajax-link administracion" href="/Conan3000V2/IngSoft/administracion/usuarios/buscarusuario.jsp"style="display:none"><i class="icon-wrench"></i><span class="hidden-tablet"> Usuarios</span></a></li>
 						<li><a class="ajax-link administracion" href="/Conan3000V2/IngSoft/administracion/invitados/visitaregistrar.jsp"style="display:none"><i class="icon-wrench"></i><span class="hidden-tablet"> Visitas</span></a></li>
 
-						<li class="nav-header hidden-tablet" onclick="$('.servicio').slideToggle(800)">Servicios</li>
+
+						<a style="CURSOR: hand; text-decoration:none" href="#"> <li class="nav-header hidden-tablet" onclick="$('.servicio').slideToggle(800)">Servicios</li> </a>
 						<li><a class="ajax-link servicio" href="/Conan3000V2/IngSoft/servicio/evento/SMSEvento?accion=Buscar&tipo=1"style="display:none"><i class="icon-wrench"></i><span class="hidden-tablet"> Eventos</span></a></li>
 						<li><a class="ajax-link servicio" href="/Conan3000V2/IngSoft/servicio/juridica/juridicabuscar.jsp"style="display:none"><i class="icon-wrench"></i><span class="hidden-tablet"> Persona Juridica</span></a></li>
  						<li><a class="ajax-link servicio" href="/Conan3000V2/IngSoft/servicio/reporte/generarreportes.jsp"style="display:none"><i class="icon-wrench"></i><span class="hidden-tablet"> Reportes</span></a></li>
@@ -29,7 +30,7 @@
 						<li><a class="ajax-link servicio" href="/Conan3000V2/IngSoft/servicio/sorteo/buscarsorteo.jsp"style="display:none"><i class="icon-wrench"></i><span class="hidden-tablet"> Sorteos</span></a></li>
 						
   						
-						<li class="nav-header hidden-tablet" onclick="$('.venta').slideToggle(800)">Ventas</li>  					
+						<a style="CURSOR: hand; text-decoration:none" href="#"> <li class="nav-header hidden-tablet" onclick="$('.venta').slideToggle(800)">Ventas</li> </a>  					
 						<li><a class="ajax-link venta" href="/Conan3000V2/IngSoft/administracion/concesionario/buscarconcesionario.jsp"style="display:none"><i class="icon-wrench"></i><span class="hidden-tablet"> Concesionarios</span></a></li>
 						<li><a class="ajax-link venta" href="/Conan3000V2/IngSoft/administracion/cuotasmultas/cuotaagregar.jsp"style="display:none"><i class="icon-wrench"></i><span class="hidden-tablet"> Cuotas</span></a></li>
 						<li><a class="ajax-link venta" href="/Conan3000V2/IngSoft/ventas/familia/buscarfamiliar.jsp"style="display:none"><i class="icon-wrench"></i><span class="hidden-tablet"> Familiares</span></a></li>
