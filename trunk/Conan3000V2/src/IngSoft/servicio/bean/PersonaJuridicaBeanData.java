@@ -8,7 +8,7 @@ public class PersonaJuridicaBeanData implements Serializable{
 	private String razonSocial;
 	private long ruc;
 	private String direccion;
-	private long telefono;
+	private Integer telefono;
 	private String correo;
 	private String estado;
 
@@ -44,11 +44,11 @@ public class PersonaJuridicaBeanData implements Serializable{
 		this.direccion = direccion;
 	}
 
-	public long getTelefono() {
+	public Integer getTelefono() {
 		return telefono;
 	}
 
-	public void setTelefono(long telefono) {
+	public void setTelefono(Integer telefono) {
 		this.telefono = telefono;
 	}
 
