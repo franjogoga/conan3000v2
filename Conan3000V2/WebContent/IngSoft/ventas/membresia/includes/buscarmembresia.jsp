@@ -2,6 +2,8 @@
 <%@page import="java.util.Calendar"%>
 <%@page import="IngSoft.venta.bean.ResultadoMembresiaBeanData"%>
 <%@page import="java.util.Vector"%>
+<%@page import="java.util.GregorianCalendar"%>
+
 
 
 
@@ -43,9 +45,13 @@
 	
 	
 	</script>	
-<%!SimpleDateFormat dfActual= new SimpleDateFormat("/YYYY");
+<%
+Calendar c1 = GregorianCalendar.getInstance();
+c1.add(Calendar.YEAR, 2);
+SimpleDateFormat dfActual= new SimpleDateFormat("/YYYY");
 String fecAnoIni="01/01"+dfActual.format(new java.util.Date());
-String fecAnoFin="31/12"+dfActual.format(new java.util.Date()); %>
+
+String fecAnoFin="31/12"+dfActual.format(c1.getTime()); %>
 <!--The beans  -->
 <jsp:useBean id="resultados" scope="request"class="java.util.Vector"></jsp:useBean>
 

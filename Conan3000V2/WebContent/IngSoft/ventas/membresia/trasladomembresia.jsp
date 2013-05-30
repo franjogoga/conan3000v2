@@ -140,243 +140,6 @@ function validarEntero(valor){
 			
 }
 
-	
-function validaCorreo(valor)
-{
-	var reg=/(^[a-zA-Z0-9._-]{1,30})@([a-zA-Z0-9.-]{1,30}$)/;
-	if(reg.test(valor)) return true;
-	else return false;
-}
-
-function esCorrecto(valor,minimo, maximo){
-	
-	if(valor.length>maximo){ 
-		return false;
-	}else{
-		if(valor.length<minimo){
-			return false;
-		}else{
-			return true;	
-		}
-
-	}
-
-}
-
-function validarEntero(valor){ 
- 
- valor = parseInt(valor); 
- 	if (isNaN(valor)) { 
-       	 return null;
- 	}else{ 
-       	 return valor; 
- 	}
-}
-
-function generaMensaje(cadena){
-	var i;
-	var mensaje="Los siguientes campos no han sido llenados correctamente<br>";
-	for(i=0;i<cadena.length;i++){
-		if(i+1<cadena.length){
-			mensaje+=cadena[i]+'.<br> ';
-			
-		}else{
-			mensaje+=cadena[i];
-			
-		}
-		
-	}
-	return mensaje;
-	
-}
-
-
-function crearAlert(cadena){
-	mensaje=generaMensaje(cadena);
-	$(document).ready(function() {
-		apprise(mensaje, {'animate':true}, function(r) {
-
-			if(r) { 
-			
-			} else { 
-		
-			}
-		});
-	});
-}
-
-
-function inputRadioLleno(valor){
-	var s=0;
-	
-		for(var i=0;i<valor.length; i++)
-		{
-			if(valor[i].checked ){
-			return true;
-				break;
-			}
-		}
-	
-return false;	
-}
-
-
-function alt_fecha(obj){
-	obj.value=obj.value.slice(0,5);
-	
-	}
-	
-	
-	
-
-function verificar_fecha(comparacion,fecha1,fecha2){
-	var fec1=fecha1.value.split("/");
-	var fec2=fecha2.value.split("/");
-	var resultado=true;
-	if(fec1.length==fec2.length) {
-		var size=fec1.length;
-		for(i=size-1;i>=0;i--){
-			if(comparacion==0){
-				if(fec1[i].indexOf(fec2[i])<0)  resultado= false;
-				}
-			if(comparacion==1){
-				if(parseInt(fec1[i])<parseInt(fec2[i]))  resultado= false;
-				}
-			if(comparacion==-1){
-				if(parseInt(fec1[i])>parseInt(fec2[i]))  resultado= false;
-				}
-			}
-		if(resultado==false){	
-				validarxId('FechaFin',"Error al comparar fechas. La fecha Final debe ser como minimo igual a la Fecha Inicial");
-				fecha1.value=fecha2.value;	
-				return false;
-			}else{return true;}
-			
-		} 
-	else{ 
-		validarxId('FechaFin',"Error al comparar fechas");
-		return false;		
-	}			
-}
-
-function alfanumerico(e) 
-{ 
-var key = window.event.keyCode || event.keyCode;
-return ((key >= 48 && key <= 57) ||(key >= 97 && key <= 122) ||(key >= 65 && key <=90) ||(key >= 192 && key <=246)||(key <=13) ||(key ==32));
-} 	
-
-
-
-
-
-function MostrarErrorDiv(id){
-	document.getElementById(id).style.display='block';	
-}
-function OcultarErrorDiv(id){
-	document.getElementById(id).style.display='none';	
-}
-
-function MostrarErrorDivInput(id){
-	document.getElementById(id).setAttribute("class", "control-group error");	
-}
-function MostrarOkDivInput(id){
-	document.getElementById("dv"+id).setAttribute("class", "control-group success");
-	OcultarErrorDiv("err"+id);
-}
-function MostrarErrorDivInnerHtml(id,valor){
-	document.getElementById(id).innerHTML=valor;	
-}
-function validarxId(id,mensaje){
-	MostrarErrorDivInput("dv"+id);
-	MostrarErrorDiv("err"+id);
-	MostrarErrorDivInnerHtml("err"+id,mensaje);
-}
-
-
-function esValido(nombre, casilla, id, tipoValidacion, minimo,maximo){
-	
-	var status;
-	switch(tipoValidacion){
-		case 1: 
-			status=esCorrecto(casilla.value,minimo,maximo);
-			mensaje="La casilla "+nombre+" debe tener entre "+minimo+" a "+maximo+" caracteres";
-			break;
-		case 2:	
-			status=esCorrecto(casilla.value,minimo,maximo);
-			mensaje="La casilla "+nombre+" no ha sido llenado correctamente";
-			break;
-		case 3: 
-			status=inputRadioLleno(casilla.value);
-			mensaje="La casilla "+nombre+" no ha sido seleccionado";
-			break;
-		
-	}
-	
-	if(!status){
-		validarxId(id,mensaje);
-		return 0;
-	}else{
-		MostrarOkDivInput(id);
-		return 1;
-	}
-				
-}
-
-
-function validaForm(){
-	/*
-	esValido(nombre, casilla, id, tipoValidacion, minimo,maximo)
-	nombre: es el nombre de la casilla: ejemplo -> Nombre, Apellido, Fecha de Nacimiento, etc
-	casilla: corresponde a la casilla en si, para esto colocamos por ejemplo form.txtNombre, donde form ya fue definido
-	id: identificador de los divs para efectuar las validaciones
-	tipoValidacion: es un valor numerico el cual permite identificar el tipo de validacion que se efectuara
-	1: Validacion con cantidad de caracteres Minimo y maximo
-	2: Validación de cantidad de caracteres de fecha
-	3: validacion de llenado de radio button
-	
-	minimo: valor numerico que indica la menor cantidad de caracteres que como minimo debe ser llenado
-	maximo: valor numerico que indica la maxima cantidad de caracteres que como maximo debe ser llenado
-	
-	*/
-	
-	var form=document.frmTraslado;
-
-	var cadena= new Array();
-	var i=0;
-	var error=false;
-	if(!esValido("Membresia socio",form.txtIdMembresiaAntiguo,"IdMembresiaAntiguo",1,1,9)){cadena[i]="Membresia socio";i++;}
-	if(!esValido("Codigo nuevo socio",form.txtIdNuevoSocio,"IdNuevoSocio",1,1,9)){cadena[i]="Codigo nuevo socio";i++;}
-	if(!esValido("Membresia nueva",form.txtIdMembresiaNuevo,"IdMembresiaNuevo",1,1,9)){cadena[i]="Membresia nueva";i++;}
-	if(!esValido("Monto",form.txtMonto,"Monto",1,1,50)){cadena[i]="Monto";i++;}else{
-	if(!validaFloat(form.txtMonto)){cadena[i]="Monto";i++;}
-	}
-	//if(!esValido("Descripcion",form.txtDescripcion,"Descripcion",1,1,100)){cadena[i]="Descripcion";i++;}
-	
-	
-	//No tocar
-	if(i>0){
-	crearAlert(cadena);
-	return false;
-	}else{
-		return true;
-		
-	}
-
-}
-
-
-function inicializa(){
-	document.getElementById("errIdMembresiaAntiguo").style.display='none';
-	document.getElementById("errIdNuevoSocio").style.display='none';
-	document.getElementById("errIdMembresiaNuevo").style.display='none';
-	document.getElementById("errMonto").style.display='none';
-	
-}
-
-
-inicializa();
-
-
 
 	</script>		
 </head>
@@ -472,7 +235,7 @@ inicializa();
 			              <label class="control-label" for="typeahead1">Membres&iacute;a del socio:</label>
 			              <div class="controls">
 			               <!--  <input type="text" disabled class="span6 typeahead" value="membresia.getIdMembresia()"  id="txtIdMembresiaAntiguo" name="txtIdMembresiaAntiguo"  >  -->
-			                	<input type="text"   id="txtIdMembresiaAntiguo" name="txtIdMembresiaAntiguo" data-provide="typeahead" data-items="4" value="<%=membresia.getIdMembresia()%>" >
+			                	<input type="text"   id="txtIdMembresiaAntiguo" name="txtIdMembresiaAntiguo" disabled="disabled" data-provide="typeahead" data-items="4" value="<%=membresia.getIdMembresia()%>" >
 			                	<span class="help-inline" id="errIdMembresiaAntiguo">Please correct the error</span>
 			              </div>
 		                </div>
@@ -482,7 +245,7 @@ inicializa();
 		                <div class="controls">
 		                
 			                  <!-- agregar nuevo boton -->
-			                   <input type="text"   id="txtIdNuevoSocio" name="txtIdNuevoSocio" value="<%=socio.getCodigo() %>"  data-provide="typeahead" > 
+			                   <input type="text"   id="txtIdNuevoSocio" name="txtIdNuevoSocio" disabled="disabled" value="<%=socio.getCodigo() %>"  data-provide="typeahead" > 
 			        			<span class="help-inline" id="errIdNuevoSocio">Please correct the error</span>
 			        
 						 <a  class="btn btn-primary" href="javascript:alt_agregar()"> <i class="icon icon-add icon-white"></i> Agregar</a>  
@@ -496,21 +259,22 @@ inicializa();
 		                
 			                  <!-- agregar nuevo boton -->
 			                   <!-- <input type="text"  disabled class="span6 typeahead" id="txtIdMembresiaNuevo" name="txtIdMembresiaNuevo" value="//socio.getIdMembresia()"  > --> 
-			        			<input type="text"   id="txtIdMembresiaNuevo" name="txtIdMembresiaNuevo" data-provide="typeahead" data-items="4" value="<%=socio.getIdMembresia()%>" >
+			        			<input type="text"   id="txtIdMembresiaNuevo" disabled="disabled" name="txtIdMembresiaNuevo" data-provide="typeahead" data-items="4" value="<%=socio.getIdMembresia()%>" >
 			        			<span class="help-inline" id="errIdMembresiaNuevo">Please correct the error</span>
 						<!--  <a  class="btn btn-primary" href="javascript:alt_agregarMembresia()" > <i class="icon icon-add icon-white" ></i> Agregar</a>   -->
 						      
 					     </div>
 		                </div>
 		                		                
-                        <div class="control-group">
+                        <div class="control-group" id="dvFecha">
 							  <label class="control-label" for="date01">Fecha(*):</label>
 							  <div class="controls">
 								<input type="text" class="input-xlarge datepicker" id="fFecha" name="fFecha" value="01/01/2013" readonly="readonly" >
+								<span class="help-inline" id="errFecha">Please correct the error</span>
 							  </div>
 							</div>
                         
-                        <div class="control-group">
+                        <div class="control-group" id="dvParentesco">
 			                <label class="control-label" for="selectError">Parentesco(*):</label>
 			                <div class="controls">
 			                  <select  name="cmbParentesco" id="cmbParentesco" data-rel="chosen">
@@ -520,6 +284,7 @@ inicializa();
 			                    <option>Hermana(o)</option>
 			                    <option>Nieto(a)</option>
 		                      </select>
+							  <span class="help-inline" id="errParentesco">Please correct the error</span>
 		                    </div>
 		                  </div>
                       
@@ -527,7 +292,7 @@ inicializa();
 			              <div class="control-group" id="dvMonto">
 			                <label class="control-label" for="typeahead4">Monto(*):</label>
 			                <div class="controls">
-			                  <input type="text" class="span6 typeahead" id="txtMonto" name="txtMonto" data-provide="typeahead" data-items="4" >
+			                  <input type="text" class="input-xlarge typeahead" id="txtMonto" name="txtMonto" data-provide="typeahead" data-items="4" >
 			                  <span class="help-inline" id="errMonto">Please correct the error</span>
 		                    </div>
 		                  </div>
@@ -663,5 +428,85 @@ inicializa();
 
 	</script>
 		<script>loadContent()</script> 
+		
+		
+<script type="text/javascript" src="js/apprise-1.5.full.js"></script>
+<link rel="stylesheet" href="css/apprise.css" type="text/css" />
+<script type="text/javascript" src="js/script.js"></script>
+<script>
+function validaForm(){
+	/*
+	esValido(nombre, casilla, id, tipoValidacion, minimo,maximo)
+	nombre: es el nombre de la casilla: ejemplo -> Nombre, Apellido, Fecha de Nacimiento, etc
+	casilla: corresponde a la casilla en si, para esto colocamos por ejemplo form.txtNombre, donde form ya fue definido
+	id: identificador de los divs para efectuar las validaciones
+	tipoValidacion: es un valor numerico el cual permite identificar el tipo de validacion que se efectuara
+	1: Validacion con cantidad de caracteres Minimo y maximo
+	2: Validación de cantidad de caracteres de fecha
+	3: validacion de llenado de radio button
+	4: Validacion de alfanumerico
+	5: validacion de valores Float
+	6: Validacion de enteros
+	7: Validacion de fechas
+	minimo: valor numerico que indica la menor cantidad de caracteres que como minimo debe ser llenado (Solo para tipoValidacion 1 y 2, en el resto poner 1)
+	maximo: valor numerico que indica la maxima cantidad de caracteres que como maximo debe ser llenado (Solo para tipoValidacion 1 y 2, en el resto poner 1)
+	
+	El valor que va en cadena[i] es el nombre del campo
+	
+	#############################ADICIONAL#########################
+	Para validar una fecha Inicial y fecha Final usar la siguiente funcion
+	validarFechas(nombre[Fecha Final], casilla[Fecha Final], id[Fecha Final],nombre[Fecha Inicial],casilla[Fecha Inicial])
+	OJO: no va como parametro el id de la fecha Inicial
+	###############################################################
+	
+	*/
+	
+	var form=document.frmTraslado;
+
+	var cadena= new Array();
+	var i=0;
+	var error=false;
+	if(!esValido("Membresia socio",form.txtIdMembresiaAntiguo,"IdMembresiaAntiguo",1,1,9)){cadena[i]="Membresia socio";i++;}
+	if(!esValido("Codigo nuevo socio",form.txtIdNuevoSocio,"IdNuevoSocio",1,1,9)){cadena[i]="Codigo nuevo socio";i++;}
+	if(!esValido("Membresia nueva",form.txtIdMembresiaNuevo,"IdMembresiaNuevo",1,1,9)){cadena[i]="Membresia nueva";i++;}
+	if(!esValido("Fecha",form.fFecha,"Fecha",1,1,10)){cadena[i]="Fecha";i++;}
+	if(!esValido("Parentesco",form.cmbParentesco,"Parentesco",1,1,50)){cadena[i]="Parentesco";i++;}
+	if(!esValido("Monto",form.txtMonto,"Monto",1,1,50)){
+		cadena[i]="Monto";i++;
+	}else{
+		//valida si es float o entero
+		if(!esValido("Monto",form.txtMonto,"Monto",5,1,1)){cadena[i]="Monto";i++;}
+	}
+	//if(!esValido("Descripcion",form.txtDescripcion,"Descripcion",1,1,100)){cadena[i]="Descripcion";i++;}
+	
+	
+	//No tocar
+	if(i>0){
+	crearAlert(cadena);
+	return false;
+	}else{
+		return true;
+		
+	}
+
+}
+
+
+function inicializa(){
+	document.getElementById("errIdMembresiaAntiguo").style.display='none';
+	document.getElementById("errIdNuevoSocio").style.display='none';
+	document.getElementById("errIdMembresiaNuevo").style.display='none';
+	document.getElementById("errFecha").style.display='none';
+	document.getElementById("errParentesco").style.display='none';
+	document.getElementById("errMonto").style.display='none';
+	
+}
+
+
+inicializa();
+
+
+
+	</script>	
 </body>
 </html>

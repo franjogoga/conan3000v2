@@ -1,3 +1,6 @@
+ <%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Calendar"%>
+<%@page import="java.util.GregorianCalendar"%>
 <script type="text/javascript" src="js/apprise-1.5.full.js"></script>
 <link rel="stylesheet" href="css/apprise.css" type="text/css" />
 <script>
@@ -14,9 +17,39 @@ function anhadir(cod, name){
 	$.fn.colorbox.close();
 	
 } 
+
+function confFecha(){
+	var form= document.frmMembresia;
+	if(form.cmbPeriodo.value=="Anual"){
+	document.getElementById("dvFechaFin").style.display='none';
+		fechaI=form.fFechaInicio.value.split("/");
+		fechaI[2]=parseInt(fechaI[2])+1;
+		form.fFechaFin.value=fechaI[0]+'/'+fechaI[1]+'/'+fechaI[2];
+	}
+	if(form.cmbPeriodo.value=="Semestral"){
+	document.getElementById("dvFechaFin").style.display='none';
+		fechaI=form.fFechaInicio.value.split("/");
+		fechaI[1]=parseInt(fechaI[1])+6;
+		if(fechaI[1]>12){
+			fechaI[2]=parseInt(fechaI[2])+1;
+			fechaI[1]=parseInt(fechaI[1])-12;
+		}
+		form.fFechaFin.value=fechaI[0]+'/'+fechaI[1]+'/'+fechaI[2];
+	}
+	if(form.cmbPeriodo.value=="Indefinido"){
+	document.getElementById("dvFechaFin").style.display='block';
+	}
+	
+}
 </script>
 
+<%
+Calendar c1 = GregorianCalendar.getInstance();
+c1.add(Calendar.YEAR, 1);
+SimpleDateFormat dfActual= new SimpleDateFormat("dd/MM/YYYY");
+String fecAnoIni=dfActual.format(new java.util.Date());
 
+String fecAnoFin=dfActual.format(c1.getTime()); %>
 <!-- content starts -->
 			  <div>
 			   <ul class="breadcrumb">
@@ -35,17 +68,28 @@ function anhadir(cod, name){
 					<input type="hidden" name="accion" value="Agregar"></input>
 					<input type="hidden" name="tipo" value="2"></input>
 			          <fieldset>
+			          <div class="control-group" id="dvPeriodo">
+                            <label class="control-label" for="selectError">Periodo (*):</label>
+                            <div class="controls">
+                              <select  id="cmbPeriodo" data-rel="chosen" name="cmbPeriodo" class='' onChange="javascript:confFecha();">
+								<option value="Indeterminado">Indeterminado</option>
+								<option value="Anual">Anual</option>
+                                <option value="Semestral">Semestral</option>
+                              </select>
+                              <span class="help-inline" id="errPeriodo">Please correct the error</span>
+                            </div>
+                          </div>
 			            <div class="control-group" id="dvFechaInicio">
 			              <label class="control-label" for="typeahead7" name="fFechaInicio">Fecha Inicio (*): </label>
 			              <div class="controls">
-			                <input type="text" class="input-xlarge datepicker"  id="fFechaInicio" name="fFechaInicio" value="24/05/2013">
+			                <input type="text" class="input-xlarge datepicker"  id="fFechaInicio" name="fFechaInicio" value="<%=fecAnoIni%>" readonly="readonly">
 			                <span class="help-inline" id="errFechaInicio">Please correct the error</span>
 			              </div>
 		                </div>
 			            <div class="control-group" id="dvFechaFin">
 			              <label class="control-label" for="typeahead6">Fecha Fin (*): </label>
 			                <div class="controls">
-			                  <input type="text" class="input-xlarge datepicker" id="fFechaFin" name="fFechaFin" value="25/05/2014">
+			                  <input type="text" class="input-xlarge datepicker" id="fFechaFin" name="fFechaFin" value="<%=fecAnoFin%>" readonly="readonly">
 			                  <span class="help-inline" id="errFechaFin">Please correct the error</span>
 			                </div>
 		                  </div>
@@ -59,22 +103,13 @@ function anhadir(cod, name){
 			              <div class="control-group" id="dvSocio">
 			                <label class="control-label" for="typeahead8">Socio (*): </label>
 			                <div class="controls">
-			                  <input type="text" class="span6 typeahead" id="typeahead8"  data-provide="typeahead" name="txtSocio" data-items="4" >
+			                  <input type="text" class="span6 typeahead" id="typeahead8"  data-provide="typeahead" name="txtSocio" data-items="4" readonly="readonly">
 			                  <br>
 			                  <div  align="left"> <a class="btn btn-primary iframe" href="../socio/seleccionarsocio.jsp"> <i class="icon icon-search icon-white"></i> Buscar Socio</a> </div>
 			                  <span class="help-inline" id="errSocio">Please correct the error</span>
 			                </div>
 		                  </div>
-                          <div class="control-group" id="dvPeriodo">
-                            <label class="control-label" for="selectError">Periodo (*):</label>
-                            <div class="controls">
-                              <select  id="cmbPeriodo" data-rel="chosen" name="cmbPeriodo" class=''>
-                                <option value="Anual">Anual</option>
-                                <option value="Semestral">Semestral</option>
-                              </select>
-                              <span class="help-inline" id="errPeriodo">Please correct the error</span>
-                            </div>
-                          </div>
+                          
 						<div class="control-group" id="dvEstado">
 	                <label class="control-label" for="selectError">Estado (*):</label>
 			                <div class="controls">
