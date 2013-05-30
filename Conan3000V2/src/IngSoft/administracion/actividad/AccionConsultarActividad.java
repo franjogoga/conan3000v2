@@ -21,21 +21,9 @@ public class AccionConsultarActividad extends CoAccion{
 			HttpServletResponse response)  throws CoException{
 		
 		
-		ActividadBeanFuncion actividadFuncion= ActividadBeanFuncion.getInstance();
-		
-		
-		 
-		 
+		ActividadBeanFuncion actividadFuncion= ActividadBeanFuncion.getInstance(); 
 		ActividadBeanData actividadData=actividadFuncion.consultarEvento(request.getParameter("codigo"));
-
-		
-	
-		
-		
 		request.setAttribute("actividad",actividadData );
-
-
-
 		this.direccionar(sc, request, response, "/IngSoft/administracion/actividad/consultaractividad.jsp");
 		
 
