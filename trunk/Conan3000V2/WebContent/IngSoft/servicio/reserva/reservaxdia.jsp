@@ -5,6 +5,7 @@
 <jsp:useBean id="fA" scope="request"class="java.util.Date"></jsp:useBean>
 <jsp:useBean id="fI" scope="request"class="java.util.Date"></jsp:useBean>
 <jsp:useBean id="reservas" scope="session"class="java.util.Vector"></jsp:useBean>
+<jsp:useBean id="pendientes" scope="session"class="java.lang.String"></jsp:useBean>
 
 <%Date fecIni=fI==null?Utils.fechaMenos(fA,Integer.valueOf( Integer.valueOf( new SimpleDateFormat("uu").format(fA)).intValue()-1)):fI; %>
 <div align="center">
