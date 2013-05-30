@@ -7,7 +7,14 @@ public class SocioInscritoBeanData implements Serializable{
 	private String idSocio;
 	private String idSorteo;
 	private Date fecha;
+	private String idBungalow;
 	
+	public String getIdBungalow() {
+		return idBungalow;
+	}
+	public void setIdBungalow(String idBungalow) {
+		this.idBungalow = idBungalow;
+	}
 	public String getIdSocio() {
 		return idSocio;
 	}
