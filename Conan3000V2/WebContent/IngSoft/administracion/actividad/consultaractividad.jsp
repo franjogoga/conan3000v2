@@ -217,46 +217,60 @@
 							</div>
 							
 							
-							
-							<div class="control-group">Dias de la Semana:</label>
+
+
+  						  
+							  <div class="control-group">
+								<label class="control-label">Dias de la Semana:</label>
 								<div class="controls">
 								
 								  <label class="checkbox inline">
-									<input type="checkbox" id="inlineCheckbox1" value="option1">Lunes
+									<input disabled="" type="checkbox" id="inlineCheckbox1" value="option1">Lunes
 								  </label>
 								  
 								  
 								  <label class="checkbox inline">
-									<input type="checkbox" id="inlineCheckbox2" value="option2">Martes
+									<input disabled="" type="checkbox" id="inlineCheckbox2" value="option2">Martes
 								  </label>
 								  
 								  
 								  <label class="checkbox inline">
-									<input type="checkbox" id="inlineCheckbox3" value="option3">Miercoles
+									<input disabled=""  type="checkbox" id="inlineCheckbox3" value="option3">Miercoles
 								  </label>
 								  
 								  <label class="checkbox inline">
-									<input type="checkbox" id="inlineCheckbox2" value="option2">Jueves
+									<input disabled="" type="checkbox" id="inlineCheckbox2" value="option2">Jueves
 								  </label>
 								  
 								  
 								  <label class="checkbox inline">
-									<input type="checkbox" id="inlineCheckbox3" value="option3">Viernes
+									<input  disabled="" type="checkbox" id="inlineCheckbox3" value="option3">Viernes
 								  </label>
 								  
+								  
+								  <label class="checkbox inline">
+									<input disabled="" type="checkbox" id="inlineCheckbox3" value="option3">Sábados
+								  </label>
 
 								  <label class="checkbox inline">
-									<input type="checkbox" id="inlineCheckbox3" value="option3">Sábados
+									<input disabled="" type="checkbox" id="inlineCheckbox3" value="option3">Domingos
 								  </label>
-
-								  <label class="checkbox inline">
-									<input type="checkbox" id="inlineCheckbox3" value="option3">Domingos
-								  </label>
+								  
 								  
 								  
 								</div>
-							  </div> 
-							
+							  </div>   
+
+  
+
+
+
+
+
+
+
+
+
 							
                                 <div class="control-group">
                                     <label class="control-label" for="textarea2">Descripcion:</label>
