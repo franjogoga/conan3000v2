@@ -19,7 +19,7 @@ public class AccionConsultarMembresia extends CoAccion{
 
 		request.setAttribute("membresia", MembresiaData);
 
-		this.direccionar(sc, request, response, "/IngSoft/ventas/membresia/consultarmembresia.jsp");
+		this.direccionar(sc, request, response, "/IngSoft/ventas/membresia/vermembresia.jsp");
 	}
 	
 }
