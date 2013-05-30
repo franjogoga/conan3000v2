@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Data.administracion.bungalow">
+	<cache />
+
+	<select id="searchBungalow" parameterType="IngSoft.administracion.bean.CriterioBungalowBeanData" resultType="IngSoft.administracion.bean.ResultadoBungalowBeanData">
+		SELECT b.IdBungalow as codigo, b.Numero as numero, b.NumeroDivisiones as numeroDivisiones, b.AreaBungalow as areaBungalow, a.Nombre as ambiente, b.Estado as estado, s.Nombre as sede
+		FROM BUNGALOW b, AMBIENTE a, SEDE s
+		<where>
+		<if test="numero != 0">
+       		b.Numero = #{numero}
+    	</if>
+    	<if test="numeroDivisiones != 0">
+       		AND b.NumeroDivisiones = #{numeroDivisiones}
+    	</if>
+    	<if test="areaBungalow != 0">
+       		AND b.AreaBungalow = #{areaBungalow}
+    	</if>
+    	<if test="idAmbiente != null">
+        	AND a.IdAmbiente = #{idAmbiente}
+    	</if>
+    		AND b.IdAmbiente=a.IdAmbiente AND a.IdSede=s.IdSede AND (b.Estado='Activo' OR b.Estado='Inactivo')
+		</where>
+	</select>
+	
+	<select id="searchAmbienteMini" resultType="IngSoft.administracion.bean.AmbienteMiniBeanData">
+		SELECT a.IdAmbiente as codigo, a.Nombre as nombre, s.Nombre as nombreSede
+		FROM AMBIENTE a, SEDE s
+		WHERE a.IdSede=s.IdSede
+	</select>
+
+	<insert id="insertBungalow" parameterType="IngSoft.administracion.bean.BungalowBeanData" flushCache="true">
+		insert into BUNGALOW(IdBungalow,IdAmbiente,Numero,Estado,NumeroDivisiones,AreaBungalow,Descripcion)
+		values (#{codigo},#{idAmbiente},#{numero},'Activo',#{numeroDivisiones},#{areaBungalow},#{descripcion})
+	</insert>
+
+	<select id="getNextCodigo" resultType="java.lang.String">
+	 	SELECT MAX(IdBungalow) FROM BUNGALOW	
+	</select>
+
+	<select id="getBungalow" parameterType="java.lang.String"  resultType="IngSoft.administracion.bean.BungalowBeanData">
+		SELECT IdBungalow as codigo, IdAmbiente as idAmbiente, Numero as numero, Estado as estado,
+			   NumeroDivisiones as numeroDivisiones, AreaBungalow as areaBungalow, Descripcion as descripcion
+		FROM BUNGALOW
+		WHERE (Estado = 'Activo' OR Estado = 'Inactivo') AND  IdBungalow = #{codigo}; 
+	</select>
+
+	<update id="updateBungalow" parameterType="IngSoft.administracion.bean.BungalowBeanData">
+		update BUNGALOW set
+		IdAmbiente = #{idAmbiente},
+		Numero = #{numero},
+		Estado = #{estado},
+		NumeroDivisiones = #{numeroDivisiones},
+		AreaBungalow = #{areaBungalow},
+		Descripcion = #{descripcion}
+	 	where IdBungalow = #{codigo}
+	</update>
+
+	<update id="deleteBungalow" parameterType="java.lang.String" >
+		UPDATE BUNGALOW SET Estado='Eliminado' WHERE IdBungalow = #{codigo}
+	</update>
+</mapper>
