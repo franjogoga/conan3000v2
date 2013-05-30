@@ -53,7 +53,6 @@ function validaForm(){
 	4: Validacion de alfanumerico
 	5: validacion de valores Float
 	6: Validacion de enteros
-	7: Validacion de fechas
 	minimo: valor numerico que indica la menor cantidad de caracteres que como minimo debe ser llenado (Solo para tipoValidacion 1 y 2, en el resto poner 1)
 	maximo: valor numerico que indica la maxima cantidad de caracteres que como maximo debe ser llenado (Solo para tipoValidacion 1 y 2, en el resto poner 1)
 	
