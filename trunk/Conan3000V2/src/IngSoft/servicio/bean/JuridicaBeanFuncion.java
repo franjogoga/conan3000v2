@@ -81,6 +81,70 @@ public class JuridicaBeanFuncion {
 		}
 		
 		
+		public void modificarJuridica(PersonaJuridicaBeanData juridica) throws CoException {
+			
+			SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+			try{
+				
+				sqlsesion.update("Data.servicio.juridica.updatePlantillaJuridica",juridica);
+				
+			}
+			catch(Exception a)		
+			{sqlsesion.rollback();
+			a.printStackTrace();
+				throw CoException.set("Error: No se pudo modificar la plantilla intente de nuevo", "SMSJuridica?accion=Modificar&tipo=1");
+				
+			}
+			
+			finally{
+				sqlsesion.commit();
+				sqlsesion.close();					
+			}
+				
+			return ;
+		}
+		
+				
+		public boolean eliminarJuridica(String codigo) throws CoException {
+			boolean resultado=false;		
+			
+			SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+			try{
+			
+				sqlsesion.update("Data.servicio.juridica.deletePLantillaJuridica",codigo);
+				
+				resultado=true;
+			}
+			catch(Exception a)		
+			{sqlsesion.rollback();
+			a.printStackTrace();
+				throw CoException.set("Error: No se pudo eliminar la plantilla intente de nuevo", "SMSJuridica?accion=Agregar&tipo=1");
+				
+			}
+			
+			finally{
+				sqlsesion.commit();
+				sqlsesion.close();					
+			}
+				
+			return resultado;
+		}
+		
+		
+		
+		
+		
+		public PersonaJuridicaBeanData consultarJuridica(String codigo){
+			PersonaJuridicaBeanData JuridicaData=null;
+			SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+			try{
+				JuridicaData= sqlsesion.selectOne("Data.servicio.juridica.getPLantillaJuridica",codigo);
+			}
+			finally{
+				sqlsesion.close();
+			}
+			return JuridicaData;
+		}
 		
 		
 		public Vector<PersonaJuridicaBeanData> BuscarJuridica(PersonaJuridicaBeanData JuridicaData) throws CoException {
