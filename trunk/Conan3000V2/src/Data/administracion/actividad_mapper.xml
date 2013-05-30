@@ -12,22 +12,34 @@
 </select>
   
 <select id="searchPlantillaActividad" parameterType="IngSoft.administracion.bean.CriterioActividadBeanData" resultType="IngSoft.administracion.bean.ResultadoActividadBeanData">
-select 
-SEDE.IdSede as codigo
-,SEDE.NOMBRE as nombre
-,DEPARTAMENTO.NOMBRE as departamento
-,PROVINCIA.NOMBRE as provincia
-,DISTRITO.NOMBRE as distrito
-,SEDE.ESTADO as estado
-from DEPARTAMENTO  , PROVINCIA  , DISTRITO  , SEDE 
-WHERE
-        SEDE.Nombre  like  #{nombre}
-        AND  DEPARTAMENTO.IdDepartamento = PROVINCIA.IdDepartamento 
-        AND  PROVINCIA.IdProvincia = DISTRITO.IdProvincia 
-        AND  DISTRITO.IdDistrito = SEDE.IdDistrito
-        AND  SEDE.Estado !='Eliminado'
 
-order by 1 asc
+
+
+SELECT 
+ACTIVIDAD.IdActividad AS codigo,
+ACTIVIDAD.nombre as nombre,
+TIPO_ACTIVIDAD.nombre as tipoactividad
+
+FROM
+TIPO_ACTIVIDAD , ACTIVIDAD ,  AMBIENTE ,   
+SEDE ,            EMPLEADO ,   PERSONA 
+
+
+WHERE
+
+    ACTIVIDAD.IdSede    = AMBIENTE.IdSede 
+AND AMBIENTE.IdSede     = SEDE.IdSede 
+AND SEDE.IdSede         = EMPLEADO.IdSede 
+AND EMPLEADO.IdEmpleado = PERSONA.IdPersona 
+
+AND ACTIVIDAD.IdEmpleado =  EMPLEADO.IdEmpleado
+AND ACTIVIDAD.IdTipoActividad = TIPO_ACTIVIDAD.IdTipoActividad 
+AND ACTIVIDAD.IdAmbiente =  AMBIENTE.IdAmbiente
+
+ORDER BY 1 ASC
+;
+
+
 </select>
 
 
@@ -97,6 +109,16 @@ Estado=#{estado}
 where IdSede= #{codigo}
 </update>
 <!-- Fin eliminar -->
+
+
+<!-- tipoactividad  -->
+<select id="getTipoactividad" resultType="IngSoft.administracion.bean.TipoActividadMiniBeanData">
+select TIPO_AMBIENTE.IdTipoAmbiente as codigo
+, TIPO_AMBIENTE.Nombre as nombre
+from 
+TIPO_AMBIENTE; 
+
+</select>
 
 
 
