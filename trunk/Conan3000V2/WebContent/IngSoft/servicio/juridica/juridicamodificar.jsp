@@ -156,7 +156,14 @@
 						  <fieldset>
 						                               
                          
-							  
+							  <div class="control-group">
+                                  
+                                  
+                                  <label class="control-label" for="typeahead7">CODIGO: </label>
+                                  <div class="controls">
+                                      <input type="hidden" class="span6 typeahead"   data-provide="typeahead" id="txtCodigo" name="txtCodigo" value="<%=juridica.getCodigo()%>">
+                                          </div>
+                              </div>
 							  <div class="control-group">
                                   
                                   
