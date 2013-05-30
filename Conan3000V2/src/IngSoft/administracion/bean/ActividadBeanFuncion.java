@@ -50,11 +50,14 @@ public class ActividadBeanFuncion {
         
 
 		actividadData.setCodigo(    		request.getParameter("txtNombre") );
+		actividadData.setNombreSede(		request.getParameter("cmbSede"));		
 		actividadData.setNombre(    		request.getParameter("txtNombre") );
-		actividadData.setIdSede(			request.getParameter("cmbTipoactividad"));
-		actividadData.setIdTipoactividad(	request.getParameter("cmbTipoactividad"));
-		actividadData.setIdEncargado(		request.getParameter("cmbTipoactividad"));
-		actividadData.setIdAmbientes(		request.getParameter("cmbTipoactividad"));
+
+		actividadData.setNombreTipoactividad(	request.getParameter("cmbTipoactividad"));
+		actividadData.setNombreEncargado(		request.getParameter("cmbEncargado"));
+		actividadData.setPuesto(				request.getParameter("txtPuesto"));
+		actividadData.setNombreAmbientes(		request.getParameter("cmbAmbiente"));
+		
 		actividadData.setFechaInicio(new Date(DF.parse(		request.getParameter("fFecIncio")+"/0000").getTime()));
 		actividadData.setFechaFin(new Date(DF.parse(		request.getParameter("fFecFin")+"/0000").getTime()));
 		actividadData.setDia(   						 	request.getParameter("txtDia") );
@@ -74,19 +77,26 @@ public class ActividadBeanFuncion {
 		ActividadBeanData actividadData= new ActividadBeanData();
 		try{		
 			
+			
 
-			actividadData.setCodigo(    					request.getParameter("txtNombre") );
-			actividadData.setNombre(    					request.getParameter("txtNombre") );
-			actividadData.setIdSede(						request.getParameter("cmbTipoactividad"));
-			actividadData.setIdTipoactividad(				request.getParameter("cmbTipoactividad"));
-			actividadData.setIdEncargado(					request.getParameter("cmbTipoactividad"));
-			actividadData.setIdAmbientes(					request.getParameter("cmbTipoactividad"));
-			actividadData.setFechaInicio(new Date(DF.parse(	request.getParameter("fFecIncio")+"/0000").getTime()));
-			actividadData.setFechaFin(new Date(DF.parse(	request.getParameter("fFecFin")+"/0000").getTime()));
-			actividadData.setDia(    						request.getParameter("txtDia") );
-			actividadData.setDescripcion(    				request.getParameter("txtDescripcion") );
-			actividadData.setEstado(    					request.getParameter("optionsRadios") );
+	        
 
+		actividadData.setCodigo(    		request.getParameter("txtNombre") );
+		actividadData.setNombreSede(		request.getParameter("cmbSede"));		
+		actividadData.setNombre(    		request.getParameter("txtNombre") );
+
+		actividadData.setNombreTipoactividad(	request.getParameter("cmbTipoactividad"));
+		actividadData.setNombreEncargado(		request.getParameter("cmbEncargado"));
+		actividadData.setPuesto(				request.getParameter("txtPuesto"));
+		actividadData.setNombreAmbientes(		request.getParameter("cmbAmbiente"));
+		
+		actividadData.setFechaInicio(new Date(DF.parse(		request.getParameter("fFecIncio")+"/0000").getTime()));
+		actividadData.setFechaFin(new Date(DF.parse(		request.getParameter("fFecFin")+"/0000").getTime()));
+		actividadData.setDia(   						 	request.getParameter("txtDia") );
+		actividadData.setDescripcion(    					request.getParameter("txtDescripcion") );
+		actividadData.setEstado(    						request.getParameter("txtEstado") );
+		
+			
 
 
 		}catch(Exception e){
@@ -194,10 +204,6 @@ public class ActividadBeanFuncion {
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
 			actividadData= sqlsesion.selectOne("Data.administracion.actividad.getPLantillaActividad",codigo);
-		
-		//	System.out.print(" SedeBeanFuncion <-- "+actividadData.getNombre());
-			
-			
 			
 		}
 		finally{
