@@ -17,7 +17,7 @@ SORTEO.Estado as estado
 from SORTEO 
 <where>
 <if test="nombre != null ">
-        SORTEO.Descripcion like  #{nombre}
+        upper(SORTEO.Descripcion) like #{nombre}
     </if>
     <if test="fechaIni != null">
         AND SORTEO.FechaInicioIncr &gt;= #{fechaIni}
@@ -104,7 +104,7 @@ update SORTEO set Estado="DESACTIVADO" where IdSorteo=#{codigo}
 </update>
 
 <update id="updateGanadores" parameterType="IngSoft.servicio.bean.SocioInscritoBeanData">
-update BUNGALOWxSORTEO set IdSocio=#{idSocio} where IdSorteo=#{idSorteo}
+update BUNGALOWxSORTEO set IdSocio=#{idSocio} where IdSorteo=#{idSorteo} and IdBungalow=#{idBungalow};
 </update>
 
 <select id="searchInscritos" parameterType="String" resultType="IngSoft.servicio.bean.SocioInscritoBeanData">
@@ -115,6 +115,19 @@ update BUNGALOWxSORTEO set IdSocio=#{idSocio} where IdSorteo=#{idSorteo}
 	where IdSorteo=#{idSorteo};
 </select>
 
+<select id="searchGanadores" parameterType="String" resultType="IngSoft.servicio.bean.SocioInscritoBeanData">
+	select 	IdSocio as idSocio,
+			IdSorteo as idSorteo,
+			Fecha as fecha
+	from INSCRIPCION_SORTEO
+	where IdSorteo=#{idSorteo};
+</select>
+
+<select id="selectGanador" parameterType="String" resultType="String">
+	select 	concat(Nombres,' ',ApePaterno,' ',ApeMaterno)
+	from PERSONA
+	where IdPersona=#{idSocio};
+</select>
 
 <select id="searchSocio" parameterType="String" resultType="IngSoft.servicio.bean.SocioBeanData">
 	select 	IdPersona as idSocio,
