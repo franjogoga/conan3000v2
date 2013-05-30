@@ -14,7 +14,7 @@ public class CriterioAmbienteBeanFunction {
 	
 	public CriterioAmbienteBeanData crearCriterio(HttpServletRequest request, HttpServletResponse response){
 		CriterioAmbienteBeanData criterioAmbienteData= new CriterioAmbienteBeanData();
-		criterioAmbienteData.setNombre(request.getParameter("txtNombre")==null?null:"%"+request.getParameter("txtNombre")+"%");
+		criterioAmbienteData.setNombre(request.getParameter("txtNombre")==""?null:"%"+request.getParameter("txtNombre")+"%");
 		criterioAmbienteData.setIdTipoAmbiente("0".equals(request.getParameter("cmbTipo"))?null:request.getParameter("cmbTipo"));
 		criterioAmbienteData.setIdSede("0".equals(request.getParameter("cmbSede"))?null:request.getParameter("cmbSede"));
 		return criterioAmbienteData;				
