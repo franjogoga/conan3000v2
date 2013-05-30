@@ -14,6 +14,7 @@ MEMBRESIA.IdMembresia as codigo
 ,CONCAT(PERSONA.Nombres,' ',PERSONA.ApePaterno,' ',PERSONA.ApeMaterno) as nombre
 ,MEMBRESIA.Estado as estado
 ,MEMBRESIA.Costo as costo
+,MEMBRESIA.Periodo as periodo
 from MEMBRESIA, PERSONA
 <where>
 	<if test="nombre != null ">
@@ -35,8 +36,8 @@ from MEMBRESIA, PERSONA
   
 <!-- Agregar plantilla membresia -->
 <insert id="insertMembresia" parameterType="IngSoft.venta.bean.MembresiaBeanData" flushCache="true">
-	insert into MEMBRESIA(IdMembresia,FechaInicio,FechaFin,idSocio,Costo,Estado)
-	values (#{codigo},#{fechaInicio},#{fechaFin},#{codigoSocio},#{costo},#{estado})
+	insert into MEMBRESIA(IdMembresia,FechaInicio,FechaFin,idSocio,Costo,Periodo,Estado)
+	values (#{codigo},#{fechaInicio},#{fechaFin},#{codigoSocio},#{costo},#{periodo},#{estado})
 </insert>
 
 <select id="getNextCodigo2" resultType="java.lang.String">
@@ -52,8 +53,9 @@ update MEMBRESIA set FechaInicio=#{fechaInicio}
  ,FechaFin=#{fechaFin}
  ,idSocio=#{codigoSocio}
  ,Costo=#{costo}
+ ,Periodo=#{periodo}
  ,Estado=#{estado}
- where IdMembresia= #{codigo}
+ where IdMembresia= #{idMembresia}
 </update>
 
 <!-- Fin modificar -->
@@ -71,8 +73,10 @@ select
 MEMBRESIA.IdMembresia as idMembresia
 ,MEMBRESIA.FechaInicio as fechaInicio
 ,MEMBRESIA.FechaFin as fechaFin
+,MEMBRESIA.IdSocio as codigoSocio
 ,MEMBRESIA.Costo as costo
 ,CONCAT(PERSONA.Nombres,' ',PERSONA.ApePaterno,' ',PERSONA.ApeMaterno) as socio
+,MEMBRESIA.Periodo as periodo
 ,MEMBRESIA.Estado as estado
 from MEMBRESIA, PERSONA  where MEMBRESIA.IdMembresia=#{codigo} and MEMBRESIA.IdSocio=PERSONA.IdPersona; 
 
