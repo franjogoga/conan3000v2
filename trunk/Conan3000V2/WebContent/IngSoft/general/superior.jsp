@@ -13,7 +13,7 @@
 				<!-- theme selector starts -->
 				<div class="btn-group pull-right theme-container" >
 					<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-						<i class="icon-tint"></i><span class="hidden-phone"> Change Theme / Skin</span>
+						<i class="icon-tint"></i><span class="hidden-phone"> Cambiar tema / car&aacute;tula</span>
 						<span class="caret"></span>
 					</a>
 					<ul class="dropdown-menu" id="themes">
@@ -39,7 +39,7 @@
 					<ul class="dropdown-menu">
 						<li><a href="#">Mi Cuenta</a></li>
 						<li class="divider"></li>						
-						<li><a href="<%=request.getContextPath()%>/IngSoft/general/GENLogin?accion=Logout">Logout</a></li>
+						<li><a href="<%=request.getContextPath()%>/IngSoft/general/GENLogin?accion=Logout">Cerra Sesi&oacute;n</a></li>
 						
 					</ul>
 				</div>
