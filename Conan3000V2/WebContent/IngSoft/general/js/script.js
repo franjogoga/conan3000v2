@@ -307,3 +307,9 @@ function esValido(nombre, casilla, id, tipoValidacion, minimo,maximo){
 	}
 				
 }
+
+
+function limita(area_texto,max)
+{
+if(area_texto.value.length>=max){area_texto.value=area_texto.value.substring(0,max);}
+}
