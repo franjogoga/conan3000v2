@@ -3,27 +3,20 @@
 <%@page import="java.text.SimpleDateFormat"%>
 			
 				<script>
-		function procesar(form,indice){
-			
-		
-		
-		}
-	
 	function alt_fecha(obj){
 	obj.value=obj.value.slice(0,5);
 	
 	}
 	
 	function alt_submit(){
-		
-			
-			}
-		
-		
-		
-			//document.fmrData.submit();
+		var form= document.frmDelete;
+		var r=confirm("¿Esta seguro que desea borrar este socio?");
+		if(r==true){form.submit();}
+	}	
+
 
 	</script>	
+	
 	<%! public boolean  encontrar(String a, String[] b){
 		for(int i=0;i<b.length;i++){			
 			if(b[i].equals(a)) return true;	
@@ -64,6 +57,10 @@
 				  </div>
 					<div class="box-content">
 						<form class="form-horizontal" name="frmDelete"  action="<%= response.encodeURL("SMVSocio")%>" method="post">
+						 <input type="hidden" name="codigo" value="<%=socio.getCodigo()%>" ></input>
+						<input type="hidden" name="accion" value="Eliminar"></input>
+						<input type="hidden" name="tipo" value="2"></input>
+						 
 						  <fieldset>
 						    
 						      <div class="control-group">
@@ -153,7 +150,7 @@
 						    </div>
 						    <div class="form-actions">
 							  <button type="submit" class="btn btn-primary"  onclick="javascript:alt_submit()">Eliminar</button> 
-			               	  <button  name="btnCancelar" class="btn" href="buscarsocio.jsp">Cancelar</button>  
+			               	  <button  type="submit" class="btn" onclick="location.href='buscarsocio.jsp'">Cancelar</button>  
 			               </div>
 						  </fieldset>
 					  </form>   
