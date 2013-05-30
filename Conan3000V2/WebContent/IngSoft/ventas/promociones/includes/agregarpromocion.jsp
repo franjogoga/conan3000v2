@@ -144,7 +144,7 @@ function alt_submit(){
 			             <div class="control-group" id="dvNombrePromocion">
 			              <label class="control-label" for="typeahead7">Nombre Promoci&oacute;n(*):</label>
 			              <div class="controls">
-			                <input type="text" name="txtNombrePromocion" class="span6 typeahead" id="txtNombrePromocion"  data-provide="typeahead" >
+			                <input type="text" name="txtNombrePromocion" class="span6 typeahead" id="txtNombrePromocion"  data-provide="typeahead" onKeyUp="limita(this,50);" onKeyDown="limita(this,50);">
 			                <span class="help-inline" id="errNombrePromocion">Please correct the error</span>
 		                  </div>
 		                </div>
@@ -166,7 +166,7 @@ function alt_submit(){
 			              <div class="control-group" id="dvDescripcion">
 			                <label class="control-label" for="textarea2">Descripci&oacute;n:</label>
 			                <div class="controls">
-			                  <textarea name="txtDescripcion" class="" id="txtDescripcion" style="resize:none"></textarea>
+			                  <textarea name="txtDescripcion" class="" id="txtDescripcion" style="resize:none" onKeyUp="limita(this,100);" onKeyDown="limita(this,100);" ></textarea>
 			                  <span class="help-inline" id="errDescripcion">Please correct the error</span>
 		                    </div>
 		                  </div>
