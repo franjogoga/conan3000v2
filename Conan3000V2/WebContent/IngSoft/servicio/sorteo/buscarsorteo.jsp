@@ -61,16 +61,26 @@
 	<!-- The fav icon -->
 	<link rel="shortcut icon" href="img/conan_logo.png">
 	
+	<script src="sorteo.js"></script>
 	
 	<script>
+	
+	
 	function alfanumerico(e) 
 	{ 
 		var key = window.event.keyCode || event.keyCode;
 		return ((key >= 48 && key <= 57) ||(key >= 97 && key <= 122) ||(key >= 65 && key <=90) ||(key >= 192 && key <=246)||(key <=13) ||(key ==32));
 	} 	
 	function alt_fecha(obj){
-	obj.value=obj.value.slice(0,5);
+	obj.value=obj.value.slice(0,10);
 	
+	}
+	
+	function alt_submit(){
+		var form= document.frmData;
+		if(validar(form)) form.submit();
+		else alert("Uno o mas campos estan vacios");
+			
 	}
 	function alt_agregar(){
 		var form=document.getElementById("frmAlternativo");
@@ -156,25 +166,25 @@
 							<div class="control-group">
 							  <label class="control-label" for="date01">Fecha Inicio</label>
 							  <div class="controls">
-								<input type="text" class="input-xlarge datepicker" id="date01" name="date01"  ">
+								<input type="text" class="input-xlarge datepicker" id="date01" name="date01"  onchange="alt_fecha(this);">
 							  </div>
 							</div>
 							
 							<div class="control-group">
 							  <label class="control-label" for="date02">Fecha Fin</label>
 							  <div class="controls">
-								<input type="text" class="input-xlarge datepicker" id="date02" name="date02"  >
+								<input type="text" class="input-xlarge datepicker" id="date02" name="date02" onchange="alt_fecha(this);verificar_fecha(1,this,'date01');" >
 							  </div>
 							</div>
 							<div class="control-group">
 							  <label class="control-label" for="date03">Fecha Sorteo</label>
 							  <div class="controls">
-								<input type="text" class="input-xlarge datepicker" id="date03" name="date03"  >
+								<input type="text" class="input-xlarge datepicker" id="date03" name="date03"  onchange="alt_fecha(this);verificar_fecha(1,this,'date02');"   >
 							  </div>
 							</div>
 							
 							<div class="form-actions">
-							  <button type="submit" class="btn btn-primary">Buscar</button>
+							  <button type="submit" class="btn btn-primary" >Buscar</button>
 							  <button type="reset" class="btn">Cancelar</button>
 							</div>
 						  </fieldset>
@@ -214,9 +224,9 @@
 							  <tr>
 								  <th>Codigo</th>
 							        <th>Nombre Sorteo</th>
-							        <th>Fecha Inicio (d&iacutea/mes)</th>
-							        <th>Fecha Fin (d&iacutea/mes)</th>
-									<th>Fecha Sorteo (d&iacutea/mes)</th>
+							        <th>Fecha Inicio</th>
+							        <th>Fecha Fin</th>
+									<th>Fecha Sorteo </th>
 												        							      							        
 							        <th>Acción</th>
 							
@@ -224,7 +234,7 @@
 						  </thead>
                           <element>
                           	<tbody id="resultadoBusqueda">
-                          		<% SimpleDateFormat df= new SimpleDateFormat("dd/MM"); 
+                          		<% SimpleDateFormat df= new SimpleDateFormat("dd/MM/YYYY"); 
                           			for(int i=0;
                           			i<resultados.size();i++){
                           		%>
