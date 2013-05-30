@@ -22,14 +22,14 @@ public class AccionEliminarMembresia extends CoAccion {
 			
 			MembresiaBeanFunction membresiaFuncion= MembresiaBeanFunction.getInstance();
 			membresiaFuncion.eliminarMembresia(request.getParameter("codigo"));
-			this.direccionar(sc, request, response, "/IngSoft/ventas/membresiaes/buscarmembresia.jsp");
+			this.direccionar(sc, request, response, "/IngSoft/ventas/membresia/buscarmembresia.jsp");
 		}
 		if(Integer.valueOf(request.getParameter("tipo"))==1){
 		MembresiaBeanFunction membresiaFuncion= MembresiaBeanFunction.getInstance();
 		MembresiaBeanData membresiaData=membresiaFuncion.consultarMembresia(request.getParameter("codigo"));
 		
 		request.setAttribute("membresia", membresiaData);
-		this.direccionar(sc, request, response, "/IngSoft/ventas/membresiaes/eliminarmembresia.jsp");
+		this.direccionar(sc, request, response, "/IngSoft/ventas/membresia/eliminarmembresia.jsp");
 		}
 		//this.direccionar(sc, request, response, "/IngSoft/ventas/membresiaes/buscarmembresia.jsp");
 					
