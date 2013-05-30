@@ -49,17 +49,17 @@ public class ActividadBeanFuncion {
 
         
 
-		actividadData.setCodigo(    request.getParameter("txtNombre") );
-		actividadData.setNombre(    request.getParameter("txtNombre") );
-		actividadData.setIdSede(request.getParameterValues("cmbTipoactividad"));
-		actividadData.setIdTipoactividad(request.getParameterValues("cmbTipoactividad"));
-		actividadData.setIdEncargado(request.getParameterValues("cmbTipoactividad"));
-		actividadData.setIdAmbientes(request.getParameterValues("cmbTipoactividad"));
-		actividadData.setFechaInicio(new Date(DF.parse(request.getParameter("fFecIncio")+"/0000").getTime()));
-		actividadData.setFechaFin(new Date(DF.parse(request.getParameter("fFecFin")+"/0000").getTime()));
-		actividadData.setDia(    request.getParameter("txtDia") );
-		actividadData.setDescripcion(    request.getParameter("txtDescripcion") );
-		actividadData.setEstado(    request.getParameter("txtEstado") );
+		actividadData.setCodigo(    		request.getParameter("txtNombre") );
+		actividadData.setNombre(    		request.getParameter("txtNombre") );
+		actividadData.setIdSede(			request.getParameter("cmbTipoactividad"));
+		actividadData.setIdTipoactividad(	request.getParameter("cmbTipoactividad"));
+		actividadData.setIdEncargado(		request.getParameter("cmbTipoactividad"));
+		actividadData.setIdAmbientes(		request.getParameter("cmbTipoactividad"));
+		actividadData.setFechaInicio(new Date(DF.parse(		request.getParameter("fFecIncio")+"/0000").getTime()));
+		actividadData.setFechaFin(new Date(DF.parse(		request.getParameter("fFecFin")+"/0000").getTime()));
+		actividadData.setDia(   						 	request.getParameter("txtDia") );
+		actividadData.setDescripcion(    					request.getParameter("txtDescripcion") );
+		actividadData.setEstado(    						request.getParameter("txtEstado") );
 		
 		
 
@@ -75,17 +75,17 @@ public class ActividadBeanFuncion {
 		try{		
 			
 
-			actividadData.setCodigo(    request.getParameter("txtNombre") );
-			actividadData.setNombre(    request.getParameter("txtNombre") );
-			actividadData.setIdSede(request.getParameterValues("cmbTipoactividad"));
-			actividadData.setIdTipoactividad(request.getParameterValues("cmbTipoactividad"));
-			actividadData.setIdEncargado(request.getParameterValues("cmbTipoactividad"));
-			actividadData.setIdAmbientes(request.getParameterValues("cmbTipoactividad"));
-			actividadData.setFechaInicio(new Date(DF.parse(request.getParameter("fFecIncio")+"/0000").getTime()));
-			actividadData.setFechaFin(new Date(DF.parse(request.getParameter("fFecFin")+"/0000").getTime()));
-			actividadData.setDia(    request.getParameter("txtDia") );
-			actividadData.setDescripcion(    request.getParameter("txtDescripcion") );
-			actividadData.setEstado(    request.getParameter("optionsRadios") );
+			actividadData.setCodigo(    					request.getParameter("txtNombre") );
+			actividadData.setNombre(    					request.getParameter("txtNombre") );
+			actividadData.setIdSede(						request.getParameter("cmbTipoactividad"));
+			actividadData.setIdTipoactividad(				request.getParameter("cmbTipoactividad"));
+			actividadData.setIdEncargado(					request.getParameter("cmbTipoactividad"));
+			actividadData.setIdAmbientes(					request.getParameter("cmbTipoactividad"));
+			actividadData.setFechaInicio(new Date(DF.parse(	request.getParameter("fFecIncio")+"/0000").getTime()));
+			actividadData.setFechaFin(new Date(DF.parse(	request.getParameter("fFecFin")+"/0000").getTime()));
+			actividadData.setDia(    						request.getParameter("txtDia") );
+			actividadData.setDescripcion(    				request.getParameter("txtDescripcion") );
+			actividadData.setEstado(    					request.getParameter("optionsRadios") );
 
 
 
@@ -236,6 +236,24 @@ public class ActividadBeanFuncion {
 		return resultado;
 	}
 	
-	
+	public Vector<TipoActividadMiniBeanData> getTipoactividades() throws CoException {
+		Vector<TipoActividadMiniBeanData> acts= null;
+		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+		
+		
+		try{
+			List<TipoActividadMiniBeanData> temp=sqlsesion.selectList("Data.administracion.actividad.getTipoactividad");			
+			acts= new Vector<TipoActividadMiniBeanData>(temp);
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			throw CoException.set("Error: No se pudo obtener la lista de departamentos", "SMAActividad?accion=Agregar&tipo=1");
+		}
+		finally{
+			sqlsesion.close();
+			
+		}
+		return acts;
+	}
 
 }
