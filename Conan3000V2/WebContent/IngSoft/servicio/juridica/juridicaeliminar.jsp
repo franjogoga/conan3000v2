@@ -111,10 +111,10 @@
 						<a href="#">Home</a> <span class="divider">/</span>
 					</li>
 					<li>
-						<a href="#">Mantenimiento de Sorteos</a> <span class="divider">/</span>
+						<a href="#">Mantenimiento de Persona juridica</a> <span class="divider">/</span>
 					</li>
 					<li>
-						Eliminar de Sorteos
+						Eliminar Persona Juridica
 					</li>
 				</ul>
 			</div>
@@ -131,14 +131,14 @@
 						<input type="hidden" name="tipo" value="2"></input>
 						  <fieldset>
 						    <div class="control-group">
-						      <label class="control-label" for="disabledInput">: </label>
+						      <label class="control-label" for="disabledInput">: Razon Social </label>
 						      <div class="controls">
 						        <input class="input-xlarge disabled" id="disabledInput" type="text" placeholder="Disabled input here.." disabled id="txtRazonSocial" name="txtRazonSocial" value="<%=juridica.getRazonSocial()%>" onkeypress="return alfanumerico(event);" autofocus>
 					          </div>
 					        </div>
 									  
 							 <div class="control-group">
-						      <label class="control-label" for="disabledInput">: </label>
+						      <label class="control-label" for="disabledInput">: Ruc </label>
 						      <div class="controls">
 						        <input class="input-xlarge disabled" id="disabledInput" type="text" placeholder="Disabled input here.." disabled id="txtRuc" name="txtRuc" value="<%=juridica.getRuc()%>" onkeypress="return alfanumerico(event);" autofocus>
 					          </div>
@@ -147,7 +147,7 @@
                               
                                 
                       		 <div class="control-group">
-						      <label class="control-label" for="disabledInput">: </label>
+						      <label class="control-label" for="disabledInput">:Direccion </label>
 						      <div class="controls">
 						        <input class="input-xlarge disabled" id="disabledInput" type="text" placeholder="Disabled input here.." disabled id=txtDireccion name="txtDireccion" value="<%=juridica.getDireccion()%>" onkeypress="return alfanumerico(event);" autofocus>
 					          </div>
@@ -156,7 +156,7 @@
 							  
 							  
 							<div class="control-group">
-						      <label class="control-label" for="disabledInput">: </label>
+						      <label class="control-label" for="disabledInput">: Telefono </label>
 						      <div class="controls">
 						        <input class="input-xlarge disabled" id="disabledInput" type="text" placeholder="Disabled input here.." disabled id=txtTelefono name="txtTelefono" value="<%=juridica.getTelefono()%>" onkeypress="return alfanumerico(event);" autofocus>
 					          </div>
@@ -165,17 +165,13 @@
 							  
 							       
 							<div class="control-group">
-						      <label class="control-label" for="disabledInput">: </label>
+						      <label class="control-label" for="disabledInput">:Correo </label>
 						      <div class="controls">
 						        <input class="input-xlarge disabled" id="disabledInput" type="text" placeholder="Disabled input here.." disabled id=txtCorreo name="txtCorreo" value="<%=juridica.getCorreo()%>" onkeypress="return alfanumerico(event);" autofocus>
 					          </div>
 					        </div>
 							  
-							  							  
-								 
-                                
-                          
-                                     	
+							                                                                                       	
 					        					
 						    <div class="form-actions">
 							  <button type="button" class="btn btn-primary" onclick="javascript:alt_submit()">Eliminar</button>
