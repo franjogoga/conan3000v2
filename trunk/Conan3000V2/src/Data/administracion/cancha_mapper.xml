@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Data.administracion.cancha">
+	<cache />
+
+	<select id="searchCancha" parameterType="IngSoft.administracion.bean.CriterioCanchaBeanData" resultType="IngSoft.administracion.bean.ResultadoCanchaBeanData">
+		SELECT c.IdCancha as codigo, c.Nombre as nombre, tc.Nombre as tipoCancha, a.Nombre as ambiente, s.Nombre as sede, c.Estado as estado
+		FROM CANCHA c, TIPO_CANCHA tc, AMBIENTE a, SEDE s
+		<where>
+		<if test="nombre != null">
+       		c.Nombre = #{nombre}
+    	</if>
+    	<if test="idTipoCancha != null">
+       		AND c.IdTipoCancha = #{idTipoCancha}
+    	</if>
+    	<if test="idAmbiente != null">
+       		AND c.IdAmbiente = #{idAmbiente}
+    	</if>
+    		AND c.IdTipoCancha = tc.IdTipoCancha AND c.IdAmbiente=a.IdAmbiente AND a.IdSede=s.IdSede AND (c.Estado='Activo' OR c.Estado='Inactivo')
+		</where>
+	</select>
+
+	<insert id="insertCancha" parameterType="IngSoft.administracion.bean.CanchaBeanData" flushCache="true">
+		insert into CANCHA (IdCancha,Descripcion,Estado,IdAmbiente,Nombre,IdTipoCancha)
+		values (#{codigo},#{descripcion},'Activo',#{idAmbiente},#{nombre},#{idTipoCancha})
+	</insert>
+
+	<select id="getNextCodigo" resultType="java.lang.String">
+	 	SELECT MAX(IdCancha) FROM CANCHA	
+	</select>
+
+	<select id="getCancha" parameterType="java.lang.String"  resultType="IngSoft.administracion.bean.CanchaBeanData">
+		SELECT IdCancha as codigo, Descripcion as descripcion, Estado as estado, IdAmbiente as idAmbiente,
+			   Nombre as nombre, IdTipoCancha as idTipoCancha
+		FROM CANCHA
+		WHERE (Estado = 'Activo' OR Estado = 'Inactivo') AND  IdCancha = #{codigo}; 
+	</select>
+
+	<update id="updateCancha" parameterType="IngSoft.administracion.bean.CanchaBeanData">
+		update CANCHA set
+		Descripcion = #{descripcion},
+		Estado = #{estado},
+		IdAmbiente = #{idAmbiente},
+		Nombre = #{nombre},
+		IdTipoCancha = #{idTipoCancha}		
+	 	where IdCancha = #{codigo}
+	</update>
+
+	<update id="deleteCancha" parameterType="java.lang.String" >
+		UPDATE CANCHA SET Estado='Eliminado' WHERE IdCancha = #{codigo}
+	</update>
+	
+	<select id="searchAmbienteMini" resultType="IngSoft.administracion.bean.AmbienteMiniBeanData">
+		SELECT a.IdAmbiente as codigo, a.Nombre as nombre, s.Nombre as nombreSede
+		FROM AMBIENTE a, SEDE s
+		WHERE a.IdSede=s.IdSede
+	</select>
+	
+	<select id="searchTipoCanchaMini" resultType="IngSoft.administracion.bean.TipoCanchaMiniBeanData">
+		SELECT tc.IdTipoCancha as codigo, tc.Nombre as nombre
+		FROM TIPO_CANCHA tc
+	</select>
+</mapper>
