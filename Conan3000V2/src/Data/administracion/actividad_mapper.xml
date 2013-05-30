@@ -18,8 +18,8 @@
 SELECT 
 ACTIVIDAD.IdActividad AS codigo,
 ACTIVIDAD.nombre as nombre,
+TIPO_ACTIVIDAD.nombre as tipoactividad,
 TIPO_ACTIVIDAD.nombre as tipoactividad
-
 FROM
 TIPO_ACTIVIDAD , ACTIVIDAD ,  AMBIENTE ,   
 SEDE ,            EMPLEADO ,   PERSONA 
@@ -69,46 +69,6 @@ order by 1 asc
 
 
 
-
-<!-- Agregar plantilla sede -->
-
-<insert id="insertPlantillaActividad" parameterType="IngSoft.administracion.bean.ActividadBeanData" flushCache="true">
-	insert into SEDE (IdSede,Nombre,Direccion,Telefono,AreaTerreno,IdDistrito,Estado)
-	values (#{codigo},#{nombre},#{direccion},#{telefono},#{areaterreno},'DIS000001','Disponible')
-</insert>
-
-
- <!-- Fin Agregar -->
-
-
-
-
-<!--Eliminar sede -->
-
-<update id="deletePLantillaActividad" parameterType="java.lang.String" >
-update SEDE set Estado='Eliminado' where IdSede= #{codigo}
-</update>
-<!-- Fin eliminar -->
-
-
-
-
-
-<!--Modificar sede -->
-
-<update id="modificarPlantillaActividad" parameterType="java.lang.String" >
-update SEDE 
-set
-Nombre=#{nombre} ,
-Direccion=#{direccion} ,
-Telefono=#{telefono} ,
-AreaTerreno=#{areaterreno} ,
-IdDistrito='DIS000001' ,
-Estado=#{estado}
-
-where IdSede= #{codigo}
-</update>
-<!-- Fin eliminar -->
 
 
 <!-- tipoactividad  -->
