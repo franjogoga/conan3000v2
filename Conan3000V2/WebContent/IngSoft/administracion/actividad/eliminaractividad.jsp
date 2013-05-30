@@ -1,4 +1,9 @@
 <!DOCTYPE html>
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="IngSoft.administracion.bean.ActividadBeanData"%>
+
+
 <html lang="en">
 <head>
 	<!--
@@ -12,14 +17,16 @@
 		http://twitter.com/halalit_usman
 	-->
 	<meta charset="utf-8">
-	<title>Conan3000</title>
+	<title>Eliminar Actividad</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
 	<meta name="author" content="Muhammad Usman">
+	<!--The beans  -->
+	<jsp:useBean id="actividad" scope="request"class="IngSoft.administracion.bean.ActividadBeanData"></jsp:useBean>
 
+	
 	<!-- The styles -->
 	<link id="bs-css" href="css/bootstrap-cerulean.css" rel="stylesheet">
-    
 	<style type="text/css">
 	  body {
 		padding-bottom: 40px;
@@ -51,13 +58,43 @@
 	<![endif]-->
 
 	<!-- The fav icon -->
-	<link rel="shortcut icon" href="img/favicon.ico">
+	<link rel="shortcut icon" href="img/conan_logo.png">
+	<script>
+		function procesar(form,indice){
+			
 		
+		
+		}
+	
+	function alt_fecha(obj){
+	obj.value=obj.value.slice(0,5);
+	
+	}
+	
+	function alt_submit(){
+		
+			
+			}
+		
+		
+		
+			//document.fmrData.submit();
+
+	</script>	
+	<%! public boolean  encontrar(String a, String[] b){
+		for(int i=0;i<b.length;i++){			
+			if(b[i].equals(a)) return true;	
+		}
+	return false;
+	}
+	public String formatear(java.util.Date date){
+		SimpleDateFormat DF= new SimpleDateFormat("dd/MM");
+		return DF.format(date);
+	}
+	%>
 </head>
 
 <body>
-
-
 		<jsp:include page="/IngSoft/general/superior.jsp" />
 		<div class="container-fluid">
 		<div class="row-fluid">
@@ -65,9 +102,9 @@
 			<!-- left menu starts -->
 			<jsp:include page="/IngSoft/general/leftmenu.jsp" />
 						<!-- left menu ends -->
-			     
 			
-		  <noscript>
+			
+			<noscript>
 				<div class="alert alert-block span10">
 					<h4 class="alert-heading">Warning!</h4>
 					<p>You need to have <a href="http://en.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript</a> enabled to use this site.</p>
@@ -75,110 +112,113 @@
 			</noscript>
 			
 			<div id="content" class="span10">
-			  <!-- content starts -->
-			  <div>
-			    <ul class="breadcrumb">
-			      <li> <a href="#">Home</a> / <a href="#">Mantenimiento de Actividad</a> / Eliminar Actividad</li>
-		        </ul>
-		      </div>
-			  <div class="row-fluid sortable">
-			    <div class="box span12">
-			      <div class="box-header well" data-original-title>
-			        <h2>ELIMINAR ACTIVIDAD</h2>
-		          </div>
-			      <div class="box-content">
-			        <form class="form-horizontal">
-			          <fieldset>
-					  
-					  <!--    ----------------------------------------------------------------------------------------------    -->
-					  
-					  
+			<!-- content starts -->
+			
+
+			<div>
+				<ul class="breadcrumb">
+					<li>
+						<a href="/Conan3000V2/IngSoft/general/index.jsp">Home</a> <span class="divider">/</span>
+					</li>
+					<li>
+						<a href="buscaractividad.jsp">Mantenimiento de Actividad</a> <span class="divider">/</span>
+					</li>
+					<li>
+						Eliminar Actividad
+					</li>
+				</ul>
+			</div>
+			
+			<div class="row-fluid sortable">
+				<div class="box span12">
+					<div class="box-header well" data-original-title>
+					  <h2><i class="icon-plus-sign"></i>ELIMINAR ACTIVIDAD</h2>
+				  </div>
+					<div class="box-content">
+						
+						<form class="form-horizontal" action="<%= response.encodeURL("SMAActividad")%>" name="frmData" method="post">
+						<input type="hidden" name="accion" value="Consultar"></input>
+						
+						<input type="hidden" name="tipo" value="2"></input>
+						  <fieldset>
+						  
+						  
+						  
+							 <div class="control-group">
+								<label class="control-label" for="selectError">Sede:</label>
+								<div class="controls">
+																						   <!-- cmbDepartamento  variable     -->	
+							 		<select disabled="" id="selectError11" data-rel="chosen" name="cmbSede">
+								  	<option  selected value=""><%=actividad.getNombreSede()%></option>							
+								  </select>
+								</div>
+							  </div>	  
+						  
+						    <div class="control-group">
+						      <label class="control-label" for="typeahead7">Nombre: </label>
+						      <div class="controls">
+						        <input type="text" class="span6 typeahead" id="txtNombre"  data-provide="typeahead"  name="txtNombre" disabled value="<%= actividad.getNombre()%>">
+					          </div>
+					        </div>
+
+
+
+
+							  
+							 <div class="control-group">
+								<label class="control-label" for="selectError">Tipo Actividad:</label>
+								<div class="controls">
+																						   <!-- cmbTipoactividad  variable     -->	
+							 		<select disabled="" id="selectError12" data-rel="chosen" name="cmbTipoactividad">
+								  	<option  selected value=""><%=actividad.getNombreTipoactividad()%></option>							
+								  </select>
+								</div>
+							  </div>
+
+
+						    <div class="control-group">
+						      <label class="control-label" for="typeahead7">Encargado: </label>
+						      <div class="controls">
+						        <input type="text" class="span6 typeahead" id="cmbEncargado"  data-provide="typeahead"  name="cmbEncargado" disabled value="<%= actividad.getNombreEncargado()%>">
+					          </div>
+					        </div>
+					        
+						    <div class="control-group">
+						      <label class="control-label" for="typeahead7">Puesto: </label>
+						      <div class="controls">
+						        <input type="text" class="span6 typeahead" id="txtPuesto"  data-provide="typeahead"  name="txtPuesto" disabled value="<%= actividad.getPuesto()%>">
+					          </div>
+					        </div>
+
+
+
+							 <div class="control-group">
+								<label class="control-label" for="selectError">Ambiente:</label>
+								<div class="controls">
+																						   <!-- cmbDepartamento  variable     -->	
+							 		<select disabled="" id="selectError13" data-rel="chosen" name="cmbAmbiente">
+								  	<option  selected value=""><%=actividad.getNombreAmbientes()%></option>							
+								  </select>
+								</div>
+							  </div>
 
 							  <div class="control-group">
-                                  <label class="control-label" for="selectError">Sede(*): </label>
-                                  <div class="controls">
-                                      <select disabled="" name="selectError" id="selectError1" data-rel="chosen">
-                                          <option> Sede 1 </option>
-										  <option> Sede 2 </option>
-                                          <option> Sede 3 </option>
-                                          <option> Sede 4 </option>
-                                          <option> Sede 5 </option>
-                                      </select>
-                                  </div>
-						      </div>
-					  
-					  
-					  
-					  
-							<div class="control-group">
-							  <label class="control-label" for="typeahead7">Nombre: </label>
+							  <label class="control-label" for="date01">Fecha Inicio(*):</label>
 							  <div class="controls">
-								<input disabled=""  type="text" class="span6 typeahead" id="typeahead7"  data-provide="typeahead" >
+								<input type="text" class="input-xlarge datepicker" id="date01" value="<%=formatear(new Date(actividad.getFechaInicio().getTime())) %>"  name="fFecIncio" onchange="alt_fecha(this)" disabled>
 							  </div>
 							</div>
-						
-						
-							  <div class="control-group">
-                                  <label class="control-label" for="selectError">Tipo Actividad:</label>
-                                  <div class="controls">
-                                      <select disabled="" name="selectError" id="selectError" data-rel="chosen">
-                                          <option> Natacion </option>
-                                          <option> Basket </option>
-                                          <option> Voley </option>
-                                          <option> Futbol </option>
-                                          <option> Tenis </option>
-                                      </select>
-                                  </div>
-						      </div>
-						  
-						  
-						  
-						  
-			              <div class="control-group">
-			                <label class="control-label" for="typeahead4">Encargado: </label>
-			                <div class="controls">
-			                  <input disabled=""  type="text" class="span6 typeahead" id="typeahead4"  data-provide="typeahead" data-items="4" >
-		                    </div>
-		                  </div>
-						  
-			              <div class="control-group">
-			                <label class="control-label" for="typeahead4">Profesion: </label>
-			                <div class="controls">
-			                  <input disabled=""  type="text" class="span6 typeahead" id="typeahead4"  data-provide="typeahead" data-items="4" >
-		                    </div>
-		                  </div>
-						  
-						  
-							  <div class="control-group">
-                                  <label class="control-label" for="selectError50">Ambiente(*): </label>
-                                  <div class="controls">
-                                      <select disabled=""  name="selectError50" id="selectError50" data-rel="chosen">
-                                          <option> Piscina </option>
-										  <option> Playa </option>
-                                          <option> Area de tennis </option>
-                                          <option> chancas Voley </option>
-                                          <option> chancas Futbol </option>
-                                      </select>
-                                  </div>
-						      </div>
-						  
-                          <div class="control-group">
-                              <label class="control-label" for="date01">Fecha Inicio:</label>
-                             <div class="controls">
-                               <input disabled=""  type="text" class="input-xlarge datepicker" id="date01" value="02/16/12">
-                             </div>
-                          </div>
-                                
-                                
-                          <div class="control-group">
-                               <label class="control-label" for="date01">Fecha fin:</label>
-                              <div class="controls">
-                                <input disabled=""  type="text" class="input-xlarge datepicker" id="date01" value="02/16/12">
-                              </div>
-                          </div>
-								
-						
-							  
+							
+							<div class="control-group">
+							  <label class="control-label" for="date02">Fecha Fin(*):</label>
+							  <div class="controls">
+								<input type="text" class="input-xlarge datepicker" id="date02" value="<%=formatear(new Date(actividad.getFechaFin().getTime())) %>" name="fFecFin" onchange="alt_fecha(this)" disabled>
+							  </div>
+							</div>
+							
+							
+
+
 							  
 							  <div class="control-group">
 								<label class="control-label">Dias de la Semana:</label>
@@ -221,84 +261,57 @@
 								</div>
 							  </div>   
 
+
+
+
+
+
+
+
+
+							
                                 <div class="control-group">
                                     <label class="control-label" for="textarea2">Descripcion:</label>
-                                    <div class="controls">
-                                   
-                                        <!--
-                                        <textarea class="cleditor" id="textarea2" rows="3"></textarea>
-                                        -->
-                                        
-                                        <textarea disabled="" class="" id="textarea2" rows="3"></textarea>
-                                   
-                                    </div>
-                                </div>
-						
-						
-						
-						
-						
-							  <div class="control-group">
-								<label class="control-label">Estado</label>
-								
-								<div class="controls">
-								
-								  <label class="radio">
-									<input   disabled=""  type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
-									Dispoible
-								  </label>
-								  
-								     <div style="clear:both"></div> 
-								  
-								  
-								  <label class="radio">
-									<input  disabled=""  type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-									No disponible
-								  </label>
-								  
-								    <div style="clear:both"></div> 
-								  
-								  <label class="radio">
-									<input  disabled=""  type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-									Cancelada
-								  </label>
-								  
-								  
-								</div>
-								
-							  </div>	
-				
-						
-						
-						
-						<!--    ----------------------------------------------------------------------------------------------    -->
-						
-						
-			            <div class="form-actions">
-			              <button type="submit" class="btn btn-primary">Eliminar</button>
-			              <button type="reset" class="btn">Cancelar</button>
-		                </div>
-		              </fieldset>
-		            </form>
-		          </div>
-		        </div>
-			    <!--/span-->
-		      </div>
-			  <!--/row-->
-			  <div class="row-fluid sortable">
-			    <!--/span-->
-		      </div>
-			  <!--/row-->
-			  <div class="row-fluid sortable">
-			    <!--/span-->
-		      </div>
-			  <!--/row-->
-			 
+			                          <div class="controls">
+			                            <textarea name="textarea" rows="3" id="textarea2" style="resize:none"></textarea>
+			                          </div>
+                               </div>
+					        
+					        
+					        
+					        
+					        
+						    <div class="control-group">
+						      <label class="control-label" for="typeahead7">Estado: </label>
+						      <div class="controls">
+						        <input type="text" class="span6 typeahead" id="txtEstado"  data-provide="typeahead"  name="txtEstado" disabled value="<%= actividad.getEstado()%>">
+					          </div>
+					        </div>    
+					          
+					        
+						    <div class="form-actions" >
+							 <!--  <button type="submit" class="btn btn-primary">Agregar</button> -->
+							  <button type="button" class="btn" onclick="location.href='buscaractividad.jsp'" >Regresar</button>
+							</div>
+							
+						  </fieldset>
+					  </form>   
+					
+				  </div>
+				</div><!--/span-->
 
-		  
-       
+			</div><!--/row-->
+
+
+			<div class="row-fluid sortable"><!--/span-->
+			
+			</div><!--/row-->
+			
+			<div class="row-fluid sortable"><!--/span-->
+
+			</div><!--/row-->		 
 					<!-- content ends -->
-		  </div><!--/#content.span10-->
+			</div><!--/#content.span10-->
 				</div><!--/fluid-row-->
 				
 		<hr>
@@ -311,15 +324,13 @@
 			<div class="modal-body">
 				<p>Here settings can be configured...</p>
 			</div>
-			<div class="modal-footer">
+			<div class="modal-footer" >
 				<a href="#" class="btn" data-dismiss="modal">Close</a>
 				<a href="#" class="btn btn-primary">Save changes</a>
 			</div>
 		</div>
-
-		<footer>
-		 Conan 3000 © 2013 <p class="pull-right">Powered by: <a href="http://usman.it/free-responsive-admin-template">Las dos virgenes</a></p>
-		</footer>
+		<br/>
+		<jsp:include page="/IngSoft/general/inferior.jsp" />
 		
 	</div><!--/.fluid-container-->
 
@@ -396,14 +407,7 @@
 	<script src="js/jquery.history.js"></script>
 	<!-- application script for Charisma demo -->
 	<script src="js/charisma.js"></script>
-	<script>
-	function loadContent() 
-{ 
-   $("#includedContent").load("menu.html"); 
-} 
-
-
-	</script>
-		<script>loadContent()</script> 
+	
+		
 </body>
 </html>
