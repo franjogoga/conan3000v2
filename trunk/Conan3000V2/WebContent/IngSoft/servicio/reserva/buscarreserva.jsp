@@ -89,10 +89,13 @@ function ajax_submit(tipo){
   		  },
 		  success: function(msg){
 			$("#resultadoBusqueda").html(msg);
-			
+			pendientes="";
+			cancelados="";			
+			actualizar_pendientes();
 		  },
 		  error: function(objeto, quepaso, otroobj){
 			alert("ERROR!! Pasó lo siguiente: "+quepaso);
+			
 		  }
 	
 		});
@@ -112,6 +115,7 @@ function ajax_search(){
 		  success: function(msg){
 			$("#resultadoBusqueda").html(msg);
 			
+			
 		  },
 		  error: function(objeto, quepaso, otroobj){
 			alert("ERROR!! Pasó lo siguiente: "+quepaso);
@@ -119,6 +123,78 @@ function ajax_search(){
 	
 		});
 		return false
+}
+
+function actualizar_pendientes(){
+
+var ant=($("#pendientes").attr('value').split(','));						  								  		
+						  		var temp;
+						  		for(i=0;i<ant.length ;i++){						  		
+						  			temp=".btn-success[id='"+ant[i]+"']";						  			
+						  			if(!$(temp).hasClass("btn-danger")){						  			
+						  			$(temp).html("<i class='icon-ok icon-white'></i>Pendiente");
+						  			
+						  			$(temp).toggleClass("btn-inverse btn-success");}						  			
+						  			
+						  		}
+						  		//else{
+						  		//var temp=ant[i]+"@";
+						  		//cancelados=cancelados.concat(temp);
+						  		//}
+
+}
+
+function ajax_confirmaSocio(){
+	//alert("accion=Buscar"+"&tipo=" + tipo + "&fecIni=" + $(fecIni).val()+"&cmbServicios"+$('#cmbServicios').val());
+	if($('#txtDNISocio').val().length >0){
+	$.ajax({
+		  type: "POST",
+		  url: "/Conan3000V2/IngSoft/servicio/reserva/SMSReserva",
+		  data: "accion=Buscar"+"&tipo=5" +"&txtDNISocio="+$('#txtDNISocio').val(),
+		  dataType: "text",		  
+		  success: function(msg){
+			var temp;
+			temp=msg.split('/');
+			$('#txtIdSocio').val(temp[0]);
+			$('#txtNombreSocio').val(temp[1]);						
+		  },
+		  error: function(objeto, quepaso, otroobj){
+			alert("ERROR!! No se pudo completar la operacion intente de nuevo");
+		  }
+	
+		});
+		
+	}
+}
+
+function ajax_crearReserva(){
+//alert("accion=Buscar"+"&tipo=" + tipo + "&fecIni=" + $(fecIni).val()+"&cmbServicios"+$('#cmbServicios').val());
+	$.ajax({
+		  type: "POST",
+		  url: "/Conan3000V2/IngSoft/servicio/reserva/SMSReserva",
+		  data: "accion=Buscar"+"&tipo=6" +"&cmbServicios="+$('#cmbServicios').val()+"&cmbSedes="+$('#cmbSedes').val()
+		  +"&pendientes="+pendientes+"&cancelados="+cancelados,
+		  dataType: "text",
+		  success: function(msg){
+			$.ajax({
+		  type: "POST",
+		  url: "/Conan3000V2/IngSoft/servicio/reserva/SMSReserva",
+		  data: "accion=Crear"+"&tipo=2" +"&txtIdSocio="+$('#txtIdSocio').val(),
+		  dataType: "text",		  
+		  success: function(msg){
+			alert("Operacion realizada sin problemas")
+		  error: function(objeto, quepaso, otroobj){
+		  			alert("ERROR!! No se pudo completar la operacion intente de nuevo");
+		  }
+	
+		});
+		  },
+		  error: function(objeto, quepaso, otroobj){
+			alert("ERROR!! No se pudo completar la operacion intente de nuevo");
+			
+		  }
+	
+		});
 }
 </script>	
 
@@ -223,10 +299,8 @@ function ajax_search(){
                       
   </div><!--/span-->
     				
-                      <div class="form-actions" style="display: none;">
-			             <a class="btn btn-primary" href="/Conan3000V2/IngSoft/servicio/reservas/formularioreservas.jsp">Crear Reserva</a>
-                          <button type="reset" class="btn">Cancelar</button>
-                      
+                      <div class="form-actions" id="reserva_boton">
+			             <button class="btn btn-primary btn-setting" >Crear Reserva</button>                                                
 		                </div>
 				</div><!--/span-->
 
@@ -235,18 +309,20 @@ function ajax_search(){
 
 				
 		<hr>
-
+<form id="frmReservas" name="frmReservas">
+<input type="hidden" value="" id="txtIdSocio" name="txtIdSocio"></input>
+</form>
 		<div class="modal hide fade" id="myModal">
 			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal">Ã—</button>
-				<h3>Settings</h3>
+				<button type="button" class="close" data-dismiss="modal">X</button>
+				<h3>Datos de socio</h3>
 			</div>
 			<div class="modal-body">
-				<p>Here settings can be configured...</p>
+				<jsp:include page="/IngSoft/servicio/reserva/formularioreservas.jsp" />
 			</div>
 			<div class="modal-footer">
-				<a href="#" class="btn" data-dismiss="modal">Close</a>
-				<a href="#" class="btn btn-primary">Save changes</a>
+				<a href="#" class="btn" data-dismiss="modal">Cancelar</a>
+				<a class="btn btn-primary" onclick="ajax_confirmaSocio();">Guardar Reservas</a>
 			</div>
 		</div>
 	<jsp:include page="/IngSoft/general/inferior.jsp" />

@@ -59,11 +59,16 @@
         <servlet-name>GENLogin</servlet-name>
 	<servlet-class>IngSoft.general.login.GENLogin</servlet-class>
 </servlet>
+<servlet id="Servlet_0013">
+        <servlet-name>SMVProveedor</servlet-name>
+	<servlet-class>IngSoft.venta.proveedor.SMVProveedor</servlet-class>
+</servlet>
 
-  <servlet id="Servlet_0013">
+  <servlet id="Servlet_0014">
         <servlet-name>SMAActividad</servlet-name>
 	<servlet-class>IngSoft.administracion.actividad.SMAActividad</servlet-class>
 </servlet>
+
 
 
 
@@ -119,8 +124,12 @@
         <servlet-name>GENLogin</servlet-name>
 <url-pattern>/IngSoft/general/GENLogin</url-pattern>
 </servlet-mapping>
-
 <servlet-mapping id="ServletMapping_0013">
+        <servlet-name>SMVProveedor</servlet-name>
+<url-pattern>/IngSoft/ventas/proveedor/SMVProveedor</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping id="ServletMapping_0014">
         <servlet-name>SMAActividad</servlet-name>
 <url-pattern>/IngSoft/administracion/actividad/SMAActividad</url-pattern>
 </servlet-mapping>

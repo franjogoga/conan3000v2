@@ -39,4 +39,14 @@ where r1.codigoSede like #{codigo}
 order by 2 asc;
 </select>
 
+<select id="confirmarSocio" parameterType="java.lang.String" resultType="hashmap">
+select CONCAT(s.IdSocio,'/',p.Nombres
+,' ',p.ApePaterno
+,' ',p.ApeMaterno ) as respuesta
+from SOCIO s
+,PERSONA p 
+where s.IdSocio=p.IdPersona 
+and p.NumeroDocumento=#{codigo};
+</select>
+
 </mapper>
