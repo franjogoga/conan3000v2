@@ -7,12 +7,17 @@ public class ActividadBeanData implements Serializable{
 
 
 	private String codigo;	
+	
+	private String nombreSede;
 	private String nombre;
 	
-	private String idSede;
-	private String idTipoactividad;
-	private String idEncargado;
-	private String idAmbientes;
+	
+	private String nombreTipoactividad;
+	
+	private String nombreEncargado;
+	private String puesto;
+	
+	private String nombreAmbientes;
 	
 	private Date fechaInicio;
 	private Date fechaFin;
@@ -21,12 +26,17 @@ public class ActividadBeanData implements Serializable{
 	private String dia;
 	private String descripcion;
 	private String estado;
-	
 	public String getCodigo() {
 		return codigo;
 	}
 	public void setCodigo(String codigo) {
 		this.codigo = codigo;
+	}
+	public String getNombreSede() {
+		return nombreSede;
+	}
+	public void setNombreSede(String nombreSede) {
+		this.nombreSede = nombreSede;
 	}
 	public String getNombre() {
 		return nombre;
@@ -34,29 +44,29 @@ public class ActividadBeanData implements Serializable{
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public String getIdSede() {
-		return idSede;
+	public String getNombreTipoactividad() {
+		return nombreTipoactividad;
 	}
-	public void setIdSede(String idSede) {
-		this.idSede = idSede;
+	public void setNombreTipoactividad(String nombreTipoactividad) {
+		this.nombreTipoactividad = nombreTipoactividad;
 	}
-	public String getIdTipoactividad() {
-		return idTipoactividad;
+	public String getNombreEncargado() {
+		return nombreEncargado;
 	}
-	public void setIdTipoactividad(String idTipoactividad) {
-		this.idTipoactividad = idTipoactividad;
+	public void setNombreEncargado(String nombreEncargado) {
+		this.nombreEncargado = nombreEncargado;
 	}
-	public String getIdEncargado() {
-		return idEncargado;
+	public String getPuesto() {
+		return puesto;
 	}
-	public void setIdEncargado(String idEncargado) {
-		this.idEncargado = idEncargado;
+	public void setPuesto(String puesto) {
+		this.puesto = puesto;
 	}
-	public String getIdAmbientes() {
-		return idAmbientes;
+	public String getNombreAmbientes() {
+		return nombreAmbientes;
 	}
-	public void setIdAmbientes(String idAmbientes) {
-		this.idAmbientes = idAmbientes;
+	public void setNombreAmbientes(String nombreAmbientes) {
+		this.nombreAmbientes = nombreAmbientes;
 	}
 	public Date getFechaInicio() {
 		return fechaInicio;
@@ -88,10 +98,10 @@ public class ActividadBeanData implements Serializable{
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
-
 	
 	
-		
+	
+	
 	
 	
 }
