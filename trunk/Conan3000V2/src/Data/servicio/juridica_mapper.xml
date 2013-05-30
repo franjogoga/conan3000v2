@@ -1,4 +1,4 @@
-s<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
@@ -55,10 +55,10 @@ order by 1 asc
 
 <select id="getPLantillaJuridica" parameterType="String" resultType="IngSoft.servicio.bean.PersonaJuridicaBeanData">
 select 
-IdPersonaJuridica as IdPersonaJuridica,
-RazonSocial as RazonSocial,
-Ruc as Ruc,
-Direccion as Direccion,
+IdPersonaJuridica as codigo,
+RazonSocial as razonSocial,
+Ruc as ruc,
+Direccion as direccion,
 Correo as Correo,
 IdDistrito as IdDistrito,
 Estado as Estado
@@ -69,12 +69,12 @@ from PERSONA_JURIDICA p where p.IdPersonaJuridica=#{codigo};
 
 <!-- Modificar elemento -->
 <update id="updatePlantillaJuridica" parameterType="IngSoft.servicio.bean.PersonaJuridicaBeanData">
-update PERSONA_JURIDICA set RazonSocial =#{RazonSocial}
- ,Ruc=#{Ruc}
- ,Direccion=#{Direccion}
- ,Correo=#{Correo}
- ,IdDistrito=''
- ,Estado='activo'
+update PERSONA_JURIDICA set RazonSocial =#{razonSocial}
+ ,Ruc=#{ruc}
+ ,Direccion=#{direccion}
+ ,Correo='coloradito.com'
+ ,IdDistrito=' '
+ ,Telefono=#{telefono}
  where IdPersonaJuridica= #{codigo}
 </update>
 
