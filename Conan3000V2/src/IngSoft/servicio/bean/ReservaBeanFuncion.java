@@ -48,6 +48,7 @@ public class ReservaBeanFuncion {
 			   hashMap.put("fecFin", Utils.fechaMas(fecIni, 6)); 
 			   List<ReservaBungalowMiniBeanData> temp=sqlsesion.selectList("Data.servicio.reserva.searchBungalowxSede",hashMap);
 			   resultados= new Vector<ReservaBungalowMiniBeanData>(temp);
+			   resultados.trimToSize();
 		   }
 		   catch(Exception e){
 			   e.printStackTrace();			   
@@ -67,10 +68,10 @@ public class ReservaBeanFuncion {
 		   Vector<String> resultados= new Vector<String>();
 		   try{
 		   int a=source.size();
-		   SimpleDateFormat df= new SimpleDateFormat("dd/MM/yyyy");
+		   SimpleDateFormat df= new SimpleDateFormat("dd/MM/yyyy");			   
 		   Date temp;
 		   for(int i=0;i<a;i++){
-			   temp=df.parse(source.get(i).substring(6)+"0001");
+			   temp=df.parse(source.get(i).substring(9));
 			   if(temp.compareTo(fecIni)>=0 && temp.compareTo(fecFin)<=0) resultados.add(source.get(i));
 			   
 		   }
@@ -79,5 +80,26 @@ public class ReservaBeanFuncion {
 		   }
 		   resultados.trimToSize();
 		   return resultados;
+	   }
+	   
+	   public String confirmarSocio(String docId){
+		   String resultado=null;
+		   SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+		   try{
+			   HashMap<String, String> temp=sqlsesion.selectOne("Data.servicio.reserva.confirmarSocio",docId);
+			   resultado=temp.get("respuesta");
+		   }
+		   catch(Exception e){
+			   e.printStackTrace();			   
+		   }
+		   finally{
+			   sqlsesion.close();
+		   }
+		   return resultado;
+	   }
+	   
+	   public void agregarReserva(){
+		   
+		   
 	   }
 }
