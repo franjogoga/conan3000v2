@@ -85,7 +85,7 @@
 		form.accion.value="Modificar";
 		form.codigo.value=cod;
 		form.submit();
-		}
+	}
 	function alt_eliminar(cod){
 		var form=document.getElementById("frmAlternativo");
 		form.accion.value="Eliminar";
@@ -136,7 +136,7 @@
 					<div class="box-content">
 						<!-- <form class="form-horizontal" name="frmCriteriosBusqueda" id="frmCriteriosBusqueda"  method="post" onsubmit="xmlhttpPost('/Conan3000V2/IngSoft/servicio/evento/SMSEvento?accion=Buscar', 'frmCriteriosBusqueda', 'resultadoBusqueda','<img >');
 		 return false;"> -->
-		 <form class="form-horizontal" name="frmCriteriosBusqueda" id="frmCriteriosBusqueda"  method="post" action="<%= response.encodeURL("SMSJuridica")%>">
+		 <form class="form-horizontal" name="frmCriteriosBusqueda" id="frmCriteriosBusqueda"  action="<%= response.encodeURL("SMSJuridica")%>" method="post" >
 		 <input type="hidden" name="accion" value="Buscar"></input>
 						  <fieldset>
 							
@@ -239,8 +239,7 @@
 
 										<td class="center"><span class="label label-success">
 
-												<%=((PersonaJuridicaBeanData) resultados.get(i))
-						.getRuc()%>
+												<%=((PersonaJuridicaBeanData)resultados.get(i)).getRuc()%>
 										</span></td>
 
 										<td class="center"><a class="btn btn-success" href="javascript:alt_consultar('<%=((PersonaJuridicaBeanData)resultados.get(i)).getCodigo()%>')">
