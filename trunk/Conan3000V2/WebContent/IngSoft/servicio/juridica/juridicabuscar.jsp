@@ -85,7 +85,7 @@
 		form.accion.value="Modificar";
 		form.codigo.value=cod;
 		form.submit();
-	}
+		}
 	function alt_eliminar(cod){
 		var form=document.getElementById("frmAlternativo");
 		form.accion.value="Eliminar";
