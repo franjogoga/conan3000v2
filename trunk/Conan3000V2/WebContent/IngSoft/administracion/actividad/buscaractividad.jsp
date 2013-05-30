@@ -105,30 +105,7 @@
 			
 	}
 	
-	function alt_tipoactividad(){
-		$.ajax({
-		  type: "POST",
-		  url: "/Conan3000V2/IngSoft/administracion/actividad/SMAActividad",
-		  data: "accion=Buscar"+ "&tipo=2" + "&cmbTipoactividad=" + $(cmbTipoactividad).val(),
-		  dataType: "html",
-		  beforeSend: function ( xhr ) {
-   		  $("#cmbProvincia").html("");
-   		  $("#cmbDistrito").html("");
-			//chosen - improves select
-			$("#cmbProvincia").trigger("liszt:updated");
-  		  },
-		  success: function(msg){
-			$("#cmbProvincia").html(msg);
-			//chosen - improves select
-			$("#cmbProvincia").trigger("liszt:updated");
-			$("#cmbDistrito").trigger("liszt:updated");
-		  },
-		  error: function(objeto, quepaso, otroobj){
-			alert("ERROR!! Pasó lo siguiente: "+quepaso);
-		  }
-	
-		});
-	}
+
 
 	
 	
@@ -248,7 +225,7 @@
 							  <tr>
 								    <th>Nombre</th>
 							        <th>Tipo actividad</th>
-							        <th>Estado</th>		        							      							        
+							       	        							      							        
 							        <th>Accion</th>
 							
 							  </tr>
@@ -271,26 +248,7 @@
                           			</td>
 
                           			
-                          			<td class="center">
-                          			
-	                          			
-								           <%
-									 
-												  if( ((ResultadoActividadBeanData)resultados.get(i)).getEstado().equalsIgnoreCase("disponible") ){    
-								 out.print(" <span class='label label-success'> " + ((ResultadoActividadBeanData)resultados.get(i)).getEstado()   +"   </span>       ");
-												  }
-												  else { 
-								 out.print(" <span class='label label-warning'> " + ((ResultadoActividadBeanData)resultados.get(i)).getEstado()   +"   </span>       ");
-													
-												  }
-									  
-									   
-									 
-		                          					            
-	                          				%>
-	                          			
-                          			
-                          			</td>
+
 
                           			<td class="center">
                           				<a class="btn btn-success"
