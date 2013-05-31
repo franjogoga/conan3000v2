@@ -7,7 +7,7 @@
 	obj.value=obj.value.slice(0,5);
 	
 	}
-	function alt_agregar(){
+	function alt_agregarMini(){
 		var form=document.getElementById("frmAlternativo");
 		form.accion.value="AgregarMini";
 		form.submit();
@@ -140,7 +140,7 @@
                         
                         
                         <div  align="right">
-                               <a class="btn btn-primary" href="javascript:alt_agregar()"> <i class="icon icon-add icon-white"></i> Agregar </a> 
+                               <a class="btn btn-primary" href="javascript:alt_agregarMini()"> <i class="icon icon-add icon-white"></i> Agregar </a> 
                            </div>
                            
 						  <thead>
