@@ -38,15 +38,5 @@ public class CriterioInvitadoBeanFunction {
 		return resultadosV;
 		
 	}
-	public Vector<ResultadoInvitadoBeanData> buscarInvitado(CriterioPerfilBeanData criterio) {
-		SqlSession sesion = MyBatisSesion.metodo().openSession();
-		Vector<ResultadoInvitadoBeanData> resultadosV = null;
-		try {
-			List<ResultadoInvitadoBeanData> resultados = sesion.selectList("searchPlantillaInvitado", criterio);
-			resultadosV = new Vector<>(resultados);
-		} finally {
-			sesion.close();
-		}
-		return resultadosV;
-	}
-}
+	
+	
