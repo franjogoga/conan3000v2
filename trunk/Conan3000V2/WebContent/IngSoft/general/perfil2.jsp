@@ -47,7 +47,7 @@
 		<div class="row-fluid">
 				
 			<!-- left menu starts -->
-			<jsp:include page="leftmenu.jsp" />
+			<jsp:include page="leftmenu2.jsp" />
 						<!-- left menu ends -->
 			
 			<noscript>
