@@ -230,7 +230,7 @@ public class ActividadBeanFuncion {
 		catch(Exception a)		
 		{sqlsesion.rollback();
 		a.printStackTrace();
-			throw CoException.set("Error: No se pudo eliminar la plantilla intente de nuevo", "SMAActividad?accion=Agregar&tipo=1");
+			throw CoException.set("Error: No se pudo eliminar la plantilla Actividad intente de nuevo", "SMAActividad?accion=Agregar&tipo=1");
 			
 		}
 		
@@ -241,6 +241,9 @@ public class ActividadBeanFuncion {
 			
 		return resultado;
 	}
+	
+	/*   --------------------------------- funciones de apoyo a los combobox -------------------------------   */
+
 	
 	public Vector<TipoActividadMiniBeanData> getTipoactividades() throws CoException {
 		Vector<TipoActividadMiniBeanData> acts= null;
@@ -261,5 +264,46 @@ public class ActividadBeanFuncion {
 		}
 		return acts;
 	}
+	
+	public Vector<SedeBeanData> getSedes() throws CoException {
+		Vector<SedeBeanData> sedes= null;
+		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+		
+		
+		try{
+			List<SedeBeanData> temp=sqlsesion.selectList("Data.administracion.actividad.getSede");			
+			sedes= new Vector<SedeBeanData>(temp);
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			throw CoException.set("Error: No se pudo obtener la lista de departamentos", "SMAActividad?accion=Agregar&tipo=1");
+		}
+		finally{
+			sqlsesion.close();
+			
+		}
+		return sedes;
+	}
+	
+	public Vector<AmbienteBeanData> getAmbientes() throws CoException {
+		Vector<AmbienteBeanData> ambientes= null;
+		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+		
+		
+		try{
+			List<AmbienteBeanData> temp=sqlsesion.selectList("Data.administracion.actividad.getAmbiente");			
+			ambientes= new Vector<AmbienteBeanData>(temp);
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			throw CoException.set("Error: No se pudo obtener la lista de departamentos", "SMAActividad?accion=Agregar&tipo=1");
+		}
+		finally{
+			sqlsesion.close();
+			
+		}
+		return ambientes;
+	}
+	
 
 }
