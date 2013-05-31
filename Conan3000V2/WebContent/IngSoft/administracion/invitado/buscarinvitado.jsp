@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Calendar"%>
-<%@page import="IngSoft.administracion.bean.ResultadoPerfilBeanData"%>
+<%@page import="IngSoft.administracion.bean.ResultadoInvitadoBeanData"%>
 <%@page import="java.util.Vector"%>
 <%@page import="java.lang.System"%>
+
 
 <html lang="en">
 <head>
@@ -92,6 +93,11 @@
 	}
 	
 	
+	function updatetable(){		
+			docReady();
+			
+	}
+	
 	
 	
 	</script>	
@@ -127,54 +133,36 @@
 		      <div class="box span12">
 		        <div class="box-header well" data-original-title>
 		          <h2><i class="icon-search"></i> BUSCAR INVITADO</h2>
-		          <div class="box-icon"><a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a> <a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a> </div>
+		          <div class="box-icon"><a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
+		           </div>
 	            </div>
 		        <div class="box-content">
-		          <form class="form-horizontal">
+		          <form class="form-horizontal" name="frmCriteriosBusqueda" id="frmCriteriosBusqueda"  method="post" action="<%= response.encodeURL("SMAInvitado")%>">
+		            <input type="hidden" name="accion" value="Buscar"></input>
+		 			<input type="hidden" name="tipo" value="2"></input>
 		            <fieldset>
 		              <div class="control-group">
 						      <label class="control-label" for="typeahead7">C&oacutedigo: </label>
 						      <div class="controls">
-						        <input type="text" class="span6 typeahead" id="typeahead7"  data-provide="typeahead" >
+						        <input type="text" class="span6 typeahead" id="txtCodigo"  name="txtCodigo" >
 					          </div>
 					        </div>
 							
 					  <div class="control-group">
 		                <label class="control-label" for="typeahead">Nombre:</label>
 		                <div class="controls">
-		                  <input type="text" class="span6 typeahead" id="typeahead">
-                          <p class="help-block">Escriba sobre la casilla un nombre del invitado para ser autocompletado</p>
-		                </div>
-						
-						<div class="control-group">
-								<label class="control-label" for="selectError">Tipo de Documento(*):</label>
-								<div class="controls">
-								  <select id="selectError" data-rel="chosen">
-									<option>DNI</option>
-									<option>Carnet de Extranjer&iacutea</option>
-									<option>Pasaporte</option>
-								
-								  </select>
-								</div>
-							  </div>					
-						
-	               
-							
-                    <div class="control-group">
-			              <label class="control-label" for="typeahead7">Fecha Registro: </label>
-			              <div class="controls">
-			                <input type="text" class="input-xlarge datepicker" id="date01" value="02/16/2012">
-		                  </div>
-		                </div>							
-                              
-                              
-                  <div class="control-group">
+		                  <input type="text" class="span6 typeahead" id="txtNombre" name="txtNombre">
+                           <!--  <p class="help-block">Escriba sobre la casilla un nombre del invitado para ser autocompletado</p> -->
+		                </div>                   
+                       </div>  
+                  	
+                  	<div class="control-group">
 								<label class="control-label">Estado:</label>
 								
 								<div class="controls">
 								
 								  <label class="radio">
-									<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
+									<input type="radio" name="rButton" id="optionsRadios1" value="Activo" checked="checked">
 									Activo
 								  </label>
 								  
@@ -182,23 +170,19 @@
 								  
 								  
 								  <label class="radio">
-									<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+									<input type="radio" name="rButton" id="optionsRadios2" value="Inactivo">
 									Inactivo
 								  </label>
 								  
 								         <div style="clear:both"></div>  
-								  
-								  <label class="radio">
-									<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-									Cancelado
-								  </label>
-								  
-								  
+					  
 								</div>
 								
 							  </div>  
+							  
 						  <div class="form-actions">
-		                <button type="submit" class="btn btn-primary">Buscar</button>		                
+		                <button type="submit" class="btn btn-primary">Buscar</button>	
+		                <button type="reset" class="btn">Cancelar</button>		                
 	                  </div>
 					  		
 		               
@@ -210,22 +194,19 @@
 	        </div>
 		    <!--/row-->
 		    
-		     <!-- nuevo  aquiiiiiiiiiiiii creamos un formlario frmInvitado --> 
-			  <form id="frmInvitado" name="frmInvitado"  method="post" action="SMAInvitado" >
+		    
+		    
+		     <!-- Paso 3 linkear invitados--> 
+			  <form id="frmInvitado" name="frmInvitado"  method="post" action="<%= response.encodeURL("SMAInvitado")%>" >
 			  
-			   <input   type ="hidden" name="accion"  value="Consultar"></input>
-			   <input   type ="hidden" name="codigo"  value="1"></input>
+			   <input   type ="hidden" name="accion"  value="Agregar"></input>
+			   <input   type ="hidden" name="codigo"  value=""></input>
+			   <input   type ="hidden" name="tipo"  value="1"></input>
 			   
 			   
 			  </form>
 			  
-			  <!--  -->
-		    
-		    
-		    
-		    
-		    
-		    
+			  <!-- fin de linkear -->
 		    
 		    <div class="row-fluid sortable">
 		      <div class="box span12">
@@ -235,25 +216,89 @@
 		        <div class="box-content">
 		          <table class="table table-striped table-bordered bootstrap-datatable datatable">
 		            <!-- agregar nuevo boton -->
-		            <div  align="right"> <a class="btn btn-primary" href="agregarinvitado.jsp"> <i class="icon icon-add icon-white"></i> Agregar </a> </div>
+		            
+		            <div  align="right"> 
+		            <a class="btn btn-primary" href="javascript:alt_agregar()"> 
+		            	<i class="icon icon-add icon-white"></i> Agregar </a> </div>
 		            <thead>
 		              <tr>
-		                <th width="13%">Nombre</th>
-		                <th width="17%">C&oacutedigo</th>
-		                <th width="11%">Estado</th>
-		                <th width="27%">Acci&oacuten</th>
+		                <th>Nombre</th>
+		                <th>C&oacutedigo</th>
+		                <th>Estado</th>
+		                <th>Acci&oacuten</th>
 	                  </tr>
 	                </thead>
-		            <tbody>
-		              <tr>
-		                <td>Juan L&oacutepez</td>
-		                <td class="center">USU_00232 </td>
-		                <td class="center"><span class="label label-success">Activo</span></td>
-		                <td class="center"><a class="btn btn-success" href="#"> <i class="icon-zoom-in icon-white"></i> Ver </a> <a class="btn btn-info" href="modificarinvitado.jsp"> <i class="icon-edit icon-white"></i> Modificar </a> <a class="btn btn-danger" href="javascript:alt_eliminar(1)"> <i class="icon-trash icon-white"></i> Eliminar </a></td>
-	                  </tr>
-		              
-	                </tbody>
-	              </table>
+	                <!--  la conexion a los datos  -->
+	                 <element>
+                          	<tbody id="resultadoBusqueda">
+                          		<% 
+                          			for(int i=0; i<resultados.size() ;i++){
+                          		%>
+                          		<tr>
+                          			<td>
+                          				<%=
+                          					((ResultadoInvitadoBeanData)resultados.get(i)).getNombre()
+                          				%>
+                          			</td>
+                          			<td class="center">
+                          				<%=
+                          					((ResultadoInvitadoBeanData)resultados.get(i)).getCodigo()
+                          				%>
+                          			</td>
+                          			                     			                 			
+                          			<td class="center">
+                          			
+	                          			
+								           <%
+									 
+												  if( ((ResultadoInvitadoBeanData)resultados.get(i)).getEstado().equalsIgnoreCase("activo") ){    
+								 out.print(" <span class='label label-success'> " + ((ResultadoInvitadoBeanData)resultados.get(i)).getEstado()   +"   </span>       ");
+												  }
+												  else { 
+								 out.print(" <span class='label label-warning'> " + ((ResultadoInvitadoBeanData)resultados.get(i)).getEstado()   +"   </span>       ");
+													
+												  }
+									  
+									   
+									 
+		                          					            
+	                          				%>
+	                          			
+                          			
+                          			</td>
+
+                          			<td class="center">
+                          				<a class="btn btn-success"
+                          					href="javascript:alt_consultar('<%=((ResultadoInvitadoBeanData)resultados.get(i)).getCodigo()%>')">
+                          					<i
+                          						class="icon-zoom-in icon-white">
+                          					</i> 
+                          					Ver
+                          				</a>
+                          				<a class="btn btn-info"
+                          					href="javascript:alt_modificar_invitado('<%=((ResultadoInvitadoBeanData)resultados.get(i)).getCodigo()%>')">
+                          					<i
+                          						class="icon-edit icon-white">
+                          					</i>
+                          					Modificar
+                          				</a>
+                          				<a class="btn btn-danger"
+                          					href="javascript:alt_eliminar_invitado('<%=((ResultadoInvitadoBeanData)resultados.get(i)).getCodigo()%>')">
+                          					<i class="icon-trash icon-white">
+                          					</i>
+                          					Eliminar
+                          				</a>
+                          			</td>
+                          		</tr>
+
+
+                          		<%}%>
+
+                          	</tbody>
+                          </element>
+	                
+	                <!-- finalizacion de la conexion y llamados -->
+		           </table>
 	            </div>
 	          </div>
 		      <!--/span-->
@@ -279,11 +324,12 @@
 				<a href="#" class="btn btn-primary">Save changes</a>
 			</div>
 		</div>
-
-		<footer>
+		<jsp:include page="/IngSoft/general/inferior.jsp" />
+<!-- <footer>
 		  <p class="pull-left"><a href="http://usman.it/free-responsive-admin-template">Conan 3000</a> &copy;  2013</p>
           <p class="pull-right">Powered by: <a href="http://usman.it/free-responsive-admin-template">Las dos virgenes</a></p>
-		</footer>
+		</footer> -->
+		
 		
 	</div><!--/.fluid-container-->
 
