@@ -206,7 +206,7 @@ public class ActividadBeanFuncion {
 	
 	
 	
-	public ActividadBeanData consultarEvento(String codigo){
+	public ActividadBeanData consultarActividad(String codigo){
 		ActividadBeanData actividadData=null;
 		
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();

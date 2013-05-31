@@ -16,25 +16,21 @@
 
 
 SELECT 
-ACTIVIDAD.IdActividad AS codigo,
-ACTIVIDAD.nombre as nombre,
-TIPO_ACTIVIDAD.nombre as tipoactividad,
-ACTIVIDAD.estado as estado
-FROM
-TIPO_ACTIVIDAD , ACTIVIDAD ,  AMBIENTE ,   
-SEDE ,            EMPLEADO ,   PERSONA 
+inf245g2.ACTIVIDAD.IdActividad AS codigo ,
+inf245g2.ACTIVIDAD.nombre as nombre,
+inf245g2.TIPO_ACTIVIDAD.nombre as tipoactividad,
+inf245g2.ACTIVIDAD.estado as estado
+
+
+FROM inf245g2.ACTIVIDAD , inf245g2.TIPO_ACTIVIDAD 
 
 
 WHERE
 
-    ACTIVIDAD.IdSede    = AMBIENTE.IdSede 
-AND AMBIENTE.IdSede     = SEDE.IdSede 
-AND SEDE.IdSede         = EMPLEADO.IdSede 
-AND EMPLEADO.IdEmpleado = PERSONA.IdPersona 
+inf245g2.ACTIVIDAD.IdTipoActividad = inf245g2.TIPO_ACTIVIDAD.IdTipoActividad
 
-AND ACTIVIDAD.IdEmpleado =  EMPLEADO.IdEmpleado
-AND ACTIVIDAD.IdTipoActividad = TIPO_ACTIVIDAD.IdTipoActividad 
-AND ACTIVIDAD.IdAmbiente =  AMBIENTE.IdAmbiente
+AND inf245g2.ACTIVIDAD.nombre  like  #{nombre}
+
 
 ORDER BY 1 ASC
 ;
@@ -46,36 +42,30 @@ ORDER BY 1 ASC
 <select id="getPLantillaActividad" parameterType="java.lang.String"  resultType="IngSoft.administracion.bean.ActividadBeanData">
 
 
-
-
-
 SELECT 
-inf245g2.ACTIVIDAD.IdActividad AS codigo,
-inf245g2.SEDE.nombre AS nombreSede,
+inf245g2.ACTIVIDAD.IdActividad AS codigo ,
+inf245g2.ACTIVIDAD.IdSede AS nombreSede,
 inf245g2.ACTIVIDAD.nombre as nombre,
-inf245g2.TIPO_ACTIVIDAD.nombre as nombreTipoactividad,
-inf245g2.PERSONA.Nombres as nombreEncargado,
-inf245g2.EMPLEADO.Puesto as puesto,
-inf245g2.AMBIENTE.Nombre as nombreAmbientes,
+inf245g2.ACTIVIDAD.IdTipoActividad as nombreTipoactividad,
+
+
+inf245g2.ACTIVIDAD.IdEmpleado AS nombreEncargado,
+inf245g2.ACTIVIDAD.IdAmbiente as nombreAmbientes,
+
+
 inf245g2.ACTIVIDAD.FechaInicio AS fechaInicio,
-inf245g2.ACTIVIDAD.FechaFin AS fechaFin,
-inf245g2.ACTIVIDAD.Descripcion AS descripcion,
-inf245g2.ACTIVIDAD.Estado AS estado
-FROM
-inf245g2.TIPO_ACTIVIDAD , inf245g2.ACTIVIDAD ,  inf245g2.AMBIENTE ,   
-inf245g2.SEDE ,            inf245g2.EMPLEADO ,   inf245g2.PERSONA 
+inf245g2.ACTIVIDAD.FechaFin as fechaFin,
+inf245g2.ACTIVIDAD.Descripcion as descripcion,
+inf245g2.ACTIVIDAD.estado as estado
+
+
+FROM inf245g2.ACTIVIDAD 
+
 
 
 WHERE
     inf245g2.ACTIVIDAD.IdActividad    = #{codigo}
-AND inf245g2.ACTIVIDAD.IdSede    = inf245g2.AMBIENTE.IdSede 
-AND inf245g2.AMBIENTE.IdSede     = inf245g2.SEDE.IdSede 
-AND inf245g2.SEDE.IdSede         = inf245g2.EMPLEADO.IdSede 
-AND inf245g2.EMPLEADO.IdEmpleado = inf245g2.PERSONA.IdPersona 
 
-AND inf245g2.ACTIVIDAD.IdEmpleado =  inf245g2.EMPLEADO.IdEmpleado
-AND inf245g2.ACTIVIDAD.IdTipoActividad = inf245g2.TIPO_ACTIVIDAD.IdTipoActividad 
-AND inf245g2.ACTIVIDAD.IdAmbiente =  inf245g2.AMBIENTE.IdAmbiente
 
 ORDER BY 1 ASC
 

@@ -49,7 +49,7 @@ public class AccionModificarActividad extends CoAccion{
 
 			
 			ActividadBeanFuncion actividadFuncion= ActividadBeanFuncion.getInstance(); 
-			ActividadBeanData actividadData=actividadFuncion.consultarEvento(request.getParameter("codigo"));
+			ActividadBeanData actividadData=actividadFuncion.consultarActividad(request.getParameter("codigo"));
 			
 
 			Vector<AmbienteBeanData> 				ambientes = ActividadBeanFuncion.getInstance().getAmbientes();	
