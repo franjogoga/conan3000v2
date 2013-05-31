@@ -162,7 +162,7 @@ function alt_submit(){
                                   <div class="control-group">
 			              		<label class="control-label" for="typeahead4">Fecha Nacimiento(*): </label>
 			              		<div class="controls">
-			               		 <input type="text" class="input-xlarge datepicker" id="fFechaNacimiento" name="fFechaNacimiento" value="" readonly="readonly">
+			               		 <input type="text" class="input-xlarge datepicker" id="fFechaNacimiento" name="fFechaNacimiento" value="">
 			             		</div>
 		                		</div>
                          
@@ -232,7 +232,7 @@ function alt_submit(){
 		                          
 		                        <div class="form-actions">
 			                      <button  type="button"  class="btn btn-primary" onclick="javascript:alt_submit()">Agregar</button>      
-			               		   <button  type="button"  class="btn" onclick="location.href='../socio/agregarminisocio.jsp'">Cancelar</button>  
+			               		   <button  type="button"  class="btn" onclick="location.href='../socio/buscarsocio.jsp'">Cancelar</button>  
 		                        </div>
 		                      </fieldset>
 		                    </form>
