@@ -13,12 +13,31 @@ import IngSoft.general.MyBatisSesion;
 public class CriterioInvitadoBeanFunction {
 	
 	public CriterioInvitadoBeanData crearCriterio(HttpServletRequest request, HttpServletResponse response) {
-		CriterioInvitadoBeanData criterio = new CriterioInvitadoBeanData();		
+		CriterioInvitadoBeanData criterioInvitadoData = new CriterioInvitadoBeanData();		
 		
-		
-		return criterio;
+		criterioInvitadoData.setCodigo(request.getParameter("txtCodigo")+"%");
+		criterioInvitadoData.setNombre(request.getParameter("txtNombre")+"%");
+		if (request.getParameter("rButton")!=null){
+			String est;
+			est=request.getParameter("rButton");
+			criterioInvitadoData.setEstado(est);}
+		return criterioInvitadoData;
 	}
 	
+	public  Vector<ResultadoInvitadoBeanData> buscarPlantillaInvitado(CriterioInvitadoBeanData criterioInvitadoData){		
+		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+		Vector<ResultadoInvitadoBeanData> resultadosV=null;
+		try{		
+		List<ResultadoInvitadoBeanData> resultados=sqlsesion.selectList("searchPlantillaInvitado",criterioInvitadoData);
+	
+		
+		resultadosV= new Vector<>(resultados);
+		}
+		finally{
+		sqlsesion.close();}
+		return resultadosV;
+		
+	}
 	public Vector<ResultadoInvitadoBeanData> buscarInvitado(CriterioPerfilBeanData criterio) {
 		SqlSession sesion = MyBatisSesion.metodo().openSession();
 		Vector<ResultadoInvitadoBeanData> resultadosV = null;
