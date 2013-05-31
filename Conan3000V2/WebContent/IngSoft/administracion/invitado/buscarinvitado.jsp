@@ -4,6 +4,7 @@
 <%@page import="IngSoft.administracion.bean.ResultadoInvitadoBeanData"%>
 <%@page import="java.util.Vector"%>
 <%@page import="java.lang.System"%>
+<!-- inicio -->
 
 
 <html lang="en">
