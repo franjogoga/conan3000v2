@@ -26,8 +26,69 @@
 	DISTRITO
 </select>
 
+<!-- departamento,provincia y distrito   -->
+<select id="getDepartamentos" resultType="IngSoft.administracion.bean.DepartamentoBeanData">
+select IdDepartamento as codigo
+, Nombre as nombre
+from 
+DEPARTAMENTO; 
+
+</select>
+
+
+<select id="getProvincias" parameterType="java.lang.String" resultType="IngSoft.administracion.bean.ProvinciaBeanData">
+select IdProvincia as codigo
+, Nombre as nombre
+from 
+PROVINCIA
+where
+idDepartamento like  #{codigo}  
+</select>
+
 
  <!-- Fin agregar  -->
+ 
+ <select id="searchPlantillaProveedor" parameterType="IngSoft.venta.bean.CriterioProveedorBeanData" resultType="IngSoft.venta.bean.ResultadoProveedorBeanData">
+select 
+PROVEEDOR.IdProveedor as codigo
+,PROVEEDOR.RazonSocial as RazonSocial		
+,PROVEEDOR.Ruc as ruc
+,PROVEEDOR.Correo as correo
+,PROVEEDOR.NombresContacto as nombre
+
+from PROVEEDOR 
+<where>
+	<if test="RazonSocial != null ">
+       PROVEEDOR.RazonSocial  like  #{RazonSocial}
+    </if>
+    <if test="Ruc != null">
+        AND PROVEEDOR.Ruc like = #{Ruc}
+    </if>
+    <if test="correo != null">
+        AND PROVEEDOR.Correo like= #{correo}
+    </if>
+    <if test="nombre != null">
+        AND PROVEEDOR.NombresContacto like #{nombre}
+    </if>
+      
+</where>
+</select>
+ 
+ 
+ <select id="getPlantillaProveedor" parameterType="java.lang.String"  resultType="IngSoft.venta.bean.ProveedorBeanData">
+select 
+IdProveedor as codigo
+,RazonSocial as razon
+,Ruc as ruc
+,Direccion as dir
+,Telefono as tel
+,Correo as correo
+,NombresContacto as nombre
+from PROVEEDOR  where IdProveedor=#{codigo}; 
+
+
+</select>
+ 
  
 </mapper>
  
