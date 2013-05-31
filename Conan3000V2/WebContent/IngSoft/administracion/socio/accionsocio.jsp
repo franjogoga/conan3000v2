@@ -13,7 +13,7 @@
 	<meta name="author" content="Dos Virgenes">
 	
 	<!--The Beans-->
-	<jsp:useBean id="resultados" scope="session" class="java.util.Vector"></jsp:useBean>
+	<jsp:useBean id="resultados" scope="request" class="java.util.Vector"></jsp:useBean>
 
 	<!-- The styles -->
 	<link id="bs-css" href="css/bootstrap-cerulean.css" rel="stylesheet">
@@ -49,16 +49,16 @@
 	
 	<script>	
 	function alt_vitalizar(cod){
-		var formPerfil=document.getElementById("frmAlternativo");
-		formPerfil.accion.value="Vitalizar";
-		formPerfil.codigo.value=cod;
-		formPerfil.submit();
+		var form=document.getElementById("frmAlternativo");
+		form.accion.value="Vitalizar";
+		form.codigo.value=cod;
+		form.submit();
 	}
 	function alt_suspender(cod){
-		var formPerfil=document.getElementById("frmAlternativo");
-		formPerfil.accion.value="Suspender";
-		formPerfil.codigo.value=cod;
-		formPerfil.submit();
+		var form=document.getElementById("frmAlternativo");
+		form.accion.value="Suspender";
+		form.codigo.value=cod;
+		form.submit();
 	}	
 	</script>		
 </head>
@@ -113,28 +113,28 @@
 								<fieldset>		              			 
 						
 									<div class="control-group">
-							    		<label class="control-label" for="typeahead6">Nombres: </label>
+							    		<label class="control-label" for="txtNombres">Nombres: </label>
 							    		<div class="controls">
-							      			<input type="text" class="span6 typeahead" id="txtNombres" name="txtNombres" data-provide="typeahead" data-items="4" >
+							      			<input type="text" class="span6 typeahead" id="txtNombres" name="txtNombres">
 						        		</div>
 						      		</div>
 						    
 							  		<div class="control-group">
-							   			<label class="control-label" for="typeahead6">Apellido Paterno: </label>
+							   			<label class="control-label" for="txtApellidoPaterno">Apellido Paterno: </label>
 							    		<div class="controls">
-							      			<input type="text" class="span6 typeahead" id="txtApellidoPaterno" name="txtApellidoPaterno"  data-provide="typeahead" data-items="4" >
+							      			<input type="text" class="span6 typeahead" id="txtApellidoPaterno" name="txtApellidoPaterno">
 						        		</div>
 						      		</div>
 						      		
 							  		<div class="control-group">
-							    		<label class="control-label" for="typeahead10">Apellido Materno: </label>
+							    		<label class="control-label" for="txtApellidoMaterno">Apellido Materno: </label>
 							    		<div class="controls">
-							      			<input type="text" class="span6 typeahead" id="txtApellidoMaterno" name="txtApellidoMaterno"  data-provide="typeahead" data-items="4" >
+							      			<input type="text" class="span6 typeahead" id="txtApellidoMaterno" name="txtApellidoMaterno">
 						        		</div>						        	
 						      		</div>
 						      		
 							  		<div class="control-group">
-										<label class="control-label" for="selectError">Tipo de Documento:</label>
+										<label class="control-label" for="cmdTipoDocumento">Tipo de Documento:</label>
 										<div class="controls">
 								  			<select id="cmdTipoDocumento" name="cmdTipoDocumento" data-rel="chosen" >								  
 												<option value="DNI">DNI</option>
