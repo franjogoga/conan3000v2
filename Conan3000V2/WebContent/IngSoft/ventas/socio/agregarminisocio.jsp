@@ -131,7 +131,7 @@ function alt_submit(){
 		                  </div>
 			              <div class="box-content">
                           
-			                <form class="form-horizontal" id="frmSocio" name="frmSocio" method="POST" action="<%= response.encodeURL("SMVSocio")%>">
+			                <form class="form-horizontal" id="frmSocio" name="frmSocio" method="POST" action="SMVSocio">
 			                 <input type="hidden" name="accion" value="AgregarMini"></input>
 							<input type="hidden" name="tipo" value="2"></input>
 			                
