@@ -17,7 +17,7 @@
 				<jsp:include page="/IngSoft/general/noscript.jsp" />
 				<div id="content" class="span10">
 				    <!-- content starts -->
-				   <jsp:include page="includes/agregarsocio.jsp" />
+				   <jsp:include page="includes/agregarminisocio.jsp" />
 				    <!-- content ends -->
 				</div>
 			 </div>
