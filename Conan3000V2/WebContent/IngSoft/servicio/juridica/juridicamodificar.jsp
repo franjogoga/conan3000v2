@@ -161,7 +161,7 @@
                                   
                                   <label class="control-label" for="typeahead7">CODIGO: </label>
                                   <div class="controls">
-                                      <input type="hidden" class="span6 typeahead"   data-provide="typeahead" id="txtCodigo" name="txtCodigo" value="<%=juridica.getCodigo()%>">
+                                      <input type="text" class="span6 typeahead"   data-provide="typeahead" id="txtCodigo" name="txtCodigo" value="<%=juridica.getCodigo()%>" disabled="disabled">
                                           </div>
                               </div>
 							  <div class="control-group">
