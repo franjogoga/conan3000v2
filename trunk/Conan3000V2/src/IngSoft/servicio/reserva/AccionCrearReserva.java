@@ -37,8 +37,8 @@ public class AccionCrearReserva extends CoAccion {
 			if(listareservas.size()>0){
 				ReservaBeanFuncion reservaFuncion=ReservaBeanFuncion.getInstance();
 				reservaFuncion.agregarReservaBungalow(listareservas,codSocio);
-				
-				
+				sesion.removeAttribute("reservas");
+				sesion.removeAttribute("listareservas");								
 			}
 		}
 	}
