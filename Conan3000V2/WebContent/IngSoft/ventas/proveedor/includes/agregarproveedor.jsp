@@ -72,7 +72,7 @@ function alt_submit(){
 }
 
 function validaForm(){
-	var form=document.frmPromocion;
+	var form=document.frmProveedor;
 	var cadena= new Array();
 	var i=0;
 	if(!esCorrecto(form.txtRazonSocial.value,1,100)){
@@ -207,16 +207,22 @@ function validaForm(){
 		                  </div>
 	                    </div>
 	                    
-	                                   <div class="control-group">
-		                  <label class="control-label" for="selectError">Tipo de Documento:</label>
-		                  <div class="controls">
-		                    <select name="selectError2" id="cmbTipoDoc" name="cmbTipoDoc" data-rel="chosen">
-		                      <option>DNI</option>
-		                      <option>Carnet de Extranjeria</option>
-		                      
-	                        </select>
-		                  </div>
-	                    </div>
+	                      <!--REVISAR!!! -->
+	                    <div class="control-group">
+								<label class="control-label" for="typeahead5">Tipo de Documento(*):</label>
+								<div class="controls">
+								  <label class="radio">
+									<input type="radio" name="rButton" id="optionsRadios1" value="DNI" >
+									DNI
+								  </label>
+								  <div style="clear:both">
+								  <label class="radio">
+									<input type="radio" name="rButton" id="optionsRadios2" value="Carnet de Extranjeria">
+									Carnet de Extranjeria
+								  </label>
+								  </div>
+								</div>
+							  </div>
 	                    
 		                <div class="control-group">
 		                  <label class="control-label" for="typeahead2">Numero de Documento: </label>
