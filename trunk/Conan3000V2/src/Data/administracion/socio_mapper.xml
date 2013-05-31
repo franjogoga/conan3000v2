@@ -38,9 +38,9 @@
 		where MEMBRESIA.IdSocio like #{codigo} 	
 	</select>
 	
-	<update id="vitalizarSocio" parameterType="IngSoft.administracion.bean.SocioBeanData">
+	<update id="vitalizarSocio" parameterType="java.lang.String">
 		update MEMBRESIA
-		set MEMBRESIA.Vitalicio = 'No'
+		set MEMBRESIA.Vitalicio = 'Si'
 		where MEMBRESIA.IdSocio like #{codigo}		
 	</update>
 	
