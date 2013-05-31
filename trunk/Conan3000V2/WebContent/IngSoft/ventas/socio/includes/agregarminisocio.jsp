@@ -88,7 +88,7 @@ function anhadir(cod, name){
 			             		</div>
 		                		</div>
                          
-			                    <div class="control-group">
+			                    <div class="control-group" id="dvDistrito">
 								<label class="control-label" for="selectdistrito">Distrito (*):</label>
 								<div class="controls">
 								  <select name="cmdDistrito" id="cmdDistrito" data-rel="chosen">
@@ -96,6 +96,7 @@ function anhadir(cod, name){
 										<option value="<%= ((DistritoMiniBeanData)tiposDistrito.get(i)).getIdDistrito()%>" <%=i==0?"selected":""%>><%= ((DistritoMiniBeanData)tiposDistrito.get(i)).getNombreDistrito()%></option>
 									<%} %>	
 								  </select>
+								  <span class="help-inline" id="errDistrito">Please correct the error</span>
 								</div>
 							</div>		
 			               
@@ -140,19 +141,21 @@ function anhadir(cod, name){
 		                              </div>
 		                            </div>
 		                            
-		                             <div class="control-group">
+		                             <div class="control-group" id="dvTelefonoFijo">
 			                        <label class="control-label" for="typeahead9">Tel&eacute;fono Fijo(*): </label>
 			                        <div class="controls">
 			                          <input type="text" class="span6 typeahead" id="txtTelefonoFijo"  name="txtTelefonoFijo" data-provide="txtTelefonoFijo" data-items="4" >
-		                            </div>
+		                            <span class="help-inline" id="errTelefonoFijo">Please correct the error</span>
+									</div>
 		                            </div>
 		                            
-		                            <div class="control-group">
+		                            <div class="control-group" id="dvCelular">
 		                             <label class="control-label" for="typeahead10">Tel&eacute;fono Celular(*): </label>
 			                        
 			                        <div class="controls">
 			                          <input type="text" class="span6 typeahead" id="txtTelefonoCelular" name="txtTelefonoCelular" data-provide="txtTelefonoCelular" data-items="4" >
-		                            </div>
+		                            <span class="help-inline" id="errCelular">Please correct the error</span>
+									</div>
 		                            </div>
 		                            
 		                          
