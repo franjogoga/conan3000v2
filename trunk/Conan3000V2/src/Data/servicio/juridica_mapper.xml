@@ -62,6 +62,7 @@ IdPersonaJuridica as codigo,
 RazonSocial as razonSocial,
 Ruc as ruc,
 Direccion as direccion,
+Telefono as telefono,
 Correo as Correo,
 IdDistrito as IdDistrito,
 Estado as Estado
