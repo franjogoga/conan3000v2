@@ -24,19 +24,23 @@ public class SocioBeanFunction {
 	
 	private SocioBeanFunction() {}
 	
-	public boolean vitalizarSocio(SocioBeanData datos) throws CoException {
+	public boolean vitalizarSocio(String codigo) throws CoException {
 		boolean resultado = false;		
 		SqlSession sesion = MyBatisSesion.metodo().openSession();
+		SocioBeanData datos = null;
 		try {
-			sesion.update("Data.administracion.socio.vitalizarSocio",datos);
-			resultado = true;
+			datos = sesion.selectOne("Data.administracion.socio.getSocio", codigo);
+			if (datos.getVitalicio().equalsIgnoreCase("No")) {
+				sesion.update("Data.administracion.socio.vitalizarSocio",codigo);
+				resultado = true;
+			}						
 		} catch (Exception e2) {
 			sesion.rollback();
 			e2.printStackTrace();
 			throw CoException.set("Error: No se pudo vitalizar el socio, intente nuevamente", "SMASocio?accion=Buscar&tipo=1");
 		} finally {
 			sesion.commit();
-			sesion.close();			
+			sesion.close();
 		}
 		return resultado;
 	}
