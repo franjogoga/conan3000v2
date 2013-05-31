@@ -104,6 +104,68 @@ public class ProveedorBeanFuncion {
 		return new Vector<>(resultados);
 	}
 	
+	
+	public boolean eliminarProveedor(String codigo) throws CoException {
+		boolean resultado=false;		
+		
+		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+		try{
+		
+			sqlsesion.update("Data.venta.proveedor.deletePromocion",codigo);
+			
+			resultado=true;
+		}
+		catch(Exception a)		
+		{sqlsesion.rollback();
+		a.printStackTrace();
+			throw CoException.set("Error: No se pudo eliminar la plantilla intente de nuevo", "SMVProveedor?accion=Agregar&tipo=1");
+			
+		}
+		
+		finally{
+			sqlsesion.commit();
+			sqlsesion.close();					
+		}
+			
+		return resultado;
+	}
+	
+	
+			
+	public ProveedorBeanData consultarPorveedor(String codigo){
+		ProveedorBeanData proveedorData=null;
+		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+		try{
+			proveedorData= sqlsesion.selectOne("Data.venta.proveedor.getPlantillaProveedor",codigo);
+		}
+		finally{
+			sqlsesion.close();
+		}
+		return proveedorData;
+	}
+
+
+	public void modificarProveedor(ProveedorBeanData proveedor) throws CoException {
+		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+		try{
+					
+		//	System.out.println("Ambs="+mods.size());
+			sqlsesion.update("Data.venta.proveedor.updateProveedor",proveedor);
+		}
+		catch(Exception a)		
+		{sqlsesion.rollback();
+		a.printStackTrace();
+			throw CoException.set("Error: No se pudo modificar la plantilla intente de nuevo", "SMVProveedor?accion=Modificar&tipo=1");
+			
+		}
+		
+		finally{
+			sqlsesion.commit();
+			sqlsesion.close();					
+		}			
+		return ;
+	}
+	
 	/*
 	public Vector<AmbienteMiniBeanData> getAmbientes(){
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
