@@ -20,17 +20,13 @@ public class AccionAgregarProveedor extends CoAccion{
 	public void ejecutar(ServletContext sc, HttpServletRequest request,
 			HttpServletResponse response) throws CoException {
 		// TODO Auto-generated method stub
-				
-				
-				
+
 				int tipo=Integer.parseInt(request.getParameter("tipo"));
 				if(tipo==2){
 					
 					//TrasladoBeanFuncion trasladoFuncion= TrasladoBeanFuncion.getInstance();
 					//TrasladoBeanData trasladoData=trasladoFuncion.crearTraslado(request, response);
-					
-					
-					
+
 					ProveedorBeanFuncion proveedorFuncion= ProveedorBeanFuncion.getInstanceS();
 					ProveedorBeanData proveedorData=proveedorFuncion.crearProveedor(request, response);
 					//socioData.setIdMembresia("MEM000032");
@@ -39,7 +35,7 @@ public class AccionAgregarProveedor extends CoAccion{
 					
 					request.setAttribute("proveedor", proveedorData);
 
-					this.direccionar(sc, request, response, "/IngSoft/ventas/proveedor/agregarproveedor.jsp");
+					this.direccionar(sc, request, response, "/IngSoft/ventas/proveedor/buscarproveedor.jsp");
 					//request.setAttribute("typeahead7",codigo);
 				
 				}
