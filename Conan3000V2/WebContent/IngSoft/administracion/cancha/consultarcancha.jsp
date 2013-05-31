@@ -5,7 +5,7 @@
 <head>
 
 	<meta charset="utf-8">
-	<title>Eliminar Cancha</title>
+	<title>Consultar Cancha</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
 	<meta name="author" content="Muhammad Usman">
@@ -49,17 +49,7 @@
 
 	<!-- The fav icon -->
 	<link rel="shortcut icon" href="img/favicon.ico">
-			
-	<script>
-		function alt_submit_eliminar() {
-			var form = document.frmDelete;
-			var r = confirm("¿Esta seguro que desea eliminar esta cancha?");
-			if (r == true) {
-				form.submit();
-			}
-		}
-	</script>	
-
+	
 	<%! public boolean  encontrar(String a, String b){		
 			if(b.equals(a)) return true;
 			return false;
@@ -103,7 +93,7 @@
                 <ul class="breadcrumb">
                   <li> <a href="../../general/index.jsp">Home</a> <span class="divider">/</span> </li>
                   <li> <a href="buscarcancha.jsp">Mantenimiento de Canchas</a> <span class="divider">/</span></li>
-                  <li>Eliminar Cancha</li>
+                  <li>Consultar Cancha</li>
                 </ul>
               </div>
               <div class="row-fluid sortable">
@@ -164,8 +154,7 @@
 								</div>
 						</div>
                         <div class="form-actions">
-                          <button type="button" class="btn btn-primary" onclick="javascript:alt_submit_eliminar()">Eliminar</button>
-                          <button type="button" class="btn" onclick="location.href='buscarcancha.jsp'">Cancelar</button>
+                          <button type="button" class="btn btn-primary" onclick="location.href='buscarcancha.jsp'">Regresar</button>
                         </div>
                       </fieldset>
                     </form>

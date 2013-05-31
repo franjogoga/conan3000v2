@@ -1,22 +1,18 @@
 <!DOCTYPE html>
+<%@page import="IngSoft.administracion.bean.TipoCanchaMiniBeanData"%>
+<%@page import="IngSoft.administracion.bean.AmbienteMiniBeanData"%>
 <html lang="en">
-<head>
-	<!--
-		Charisma v1.0.0
-
-		Copyright 2012 Muhammad Usman
-		Licensed under the Apache License v2.0
-		http://www.apache.org/licenses/LICENSE-2.0
-
-		http://usman.it
-		http://twitter.com/halalit_usman
-	-->
+<head> 
 	<meta charset="utf-8">
-	<title>Conan3000</title>
+	<title>Agregar Cancha</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
 	<meta name="author" content="Muhammad Usman">
 
+	<!--The beans  -->
+	<jsp:useBean id="ambientes" scope="request" class="java.util.Vector"></jsp:useBean>
+	<jsp:useBean id="tiposCancha" scope="request" class="java.util.Vector"></jsp:useBean>
+	
 	<!-- The styles -->
 	<link id="bs-css" href="css/bootstrap-cerulean.css" rel="stylesheet">
 	<style type="text/css">
@@ -52,6 +48,21 @@
 	<!-- The fav icon -->
 	<link rel="shortcut icon" href="img/favicon.ico">
 		
+	<script>
+	function validar(form){
+		if(form.txtNombre.value.length <=0)return false;
+		if(form.cmbTipoCancha.value.length<=0)return false;
+		if(form.cmbAmbiente.value.lengtht<=0)return false;
+		if(form.txtDescripcion.value.length<=0)return false;
+	return true;
+	}
+	
+	function alt_submit(){
+		var form= document.frmData;
+		if(validar(form)) form.submit();
+		else alert("Uno o mas campos estan vacios");
+	}
+	</script>
 </head>
 
 <body>
@@ -75,54 +86,59 @@
               <div>
                 <ul class="breadcrumb">
                   <li> <a href="../../general/index.jsp">Home</a> <span class="divider">/</span> </li>
-                  <li> <a href="#">Mantenimiento de Canchas</a> <span class="divider">/</span></li>
+                  <li> <a href="buscarcancha.jsp">Mantenimiento de Canchas</a> <span class="divider">/</span></li>
                   <li>Agregar Cancha</li>
                 </ul>
               </div>
               <div class="row-fluid sortable">
                 <div class="box span12">
                   <div class="box-header well" data-original-title>
-                    <h2></i>AGREGAR CANCHA</h2>
+                    <h2>AGREGAR CANCHA</h2>
                   </div>
                   <div class="box-content">
-                    <form class="form-horizontal">
+                    <form class="form-horizontal" action="<%= response.encodeURL("SMACancha")%>" name="frmData" method="post">
+                    <input type="hidden" name="accion" value="Agregar"></input>
+					<input type="hidden" name="tipo" value="2"></input>
                       <fieldset>
                         <div class="control-group">
                           <label class="control-label" for="typeahead">Nombre (*):</label>
                           <div class="controls">
-                            <input type="text" class="span6 typeahead" id="typeahead"  data-provide="typeahead" >
+                            <input type="text" class="span6 typeahead" id="txtNombre" name="txtNombre" data-provide="typeahead" >
                           </div>
                         </div>
                         <div class="control-group">
                           <label class="control-label" for="selectError">Tipo de Cancha (*):</label>
                           <div class="controls">
-                            <select name="selectError" id="selectError" data-rel="chosen">
-                              <option>F&uacutetbol</option>
-                              <option>Voley</option>
+                            <select name="cmbTipoCancha" id="cmbTipoCancha" data-rel="chosen">
+                            	<%for(int i=0;i<tiposCancha.size();i++){ %>
+										<option value="<%= ((TipoCanchaMiniBeanData)tiposCancha.get(i)).getCodigo()%>" <%=i==0?"selected":""%>><%= ((TipoCanchaMiniBeanData)tiposCancha.get(i)).getNombre()%></option>
+								<%}%>
                             </select>
                           </div>
                         </div>
                         <div class="control-group">
                           <label class="control-label" for="selectError">Ambiente (*):</label>
                           <div class="controls">
-                            <select name="selectError2" id="selectError2" data-rel="chosen">
-                              <option>Polideportivo</option>
-                              <option>Zona deportiva</option>
+                            <select name="cmbAmbiente" id="cmbAmbiente" data-rel="chosen" style="width: 440px">
+                              	<%for(int i=0;i<ambientes.size();i++){ %>
+									<option value="<%= ((AmbienteMiniBeanData)ambientes.get(i)).getCodigo()%>" <%=i==0?"selected":""%>><%= ((AmbienteMiniBeanData)ambientes.get(i)).getNombre()+" - "+((AmbienteMiniBeanData)ambientes.get(i)).getNombreSede()%></option>
+								<%}%>
                             </select>
                           </div>
                         </div>
                         <div class="control-group">
-                  		  <label class="control-label" for="textarea2">Descripci&oacuten (*):</label>
+                  		  <label class="control-label" for="textarea2">Descripci&oacute;n (*):</label>
                           <div class="controls">
-                            <textarea name="textarea" rows="3" id="textarea2" style="resize:none"></textarea>
+                            <textarea name="txtDescripcion" rows="3" id="txtDescripcion" style="resize:none"></textarea>
                           </div>
                         </div>
                         <div class="form-actions">
-                          <button type="submit" class="btn btn-primary">Agregar</button>
-                          <button type="reset" class="btn">Cancelar</button>
+                          <button type="button" class="btn btn-primary" onclick="javascript:alt_submit()">Agregar</button>
+                          <button type="button" class="btn" onclick="location.href='buscarcancha.jsp'">Cancelar</button>
                         </div>
                       </fieldset>
-                    </form>(*) Datos Obligatorios
+                    </form>
+					<span style="font-size:70%">(*)Campos Obligatorios</span>
                   </div>
                 </div>
                 <!--/span-->
