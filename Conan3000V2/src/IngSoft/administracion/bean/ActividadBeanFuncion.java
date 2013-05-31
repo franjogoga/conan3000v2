@@ -49,12 +49,14 @@ public class ActividadBeanFuncion {
 
         
 
-		actividadData.setCodigo(    		request.getParameter("txtNombre") );
+		
 		actividadData.setNombreSede(		request.getParameter("cmbSede"));		
 		actividadData.setNombre(    		request.getParameter("txtNombre") );
 
 		actividadData.setNombreTipoactividad(	request.getParameter("cmbTipoactividad"));
-		actividadData.setNombreEncargado(		request.getParameter("cmbEncargado"));
+		
+		actividadData.setNombreEncargado(		request.getParameter("cmbEncargadoCodigo"));
+		//actividadData.setNombreEncargado(		request.getParameter("cmbEncargado"));
 		actividadData.setPuesto(				request.getParameter("txtPuesto"));
 		actividadData.setNombreAmbientes(		request.getParameter("cmbAmbiente"));
 		
@@ -87,7 +89,9 @@ public class ActividadBeanFuncion {
 		actividadData.setNombre(    		request.getParameter("txtNombre") );
 
 		actividadData.setNombreTipoactividad(	request.getParameter("cmbTipoactividad"));
-		actividadData.setNombreEncargado(		request.getParameter("cmbEncargado"));
+		
+		actividadData.setNombreEncargado(		request.getParameter("cmbEncargadoCodigo"));
+		//actividadData.setNombreEncargado(		request.getParameter("cmbEncargado"));
 		actividadData.setPuesto(				request.getParameter("txtPuesto"));
 		actividadData.setNombreAmbientes(		request.getParameter("cmbAmbiente"));
 		
@@ -124,6 +128,7 @@ public class ActividadBeanFuncion {
 			// conesta sentencia podemos tener el codigo
 			String codigo = (String)sqlsesion.selectOne("Data.administracion.actividad.getNextCodigo");
 
+			System.out.print(" actividadData ----> "+ codigo);
 			
 			
 			if(codigo!=null)
@@ -137,6 +142,8 @@ public class ActividadBeanFuncion {
 			else actividadData.setCodigo("ATC000001");
 			
 			
+			System.out.print(" actividadData " + actividadData.getNombre());
+			
 
 			
 			sqlsesion.insert("Data.administracion.actividad.insertPlantillaActividad",actividadData);
@@ -147,7 +154,7 @@ public class ActividadBeanFuncion {
 		catch(Exception a)		
 		{sqlsesion.rollback();
 		a.printStackTrace();
-			throw CoException.set("Error: Nombre de Actividad repetido", "SMAActividad?accion=Agregar&tipo=1");
+			throw CoException.set("Error: Nombre de Actividad repetido XD", "SMAActividad?accion=Agregar&tipo=1");
 			
 		}
 		

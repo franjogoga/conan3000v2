@@ -14,8 +14,8 @@ public class SMAActividad extends CoServlet{
 		
 		
 		acciones.put("Modificar", new AccionModificarActividad());
-		/*acciones.put("Agregar", new AccionAgregarActividad());
-		*/
+		acciones.put("Agregar", new AccionAgregarActividad());
+		
 
 	}
 	

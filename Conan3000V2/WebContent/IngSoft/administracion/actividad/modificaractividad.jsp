@@ -186,7 +186,7 @@
 								<div class="controls">
 																						  
 							 	<select  id="selectError11" data-rel="chosen" name="cmbSede">
-								  	<option  selected value=""><%=actividad.getNombreSede()%></option>	
+								  
 								  <%for(int i=0;i<sedes.size();i++) if( !actividad.getNombreSede().equalsIgnoreCase(((SedeBeanData)sedes.get(i)).getNombre())){     %>
 										<option value="<%= ((SedeBeanData)sedes.get(i)).getCodigo()%>" >
 										
@@ -194,7 +194,14 @@
 										
 										
 										</option>
-									<%}    %>						
+									<%} else {   %>			
+										<option selected value="<%= ((SedeBeanData)sedes.get(i)).getCodigo()%>" >
+										
+										<%= ((SedeBeanData)sedes.get(i)).getNombre()%>
+										
+										
+										</option>
+									<%}   %>				
 								  </select>
 								</div>
 							  </div>	
@@ -221,7 +228,7 @@
 								<div class="controls">
 																						   <!-- cmbTipoactividad  variable     -->	
 							 		<select id="selectError12" data-rel="chosen" name="cmbTipoactividad">
-								  	<option  selected value=""><%=actividad.getNombreTipoactividad()%></option>	
+								  
 								  <%for(int i=0;i<tipoactividades.size();i++) if( !actividad.getNombreTipoactividad().equalsIgnoreCase(((TipoActividadMiniBeanData)tipoactividades.get(i)).getNombre())){     %>
 										<option value="<%= ((TipoActividadMiniBeanData)tipoactividades.get(i)).getCodigo()%>" >
 										
@@ -229,16 +236,24 @@
 										
 										
 										</option>
-									<%}    %>						
+									<%} else {   %>		
+										<option selected value="<%= ((TipoActividadMiniBeanData)tipoactividades.get(i)).getCodigo()%>" >
+										
+										<%= ((TipoActividadMiniBeanData)tipoactividades.get(i)).getNombre()%>
+										
+										
+										</option>
+									<%}   %>				
 								  </select>
 								</div>
 							  </div>
 
-
+							<input type="hidden" name="cmbEncargadoCodigo" value="EMP000003"></input>
+							
 						    <div class="control-group">
 						      <label class="control-label" for="typeahead7">Encargado: </label>
 						      <div class="controls">
-						        <input type="text" class="span6 typeahead" id="cmbEncargado"  data-provide="typeahead"  name="cmbEncargado"  value="<%= actividad.getNombreEncargado()%>">
+						        <input type="text" class="span6 typeahead" id="cmbEncargado"  data-provide="typeahead"  name="cmbEncargado"  disabled value="<%= actividad.getNombreEncargado()%>">
 					          </div>
 					        </div>
 					        
@@ -256,9 +271,16 @@
 								<div class="controls">
 																						   <!-- cmbDepartamento  variable     -->	
 							 		<select  id="selectError13" data-rel="chosen" name="cmbAmbiente">
-								  	<option  selected value=""><%=actividad.getNombreAmbientes()%></option>	
+								  
 								  <%for(int i=0;i<ambientes.size();i++) if( !actividad.getNombreAmbientes().equalsIgnoreCase(((AmbienteBeanData)ambientes.get(i)).getNombre())){     %>
 										<option value="<%= ((AmbienteBeanData)ambientes.get(i)).getCodigo()%>" >
+										
+										<%= ((AmbienteBeanData)ambientes.get(i)).getNombre()%>
+										
+										
+										</option>
+									<%} else {   %>		
+										<option selected value="<%= ((AmbienteBeanData)ambientes.get(i)).getCodigo()%>" >
 										
 										<%= ((AmbienteBeanData)ambientes.get(i)).getNombre()%>
 										
@@ -285,58 +307,6 @@
 							
 							
 
-
-							  
-							  <div class="control-group">
-								<label class="control-label">Dias de la Semana:</label>
-								<div class="controls">
-								
-								  <label class="checkbox inline">
-									<input type="checkbox" id="inlineCheckbox1" value="option1">Lunes
-								  </label>
-								  
-								  
-								  <label class="checkbox inline">
-									<input  type="checkbox" id="inlineCheckbox2" value="option2">Martes
-								  </label>
-								  
-								  
-								  <label class="checkbox inline">
-									<input  type="checkbox" id="inlineCheckbox3" value="option3">Miercoles
-								  </label>
-								  
-								  <label class="checkbox inline">
-									<input  type="checkbox" id="inlineCheckbox2" value="option2">Jueves
-								  </label>
-								  
-								  
-								  <label class="checkbox inline">
-									<input   type="checkbox" id="inlineCheckbox3" value="option3">Viernes
-								  </label>
-								  
-								  
-								  <label class="checkbox inline">
-									<input type="checkbox" id="inlineCheckbox3" value="option3">Sábados
-								  </label>
-
-								  <label class="checkbox inline">
-									<input  type="checkbox" id="inlineCheckbox3" value="option3">Domingos
-								  </label>
-								  
-								  
-								  
-								</div>
-							  </div>   
-
-
-
-
-
-
-
-
-
-							
                                 <div class="control-group">
                                     <label class="control-label" for="textarea2">Descripcion:</label>
 			                          <div class="controls">
@@ -344,9 +314,6 @@
 			                          </div>
                                </div>
 					        
-					        
-   
-
 
 
 
