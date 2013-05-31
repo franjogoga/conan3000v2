@@ -75,6 +75,10 @@
         <servlet-name>SMACancha</servlet-name>
 	<servlet-class>IngSoft.administracion.cancha.SMACancha</servlet-class>
 </servlet>
+<servlet id="Servlet_0017">
+        <servlet-name>SMASocio</servlet-name>
+	<servlet-class>IngSoft.administracion.socio.SMASocio</servlet-class>
+</servlet>
 
 
 <servlet-mapping id="ServletMapping_0001">
@@ -143,6 +147,11 @@
 <servlet-mapping id="ServletMapping_0016">
         <servlet-name>SMACancha</servlet-name>
 <url-pattern>/IngSoft/administracion/cancha/SMACancha</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping id="ServletMapping_0017">
+        <servlet-name>SMACancha</servlet-name>
+<url-pattern>/IngSoft/administracion/socio/SMASocio</url-pattern>
 </servlet-mapping>
 
 <error-page>
