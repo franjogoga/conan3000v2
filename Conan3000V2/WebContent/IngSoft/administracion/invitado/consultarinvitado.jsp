@@ -124,7 +124,7 @@
 						<a href="buscarinvitado.jsp">Mantenimiento de Invitado</a> <span class="divider">/</span>
 					</li>
 					<li>
-						Consultar Invitado
+						Consultar de Invitado
 					</li>
 				</ul>
 			</div>
@@ -142,146 +142,105 @@
 						<input type="hidden" name="tipo" value="2"></input>
 						  <fieldset>
 						  
+						  
+						  
+							  
+						  
 						    <div class="control-group">
 						      <label class="control-label" for="typeahead7">Nombre: </label>
 						      <div class="controls">
-						        <input type="text" class="span6 typeahead" id="txtNombreinvitado"  data-provide="typeahead"  name="txtNombreinvitado" disabled value="<%= invitado.getNombre()%>">
+						        <input type="text" class="span6 typeahead" id="txtNombre"  data-provide="typeahead"  name="txtNombre" disabled value="<%= invitado.getNombre()%>">
 					          </div>
 					        </div>
 
-							<div class="control-group">
-						      <label class="control-label" for="typeahead7">Apellido Paterno: </label>
+ 							<div class="control-group">
+						      <label class="control-label" for="typeahead7">Apellido Paterno:</label>
 						      <div class="controls">
-						        <input type="text" class="span6 typeahead" id="txtApellidoPinvitado"  data-provide="typeahead"  name="txtApellidoPinvitado" disabled value="<%= invitado.getApellidoP()%>">
+						        <input type="text" class="span6 typeahead" id="txtApellidoP"  data-provide="typeahead"  name="txtApellidoP" disabled value="<%= invitado.getApellidoP()%>">
 					          </div>
 					        </div>
-					        
-					        <div class="control-group">
+
+ 							<div class="control-group">
 						      <label class="control-label" for="typeahead7">Apellido Materno: </label>
 						      <div class="controls">
-						        <input type="text" class="span6 typeahead" id="txtApellidoMinvitado"  data-provide="typeahead"  name="txtApellidoMinvitado" disabled value="<%= invitado.getApellidoM()%>">
-					          </div>
-					        </div>
-					        <div class="control-group">
-								<label class="control-label">Tipo de Doc.</label>
-								
-								<div class="controls">
-								
-								  <label class="radio">
-									<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
-									DNI
-								  </label>
-								  
-										 <div style="clear:both"></div> 
-								  
-								  
-								  <label class="radio">
-									<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-									Carnet de Extranjer&iacutea
-								  </label>
-								  
-								         <div style="clear:both"></div>  
-								  
-								  								  
-								  
-								</div>
-								
-							  </div>
-					        
-							 <div class="control-group">
-						      <label class="control-label" for="typeahead7">Nro de Doc.: </label>
-						      <div class="controls">
-						        <input type="text" class="span6 typeahead" id="txtNumerodoc"  data-provide="typeahead"  name="txtNumerodoc" disabled value="<%= invitado.getNumDoc()%>">
+						        <input type="text" class="span6 typeahead" id="txtApellidoM"  data-provide="typeahead"  name="txtApellidoM" disabled value="<%= invitado.getApellidoM()%>">
 					          </div>
 					        </div>
 							  
-							   <div class="control-group">
-							  <label class="control-label" for="date01">Fecha Nacimiento:</label>
+							 <div class="control-group">
+								<label class="control-label" for="selectError">Tipo de Doc.:</label>
+								<div class="controls">
+																						   <!-- cmbTipo variable     -->	
+							 		<select disabled="" id="selectError12" data-rel="chosen" name="cmbTipoDoc">
+								  	<option  selected value=""><%=invitado.getTipoDoc()%></option>							
+								  </select>
+								</div>
+							  </div>
+							
+							<div class="control-group">
+						      <label class="control-label" for="typeahead7">Nro. de Doc.: </label>
+						      <div class="controls">
+						        <input type="text" class="span6 typeahead" id="txtNumeroDoc"  data-provide="typeahead"  name="txtNumeroDoc" disabled value="<%= invitado.getNumDoc()%>">
+					          </div>
+					        </div>
+					        
+					        <div class="control-group">
+							  <label class="control-label" for="date01">Fecha Nacimiento(*):</label>
 							  <div class="controls">
-								<input type="text" class="input-xlarge datepicker" id="date01" value="<%=formatear(new Date(invitado.getFechaNac().getTime())) %>"  name="fFecNac" onchange="alt_fecha(this)" disabled>
+								<input type="text" class="input-xlarge datepicker" id="date01" value="<%=formatear(new Date(invitado.getFechaNac().getTime())) %>"  name="fFecIncio" onchange="alt_fecha(this)" disabled>
 							  </div>
 							</div>
 							
 							<div class="control-group">
 							  <label class="control-label" for="date02">Fecha Registro(*):</label>
 							  <div class="controls">
-								<input type="text" class="input-xlarge datepicker" id="date02" value="<%=formatear(new Date(invitado.getFechaReg().getTime())) %>" name="fFecReg" onchange="alt_fecha(this)" disabled>
+								<input type="text" class="input-xlarge datepicker" id="date02" value="<%=formatear(new Date(invitado.getFechaReg().getTime())) %>" name="fFecFin" onchange="alt_fecha(this)" disabled>
 							  </div>
 							</div>
-							
+
+						    <div class="control-group">
+						      <label class="control-label" for="typeahead7">Encargado: </label>
+						      <div class="controls">
+						        <input type="text" class="span6 typeahead" id="cmbEncargado"  data-provide="typeahead"  name="cmbEncargado" disabled value="<%= actividad.getNombreEncargado()%>">
+					          </div>
+					        </div>
+					        
+						    <div class="control-group">
+						      <label class="control-label" for="typeahead7">Correo: </label>
+						      <div class="controls">
+						        <input type="text" class="span6 typeahead" id="txtCorreo"  data-provide="typeahead"  name="txtCorreo" disabled value="<%= invitado.getCorreo()%>">
+					          </div>
+					        </div>
+								
 							<div class="control-group">
-						      <label class="control-label" for="typeahead7">Correo: </label>
+						      <label class="control-label" for="typeahead7">Tel&eacutefono Fijo: </label>
 						      <div class="controls">
-						        <input type="text" class="span6 typeahead" id="txtCorreo"  data-provide="typeahead"  name="txtCorreo" disabled value="<%= invitado.getCorreo()%>">
+						        <input type="text" class="span6 typeahead" id="txtTelF"  data-provide="typeahead"  name="txtTelF" disabled value="<%= invitado.getTelFijo()%>">
 					          </div>
 					        </div>
+
+							<div class="control-group">
+						      <label class="control-label" for="typeahead7">Tel&eacutefono Celular: </label>
+						      <div class="controls">
+						        <input type="text" class="span6 typeahead" id="txtTelF"  data-provide="typeahead"  name="txtTelF" disabled value="<%= invitado.getTelCel()%>">
+					          </div>
+					        </div>
+					        	  
+							
+      
 					        
-					        <div class="control-group">
-						      <label class="control-label" for="typeahead7">Correo: </label>
-						      <div class="controls">
-						        <input type="text" class="span6 typeahead" id="txtCorreo"  data-provide="typeahead"  name="txtCorreo" disabled value="<%= invitado.getCorreo()%>">
-					          </div>
-					        </div>
-					        
-							 <div class="control-group">
-								<label class="control-label" for="selectError">Provincia:</label>
-								<div class="controls">
-																						   <!-- cmbDepartamento  variable     -->	
-							 		<select disabled="" id="selectError12" data-rel="chosen" name="cmbDepartamento">
-								  	<option  selected value=""><%=sede.getProvincia()%></option>							
-								  </select>
-								</div>
-							  </div>
-
-
-							 <div class="control-group">
-								<label class="control-label" for="selectError">Distrito:</label>
-								<div class="controls">
-																						   <!-- cmbDepartamento  variable     -->	
-							 		<select disabled="" id="selectError13" data-rel="chosen" name="cmbDepartamento">
-								  	<option  selected value=""><%=sede.getDistrito()%></option>							
-								  </select>
-								</div>
-							  </div>
-
-	
-
-						    <div class="control-group">
-						      <label class="control-label" for="typeahead7">Direccion: </label>
-						      <div class="controls">
-						        <input type="text" class="span6 typeahead" id="txtNombreEvento"  data-provide="typeahead"  name="txtNombreEvento" disabled value="<%=sede.getDireccion()%>">
-					          </div>
-					        </div>
-
-
-
-						    <div class="control-group">
-						      <label class="control-label" for="typeahead7">Telefono: </label>
-						      <div class="controls">
-						        <input type="text" class="span6 typeahead" id="txtNombreEvento"  data-provide="typeahead"  name="txtNombreEvento" disabled value="<%=sede.getTelefono()%>">
-					          </div>
-					        </div>
-
-
-
-						    <div class="control-group">
-						      <label class="control-label" for="typeahead7">AreaTereno: </label>
-						      <div class="controls">
-						        <input type="text" class="span6 typeahead" id="txtNombreEvento"  data-provide="typeahead"  name="txtNombreEvento" disabled value="<%=sede.getAreaterreno()%>">
-					          </div>
-					        </div>
 					        
 						    <div class="control-group">
 						      <label class="control-label" for="typeahead7">Estado: </label>
 						      <div class="controls">
-						        <input type="text" class="span6 typeahead" id="txtNombresede"  data-provide="typeahead"  name="txtNombresede" disabled value="<%= sede.getEstado()%>">
+						        <input type="text" class="span6 typeahead" id="txtEstado"  data-provide="typeahead"  name="txtEstado" disabled value="<%= invitado.getEstado()%>">
 					          </div>
 					        </div>    
 					          
 					        
 						    <div class="form-actions" >
 							 <!--  <button type="submit" class="btn btn-primary">Agregar</button> -->
-							  <button type="button" class="btn" onclick="location.href='buscarsede.jsp'" >Regresar</button>
+							  <button type="button" class="btn" onclick="location.href='buscarinvitado.jsp'" >Regresar</button>
 							</div>
 							
 						  </fieldset>
