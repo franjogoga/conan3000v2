@@ -150,7 +150,7 @@
 </servlet-mapping>
 
 <servlet-mapping id="ServletMapping_0017">
-        <servlet-name>SMACancha</servlet-name>
+        <servlet-name>SMASocio</servlet-name>
 <url-pattern>/IngSoft/administracion/socio/SMASocio</url-pattern>
 </servlet-mapping>
 
