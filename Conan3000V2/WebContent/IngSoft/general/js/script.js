@@ -40,7 +40,7 @@ function esFloat(numero)
 function esEntero(valor){ 
  
  valor = parseInt(valor); 
- 	if (!isNaN(valor)) { 
+ 	if (isNaN(valor)) { 
        	 return true;
  	}else{ 
        	 return false; 
