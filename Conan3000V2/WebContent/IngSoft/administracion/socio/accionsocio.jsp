@@ -1,6 +1,4 @@
 <!DOCTYPE html>
-<%@page import="java.text.SimpleDateFormat"%>
-<%@page import="java.util.Calendar"%>
 <%@page import="IngSoft.administracion.bean.ResultadoSocioBeanData"%>
 <%@page import="java.util.Vector"%>
 <%@page import="java.lang.System"%>
