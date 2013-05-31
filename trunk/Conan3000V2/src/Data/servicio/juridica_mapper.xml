@@ -15,11 +15,6 @@ FROM PERSONA_JURIDICA
 
 <where>
 
-<if test = "estado != null">
-
-estado = #{estado}
-     
-</if>
 
 <if test = "ruc > 0">
 
