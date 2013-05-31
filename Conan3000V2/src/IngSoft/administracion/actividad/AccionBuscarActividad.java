@@ -43,7 +43,7 @@ public class AccionBuscarActividad extends CoAccion{
 
 			//request.setAttribute("tipoactividades", tipoactividades);
 			
-			System.out.print("---> salida ---> "+ ((ResultadoActividadBeanData)resultados.get(1)).getCodigo() );
+			
 			
 			request.setAttribute("resultados", resultados);
 			
