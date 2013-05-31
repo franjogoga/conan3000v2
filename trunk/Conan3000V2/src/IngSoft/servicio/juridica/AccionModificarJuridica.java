@@ -31,5 +31,4 @@ public class AccionModificarJuridica extends CoAccion {
 		request.setAttribute("juridica", JuridicaData);
 		this.direccionar(sc, request, response, "/IngSoft/servicio/juridica/juridicamodificar.jsp");
 	}
-
 }
