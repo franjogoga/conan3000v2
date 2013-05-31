@@ -223,8 +223,8 @@
 		            	<i class="icon icon-add icon-white"></i> Agregar </a> </div>
 		            <thead>
 		              <tr>
-		                <th>Nombre</th>
 		                <th>C&oacutedigo</th>
+		                <th>Nombre</th>
 		                <th>Estado</th>
 		                <th>Acci&oacuten</th>
 	                  </tr>
@@ -236,16 +236,18 @@
                           			for(int i=0; i<resultados.size() ;i++){
                           		%>
                           		<tr>
-                          			<td>
-                          				<%=
-                          					((ResultadoInvitadoBeanData)resultados.get(i)).getNombre()
-                          				%>
-                          			</td>
                           			<td class="center">
                           				<%=
                           					((ResultadoInvitadoBeanData)resultados.get(i)).getCodigo()
                           				%>
                           			</td>
+                          			
+                          			<td>
+                          				<%=
+                          					((ResultadoInvitadoBeanData)resultados.get(i)).getNombre()
+                          				%>
+                          			</td>
+                          			
                           			                     			                 			
                           			<td class="center">
                           			
