@@ -26,6 +26,8 @@ public class ActividadBeanData implements Serializable{
 	private String dia;
 	private String descripcion;
 	private String estado;
+	
+	
 	public String getCodigo() {
 		return codigo;
 	}
