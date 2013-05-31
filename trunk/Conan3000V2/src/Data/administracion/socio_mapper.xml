@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Data.administracion.socio">
+
+	<cache />
+		
+	<select id="searchSocio" parameterType="IngSoft.administracion.bean.CriterioSocioBeanData" resultType="IngSoft.administracion.bean.ResultadoSocioBeanData">
+		select SOCIO.IdSocio as idSocio, SOCIO.Direccion as direccion, PERSONA.Nombres as nombres, 
+			PERSONA.ApePaterno as apellidoPaterno, PERSONA.ApeMaterno as apellidoMaterno, 
+			PERSONA.TipoDocumento as tipoDocumento, PERSONA.NumeroDocumento as numeroDocumento
+		from SOCIO, PERSONA, MEMBRESIA
+		<where>
+			<if test="nombres != null ">
+		        SOCIO.IdSocio=PERSONA.IdPersona and (PERSONA.nombres  like  #{nombres})
+		    </if>
+		    <if test="apellidoPaterno != null ">
+		        AND (PERSONA.ApePaterno like #{apellidoPaterno})
+		    </if>
+		    <if test="apellidoMaterno != null ">
+		        AND (PERSONA.ApePaterno like #{apellidoPaterno})
+		    </if>
+		    <if test="direccion != null">
+		        AND SOCIO.Direccion like #{direccion}
+		    </if>
+		    <if test="tipoDocumento != null">
+		        AND PERSONA.TipoDocumento like #{tipoDocumento}
+		    </if>
+		    	AND MEMBRESIA.IdSocio=SOCIO.IdSocio and MEMBRESIA.Estado='Activo'
+		</where>
+	</select>		
+	
+</mapper>
