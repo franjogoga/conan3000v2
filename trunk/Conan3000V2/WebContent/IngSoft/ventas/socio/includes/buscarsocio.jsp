@@ -106,7 +106,7 @@
 						    </div>
 						    <div class="form-actions">
 						    <button type="submit" class="btn btn-primary">Buscar</button>
-			              <button type="submit" class="btn"><a href="buscarsocio.jsp">Cancelar</a></button>
+			              <button type="submit" class="btn" onclick="location.href='../socio/buscarsocio.jsp'">Cancelar</a></button>
 						    
 							</div>
 						  </fieldset>
@@ -122,7 +122,7 @@
 			</div><!--/span-->
 			
 			
-			<form id="frmAlternativo" name="frmAlternativo" method="POST" action="<%= response.encodeURL("SMVSocio")%>">
+			<form id="frmAlternativo" name="frmAlternativo" method="POST" action="SMVSocio">
 			  <input type="hidden" name="accion" value="AgregarMini"></input>
 			  <input type="hidden" name="codigo" value=""></input>
 			 <input type="hidden" name="tipo" value="1"></input>
