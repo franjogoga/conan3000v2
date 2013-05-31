@@ -16,16 +16,24 @@ FROM PERSONA_JURIDICA
 <where>
 
 
+
 <if test = "ruc > 0">
 
 and ruc = #{ruc}
 
 </if>
 
+
+<if test = "estado != null ">
+
+and estado = 'activo'
+
+</if>
+
 <if test = " razonSocial != null">
 
 and razonSocial like #{razonSocial}
-     
+    
 
 </if>
 
