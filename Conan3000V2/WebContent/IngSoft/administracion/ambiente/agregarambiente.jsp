@@ -91,11 +91,11 @@
                     <input type="hidden" name="accion" value="Agregar"></input>
 					<input type="hidden" name="tipo" value="2"></input>
                       <fieldset>
-                        <div class="control-group" id="dvNombre">
+                        <div class="control-group" id="dvNombreAmbiente">
                           <label class="control-label" for="typeahead">Nombre (*):</label>
                           <div class="controls">
                             <input type="text" class="span6 typeahead" id="txtNombreAmbiente"  data-provide="typeahead" name="txtNombreAmbiente">
-                          	<span class="help-inline" id="errNombre">Please correct the error</span>
+                          	<span class="help-inline" id="errNombreAmbiente">Please correct the error</span>
                           </div>
                         </div>
                         <div class="control-group">
@@ -287,7 +287,7 @@ function validaForm(){
         var cadena= new Array();
         var i=0;
         var error=false;
-        if(!esValido("Nombre",form.txtNombre,"Nombre",1,1,50)){cadena[i]="Nombre";i++;}
+        if(!esValido("Nombre",form.txtNombreAmbiente,"NombreAmbiente",1,1,50)){cadena[i]="Nombre";i++;}
        
         //No tocar
         if(i>0){
@@ -299,7 +299,7 @@ function validaForm(){
 } 
  
 function inicializa(){
-        document.getElementById("errNombre").style.display='none';    
+        document.getElementById("errNombreAmbiente").style.display='none';    
 } 
  
 inicializa();
