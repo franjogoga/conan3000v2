@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Data.administracion.invitado">
+
+  <cache />
+  
+  
+ 
+<select id="searchPlantillaInvitado" parameterType="IngSoft.administracion.bean.CriterioInvitadoBeanData" resultType="IngSoft.administracion.bean.ResultadoInvitadoBeanData">
+select 
+INVITADO.IdInvitado as codigo
+,PERSONA.NOMBRES as nombre
+,INVITADO.ESTADO as estado
+from PERSONA  , INVITADO
+where
+        PERSONA.Nombres LIKE #{nombre}
+        AND INVITADO.IdInvitado= #{codigo}
+        AND INVITADO.IdInvitado = PERSONA.IdPersona
+        AND MEMBRESIA.Estado= #{estado}
+        
+order by 1 asc    
+
+</select>
+
+<!--  
+<select id="getPLantillaSede" parameterType="java.lang.String"  resultType="IngSoft.administracion.bean.SedeBeanData">
+select 
+SEDE.IdSede as codigo
+,SEDE.NOMBRE as nombre
+,SEDE.DIRECCION as direccion
+,SEDE.TELEFONO as telefono
+,SEDE.AREATERRENO as areaterreno
+,SEDE.ESTADO as estado
+,DEPARTAMENTO.NOMBRE as departamento
+,PROVINCIA.NOMBRE as provincia
+,DISTRITO.NOMBRE as distrito
+from DEPARTAMENTO  , PROVINCIA  , DISTRITO  , SEDE 
+WHERE
+        SEDE.IdSede = #{codigo}
+        AND  DEPARTAMENTO.IdDepartamento = PROVINCIA.IdDepartamento 
+        AND  PROVINCIA.IdProvincia = DISTRITO.IdProvincia 
+        AND  DISTRITO.IdDistrito = SEDE.IdDistrito
+
+order by 1 asc
+</select>
+
+
+
+-->
+
+
+<!-- fin departamento,provincia y distrito -->
+
+</mapper>
