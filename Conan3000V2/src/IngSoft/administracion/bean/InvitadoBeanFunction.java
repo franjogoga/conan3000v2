@@ -14,16 +14,17 @@ import IngSoft.general.CoException;
 import IngSoft.general.MyBatisSesion;
 
 public class InvitadoBeanFunction {
+	private Lock l= new ReentrantLock(); 
 	static private InvitadoBeanFunction invitadoFunction= null;
 	
 	
 	public static InvitadoBeanFunction getInstance(){
 		
 		if (invitadoFunction==null)   
-				{
+		
 			      invitadoFunction = new  InvitadoBeanFunction();
 			     
-				}
+	
 		
 		return invitadoFunction;
 	}
