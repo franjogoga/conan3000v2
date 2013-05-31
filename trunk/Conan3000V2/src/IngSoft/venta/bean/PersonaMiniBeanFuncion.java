@@ -32,7 +32,7 @@ public class PersonaMiniBeanFuncion {
 		personaData.setApellidoMaterno(request.getParameter("txtApellidoMaterno"));
 		personaData.setApellidoPaterno(request.getParameter("txtApellidoPaterno"));
 		personaData.setNumeroDocumento(Long.parseLong(request.getParameter("txtNumeroDocumento")));
-		
+	
 		if (request.getParameter("rButton")!=null){
 			String tipoDocumento;
 			tipoDocumento=request.getParameter("rButton");
@@ -93,7 +93,7 @@ public class PersonaMiniBeanFuncion {
 		catch(Exception a)		
 		{sqlsesion.rollback();
 		a.printStackTrace();
-			throw CoException.set("Error: No se pudo modificar la plantilla intente de nuevo", "SMVSocio?accion=Modificar&tipo=1");
+			//throw CoException.set("Error: No se pudo modificar la plantilla intente de nuevo", "SMVSocio?accion=Modificar&tipo=1");
 			
 		}
 		
