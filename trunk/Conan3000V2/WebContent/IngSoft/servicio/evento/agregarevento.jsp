@@ -62,31 +62,65 @@
 	<script>
 		function validar(){
 			var test=true;
+			$('#cmbTipo').parent().parent().addClass("success");
+			$('#fFecIncio').parent().parent().addClass("success");
+			$('#fFecFin').parent().parent().addClass("success");
 			if($('#cmbAmbientes').val()==null|| $('#cmbAmbientes').val().length<=0){
 				$('#cmbAmbientes').bind("change",function(){
-				alert(this.className);
+				var temp= $('#cmbAmbientes');
+				if(temp.val()!=null && temp.val().length>0) {
+				temp.parent().parent().removeClass("error");
+				temp.parent().parent().addClass("success");
+				$('#errAmbientes').slideUp(1000);
+				}
+				else {
+				temp.parent().parent().removeClass("success");
+				temp.parent().parent().addClass("error");
+				$('#errAmbientes').slideDown(1000);
+				}
+				
 				})
+				$('#errAmbientes').slideDown(1000);
 				test=false;
-				$('#cmbAmbientes').parent().parent().toggleClass("error");
+				$('#errAmbientes').parent().parent().toggleClass("error");
 				
 			};						
-			if($('#cmbSedes').val()==null||$('#cmbSedes').val().length<=0)test=false;
+			if($('#cmbSedes').val()==null||$('#cmbSedes').val().length<=0){
+				$('#cmbSedes').bind("change",function(){
+				var temp= $('#cmbSedes');
+				if(temp.val()!=null && temp.val().length>0) {
+				temp.parent().parent().removeClass("error");
+				temp.parent().parent().addClass("success");
+				$('#errSedes').slideUp(1000);
+				}
+				else {
+				temp.parent().parent().removeClass("success");
+				temp.parent().parent().addClass("error");
+				$('#errSedes').slideDown(1000);
+				}
+				
+				})
+				$('#errSedes').slideDown(1000);
+				test=false;
+				$('#cmbSedes').parent().parent().toggleClass("error");
+			};
+			
 			if($('#txtNombreEvento').val()==null || $('#txtNombreEvento').val().length<=0){
 				$('#txtNombreEvento').bind("change",function(){
 				var temp= $('#txtNombreEvento');
 				if(temp.val()!=null && temp.val().length>0) {
 				temp.parent().parent().removeClass("error");
 				temp.parent().parent().addClass("success");
-				$('#errNombreEvento').slideUp(2000);
+				$('#errNombreEvento').slideUp(1000);
 				}
 				else {
 				temp.parent().parent().removeClass("success");
 				temp.parent().parent().addClass("error");
-				$('#errNombreEvento').slideDown(2000);
+				$('#errNombreEvento').slideDown(1000);
 				}
 				
 				})
-				$('#errNombreEvento').slideDown(2000);
+				$('#errNombreEvento').slideDown(1000);
 				test=false;
 				$('#txtNombreEvento').parent().parent().toggleClass("error");
 			};
@@ -155,7 +189,7 @@
 						      <label class="control-label" for="typeahead7">Nombre de evento(*): </label>
 						      <div class="controls">
 						        <input type="text" class="span6 typeahead" id="txtNombreEvento"  data-provide="typeahead"  id="txtNombreEvento" name="txtNombreEvento" onkeypress="return alfanumerico(event);" autofocus maxlength="50"/>
-								<span class="help-inline" id="errNombreEvento" style="visibility: ">Este campo no puede estar vacio</span>						        													       
+								<span class="help-inline" id="errNombreEvento" style="display:none;">Este campo no puede estar vacio</span>						        													       
 					          </div>
 					        </div>
 						    
@@ -175,9 +209,9 @@
 								  <select  multiple data-rel="chosen" id="cmbSedes" name="cmbSedes" >
 									<%for(int i=0;i<sedes.size();i++){ %>
 										<option value="<%= ((SedeMiniBeanData)sedes.get(i)).getCodigo()%>"><%= ((SedeMiniBeanData)sedes.get(i)).getNombre()%></option>
-									<%} %>																
-									<span class="help-inline" id="errSedes" style="display:none;">Este campo no puede estar vacio</span>
+									<%} %>																									
 								  </select>
+								  <span class="help-inline" id="errSedes" style="display:none;">Este campo no puede estar vacio</span>
 								</div>
 							  </div>
 							   <div class="control-group">
@@ -186,9 +220,9 @@
 								  <select  multiple data-rel="chosen" id="cmbAmbientes" name="cmbAmbientes">
 									<%for(int i=0;i<ambientes.size();i++){ %>
 										<option value="<%= ((AmbienteMiniBeanData)ambientes.get(i)).getCodigo()%>"><%= ((AmbienteMiniBeanData)ambientes.get(i)).getNombre()%></option>
-									<%} %>
-									<span class="help-inline" id="errAmbientes" style="display:none;">Este campo no puede estar vacio, por favor haga una seleccion</span>										
+									<%} %>																			
 								  </select>
+								  <span class="help-inline" id="errAmbientes" style="display:none;">Este campo no puede estar vacio, por favor haga una seleccion</span>
 								</div>
 							  </div>
 							  <div class="control-group">
