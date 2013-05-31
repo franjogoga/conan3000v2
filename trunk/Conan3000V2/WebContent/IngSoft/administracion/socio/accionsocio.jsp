@@ -200,7 +200,7 @@
 											<a class="btn btn-success" href="javascript:alt_vitalizar('<%=((ResultadoSocioBeanData)resultados.get(i)).getIdSocio()%>')">
 												<i class="icon-zoom-in icon-white"></i> Vitalizar 
 											</a>											
-											<a class="btn btn-danger" href="javascript:alt_eliminar('<%=((ResultadoSocioBeanData)resultados.get(i)).getIdSocio()%>')">
+											<a class="btn btn-danger" href="#">
 												<i class="icon-trash icon-white"></i> Suspender
 											</a>
 										</td>
