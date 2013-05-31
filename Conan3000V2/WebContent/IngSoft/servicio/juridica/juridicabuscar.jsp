@@ -163,8 +163,7 @@
 		                <label class="control-label" for="typeahead">Raz&oacute;n Social:</label>
 		                <div class="controls">
 		                  <input type="text" class="span6 typeahead" id="txtRazonSocial" value="" name="txtRazonSocial"onkeypress="return alfanumerico(event);" autofocus>
-                          <p class="help-block">Escriba sobre la casilla la raz&oacute;n social para ser autocompletado</p>
-		                </div>
+                         </div>
 					</div>
 							
 					   <div class="control-group">
@@ -226,7 +225,7 @@
 										<td class="center"><%=((PersonaJuridicaBeanData) resultados.get(i))
 						.getCodigo()%></td>
 
-										<td class="center"><span class="label label-success">
+										<td class="center">
 
 												<%=((PersonaJuridicaBeanData)resultados.get(i)).getRuc()%>
 										</span></td>
