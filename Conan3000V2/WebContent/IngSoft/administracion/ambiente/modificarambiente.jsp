@@ -3,16 +3,7 @@
 <%@page import="IngSoft.administracion.bean.SedeMiniBeanData"%>
 <html lang="en">
 <head>
-	<!--
-		Charisma v1.0.0
 
-		Copyright 2012 Muhammad Usman
-		Licensed under the Apache License v2.0
-		http://www.apache.org/licenses/LICENSE-2.0
-
-		http://usman.it
-		http://twitter.com/halalit_usman
-	-->
 	<meta charset="utf-8">
 	<title>Modificar Ambiente</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -123,7 +114,7 @@
               <div class="row-fluid sortable">
                 <div class="box span12">
                   <div class="box-header well" data-original-title>
-                    <h2></i>MODIFICAR AMBIENTE</h2>
+                    <h2>MODIFICAR AMBIENTE</h2>
                   </div>
                   <div class="box-content">
                     <form class="form-horizontal" action="<%= response.encodeURL("SMAAmbiente")%>" name="frmUpdate" method="post">

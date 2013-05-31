@@ -180,7 +180,7 @@
                           <tbody id="resultadoBusqueda">
                           	<% for(int i=0; i<resultados.size(); i++) { %>
                             <tr>
-                              <td><%=((ResultadoAmbienteBeanData)resultados.get(i)).getNombre()%></td>
+                              <td class="center"><%=((ResultadoAmbienteBeanData)resultados.get(i)).getNombre()%></td>
                               <td class="center"><%=((ResultadoAmbienteBeanData)resultados.get(i)).getNombreTipoAmbiente()%></td>
                               <td class="center"><%=((ResultadoAmbienteBeanData)resultados.get(i)).getNombreSede()%></td>
                               <td class="center"><%=((ResultadoAmbienteBeanData)resultados.get(i)).getEstado()%></td>
