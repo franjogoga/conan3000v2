@@ -2,8 +2,9 @@
 <%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="IngSoft.administracion.bean.ActividadBeanData"%>
-
-
+<%@page import="IngSoft.administracion.bean.SedeBeanData"%>
+<%@page import="IngSoft.administracion.bean.AmbienteBeanData"%>
+<%@page import="IngSoft.administracion.bean.TipoActividadMiniBeanData"%>
 <html lang="en">
 <head>
 	<!--
@@ -23,7 +24,9 @@
 	<meta name="author" content="Muhammad Usman">
 	<!--The beans  -->
 	<jsp:useBean id="actividad" scope="request"class="IngSoft.administracion.bean.ActividadBeanData"></jsp:useBean>
-
+	<jsp:useBean id="sedes"           scope="request"class="java.util.Vector"></jsp:useBean>
+	<jsp:useBean id="ambientes"       scope="request"class="java.util.Vector"></jsp:useBean>
+	<jsp:useBean id="tipoactividades"  scope="request"class="java.util.Vector"></jsp:useBean>
 	
 	<!-- The styles -->
 	<link id="bs-css" href="css/bootstrap-cerulean.css" rel="stylesheet">
@@ -143,16 +146,34 @@
 						  <fieldset>
 						  
 						  
-						  
+ 
+							  
+							  
 							 <div class="control-group">
 								<label class="control-label" for="selectError">Sede:</label>
 								<div class="controls">
-																						   <!-- cmbDepartamento  variable     -->	
-							 		<select disabled="" id="selectError11" data-rel="chosen" name="cmbSede">
-								  	<option  selected value=""><%=actividad.getNombreSede()%></option>							
+																						  
+							 	<select  disabled=""  id="selectError11" data-rel="chosen" name="cmbSede">
+								  
+								  <%for(int i=0;i<sedes.size();i++) if( !actividad.getNombreSede().equalsIgnoreCase(((SedeBeanData)sedes.get(i)).getCodigo()  )){     %>
+										<option value="<%= ((SedeBeanData)sedes.get(i)).getCodigo()%>" >
+										
+										<%= ((SedeBeanData)sedes.get(i)).getNombre()%>
+										
+										
+										</option>
+									<%} else {   %>			
+										<option selected value="<%= ((SedeBeanData)sedes.get(i)).getCodigo()%>" >
+										
+										<%= ((SedeBeanData)sedes.get(i)).getNombre()%>
+										
+										
+										</option>
+									<%}   %>				
 								  </select>
 								</div>
-							  </div>	  
+							  </div>
+							   
 						  
 						    <div class="control-group">
 						      <label class="control-label" for="typeahead7">Nombre: </label>
@@ -165,28 +186,50 @@
 
 
 							  
+
+
+
+
 							 <div class="control-group">
 								<label class="control-label" for="selectError">Tipo Actividad:</label>
 								<div class="controls">
 																						   <!-- cmbTipoactividad  variable     -->	
-							 		<select disabled="" id="selectError12" data-rel="chosen" name="cmbTipoactividad">
-								  	<option  selected value=""><%=actividad.getNombreTipoactividad()%></option>							
+							 		<select disabled=""  id="selectError12" data-rel="chosen" name="cmbTipoactividad">
+								  
+								  <%for(int i=0;i<tipoactividades.size();i++) if( !actividad.getNombreTipoactividad().equalsIgnoreCase(((TipoActividadMiniBeanData)tipoactividades.get(i)).getCodigo())){     %>
+										<option value="<%= ((TipoActividadMiniBeanData)tipoactividades.get(i)).getCodigo()%>" >
+										
+										<%= ((TipoActividadMiniBeanData)tipoactividades.get(i)).getNombre()%>
+										
+										
+										</option>
+									<%} else {   %>		
+										<option selected value="<%= ((TipoActividadMiniBeanData)tipoactividades.get(i)).getCodigo()%>" >
+										
+										<%= ((TipoActividadMiniBeanData)tipoactividades.get(i)).getNombre()%>
+										
+										
+										</option>
+									<%}   %>				
 								  </select>
 								</div>
 							  </div>
 
 
+
+
+
 						    <div class="control-group">
 						      <label class="control-label" for="typeahead7">Encargado: </label>
 						      <div class="controls">
-						        <input type="text" class="span6 typeahead" id="cmbEncargado"  data-provide="typeahead"  name="cmbEncargado" disabled value="<%= actividad.getNombreEncargado()%>">
+						        <input type="text" class="span6 typeahead" id="cmbEncargado"  data-provide="typeahead"  name="cmbEncargado" disabled value="Ronald">
 					          </div>
 					        </div>
 					        
 						    <div class="control-group">
 						      <label class="control-label" for="typeahead7">Puesto: </label>
 						      <div class="controls">
-						        <input type="text" class="span6 typeahead" id="txtPuesto"  data-provide="typeahead"  name="txtPuesto" disabled value="<%= actividad.getPuesto()%>">
+						        <input type="text" class="span6 typeahead" id="txtPuesto"  data-provide="typeahead"  name="txtPuesto" disabled value="PROFESOR NATACION">
 					          </div>
 					        </div>
 
@@ -196,8 +239,23 @@
 								<label class="control-label" for="selectError">Ambiente:</label>
 								<div class="controls">
 																						   <!-- cmbDepartamento  variable     -->	
-							 		<select disabled="" id="selectError13" data-rel="chosen" name="cmbAmbiente">
-								  	<option  selected value=""><%=actividad.getNombreAmbientes()%></option>							
+							 		<select disabled=""  id="selectError13" data-rel="chosen" name="cmbAmbiente">
+								  
+								  <%for(int i=0;i<ambientes.size();i++) if( !actividad.getNombreAmbientes().equalsIgnoreCase(((AmbienteBeanData)ambientes.get(i)).getCodigo())){     %>
+										<option value="<%= ((AmbienteBeanData)ambientes.get(i)).getCodigo()%>" >
+										
+										<%= ((AmbienteBeanData)ambientes.get(i)).getNombre()%>
+										
+										
+										</option>
+									<%} else {   %>		
+										<option selected value="<%= ((AmbienteBeanData)ambientes.get(i)).getCodigo()%>" >
+										
+										<%= ((AmbienteBeanData)ambientes.get(i)).getNombre()%>
+										
+										
+										</option>
+									<%}    %>							
 								  </select>
 								</div>
 							  </div>
@@ -222,7 +280,7 @@
                                 <div class="control-group">
                                     <label class="control-label" for="textarea2">Descripcion:</label>
 			                          <div class="controls">
-			                            <textarea name="textarea" rows="3" id="textarea2" style="resize:none"></textarea>
+			                            <textarea  disabled="" name="textarea" rows="3" id="textarea2" style="resize:none"></textarea>
 			                          </div>
                                </div>
 					        

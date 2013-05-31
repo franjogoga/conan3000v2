@@ -187,7 +187,7 @@
 																						  
 							 	<select  id="selectError11" data-rel="chosen" name="cmbSede">
 								  
-								  <%for(int i=0;i<sedes.size();i++) if( !actividad.getNombreSede().equalsIgnoreCase(((SedeBeanData)sedes.get(i)).getNombre())){     %>
+								  <%for(int i=0;i<sedes.size();i++) if( !actividad.getNombreSede().equalsIgnoreCase(((SedeBeanData)sedes.get(i)).getCodigo())){     %>
 										<option value="<%= ((SedeBeanData)sedes.get(i)).getCodigo()%>" >
 										
 										<%= ((SedeBeanData)sedes.get(i)).getNombre()%>
@@ -215,7 +215,7 @@
 						    <div class="control-group">
 						      <label class="control-label" for="typeahead7">Nombre: </label>
 						      <div class="controls">
-						        <input type="text" class="span6 typeahead" id="txtNombre"  data-provide="typeahead"  name="txtNombre"  value="<%= actividad.getNombre()%>">
+						        <input type="text" class="span6 typeahead" id="txtNombre"  data-provide="typeahead"  name="txtNombre"  value="<%= actividad.getNombre()()%>">
 					          </div>
 					        </div>
 
@@ -229,7 +229,7 @@
 																						   <!-- cmbTipoactividad  variable     -->	
 							 		<select id="selectError12" data-rel="chosen" name="cmbTipoactividad">
 								  
-								  <%for(int i=0;i<tipoactividades.size();i++) if( !actividad.getNombreTipoactividad().equalsIgnoreCase(((TipoActividadMiniBeanData)tipoactividades.get(i)).getNombre())){     %>
+								  <%for(int i=0;i<tipoactividades.size();i++) if( !actividad.getNombreTipoactividad().equalsIgnoreCase(((TipoActividadMiniBeanData)tipoactividades.get(i)).getCodigo())){     %>
 										<option value="<%= ((TipoActividadMiniBeanData)tipoactividades.get(i)).getCodigo()%>" >
 										
 										<%= ((TipoActividadMiniBeanData)tipoactividades.get(i)).getNombre()%>
@@ -253,14 +253,14 @@
 						    <div class="control-group">
 						      <label class="control-label" for="typeahead7">Encargado: </label>
 						      <div class="controls">
-						        <input type="text" class="span6 typeahead" id="cmbEncargado"  data-provide="typeahead"  name="cmbEncargado"  disabled value="<%= actividad.getNombreEncargado()%>">
+						        <input type="text" class="span6 typeahead" id="cmbEncargado"  data-provide="typeahead"  name="cmbEncargado"  disabled value="Ronald">
 					          </div>
 					        </div>
 					        
 						    <div class="control-group">
 						      <label class="control-label" for="typeahead7">Puesto: </label>
 						      <div class="controls">
-						        <input type="text" class="span6 typeahead" id="txtPuesto"  data-provide="typeahead"  name="txtPuesto" disabled value="<%= actividad.getPuesto()%>">
+						        <input type="text" class="span6 typeahead" id="txtPuesto"  data-provide="typeahead"  name="txtPuesto" disabled value="PROFESOR NATACION">
 					          </div>
 					        </div>
 
@@ -272,7 +272,7 @@
 																						   <!-- cmbDepartamento  variable     -->	
 							 		<select  id="selectError13" data-rel="chosen" name="cmbAmbiente">
 								  
-								  <%for(int i=0;i<ambientes.size();i++) if( !actividad.getNombreAmbientes().equalsIgnoreCase(((AmbienteBeanData)ambientes.get(i)).getNombre())){     %>
+								  <%for(int i=0;i<ambientes.size();i++) if( !actividad.getNombreAmbientes().equalsIgnoreCase(((AmbienteBeanData)ambientes.get(i)).getCodigo())){     %>
 										<option value="<%= ((AmbienteBeanData)ambientes.get(i)).getCodigo()%>" >
 										
 										<%= ((AmbienteBeanData)ambientes.get(i)).getNombre()%>

@@ -225,7 +225,7 @@
 							  <tr>
 								    <th>Nombre</th>
 							        <th>Tipo actividad</th>
-							       	        							      							        
+							       	 <th>Estado</th>       							      							        
 							        <th>Accion</th>
 							
 							  </tr>
@@ -247,8 +247,26 @@
                           				%>
                           			</td>
 
+                          			<td class="center">
                           			
-
+	                          			
+								           <%
+									 
+												  if( ((ResultadoActividadBeanData)resultados.get(i)).getEstado().equalsIgnoreCase("disponible") ){    
+								 out.print(" <span class='label label-success'> " + ((ResultadoActividadBeanData)resultados.get(i)).getEstado()   +"   </span>       ");
+												  }
+												  else { 
+								 out.print(" <span class='label label-warning'> " + ((ResultadoActividadBeanData)resultados.get(i)).getEstado()   +"   </span>       ");
+													
+												  }
+									  
+									   
+									 
+		                          					            
+	                          				%>
+	                          			
+                          			
+                          			</td>
 
                           			<td class="center">
                           				<a class="btn btn-success"
