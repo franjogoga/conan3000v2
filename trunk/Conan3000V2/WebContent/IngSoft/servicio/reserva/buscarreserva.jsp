@@ -191,7 +191,7 @@ function ajax_confirmaSocio(){
 
 function ajax_crearReserva(){
 //alert("accion=Buscar"+"&tipo=" + tipo + "&fecIni=" + $(fecIni).val()+"&cmbServicios"+$('#cmbServicios').val());
-if(lock4==0){
+if(lock4==1){
 	lock4=0;
 	$.ajax({
 		  type: "POST",
@@ -207,6 +207,7 @@ if(lock4==0){
 		  dataType: "text",		  
 		  success: function(msg){
 		  	lock4=1;
+		  	$("#resultadoBusqueda").html("");
 			alert("Operacion realizada sin problemas")},
 		  error: function(objeto, quepaso, otroobj){
 		  	lock4=1;
