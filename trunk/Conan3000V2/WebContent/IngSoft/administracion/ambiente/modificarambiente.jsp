@@ -50,19 +50,9 @@
 	<!-- The fav icon -->
 	<link rel="shortcut icon" href="img/favicon.ico">
 	<script>	
-		
-	function validar(form){
-			if(form.txtNombreAmbiente.value.length <=0)return false;
-			if(form.cmbTipo.value.length<=0)return false;
-			if(form.cmbSede.value.lengtht<=0)return false;
-			if(form.txtDescripcion.value.length<=0)return false;
-	return true;
-	}
-
 	function alt_submit(){
 		var form= document.frmUpdate;
-		if(validar(form)) form.submit();
-		else alert("Uno o más campos estan vacíos");
+		if(validaForm()) form.submit();
 	}
 	</script>
 		<%! public boolean  encontrar(String a, String b){		
@@ -122,14 +112,14 @@
                       <input type="hidden" name="accion" value="Modificar"></input>
 					  <input type="hidden" name="tipo" value="2"></input>
                       <fieldset>
-                        <div class="control-group" id="dvNombre">
+                        <div class="control-group" id="dvNombreAmbiente">
                           <label class="control-label" for="typeahead">Nombre (*):</label>
                           <div class="controls">
                             <input type="text" class="span6 typeahead" id="txtNombreAmbiente"  name="txtNombreAmbiente" data-provide="typeahead" value="<%=ambiente.getNombre()%>">
-                          	<span class="help-inline" id="errNombre">Please correct the error</span>
+                          	<span class="help-inline" id="errNombreAmbiente">Please correct the error</span>
                           </div>
                         </div>
-                        <div class="control-group" id="dvTipoAmbiente">
+                        <div class="control-group">
                           <label class="control-label" for="selectError">Tipo (*):</label>
                           <div class="controls">
                             <select name="cmbTipo" id="cmbTipo" data-rel="chosen">
@@ -137,10 +127,9 @@
 										<option value="<%=((TipoAmbienteMiniBeanData)tiposAmbiente.get(i)).getCodigo()%>" <%=encontrar(((TipoAmbienteMiniBeanData)tiposAmbiente.get(i)).getCodigo(), ambiente.getIdTipoAmbiente())?"selected":""%>><%= ((TipoAmbienteMiniBeanData)tiposAmbiente.get(i)).getNombre()%></option>
 								<%} %>
                             </select>
-                            <span class="help-inline" id="errTipoAmbiente">Please correct the error</span>
                           </div>
                         </div>
-                        <div class="control-group" id="dvSede">
+                        <div class="control-group">
                           <label class="control-label" for="selectError">Sede (*):</label>
                           <div class="controls">
                             <select name="cmbSede" id="cmbSede" data-rel="chosen">
@@ -148,7 +137,6 @@
 									<option value="<%=((SedeMiniBeanData)sedes.get(i)).getCodigo()%>" <%=encontrar(((SedeMiniBeanData)sedes.get(i)).getCodigo(),ambiente.getIdSede())?"selected":""%>><%= ((SedeMiniBeanData)sedes.get(i)).getNombre()%></option>
 								<%} %>
                             </select>
-                            <span class="help-inline" id="errSede">Please correct the error</span>
                           </div>
                         </div>
                         <div class="control-group">
@@ -334,7 +322,7 @@ function validaForm(){
         var cadena= new Array();
         var i=0;
         var error=false;
-        if(!esValido("Nombre",form.txtNombre,"Nombre",1,1,50)){cadena[i]="Nombre";i++;}
+        if(!esValido("Nombre",form.txtNombreAmbiente,"NombreAmbiente",1,1,50)){cadena[i]="Nombre";i++;}
        
         //No tocar
         if(i>0){
@@ -346,7 +334,7 @@ function validaForm(){
 } 
  
 function inicializa(){
-        document.getElementById("errNombre").style.display='none';    
+        document.getElementById("errNombreAmbiente").style.display='none';    
 } 
  
 inicializa();
