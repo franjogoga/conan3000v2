@@ -74,9 +74,9 @@ from PROVEEDOR
 </where>
 </select>
  
- 
+ <!-- 
  <select id="getPlantillaProveedor" parameterType="java.lang.String"  resultType="IngSoft.venta.bean.ProveedorBeanData">
-select 
+select   
 IdProveedor as codigo
 ,RazonSocial as razon
 ,Ruc as ruc
@@ -85,10 +85,10 @@ IdProveedor as codigo
 ,Correo as correo
 ,NombresContacto as nombre
 from PROVEEDOR  where IdProveedor=#{codigo}; 
-
-
-</select>
- 
+</select> 
+   -->
+  
+  
   <!-- Modificar elemento -->
 <update id="updateProveedor" parameterType="IngSoft.venta.bean.ProveedorBeanData">
 update PROVEEDOR set IdProveedor=#{codigo}
