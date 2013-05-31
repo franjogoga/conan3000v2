@@ -24,32 +24,6 @@ order by 1 asc
 
 </select>
 
-<!--  
-<select id="getPLantillaSede" parameterType="java.lang.String"  resultType="IngSoft.administracion.bean.SedeBeanData">
-select 
-SEDE.IdSede as codigo
-,SEDE.NOMBRE as nombre
-,SEDE.DIRECCION as direccion
-,SEDE.TELEFONO as telefono
-,SEDE.AREATERRENO as areaterreno
-,SEDE.ESTADO as estado
-,DEPARTAMENTO.NOMBRE as departamento
-,PROVINCIA.NOMBRE as provincia
-,DISTRITO.NOMBRE as distrito
-from DEPARTAMENTO  , PROVINCIA  , DISTRITO  , SEDE 
-WHERE
-        SEDE.IdSede = #{codigo}
-        AND  DEPARTAMENTO.IdDepartamento = PROVINCIA.IdDepartamento 
-        AND  PROVINCIA.IdProvincia = DISTRITO.IdProvincia 
-        AND  DISTRITO.IdDistrito = SEDE.IdDistrito
-
-order by 1 asc
-</select>
-
-
-
--->
-
 
 <!-- fin departamento,provincia y distrito -->
 
