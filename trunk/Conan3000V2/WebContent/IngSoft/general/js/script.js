@@ -40,7 +40,7 @@ function esFloat(numero)
 function esEntero(valor){ 
  
  valor = parseInt(valor); 
- 	if (isNaN(valor)) { 
+ 	if (!isNaN(valor)) { 
        	 return true;
  	}else{ 
        	 return false; 
@@ -295,7 +295,7 @@ function esValido(nombre, casilla, id, tipoValidacion, minimo,maximo){
 			break;
 		case 9:
 			status=esValidoCorreo(casilla.value);
-			mensaje="Error al comparar fechas. La Fecha Final debe ser como minimo igual a la Fecha Inicial";
+			mensaje="Correo Electronico Invalido";
 	}
 	
 	if(!status){
