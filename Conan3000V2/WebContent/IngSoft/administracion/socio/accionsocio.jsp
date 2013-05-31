@@ -187,8 +187,7 @@
 										<td><%=((ResultadoSocioBeanData)resultados.get(i)).getApellidoPaterno()%></td>
 										<td><%=((ResultadoSocioBeanData)resultados.get(i)).getApellidoMaterno()%></td>
 										<td><%=((ResultadoSocioBeanData)resultados.get(i)).getTipoDocumento()%></td>
-										<td><%=((ResultadoSocioBeanData)resultados.get(i)).getNumeroDocumento()%></td>
-										<td class="center"><%=((ResultadoSocioBeanData)resultados.get(i)).getDescripcion()%></td>
+										<td><%=((ResultadoSocioBeanData)resultados.get(i)).getNumeroDocumento()%></td>										
 										<td class="center">
 											<a class="btn btn-success" href="javascript:alt_vitalizar('<%=((ResultadoSocioBeanData)resultados.get(i)).getIdSocio()%>')">
 												<i class="icon-zoom-in icon-white"></i> Vitalizar 
