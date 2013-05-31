@@ -3,7 +3,6 @@
 <%@page import="IngSoft.administracion.bean.SedeMiniBeanData"%>
 <html lang="en">
 <head>
-
 	<meta charset="utf-8">
 	<title>Agregar Ambiente</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -94,7 +93,7 @@
               <div class="row-fluid sortable">
                 <div class="box span12">
                   <div class="box-header well" data-original-title>
-                    <h2></i>AGREGAR AMBIENTE</h2>
+                    <h2>AGREGAR AMBIENTE</h2>
                   </div>
                   <div class="box-content">
                     <form class="form-horizontal" action="<%= response.encodeURL("SMAAmbiente")%>" name="frmData" method="post">
@@ -120,7 +119,7 @@
                         <div class="control-group">
                           <label class="control-label" for="selectError">Sede (*):</label>
                           <div class="controls">
-                            <select id="cmbSede" data-rel="chosen" name="cmbSede" >
+                            <select id="cmbSede" data-rel="chosen" name="cmbSede">
 								<%for(int i=0;i<sedes.size();i++){ %>
 										<option value="<%= ((SedeMiniBeanData)sedes.get(i)).getCodigo()%>"><%= ((SedeMiniBeanData)sedes.get(i)).getNombre()%></option>
 								<%} %>
