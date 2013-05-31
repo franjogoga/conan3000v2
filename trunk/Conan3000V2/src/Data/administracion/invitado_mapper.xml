@@ -19,6 +19,71 @@ order by 1 asc
 
 </select>
 
+<select id="getPLantillaInvitado" parameterType="java.lang.String"  resultType="IngSoft.administracion.bean.InvitadoBeanData">
+
+
+
+
+
+SELECT 
+inf245g2.INVITADO.IdInvitado AS codigo,
+inf245g2.PERSONA.nombres AS nombre,
+inf245g2.TIPO_ACTIVIDAD.nombre as nombreTipoactividad,
+inf245g2.PERSONA.Nombres as nombreEncargado,
+inf245g2.EMPLEADO.Puesto as puesto,
+inf245g2.AMBIENTE.Nombre as nombreAmbientes,
+inf245g2.ACTIVIDAD.FechaInicio AS fechaInicio,
+inf245g2.ACTIVIDAD.FechaFin AS fechaFin,
+inf245g2.ACTIVIDAD.Descripcion AS descripcion,
+inf245g2.ACTIVIDAD.Estado AS estado
+FROM
+inf245g2.TIPO_ACTIVIDAD , inf245g2.ACTIVIDAD ,  inf245g2.AMBIENTE ,   
+inf245g2.SEDE ,            inf245g2.EMPLEADO ,   inf245g2.PERSONA 
+
+
+WHERE
+    inf245g2.ACTIVIDAD.IdActividad    = #{codigo}
+AND inf245g2.ACTIVIDAD.IdSede    = inf245g2.AMBIENTE.IdSede 
+AND inf245g2.AMBIENTE.IdSede     = inf245g2.SEDE.IdSede 
+AND inf245g2.SEDE.IdSede         = inf245g2.EMPLEADO.IdSede 
+AND inf245g2.EMPLEADO.IdEmpleado = inf245g2.PERSONA.IdPersona 
+
+AND inf245g2.ACTIVIDAD.IdEmpleado =  inf245g2.EMPLEADO.IdEmpleado
+AND inf245g2.ACTIVIDAD.IdTipoActividad = inf245g2.TIPO_ACTIVIDAD.IdTipoActividad 
+AND inf245g2.ACTIVIDAD.IdAmbiente =  inf245g2.AMBIENTE.IdAmbiente
+
+ORDER BY 1 ASC
+
+
+</select>
+
+<!--Modificar Invitado -->
+
+<update id="modificarPlantillaInvitado" parameterType="IngSoft.administracion.bean.InvitadoBeanData" >
+update PERSONA
+set
+Nombres	=	#{nombre} ,
+ApePaterno	=	#{apellidoP} ,
+ApeMaterno	=	#{apellidoM} ,
+NumeroDocumento	=	#{numeroDoc} ,
+FechaNac	=	#{fechaInicio} ,
+TipoDocumento	=	#{tipoDoc} ,
+
+where IdPersona= #{codigo}
+
+update INVITADO
+set
+FechaRegistro	=	#{fechaFin} ,
+Correo	=	#{correo} ,
+TelefonoFijo	=	#{telefonoF} ,
+TelefonoCelular	=	#{telefonoC} ,
+Estado	=	#{estado} ,
+
+where IdInvitado= #{codigo}
+
+</update>
+<!-- Fin modificar -->
+
 
 <!-- fin departamento,provincia y distrito -->
 
