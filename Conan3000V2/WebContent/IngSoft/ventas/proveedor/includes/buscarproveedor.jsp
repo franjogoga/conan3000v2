@@ -4,6 +4,48 @@
 <%@page import="IngSoft.venta.bean.ResultadoProveedorBeanData"%>
 <%@page import="java.util.Vector"%>
 
+<script>
+	function alt_fecha(obj){
+	obj.value=obj.value.slice(0,5);
+	
+	}
+	function alt_agregar(){
+		var form=document.getElementById("frmAlternativo");
+		form.accion.value="Agregar";
+		form.submit();
+	}
+	
+	function alt_consultar(cod){
+		var form=document.getElementById("frmAlternativo");
+		form.accion.value="Consultar";
+		form.codigo.value=cod;
+		form.submit();
+	}
+	function alt_modificar(cod){
+		var form=document.getElementById("frmAlternativo");
+		form.accion.value="Modificar";
+		form.codigo.value=cod;
+		form.submit();
+	}
+	function alt_eliminar(cod){
+		var form=document.getElementById("frmAlternativo");
+		form.accion.value="Eliminar";
+		form.codigo.value=cod;
+		form.submit();
+	}
+	function alt_trasladar(cod){
+		var form=document.getElementById("frmAlternativo");
+		form.accion.value="Trasladar";
+		form.codigo.value=cod;
+		form.submit();
+	}
+	
+	
+	</script>	
+
+
+
+
 <!--The beans  -->
 <jsp:useBean id="resultados" scope="request"class="java.util.Vector"></jsp:useBean>
 
@@ -23,7 +65,7 @@
 		         <h2><i class="icon-search"></i>BUSCAR PROVEEDOR</h2>
 		          </div>
 			      <div class="box-content">
-			        <form class="form-horizontal" name="frmCriteriosBusqueda" id="frmCriteriosBusqueda"  method="POST" action="<%= response.encodeURL("SMVPromocion")%>">
+			        <form class="form-horizontal" name="frmCriteriosBusqueda" id="frmCriteriosBusqueda"  method="POST" action="<%= response.encodeURL("SMVProveedor")%>">
 			         <input type="hidden" name="accion" value="Buscar"/></input>
 			          <fieldset>
 			          
