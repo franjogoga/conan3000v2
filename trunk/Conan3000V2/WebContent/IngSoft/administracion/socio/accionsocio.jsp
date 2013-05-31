@@ -2,6 +2,7 @@
 <%@page import="IngSoft.administracion.bean.ResultadoSocioBeanData"%>
 <%@page import="java.util.Vector"%>
 <%@page import="java.lang.System"%>
+<%@page import="java.lang.String"%>
 
 <html lang="en">
 <head>
@@ -13,7 +14,8 @@
 	<meta name="author" content="Dos Virgenes">
 	
 	<!--The Beans-->
-	<jsp:useBean id="resultados" scope="request" class="java.util.Vector"></jsp:useBean>
+	<jsp:useBean id="resultados" scope="request" class="java.util.Vector"></jsp:useBean>	
+	<jsp:useBean id="mensaje" scope="request" class="java.lang.String"></jsp:useBean>
 
 	<!-- The styles -->
 	<link id="bs-css" href="css/bootstrap-cerulean.css" rel="stylesheet">
@@ -48,11 +50,11 @@
 	<link rel="shortcut icon" href="img/conan_logo.png">
 	
 	<script>	
-	function alt_vitalizar(cod){
+	function alt_vitalizar(cod, msg){
 		var form=document.getElementById("frmAlternativo");
 		form.accion.value="Vitalizar";
 		form.codigo.value=cod;
-		form.submit();
+		form.submit();		
 	}
 	function alt_suspender(cod){
 		var form=document.getElementById("frmAlternativo");
@@ -60,6 +62,7 @@
 		form.codigo.value=cod;
 		form.submit();
 	}	
+	
 	</script>		
 </head>
 
@@ -94,6 +97,8 @@
 						</li>
 					</ul>
 				</div>
+							
+				
 								
 				<div class="row-fluid sortable">
 					<div class="box span12">
@@ -181,6 +186,9 @@
 						  		</thead>
 								
 								<tbody id="resultadoBusqueda">	
+									
+									
+								
 									<% for(int i=0; i<resultados.size(); i++) { %>
 									<tr>
 										<td><%=((ResultadoSocioBeanData)resultados.get(i)).getNombres()%></td>
