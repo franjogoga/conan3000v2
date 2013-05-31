@@ -4,6 +4,10 @@ import IngSoft.general.CoServlet;
 
 public class GENLogin extends CoServlet {
 
+	/**
+	 * 
+	 */
+
 	@Override
 	protected void initAcciones() {
 		acciones.put("Login", new AccionLogin());
