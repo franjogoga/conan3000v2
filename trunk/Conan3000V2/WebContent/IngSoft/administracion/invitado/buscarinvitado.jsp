@@ -223,7 +223,7 @@
 		            	<i class="icon icon-add icon-white"></i> Agregar </a> </div>
 		            <thead>
 		              <tr>
-		                <th>C&oacutedigo</th>
+		                <th>C&oacutedigo </th>
 		                <th>Nombre</th>
 		                <th>Estado</th>
 		                <th>Acci&oacuten</th>
