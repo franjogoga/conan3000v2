@@ -15,8 +15,8 @@ public class LoginBeanFuncion {
 		String user= request.getParameter("username");
 		String pass= request.getParameter("password");
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
-		String u = (String)sqlsesion.selectOne("getUsuario",user);
-		String p = (String)sqlsesion.selectOne("getPass",pass);
+		String u = (String)sqlsesion.selectOne("getUsuarioLogin",user);
+		String p = (String)sqlsesion.selectOne("getPassLogin",pass);
 		if (u==null || p == null ) return -1;
 		if (user.equals(u) && pass.equals(p)){
 			String perfil = (String)sqlsesion.selectOne("getPerfilUsuario",pass);
