@@ -12,9 +12,6 @@ import org.apache.ibatis.session.SqlSession;
 
 import IngSoft.general.CoException;
 import IngSoft.general.MyBatisSesion;
-import IngSoft.servicio.bean.AmbienteMiniBeanData;
-import IngSoft.servicio.bean.SedeMiniBeanData;
-import IngSoft.servicio.bean.TipoEventoMiniBeanData;
 
 public class SocioBeanFuncion {
 
@@ -153,18 +150,24 @@ public class SocioBeanFuncion {
 		return new Vector<>(resultados);
 	}
 	
-	/*
-	public Vector<AmbienteMiniBeanData> getAmbientes(){
+	public void modificarSocio(SocioBeanData socio) throws CoException {
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
-		List<AmbienteMiniBeanData> resultados=sqlsesion.selectList("Data.servicio.evento.searchAmbienteMini");
-		sqlsesion.close();
-		return new Vector<>(resultados);
+		try{
+					
+			sqlsesion.update("Data.venta.socio.updateSocio",socio);
+		}
+		catch(Exception a)		
+		{sqlsesion.rollback();
+		a.printStackTrace();
+			throw CoException.set("Error: No se pudo modificar la plantilla intente de nuevo", "SMVSocio?accion=Modificar&tipo=1");
+			
+		}
+		
+		finally{
+			sqlsesion.commit();
+			sqlsesion.close();					
+		}			
+		return ;
 	}
 	
-	public Vector<TipoEventoMiniBeanData> getTipoEvento(){
-		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
-		List<TipoEventoMiniBeanData> resultados=sqlsesion.selectList("Data.servicio.evento.searchTipoEventoMini");
-		sqlsesion.close();
-		return new Vector<>(resultados);
-	}*/
 }
