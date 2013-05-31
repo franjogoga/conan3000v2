@@ -9,7 +9,7 @@
 	}
 	function alt_agregar(){
 		var form=document.getElementById("frmAlternativo");
-		form.accion.value="Agregar";
+		form.accion.value="AgregarMini";
 		form.submit();
 	}
 	
@@ -123,7 +123,7 @@
 			
 			
 			<form id="frmAlternativo" name="frmAlternativo" method="POST" action="<%= response.encodeURL("SMVSocio")%>">
-			  <input type="hidden" name="accion" value="Agregar"></input>
+			  <input type="hidden" name="accion" value="AgregarMini"></input>
 			  <input type="hidden" name="codigo" value=""></input>
 			 <input type="hidden" name="tipo" value="1"></input>
 			  
@@ -140,10 +140,7 @@
                         
                         
                         <div  align="right">
-                                <a class="btn btn-primary" href="/Conan3000V2/IngSoft/ventas/socio/agregarsocio.jsp">
-                                    <i class="icon icon-add icon-white"></i>
-                                    Agregar
-                                </a>
+                               <a class="btn btn-primary" href="javascript:alt_agregar()"> <i class="icon icon-add icon-white"></i> Agregar </a> 
                            </div>
                            
 						  <thead>
