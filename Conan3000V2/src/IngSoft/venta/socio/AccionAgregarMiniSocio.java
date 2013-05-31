@@ -51,7 +51,7 @@ public class AccionAgregarMiniSocio extends CoAccion{
 				
 				request.setAttribute("tiposDistrito",distritoMiniData);
 				
-				this.direccionar(sc, request, response, "/IngSoft/ventas/socio/agregarsocio.jsp");
+				this.direccionar(sc, request, response, "/IngSoft/ventas/socio/agregarminisocio.jsp");
 				}
 	
 }
