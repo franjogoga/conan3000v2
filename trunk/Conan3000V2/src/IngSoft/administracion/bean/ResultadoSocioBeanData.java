@@ -10,6 +10,7 @@ public class ResultadoSocioBeanData implements Serializable{
 	private String direccion;
 	private String tipoDocumento;
 	private long numeroDocumento;
+	private String vitalicio;
 			
 	public String getDireccion() {
 		return direccion;
@@ -53,4 +54,10 @@ public class ResultadoSocioBeanData implements Serializable{
 	public void setNumeroDocumento(long numeroDocumento) {
 		this.numeroDocumento = numeroDocumento;
 	}
+	public String getVitalicio() {
+		return vitalicio;
+	}
+	public void setVitalicio(String vitalicio) {
+		this.vitalicio = vitalicio;
+	}	
 }
