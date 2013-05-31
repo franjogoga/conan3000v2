@@ -29,7 +29,7 @@ public class CriterioSocioBeanFuncion {
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		Vector<ResultadoSocioBeanData> resultadosV = null;
 		try{		
-			List<ResultadoSocioBeanData> resultados=sqlsesion.selectList("searchSocio",criterioSocioData);					
+			List<ResultadoSocioBeanData> resultados=sqlsesion.selectList("searchSocios",criterioSocioData);					
 			resultadosV= new Vector<>(resultados);
 		} finally {
 			sqlsesion.close();
