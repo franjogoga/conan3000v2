@@ -3,15 +3,13 @@ package IngSoft.administracion.bean;
 import java.io.Serializable;
 
 public class InvitadoBeanData implements Serializable {
-	int codigo;
+	String codigo;
 	String nombre;
-	public int getCodigo() {
-		
-		
-		System.out.print("--- InvitadoBeanData ");
+	String estado;
+	public String getCodigo() {
 		return codigo;
 	}
-	public void setCodigo(int codigo) {
+	public void setCodigo(String codigo) {
 		this.codigo = codigo;
 	}
 	public String getNombre() {
@@ -20,6 +18,13 @@ public class InvitadoBeanData implements Serializable {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+	public String getEstado() {
+		return estado;
+	}
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+	
 	
 	
 
