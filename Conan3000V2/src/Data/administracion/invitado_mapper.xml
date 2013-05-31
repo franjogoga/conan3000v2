@@ -18,7 +18,7 @@ where
         PERSONA.Nombres LIKE #{nombre}
         AND INVITADO.IdInvitado= #{codigo}
         AND INVITADO.IdInvitado = PERSONA.IdPersona
-        AND MEMBRESIA.Estado= #{estado}
+        AND INVITADO.Estado= #{estado}
         
 order by 1 asc    
 
