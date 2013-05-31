@@ -31,4 +31,17 @@
 		</where>
 	</select>		
 	
+	<select id="getSocio" parameterType="java.lang.String"  resultType="IngSoft.administracion.bean.SocioBeanData">
+		select MEMBRESIA.IdSocio as codigo, MEMBRESIA.IdMembresia as membresia, MEMBRESIA.FechaInicio as fechaInicio, 
+			MEMBRESIA.Estado as estado, MEMBRESIA.Vitalicio as vitalicio
+		from MEMBRESIA
+		where MEMBRESIA.IdSocio like #{codigo} 	
+	</select>
+	
+	<update id="vitalizarSocio" parameterType="IngSoft.administracion.bean.SocioBeanData">
+		update MEMBRESIA
+		set MEMBRESIA.Vitalicio = 'No'
+		where MEMBRESIA.IdSocio like #{codigo}		
+	</update>
+	
 </mapper>
