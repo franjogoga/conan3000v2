@@ -14,10 +14,14 @@ public class AccionLogin extends CoAccion {
 	public void ejecutar(ServletContext sc, HttpServletRequest request,
 			HttpServletResponse response) throws CoException {
 		// TODO Auto-generated method stub
-		HttpSession sesion= request.getSession(true);
-		sesion.setMaxInactiveInterval(10*60);
-		this.direccionar(sc, request, response, "/IngSoft/general/index.jsp");
 		
+		LoginBeanFuncion login = new LoginBeanFuncion();
+		int perfil = login.verificaUsuario(request, response);
+		switch (perfil){
+		case 1: this.direccionar(sc, request, response, "/IngSoft/general/leftmenu.jsp");
+		case 2: this.direccionar(sc, request, response, "/IngSoft/general/perfil2.jsp");
+		case 3: this.direccionar(sc, request, response, "/IngSoft/general/404.jsp");
+		}
 
 	}
 

@@ -1,0 +1,32 @@
+package IngSoft.general.login;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.apache.ibatis.session.SqlSession;
+
+import IngSoft.general.MyBatisSesion;
+import IngSoft.general.bean.UsuarioBeanData;
+
+public class LoginBeanFuncion {
+	
+	public int verificaUsuario(HttpServletRequest request, HttpServletResponse response){
+		String user= request.getParameter("username");
+		String pass= request.getParameter("password");
+		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+		String u = (String)sqlsesion.selectOne("getUsuario",user);
+		String p = (String)sqlsesion.selectOne("getPass",pass);
+		if (u==null || p == null ) return -1;
+		if (user.equals(u) && pass.equals(p)){
+			String perfil = (String)sqlsesion.selectOne("getPerfilUsuario",pass);
+			HttpSession sesion= request.getSession(true);
+			if (perfil.equals("PER000001")) return 1; //Administrador
+			if (perfil.equals("PER000002")) return 2; //Profesor
+			if (perfil.equals("PER000003")) return 3; //JP
+			sesion.setMaxInactiveInterval(10*60);
+			sesion.setAttribute("username",user);
+		}
+		return -1; 
+	}
+}
