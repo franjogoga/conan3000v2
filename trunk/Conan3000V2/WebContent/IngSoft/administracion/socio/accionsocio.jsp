@@ -181,13 +181,12 @@
 										<th>Apellido Materno</th>
 										<th>Tipo Documento</th>
 										<th>Numero Documento</th>
+										<th>Vitalicio</th>
 										<th>Acci&oacute;n</th>
 							  		</tr>
 						  		</thead>
 								
-								<tbody id="resultadoBusqueda">	
-									
-									
+								<tbody id="resultadoBusqueda">																			
 								
 									<% for(int i=0; i<resultados.size(); i++) { %>
 									<tr>
@@ -195,7 +194,8 @@
 										<td><%=((ResultadoSocioBeanData)resultados.get(i)).getApellidoPaterno()%></td>
 										<td><%=((ResultadoSocioBeanData)resultados.get(i)).getApellidoMaterno()%></td>
 										<td><%=((ResultadoSocioBeanData)resultados.get(i)).getTipoDocumento()%></td>
-										<td><%=((ResultadoSocioBeanData)resultados.get(i)).getNumeroDocumento()%></td>										
+										<td><%=((ResultadoSocioBeanData)resultados.get(i)).getNumeroDocumento()%></td>
+										<td><%=((ResultadoSocioBeanData)resultados.get(i)).getVitalicio()%></td>										
 										<td class="center">
 											<a class="btn btn-success" href="javascript:alt_vitalizar('<%=((ResultadoSocioBeanData)resultados.get(i)).getIdSocio()%>')">
 												<i class="icon-zoom-in icon-white"></i> Vitalizar 
