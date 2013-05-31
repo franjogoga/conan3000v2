@@ -67,7 +67,18 @@
 	<link rel="shortcut icon" href="img/conan_logo.png">
 	
 	
-			<script>
+	<script>
+			
+			function alfanumerico(e) 
+			{ 
+				var key = window.event.keyCode || event.keyCode;
+				return ((key >= 48 && key <= 57) ||(key >= 97 && key <= 122) ||(key >= 65 && key <=90) ||(key >= 192 && key <=246)||(key <=13) ||(key ==32));
+			} 	
+			function alt_fecha(obj){
+			obj.value=obj.value.slice(0,10);
+			
+			}
+			
 	
 	function alt_agregar(){
 		var form=document.getElementById("frmAlternativo");
@@ -92,6 +103,14 @@
 		form.codigo.value=cod;
 		form.submit();
 	}
+	
+	function alt_submit(){
+		var form= document.frmUpdate;
+		if(validar(form)) form.submit();
+		else alert("Uno o mas campos estan vacios");
+			
+			}
+		
 	</script>			
 </head>
 
@@ -143,14 +162,15 @@
 			 <div class="control-group">
 		                <label class="control-label" for="typeahead">Raz&oacute;n Social:</label>
 		                <div class="controls">
-		                  <input type="text" class="span6 typeahead" id="txtRazonSocial" name="txtRazonSocial">
+		                  <input type="text" class="span6 typeahead" id="txtRazonSocial" value="" name="txtRazonSocial"onkeypress="return alfanumerico(event);" autofocus>
                           <p class="help-block">Escriba sobre la casilla la raz&oacute;n social para ser autocompletado</p>
 		                </div>
+					</div>
 							
 					   <div class="control-group">
-		                <label class="control-label" for="selectError">RUC</label>
+		                <label class="control-label" for="typehead">RUC</label>
 		                <div class="controls">
-		                  <input type="text" class="span6 typeahead" id="txtRuc" name="txtRuc">
+		                  <input type="text" class="span6 typeahead" id="typehead" value="" name="txtRuc"  >
 	                    </div>
 	                  </div>
 							
