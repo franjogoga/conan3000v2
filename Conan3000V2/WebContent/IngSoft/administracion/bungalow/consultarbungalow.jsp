@@ -4,7 +4,7 @@
 <head>
 
 	<meta charset="utf-8">
-	<title>Eliminar Bungalow</title>
+	<title>Consultar Bungalow</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
 	<meta name="author" content="Muhammad Usman">
@@ -47,16 +47,6 @@
 
 	<!-- The fav icon -->
 	<link rel="shortcut icon" href="img/favicon.ico">
-		
-	<script>
-		function alt_submit_eliminar() {
-			var form = document.frmDelete;
-			var r = confirm("¿Esta seguro que desea eliminar este bungalow?");
-			if (r == true) {
-				form.submit();
-			}
-		}
-	</script>	
 
 	<%! public boolean  encontrar(String a, String b){		
 			if(b.equals(a)) return true;
@@ -101,13 +91,13 @@
                 <ul class="breadcrumb">
                   <li> <a href="../../general/index.jsp">Home</a> <span class="divider">/</span> </li>
                   <li> <a href="buscarbungalow.jsp">Mantenimiento de Bungalows</a> <span class="divider">/</span></li>
-                  <li>Eliminar Bungalow</li>
+                  <li>Consultar Bungalow</li>
                 </ul>
               </div>
               <div class="row-fluid sortable">
                 <div class="box span12">
                   <div class="box-header well" data-original-title>
-                    <h2>ELIMINAR BUNGALOW</h2>
+                    <h2>CONSULTAR BUNGALOW</h2>
                   </div>
                   <div class="box-content">
                   	  <form class="form-horizontal" name="frmDelete" action="<%= response.encodeURL("SMABungalow")%>" method="post">
@@ -165,8 +155,7 @@
 								</div>
 							  </div>
                         <div class="form-actions">
-                          <button type="button" class="btn btn-primary" onclick="javascript:alt_submit_eliminar()">Eliminar</button>
-                          <button type="button" class="btn" onclick="location.href='buscarbungalow.jsp'">Cancelar</button>
+                          <button type="button" class="btn btn-primary" onclick="location.href='buscarbungalow.jsp'">Regresar</button>
                         </div>
                       </fieldset>
                     </form>
