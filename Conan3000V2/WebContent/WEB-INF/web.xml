@@ -63,15 +63,18 @@
         <servlet-name>SMVProveedor</servlet-name>
 	<servlet-class>IngSoft.venta.proveedor.SMVProveedor</servlet-class>
 </servlet>
-
   <servlet id="Servlet_0014">
         <servlet-name>SMAActividad</servlet-name>
 	<servlet-class>IngSoft.administracion.actividad.SMAActividad</servlet-class>
 </servlet>
-
-
-
-
+  <servlet id="Servlet_0015">
+        <servlet-name>SMABungalow</servlet-name>
+	<servlet-class>IngSoft.administracion.bungalow.SMABungalow</servlet-class>
+</servlet>
+  <servlet id="Servlet_0016">
+        <servlet-name>SMACancha</servlet-name>
+	<servlet-class>IngSoft.administracion.cancha.SMACancha</servlet-class>
+</servlet>
 
 
 <servlet-mapping id="ServletMapping_0001">
@@ -132,6 +135,15 @@
 <url-pattern>/IngSoft/administracion/actividad/SMAActividad</url-pattern>
 </servlet-mapping>
 
+<servlet-mapping id="ServletMapping_0015">
+        <servlet-name>SMABungalow</servlet-name>
+<url-pattern>/IngSoft/administracion/bungalow/SMABungalow</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping id="ServletMapping_0016">
+        <servlet-name>SMACancha</servlet-name>
+<url-pattern>/IngSoft/administracion/cancha/SMACancha</url-pattern>
+</servlet-mapping>
 
 <error-page>
 <error-code>404</error-code>

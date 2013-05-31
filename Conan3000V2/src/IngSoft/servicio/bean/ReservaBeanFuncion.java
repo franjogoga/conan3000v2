@@ -98,8 +98,47 @@ public class ReservaBeanFuncion {
 		   return resultado;
 	   }
 	   
-	   public void agregarReserva(){
+	   public void agregarReservaBungalow(Vector<String> listareservas, String codSocio){
+		   String nextcodigo;
+		   SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+		   try{
+			   nextcodigo=sqlsesion.selectOne("Data.servicio.reserva.getNextCodigo");
+			   SimpleDateFormat df= new SimpleDateFormat("dd/MM/yyyy");
+			   int a= listareservas.size();
+			   HashMap<String, Object> map=new HashMap<String, Object>();
+			   map.put("idsocio",codSocio);
+			   for(int i=0;i<a;i++){
+				   nextcodigo=this.generaSiguienteCodigo(nextcodigo);				   
+				   map.put("idbungalow", listareservas.get(i).substring(0, 9)); 
+				   map.put("idreservasbungalow", nextcodigo);
+				   map.put("fecha",df.parseObject(listareservas.get(i).substring(9)));
+				   sqlsesion.insert("Data.servicio.reserva.insertBungalowReserva",map);
+				   sqlsesion.insert("Data.servicio.reserva.insertBungalowReservaFecha",map);
+				   
+			   }
+			   sqlsesion.commit();
+			   
+		   }catch(Exception e){
+			   sqlsesion.rollback();
+			   e.printStackTrace();			   
+		   }
+		   finally{			   
+			   sqlsesion.close();
+			   
+		   }
 		   
-		   
+	   }
+	   
+	   public String generaSiguienteCodigo(String actual){
+		   String next=null;
+		   if(actual!=null){
+				int cod= Integer.parseInt(actual.substring(3))+1;
+				String defecto= "000000";
+				String temp= defecto.substring(0, defecto.length()-String.valueOf(cod).length()).concat(String.valueOf(cod));
+				
+				next= actual.substring(0,3).concat(temp);
+				}
+				else next=actual.substring(0, 3).concat("000001");
+		   return next;		   
 	   }
 }

@@ -53,6 +53,10 @@
 	<script> 
 var pendientes="";
 var cancelados="";
+var lock1=1;
+var lock2=1;
+var lock3=1;
+var lock4=1;
 function cambiarClase(elemento){
 
 if (elemento.className == "btn btn-success") {
@@ -78,6 +82,8 @@ if (elemento.className == "btn btn-success") {
 
 function ajax_submit(tipo){
 	//alert("accion=Buscar"+"&tipo=" + tipo + "&fecIni=" + $(fecIni).val()+"&cmbServicios"+$('#cmbServicios').val());
+	if(lock1==1){
+	lock1=0;
 	$.ajax({
 		  type: "POST",
 		  url: "/Conan3000V2/IngSoft/servicio/reserva/SMSReserva",
@@ -92,18 +98,22 @@ function ajax_submit(tipo){
 			pendientes="";
 			cancelados="";			
 			actualizar_pendientes();
+			lock1=1;
 		  },
 		  error: function(objeto, quepaso, otroobj){
+		  	lock1=1;
 			alert("ERROR!! Pasó lo siguiente: "+quepaso);
-			
 		  }
 	
 		});
+		}
 }
 
 
 function ajax_search(){
 	//alert("accion=Buscar"+"&tipo=" + tipo + "&fecIni=" + $(fecIni).val()+"&cmbServicios"+$('#cmbServicios').val());
+	if(lock2==1){
+	lock2=0;
 	$.ajax({
 		  type: "POST",
 		  url: "/Conan3000V2/IngSoft/servicio/reserva/SMSReserva",
@@ -114,15 +124,18 @@ function ajax_search(){
   		  },
 		  success: function(msg){
 			$("#resultadoBusqueda").html(msg);
-			
+			lock2=1;		
 			
 		  },
 		  error: function(objeto, quepaso, otroobj){
+		  	lock2=1;
 			alert("ERROR!! Pasó lo siguiente: "+quepaso);
 		  }
 	
 		});
+	}
 		return false
+		
 }
 
 function actualizar_pendientes(){
@@ -146,29 +159,40 @@ var ant=($("#pendientes").attr('value').split(','));
 
 function ajax_confirmaSocio(){
 	//alert("accion=Buscar"+"&tipo=" + tipo + "&fecIni=" + $(fecIni).val()+"&cmbServicios"+$('#cmbServicios').val());
+	if(lock3==1){
+	lock3=0;
 	if($('#txtDNISocio').val().length >0){
 	$.ajax({
 		  type: "POST",
 		  url: "/Conan3000V2/IngSoft/servicio/reserva/SMSReserva",
 		  data: "accion=Buscar"+"&tipo=5" +"&txtDNISocio="+$('#txtDNISocio').val(),
-		  dataType: "text",		  
+		  dataType: "text",	
+		   beforeSend: function ( xhr ) {
+   		  $('#txtIdSocio').val("");
+			$('#txtNombreSocio').val("");
+  		  },	  
 		  success: function(msg){
 			var temp;
 			temp=msg.split('/');
 			$('#txtIdSocio').val(temp[0]);
-			$('#txtNombreSocio').val(temp[1]);						
+			$('#txtNombreSocio').val(temp[1]);
+			lock3=1;						
 		  },
 		  error: function(objeto, quepaso, otroobj){
+		  	lock3=1;
 			alert("ERROR!! No se pudo completar la operacion intente de nuevo");
 		  }
 	
 		});
 		
 	}
+	}
 }
 
 function ajax_crearReserva(){
 //alert("accion=Buscar"+"&tipo=" + tipo + "&fecIni=" + $(fecIni).val()+"&cmbServicios"+$('#cmbServicios').val());
+if(lock4==0){
+	lock4=0;
 	$.ajax({
 		  type: "POST",
 		  url: "/Conan3000V2/IngSoft/servicio/reserva/SMSReserva",
@@ -182,19 +206,23 @@ function ajax_crearReserva(){
 		  data: "accion=Crear"+"&tipo=2" +"&txtIdSocio="+$('#txtIdSocio').val(),
 		  dataType: "text",		  
 		  success: function(msg){
-			alert("Operacion realizada sin problemas")
+		  	lock4=1;
+			alert("Operacion realizada sin problemas")},
 		  error: function(objeto, quepaso, otroobj){
-		  			alert("ERROR!! No se pudo completar la operacion intente de nuevo");
+		  	lock4=1;
+		  	alert("ERROR!! No se pudo completar la operacion intente de nuevo");
 		  }
 	
 		});
 		  },
 		  error: function(objeto, quepaso, otroobj){
+		  	lock4=1;
 			alert("ERROR!! No se pudo completar la operacion intente de nuevo");
 			
 		  }
 	
 		});
+		}
 }
 </script>	
 
@@ -322,7 +350,7 @@ function ajax_crearReserva(){
 			</div>
 			<div class="modal-footer">
 				<a href="#" class="btn" data-dismiss="modal">Cancelar</a>
-				<a class="btn btn-primary" onclick="ajax_confirmaSocio();">Guardar Reservas</a>
+				<a class="btn btn-primary" onclick="ajax_crearReserva();">Guardar Reservas</a>
 			</div>
 		</div>
 	<jsp:include page="/IngSoft/general/inferior.jsp" />

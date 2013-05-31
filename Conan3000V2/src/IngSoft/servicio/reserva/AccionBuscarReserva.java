@@ -40,12 +40,13 @@ public class AccionBuscarReserva extends CoAccion {
 		if(tipo==1)	{
 			this.direccionar(sc, request, response, "/IngSoft/servicio/reserva/buscarreserva.jsp");
 			sesion.removeAttribute("reservas");
+			sesion.removeAttribute("listareservas");
 		}
 		if(tipo==2){
 			java.util.Date temp= new Date();
 			temp=Utils.fechaMenos(temp,Integer.valueOf( Integer.valueOf( new SimpleDateFormat("uu").format(temp)).intValue()-1));
 			request.setAttribute("fI", temp);
-			sesion.setAttribute("listareservas", listareservas);
+			sesion.setAttribute("listareservas", null);
 			if("bungalow".equals(request.getParameter("cmbServicios"))){			
 				Vector<ReservaBungalowMiniBeanData> reservas=reservaFuncion.buscarReservasBungalow(request.getParameter("cmbSedes").toString(),temp);
 				sesion.setAttribute("reservas",reservas);
@@ -151,6 +152,37 @@ public class AccionBuscarReserva extends CoAccion {
 				} catch (IOException e) {				
 					e.printStackTrace();
 				}
+			}
+			
+		}
+		if(tipo==7){						
+			java.util.Date fecIniNue= new Date();
+			fecIniNue=Utils.fechaMenos(fecIniNue,Integer.valueOf( Integer.valueOf( new SimpleDateFormat("uu").format(fecIniNue)).intValue()-1));		
+			java.util.Date fecFinNue=Utils.fechaMas(fecIniNue,6);
+			request.setAttribute("fI", fecIniNue);
+			try{
+			if("bungalow".equals(request.getParameter("cmbServicios"))){
+				String temp=request.getParameter("pendientes");
+				if(temp.length()>0)pendientes=new Vector<String>(Arrays.asList(temp.substring(0, temp.length()-1).split("@")));
+				pendientes.remove("");
+				temp=request.getParameter("cancelados");
+				if(temp.length()>0)cancelados=new Vector<String>(Arrays.asList(temp.substring(0, temp.length()-1).split("@")));
+				cancelados.remove("");
+				if(listareservas.size()==0) listareservas=pendientes;								
+				else{
+					if(cancelados!=null)listareservas.removeAll(cancelados);
+					if(pendientes!=null)listareservas.addAll(pendientes);					
+				}
+				sesion.setAttribute("listareservas",listareservas);
+				String res= Utils.unir(reservaFuncion.filtrarReservaXFechas(listareservas, fecIniNue, fecFinNue), ",","");				
+				Vector<ReservaBungalowMiniBeanData> reservas=reservaFuncion.buscarReservasBungalow(request.getParameter("cmbSedes").toString(), fecIniNue);
+				sesion.setAttribute("reservas",reservas);
+				sesion.setAttribute("pendientes",res);
+				this.direccionar(sc, request, response, "/IngSoft/servicio/reserva/reservaxdia.jsp");}	
+			else this.direccionar(sc, request, response, "/IngSoft/servicio/reserva/reservaxhora.jsp");
+			}
+			catch (Exception e){
+				e.printStackTrace();
 			}
 			
 		}
