@@ -15,7 +15,7 @@ SOCIO.IdSocio as idSocio
 ,PERSONA.ApeMaterno as apellidoMaterno
 ,PERSONA.TipoDocumento as tipoDocumento
 ,PERSONA.NumeroDocumento as numeroDocumento
-from SOCIO,PERSONA
+from SOCIO,PERSONA,MEMBRESIA
 <where>
 	<if test="nombres != null ">
         SOCIO.IdSocio=PERSONA.IdPersona and (PERSONA.nombres  like  #{nombres})
@@ -32,7 +32,7 @@ from SOCIO,PERSONA
      <if test="tipoDocumento != null">
         AND PERSONA.TipoDocumento like #{tipoDocumento}
     </if>
-      
+      AND MEMBRESIA.IdSocio=SOCIO.IdSocio and MEMBRESIA.Estado='Activo'
 </where>
 </select>
 
@@ -48,7 +48,8 @@ from SOCIO,PERSONA
 	values (#{codigo},#{nombres},#{apellidoPaterno},#{apellidoMaterno},#{numeroDocumento},#{tipoDocumento},#{fechaNacimiento})
 </insert>
 
-
+ <!-- Fin agregar  -->
+ 
 <select id="getNextCodigo3" resultType="java.lang.String">
 	select max(IdSocio) from SOCIO
 </select>
@@ -85,12 +86,34 @@ from PERSONA  where PERSONA.IdPersona=#{codigo};
 
 <!--Eliminar socio -->
 <update id="deleteSocio" parameterType="java.lang.String" >
-update MEMBRESIA set Estado='Eliminado' where MEMBRESIA.IdSocio= #{codigo}
+update MEMBRESIA set MEMBRESIA.Estado='Eliminado' where MEMBRESIA.IdSocio=#{codigo}
 </update>
 <!-- Fin eliminar -->
 
 
- <!-- Fin agregar  -->
+ <!-- Modificar socio -->
+<update id="updateSocio" parameterType="IngSoft.venta.bean.SocioBeanData">
+update SOCIO set Direccion=#{direccion}
+ ,SOCIO.Correo=#{correoElectronico}
+ ,SOCIO.TelefonoFijo=#{telefonoFijo}
+ ,SOCIO.TelefonoCelular=#{telefonoCelular}
+ where SOCIO.IdSocio= #{codigo}
+</update>
+
+<update id="updatePersona" parameterType="IngSoft.venta.bean.PersonaMiniBeanData">
+update PERSONA set PERSONA.ApeMaterno=#{apellidoMaterno}
+,PERSONA.Nombres=#{nombres}
+,PERSONA.ApePaterno=#{apellidoPaterno} 
+,PERSONA.FechaNac=#{fechaNacimiento}
+,PERSONA.NumeroDocumento=#{numeroDocumento}
+ where PERSONA.IdPersona= #{codigo}
+</update>
+
+<!-- Fin modificar  
+
+ -->
+
+
  
 </mapper>
  
