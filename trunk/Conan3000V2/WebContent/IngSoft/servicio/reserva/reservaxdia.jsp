@@ -81,8 +81,9 @@ right:11px">Siguiente</button>-->
 								 	<%k++;
 								 	if(test){
 										test=false;
-										j++;
-										if(j>=reservas.size() || !((ReservaBungalowMiniBeanData)reservas.get(j)).getCodigoBungalow().equals(codActual)) j--; 	
+										j++;										
+										if(j>=reservas.size() || !((ReservaBungalowMiniBeanData)reservas.get(j)).getCodigoBungalow().equals(codActual)) j--;
+										else temp= inv.format(((ReservaBungalowMiniBeanData)reservas.get(j)).getFecha()); 	
 								 	}
 								 	}	
 									

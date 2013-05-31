@@ -36,7 +36,7 @@ and bf.Fecha &gt;= #{fecIni}
 and bf.Fecha &lt;= #{fecFin}) r2
 on r1.codigoBungalow=r2.codigoBungalow
 where r1.codigoSede like #{codigo}
-order by 2 asc;
+order by 2 asc,1,4;
 </select>
 
 <select id="confirmarSocio" parameterType="java.lang.String" resultType="hashmap">
@@ -49,4 +49,16 @@ where s.IdSocio=p.IdPersona
 and p.NumeroDocumento=#{codigo};
 </select>
 
+<select id="getNextCodigo" resultType="java.lang.String">
+	select max(IdReservaBungalow) from RESERVA_BUNGALOW;	
+</select>
+<insert id="insertBungalowReserva" parameterType="hashmap">
+insert into RESERVA_BUNGALOW(Estado,IdSocio,IdBungalow,IdReservaBungalow)
+values('ACTIVO',#{idsocio},#{idbungalow},#{idreservasbungalow})
+;
+</insert>
+<insert id="insertBungalowReservaFecha" parameterType="hashmap">
+insert into BUNGALOWxFECHA(IdReservaBungalow,Fecha) values(#{idreservasbungalow},#{fecha})
+;
+</insert>
 </mapper>
