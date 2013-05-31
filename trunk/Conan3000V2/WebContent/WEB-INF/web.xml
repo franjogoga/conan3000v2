@@ -74,8 +74,6 @@
 
 
 
-
-
 <servlet-mapping id="ServletMapping_0001">
         <servlet-name>SMSEvento</servlet-name>
 <url-pattern>/IngSoft/servicio/evento/SMSEvento</url-pattern>
@@ -134,10 +132,6 @@
 <url-pattern>/IngSoft/administracion/actividad/SMAActividad</url-pattern>
 </servlet-mapping>
 
-<servlet-mapping id="ServletMapping_0015">
-        <servlet-name>GENLogin</servlet-name>
-<url-pattern>/IngSoft/general/login/GENLogin</url-pattern>
-</servlet-mapping>
 
 <error-page>
 <error-code>404</error-code>
