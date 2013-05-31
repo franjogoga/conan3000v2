@@ -140,6 +140,7 @@
 		        <div class="box-content">
 		          <form class="form-horizontal" name="frmCriteriosBusqueda" id="frmCriteriosBusqueda"  method="post" action="<%= response.encodeURL("SMAInvitado")%>">
 		            <input type="hidden" name="accion" value="Buscar"></input>
+		            <input   type ="hidden" name="codigo"  value=""></input>
 		 			<input type="hidden" name="tipo" value="2"></input>
 		            <fieldset>
 		              <div class="control-group">
@@ -236,7 +237,7 @@
                           			for(int i=0; i<resultados.size() ;i++){
                           		%>
                           		<tr>
-                          			<td class="center">
+                          			<td>
                           				<%=
                           					((ResultadoInvitadoBeanData)resultados.get(i)).getCodigo()
                           				%>
