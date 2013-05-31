@@ -31,7 +31,7 @@
     <mapper resource="Data/venta/traslado_mapper.xml"/>
     <mapper resource="Data/venta/membresia_mapper.xml"/>       
     <mapper resource="Data/venta/proveedor_mapper.xml"/>    
-    <mapper resource="Data/general/login_mapper.xml"/> 
+   <!--  <mapper resource="Data/general/login_mapper.xml"/> --> 
       
   </mappers>
 </configuration>
