@@ -21,15 +21,15 @@ public class CriterioSocioBeanFuncion {
 			String est;
 			est=request.getParameter("cmdTipoDocumento");
 			criterioSocioData.setTipoDocumento(est);
-		}		
-		return criterioSocioData;				
+		}
+		return criterioSocioData;
 	}
 	
 	public Vector<ResultadoSocioBeanData> buscarPlantillaSocio(CriterioSocioBeanData criterioSocioData){		
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		Vector<ResultadoSocioBeanData> resultadosV = null;
 		try{		
-			List<ResultadoSocioBeanData> resultados=sqlsesion.selectList("searchSocios",criterioSocioData);					
+			List<ResultadoSocioBeanData> resultados=sqlsesion.selectList("searchSocios", criterioSocioData);					
 			resultadosV= new Vector<>(resultados);
 		} finally {
 			sqlsesion.close();
