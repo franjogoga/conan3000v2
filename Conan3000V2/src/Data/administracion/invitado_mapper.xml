@@ -9,18 +9,13 @@
   
  
 <select id="searchPlantillaInvitado" parameterType="IngSoft.administracion.bean.CriterioInvitadoBeanData" resultType="IngSoft.administracion.bean.ResultadoInvitadoBeanData">
-select 
-INVITADO.IdInvitado as codigo
-,PERSONA.NOMBRES as nombre
-,INVITADO.ESTADO as estado
-from PERSONA  , INVITADO
-where
-        PERSONA.Nombres LIKE #{nombre}
-        AND INVITADO.IdInvitado= #{codigo}
-        AND INVITADO.IdInvitado = PERSONA.IdPersona
-        AND INVITADO.Estado= #{estado}
-        
-order by 1 asc    
+SELECT 
+inf245g2.INVITADO.IdInvitado AS codigo,
+inf245g2.PERSONA.nombres AS nombre,
+inf245g2.INVITADO.estado AS estado
+FROM inf245g2.PERSONA , inf245g2.INVITADO
+WHERE  inf245g2.PERSONA.IdPersona = inf245g2.INVITADO.IdInvitado
+order by 1 asc  
 
 </select>
 
