@@ -67,9 +67,20 @@ function crearAlert(cadena){
 
 function alt_submit(){
 	var form= document.frmProveedor;
-	if(validaForm()) form.submit();
+	if(validar(form)) form.submit();
 		
 }
+
+function validar(form){
+			if(form.txtRazonSocial.value.length <=0)return false;
+			if(form.txtRuc.value.length<=0)return false;
+			if(form.txtDireccion.value.lengtht<=0)return false;
+			if(form.txtNombre.value.length<=0)return false;
+			//if(form.cmbAmbientes.value.length<=0)return false;
+	return true;
+		
+		
+		}
 
 function validaForm(){
 	var form=document.frmProveedor;
@@ -149,7 +160,7 @@ function validaForm(){
 		                <div class="control-group">
 		                  <label class="control-label" for="selectError">Departamento:</label>
 		                  <div class="controls">
-		                    <select name="selectError3" id="cmbDepartamento"  name="cmbDepartamento" data-rel="chosen">
+		                    <select name="selectError3" id="cmdDepartamento"  name="cmdDepartamento" data-rel="chosen">
 		                      <option>Lima</option>
 		                      <option>Trujillo</option>
 	                        </select>
@@ -158,7 +169,7 @@ function validaForm(){
 		                <div class="control-group">
 		                  <label class="control-label" for="selectError">Provincia:</label>
 		                  <div class="controls">
-		                    <select name="selectError" id="cmbProvincia" name="cmbProvincia" data-rel="chosen">
+		                    <select name="selectError" id="cmdProvincia" name="cmdProvincia" data-rel="chosen">
 		                      <option>Lima</option>
 		                      <option>Callao</option>
 	                        </select>
@@ -167,7 +178,7 @@ function validaForm(){
 		                <div class="control-group">
 		                  <label class="control-label" for="selectError">Distrito:</label>
 		                  <div class="controls">
-		                    <select  id="cmbDistrito" name="cmbDistrito" data-rel="chosen">
+		                    <select  id="cmdDistrito" name="cmdDistrito" data-rel="chosen">
 		                     <%for(int i=0;i<tiposDistrito.size();i++){ %>
 										<option value="<%= ((DistritoMiniBeanData)tiposDistrito.get(i)).getIdDistrito()%>" <%=i==0?"selected":""%>><%= ((DistritoMiniBeanData)tiposDistrito.get(i)).getNombreDistrito()%></option>
 									<%} %>	
