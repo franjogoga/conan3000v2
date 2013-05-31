@@ -219,7 +219,7 @@
 		            <!-- agregar nuevo boton -->
 		            
 		            <div  align="right"> 
-		            <a class="btn btn-primary" href="javascript:alt_agregar()"> 
+		            <a class="btn btn-primary" href="javascript:alt_agregar_invitado()"> 
 		            	<i class="icon icon-add icon-white"></i> Agregar </a> </div>
 		            <thead>
 		              <tr>
@@ -272,7 +272,7 @@
 
                           			<td class="center">
                           				<a class="btn btn-success"
-                          					href="javascript:alt_consultar('<%=((ResultadoInvitadoBeanData)resultados.get(i)).getCodigo()%>')">
+                          					href="javascript:alt_consultar_invitado('<%=((ResultadoInvitadoBeanData)resultados.get(i)).getCodigo()%>')">
                           					<i
                           						class="icon-zoom-in icon-white">
                           					</i> 
