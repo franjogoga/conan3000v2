@@ -80,8 +80,9 @@ public class ActividadBeanFuncion {
 			
 
 	        
-
-		actividadData.setCodigo(    		request.getParameter("txtNombre") );
+  System.out.print("---> nombre que vamos a modificar" + request.getParameter("txtNombre"));
+	
+        actividadData.setCodigo(            request.getParameter("codigo"));	
 		actividadData.setNombreSede(		request.getParameter("cmbSede"));		
 		actividadData.setNombre(    		request.getParameter("txtNombre") );
 
