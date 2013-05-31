@@ -13,11 +13,12 @@ public class SMVSocio extends CoServlet{
 	protected void initAcciones() {
 		acciones.put("Buscar", new AccionBuscarSocio());
 		acciones.put("Consultar", new AccionConsultarSocio());
-		acciones.put("Agregar", new AccionAgregarSocio());
-		//acciones.put("AgregarMini", new AccionAgregarMiniSocio()); //este es para el agregar en traslado membresia
+		acciones.put("Agregar", new AccionAgregarSocio()); //este es para agregar en traslado
+		
 		acciones.put("Modificar", new AccionModificarSocio());
 		acciones.put("Eliminar", new AccionEliminarSocio());
 		acciones.put("Seleccionar", new AccionSeleccionarSocio());
+		acciones.put("AgregarMini", new AccionAgregarMiniSocio()); //este es para el agregar en socio membresia
 	}
 	
 }
