@@ -6,11 +6,11 @@
 
   <cache />
 
-<select id="getUsuario" parameterType="String" resultType="String">
+<select id="getUsuarioLogin" parameterType="String" resultType="String">
 select NombreUsuario from USUARIO where NombreUsuario = #{user};
 </select>
 
-<select id="getPass" parameterType="String" resultType="String">
+<select id="getPassLogin" parameterType="String" resultType="String">
 select Password from USUARIO where Password = #{pass};
 </select>
 
