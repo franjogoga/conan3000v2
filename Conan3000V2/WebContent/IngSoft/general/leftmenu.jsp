@@ -17,7 +17,7 @@
 						<li><a class="ajax-link administracion" href="<%=request.getContextPath()%>/IngSoft/administracion/perfiles/buscarperfil.jsp"style="display:none"><i class="icon-wrench"></i><span class="hidden-tablet"> Perfiles</span></a></li>
 						<li><a class="ajax-link administracion" href="<%=request.getContextPath()%>/IngSoft/administracion/sede/SMASede?accion=Buscar&tipo=1"style="display:none"><i class="icon-wrench"></i><span class="hidden-tablet"> Sedes</span></a></li>   
 						<li><a class="ajax-link administracion" href="<%=request.getContextPath()%>/IngSoft/administracion/servicio/buscarservicio.jsp"style="display:none"><i class="icon-wrench"></i><span class="hidden-tablet"> Servicios</span></a></li>      
-						<li><a class="ajax-link administracion" href="<%=request.getContextPath()%>/IngSoft/administracion/socio/suspensionregistrar.jsp"style="display:none"><i class="icon-wrench"></i><span class="hidden-tablet"> Suspender Socio</span></a></li>
+						<li><a class="ajax-link administracion" href="<%=request.getContextPath()%>/IngSoft/administracion/socio/accionsocio.jsp"style="display:none"><i class="icon-wrench"></i><span class="hidden-tablet"> Socio</span></a></li>
 						<li><a class="ajax-link administracion" href="<%=request.getContextPath()%>/IngSoft/administracion/usuarios/buscarusuario.jsp"style="display:none"><i class="icon-wrench"></i><span class="hidden-tablet"> Usuarios</span></a></li>
 						<li><a class="ajax-link administracion" href="<%=request.getContextPath()%>/IngSoft/administracion/invitados/visitaregistrar.jsp"style="display:none"><i class="icon-wrench"></i><span class="hidden-tablet"> Visitas</span></a></li>
 
