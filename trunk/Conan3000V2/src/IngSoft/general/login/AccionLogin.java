@@ -18,9 +18,10 @@ public class AccionLogin extends CoAccion {
 		LoginBeanFuncion login = new LoginBeanFuncion();
 		int perfil = login.verificaUsuario(request, response);
 		switch (perfil){
-		case 1: this.direccionar(sc, request, response, "/IngSoft/general/leftmenu.jsp");
-		case 2: this.direccionar(sc, request, response, "/IngSoft/general/perfil2.jsp");
-		case 3: this.direccionar(sc, request, response, "/IngSoft/general/404.jsp");
+		case 1: this.direccionar(sc, request, response, "/IngSoft/general/perfil1.jsp"); break;
+		case 2: this.direccionar(sc, request, response, "/IngSoft/general/perfil2.jsp"); break;
+		case 3: this.direccionar(sc, request, response, "/IngSoft/general/perfil3.jsp"); break;
+		default: this.direccionar(sc, request, response, "/IngSoft/general/perfil4.jsp"); break;
 		}
 
 	}
