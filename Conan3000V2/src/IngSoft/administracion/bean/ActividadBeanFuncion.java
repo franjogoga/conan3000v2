@@ -154,7 +154,7 @@ public class ActividadBeanFuncion {
 		catch(Exception a)		
 		{sqlsesion.rollback();
 		a.printStackTrace();
-			throw CoException.set("Error: Nombre de Actividad repetido XD", "SMAActividad?accion=Agregar&tipo=1");
+			throw CoException.set("Error en ingreso de datos: No se puede agregar la actividad ", "SMAActividad?accion=Agregar&tipo=1");
 			
 		}
 		
