@@ -119,7 +119,7 @@
                               
                               
                               <div class="control-group">
-								<label class="control-label" for="selectError">Tipo de Documento(*):</label>
+								<label class="control-label" for="selectError">Tipo de Doc.(*):</label>
 								<div class="controls">
 								  <select id="selectError" data-rel="chosen">
 									<option>DNI</option>
@@ -133,7 +133,7 @@
                               <div class="control-group">
                                   
                                   
-                                  <label class="control-label" for="typeahead7">Nro. de Documento(*): </label>
+                                  <label class="control-label" for="typeahead7">Nro. de Doc.(*): </label>
                                   <div class="controls">
                                       <input type="text" class="span6 typeahead" id="typeahead7"  data-provide="typeahead" >
                                           </div>
@@ -159,24 +159,33 @@
 		                </div>							
                                 
 								                                                    
-                                                      
+                        <div class="control-group">
+                                  
+                                  
+                                  <label class="control-label" for="typeahead7">Correo(*): </label>
+                                  <div class="controls">
+                                      <input type="text" class="span6 typeahead" id="typeahead7"  data-provide="typeahead" >
+                                          </div>
+                              </div>                              
                                                              
-                                
-                                
-                                                               
                                 <div class="control-group">
-                                    <label class="control-label" for="textarea2">Descripci&oacuten:</label>
-                                    <div class="controls">
-                                   
-                                        <!--
-                                        <textarea class="cleditor" id="textarea2" rows="3"></textarea>
-                                        -->
-                                        
-                                        <textarea class="" id="textarea2" rows="3"></textarea>
-                                   
-                                    </div>
-                                </div>
+                                  
+                                  
+                                  <label class="control-label" for="typeahead7">Tel&eacutefono Fijo(*): </label>
+                                  <div class="controls">
+                                      <input type="text" class="span6 typeahead" id="typeahead7"  data-provide="typeahead" >
+                                          </div>
+                              </div>
                                 
+                                <div class="control-group">
+                                  
+                                  
+                                  <label class="control-label" for="typeahead7">Tel&eacutefono Celular(*): </label>
+                                  <div class="controls">
+                                      <input type="text" class="span6 typeahead" id="typeahead7"  data-provide="typeahead" >
+                                          </div>
+                              </div>                               
+                                                            
                                 <div class="control-group">
 								<label class="control-label">Estado:</label>
 								
