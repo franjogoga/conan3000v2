@@ -70,7 +70,7 @@
 
 	<!-- The fav icon -->
 	<link rel="shortcut icon" href="img/conan_logo.png">
-	
+	<!-- codigos  -->
 	
 	<script>
 	function alt_fecha(obj){
