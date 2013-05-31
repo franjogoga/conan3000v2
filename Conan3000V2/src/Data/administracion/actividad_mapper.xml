@@ -19,7 +19,7 @@ SELECT
 ACTIVIDAD.IdActividad AS codigo,
 ACTIVIDAD.nombre as nombre,
 TIPO_ACTIVIDAD.nombre as tipoactividad,
-TIPO_ACTIVIDAD.nombre as tipoactividad
+ACTIVIDAD.estado as estado
 FROM
 TIPO_ACTIVIDAD , ACTIVIDAD ,  AMBIENTE ,   
 SEDE ,            EMPLEADO ,   PERSONA 
@@ -59,8 +59,8 @@ inf245g2.EMPLEADO.Puesto as puesto,
 inf245g2.AMBIENTE.Nombre as nombreAmbientes,
 inf245g2.ACTIVIDAD.FechaInicio AS fechaInicio,
 inf245g2.ACTIVIDAD.FechaFin AS fechaFin,
-inf245g2.ACTIVIDAD.Descripcion AS descripcion
-
+inf245g2.ACTIVIDAD.Descripcion AS descripcion,
+inf245g2.ACTIVIDAD.Estado AS estado
 FROM
 inf245g2.TIPO_ACTIVIDAD , inf245g2.ACTIVIDAD ,  inf245g2.AMBIENTE ,   
 inf245g2.SEDE ,            inf245g2.EMPLEADO ,   inf245g2.PERSONA 
@@ -85,19 +85,60 @@ ORDER BY 1 ASC
 
 
 
+<!--Modificar sede -->
+
+<update id="modificarPlantillaActividad" parameterType="IngSoft.administracion.bean.ActividadBeanData" >
+update ACTIVIDAD 
+set
+IdSede	=	#{nombreSede} ,
+Nombre	=	#{nombre} ,
+IdEmpleado	=	#{nombreEncargado} ,
+IdAmbiente	=	#{nombreAmbientes} ,
+FechaInicio	=	#{fechaInicio} ,
+FechaFin	=	#{fechaFin} ,
+Descripcion	=	#{descripcion} ,
+IdTipoActividad	=	#{nombreTipoactividad}
+
+where IdActividad= #{codigo}
+</update>
+<!-- Fin eliminar -->
+
+<!--Eliminar sede -->
+
+<update id="deletePLantillaActividad" parameterType="java.lang.String" >
+update ACTIVIDAD set Estado ='No Disponible' where IdActividad = #{codigo}
+</update>
+<!-- Fin eliminar -->
 
 
 
 
 <!-- tipoactividad  -->
 <select id="getTipoactividad" resultType="IngSoft.administracion.bean.TipoActividadMiniBeanData">
-select TIPO_AMBIENTE.IdTipoAmbiente as codigo
-, TIPO_AMBIENTE.Nombre as nombre
+select TIPO_ACTIVIDAD.IdTipoActividad as codigo
+, TIPO_ACTIVIDAD.Nombre as nombre
 from 
-TIPO_AMBIENTE; 
+TIPO_ACTIVIDAD; 
 
 </select>
 
 
+<!-- sedes  -->
+<select id="getSede" resultType="IngSoft.administracion.bean.SedeBeanData">
+select SEDE.IdSede as codigo
+, SEDE.Nombre as nombre
+from 
+SEDE; 
+
+</select>
+
+<!-- ambientes  -->
+<select id="getAmbiente" resultType="IngSoft.administracion.bean.AmbienteBeanData">
+select AMBIENTE.IdAmbiente as codigo
+, AMBIENTE.Nombre as nombre
+from 
+AMBIENTE; 
+
+</select>
 
 </mapper>

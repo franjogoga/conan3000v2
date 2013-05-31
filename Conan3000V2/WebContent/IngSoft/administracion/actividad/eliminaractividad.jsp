@@ -72,8 +72,9 @@
 	}
 	
 	function alt_submit(){
-		
-			
+		var form= document.frmDelete;
+		var r=confirm("¿Esta seguro que desea eliminar esta Actividad ?");
+		if(r==true){form.submit();}
 			}
 		
 		
@@ -136,10 +137,14 @@
 				  </div>
 					<div class="box-content">
 						
-						<form class="form-horizontal" action="<%= response.encodeURL("SMAActividad")%>" name="frmData" method="post">
-						<input type="hidden" name="accion" value="Consultar"></input>
+						<form class="form-horizontal" name="frmDelete"  action="<%= response.encodeURL("SMAActividad")%>" name="frmData" method="post">
 						
+						<input type="hidden" name="codigo" value="<%=actividad.getCodigo()%>"></input>
+						<input type="hidden" name="accion" value="Eliminar"></input>
 						<input type="hidden" name="tipo" value="2"></input>
+						
+						
+						
 						  <fieldset>
 						  
 						  
@@ -289,9 +294,10 @@
 					        </div>    
 					          
 					        
-						    <div class="form-actions" >
-							 <!--  <button type="submit" class="btn btn-primary">Agregar</button> -->
-							  <button type="button" class="btn" onclick="location.href='buscaractividad.jsp'" >Regresar</button>
+							
+						    <div class="form-actions">
+							  <button type="button" class="btn btn-primary" onclick="javascript:alt_submit()">Eliminar</button>
+							  <button type="button" class="btn" onclick="location.href='buscaractividad.jsp'" >Cancelar</button>
 							</div>
 							
 						  </fieldset>
