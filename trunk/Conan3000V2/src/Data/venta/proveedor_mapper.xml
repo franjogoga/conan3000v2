@@ -119,6 +119,7 @@ IdProveedor as codigo
 ,Telefono as tel
 ,Correo as correo
 ,NombresContacto as nombre
+
 ,Estado as estado
 from PROVEEDOR  where IdProveedor=#{codigo}; 
 
