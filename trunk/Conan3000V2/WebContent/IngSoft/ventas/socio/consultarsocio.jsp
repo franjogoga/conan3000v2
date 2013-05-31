@@ -175,7 +175,7 @@
 							
 									
 									
-							<div class="control-group">
+							<!-- <div class="control-group">
 								<label class="control-label" for="typeahead5">Tipo de Documento(*):</label>
 								<div class="controls">
 								  <label class="radio">
@@ -190,7 +190,7 @@
 								  </div>
 								</div>
 							  </div>	
-							
+							 -->
 					
 							<div class="control-group">
 						      <label class="control-label" for="typeahead7">Numero de documento(*): </label>
