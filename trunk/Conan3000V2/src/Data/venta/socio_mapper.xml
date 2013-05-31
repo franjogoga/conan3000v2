@@ -15,7 +15,7 @@ SOCIO.IdSocio as idSocio
 ,PERSONA.ApeMaterno as apellidoMaterno
 ,PERSONA.TipoDocumento as tipoDocumento
 ,PERSONA.NumeroDocumento as numeroDocumento
-from SOCIO,PERSONA,MEMBRESIA
+from SOCIO,PERSONA
 <where>
 	<if test="nombres != null ">
         SOCIO.IdSocio=PERSONA.IdPersona and (PERSONA.nombres  like  #{nombres})
@@ -32,7 +32,6 @@ from SOCIO,PERSONA,MEMBRESIA
      <if test="tipoDocumento != null">
         AND PERSONA.TipoDocumento like #{tipoDocumento}
     </if>
-      AND MEMBRESIA.IdSocio=SOCIO.IdSocio and MEMBRESIA.Estado='Activo'
 </where>
 </select>
 
