@@ -7,11 +7,13 @@
   <cache />
 
 
+
+
   
 <!-- Agregar plantilla socio -->
 <insert id="insertProveedor" parameterType="IngSoft.venta.bean.ProveedorBeanData" flushCache="true">
 	insert into PROVEEDOR(IdProveedor,RazonSocial,Ruc,Direccion,Telefono,Correo,NombresContacto,ApePaternoContacto,ApeMaternoContacto,TipoDocumentoContacto,NumeroDocumentoContacto,Estado,IdDistrito)
-	values (#{IdProveedor},#{razonSocial},#{ruc},#{direccion},#{telefono},#{nomContacto},#{apPaterno},#{apMaterno},#{estado},#{tipoDoc},#{numDoc},#{distrito})
+	values (#{idProveedor},#{razonSocial},#{ruc},#{direccion},#{telefono},#{correo},#{nomContacto},#{apPaterno},#{apMaterno},#{tipoDoc},#{numDoc},'Activo',#{distrito})
 </insert>
 
 
@@ -129,4 +131,5 @@ from PROVEEDOR  where IdProveedor=#{codigo};
  
  
 </mapper>
+ 
  
