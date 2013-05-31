@@ -232,7 +232,7 @@ function alt_submit(){
 		                          
 		                        <div class="form-actions">
 			                      <button  type="button"  class="btn btn-primary" onclick="javascript:alt_submit()">Agregar</button>      
-			               		   <button  type="button"  class="btn" onclick="location.href='../promociones/trasladomembresia.jsp'">Cancelar</button>  
+			               		   <button  type="button"  class="btn" onclick="location.href='../membresia/trasladomembresia.jsp'">Cancelar</button>  
 		                        </div>
 		                      </fieldset>
 		                    </form>
