@@ -60,13 +60,37 @@
 	<link rel="shortcut icon" href="img/conan_logo.png">
 	<script src="evento.js"></script>
 	<script>
-		function validar(form){
-			if(form.txtNombreEvento.value.length <=0)return false;
-			if(form.fFecIncio.value.length<=0)return false;
-			if(form.fFecFin.value.lengtht<=0)return false;
-			if(form.cmbSedes.value.length<=0)return false;
-			if(form.cmbAmbientes.value.length<=0)return false;
-	return true;
+		function validar(){
+			var test=true;
+			if($('#cmbAmbientes').val()==null|| $('#cmbAmbientes').val().length<=0){
+				$('#cmbAmbientes').bind("change",function(){
+				alert(this.className);
+				})
+				test=false;
+				$('#cmbAmbientes').parent().parent().toggleClass("error");
+				
+			};						
+			if($('#cmbSedes').val()==null||$('#cmbSedes').val().length<=0)test=false;
+			if($('#txtNombreEvento').val()==null || $('#txtNombreEvento').val().length<=0){
+				$('#txtNombreEvento').bind("change",function(){
+				var temp= $('#txtNombreEvento');
+				if(temp.val()!=null && temp.val().length>0) {
+				temp.parent().parent().removeClass("error");
+				temp.parent().parent().addClass("success");
+				$('#errNombreEvento').slideUp(2000);
+				}
+				else {
+				temp.parent().parent().removeClass("success");
+				temp.parent().parent().addClass("error");
+				$('#errNombreEvento').slideDown(2000);
+				}
+				
+				})
+				$('#errNombreEvento').slideDown(2000);
+				test=false;
+				$('#txtNombreEvento').parent().parent().toggleClass("error");
+			};
+	return test;
 		
 		
 		}
@@ -74,7 +98,7 @@
 	
 	function alt_submit(){
 		var form= document.frmData;
-		if(validar(form)) form.submit();
+		if(validar()) form.submit();
 		else alert("Uno o mas campos estan vacios");			
 			}
 			
@@ -130,15 +154,15 @@
 						    <div class="control-group">
 						      <label class="control-label" for="typeahead7">Nombre de evento(*): </label>
 						      <div class="controls">
-						        <input type="text" class="span6 typeahead" id="txtNombreEvento"  data-provide="typeahead"  id="txtNombreEvento" name="txtNombreEvento" onkeypress="return alfanumerico(event);" autofocus maxlength="50">
-													        
+						        <input type="text" class="span6 typeahead" id="txtNombreEvento"  data-provide="typeahead"  id="txtNombreEvento" name="txtNombreEvento" onkeypress="return alfanumerico(event);" autofocus maxlength="50"/>
+								<span class="help-inline" id="errNombreEvento" style="visibility: ">Este campo no puede estar vacio</span>						        													       
 					          </div>
 					        </div>
 						    
 							<div class="control-group">
-								<label class="control-label" for="selectS1">Tipo de Evento(*):</label>
+								<label class="control-label" for="cmbTipo">Tipo de Evento(*):</label>
 								<div class="controls">
-								  <select id="selectS1" data-rel="chosen" id="cmbTipo" name="cmbTipo">
+								  <select data-rel="chosen" id="cmbTipo" name="cmbTipo">
 									<%for(int i=0;i<tiposEvento.size();i++){ %>
 										<option value="<%= ((TipoEventoMiniBeanData)tiposEvento.get(i)).getCodigo()%>" <%=i==0?"selected":""%>><%= ((TipoEventoMiniBeanData)tiposEvento.get(i)).getNombre()%></option>
 									<%} %>										
@@ -146,22 +170,24 @@
 								</div>
 							  </div>
 							  <div class="control-group">
-								<label class="control-label" for="selectM1">Sedes relacionadas(*):</label>
+								<label class="control-label" for="cmbSedes">Sedes relacionadas(*):</label>
 								<div class="controls">
-								  <select id="selectM1" multiple data-rel="chosen" id="cmbSedes" name="cmbSedes" >
+								  <select  multiple data-rel="chosen" id="cmbSedes" name="cmbSedes" >
 									<%for(int i=0;i<sedes.size();i++){ %>
 										<option value="<%= ((SedeMiniBeanData)sedes.get(i)).getCodigo()%>"><%= ((SedeMiniBeanData)sedes.get(i)).getNombre()%></option>
 									<%} %>																
+									<span class="help-inline" id="errSedes" style="display:none;">Este campo no puede estar vacio</span>
 								  </select>
 								</div>
 							  </div>
 							   <div class="control-group">
-								<label class="control-label" for="selectM2">Ambientes relacionados(*):</label>
+								<label class="control-label" for="cmbAmbientes">Ambientes relacionados(*):</label>
 								<div class="controls">
-								  <select id="selectM2" multiple data-rel="chosen" id="cmbAmbientes" name="cmbAmbientes">
+								  <select  multiple data-rel="chosen" id="cmbAmbientes" name="cmbAmbientes">
 									<%for(int i=0;i<ambientes.size();i++){ %>
 										<option value="<%= ((AmbienteMiniBeanData)ambientes.get(i)).getCodigo()%>"><%= ((AmbienteMiniBeanData)ambientes.get(i)).getNombre()%></option>
-									<%} %>										
+									<%} %>
+									<span class="help-inline" id="errAmbientes" style="display:none;">Este campo no puede estar vacio, por favor haga una seleccion</span>										
 								  </select>
 								</div>
 							  </div>
