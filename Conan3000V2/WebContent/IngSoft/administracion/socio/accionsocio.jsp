@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Calendar"%>
-<%@page import="IngSoft.administracion.bean.ResultadoPerfilBeanData"%>
+<%@page import="IngSoft.administracion.bean.ResultadoSocioBeanData"%>
 <%@page import="java.util.Vector"%>
 <%@page import="java.lang.System"%>
 
@@ -50,29 +50,18 @@
 	<link rel="shortcut icon" href="img/conan_logo.png">
 	
 	<script>	
-	function alt_agregar_perfil(){
-		var formPerfil=document.getElementById("frmPerfil");
-		formPerfil.accion.value="Agregar";
-		formPerfil.submit();
-	}
-	function alt_consultar_perfil(cod){
-		var formPerfil=document.getElementById("frmPerfil");
-		formPerfil.accion.value="Consultar";
+	function alt_vitalizar(cod){
+		var formPerfil=document.getElementById("frmAlternativo");
+		formPerfil.accion.value="Vitalizar";
 		formPerfil.codigo.value=cod;
 		formPerfil.submit();
 	}
-	function alt_modificar_perfil(cod){
-		var formPerfil=document.getElementById("frmPerfil");
-		formPerfil.accion.value="Modificar";
+	function alt_suspender(cod){
+		var formPerfil=document.getElementById("frmAlternativo");
+		formPerfil.accion.value="Suspender";
 		formPerfil.codigo.value=cod;
 		formPerfil.submit();
-	}
-	function alt_eliminar_perfil(cod){
-		var formPerfil=document.getElementById("frmPerfil");
-		formPerfil.accion.value="Eliminar";
-		formPerfil.codigo.value=cod;
-		formPerfil.submit();
-	}
+	}	
 	</script>		
 </head>
 
@@ -120,24 +109,41 @@
 						</div>
 						
 						<div class="box-content">
-							<form class="form-horizontal" name="frmCriterioBusquedaPerfil" id="frmCriterioBusquedaPerfil" method="post" action="<%=response.encodeURL("SMAPerfil")%>">
+							<form class="form-horizontal" name="frmCriterioBusqueda" id="frmCriterioBusqueda" method="post" action="<%=response.encodeURL("SMASocio")%>">
 								<input type="hidden" name="accion" value="Buscar"></input>
 								
 								<fieldset>		              			 
 						
 									<div class="control-group">
-										<label class="control-label" for="txtNombre">Perfil :</label>							  
+							    		<label class="control-label" for="typeahead6">Nombres: </label>
+							    		<div class="controls">
+							      			<input type="text" class="span6 typeahead" id="txtNombres" name="txtNombres" data-provide="typeahead" data-items="4" >
+						        		</div>
+						      		</div>
+						    
+							  		<div class="control-group">
+							   			<label class="control-label" for="typeahead6">Apellido Paterno: </label>
+							    		<div class="controls">
+							      			<input type="text" class="span6 typeahead" id="txtApellidoPaterno" name="txtApellidoPaterno"  data-provide="typeahead" data-items="4" >
+						        		</div>
+						      		</div>
+						      		
+							  		<div class="control-group">
+							    		<label class="control-label" for="typeahead10">Apellido Materno: </label>
+							    		<div class="controls">
+							      			<input type="text" class="span6 typeahead" id="txtApellidoMaterno" name="txtApellidoMaterno"  data-provide="typeahead" data-items="4" >
+						        		</div>						        	
+						      		</div>
+						      		
+							  		<div class="control-group">
+										<label class="control-label" for="selectError">Tipo de Documento:</label>
 										<div class="controls">
-											<input type="text" class="span6 typeahead" id="txtNombre" name="txtNombre"></input>								
+								  			<select id="cmdTipoDocumento" name="cmdTipoDocumento" data-rel="chosen" >								  
+												<option value="DNI">DNI</option>
+												<option value="Carnet de Extranjeria">Carnet de Extranjeria</option>								
+								  			</select>
 										</div>
-									</div>
-									
-									<div class="control-group">
-										<label class="control-label" for="txtDescripcion">Descripci&oacute;n :</label>							  
-										<div class="controls">
-											<input type="text" class="span6 typeahead" id="txtDescripcion" name="txtDescripcion"></input>								
-										</div>
-									</div>															
+							  		</div>															
 									  
 									<div class="form-actions">
 										<button type="submit" class="btn btn-primary">Buscar</button>
@@ -150,8 +156,8 @@
 					</div> <!-- box span12-->		      
 				</div> <!-- row-fluid sortable-->		    
 						
-				<form id="frmPerfil" name="frmPerfil" method="post" action="<%= response.encodeURL("SMAPerfil")%>">
-					<input type="hidden" name="accion" value="Agregar"></input>
+				<form id="frmAlternativo" name="frmAlternativo" method="post" action="<%= response.encodeURL("SMASocio")%>">
+					<input type="hidden" name="accion" value="Vitalizar"></input>
 					<input type="hidden" name="codigo" value=""></input>
 					<input type="hidden" name="tipo" value="1"></input>
 				</form>		
@@ -163,36 +169,34 @@
 						</div>
 						
 						<div class="box-content">
-							<table class="table table-striped table-bordered bootstrap-datatable datatable">
-								<!-- agregar nuevo boton -->
-								<div  align="right">
-									<a class="btn btn-primary" href="javascript:alt_agregar_perfil()"> 
-										<i class="icon icon-add icon-white"></i> Agregar 
-									</a> 
-								</div>
+							<table class="table table-striped table-bordered bootstrap-datatable datatable">																
 								
 								<thead>
-									<tr>
-										<th width="17%">Perfil</th>
-										<th width="20%">Descripci&oacute;n</th>		                	               									
-										<th width="35%">Acci&oacute;n</th>
-									</tr>
-								</thead>
+							  		<tr>
+										<th>Nombres</th>
+										<th>Apellido Paterno</th>
+										<th>Apellido Materno</th>
+										<th>Tipo Documento</th>
+										<th>Numero Documento</th>
+										<th>Acci&oacute;n</th>
+							  		</tr>
+						  		</thead>
 								
 								<tbody id="resultadoBusqueda">	
 									<% for(int i=0; i<resultados.size(); i++) { %>
 									<tr>
-										<td><%=((ResultadoPerfilBeanData)resultados.get(i)).getNombre()%></td>
-										<td class="center"><%=((ResultadoPerfilBeanData)resultados.get(i)).getDescripcion()%></td>
+										<td><%=((ResultadoSocioBeanData)resultados.get(i)).getNombres()%></td>
+										<td><%=((ResultadoSocioBeanData)resultados.get(i)).getApellidoPaterno()%></td>
+										<td><%=((ResultadoSocioBeanData)resultados.get(i)).getApellidoMaterno()%></td>
+										<td><%=((ResultadoSocioBeanData)resultados.get(i)).getTipoDocumento()%></td>
+										<td><%=((ResultadoSocioBeanData)resultados.get(i)).getNumeroDocumento()%></td>
+										<td class="center"><%=((ResultadoSocioBeanData)resultados.get(i)).getDescripcion()%></td>
 										<td class="center">
-											<a class="btn btn-success" href="javascript:alt_consultar_perfil('<%=((ResultadoPerfilBeanData)resultados.get(i)).getCodigo()%>')">
-												<i class="icon-zoom-in icon-white"></i> Ver 
-											</a>
-											<a class="btn btn-info" href="javascript:alt_modificar_perfil('<%=((ResultadoPerfilBeanData)resultados.get(i)).getCodigo()%>')">
-												<i class="icon-edit icon-white"></i> Modificar
-											</a>
-											<a class="btn btn-danger" href="javascript:alt_eliminar_perfil('<%=((ResultadoPerfilBeanData)resultados.get(i)).getCodigo()%>')">
-												<i class="icon-trash icon-white"></i> Eliminar
+											<a class="btn btn-success" href="javascript:alt_vitalizar('<%=((ResultadoSocioBeanData)resultados.get(i)).getIdSocio()%>')">
+												<i class="icon-zoom-in icon-white"></i> Vitalizar 
+											</a>											
+											<a class="btn btn-danger" href="javascript:alt_eliminar('<%=((ResultadoSocioBeanData)resultados.get(i)).getIdSocio()%>')">
+												<i class="icon-trash icon-white"></i> Suspender
 											</a>
 										</td>
 									</tr>					  
