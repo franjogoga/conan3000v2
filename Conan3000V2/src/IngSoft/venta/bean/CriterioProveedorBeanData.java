@@ -1,6 +1,8 @@
 package IngSoft.venta.bean;
 
-public class CriterioProveedorBeanData {
+import java.io.Serializable;
+
+public class CriterioProveedorBeanData implements Serializable{
 	
 	private String codigo;
 	private String razonSocial;
