@@ -118,16 +118,18 @@
                             </select>
                           </div>
                         </div>
-                        <div class="control-group">
+                        <div class="control-group" id="dvDescripcion">
                   		  <label class="control-label" for="textarea2">Descripci&oacute;n:</label>
                           <div class="controls">
                             <textarea name="txtDescripcion" rows="3" id="txtDescripcion" style="resize:none"></textarea>
+                          	<span class="help-inline" id="errDescripcion">Please correct the error</span>
                           </div>
                         </div>
-                        <div class="control-group">
+                        <div class="control-group" id="dvCaracteristica">
                           <label class="control-label" for="textarea2">Caracter&iacute;sticas: </label>
                           <div class="controls">
                             <textarea name="txtCaracteristica" rows="3" id="txtCaracteristica" style="resize:none"></textarea>
+                          	<span class="help-inline" id="errCaracteristica">Please correct the error</span>
                           </div>
                         </div>
                         <div class="form-actions">
@@ -288,6 +290,8 @@ function validaForm(){
         var i=0;
         var error=false;
         if(!esValido("Nombre",form.txtNombreAmbiente,"NombreAmbiente",1,1,50)){cadena[i]="Nombre";i++;}
+        if(!esValido("Descripci&oacute;n",form.txtDescripcion,"Descripcion",1,0,50)){cadena[i]="Descripci&oacute;n";i++;}
+        if(!esValido("Caracter&iacute;sticas",form.txtCaracteristica,"Caracteristica",1,0,50)){cadena[i]="Caracter&iacute;sticas";i++;}
        
         //No tocar
         if(i>0){
@@ -299,7 +303,9 @@ function validaForm(){
 } 
  
 function inicializa(){
-        document.getElementById("errNombreAmbiente").style.display='none';    
+        document.getElementById("errNombreAmbiente").style.display='none';
+        document.getElementById("errDescripcion").style.display='none'; 
+        document.getElementById("errCaracteristica").style.display='none';    
 } 
  
 inicializa();
