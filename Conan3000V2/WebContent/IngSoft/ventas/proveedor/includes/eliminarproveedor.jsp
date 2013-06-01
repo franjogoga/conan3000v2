@@ -11,7 +11,7 @@
 	
 	function alt_submit(){
 		var form= document.frmDelete;
-		var r=confirm("¿Esta seguro que desea borrar este evento?");
+		var r=confirm("¿Esta seguro que desea borrar este proveedor?");
 		if(r==true){form.submit();}
 			}	
 
