@@ -25,12 +25,15 @@ public class ProveedorBeanData implements Serializable {
 	public String getDistrito() {
 		return distrito;
 	}
+	
 	public void setDistrito(String distrito) {
 		this.distrito = distrito;
 	}
+	
 	public String getProvincia() {
 		return provincia;
 	}
+	
 	public void setProvincia(String provincia) {
 		this.provincia = provincia;
 	}
@@ -44,9 +47,11 @@ public class ProveedorBeanData implements Serializable {
 	public String getIdProveedor() {
 		return idProveedor;
 	}
+	
 	public void setIdProveedor(String idProveedor) {
 		this.idProveedor = idProveedor;
 	}
+	
 	public String getRazonSocial() {
 		return razonSocial;
 	}
