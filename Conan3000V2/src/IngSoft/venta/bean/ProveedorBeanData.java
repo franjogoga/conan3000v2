@@ -16,7 +16,7 @@ public class ProveedorBeanData implements Serializable {
 	private String apMaterno;
 	private String estado;
 	private String tipoDoc;
-	private String numDoc;
+	private long numDoc;
 	private String distrito;
 	private String provincia;
 	private String departamento;
@@ -112,12 +112,15 @@ public class ProveedorBeanData implements Serializable {
 	public void setTipoDoc(String tipoDoc) {
 		this.tipoDoc = tipoDoc;
 	}
-	public String getNumDoc() {
+
+	public long getNumDoc() {
 		return numDoc;
 	}
-	public void setNumDoc(String numDoc) {
+
+	public void setNumDoc(long numDoc) {
 		this.numDoc = numDoc;
 	}
+
 
 	
 	
