@@ -64,7 +64,7 @@ public class ActividadBeanFuncion {
 		actividadData.setFechaFin(new Date(DF.parse(		request.getParameter("fFecFin")+"/0000").getTime()));
 		actividadData.setDia(   						 	request.getParameter("txtDia") );
 		actividadData.setDescripcion(    					request.getParameter("txtDescripcion") );
-		actividadData.setEstado(    						request.getParameter("txtEstado") );
+		actividadData.setEstado(    						request.getParameter("optionsRadios") );
 		
 		
 
@@ -99,7 +99,7 @@ public class ActividadBeanFuncion {
 		actividadData.setFechaFin(new Date(DF.parse(		request.getParameter("fFecFin")+"/0000").getTime()));
 		actividadData.setDia(   						 	request.getParameter("txtDia") );
 		actividadData.setDescripcion(    					request.getParameter("txtDescripcion") );
-		actividadData.setEstado(    						request.getParameter("txtEstado") );
+		actividadData.setEstado(    						request.getParameter("optionsRadios") );
 		
 			
 

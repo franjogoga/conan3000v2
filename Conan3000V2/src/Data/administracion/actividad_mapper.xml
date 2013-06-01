@@ -92,7 +92,8 @@ IdAmbiente	=	#{nombreAmbientes} ,
 FechaInicio	=	#{fechaInicio} ,
 FechaFin	=	#{fechaFin} ,
 Descripcion	=	#{descripcion} ,
-IdTipoActividad	=	#{nombreTipoactividad}
+IdTipoActividad	=	#{nombreTipoactividad},
+estado	=	#{estado}
 
 where IdActividad= #{codigo}
 </update>
