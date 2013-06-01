@@ -81,18 +81,12 @@
 			              <div class="control-group">
 			                  <label class="control-label" for="typeahead2">Ruc:</label>
 			                  <div class="controls">
-			                    <input type="text" class="span6 typeahead" id="txtRazon"  name="txtRazon" data-provide="typeahead" >
+			                    <input type="text" class="span6 typeahead" id="txtRuc"  name="txtRuc" data-provide="typeahead" >
 		                      </div>
-		                    </div>
-		                    
-		                   
-			             
+		                    </div>      
 		                  </div>
-			            
-			          
-			              
-							
 			            </div>
+			            
 			            <div class="form-actions">
 			              <button type="submit" class="btn btn-primary">Buscar</button>
 			              <button type="submit" class="btn"><a href="buscarproveedor.jsp">Cancelar</a></button>
@@ -148,7 +142,7 @@
 					        
 					        <td class="center">
                           				<%=
-                          					((ResultadoProveedorBeanData)resultados.get(i)).getRazon()
+                          					((ResultadoProveedorBeanData)resultados.get(i)).getRazonSocial()
                           				%>
                           </td>
                           
