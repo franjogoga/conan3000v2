@@ -94,7 +94,12 @@ update PROVEEDOR set PROVEEDOR.IdProveedor=#{idProveedor}
  ,PROVEEDOR.Ruc=#{ruc}
  ,PROVEEDOR.Direccion=#{direccion}
  ,PROVEEDOR.Correo=#{correo}
+ ,PROVEEDOR.Telefono=#{telefono}
+ ,PROVEEDOR.TipoDocumentoContacto=#{tipoDoc}
+ ,PROVEEDOR.NumeroDocumentoContacto=#{numDoc}
  ,PROVEEDOR.NombresContacto=#{nomContacto}
+ ,PROVEEDOR.ApePaternoContacto=#{apPaterno}
+ ,PROVEEDOR.ApeMaternoContacto=#{apMaterno}
  where PROVEEDOR.IdProveedor= #{idProveedor}
 </update>
 
