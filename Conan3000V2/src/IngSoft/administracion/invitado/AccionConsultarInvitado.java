@@ -17,8 +17,8 @@ public class AccionConsultarInvitado extends CoAccion {
 		
 		
 		InvitadoBeanFunction invitadoFunction= InvitadoBeanFunction.getInstance(); 
-		InvitadoBeanData invitadoData=invitadoFunction.consultarInvitado(request.getParameter("codigo"));
-		request.setAttribute("invitado",invitadoData );
+		//InvitadoBeanData invitadoData=invitadoFunction.consultarInvitado(request.getParameter("codigo"));
+		//request.setAttribute("invitado",invitadoData );
 		this.direccionar(sc, request, response, "/IngSoft/administracion/invitado/consultarinvitado.jsp");
 		
 
