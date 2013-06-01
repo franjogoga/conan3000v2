@@ -12,7 +12,7 @@ public class SMVProveedor extends CoServlet{
 	@Override
 	protected void initAcciones() {
 		acciones.put("Buscar", new AccionBuscarProveedor());
-		//acciones.put("Consultar", new AccionConsultarPromocion());
+		acciones.put("Consultar", new AccionConsultarProveedor());
 		acciones.put("Agregar", new AccionAgregarProveedor());
 		//acciones.put("AgregarMini", new AccionAgregarMiniSocio()); //este es para el agregar en traslado membresia
 		//acciones.put("Modificar", new AccionModificarPromocion());
