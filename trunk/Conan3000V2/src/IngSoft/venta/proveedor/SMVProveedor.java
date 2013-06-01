@@ -14,10 +14,8 @@ public class SMVProveedor extends CoServlet{
 		acciones.put("Buscar", new AccionBuscarProveedor());
 		acciones.put("Consultar", new AccionConsultarProveedor());
 		acciones.put("Agregar", new AccionAgregarProveedor());
-		//acciones.put("AgregarMini", new AccionAgregarMiniSocio()); //este es para el agregar en traslado membresia
-		//acciones.put("Modificar", new AccionModificarPromocion());
+		acciones.put("Modificar", new AccionModificarProveedor());
 		acciones.put("Eliminar", new AccionEliminarProveedor());
-		//acciones.put("Seleccionar", new AccionSeleccionarSocio());
 	}
 	
 }
