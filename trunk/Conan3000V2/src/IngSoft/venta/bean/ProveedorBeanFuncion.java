@@ -43,16 +43,22 @@ public class ProveedorBeanFuncion {
 			proveedorData.setRuc(Long.parseLong(request.getParameter("txtRuc")));
 
 			proveedorData.setCorreo(request.getParameter("txtCorreo"));
+			proveedorData.setDistrito(request.getParameter("cmdDistrito"));
 			proveedorData.setProvincia((request.getParameter("cmdProvincia")));
 			proveedorData.setDepartamento((request.getParameter("cmdDepartamento")));
 			proveedorData.setNomContacto(request.getParameter("txtNombre"));
 		    proveedorData.setApPaterno(request.getParameter("txtApPaterno"));
 			proveedorData.setNumDoc(request.getParameter("txtNumDoc"));
-			if (request.getParameter("rButton")!=null){
-				String tipoDocumento;
-				tipoDocumento=request.getParameter("rButton");
-			}
+			//if (request.getParameter("rButton")!=null){
+				//String tipoDocumento;
+				//tipoDocumento=request.getParameter("rButton");
+			//}
 		
+			
+			if (request.getParameter("rButton")!=null){
+				String tipo;
+				tipo=request.getParameter("rButton");
+				proveedorData.setTipoDoc(tipo);}
 
 		}catch(Exception e){
 			e.printStackTrace();
