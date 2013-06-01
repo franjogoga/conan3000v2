@@ -33,14 +33,13 @@ public class TrasladoBeanFuncion {
 		trasladoData.setIdmembresiantiguo(request.getParameter("txtIdMembresiaAntiguo"));
 		trasladoData.setIdmembresianuevo(request.getParameter("txtIdMembresiaNuevo"));
 		
-		//trasladoData.setIdmembresiantiguo("MEM000032");
-		//trasladoData.setIdmembresianuevo("MEM000033");
 		try{			
 		
-			trasladoData.setFechafin(new Date(DF.parse(request.getParameter("fFechaFin")).getTime()));
+			
 			trasladoData.setCodigo(request.getParameter("txtIdNuevoSocio"));
 		//trasladoData.setIdMembresiaNuevo("MEM000032");
-		trasladoData.setFecha(new Date(DF.parse(request.getParameter("fFecha")).getTime()));
+		trasladoData.setFecha(new Date(DF.parse(request.getParameter("fFechaInicio")).getTime()));
+		trasladoData.setFechafin(new Date(DF.parse(request.getParameter("fFechaFin")).getTime()));
 		trasladoData.setParentesco(request.getParameter("cmbParentesco"));
 		trasladoData.setMonto(Double.parseDouble(request.getParameter("txtMonto")));
 	
@@ -60,33 +59,34 @@ public class TrasladoBeanFuncion {
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		
 		try{
-			//String codigo= (String)sqlsesion.selectOne("Data.venta.traslado.getNextCodigoT");
-			//if(codigo!=null){
-			//int cod= Integer.parseInt(codigo.substring(3))+1;
-			//String defecto= "000000";
-			//String temp= defecto.substring(0, defecto.length()-String.valueOf(cod).length()).concat(String.valueOf(cod));
-			
-			//trasladoData.setIdtraslado((codigo.substring(0,3).concat(temp)));
-			//}
-			//else trasladoData.setIdMembresiaNuevo("MEM000020");
-			//insertPromocion esta en traslado mapper
-			String codigo=trasladoData.getIdmembresiantiguo();
-			String codigoNuevo=trasladoData.getIdmembresianuevo();
-			
+
 			MembresiaBeanData membresiaData=new MembresiaBeanData();
+			String codigoNuevo= (String)sqlsesion.selectOne("Data.venta.traslado.getNextCodigoT");
+			if(codigoNuevo!=null){
+			int cod= Integer.parseInt(codigoNuevo.substring(3))+1;
+			String defecto= "000000";
+			String temp= defecto.substring(0, defecto.length()-String.valueOf(cod).length()).concat(String.valueOf(cod));
+			codigoNuevo=((codigoNuevo.substring(0,3).concat(temp)));
+			trasladoData.setIdmembresianuevo(codigoNuevo);
+			}
+			//else trasladoData.setIdMembresiaNuevo("MEM000020");
+
+			String codigo=trasladoData.getIdmembresiantiguo();
+			//trasladoData.setIdmembresianuevo(codigoNuevo);
+			
+			//membresiaData.setIdMembresia(idMembresia);
 			membresiaData.setIdMembresia(codigoNuevo);
 			membresiaData.setEstado("Activo");
 			membresiaData.setCosto(trasladoData.getMonto());
-			membresiaData.setFechaInicio(trasladoData.getFecha());
+			//membresiaData.setFechaInicio(trasladoData.getFecha());
 			membresiaData.setCodigoSocio(trasladoData.getCodigo());
+			membresiaData.setFechaInicio(trasladoData.getFecha());
 			membresiaData.setFechafin(trasladoData.getFechafin());
 			
-			sqlsesion.insert("insertNuevaMembresia",membresiaData);
-			sqlsesion.update("updateCodigo", codigo);
-			
-			sqlsesion.insert("insertTraslado",trasladoData);
-			//sqlsesion.insert("insertPlantillaEventoSedes",eventoData);
-			
+			sqlsesion.insert("Data.venta.traslado.insertNuevaMembresia",membresiaData);
+			sqlsesion.update("Data.venta.traslado.updateCodigo", codigo);
+			sqlsesion.insert("Data.venta.traslado.insertTraslado",trasladoData);
+
 			resultado=true;
 		}
 		catch(Exception a)		
