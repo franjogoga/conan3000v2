@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Data.venta.producto">
+
+  <cache />
+
+<select id="searchPlantillaProducto" parameterType="IngSoft.venta.bean.CriterioProductoBeanData" resultType="IngSoft.venta.bean.ResultadoProductoBeanData">
+select 
+PRODUCTO_PROV.IdProdProveedor as codigo
+,PRODUCTO_PROV.IdProveedor as proveedor
+,PRODUCTO_PROV.Nombre as nombre
+,PRODUCTO_PROV.Descripcion as desc
+,PRODUCTO_PROV.PrecioUnitario as pu
+,PRODUCTO_PROV.Presentacion as pres
+,PRODUCTO_PROV.Estado as estado
+
+from PRODUCTO_PROV
+<where>
+	<if test="codigo != null ">
+       PRODUCTO_PROV.IdProdProveedor= #{codigo})
+    </if>
+    <if test="proveedor != null">
+       PRODUCTO_PROV.IdProveedor= #{proveedor}
+    </if>
+    <if test="nombre != null">
+        AND PRODUCTO_PROV.Nombre= #{nombre}
+    </if>
+    <if test="desc != null">
+        AND PRODUCTO_PROV.Descripcion= #{desc}
+    </if>
+     <if test="pu != null">
+        AND PRODUCTO_PROV.PrecioUnitario= #{pu}
+    </if>  
+     <if test="estado != null">
+        AND PRODUCTO_PROV.Estado= #{estado}
+    </if>  
+      
+</where>
+</select>
+
+  
+<!-- Agregar plantilla membresia -->
+<insert id="insertProducto" parameterType="IngSoft.venta.bean.ProductoBeanData" flushCache="true">
+	insert into PRODUCTO_PROV(IdProdProveedor,IdProveedor,Nombre,Descripcion,PrecioUnitario,Estado)
+	values (#{codigo},#{proveedor},#{nombre},#{desc},#{pu},#{estado})
+</insert>
+
+<select id="getNextCodigo2" resultType="java.lang.String">
+	select max(IdMembresia) from MEMBRESIA
+</select>
+
+
+ <!-- Fin agregar  -->
+ 
+ <!-- Modificar elemento -->
+<update id="updateProducto" parameterType="IngSoft.venta.bean.ProductoBeanData">
+update PRODUCTO_PROV set 
+IdProveedor=#{proveedor}
+ ,Nombre=#{nombre}
+ ,Descripcion=#{desc}
+ ,PrecioUnitario=#{pu}
+ ,Estado=#{estado}
+ where IdProdProveedor= #{codigo}
+</update>
+
+<!-- Fin modificar -->
+
+
+
+<!--Eliminar membresia -->
+<update id="deleteProducto" parameterType="java.lang.String" >
+update PRODUCTO_PROV set Estado='Inactivo' where IdProdProveedor= #{codigo}
+</update>
+<!-- Fin eliminar -->
+
+<select id="getPlantillaProducto" parameterType="java.lang.String"  resultType="IngSoft.venta.bean.ProductoBeanData">
+select 
+PRODUCTO_PROV.IdProdProveedor as codigo
+,PRODUCTO_PROV.IdProveedor as proveedor
+,PRODUCTO_PROV.Nombre as nombre
+,PRODUCTO_PROV.Descripcion as desc
+,PRODUCTO_PROV.PrecioUnitario as pu
+,PRODUCTO_PROV.Estado as estado
+from PRODUCTO_PROV; 
+
+
+</select>
+
+
+
+
+</mapper>
+ 
