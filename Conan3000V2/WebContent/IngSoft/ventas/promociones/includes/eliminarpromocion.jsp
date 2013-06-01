@@ -12,7 +12,7 @@
 	
 	function alt_submit(){
 		var form= document.frmDelete;
-		var r=confirm("¿Esta seguro que desea borrar este evento?");
+		var r=confirm("¿Esta seguro que desea borrar esta promocion?");
 		if(r==true){form.submit();}
 			}	
 
