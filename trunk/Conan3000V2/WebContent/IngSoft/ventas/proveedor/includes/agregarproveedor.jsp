@@ -157,24 +157,7 @@ function validaForm(){
 		                    <input type="text" class="span6 typeahead" id="txtDireccion"  name="txtDireccion" data-provide="typeahead" data-items="4" >
 		                  </div>
 	                    </div>
-		                <div class="control-group">
-		                  <label class="control-label" for="selectError">Departamento:</label>
-		                  <div class="controls">
-		                    <select name="selectError3" id="cmdDepartamento"  name="cmdDepartamento" data-rel="chosen">
-		                      <option>Lima</option>
-		                      <option>Trujillo</option>
-	                        </select>
-		                  </div>
-	                    </div>
-		                <div class="control-group">
-		                  <label class="control-label" for="selectError">Provincia:</label>
-		                  <div class="controls">
-		                    <select name="selectError" id="cmdProvincia" name="cmdProvincia" data-rel="chosen">
-		                      <option>Lima</option>
-		                      <option>Callao</option>
-	                        </select>
-		                  </div>
-	                    </div>
+
 		                <div class="control-group">
 		                  <label class="control-label" for="selectError">Distrito:</label>
 		                  <div class="controls">
