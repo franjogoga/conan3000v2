@@ -27,7 +27,7 @@ import IngSoft.venta.bean.MembresiaBeanFunction;
 		
 		sesion.setAttribute("membresia", membresiaData);
 		
-		this.direccionar(sc, request, response, "/IngSoft/ventas/membresia/trasladomembresia.jsp");
+		this.direccionar(sc, request, response, "/IngSoft/ventas/membresia/trasladominimembresia.jsp");
 		}
 		//this.direccionar(sc, request, response, "/IngSoft/ventas/membresiaes/buscarmembresia.jsp");
 				
