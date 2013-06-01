@@ -48,7 +48,7 @@ public class ProveedorBeanFuncion {
 			proveedorData.setDepartamento((request.getParameter("cmdDepartamento")));
 			proveedorData.setNomContacto(request.getParameter("txtNombre"));
 		    proveedorData.setApPaterno(request.getParameter("txtApPaterno"));
-			proveedorData.setNumDoc(request.getParameter("txtNumDoc"));
+			proveedorData.setNumDoc(Long.parseLong(request.getParameter("txtNumDoc")));
 			//if (request.getParameter("rButton")!=null){
 				//String tipoDocumento;
 				//tipoDocumento=request.getParameter("rButton");
@@ -117,14 +117,14 @@ public class ProveedorBeanFuncion {
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
 		
-			sqlsesion.update("Data.venta.proveedor.deletePromocion",codigo);
+			sqlsesion.update("Data.venta.proveedor.deleteProveedor",codigo);
 			
 			resultado=true;
 		}
 		catch(Exception a)		
 		{sqlsesion.rollback();
 		a.printStackTrace();
-			throw CoException.set("Error: No se pudo eliminar la plantilla intente de nuevo", "SMVProveedor?accion=Agregar&tipo=1");
+			//throw CoException.set("Error: No se pudo eliminar la plantilla intente de nuevo", "SMVProveedor?accion=Agregar&tipo=1");
 			
 		}
 		
@@ -138,7 +138,7 @@ public class ProveedorBeanFuncion {
 	
 	
 			
-	public ProveedorBeanData consultarPorveedor(String codigo){
+	public ProveedorBeanData consultarProveedor(String codigo){
 		ProveedorBeanData proveedorData=null;
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
@@ -161,7 +161,7 @@ public class ProveedorBeanFuncion {
 		catch(Exception a)		
 		{sqlsesion.rollback();
 		a.printStackTrace();
-			throw CoException.set("Error: No se pudo modificar la plantilla intente de nuevo", "SMVProveedor?accion=Modificar&tipo=1");
+			//throw CoException.set("Error: No se pudo modificar la plantilla intente de nuevo", "SMVProveedor?accion=Modificar&tipo=1");
 			
 		}
 		
