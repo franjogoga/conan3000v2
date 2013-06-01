@@ -60,11 +60,13 @@ PROVEEDOR.IdProveedor as codigo
 ,PROVEEDOR.Correo as correo
 from PROVEEDOR 
 <where>
-	<if test="razonSocial != null ">
-       PROVEEDOR.RazonSocial  like #{razonSocial}
-    </if>
-    <if test="ruc != null">
-        OR PROVEEDOR.Ruc=#{ruc}
+
+    <if test="ruc!= null">
+        PROVEEDOR.Ruc=#{ruc}
+    </if>	
+    
+    <if test="razonSocial!=null">
+       OR PROVEEDOR.RazonSocial  like #{razonSocial}
     </if>
     AND PROVEEDOR.Estado='Activo'  
 </where>
@@ -87,13 +89,13 @@ from PROVEEDOR  where IdProveedor=#{codigo};
   
   <!-- Modificar elemento -->
 <update id="updateProveedor" parameterType="IngSoft.venta.bean.ProveedorBeanData">
-update PROVEEDOR set IdProveedor=#{codigo}
- ,RazonSocial=#{fechaInicio}
- ,Ruc=#{fechaFin}
- ,Direccion=#{dir}
- ,Correo=#{correo}
- ,NombresContacto=#{nombre}
- where IdPromocion= #{codigo}
+update PROVEEDOR set PROVEEDOR.IdProveedor=#{idProveedor}
+ ,PROVEEDOR.RazonSocial=#{razonSocial}
+ ,PROVEEDOR.Ruc=#{ruc}
+ ,PROVEEDOR.Direccion=#{direccion}
+ ,PROVEEDOR.Correo=#{correo}
+ ,PROVEEDOR.NombresContacto=#{nomContacto}
+ where PROVEEDOR.IdProveedor= #{idProveedor}
 </update>
 
 <!-- Fin modificar -->
