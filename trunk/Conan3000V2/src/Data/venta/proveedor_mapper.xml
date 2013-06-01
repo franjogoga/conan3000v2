@@ -56,16 +56,15 @@ PROVEEDOR.IdProveedor as codigo
 ,PROVEEDOR.RazonSocial as razonSocial	
 ,PROVEEDOR.Ruc as ruc
 ,PROVEEDOR.NombresContacto as contacto
-,PROVEEDOR.Correo as correo
 ,PROVEEDOR.Direccion as direccion
-
+,PROVEEDOR.Correo as correo
 from PROVEEDOR 
 <where>
 	<if test="razonSocial != null ">
-       PROVEEDOR.RazonSocial  like  #{razonSocial}
+       PROVEEDOR.RazonSocial  like #{razonSocial}
     </if>
     <if test="ruc != null">
-        AND PROVEEDOR.Ruc=#{ruc}
+        OR PROVEEDOR.Ruc=#{ruc}
     </if>
       
 </where>
@@ -109,16 +108,18 @@ update PROVEEDOR set Estado='Inactivo' where IdProveedor= #{codigo}
 
 <select id="getPlantillaProveedor" parameterType="java.lang.String"  resultType="IngSoft.venta.bean.ProveedorBeanData">
 select 
-IdProveedor as codigo
-,RazonSocial as razon
-,Ruc as ruc
-,Direccion as dir
-,Telefono as tel
-,Correo as correo
-,NombresContacto as nombre
-
-,Estado as estado
-from PROVEEDOR  where IdProveedor=#{codigo}; 
+PROVEEDOR.IdProveedor as idProveedor
+,PROVEEDOR.RazonSocial as razonSocial
+,PROVEEDOR.Ruc as ruc
+,PROVEEDOR.Direccion as direccion
+,PROVEEDOR.Telefono as telefono
+,PROVEEDOR.Correo as correo
+,PROVEEDOR.NombresContacto as nomContacto
+,PROVEEDOR.APePaternoContacto as apPaterno
+,PROVEEDOR.ApeMaternoContacto as apMaterno
+,PROVEEDOR.NumeroDocumentoContacto as numDoc
+,PROVEEDOR.Estado as estado
+from PROVEEDOR  where PROVEEDOR.IdProveedor=#{codigo}; 
 
 
 </select>
