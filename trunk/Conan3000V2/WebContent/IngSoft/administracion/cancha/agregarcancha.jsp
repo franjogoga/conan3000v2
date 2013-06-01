@@ -118,10 +118,11 @@
                             </select>
                           </div>
                         </div>
-                        <div class="control-group">
+                        <div class="control-group" id="dvDescripcion">
                   		  <label class="control-label" for="textarea2">Descripci&oacute;n:</label>
                           <div class="controls">
                             <textarea name="txtDescripcion" rows="3" id="txtDescripcion" style="resize:none"></textarea>
+                          	<span class="help-inline" id="errDescripcion">Please correct the error</span>
                           </div>
                         </div>
                         <div class="form-actions">
@@ -283,7 +284,8 @@ function validaForm(){
         var i=0;
         var error=false;
         if(!esValido("Nombre",form.txtNombre,"Nombre",1,1,50)){cadena[i]="Nombre";i++;}
-       
+       	if(!esValido("Descripci&oacute;n",form.txtDescripcion,"Descripcion",1,0,100)){cadena[i]="Descripci&oacute;n";i++;}
+              
         //No tocar
         if(i>0){
         crearAlert(cadena);
@@ -294,7 +296,8 @@ function validaForm(){
 } 
  
 function inicializa(){
-        document.getElementById("errNombre").style.display='none';    
+        document.getElementById("errNombre").style.display='none';
+        document.getElementById("errDescripcion").style.display='none';    
 } 
  
 inicializa();
