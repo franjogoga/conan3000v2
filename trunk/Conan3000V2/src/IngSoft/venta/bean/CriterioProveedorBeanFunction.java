@@ -26,9 +26,13 @@ public class CriterioProveedorBeanFunction {
 	CriterioProveedorBeanData criterioProveedorData= new CriterioProveedorBeanData();
 	
 	//criterioPromocionData.setTipo(Integer.parseInt(request.getParameter("cmbTipoEvento")==null?"0":request.getParameter("cmbTipoEvento")));
-	criterioProveedorData.setRazonSocial(request.getParameter("txtRazon")+"%");
+	criterioProveedorData.setRazonSocial((request.getParameter("txtRazon"))+"%");
 	
 	criterioProveedorData.setRuc(Long.parseLong(request.getParameter("txtRuc").equals("")?"0":request.getParameter("txtRuc")));
+	if( (criterioProveedorData.getRazonSocial()==null) && (criterioProveedorData.getRuc()!=0) ){
+		criterioProveedorData.setRazonSocial("jdajfwelkfedada");	
+	}
+	
 	//juridicaData.setRuc(Integer.parseInt(request.getParameter("txtRuc").equals("")?"0":request.getParameter("txtRuc")));
 	return criterioProveedorData;
 	}
