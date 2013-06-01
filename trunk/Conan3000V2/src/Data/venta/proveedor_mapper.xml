@@ -53,24 +53,19 @@ idDepartamento like  #{codigo}
  <select id="searchPlantillaProveedor" parameterType="IngSoft.venta.bean.CriterioProveedorBeanData" resultType="IngSoft.venta.bean.ResultadoProveedorBeanData">
 select 
 PROVEEDOR.IdProveedor as codigo
-,PROVEEDOR.RazonSocial as RazonSocial		
+,PROVEEDOR.RazonSocial as razonSocial	
 ,PROVEEDOR.Ruc as ruc
+,PROVEEDOR.NombresContacto as contacto
 ,PROVEEDOR.Correo as correo
-,PROVEEDOR.NombresContacto as nombre
+,PROVEEDOR.Direccion as direccion
 
 from PROVEEDOR 
 <where>
-	<if test="RazonSocial != null ">
-       PROVEEDOR.RazonSocial  like  #{RazonSocial}
+	<if test="razonSocial != null ">
+       PROVEEDOR.RazonSocial  like  #{razonSocial}
     </if>
-    <if test="Ruc != null">
-        AND PROVEEDOR.Ruc like = #{Ruc}
-    </if>
-    <if test="correo != null">
-        AND PROVEEDOR.Correo like= #{correo}
-    </if>
-    <if test="nombre != null">
-        AND PROVEEDOR.NombresContacto like #{nombre}
+    <if test="ruc != null">
+        AND PROVEEDOR.Ruc=#{ruc}
     </if>
       
 </where>
