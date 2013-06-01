@@ -3,10 +3,10 @@
 
 <script>
 		function validar(form){
-			if(form.txtNombrePromocion.value.length <=0)return false;
-			if(form.fFechInicio.value.length<=0)return false;
-			if(form.fFechFin.value.lengtht<=0)return false;
-			if(form.txtDescripcion.value.length<=0)return false;
+			if(form.txtRazonSocil.value.length <=0)return false;
+			if(form.txtDireccion.value.length<=0)return false;
+			if(form.txtTelefono.value.lengtht<=0)return false;
+			if(form.txtCorreo.value.length<=0)return false;
 			//if(form.cmbAmbientes.value.length<=0)return false;
 	return true;
 		
@@ -20,7 +20,7 @@
 	
 	function alt_submit(){
 		var form= document.frmUpdate;
-		if(valida(form)) form.submit();
+		if(validar(form)) form.submit();
 			
 			}
 		
@@ -109,26 +109,43 @@
 		                <div class="control-group">
 		                  <label class="control-label" for="typeahead10">Nombre Contacto: </label>
 		                  <div class="controls">
-		                    <input type="text" class="span6 typeahead" id="txtNombre"  name="txtNombre" data-provide="typeahead" data-items="4">
+		                    <input type="text" class="span6 typeahead" id="txtNombre"  name="txtNombre" data-provide="typeahead" data-items="4" value=<%=proveedor.getNomContacto() %>>
 		                  </div>
 	                    </div>
 	                    
 	                      <div class="control-group">
-		                  <label class="control-label" for="typeahead10">Apellido Paterno: </label>
+		                  <label class="control-label" for="typeahead11">Apellido Paterno: </label>
 		                  <div class="controls">
-		                    <input type="text" class="span6 typeahead" id="txtApPaterno"  name="txtApPaterno" data-provide="typeahead" data-items="4">
+		                    <input type="text" class="span6 typeahead" id="txtApPaterno"  name="txtApPaterno" data-provide="typeahead" data-items="4" value=<%=proveedor.getApPaterno() %>>
 		                  </div>
 	                    </div>
 	                    
 	                      <div class="control-group">
-		                  <label class="control-label" for="typeahead10">Apellido Materno: </label>
+		                  <label class="control-label" for="typeahead12">Apellido Materno: </label>
 		                  <div class="controls">
-		                    <input type="text" class="span6 typeahead" id="txtApMaterno" name="txtApMaterno"  data-provide="typeahead" data-items="4">
+		                    <input type="text" class="span6 typeahead" id="txtApMaterno" name="txtApMaterno"  data-provide="typeahead" data-items="4" value=<%=proveedor.getApMaterno() %>>
 		                  </div>
 	                    </div>
+	                    
+	                    <div class="control-group">
+								<label class="control-label" for="typeahead13">Tipo de Documento(*):</label>
+								<div class="controls">
+								  <label class="radio">
+									<input type="radio" name="rButton" id="optionsRadios1" value="DNI" >
+									DNI
+								  </label>
+								  <div style="clear:both">
+								  <label class="radio">
+									<input type="radio" name="rButton" id="optionsRadios2" value="Carnet de Extranjeria">
+									Carnet de Extranjeria
+								  </label>
+								  </div>
+								</div>
+							  </div>
+	                    
 	                    
 		                <div class="control-group">
-		                  <label class="control-label" for="typeahead2">Numero Documento: </label>
+		                  <label class="control-label" for="typeahead14">Numero Documento: </label>
 		                  <div class="controls">
 		                    <input type="text" class="span6 typeahead" id="txtNumDoc" name="txtNumDoc" data-provide="typeahead" data-items="4" value=<%=proveedor.getNumDoc() %> >
 	                      </div>
@@ -136,8 +153,8 @@
 	                  </div>
 	                  
 		              <div class="form-actions">
-		                 <button  type="button" class="btn btn-primary"  onclick="javascript:alt_submit()">Guardar</button>>  
-			               <button type="button"   class="btn" href="buscarproveedor.jsp">Cancelar</button>>
+		                 <button  type="submit" class="btn btn-primary"  onclick="javascript:alt_submit()">Guardar</button>  
+			               <button type="submit"   class="btn" href="buscarproveedor.jsp">Cancelar</button>
 	                  </div>
 	                  
 	                </fieldset>
