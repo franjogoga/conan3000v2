@@ -235,7 +235,7 @@ function validarEntero(valor){
 			              <label class="control-label" for="typeahead1">Membres&iacute;a del socio:</label>
 			              <div class="controls">
 			               <!--  <input type="text" disabled class="span6 typeahead" value="membresia.getIdMembresia()"  id="txtIdMembresiaAntiguo" name="txtIdMembresiaAntiguo"  >  -->
-			                	<input type="text"   id="txtIdMembresiaAntiguo" name="txtIdMembresiaAntiguo" disabled="disabled" data-provide="typeahead" data-items="4" value="<%=membresia.getIdMembresia()%>" >
+			                	<input type="text"   id="txtIdMembresiaAntiguo" name="txtIdMembresiaAntiguo"  data-provide="typeahead" data-items="4" value="<%=membresia.getIdMembresia()%>" >
 			                	<span class="help-inline" id="errIdMembresiaAntiguo">Please correct the error</span>
 			              </div>
 		                </div>
@@ -245,7 +245,7 @@ function validarEntero(valor){
 		                <div class="controls">
 		                
 			                  <!-- agregar nuevo boton -->
-			                   <input type="text"   id="txtIdNuevoSocio" name="txtIdNuevoSocio" disabled="disabled" value="<%=socio.getCodigo() %>"  data-provide="typeahead" > 
+			                   <input type="text"   id="txtIdNuevoSocio" name="txtIdNuevoSocio"  value="<%=socio.getCodigo() %>"  data-provide="typeahead" > 
 			        			<span class="help-inline" id="errIdNuevoSocio">Please correct the error</span>
 			        
 						 <a  class="btn btn-primary" href="javascript:alt_agregar()"> <i class="icon icon-add icon-white"></i> Agregar</a>  
@@ -259,7 +259,7 @@ function validarEntero(valor){
 		                
 			                  <!-- agregar nuevo boton -->
 			                   <!-- <input type="text"  disabled class="span6 typeahead" id="txtIdMembresiaNuevo" name="txtIdMembresiaNuevo" value="//socio.getIdMembresia()"  > --> 
-			        			<input type="text"   id="txtIdMembresiaNuevo" disabled="disabled" name="txtIdMembresiaNuevo" data-provide="typeahead" data-items="4" value="<%=socio.getIdMembresia()%>" >
+			        			<input type="text"   id="txtIdMembresiaNuevo"  name="txtIdMembresiaNuevo" data-provide="typeahead" data-items="4" value="<%=socio.getIdMembresia()%>" >
 			        			<span class="help-inline" id="errIdMembresiaNuevo">Please correct the error</span>
 						<!--  <a  class="btn btn-primary" href="javascript:alt_agregarMembresia()" > <i class="icon icon-add icon-white" ></i> Agregar</a>   -->
 						      
@@ -267,12 +267,20 @@ function validarEntero(valor){
 		                </div>
 		                		                
                         <div class="control-group" id="dvFecha">
-							  <label class="control-label" for="date01">Fecha(*):</label>
+							  <label class="control-label" for="date01">Fecha Inicio(*):</label>
 							  <div class="controls">
-								<input type="text" class="input-xlarge datepicker" id="fFecha" name="fFecha" value="01/01/2013" readonly="readonly" >
+								<input type="text" class="input-xlarge datepicker" id="fFechaInicio" name="fFechaInicio" value="01/01/2013" readonly="readonly" >
 								<span class="help-inline" id="errFecha">Please correct the error</span>
 							  </div>
 							</div>
+							
+							<!-- <div class="control-group" id="dvFechaFin" >
+							  <label class="control-label" for="date01">Fecha Fin(*):</label>
+							  <div class="controls">
+								<input type="text" class="input-xlarge datepicker" id="fFechaFin" name="fFechaFin" value="31/01/2013" readonly="readonly" >
+								<span class="help-inline" id="errFechaFin">Please correct the error</span>
+							  </div>
+							</div> -->
                         
                         <div class="control-group" id="dvParentesco">
 			                <label class="control-label" for="selectError">Parentesco(*):</label>
@@ -468,7 +476,8 @@ function validaForm(){
 	if(!esValido("Membresia socio",form.txtIdMembresiaAntiguo,"IdMembresiaAntiguo",1,1,9)){cadena[i]="Membresia socio";i++;}
 	if(!esValido("Codigo nuevo socio",form.txtIdNuevoSocio,"IdNuevoSocio",1,1,9)){cadena[i]="Codigo nuevo socio";i++;}
 	if(!esValido("Membresia nueva",form.txtIdMembresiaNuevo,"IdMembresiaNuevo",1,1,9)){cadena[i]="Membresia nueva";i++;}
-	if(!esValido("Fecha",form.fFecha,"Fecha",1,1,10)){cadena[i]="Fecha";i++;}
+	if(!esValido("Fecha Inicio",form.fFechaInicio,"Fecha",1,1,10)){cadena[i]="Fecha Inicio";i++;}
+	//if(!esValido("Fecha Fin",form.fFechaFin,"FechaFin",1,1,10)){cadena[i]="Fecha Fin";i++;}
 	if(!esValido("Parentesco",form.cmbParentesco,"Parentesco",1,1,50)){cadena[i]="Parentesco";i++;}
 	if(!esValido("Monto",form.txtMonto,"Monto",1,1,50)){
 		cadena[i]="Monto";i++;
@@ -490,22 +499,19 @@ function validaForm(){
 
 }
 
+inicializa();
 
 function inicializa(){
 	document.getElementById("errIdMembresiaAntiguo").style.display='none';
 	document.getElementById("errIdNuevoSocio").style.display='none';
 	document.getElementById("errIdMembresiaNuevo").style.display='none';
 	document.getElementById("errFecha").style.display='none';
+	//document.getElementById("errFechaFin").style.display='none';
 	document.getElementById("errParentesco").style.display='none';
 	document.getElementById("errMonto").style.display='none';
 	
 }
 
-
-inicializa();
-
-
-
-	</script>	
+</script>	
 </body>
 </html>
