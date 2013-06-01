@@ -1,5 +1,5 @@
 		   
-		   <%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Calendar"%>
 <%@page import="IngSoft.venta.bean.ResultadoProveedorBeanData"%>
 <%@page import="java.util.Vector"%>
@@ -72,7 +72,7 @@
 			            <div class="control-group">
 			              <div class="control-group">
 			                <div class="control-group">
-			                  <label class="control-label" for="typeahead2">Raz&oacute;n Social:</label>
+			                  <label class="control-label" for="typeahead1">Raz&oacute;n Social:</label>
 			                  <div class="controls">
 			                    <input type="text" class="span6 typeahead" id="txtRazon"  name="txtRazon" data-provide="typeahead" >
 		                      </div>
@@ -122,9 +122,10 @@
 					      <tr>
 					        <th>Raz&oacute;n Social</th>
 					        <th>Ruc</th>
-					        <th>Contacto</th>
+					        
 					        <th>Direccion</th>
 					         <th>Correo</th>
+					         <th>Contacto</th>
 					        <th>Acci&oacute;n</th>
 				          </tr>
 				          
@@ -133,7 +134,7 @@
 				        <element>
 					    <tbody id="resultadobusqueda">
 					    
-					    <%SimpleDateFormat df= new SimpleDateFormat("dd/MM/YYYY"); 
+					    <%SimpleDateFormat df= new SimpleDateFormat("dd/MM/yyyy"); 
                           			for(int i=0;
                           			i<resultados.size();i++){
                          %>
@@ -150,24 +151,26 @@
 					        
 					       <td class="center">
                           				<%=
-                          					df.format(((ResultadoProveedorBeanData)resultados.get(i)).getRuc())
+                          					((ResultadoProveedorBeanData)resultados.get(i)).getRuc()
+                          				%>
+                          </td>
+                          
+                          
+                          
+                      <td class="center">
+                          				<%=
+                          					((ResultadoProveedorBeanData)resultados.get(i)).getDireccion()
+                          				%>
+                          </td>
+                            <td class="center">
+                          				<%=
+                          					((ResultadoProveedorBeanData)resultados.get(i)).getCorreo()
                           				%>
                           </td>
                           
                            <td class="center">
                           				<%=
-                          					df.format(((ResultadoProveedorBeanData)resultados.get(i)).getContacto())
-                          				%>
-                          </td>
-                          
-                      <td class="center">
-                          				<%=
-                          					df.format(((ResultadoProveedorBeanData)resultados.get(i)).getDireccion())
-                          				%>
-                          </td>
-                            <td class="center">
-                          				<%=
-                          					df.format(((ResultadoProveedorBeanData)resultados.get(i)).getCorreo())
+                          					((ResultadoProveedorBeanData)resultados.get(i)).getContacto()
                           				%>
                           </td>
                           
