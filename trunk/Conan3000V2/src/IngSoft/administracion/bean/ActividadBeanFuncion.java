@@ -187,7 +187,7 @@ public class ActividadBeanFuncion {
 		catch(Exception a)		
 		{sqlsesion.rollback();
 		a.printStackTrace();
-			throw CoException.set("Error: Nose pudo modificar la plantilla ", "SMAActividad?accion=Agregar&tipo=1");
+			throw CoException.set("Error: No se pudo modificar la actividad ", "SMAActividad?accion=Agregar&tipo=1");
 			
 		}
 		
@@ -238,7 +238,7 @@ public class ActividadBeanFuncion {
 		catch(Exception a)		
 		{sqlsesion.rollback();
 		a.printStackTrace();
-			throw CoException.set("Error: No se pudo eliminar la plantilla Actividad intente de nuevo", "SMAActividad?accion=Agregar&tipo=1");
+			throw CoException.set("Error: No se pudo eliminar la Actividad intente de nuevo", "SMAActividad?accion=Agregar&tipo=1");
 			
 		}
 		
