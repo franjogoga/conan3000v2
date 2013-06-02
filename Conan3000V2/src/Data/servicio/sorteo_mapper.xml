@@ -61,14 +61,14 @@ select IdSede from SORTEO where IdSorteo= #{codigo};
 
 <select id="getPLantillaSorteo" parameterType="String" resultType="IngSoft.servicio.bean.SorteoBeanData">
 select 
-IdSorteo as idSorteo,
-IdSede as idSede,
-Descripcion as descripcion,
-FechaInicioIncr as fechaInicio,
-FechaFinInscr as fechaFin,
-FechaSorteo as fechaSorteo,
-Estado as estado
-from SORTEO s where s.IdSorteo=#{codigo}; 
+s.IdSorteo as idSorteo,
+sede.Nombre as idSede,
+s.Descripcion as descripcion,
+s.FechaInicioIncr as fechaInicio,
+s.FechaFinInscr as fechaFin,
+s.FechaSorteo as fechaSorteo,
+s.Estado as estado
+from SORTEO s, SEDE sede where s.IdSorteo=#{codigo} and s.IdSede=sede.IdSede; 
 </select>
 <!--
  Modificar elemento 
