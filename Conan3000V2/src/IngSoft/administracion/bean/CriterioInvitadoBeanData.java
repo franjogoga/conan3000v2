@@ -2,6 +2,7 @@ package IngSoft.administracion.bean;
 import java.io.Serializable;
 
 public class CriterioInvitadoBeanData implements Serializable{
+	
 	private String codigo;
 	private String nombre;
 	private String estado;
