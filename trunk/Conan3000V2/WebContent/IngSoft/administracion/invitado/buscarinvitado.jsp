@@ -126,7 +126,13 @@
 					<h4 class="alert-heading">Warning!</h4>
 					<p>You need to have <a href="http://en.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript</a> enabled to use this site.</p>
 				</div>
-			</noscript><div>
+			</noscript>
+			
+			<div id="content" class="span10">
+			<!-- content starts -->
+			
+
+			<div>
 				<ul class="breadcrumb">
 					<li>
 						<a href="/Conan3000V2/IngSoft/general/index.jsp">Home</a> <span class="divider">/</span>
@@ -137,12 +143,6 @@
 					
 				</ul>
 			</div>
-			
-			<div id="content" class="span10">
-			<!-- content starts -->
-			
-
-			
 			
 			<div class="row-fluid sortable">
 				<div class="box span12">
@@ -225,7 +225,7 @@
 							  <tr>
 							       <th>Codigo</th>
 								    <th>Nombre</th>
-							       
+							        <th>Estado</th>
 							       	        							      							        
 							        <th>Accion</th>
 							
@@ -249,7 +249,26 @@
                           			</td>
 
                           			
-
+                          			<td class="center">
+                          			
+	                          			
+								           <%
+									 
+												  if( ((ResultadoInvitadoBeanData)resultados.get(i)).getEstado().equalsIgnoreCase("activo") ){    
+								 out.print(" <span class='label label-success'> " + ((ResultadoInvitadoBeanData)resultados.get(i)).getEstado()   +"   </span>       ");
+												  }
+												  else { 
+								 out.print(" <span class='label label-warning'> " + ((ResultadoInvitadoBeanData)resultados.get(i)).getEstado()   +"   </span>       ");
+													
+												  }
+									  
+									   
+									 
+		                          					            
+	                          				%>
+	                          			
+                          			
+                          			</td>
 
                           			<td class="center">
                           				<a class="btn btn-success"
