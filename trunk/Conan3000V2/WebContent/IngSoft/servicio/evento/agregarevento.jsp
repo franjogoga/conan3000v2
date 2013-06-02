@@ -358,7 +358,7 @@
 	<script src="js/conan3000.js"></script>
 	<script>
 		$('#txtNombreEvento').bind('paste',function(){		
-			setTimeout(function(){filtrar('abcdefghijklmnopqrstuwxyzABCDEFGHIJKLMNOPQRSTUWXYZñÑáÁéÉíÍóÓúÚ1234567890',$('#txtNombreEvento'))}, 0);
+			setTimeout(function(){filtrar('abcdefghijklmnopqrstuwxyzABCDEFGHIJKLMNOPQRSTUWXYZñÑáÁéÉíÍóÓúÚ1234567890',$('#txtNombreEvento'),50)}, 0);
 		})
 	</script>
 	
