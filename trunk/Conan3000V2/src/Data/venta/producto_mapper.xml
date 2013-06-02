@@ -11,9 +11,6 @@ select
 PRODUCTO_PROV.IdProdProveedor as codigo
 ,PRODUCTO_PROV.IdProveedor as proveedor
 ,PRODUCTO_PROV.Nombre as nombre
-,PRODUCTO_PROV.Descripcion as desc
-,PRODUCTO_PROV.PrecioUnitario as pu
-,PRODUCTO_PROV.Presentacion as pres
 ,PRODUCTO_PROV.Estado as estado
 
 from PRODUCTO_PROV
@@ -64,7 +61,7 @@ IdProveedor=#{proveedor}
 
 <!--Eliminar membresia -->
 <update id="deleteProducto" parameterType="java.lang.String" >
-update PRODUCTO_PROV set Estado='Inactivo' where IdProdProveedor= #{codigo}
+update PRODUCTO_PROV set Estado='Eliminado' where IdProdProveedor= #{codigo}
 </update>
 <!-- Fin eliminar -->
 

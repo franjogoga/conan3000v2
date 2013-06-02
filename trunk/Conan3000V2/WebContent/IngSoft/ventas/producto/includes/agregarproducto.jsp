@@ -7,12 +7,19 @@ function alt_submit(){
 
 
 function validar(form){
-			if(form.txtNombre.value.length <=0)return false;
+			if(form.txtProveedor.value.length <=0)return false;
 			
 	return true;
 		
 		
 		}
+		
+function anhadir(cod,name){
+	var form=document.frmProducto;
+	form.idProveedor.value=cod;
+	form.txtProveedor.value=name;
+	$.fn.colorbox.close();
+}
 </script>	
 			
 			<!-- content starts -->
@@ -88,7 +95,7 @@ function validar(form){
 						    </div>
                             
 						    <div class="form-actions">
-			            <input type="hidden" name="idProducto" value=""/></input>
+			            <input type="hidden" name="idProveedor" value=""/></input>
 			              <button type="button" class="btn btn-primary" onclick="javascript:alt_submit()">Agregar</button>
 			              <button type="button" class="btn" onclick="location.href='buscarproducto.jsp'">Cancelar</button>
 		                </div>

@@ -11,11 +11,11 @@ public class SMVProducto extends CoServlet{
 
 	@Override
 	protected void initAcciones() {
-		//acciones.put("Buscar", new AccionBuscarProducto());
-		//acciones.put("Consultar", new AccionConsultarProducto());
+		acciones.put("Buscar", new AccionBuscarProducto());
+	    acciones.put("Consultar", new AccionConsultarProducto());
 		acciones.put("Agregar", new AccionAgregarProducto());
-		//acciones.put("Modificar", new AccionModificarProducto());
-		//acciones.put("Eliminar", new AccionEliminarProducto());
+		acciones.put("Seleccionar", new AccionSeleccionarProducto());
+		acciones.put("Eliminar", new AccionEliminarProducto());
 		
 	}
 }
