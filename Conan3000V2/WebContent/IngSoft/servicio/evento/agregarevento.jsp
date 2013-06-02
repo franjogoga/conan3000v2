@@ -355,6 +355,12 @@
 	<script src="js/jquery.history.js"></script>
 	<!-- application script for Charisma demo -->
 	<script src="js/charisma.js"></script>
+	<script src="js/conan3000.js"></script>
+	<script>
+		$('#txtNombreEvento').bind('paste',function(){		
+			setTimeout(function(){filtrar('abcdefghijklmnopqrstuwxyzABCDEFGHIJKLMNOPQRSTUWXYZÒ—·¡È…ÌÕÛ”˙⁄1234567890',$('#txtNombreEvento'))}, 0);
+		})
+	</script>
 	
 		
 </body>
