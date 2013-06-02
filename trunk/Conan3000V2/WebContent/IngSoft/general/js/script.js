@@ -48,6 +48,13 @@ function esEntero(valor) {
  
 }
 
+
+function numerico(e) 
+{ 
+var key = window.event.keyCode || event.keyCode;
+return ((key >= 48 && key <= 57) || (key <=13));
+} 
+
 function generaMensaje(cadena){
 	var i;
 	var mensaje="Los siguientes campos no han sido llenados correctamente<br>";
