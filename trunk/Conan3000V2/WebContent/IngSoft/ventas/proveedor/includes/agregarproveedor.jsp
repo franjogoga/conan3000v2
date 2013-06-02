@@ -1,122 +1,46 @@
 <%@page import="IngSoft.venta.bean.DistritoMiniBeanData"%>
+
+
+<script type="text/javascript" src="js/apprise-1.5.full.js"></script>
+<link rel="stylesheet" href="css/apprise.css" type="text/css" />
 <script>
-
-function validaCorreo(valor)
-{
-	var reg=/(^[a-zA-Z0-9._-]{1,30})@([a-zA-Z0-9.-]{1,30}$)/;
-	if(reg.test(valor)) return true;
-	else return false;
-}
-
-function esCorrecto(valor,minimo, maximo){
-	
-	if(valor.length>maximo){ 
-		return false;
-	}else{
-		if(valor.length<=minimo){
-			return false;
-		}else{
-			return true;	
-		}
-
-	}
-
-}
-
-function validarEntero(valor){ 
- 
- valor = parseInt(valor); 
- 	if (isNaN(valor)) { 
-       	 return null;
- 	}else{ 
-       	 return valor; 
- 	}
-}
-
-function generaMensaje(cadena){
-	var i;
-	var mensaje="Los siguientes campos no han sido llenados correctamente\n";
-	for(i=0;i<cadena.lenght;i++){
-		if(i+1<cadena.lenght){
-			mensaje+=cadena[i]+', ';
-			
-		}else{
-			mensaje=+cadena[i];
-			
-		}
-		
-	}
-	return mensaje;
-	
-}
-
-
-function crearAlert(cadena){
-	mensaje=generaMensaje(cadena);
-	$(document).ready(function() {
-		apprise(mensaje, {'animate':true}, function(r) {
-
-			if(r) { 
-			
-			} else { 
-		
-			}
-		});
-	});
-}
-
 function alt_submit(){
+		var form= document.frmProveedor;
+		if(validaForm()) form.submit();
+			
+}
+
+function anhadir(cod, name){
 	var form= document.frmProveedor;
-	if(validar(form)) form.submit();
-		
-}
+	form.txtSocio.value=name;
+	form.idSocio.value=cod;
+	$.fn.colorbox.close();
+	
+} 
 
-function validar(form){
-			if(form.txtRazonSocial.value.length <=0)return false;
-			if(form.txtRuc.value.length<=0)return false;
-			if(form.txtDireccion.value.lengtht<=0)return false;
-			if(form.txtNombre.value.length<=0)return false;
-			//if(form.cmbAmbientes.value.length<=0)return false;
-	return true;
-		
-		
+function confFecha(){
+	var form= document.frmProveedor;
+	if(form.cmbPeriodo.value=="Anual"){
+	document.getElementById("dvFechaFin").style.display='none';
+		fechaI=form.fFechaInicio.value.split("/");
+		fechaI[2]=parseInt(fechaI[2])+1;
+		form.fFechaFin.value=fechaI[0]+'/'+fechaI[1]+'/'+fechaI[2];
+	}
+	if(form.cmbPeriodo.value=="Semestral"){
+	document.getElementById("dvFechaFin").style.display='none';
+		fechaI=form.fFechaInicio.value.split("/");
+		fechaI[1]=parseInt(fechaI[1])+6;
+		if(fechaI[1]>12){
+			fechaI[2]=parseInt(fechaI[2])+1;
+			fechaI[1]=parseInt(fechaI[1])-12;
 		}
-
-function validaForm(){
-	var form=document.frmProveedor;
-	var cadena= new Array();
-	var i=0;
-	if(!esCorrecto(form.txtRazonSocial.value,1,100)){
-		cadena[i]="Razon";
-		i++; 
+		form.fFechaFin.value=fechaI[0]+'/'+fechaI[1]+'/'+fechaI[2];
+	}
+	if(form.cmbPeriodo.value=="Indefinido"){
+	document.getElementById("dvFechaFin").style.display='block';
 	}
 	
-	if(!esCorrecto(form.txtNombre.value,1,10)){
-		cadena[i]="Nombre";
-		i++;
-	}
-	if(!esCorrecto(form.Telefono.value,1,10)){
-		cadena[i]="Telefono";
-		i++;
-	}
-	if(!esCorrecto(form.txtCorreo.value,1,100)){
-		cadena[i]="Correo";
-		i++;
-	}
-	
-	crearAlert(cadena);
-	
-	
-	
-	
-	
-	
-
 }
-
-
-
-
 </script>	
 
 <jsp:useBean id="tiposDistrito" scope="request"class="java.util.Vector"></jsp:useBean>
@@ -142,19 +66,22 @@ function validaForm(){
 		                <label class="control-label" for="typeahead7">Raz&oacute;n Social (*):</label>
 		                <div class="controls">
 		                  <input type="text" class="span6 typeahead" id="txtRazonSocial" name="txtRazonSocial"  data-provide="typeahead" >
+		                  <span class="help-inline" id="errRazonSocial">Please correct the error</span>
 		                </div>
 	                  </div>
-		              <div class="control-group">
+		              <div class="control-group" id="dvRuc">
 		                <div class="control-group">
 		                  <label class="control-label" for="typeahead6">RUC (*): </label>
 		                  <div class="controls">
 		                    <input type="text" class="span6 typeahead" id="txtRuc" name="txtRuc"  data-provide="typeahead" data-items="4" >
+		                  	<span class="help-inline" id="errRuc">Please correct the error</span>
 		                  </div>
 	                    </div>
-		                <div class="control-group">
+		                <div class="control-group" id="dvDireccion">
 		                  <label class="control-label" for="typeahead4">Direcci&oacute;n: </label>
 		                  <div class="controls">
 		                    <input type="text" class="span6 typeahead" id="txtDireccion"  name="txtDireccion" data-provide="typeahead" data-items="4" >
+		                    <span class="help-inline" id="errDireccion">Please correct the error</span>
 		                  </div>
 	                    </div>
 
@@ -168,41 +95,48 @@ function validaForm(){
 	                        </select>
 		                  </div>
 	                    </div>
-		                <div class="control-group">
+		                <div class="control-group" id="dvTelefono">
 		                  <label class="control-label" for="typeahead8">Tel&eacute;fono / Celular: </label>
 		                  <div class="controls">
 		                    <input type="text" class="span6 typeahead" id="txtTelefono" name="txtTelefono"  data-provide="typeahead" data-items="4" >
+		                    <span class="help-inline" id="errTelefono">Please correct the error</span>
 		                  </div>
 	                    </div>
-		                <div class="control-group">
+	                    
+		                <div class="control-group" id="CorreoE">
 		                  <label class="control-label" for="typeahead9">Correo electr&oacute;nico: </label>
 		                  <div class="controls">
 		                    <input type="text" class="span6 typeahead" id="txtCorreo" name="txtCorreo"  data-provide="typeahead" data-items="4" >
+		                    <!--  <span class="help-inline" id="errCorreoE">Please correct the error</span> -->
 		                  </div>
 	                    </div>
-		                <div class="control-group">
+	                    
+		                <div class="control-group" id="dvNombre">
 		                  <label class="control-label" for="typeahead10">Nombre Contacto: </label>
 		                  <div class="controls">
 		                    <input type="text" class="span6 typeahead" id="txtNombre"  name="txtNombre" data-provide="typeahead" data-items="4">
+		                    <span class="help-inline" id="errNombre">Please correct the error</span>
 		                  </div>
 	                    </div>
 	                    
-	                      <div class="control-group">
-		                  <label class="control-label" for="typeahead10">Apellido Paterno: </label>
+	                      <div class="control-group" id="dvApellidoP">
+		                  <label class="control-label" for="typeahead11">Apellido Paterno: </label>
 		                  <div class="controls">
 		                    <input type="text" class="span6 typeahead" id="txtApPaterno"  name="txtApPaterno" data-provide="typeahead" data-items="4">
+		                    <span class="help-inline" id="errApellidoP">Please correct the error</span>
 		                  </div>
 	                    </div>
 	                    
-	                      <div class="control-group">
-		                  <label class="control-label" for="typeahead10">Apellido Materno: </label>
+	                      <div class="control-group" id="dvApellidoM">
+		                  <label class="control-label" for="typeahead12">Apellido Materno: </label>
 		                  <div class="controls">
 		                    <input type="text" class="span6 typeahead" id="txtApMaterno" name="txtApMaterno"  data-provide="typeahead" data-items="4">
+		                    <span class="help-inline" id="errApellidoM">Please correct the error</span>
 		                  </div>
 	                    </div>
 	                    
 	                      <!--REVISAR!!! -->
-	                    <div class="control-group">
+	                    <div class="control-group" id="dvTipo">
 								<label class="control-label" for="typeahead5">Tipo de Documento(*):</label>
 								<div class="controls">
 								  <label class="radio">
@@ -214,14 +148,16 @@ function validaForm(){
 									<input type="radio" name="rButton" id="optionsRadios2" value="Carnet de Extranjeria">
 									Carnet de Extranjeria
 								  </label>
+								   <span class="help-inline" id="errTipo">Please correct the error</span>
 								  </div>
 								</div>
 							  </div>
 	                    
-		                <div class="control-group">
+		                <div class="control-group" id="dvNumDoc">
 		                  <label class="control-label" for="typeahead2">Numero de Documento: </label>
 		                  <div class="controls">
 		                    <input type="text" class="span6 typeahead" id="txtNumDoc"  name="txtNumDoc" data-provide="typeahead" data-items="4" >
+	                         <span class="help-inline" id="errNumDoc">Please correct the error</span>
 	                      </div>
 	                    </div>
 	                  </div>
