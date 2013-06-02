@@ -1,5 +1,6 @@
 package IngSoft.servicio.evento;
 
+import java.io.IOException;
 import java.util.Vector;
 
 import javax.servlet.ServletContext;
@@ -25,8 +26,16 @@ public class AccionAgregarEvento extends CoAccion {
 			EventoBeanFuncion eventoFuncion= EventoBeanFuncion.getInstance();
 			EventoBeanData eventoData=eventoFuncion.crearEvento(request, response);
 			eventoFuncion.agregarEvento(eventoData);
-			this.direccionar(sc, request, response, "/IngSoft/servicio/evento/buscarevento.jsp");
+			response.setContentType("text/plain");  
+		    response.setCharacterEncoding("UTF-8");
+		    try {
+				response.getWriter().write( "/IngSoft/servicio/evento/SMSEvento?accion=Buscar&tipo=1");
+			} catch (IOException e) {				
+				e.printStackTrace();
+			}
+			//this.direccionar(sc, request, response, "/IngSoft/servicio/evento/SMSEvento?accion=Buscar&tipo=1");
 		}
+		if(tipo==1){
 		EventoBeanFuncion eventoFunction= EventoBeanFuncion.getInstance();
 		Vector<SedeMiniBeanData> sedeMiniData=eventoFunction.getSedes();
 		Vector<TipoEventoMiniBeanData> tipoEventoMiniData=eventoFunction.getTipoEvento();
@@ -35,6 +44,7 @@ public class AccionAgregarEvento extends CoAccion {
 		request.setAttribute("ambientes",AmbienteMiniData );
 		request.setAttribute("tiposEvento",tipoEventoMiniData);
 		this.direccionar(sc, request, response, "/IngSoft/servicio/evento/agregarevento.jsp");
+		}
 	}
 
 }

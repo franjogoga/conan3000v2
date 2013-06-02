@@ -33,8 +33,8 @@ public class EventoBeanFuncion {
 	public EventoBeanData crearEvento(HttpServletRequest request, HttpServletResponse response){
 		EventoBeanData eventoData= new EventoBeanData();
 		try{		
-		eventoData.setIdAmbientes(request.getParameterValues("cmbAmbientes"));
-		eventoData.setIdSede(request.getParameterValues("cmbSedes"));
+		eventoData.setIdAmbientes(request.getParameter("cmbAmbientes").split("/"));
+		eventoData.setIdSede(request.getParameter("cmbSedes").split("/"));
 		eventoData.setIdTipo(request.getParameter("cmbTipo"));
 		eventoData.setNombre(request.getParameter("txtNombreEvento").trim());
 		eventoData.setLimiteInicio(new Date(DF.parse(request.getParameter("fFecIncio")+"/0000").getTime()));
