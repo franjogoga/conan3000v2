@@ -80,7 +80,11 @@
 		
 		
 			//document.fmrData.submit();
-
+		function alt_submit(){
+		var form= document.frmDelete;
+		var r=confirm("¿Esta seguro que desea borrar este sorteo?");
+		if(r==true){form.submit();}
+			}
 	</script>	
 	<%! public boolean  encontrar(String a, String[] b){
 		for(int i=0;i<b.length;i++){			
@@ -122,7 +126,7 @@
 						<a href="/Conan3000V2/IngSoft/general/index.jsp">Home</a> <span class="divider">/</span>
 					</li>
 					<li>
-						<a href="buscarevento.jsp">Mantenimiento de Sorteos</a> <span class="divider">/</span>
+						<a href="buscarsorteo.jsp">Mantenimiento de Sorteos</a> <span class="divider">/</span>
 					</li>
 					<li>
 						Consultar Ganadores
@@ -133,7 +137,7 @@
 			<div class="row-fluid sortable">
 				<div class="box span12">
 					<div class="box-header well" data-original-title>
-					  <h2><i class="icon-plus-sign"></i>CONSULTAR EVENTO</h2>
+					  <h2><i class="icon-plus-sign"></i>CONSULTAR SORTEO</h2>
 				  </div>
 					<div class="box-content">
 						<form class="form-horizontal" action="<%= response.encodeURL("SMSSorteo")%>" name="frmData" method="post">
