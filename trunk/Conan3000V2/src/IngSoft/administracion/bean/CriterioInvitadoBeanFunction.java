@@ -15,29 +15,37 @@ public class CriterioInvitadoBeanFunction {
 	public CriterioInvitadoBeanData crearCriterio(HttpServletRequest request, HttpServletResponse response) {
 		CriterioInvitadoBeanData criterioInvitadoData = new CriterioInvitadoBeanData();		
 		
-		criterioInvitadoData.setCodigo(request.getParameter("txtCodigo")+"%");
-		criterioInvitadoData.setNombre(request.getParameter("txtNombre")+"%");
-		if (request.getParameter("rButton")!=null){
-			String est;
-			est=request.getParameter("rButton");
-			criterioInvitadoData.setEstado(est);}
+		
+		criterioInvitadoData.setNombre("%"+request.getParameter("txtNombre")+"%");
+
 		return criterioInvitadoData;
 	}
 	
 	public  Vector<ResultadoInvitadoBeanData> buscarPlantillaInvitado(CriterioInvitadoBeanData criterioInvitadoData){		
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		Vector<ResultadoInvitadoBeanData> resultadosV=null;
-		try{		
+		try{
+			
 		List<ResultadoInvitadoBeanData> resultados=sqlsesion.selectList("searchPlantillaInvitado",criterioInvitadoData);
 	
-		
 		resultadosV= new Vector<>(resultados);
+		
+		
 		}
 		finally{
 		sqlsesion.close();}
 		return resultadosV;
 		
 	}
-	
-	
+	public Vector<ResultadoInvitadoBeanData> buscarInvitado(CriterioPerfilBeanData criterio) {
+		SqlSession sesion = MyBatisSesion.metodo().openSession();
+		Vector<ResultadoInvitadoBeanData> resultadosV = null;
+		try {
+			List<ResultadoInvitadoBeanData> resultados = sesion.selectList("searchPlantillaInvitado", criterio);
+			resultadosV = new Vector<>(resultados);
+		} finally {
+			sesion.close();
+		}
+		return resultadosV;
+	}
 }
