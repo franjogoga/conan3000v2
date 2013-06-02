@@ -93,6 +93,7 @@ insert into SORTEO(IdSorteo,IdSede) values(#{codigo},#{nuevo})
 <update id="updatePlantillaSorteo" parameterType="IngSoft.servicio.bean.SorteoBeanData">
 update SORTEO 
 	set IdSede=#{idSede}, 
+	Descripcion=#{descripcion},
 	FechaInicioIncr=#{fechaInicio},
 	FechaFinInscr=#{fechaFin},
 	FechaSorteo=#{fechaSorteo}
