@@ -109,10 +109,10 @@
 			<div>
 				<ul class="breadcrumb">
 					<li>
-						<a href="#">Home</a> <span class="divider">/</span>
+						<a href="/Conan3000V2/IngSoft/general/index.jsp">Home</a> <span class="divider">/</span>
 					</li>
 					<li>
-						<a href="#">Mantenimiento de Sorteos</a> <span class="divider">/</span>
+						<a href="/Conan3000V2/IngSoft/servicio/buscarsorteo.jsp">Mantenimiento de Sorteos</a> <span class="divider">/</span>
 					</li>
 					<li>
 						Eliminar de Sorteos
