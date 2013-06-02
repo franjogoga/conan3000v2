@@ -132,9 +132,33 @@
 	
 	function alt_submit(){
 		var form= document.frmData;
-		if(validar()) form.submit();
+		if(validar()) alt_submit2();
 		else alert("Uno o mas campos estan vacios");			
 			}
+	function alt_submit2(){
+		
+		$.ajax({
+			  type: "POST",
+			  url: "/Conan3000V2/IngSoft/servicio/evento/SMSEvento",
+			  data: "accion=" + $(accion).val() + "&tipo=" + $(tipo).val() + "&txtNombreEvento=" + $(txtNombreEvento).val() + "&cmbTipo=" + $(cmbTipo).val()  
+			  + "&cmbAmbientes=" + $(cmbAmbientes).val().join('/')+ "&cmbSedes=" + $(cmbSedes).val().join('/')  + "&fFecIncio=" + $(fFecIncio).val()+ "&fFecFin=" + $(fFecFin).val(),
+			  dataType: "text",
+			  success: function(msg){
+				  var url="<%=request.getContextPath()%>"+msg;				  
+				  $("#linkAceptar").bind("click",function(){
+					  location.href=url;					  
+				  });
+				  $("#bModal").trigger("click");
+				  				  								
+			  },
+			  error: function(objeto, quepaso, otroobj){
+				alert("ERROR!!");			
+			  }
+		
+			});		
+	}
+	
+	
 			
 			
 	</script>	
@@ -181,9 +205,9 @@
 					  <h2><i class="icon-plus-sign"></i>AGREGAR EVENTO</h2>
 				  </div>
 					<div class="box-content">
-						<form class="form-horizontal" action="<%= response.encodeURL("SMSEvento")%>" name="frmData" method="post">
-						<input type="hidden" name="accion" value="Agregar"></input>
-						<input type="hidden" name="tipo" value="2"></input>
+						<form class="form-horizontal" action="<%= response.encodeURL("SMSEvento")%>" onsubmit="alt_submit(); return false;"name="frmData" method="post">
+						<input type="hidden" name="accion" id="accion" value="Agregar"></input>
+						<input type="hidden" name="tipo" id="tipo" value="2"></input>
 						  <fieldset>
 						    <div class="control-group">
 						      <label class="control-label" for="typeahead7">Nombre de evento(*): </label>
@@ -239,7 +263,7 @@
 							  </div>
 							</div>
 						    <div class="form-actions">
-							  <button type="button" class="btn btn-primary" onclick="javascript:alt_submit()">Agregar</button>
+							  <button type="submit" class="btn btn-primary" >Agregar</button>
 							  <button type="button" class="btn" onclick="location.href='buscarevento.jsp'" >Cancelar</button>
 							</div>
 						  </fieldset>
@@ -263,18 +287,20 @@
 				</div><!--/fluid-row-->
 				
 		<hr>
-
+		<but>
+		<div style="display: none;">
+			<button class="btn btn-primary btn-setting" id="bModal"/>
+		</div>
 		<div class="modal hide fade" id="myModal">
 			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal">×</button>
-				<h3>Settings</h3>
+				<button type="button" class="close" data-dismiss="modal">X</button>
+				<h3>EXITO</h3>
 			</div>
 			<div class="modal-body">
-				<p>Here settings can be configured...</p>
+				<p>La plantilla de evento ha sido agregada exitosamente</p>
 			</div>
 			<div class="modal-footer">
-				<a href="#" class="btn" data-dismiss="modal">Close</a>
-				<a href="#" class="btn btn-primary">Save changes</a>
+				<button type="button" class="btn" id="linkAceptar">Aceptar</a>				
 			</div>
 		</div>
 		<br/>
