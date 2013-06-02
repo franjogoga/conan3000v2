@@ -38,9 +38,10 @@ public class AccionGenerarSorteo extends CoAccion {
 			this.direccionar(sc, request, response, "/IngSoft/servicio/sorteo/generarsorteo.jsp");
 			
 		}
+		
 		Vector<String> listaGanadores=sorteoFuncion.consultaGanadores(sorteoData.getIdSorteo(),cant_ganadores);
 		request.setAttribute("lista", listaGanadores);
-		this.direccionar(sc, request, response, "/IngSoft/servicio/sorteo/generarsorteo.jsp");
+		this.direccionar(sc, request, response, "/IngSoft/servicio/sorteo/generarsorteoHecho.jsp");
 		
 	}
 
