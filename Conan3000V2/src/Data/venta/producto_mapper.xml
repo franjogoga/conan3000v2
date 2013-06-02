@@ -18,23 +18,16 @@ PRODUCTO_PROV.IdProdProveedor as codigo
 
 from PRODUCTO_PROV
 <where>
-	<if test="codigo != null ">
-       PRODUCTO_PROV.IdProdProveedor= #{codigo})
-    </if>
+	
     <if test="proveedor != null">
        PRODUCTO_PROV.IdProveedor= #{proveedor}
     </if>
     <if test="nombre != null">
         AND PRODUCTO_PROV.Nombre= #{nombre}
     </if>
-    <if test="desc != null">
-        AND PRODUCTO_PROV.Descripcion= #{desc}
-    </if>
-     <if test="pu != null">
-        AND PRODUCTO_PROV.PrecioUnitario= #{pu}
-    </if>  
+       
      <if test="estado != null">
-        AND PRODUCTO_PROV.Estado= #{estado}
+        AND PRODUCTO_PROV.Estado='Activo'
     </if>  
       
 </where>
@@ -47,8 +40,8 @@ from PRODUCTO_PROV
 	values (#{codigo},#{proveedor},#{nombre},#{desc},#{pu},#{estado})
 </insert>
 
-<select id="getNextCodigo2" resultType="java.lang.String">
-	select max(IdMembresia) from MEMBRESIA
+<select id="getNextCodigo6" resultType="java.lang.String">
+	select max(IdProdProveedor) from PRODUCTO_PROV
 </select>
 
 
