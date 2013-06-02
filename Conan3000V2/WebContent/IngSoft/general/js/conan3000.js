@@ -16,14 +16,14 @@ var key = window.event.keyCode || event.keyCode;
 return ((key >= 48 && key <= 57) || (key <=13));
 } 
 
-function filtrar(mod,obj){
+function filtrar(mod,obj,num){
 	var temp=obj.val();
 	var a=temp.length;					
 	var b="";
 	for(i=0;i<a;i++){
 		if(mod.indexOf(temp.charAt(i))>=0 ) b=b.concat(temp.charAt(i));									
 	}
-	if(b.length>50) b= b.substring(0,50);
+	if(b.length>num) b= b.substring(0,num);
 	obj.val(b);
 	
 }
