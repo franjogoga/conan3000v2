@@ -27,15 +27,12 @@ if(valor.value.length>=maximo) return false;else return true;
 
 function esFloat(numero)
 {
-  if (!/^([0-9])*[.]?[0-9]*$/.test(numero.value)){
+var re = /^([0-9])*[.]?[0-9]*$/;
+  if (!re.test(numero)){
 	  return false;
    }else{
-    if(!esEntero(numero.value)){
-		return false;
-	   }else{
-	   return true;
-	   }
-	
+   return true;
+   
    }
 }
 
