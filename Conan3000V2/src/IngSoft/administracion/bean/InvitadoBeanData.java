@@ -4,72 +4,65 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class InvitadoBeanData implements Serializable {
-	private String codigo;
-	private String nombre;
-	private String estado;
-	private String apellidoP;
-	private String apellidoM;
-	private String tipoDoc;
-	private String numDoc;
-	private Date fechaNac;
-	private Date fechaReg;
-	private String correo;
-	private String telFijo;
-	private String telCel;
-
+	String codigo;
+	String nombres;
+	String aparterno;
+	String amaterno;
+	String tipodocumento;
+	String numerodoc;
+	Date fechanacimiento;
+	Date fecharegistro;
+	String correo;
+	String telefonofijo;
+	String telefonomovil;
+	String estado;
 	public String getCodigo() {
 		return codigo;
 	}
 	public void setCodigo(String codigo) {
 		this.codigo = codigo;
 	}
-	public String getNombre() {
-		return nombre;
+	public String getNombres() {
+		return nombres;
 	}
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setNombres(String nombres) {
+		this.nombres = nombres;
 	}
-	public String getEstado() {
-		return estado;
+	public String getAparterno() {
+		return aparterno;
 	}
-	public void setEstado(String estado) {
-		this.estado = estado;
+	public void setAparterno(String aparterno) {
+		this.aparterno = aparterno;
 	}
-	public String getApellidoP() {
-		return apellidoP;
+	public String getAmaterno() {
+		return amaterno;
 	}
-	public void setApellidoP(String apellidoP) {
-		this.apellidoP = apellidoP;
+	public void setAmaterno(String amaterno) {
+		this.amaterno = amaterno;
 	}
-	public String getApellidoM() {
-		return apellidoM;
+	public String getTipodocumento() {
+		return tipodocumento;
 	}
-	public void setApellidoM(String apellidoM) {
-		this.apellidoM = apellidoM;
+	public void setTipodocumento(String tipodocumento) {
+		this.tipodocumento = tipodocumento;
 	}
-	public String getTipoDoc() {
-		return tipoDoc;
+	public String getNumerodoc() {
+		return numerodoc;
 	}
-	public void setTipoDoc(String tipoDoc) {
-		this.tipoDoc = tipoDoc;
+	public void setNumerodoc(String numerodoc) {
+		this.numerodoc = numerodoc;
 	}
-	public String getNumDoc() {
-		return numDoc;
+	public Date getFechanacimiento() {
+		return fechanacimiento;
 	}
-	public void setNumDoc(String numDoc) {
-		this.numDoc = numDoc;
+	public void setFechanacimiento(Date fechanacimiento) {
+		this.fechanacimiento = fechanacimiento;
 	}
-	public Date getFechaNac() {
-		return fechaNac;
+	public Date getFecharegistro() {
+		return fecharegistro;
 	}
-	public void setFechaNac(Date fechaNac) {
-		this.fechaNac = fechaNac;
-	}
-	public Date getFechaReg() {
-		return fechaReg;
-	}
-	public void setFechaReg(Date fechaReg) {
-		this.fechaReg = fechaReg;
+	public void setFecharegistro(Date fecharegistro) {
+		this.fecharegistro = fecharegistro;
 	}
 	public String getCorreo() {
 		return correo;
@@ -77,23 +70,35 @@ public class InvitadoBeanData implements Serializable {
 	public void setCorreo(String correo) {
 		this.correo = correo;
 	}
-	public String getTelFijo() {
-		return telFijo;
+	public String getTelefonofijo() {
+		return telefonofijo;
 	}
-	public void setTelFijo(String telFijo) {
-		this.telFijo = telFijo;
+	public void setTelefonofijo(String telefonofijo) {
+		this.telefonofijo = telefonofijo;
 	}
-	public String getTelCel() {
-		return telCel;
+	public String getTelefonomovil() {
+		return telefonomovil;
 	}
-	public void setTelCel(String telCel) {
-		this.telCel = telCel;
+	public void setTelefonomovil(String telefonomovil) {
+		this.telefonomovil = telefonomovil;
 	}
-	
+	public String getEstado() {
+		return estado;
+	}
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+
+
 
 	
 	
 	
+	
+	
+	
+	
+
 	
 
 }
