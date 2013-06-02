@@ -28,23 +28,27 @@ if(valor.value.length>=maximo) return false;else return true;
 function esFloat(numero)
 {
   if (!/^([0-9])*[.]?[0-9]*$/.test(numero.value)){
-	  if(!esEntero(numero.value)){
+	  return false;
+   }else{
+    if(!esEntero(numero.value)){
 		return false;
 	   }else{
 	   return true;
 	   }
-   }else{
-    return true;
+	
    }
 }
-function esEntero(valor){ 
+
+
+function esEntero(valor) {
+     var error = '';
+     var re = /^(-)?[0-9]*$/;
+     if (!re.test(valor)) {
+         return false;
+     }else{
+     return true;
+	 }
  
- valor = parseInt(valor); 
- 	if (isNaN(valor)) { 
-       	 return true;
- 	}else{ 
-       	 return false; 
- 	}
 }
 
 function generaMensaje(cadena){
