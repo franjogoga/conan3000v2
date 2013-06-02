@@ -121,10 +121,11 @@
                             </select>
                           </div>
                         </div>
-                        <div class="control-group">
+                        <div class="control-group" id="dvDescripcion">
                   		  <label class="control-label" for="textarea2">Descripci&oacute;n:</label>
                           <div class="controls">
                             <textarea name="txtDescripcion" rows="3" id="txtDescripcion" style="resize:none"></textarea>
+                          	<span class="help-inline" id="errDescripcion">Please correct the error</span>
                           </div>
                         </div>
                         <div class="form-actions">
@@ -285,25 +286,20 @@ function validaForm(){
         var cadena= new Array();
         var i=0;
         var error=false;
-        if(!esValido("N&uacute;mero",form.txtNumero,"Numero",1,1,50)){
-                cadena[i]="N&uacute;mero";i++;
-        }else{
-                //valida si es float o entero
-                if(!esValido("N&uacute;mero",form.txtNumero,"Numero",6,1,1)){cadena[i]="N&uacute;mero";i++;}
-        }
-        if(!esValido("N&uacute;m. de Divisiones",form.txtNumeroDivisiones,"NumeroDivisiones",1,1,50)){
-                cadena[i]="N&uacute;m. de Divisiones";i++;
-        }else{
-                //valida si es float o entero
-                if(!esValido("N&uacute;m. de Divisiones",form.txtNumeroDivisiones,"NumeroDivisiones",6,1,1)){cadena[i]="N&uacute;m. de Divisiones";i++;}
-        }
-        if(!esValido("&Aacute;rea del Bungalow",form.txtAreaBungalow,"AreaBungalow",1,1,50)){
-                cadena[i]="&Aacute;rea del Bungalow";i++;
-        }else{
-                //valida si es float o entero
-                if(!esValido("&Aacute;rea del Bungalow",form.txtAreaBungalow,"AreaBungalow",5,1,1)){
-                cadena[i]="&Aacute;rea del Bungalow";i++;}
-        }
+        
+        if(!esValido("N&uacute;mero",form.txtNumero,"Numero",1,1,11)){cadena[i]="N&uacute;mero";i++;}else{
+			if(!esValido("N&uacute;mero",form.txtNumero,"Numero",6,1,50)){cadena[i]="N&uacute;mero";i++;}
+		}
+
+		if(!esValido("N&uacute;m. de Divisiones",form.txtNumeroDivisiones,"NumeroDivisiones",1,1,11)){cadena[i]="N&uacute;m. de Divisiones";i++;}else{
+			if(!esValido("N&uacute;m. de Divisiones",form.txtNumeroDivisiones,"NumeroDivisiones",6,1,50)){cadena[i]="N&uacute;m. de Divisiones";i++;}
+		}
+
+        if(!esValido("&Aacute;rea del Bungalow",form.txtAreaBungalow,"AreaBungalow",1,1,20)){cadena[i]="&Aacute;rea del Bungalow";i++;}else{
+			if(!esValido("&Aacute;rea del Bungalow",form.txtAreaBungalow,"AreaBungalow",5,1,50)){cadena[i]="&Aacute;rea del Bungalow";i++;}
+		}
+
+        if(!esValido("Descripci&oacute;n",form.txtDescripcion,"Descripcion",1,0,100)){cadena[i]="Descripci&oacute;n";i++;}
         
         //No tocar
         if(i>0){
@@ -319,6 +315,7 @@ function inicializa(){
         document.getElementById("errNumero").style.display='none';
         document.getElementById("errNumeroDivisiones").style.display='none';
         document.getElementById("errAreaBungalow").style.display='none';
+        document.getElementById("errDescripcion").style.display='none'; 
 }
  
 inicializa();
