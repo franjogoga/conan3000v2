@@ -19,10 +19,10 @@
 	values (#{idMembresia},#{codigoSocio},#{costo},#{fechaInicio},#{fechaFin},'Activo','No')
 </insert>
 
-<!--<select id="getNextCodigoT" resultType="java.lang.String">
-	select max(IdMembresiaNue) from TRASLADO_MEMBRESIA
+<select id="getNextCodigoT" resultType="java.lang.String">
+	select max(IdMembresia) from MEMBRESIA
 </select>
--->
+
 
 <select id="getPlantillaMembresia" parameterType="java.lang.String"  resultType="IngSoft.venta.bean.MembresiaBeanData">
 select 
@@ -35,8 +35,8 @@ from MEMBRESIA  where IdMembresia=#{codigo};
 
 
 <update id="updateCodigo" parameterType="IngSoft.venta.bean.MembresiaBeanData">
-update MEMBRESIA set Estado='Inactivo'
- where IdMembresia= #{codigo}
+update MEMBRESIA set Estado='Eliminado'
+ where MEMBRESIA.IdMembresia= #{codigo}
 </update>
 
 </mapper>
