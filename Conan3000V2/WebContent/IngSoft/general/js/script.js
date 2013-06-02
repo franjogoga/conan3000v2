@@ -39,7 +39,7 @@ var re = /^([0-9])*[.]?[0-9]*$/;
 
 function esEntero(valor) {
      var error = '';
-     var re = /^(-)?[0-9]*$/;
+     var re = /^[0-9]*$/;
      if (!re.test(valor)) {
          return false;
      }else{
