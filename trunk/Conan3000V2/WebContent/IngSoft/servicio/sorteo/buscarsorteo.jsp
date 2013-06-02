@@ -166,7 +166,7 @@
 							<div class="control-group">
 							  <label class="control-label" for="date01">Fecha Inicio</label>
 							  <div class="controls">
-								<input type="text" class="input-xlarge datepicker" id="date01" name="date01"  onchange="alt_fecha(this);" >
+								<input type="text" class="input-xlarge datepicker" id="date01" name="date01"  >
 							  </div>
 							</div>
 							
@@ -265,7 +265,7 @@
                           				%>
                           			</td>
                           			<td class="center">
-                          				<a class="btn btn-success"
+                          				<a class="btn btn-success" 
                           					href="javascript:alt_consultar('<%=((ResultadoSorteoBeanData)resultados.get(i)).getCodigo()%>')">
                           					<i
                           						class="icon-zoom-in icon-white">

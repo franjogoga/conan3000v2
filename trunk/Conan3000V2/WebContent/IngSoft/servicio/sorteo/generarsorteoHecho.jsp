@@ -18,7 +18,7 @@
 		http://twitter.com/halalit_usman
 	-->
 	<meta charset="utf-8">
-	<title>Consultar Ganadores</title>
+	<title>Sorteo Realizado</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
 	<meta name="author" content="Muhammad Usman">
@@ -126,7 +126,7 @@
 						<a href="/Conan3000V2/IngSoft/general/index.jsp">Home</a> <span class="divider">/</span>
 					</li>
 					<li>
-						<a href="buscarevento.jsp">Mantenimiento de Sorteos</a> <span class="divider">/</span>
+						<a href="buscarsorteo.jsp">Mantenimiento de Sorteos</a> <span class="divider">/</span>
 					</li>
 					<li>
 						Consultar Ganadores
@@ -137,7 +137,7 @@
 			<div class="row-fluid sortable">
 				<div class="box span12">
 					<div class="box-header well" data-original-title>
-					  <h2><i class="icon-plus-sign"></i>CONSULTAR EVENTO</h2>
+					  <h2><i class="icon-plus-sign"></i>ESTE SORTEO YA FUE REALIZADO</h2>
 				  </div>
 					<div class="box-content">
 						<form class="form-horizontal" action="<%= response.encodeURL("SMSSorteo")%>" name="frmData" method="post">
