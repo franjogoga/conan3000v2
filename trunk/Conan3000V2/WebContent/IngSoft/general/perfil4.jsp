@@ -73,7 +73,7 @@
 		<div class="clear"></div>
 		<div class="content">
 			¿Desea intentar de nuevo?
-			<br/><a href="login.html">Ir al login</a> o<br/><form>Buscar<br/><input autofocus type="text" name="search" /></form>
+			<br/><a href="login.jsp">Ir al login</a> o<br/><form>Buscar<br/><input autofocus type="text" name="search" /></form>
 		</div>
 	</body>
 </html>
