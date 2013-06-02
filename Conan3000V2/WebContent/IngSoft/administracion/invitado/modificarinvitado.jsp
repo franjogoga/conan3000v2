@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="IngSoft.administracion.bean.InvitadoBeanData"%>
+
 <html lang="en">
 <head>
 	<!--
@@ -12,14 +16,21 @@
 		http://twitter.com/halalit_usman
 	-->
 	<meta charset="utf-8">
-	<title>Conan3000</title>
+	<title>Modificar Invitado</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
 	<meta name="author" content="Muhammad Usman">
-
+	
+	<!--The beans  -->
+	<jsp:useBean id="invitado" scope="request"class="IngSoft.administracion.bean.InvitadoBeanData"></jsp:useBean>
+	
+	
+	
+	
+	
+	
 	<!-- The styles -->
 	<link id="bs-css" href="css/bootstrap-cerulean.css" rel="stylesheet">
-    
 	<style type="text/css">
 	  body {
 		padding-bottom: 40px;
@@ -50,8 +61,69 @@
 	  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
 
+
+
+
+
+
+
+
+
+
+
 	<!-- The fav icon -->
-	<link rel="shortcut icon" href="img/favicon.ico">
+	<link rel="shortcut icon" href="img/conan_logo.png">
+	<script>
+		function validar(form){
+			if(form.txtNombre.value.length <=0)return false;
+			if(form.txtApaterno.value.length<=0)return false;
+			if(form.txtAmaterno.value.lengtht<=0)return false;
+			if(form.cmbTipodoc.value.length<=0)return false;
+			if(form.txtNrodoc.value.length<=0)return false;
+			if(form.fFecNacimiento.value.lengtht<=0)return false;
+			if(form.fFecRegistro.value.length<=0)return false;
+			if(form.txtCorreo.value.length<=0)return false;			
+	return true;
+		
+		
+		}
+	
+	function alt_fecha(obj){
+	obj.value=obj.value.slice(0,5);
+	
+	}
+	
+	function alt_submit(){
+		var form= document.frmUpdate;
+		if(validar(form)) form.submit();
+		else alert("Uno o mas campos estan vacios");
+			
+			}
+		
+		
+		
+			//document.fmrData.submit();
+
+	</script>	
+	<%! public boolean  encontrar(String a, String[] b){
+		for(int i=0;i<b.length;i++){			
+			if(b[i].equals(a)) return true;	
+		}
+	return false;
+	}
+	public String formatear(java.util.Date date){
+		SimpleDateFormat DF= new SimpleDateFormat("dd/MM");
+		return DF.format(date);
+	}
+	
+	public String generarCadena(String[] t){
+		String a="";
+		for(int i=0;i<t.length;i++)
+			a= a.concat(t[i]+"/");
+			if(a.length()>0) a=a.substring(0, a.length()-1);
+		return a;
+	}
+	%>
 		
 </head>
 
@@ -63,179 +135,215 @@
 			<!-- left menu starts -->
 			<jsp:include page="/IngSoft/general/leftmenu.jsp" />
 						<!-- left menu ends -->
-            
-            
-           
 			
-		  <noscript>
+			
+			<noscript>
 				<div class="alert alert-block span10">
 					<h4 class="alert-heading">Warning!</h4>
 					<p>You need to have <a href="http://en.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript</a> enabled to use this site.</p>
 				</div>
 			</noscript>
 			
+		
 			<div id="content" class="span10">
-			  <!-- content starts -->
-			  <div>
-			    <ul class="breadcrumb">
-			      <li> <a href="#">Home</a> / <a href="#">Mantenimiento de Invitados</a> / Modificar Invitado</li>
-		        </ul>
-		      </div>
-			  <div class="row-fluid sortable">
-			    <div class="box span12">
-			      <div class="box-header well" data-original-title>
-			        <h2>MODIFICAR INVITADO</h2>
-					</div>
+			<!-- content starts -->
+			
+
+			<div>
+				<ul class="breadcrumb">
+					<li>
+						<a href="/Conan3000V2/IngSoft/general/index.jsp">Home</a> <span class="divider">/</span>
+					</li>
+					<li>
+						<a href="buscarinvitado.jsp">Mantenimiento de Invitado</a> <span class="divider">/</span>
+					</li>
+					
+					
+					<li>
+						Modificar de Invitado
+					</li>
+				</ul>
+			</div>
+			
+			<div class="row-fluid sortable">
+				<div class="box span12">
+					<div class="box-header well" data-original-title>
+					  <h2><i class="icon-edit"></i>MODIFICAR INVITADO</h2>
+				  </div>
 					<div class="box-content">
-						<form class="form-horizontal">
+					
+					
+						<form class="form-horizontal" name="frmUpdate" action="<%= response.encodeURL("SMAInvitado")%>" method="post">
+						
+						<input type="hidden" name="codigo" value="<%=invitado.getCodigo()%>"></input>
+						<input type="hidden" name="accion" value="Modificar"></input>
+						<input type="hidden" name="tipo" value="2"></input>
+						  
+						  
+						  
 						  <fieldset>
-						                               
-                            <div class="control-group">
-                                  
-                                  
-                                  <label class="control-label" for="typeahead7">Nombre: </label>
-                                  <div class="controls">
-                                      <input type="text" class="span6 typeahead" id="typeahead7"  data-provide="typeahead" >
-                                          </div>
-                              </div>
+						  
+						  
+
 							  
-							  <div class="control-group">
-                                  
-                                  
-                                  <label class="control-label" for="typeahead7">Apellido Paterno: </label>
-                                  <div class="controls">
-                                      <input type="text" class="span6 typeahead" id="typeahead7"  data-provide="typeahead" >
-                                          </div>
-                              </div>
-							  <div class="control-group">
-                                  
-                                  
-                                  <label class="control-label" for="typeahead7">Apellido Mateno: </label>
-                                  <div class="controls">
-                                      <input type="text" class="span6 typeahead" id="typeahead7"  data-provide="typeahead" >
-                                          </div>
-                              </div>
-                              
-                              
+						  
+											    <div class="control-group">
+						      <label class="control-label" for="typeahead7">Nombre(*): </label>
+						      <div class="controls">
+						        <input type="text" class="span6 typeahead" id="txtNombre"  data-provide="typeahead"  name="txtNombre" value="<%= invitado.getNombres()%>">
+					          </div>
+					        </div>
+
+
+						    <div class="control-group">
+						      <label class="control-label" for="typeahead7">Apellido Paterno(*): </label>
+						      <div class="controls">
+						        <input type="text" class="span6 typeahead" id="txtApaterno"  data-provide="typeahead"  name="txtApaterno"  value="<%= invitado.getAparterno()%>">
+					          </div>
+					        </div>
+
+							  
+						    <div class="control-group">
+						      <label class="control-label" for="typeahead7">Apellido Marteno(*): </label>
+						      <div class="controls">
+						        <input type="text" class="span6 typeahead" id="txtAmaterno"  data-provide="typeahead"  name="txtAmaterno"  value="<%= invitado.getAmaterno()%>">
+					          </div>
+					        </div>
+
+
                               <div class="control-group">
-								<label class="control-label" for="selectError">Tipo de Documento:</label>
+								<label class="control-label" for="selectError">Tipo de Doc.(*):</label>
 								<div class="controls">
-								  <select id="selectError" data-rel="chosen">
-									<option>DNI</option>
-									<option>Carnet de Extranjer&iacutea</option>
-									<option>Pasaporte</option>
+								  <select  id="selectError" data-rel="chosen" name="cmbTipodoc">
+									<option><%= invitado.getTipodocumento()%></option>
+
 								
 								  </select>
 								</div>
 							  </div>
-                              
-                              <div class="control-group">
-                                  
-                                  
-                                  <label class="control-label" for="typeahead7">Nro. de Documento: </label>
-                                  <div class="controls">
-                                      <input type="text" class="span6 typeahead" id="typeahead7"  data-provide="typeahead" >
-                                          </div>
-                              </div>
-                              
-                             <div class="control-group">
-			              <label class="control-label" for="typeahead7">Fecha Nacimiento: </label>
-			              <div class="controls">
-			                <input type="text" class="input-xlarge datepicker" id="date01" value="02/16/2012">
-		                  </div>
-		                </div>
-							                           
-                                                          
-                              
-                              
-						                                  
-                            
-						<div class="control-group">
-			              <label class="control-label" for="typeahead7">Fecha Registro: </label>
-			              <div class="controls">
-			                <input type="text" class="input-xlarge datepicker" id="date01" value="02/16/2012">
-		                  </div>
-		                </div>							
-                                
-								                                                    
-                                                      
-                                                             
-                                
-                                
-                                                               
-                                <div class="control-group">
-                                    <label class="control-label" for="textarea2">Descripci&oacuten:</label>
-                                    <div class="controls">
-                                   
-                                        <!--
-                                        <textarea class="cleditor" id="textarea2" rows="3"></textarea>
-                                        -->
-                                        
-                                        <textarea class="" id="textarea2" rows="3"></textarea>
-                                   
-                                    </div>
-                                </div>
-                                
-                                <div class="control-group">
-								<label class="control-label">Estado:</label>
-								
-								<div class="controls">
-								
-								  <label class="radio">
-									<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="" disabled="">
-									Activo
-								  </label>
-								  
-										 <div style="clear:both"></div> 
-								  
-								  
-								  <label class="radio">
-									<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-									Inactivo
-								  </label>
-								  
-								         <div style="clear:both"></div>  
-								  
-								  <label class="radio">
-									<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-									Cancelado
-								  </label>
-								  
-								  
-								</div>
-								
-							  </div>	
-                                                            
-                             
-		          
-			            <div class="form-actions">
-			              <button type="submit" class="btn btn-primary">Guardar</button>
-			              <button type="reset" class="btn">Cancelar</button>
-		                </div>
-						
-					
-		              </fieldset>
-		            </form>
-		          </div>
-		        </div>
-				
-			    <!--/span-->
-		      </div>
-			  <!--/row-->
-			  <div class="row-fluid sortable">
-			    <!--/span-->
-		      </div>
-			  <!--/row-->
-			  <div class="row-fluid sortable">
-			    <!--/span-->
-		      </div>
-			  <!--/row-->
-			 
+							  
+							  
+						  
+						    <div class="control-group">
+						      <label class="control-label" for="typeahead7">Nro. de Doc(*): </label>
+						      <div class="controls">
+						        <input type="text" class="span6 typeahead" id="txtNrodoc"  data-provide="typeahead"  name="txtNrodoc"  value="<%= invitado.getNumerodoc()%>">
+					          </div>
+					        </div>
 
-		  
-       
+
+
+
+							  <div class="control-group">
+							  <label class="control-label" for="date01">Fecha Nacimiento(*):</label>
+							  <div class="controls">
+								<input type="text" class="input-xlarge datepicker" id="date01" value="<%=formatear(new Date(invitado.getFechanacimiento().getTime())) %>"  name="fFecNacimiento" onchange="alt_fecha(this)" >
+							  </div>
+							</div>
+							
+							<div class="control-group">
+							  <label class="control-label" for="date02">Fecha Registro(*):</label>
+							  <div class="controls">
+								<input type="text" class="input-xlarge datepicker" id="date02" value="<%=formatear(new Date(invitado.getFecharegistro().getTime())) %>" name="fFecRegistro" onchange="alt_fecha(this)" >
+							  </div>
+							</div>
+							
+
+
+						    <div class="control-group">
+						      <label class="control-label" for="typeahead7"> Correo(*): </label>
+						      <div class="controls">
+						        <input type="text" class="span6 typeahead" id="txtCorreo"  data-provide="typeahead"  name="txtCorreo"  value="<%= invitado.getCorreo()%>">
+					          </div>
+					        </div>
+
+
+
+
+						    <div class="control-group">
+						      <label class="control-label" for="typeahead7"> Teléfono Fijo: </label>
+						      <div class="controls">
+						        <input type="text" class="span6 typeahead" id="txtTelefonofijo"  data-provide="typeahead"  name="txtTelefonofijo"  value="<%= invitado.getTelefonofijo()%>">
+					          </div>
+					        </div>
+
+
+						    <div class="control-group">
+						      <label class="control-label" for="typeahead7"> Teléfono Celular: </label>
+						      <div class="controls">
+						        <input type="text" class="span6 typeahead" id="txtTelefonocelular"  data-provide="typeahead"  name="txtTelefonocelular"  value="<%= invitado.getTelefonomovil()%>">
+					          </div>
+					        </div>
+        
+					        
+
+					        
+							<div class="control-group">
+								<label class="control-label">Estado </label>
+								<div class="controls">
+								  <label class="radio">
+								  <%
+								 
+								  if( invitado.getEstado().equalsIgnoreCase("Activo") ){
+									  out.print(" <input   type='radio' name='optionsRadios' id='optionsRadios1' value='Activo' checked=''  >");
+								  }
+								  else
+								  {  out.print(" <input   type='radio' name='optionsRadios' id='optionsRadios1' value='Activo'  >");
+								  }
+								  
+								   
+								  %>
+								Activo
+								  </label>
+								 
+								    <div style="clear:both"></div>   
+								 
+								 
+								  <label class="radio">
+								 
+								  <%
+								  if( invitado.getEstado().equalsIgnoreCase("Inactivo") ){
+									  out.print(" <input   type='radio' name='optionsRadios' id='optionsRadios2' value='Inactivo' checked=''  >");
+								  }
+								  else
+								  {  out.print(" <input   type='radio' name='optionsRadios' id='optionsRadios2' value='Inactivo'  >");
+								  }
+								  %>
+								Inactivo
+								  </label>
+								
+								 
+								 
+								</div>
+							</div>
+
+
+
+
+							
+							
+						   		 <div class="form-actions">
+							  		<button type="button" class="btn btn-primary" onclick="javascript:alt_submit()">Guardar</button>
+							  		<button type="button" class="btn" onclick="location.href='buscarinvitado.jsp'" >Cancelar</button>
+								</div>
+						  </fieldset>
+					  </form>   
+
+				  </div>
+				</div><!--/span-->
+
+			</div><!--/row-->
+
+
+			<div class="row-fluid sortable"><!--/span-->
+			
+			</div><!--/row-->
+			
+			<div class="row-fluid sortable"><!--/span-->
+
+			</div><!--/row-->		 
 					<!-- content ends -->
-		  </div><!--/#content.span10-->
+			</div><!--/#content.span10-->
 				</div><!--/fluid-row-->
 				
 		<hr>
@@ -254,10 +362,7 @@
 			</div>
 		</div>
 
-		<footer>
-		  <p class="pull-left"><a href="http://usman.it/free-responsive-admin-template">Conan 3000</a> &copy;  2013</p>
-          <p class="pull-right">Powered by: <a href="http://usman.it/free-responsive-admin-template">Las dos virgenes</a></p>
-		</footer>
+		<jsp:include page="/IngSoft/general/inferior.jsp" />
 		
 	</div><!--/.fluid-container-->
 
@@ -334,14 +439,7 @@
 	<script src="js/jquery.history.js"></script>
 	<!-- application script for Charisma demo -->
 	<script src="js/charisma.js"></script>
-	<script>
-	function loadContent() 
-{ 
-   $("#includedContent").load("menu.html"); 
-} 
-
-
-	</script>
-		<script>loadContent()</script> 
+	
+		
 </body>
 </html>
