@@ -20,15 +20,10 @@ public class AccionBuscarInvitado extends CoAccion {
 	public void ejecutar(ServletContext sc, HttpServletRequest request,
 			HttpServletResponse response) throws CoException {
 		// TODO Auto-generated method stub
-		
-		System.out.print("----->AccionBuscarInvitado ");
-		
-		
+
 		CriterioInvitadoBeanData criterioInvitadoData =new CriterioInvitadoBeanFunction().crearCriterio(request,response);
 		Vector<ResultadoInvitadoBeanData> resultados=new CriterioInvitadoBeanFunction().buscarPlantillaInvitado(criterioInvitadoData);
-		
-		System.out.print("----->AccionBuscarInvitado "+ ((ResultadoInvitadoBeanData)resultados.get(0)).getCodigo());
-		
+
 		request.setAttribute("resultados", resultados);
 		this.direccionar(sc, request, response, "/IngSoft/administracion/invitado/buscarinvitado.jsp");
 		
