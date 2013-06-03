@@ -37,7 +37,39 @@
 
 	<!-- The conan icon -->
 	<link rel="shortcut icon" href="img/conan_logo.png">
-		
+	<script>
+
+  function valida_envia(){
+
+
+   	if (document.fvalida.username.value.length==0)
+
+ {
+		alert("usuario no puede quedar en blanco")
+		document.fvalida.username.focus()
+                document.fvalida.username.value = ""
+		return 0;
+	}
+
+         	if (document.fvalida.password.value.length==0)
+
+ {
+		alert("contraseña no puede quedar en blanco")
+		document.fvalida.password.focus()
+                document.fvalida.password.value = ""
+		return 0;
+	}
+
+
+
+
+   //el formulario se envia si todo esta correcto
+	
+	document.fvalida.submit();
+
+}
+
+    </script>
 </head>
 
 <body>
@@ -55,16 +87,16 @@
 					<div class="alert alert-info">
 						Por favor inicie sesi&oacute;n con su Usuario y Contraseña.
 					</div>
-					<form class="form-horizontal" action="<%= response.encodeURL("GENLogin")%>" method="post">
+					<form class="form-horizontal" action="<%= response.encodeURL("GENLogin")%>" name="fvalida" method="post">
 					<input type="hidden" name="accion" value="Login"></input>
 						<fieldset>
 							<div class="input-prepend" title="Username" data-rel="tooltip">
-								<span class="add-on"><i class="icon-user"></i></span><input autofocus class="input-large span10" name="username" id="username" type="text" value="admin" />
+								<span class="add-on"><i class="icon-user"></i></span><input autofocus class="input-large span10" name="username" id="username" type="text" />
 							</div>
 							<div class="clearfix"></div>
 
 							<div class="input-prepend" title="Password" data-rel="tooltip">
-								<span class="add-on"><i class="icon-lock"></i></span><input class="input-large span10" name="password" id="password" type="password" value="admin123456" />
+								<span class="add-on"><i class="icon-lock"></i></span><input class="input-large span10" name="password" id="password" type="password"  />
 							</div>
 							<div class="clearfix"></div>
 
@@ -74,7 +106,7 @@
 							<div class="clearfix"></div>
 
 							<p class="center span5">
-							<button type="submit" class="btn btn-primary">Inciar Sesi&oacute;n</button>
+							<button type="button" name="button" class="btn btn-primary" onclick="valida_envia()">Inciar Sesi&oacute;n</button>
 							</p>
 						</fieldset>
 					</form>
