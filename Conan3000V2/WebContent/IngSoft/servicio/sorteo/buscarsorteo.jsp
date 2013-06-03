@@ -82,6 +82,10 @@
 		else alert("Uno o mas campos estan vacios");
 			
 	}
+	function alt_submit2(){
+		alert("No puedes eliminar un sorteo pasado");			
+	}
+	
 	function alt_agregar(){
 		var form=document.getElementById("frmAlternativo");
 		form.accion.value="Agregar";
@@ -271,13 +275,19 @@
                           					<i class="icon-zoom-in icon-white">
                           					</i>Sorteo Generado
                           				</a>
+                          				<a type="hidden" class="btn btn-info"
+                          					href="javascript:alt_submit2()">
+                          					<i
+                          						class="icon-edit icon-white">
+                          					</i>
+ Modificar
+                          				</a>
                           				<%}else{ %>
                           				<a class="btn btn-success" 
                           					href="javascript:alt_consultar('<%=((ResultadoSorteoBeanData)resultados.get(i)).getCodigo()%>')">
                           					<i class="icon-zoom-in icon-white">
                           					</i>Generar
                           				</a>
-                          				<%} %>
                           				<a class="btn btn-info"
                           					href="javascript:alt_modificar('<%=((ResultadoSorteoBeanData)resultados.get(i)).getCodigo()%>')">
                           					<i
@@ -285,6 +295,8 @@
                           					</i>
  Modificar
                           				</a>
+                          				<%} %>
+                          				
                           				<a class="btn btn-danger"
                           					href="javascript:alt_eliminar('<%=((ResultadoSorteoBeanData)resultados.get(i)).getCodigo()%>')">
                           					<i class="icon-trash icon-white">
