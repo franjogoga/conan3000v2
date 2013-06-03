@@ -265,13 +265,19 @@
                           				%>
                           			</td>
                           			<td class="center">
+                          				<%if (((ResultadoSorteoBeanData)resultados.get(i)).getFlag()==1){ %>
                           				<a class="btn btn-success" 
                           					href="javascript:alt_consultar('<%=((ResultadoSorteoBeanData)resultados.get(i)).getCodigo()%>')">
-                          					<i
-                          						class="icon-zoom-in icon-white">
-                          					</i>
-Generar
+                          					<i class="icon-zoom-in icon-white">
+                          					</i>Sorteo Generado
                           				</a>
+                          				<%}else{ %>
+                          				<a class="btn btn-success" 
+                          					href="javascript:alt_consultar('<%=((ResultadoSorteoBeanData)resultados.get(i)).getCodigo()%>')">
+                          					<i class="icon-zoom-in icon-white">
+                          					</i>Generar
+                          				</a>
+                          				<%} %>
                           				<a class="btn btn-info"
                           					href="javascript:alt_modificar('<%=((ResultadoSorteoBeanData)resultados.get(i)).getCodigo()%>')">
                           					<i
