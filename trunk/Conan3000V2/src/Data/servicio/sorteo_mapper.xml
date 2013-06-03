@@ -13,7 +13,8 @@ SORTEO.Descripcion as nombre,
 SORTEO.FechaInicioIncr as fechaIni,
 SORTEO.FechaFinInscr as fechaFin,
 SORTEO.FechaSorteo fechaSorteo,
-SORTEO.Estado as estado
+SORTEO.Estado as estado,
+1 as flag
 from SORTEO 
 <where>
 <if test="nombre != null ">
