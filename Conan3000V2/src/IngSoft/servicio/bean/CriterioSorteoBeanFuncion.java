@@ -37,7 +37,7 @@ public class CriterioSorteoBeanFuncion {
 		Vector<ResultadoSorteoBeanData> resultadosV=null;
 		try{		
 		List<ResultadoSorteoBeanData> resultados=sqlsesion.selectList("searchPlantillaSorteo",criterioSorteoData);
-	
+		
 		resultadosV= new Vector<>(resultados);
 		}
 		finally{
