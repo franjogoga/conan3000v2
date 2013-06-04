@@ -102,7 +102,8 @@ public class ReservaBeanFuncion {
 		   String nextcodigo;
 		   SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		   try{
-			   nextcodigo=sqlsesion.selectOne("Data.servicio.reserva.getNextCodigo");
+			   nextcodigo=sqlsesion.selectOne("Data.servicio.reserva.getNextCodigoB");
+			   nextcodigo=nextcodigo==null?"RSB000000":nextcodigo;
 			   SimpleDateFormat df= new SimpleDateFormat("dd/MM/yyyy");
 			   int a= listareservas.size();
 			   HashMap<String, Object> map=new HashMap<String, Object>();
@@ -131,7 +132,7 @@ public class ReservaBeanFuncion {
 	   
 	   public String generaSiguienteCodigo(String actual){
 		   String next=null;
-		   if(actual!=null){
+		   if(Integer.parseInt(actual.substring(3))>0){
 				int cod= Integer.parseInt(actual.substring(3))+1;
 				String defecto= "000000";
 				String temp= defecto.substring(0, defecto.length()-String.valueOf(cod).length()).concat(String.valueOf(cod));

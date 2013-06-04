@@ -13,6 +13,8 @@ import javax.servlet.http.HttpSession;
 
 import com.mysql.jdbc.Util;
 
+import IngSoft.administracion.bean.CanchaBeanFunction;
+import IngSoft.administracion.bean.TipoCanchaMiniBeanData;
 import IngSoft.general.CoAccion;
 import IngSoft.general.CoException;
 import IngSoft.servicio.bean.CriterioEventoBeanData;
@@ -31,8 +33,10 @@ public class AccionBuscarReserva extends CoAccion {
 		int tipo=Integer.parseInt(request.getParameter("tipo"));
 		ReservaBeanFuncion reservaFuncion= ReservaBeanFuncion.getInstance();
 		Vector<SedeMiniBeanData> sedeMiniData=reservaFuncion.getSedes();
+		Vector<TipoCanchaMiniBeanData> tipoCanchaMiniData= CanchaBeanFunction.getInstance().getTipoCancha();
 		HttpSession sesion= request.getSession(true);
 		request.setAttribute("sedes",sedeMiniData );
+		request.setAttribute("tiposCancha",tipoCanchaMiniData);
 		Vector<String> listareservas=(Vector<String>)sesion.getAttribute("listareservas");
 		listareservas=listareservas==null?new Vector<String>():listareservas;
 		Vector<String> pendientes=new Vector<String>();

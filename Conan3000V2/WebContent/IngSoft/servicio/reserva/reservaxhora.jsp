@@ -1,3 +1,4 @@
+<%@page import="IngSoft.servicio.bean.ReservaCanchaMiniBeanData"%>
 <%@page import="java.util.Date"%>
 <%@page import="IngSoft.servicio.bean.Utils"%>
 <%@page import="java.text.SimpleDateFormat"%>
@@ -19,7 +20,7 @@ right:11px">Siguiente</button>-->
 <input type="hidden" value="<%=(String)pendientes%>" name="pendientes" id="pendientes">
 </form>
 
-<%!int step=30;
+<%!int step=60;
   String horaIni="07:00";
   String horaFin="15:00";
   String dias[]={"Lunes","Martes","Miercoles","Jueves","Viernes","Sabado","Domingo"};
@@ -50,10 +51,25 @@ right:11px">Siguiente</button>-->
  }  
  %>
 <div id="tabs">
-  <a class="tabs-1" onclick="cambiar($(this))">cancha 1</a></li>
-  <a class="tabs-2" onclick="cambiar($(this))">cancha 1</a></li>    
-</div>  
-<div id="tabs-1" class="tabs">
+<p class="btn-group">
+  <button class="btn tabsSel" data-tabs="tabs-1" onclick="cambiar($(this))">cancha 1</button>
+  <button class="btn tabsSel" data-tabs="tabs-2" onclick="cambiar($(this))" disabled="disabled">cancha 2</button>
+  </p>    
+</div> 
+<%
+int j=0;
+int k=0;
+int a= reservas.size();
+String Cancha=null;
+boolean esnull=false;
+
+while(j<a){ 
+String codActual= ((ReservaCanchaMiniBeanData)reservas.get(j)).getCodigoCancha();
+if(Cancha==null|| !Cancha.equals(codActual)){
+k++;
+esnull=false;
+%>
+<div id="tabs-<%=k%>" class="tabs">
 <table class="table table-striped table-bordered bootstrap-datatable datatable">
 						 <thead>
 							  <tr>
@@ -63,155 +79,31 @@ right:11px">Siguiente</button>-->
 								  <th><%=dias[i]+" "+DF.format(Utils.fechaMas(fecIni, i)) %></th>
                                   <%}%>
 							  </tr>
-						  </thead>     
+						  </thead>
+						       
 						  <tbody>
+<%} %>
 							<%
 							String hora=horaIni;
 							while(true){
-								if(hora.compareTo(horaFin)>=0)break;
-								
+								if(hora.compareTo(horaFin)>=0)break;																
 							%>
 							<tr>
 								<td><%=hora%>-<%=addHora(hora)%></td>
 								
-							
+							<%for(int l=0;l<dias.length;l++){%>
 								<td class="center">
-									<a id="btn1" class="btn btn-success" onclick="javascript:cambiarClase(this)">
+									<a id="<%codActual%><%=DFT.format(Utils.fechaMas(fecIni, k))%><%=hora%>" 
+									class="btn btn-success" 
+									onclick="javascript:cambiarClase(this)">
 										<i class="icon-ok icon-white"></i>  
-										Reservar&nbsp;&nbsp;&nbsp;                                      
-						</a>	
-
-									
+										Reservar&nbsp;&nbsp;&nbsp;                                
+									</a>									
 								</td>
-								<td class="center" align="center">
-									<a class="btn btn-success" onclick="javascript:cambiarClase(this)">
-										<i class="icon-ok icon-white"></i>  
-										Reservar&nbsp;&nbsp;&nbsp;                                             
-									</a>
-								</td>
-								<td class="center">
-									<a class="btn btn-success" onclick="javascript:cambiarClase(this)">
-										<i class="icon-ok icon-white"></i>  
-										Reservar&nbsp;&nbsp;&nbsp;                                             
-								</a>	
-								</td>
-                                </td>
-								<td class="center">
-									<a class="btn btn-success" onclick="javascript:cambiarClase(this)">
-										<i class="icon-ok icon-white"></i>  
-										Reservar&nbsp;&nbsp;&nbsp;                                             
-									</a>
-								</td>
-								<td class="center">
-									<a class="btn btn-success" onclick="javascript:cambiarClase(this)">
-										<i class="icon-ok icon-white"></i>  
-										Reservar&nbsp;&nbsp;&nbsp;                                             
-									</a>
-						
-								</td>
-                                </td>
-								<td class="center">
-									<a class="btn btn-success" onclick="javascript:cambiarClase(this)">
-										<i class="icon-ok icon-white"></i>  
-										Reservar&nbsp;&nbsp;&nbsp;                                             
-									
-								</td>
-                                
-                                </td>
+								<%}%>
 								
-								<td class="center">
-									<a class="btn btn-success" onclick="javascript:cambiarClase(this)">
-										<i class="icon-ok icon-white"></i>  
-										Reservar&nbsp;&nbsp;&nbsp;&nbsp;                                             
-									
-								</td>
-							</tr>
 							<% hora=addHora(hora);} %>
-							
-							
-							
-							
 						  </tbody>
 					  </table> 
 </div>
-<div id="tabs-2" class="tabs" style="display:none">
-<table class="table table-striped table-bordered bootstrap-datatable datatable">
-						 <thead>
-							  <tr>
-							  <th>Horas</th>
-							  <%
-							  for(int i=0;i<dias.length;i++){%>								  
-								  <th><%=dias[i]+" "+DF.format(Utils.fechaMas(fecIni, i)) %></th>
-                                  <%}%>
-							  </tr>
-						  </thead>     
-						  <tbody>
-							<%
-							hora=horaIni;
-							while(true){
-								if(hora.compareTo(horaFin)>=0)break;
-								
-							%>
-							<tr>
-								<td><%=hora%>-<%=addHora(hora)%></td>
-								
-							
-								<td class="center">
-									<a id="btn1" class="btn btn-success" onclick="javascript:cambiarClase(this)">
-										<i class="icon-ok icon-white"></i>  
-										Reservar&nbsp;&nbsp;&nbsp;                                      
-						</a>	
-
-									
-								</td>
-								<td class="center" align="center">
-									<a class="btn btn-success" onclick="javascript:cambiarClase(this)">
-										<i class="icon-ok icon-white"></i>  
-										Reservar&nbsp;&nbsp;&nbsp;                                             
-									</a>
-								</td>
-								<td class="center">
-									<a class="btn btn-success" onclick="javascript:cambiarClase(this)">
-										<i class="icon-ok icon-white"></i>  
-										Reservar&nbsp;&nbsp;&nbsp;                                             
-								</a>	
-								</td>
-                                </td>
-								<td class="center">
-									<a class="btn btn-success" onclick="javascript:cambiarClase(this)">
-										<i class="icon-ok icon-white"></i>  
-										Reservar&nbsp;&nbsp;&nbsp;                                             
-									</a>
-								</td>
-								<td class="center">
-									<a class="btn btn-success" onclick="javascript:cambiarClase(this)">
-										<i class="icon-ok icon-white"></i>  
-										Reservar&nbsp;&nbsp;&nbsp;                                             
-									</a>
-						
-								</td>
-                                </td>
-								<td class="center">
-									<a class="btn btn-success" onclick="javascript:cambiarClase(this)">
-										<i class="icon-ok icon-white"></i>  
-										Reservar&nbsp;&nbsp;&nbsp;                                             
-									
-								</td>
-                                
-                                </td>
-								
-								<td class="center">
-									<a class="btn btn-success" onclick="javascript:cambiarClase(this)">
-										<i class="icon-ok icon-white"></i>  
-										Reservar&nbsp;&nbsp;&nbsp;&nbsp;                                             
-									
-								</td>
-							</tr>
-							<%hora=addHora(hora);} %>
-							
-							
-							
-							
-						  </tbody>
-					  </table> 
-</div>
+<%} %>
