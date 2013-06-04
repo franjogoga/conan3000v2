@@ -77,7 +77,7 @@ public class BungalowBeanFunction {
 		catch(Exception a){
 			sqlsesion.rollback();
 			a.printStackTrace();
-			throw CoException.set("Error: Bungalow repetido", "SMABungalow?accion=Agregar&tipo=1");
+			throw CoException.set("Error: El Bungalow no se pudo registrar", "SMABungalow?accion=Agregar&tipo=1");
 		}
 		finally{
 			sqlsesion.commit();
