@@ -1,22 +1,17 @@
 <!DOCTYPE html>
+<%@page import="IngSoft.administracion.bean.AmbienteMiniBeanData"%>
 <html lang="en">
 <head>
-	<!--
-		Charisma v1.0.0
-
-		Copyright 2012 Muhammad Usman
-		Licensed under the Apache License v2.0
-		http://www.apache.org/licenses/LICENSE-2.0
-
-		http://usman.it
-		http://twitter.com/halalit_usman
-	-->
 	<meta charset="utf-8">
-	<title>Conan3000</title>
+	<title>Eliminar Servicio</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
 	<meta name="author" content="Muhammad Usman">
 
+	<!--The beans  -->
+	<jsp:useBean id="ambientes" scope="request" class="java.util.Vector"></jsp:useBean>
+	<jsp:useBean id="servicio" scope="request" class="IngSoft.administracion.bean.ServicioBeanData"></jsp:useBean>
+	
 	<!-- The styles -->
 	<link id="bs-css" href="css/bootstrap-cerulean.css" rel="stylesheet">
 	<style type="text/css">
@@ -51,7 +46,35 @@
 
 	<!-- The fav icon -->
 	<link rel="shortcut icon" href="img/favicon.ico">
+	
+		<script>
+		function alt_submit_eliminar() {
+			var form = document.frmDelete;
+			var r = confirm("¿Esta seguro que desea eliminar este servicio?");
+			if (r == true) {
+				form.submit();
+			}
+		}
+	</script>	
+
+	<%! public boolean  encontrar(String a, String b){		
+			if(b.equals(a)) return true;
+			return false;
+		}
+	    public boolean Estado_Activo (String estado){
+			if (estado.equals("Activo"))
+				return true;
+			else
+				return false;
+		}
 		
+		public boolean Estado_Inactivo (String estado){
+			if (estado.equals("Inactivo"))
+				return true;
+			else
+				return false;
+		}
+	%>
 </head>
 
 <body>
@@ -75,7 +98,7 @@
               <div>
                 <ul class="breadcrumb">
                   <li> <a href="../../general/index.jsp">Home</a> <span class="divider">/</span> </li>
-                  <li> <a href="#">Mantenimiento de Servicios</a> <span class="divider">/</span></li>
+                  <li> <a href="buscarservicio.jsp">Mantenimiento de Servicios</a> <span class="divider">/</span></li>
                   <li>Eliminar Servicio</li>
                 </ul>
               </div>
@@ -85,37 +108,50 @@
                     <h2></i>ELIMINAR SERVICIO</h2>
                   </div>
                   <div class="box-content">
-                    <form class="form-horizontal">
+                    <form class="form-horizontal" name="frmDelete" action="<%= response.encodeURL("SMAServicio")%>" method="post">
+                      <input type="hidden" name="codigo" value="<%=servicio.getCodigo()%>"></input>
+					  <input type="hidden" name="accion" value="Eliminar"></input>
+					  <input type="hidden" name="tipo" value="2"></input>
                       <fieldset>
                         <div class="control-group">
                           <label class="control-label" for="disabledInput">Nombre:</label>
                           <div class="controls">
-                            <input class="input-xlarge disabled" id="disabledInput" type="text" placeholder="Biblioteca" disabled="">
+                            <input class="input-xlarge disabled" id="txtNombre" type="text" name="txtNombre" value="<%=servicio.getNombre()%>" disabled="">
                           </div>
                         </div>
                         <div class="control-group">
-                  		  <label class="control-label" for="textarea2">Descripci&oacuten:</label>
+                          <label class="control-label" for="selectError">Ambiente:</label>
                           <div class="controls">
-                            <textarea name="textarea" rows="3" id="textarea2" disabled="" style="resize:none" placeholder="Espacio para lectura."></textarea>
+                            <select name="cmbAmbiente" id="cmbAmbiente" data-rel="chosen" disabled="">
+                              <%for(int i=0;i<ambientes.size();i++){ %>
+										<option value="<%=((AmbienteMiniBeanData)ambientes.get(i)).getCodigo()%>" <%=encontrar(((AmbienteMiniBeanData)ambientes.get(i)).getCodigo(),servicio.getIdAmbiente())?"selected":""%>><%= ((AmbienteMiniBeanData)ambientes.get(i)).getNombre()%></option>
+								<%} %>
+                            </select>
                           </div>
                         </div>
-                        			           				<div class="control-group">
+                        <div class="control-group">
+                  		  <label class="control-label" for="textarea2">Descripci&oacute;n:</label>
+                          <div class="controls">
+                            <textarea name="txtDescripcion" rows="3" id="txtDescripcion" disabled="" style="resize:none"><%=servicio.getDescripcion()%></textarea>
+                          </div>
+                        </div>
+                        <div class="control-group">
 								<label class="control-label" for="typeahead3">Estado:</label>
 								<div class="controls">
 								  <label class="radio">
-									<input type="radio" disabled="disabled" "optionsRadios" id="optionsRadios1" value="option1" checked="">
+									<input type="radio" disabled="disabled" name="optionsRadios" id="optionsRadios1" value="option1" <%=Estado_Activo(servicio.getEstado())?"checked":""%>>
 									Activo
 								  </label>
 								  <div style="clear:both"></div>
 								  <label class="radio">
-									<input type="radio" disabled="disabled" name="optionsRadios" id="optionsRadios2" value="option2">
+									<input type="radio" disabled="disabled" name="optionsRadios" id="optionsRadios2" value="option2" <%=Estado_Inactivo(servicio.getEstado())?"checked":""%>>
 									Inactivo
 								  </label>
 								</div>
-							  </div>
+					    </div>
                         <div class="form-actions">
-                          <button type="submit" class="btn btn-primary">Eliminar</button>
-                          <button type="reset" class="btn">Cancelar</button>
+                          <button type="button" class="btn btn-primary" onclick="javascript:alt_submit_eliminar()">Eliminar</button>
+                          <button type="button" class="btn" onclick="location.href='buscarservicio.jsp'">Cancelar</button>
                         </div>
                       </fieldset>
                     </form>
