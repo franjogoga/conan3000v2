@@ -1,21 +1,15 @@
 <!DOCTYPE html>
+<%@page import="IngSoft.administracion.bean.AmbienteMiniBeanData"%>
 <html lang="en">
 <head>
-	<!--
-		Charisma v1.0.0
-
-		Copyright 2012 Muhammad Usman
-		Licensed under the Apache License v2.0
-		http://www.apache.org/licenses/LICENSE-2.0
-
-		http://usman.it
-		http://twitter.com/halalit_usman
-	-->
 	<meta charset="utf-8">
-	<title>Conan3000</title>
+	<title>Agregar Servicio</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
 	<meta name="author" content="Muhammad Usman">
+
+	<!--The beans  -->
+	<jsp:useBean id="ambientes" scope="request" class="java.util.Vector"></jsp:useBean>
 
 	<!-- The styles -->
 	<link id="bs-css" href="css/bootstrap-cerulean.css" rel="stylesheet">
@@ -51,7 +45,13 @@
 
 	<!-- The fav icon -->
 	<link rel="shortcut icon" href="img/favicon.ico">
-		
+	
+	<script>
+	function alt_submit(){
+		var form= document.frmData;
+		if(validaForm()) form.submit();
+	}
+	</script>	
 </head>
 
 <body>
@@ -75,7 +75,7 @@
               <div>
                 <ul class="breadcrumb">
                   <li> <a href="../../general/index.jsp">Home</a> <span class="divider">/</span> </li>
-                  <li> <a href="#">Mantenimiento de Servicios</a> <span class="divider">/</span></li>
+                  <li> <a href="buscarservicio.jsp">Mantenimiento de Servicios</a> <span class="divider">/</span></li>
                   <li>Agregar Servicio</li>
                 </ul>
               </div>
@@ -85,26 +85,41 @@
                     <h2></i>AGREGAR SERVICIO</h2>
                   </div>
                   <div class="box-content">
-                    <form class="form-horizontal">
+                    <form class="form-horizontal" action="<%= response.encodeURL("SMAServicio")%>" name="frmData" method="post">
+                    <input type="hidden" name="accion" value="Agregar"></input>
+					<input type="hidden" name="tipo" value="2"></input>
                       <fieldset>
-                        <div class="control-group">
+                        <div class="control-group" id="dvNombre">
                           <label class="control-label" for="typeahead">Nombre (*):</label>
                           <div class="controls">
-                            <input type="text" class="span6 typeahead" id="typeahead"  data-provide="typeahead" >
+                            <input type="text" class="span6 typeahead" id="txtNombre" name="txtNombre" data-provide="typeahead" >
+                            <span class="help-inline" id="errNombre">Please correct the error</span>
                           </div>
                         </div>
                         <div class="control-group">
-                  		  <label class="control-label" for="textarea2">Descripci&oacuten (*):</label>
+                          <label class="control-label" for="selectError">Ambiente (*):</label>
                           <div class="controls">
-                            <textarea name="textarea" rows="3" id="textarea2" style="resize:none"></textarea>
+                            <select name="cmbAmbiente" id="cmbAmbiente" data-rel="chosen" style="width: 440px">
+                              	<%for(int i=0;i<ambientes.size();i++){ %>
+									<option value="<%= ((AmbienteMiniBeanData)ambientes.get(i)).getCodigo()%>" <%=i==0?"selected":""%>><%= ((AmbienteMiniBeanData)ambientes.get(i)).getNombre()+" - "+((AmbienteMiniBeanData)ambientes.get(i)).getNombreSede()%></option>
+								<%}%>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="control-group" id="dvDescripcion">
+                  		  <label class="control-label" for="textarea2">Descripci&oacuten:</label>
+                          <div class="controls">
+                            <textarea name="txtDescripcion" rows="3" id="txtDescripcion" style="resize:none"></textarea>
+                            <span class="help-inline" id="errDescripcion">Please correct the error</span>
                           </div>
                         </div>
                         <div class="form-actions">
-                          <button type="submit" class="btn btn-primary">Agregar</button>
-                          <button type="reset" class="btn">Cancelar</button>
+                          <button type="button" class="btn btn-primary" onclick="javascript:alt_submit()">Agregar</button>
+                          <button type="button" class="btn" onclick="location.href='buscarservicio.jsp'">Cancelar</button>
                         </div>
                       </fieldset>
-                    </form>(*) Datos Obligatorios
+					<span style="font-size:70%">(*)Campos Obligatorios</span>
+                    </form>
                   </div>
                 </div>
                 <!--/span-->
@@ -219,6 +234,62 @@
 	<!-- application script for Charisma demo -->
 	<script src="js/charisma.js"></script>
 	
-		
+	<script type="text/javascript" src="js/apprise-1.5.full.js"></script>
+	<link rel="stylesheet" href="css/apprise.css" type="text/css" />
+	<script type="text/javascript" src="js/script.js"></script>
+    <script>
+ 
+ 
+function validaForm(){
+                /*
+        esValido(nombre, casilla, id, tipoValidacion, minimo,maximo)
+        nombre: es el nombre de la casilla: ejemplo -> Nombre, Apellido, Fecha de Nacimiento, etc
+        casilla: corresponde a la casilla en si, para esto colocamos por ejemplo form.txtNombre, donde form ya fue definido
+        id: identificador de los divs para efectuar las validaciones
+        tipoValidacion: es un valor numerico el cual permite identificar el tipo de validacion que se efectuara
+        1: Validacion con cantidad de caracteres Minimo y maximo
+        2: Validación de cantidad de caracteres de fecha
+        3: validacion de llenado de radio button
+        4: Validacion de alfanumerico
+        5: validacion de valores Float
+        6: Validacion de enteros
+        7: Validacion de fechas
+        minimo: valor numerico que indica la menor cantidad de caracteres que como minimo debe ser llenado (Solo para tipoValidacion 1 y 2, en el resto poner 1)
+        maximo: valor numerico que indica la maxima cantidad de caracteres que como maximo debe ser llenado (Solo para tipoValidacion 1 y 2, en el resto poner 1)
+       
+        El valor que va en cadena[i] es el nombre del campo
+       
+        #############################ADICIONAL#########################
+        Para validar una fecha Inicial y fecha Final usar la siguiente funcion
+        validarFechas(nombre[Fecha Final], casilla[Fecha Final], id[Fecha Final],nombre[Fecha Inicial],casilla[Fecha Inicial])
+        OJO: no va como parametro el id de la fecha Inicial
+        ###############################################################
+        */
+       
+        var form=document.frmData;
+ 
+        var cadena= new Array();
+        var i=0;
+        var error=false;
+        if(!esValido("Nombre",form.txtNombre,"Nombre",1,1,50)){cadena[i]="Nombre";i++;}
+       	if(!esValido("Descripci&oacute;n",form.txtDescripcion,"Descripcion",1,0,100)){cadena[i]="Descripci&oacute;n";i++;}
+              
+        //No tocar
+        if(i>0){
+        crearAlert(cadena);
+        return false;
+        }else{
+                return true;      
+        }
+		} 
+ 
+function inicializa(){
+        document.getElementById("errNombre").style.display='none';
+        document.getElementById("errDescripcion").style.display='none';    
+} 
+ 
+inicializa();
+ 
+</script>
 </body>
 </html>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Data.administracion.servicio">
+	<cache />
+
+	<select id="searchServicio" parameterType="IngSoft.administracion.bean.CriterioServicioBeanData" resultType="IngSoft.administracion.bean.ResultadoServicioBeanData">
+		SELECT se.IdServicio as codigo, se.Nombre as nombre, a.Nombre as ambiente, se.Estado as estado, s.Nombre as sede
+		FROM SERVICIO se, AMBIENTE a, SEDE s
+		<where>
+		<if test="nombre != null">
+       		se.Nombre  like  #{nombre}
+    	</if>
+    	<if test="idAmbiente != null ">
+       		AND a.IdAmbiente = #{idAmbiente}
+    	</if>
+    		AND se.idAmbiente=a.idAmbiente AND a.IdSede=s.IdSede AND (se.Estado='Activo' OR se.Estado='Inactivo')
+		</where>
+	</select>
+
+	<insert id="insertServicio" parameterType="IngSoft.administracion.bean.ServicioBeanData" flushCache="true">
+		insert into SERVICIO(IdServicio,Nombre,Descripcion,IdAmbiente,Estado)
+		values (#{codigo},#{nombre},#{descripcion},#{idAmbiente},'Activo')
+	</insert>
+
+	<select id="getNextCodigo" resultType="java.lang.String">
+	 	SELECT MAX(IdServicio) FROM SERVICIO	
+	</select>
+
+	<select id="getServicio" parameterType="java.lang.String"  resultType="IngSoft.administracion.bean.ServicioBeanData">
+		SELECT IdServicio as codigo, Nombre as nombre, Descripcion as descripcion, IdAmbiente as idAmbiente, Estado as estado
+		FROM SERVICIO
+		WHERE (Estado = 'Activo' OR Estado = 'Inactivo') AND  IdServicio = #{codigo}; 
+	</select>
+
+	<update id="updateServicio" parameterType="IngSoft.administracion.bean.ServicioBeanData">
+		update SERVICIO set
+		Nombre = #{nombre},
+		Descripcion = #{descripcion},
+		IdAmbiente = #{idAmbiente},
+		Estado = #{estado}
+	 	where IdServicio = #{codigo}
+	</update>
+
+	<update id="deleteServicio" parameterType="java.lang.String" >
+		UPDATE SERVICIO SET Estado='Eliminado' WHERE IdServicio = #{codigo}
+	</update>
+</mapper>

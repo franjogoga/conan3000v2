@@ -2,9 +2,8 @@
 <%@page import="IngSoft.administracion.bean.AmbienteMiniBeanData"%>
 <html lang="en">
 <head>
-
 	<meta charset="utf-8">
-	<title>Modificar Servicio</title>
+	<title>Consultar Servicio</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
 	<meta name="author" content="Muhammad Usman">
@@ -12,7 +11,7 @@
 	<!--The beans  -->
 	<jsp:useBean id="ambientes" scope="request" class="java.util.Vector"></jsp:useBean>
 	<jsp:useBean id="servicio" scope="request" class="IngSoft.administracion.bean.ServicioBeanData"></jsp:useBean>
-
+	
 	<!-- The styles -->
 	<link id="bs-css" href="css/bootstrap-cerulean.css" rel="stylesheet">
 	<style type="text/css">
@@ -47,19 +46,12 @@
 
 	<!-- The fav icon -->
 	<link rel="shortcut icon" href="img/favicon.ico">
-	
-	<script>
-	function alt_submit(){
-		var form= document.frmUpdate;
-		if(validaForm()) form.submit();
-	}
-	</script>
+
 	<%! public boolean  encontrar(String a, String b){		
 			if(b.equals(a)) return true;
 			return false;
 		}
-		
-		public boolean Estado_Activo (String estado){
+	    public boolean Estado_Activo (String estado){
 			if (estado.equals("Activo"))
 				return true;
 			else
@@ -72,11 +64,11 @@
 			else
 				return false;
 		}
-	%>	
+	%>
 </head>
 
 <body>
-	<jsp:include page="/IngSoft/general/superior.jsp" />
+		<jsp:include page="/IngSoft/general/superior.jsp" />
 		<div class="container-fluid">
 		<div class="row-fluid">
 				
@@ -97,65 +89,61 @@
                 <ul class="breadcrumb">
                   <li> <a href="../../general/index.jsp">Home</a> <span class="divider">/</span> </li>
                   <li> <a href="buscarservicio.jsp">Mantenimiento de Servicios</a> <span class="divider">/</span></li>
-                  <li>Modificar Servicio</li>
+                  <li>Consultar Servicio</li>
                 </ul>
               </div>
               <div class="row-fluid sortable">
                 <div class="box span12">
                   <div class="box-header well" data-original-title>
-                    <h2></i>MODIFICAR SERVICIO</h2>
+                    <h2></i>CONSULTAR SERVICIO</h2>
                   </div>
                   <div class="box-content">
-                    <form class="form-horizontal" action="<%= response.encodeURL("SMAServicio")%>" name="frmUpdate" method="post">
-                      <input type="hidden" name="codigo" value="<%=servicio.getCodigo()%>"></input>                      
-                      <input type="hidden" name="accion" value="Modificar"></input>
+                    <form class="form-horizontal" name="frmDelete" action="<%= response.encodeURL("SMAServicio")%>" method="post">
+                      <input type="hidden" name="codigo" value="<%=servicio.getCodigo()%>"></input>
+					  <input type="hidden" name="accion" value="Eliminar"></input>
 					  <input type="hidden" name="tipo" value="2"></input>
                       <fieldset>
-                        <div class="control-group" id="dvNombre">
-                          <label class="control-label" for="typeahead">Nombre (*):</label>
+                        <div class="control-group">
+                          <label class="control-label" for="disabledInput">Nombre:</label>
                           <div class="controls">
-                            <input type="text" class="span6 typeahead" id="txtNombre" name="txtNombre" data-provide="typeahead" value="<%=servicio.getNombre()%>">
-                          	<span class="help-inline" id="errNombre">Please correct the error</span>
+                            <input class="input-xlarge disabled" id="txtNombre" type="text" name="txtNombre" value="<%=servicio.getNombre()%>" disabled="">
                           </div>
                         </div>
                         <div class="control-group">
-                          <label class="control-label" for="selectError">Ambiente (*):</label>
+                          <label class="control-label" for="selectError">Ambiente:</label>
                           <div class="controls">
-                            <select name="cmbAmbiente" id="cmbAmbiente" data-rel="chosen">
+                            <select name="cmbAmbiente" id="cmbAmbiente" data-rel="chosen" disabled="">
                               <%for(int i=0;i<ambientes.size();i++){ %>
-									<option value="<%=((AmbienteMiniBeanData)ambientes.get(i)).getCodigo()%>" <%=encontrar(((AmbienteMiniBeanData)ambientes.get(i)).getCodigo(),servicio.getIdAmbiente())?"selected":""%>><%= ((AmbienteMiniBeanData)ambientes.get(i)).getNombre()%></option>
+										<option value="<%=((AmbienteMiniBeanData)ambientes.get(i)).getCodigo()%>" <%=encontrar(((AmbienteMiniBeanData)ambientes.get(i)).getCodigo(),servicio.getIdAmbiente())?"selected":""%>><%= ((AmbienteMiniBeanData)ambientes.get(i)).getNombre()%></option>
 								<%} %>
                             </select>
                           </div>
                         </div>
-                        <div class="control-group" id="dvDescripcion">
-                  		  <label class="control-label" for="textarea2">Descripci&oacute;n (*):</label>
+                        <div class="control-group">
+                  		  <label class="control-label" for="textarea2">Descripci&oacute;n:</label>
                           <div class="controls">
-                            <textarea name="txtDescripcion" rows="3" id="txtDescripcion" style="resize:none"><%=servicio.getDescripcion()%></textarea>
-                          	<span class="help-inline" id="errDescripcion">Please correct the error</span>
+                            <textarea name="txtDescripcion" rows="3" id="txtDescripcion" disabled="" style="resize:none"><%=servicio.getDescripcion()%></textarea>
                           </div>
                         </div>
                         <div class="control-group">
 								<label class="control-label" for="typeahead3">Estado:</label>
 								<div class="controls">
 								  <label class="radio">
-									<input type="radio" name="optionsRadios" id="optionsRadios1" value="Activo" <%=Estado_Activo(servicio.getEstado())?"checked":""%>>
+									<input type="radio" disabled="disabled" name="optionsRadios" id="optionsRadios1" value="option1" <%=Estado_Activo(servicio.getEstado())?"checked":""%>>
 									Activo
 								  </label>
 								  <div style="clear:both"></div>
 								  <label class="radio">
-									<input type="radio" name="optionsRadios" id="optionsRadios2" value="Inactivo" <%=Estado_Inactivo(servicio.getEstado())?"checked":""%>>
+									<input type="radio" disabled="disabled" name="optionsRadios" id="optionsRadios2" value="option2" <%=Estado_Inactivo(servicio.getEstado())?"checked":""%>>
 									Inactivo
 								  </label>
 								</div>
-							  </div>
+					    </div>
                         <div class="form-actions">
-                          <button type="button" class="btn btn-primary" onclick="javascript:alt_submit()">Guardar</button>
-                          <button type="button" class="btn" onclick="location.href='buscarservicio.jsp'">Cancelar</button>
+                          <button type="button" class="btn btn-primary" onclick="location.href='buscarservicio.jsp'">Registrar</button>
                         </div>
                       </fieldset>
                     </form>
-                    <span style="font-size:70%">(*)Campos Obligatorios</span>
                   </div>
                 </div>
                 <!--/span-->
@@ -192,7 +180,8 @@
 			</div>
 		</div>
 		<jsp:include page="/IngSoft/general/inferior.jsp" />
-				
+		
+		
 	</div><!--/.fluid-container-->
 
 	<!-- external javascript
@@ -269,63 +258,6 @@
 	<!-- application script for Charisma demo -->
 	<script src="js/charisma.js"></script>
 	
-		<script type="text/javascript" src="js/apprise-1.5.full.js"></script>
-	<link rel="stylesheet" href="css/apprise.css" type="text/css" />
-	<script type="text/javascript" src="js/script.js"></script>
-    <script>
- 
- 
-function validaForm(){
-                /*
-        esValido(nombre, casilla, id, tipoValidacion, minimo,maximo)
-        nombre: es el nombre de la casilla: ejemplo -> Nombre, Apellido, Fecha de Nacimiento, etc
-        casilla: corresponde a la casilla en si, para esto colocamos por ejemplo form.txtNombre, donde form ya fue definido
-        id: identificador de los divs para efectuar las validaciones
-        tipoValidacion: es un valor numerico el cual permite identificar el tipo de validacion que se efectuara
-        1: Validacion con cantidad de caracteres Minimo y maximo
-        2: Validación de cantidad de caracteres de fecha
-        3: validacion de llenado de radio button
-        4: Validacion de alfanumerico
-        5: validacion de valores Float
-        6: Validacion de enteros
-        7: Validacion de fechas
-        minimo: valor numerico que indica la menor cantidad de caracteres que como minimo debe ser llenado (Solo para tipoValidacion 1 y 2, en el resto poner 1)
-        maximo: valor numerico que indica la maxima cantidad de caracteres que como maximo debe ser llenado (Solo para tipoValidacion 1 y 2, en el resto poner 1)
-       
-        El valor que va en cadena[i] es el nombre del campo
-       
-        #############################ADICIONAL#########################
-        Para validar una fecha Inicial y fecha Final usar la siguiente funcion
-        validarFechas(nombre[Fecha Final], casilla[Fecha Final], id[Fecha Final],nombre[Fecha Inicial],casilla[Fecha Inicial])
-        OJO: no va como parametro el id de la fecha Inicial
-        ###############################################################
-        */
-       
-        var form=document.frmUpdate;
- 
-        var cadena= new Array();
-        var i=0;
-        var error=false;
-        if(!esValido("Nombre",form.txtNombre,"Nombre",1,1,50)){cadena[i]="Nombre";i++;}
-        if(!esValido("Descripci&oacute;n",form.txtDescripcion,"Descripcion",1,0,100)){cadena[i]="Descripci&oacute;n";i++;}
-       
-        //No tocar
-        if(i>0){
-        crearAlert(cadena);
-        return false;
-        }else{
-                return true;      
-        }
-} 
- 
-function inicializa(){
-        document.getElementById("errNombre").style.display='none';
-        document.getElementById("errDescripcion").style.display='none';    
-} 
- 
-inicializa();
- 
-</script>
-	
+		
 </body>
 </html>
