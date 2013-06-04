@@ -142,7 +142,7 @@
                             <select name="cmbAmbiente" id="cmdAmbiente" data-rel="chosen" style="width: 440px" >
                               <option selected value="0">Todos</option>
                               <%for(int i=0;i<ambientes.size();i++){ %>
-							  	<option value="<%=((AmbienteMiniBeanData)ambientes.get(i)).getCodigo()%>"><%= ((AmbienteMiniBeanData)ambientes.get(i)).getNombre()+" - "+((AmbienteMiniBeanData)ambientes.get(i)).getNombreSede()%></option>
+							  	<option value="<%=((AmbienteMiniBeanData)ambientes.get(i)).getCodigo()%>"><%= ((AmbienteMiniBeanData)ambientes.get(i)).getNombre()+" / "+((AmbienteMiniBeanData)ambientes.get(i)).getNombreSede()%></option>
 							  <%}%>
                             </select>
                           </div>
@@ -188,7 +188,7 @@
                               <td class="center"><%=((ResultadoBungalowBeanData)resultados.get(i)).getNumero()%></td>
                               <td class="center"><%=((ResultadoBungalowBeanData)resultados.get(i)).getNumeroDivisiones()%></td>
                               <td class="center"><%=((ResultadoBungalowBeanData)resultados.get(i)).getAreaBungalow()%></td>
-                              <td class="center"><%=((ResultadoBungalowBeanData)resultados.get(i)).getAmbiente()+" - "+((ResultadoBungalowBeanData)resultados.get(i)).getSede()%></td>
+                              <td class="center"><%=((ResultadoBungalowBeanData)resultados.get(i)).getAmbiente()+" / "+((ResultadoBungalowBeanData)resultados.get(i)).getSede()%></td>
                               <td class="center"><%=((ResultadoBungalowBeanData)resultados.get(i)).getEstado()%></td>
                               <td class="center">
                               				<a class="btn btn-success" href="javascript:alt_consultar('<%=((ResultadoBungalowBeanData)resultados.get(i)).getCodigo()%>')">
