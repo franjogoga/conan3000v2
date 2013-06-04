@@ -246,7 +246,7 @@
 	<!-- application script for Charisma demo -->
 	<script src="js/charisma.js"></script>
 	
-		<script type="text/javascript" src="js/apprise-1.5.full.js"></script>
+	<script type="text/javascript" src="js/apprise-1.5.full.js"></script>
 	<link rel="stylesheet" href="css/apprise.css" type="text/css" />
 	<script type="text/javascript" src="js/script.js"></script>
     <script>

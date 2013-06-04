@@ -142,7 +142,7 @@
                             <select name="cmbAmbiente" id="cmbAmbiente" data-rel="chosen" style="width: 440px">
                               <option selected value="0">Todos</option>
                               <%for(int i=0;i<ambientes.size();i++){ %>
-							  	<option value="<%=((AmbienteMiniBeanData)ambientes.get(i)).getCodigo()%>"><%= ((AmbienteMiniBeanData)ambientes.get(i)).getNombre()+" - "+((AmbienteMiniBeanData)ambientes.get(i)).getNombreSede()%></option>
+							  	<option value="<%=((AmbienteMiniBeanData)ambientes.get(i)).getCodigo()%>"><%= ((AmbienteMiniBeanData)ambientes.get(i)).getNombre()+" / "+((AmbienteMiniBeanData)ambientes.get(i)).getNombreSede()%></option>
 							  <%}%>
                       	     </select>
                           </div>
@@ -186,7 +186,7 @@
                             <tr>
                               <td class="center"><%=((ResultadoCanchaBeanData)resultados.get(i)).getNombre()%></td>
                               <td class="center"><%=((ResultadoCanchaBeanData)resultados.get(i)).getTipoCancha()%></td>
-                              <td class="center"><%=((ResultadoCanchaBeanData)resultados.get(i)).getAmbiente()+" - "+((ResultadoCanchaBeanData)resultados.get(i)).getSede()%></td>
+                              <td class="center"><%=((ResultadoCanchaBeanData)resultados.get(i)).getAmbiente()+" / "+((ResultadoCanchaBeanData)resultados.get(i)).getSede()%></td>
                               <td class="center"><%=((ResultadoCanchaBeanData)resultados.get(i)).getEstado()%></td>
                               <td class="center">
                               				<a class="btn btn-success" href="javascript:alt_consultar('<%=((ResultadoCanchaBeanData)resultados.get(i)).getCodigo()%>')">

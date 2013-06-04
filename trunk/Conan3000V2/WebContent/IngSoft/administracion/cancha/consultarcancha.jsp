@@ -99,7 +99,7 @@
               <div class="row-fluid sortable">
                 <div class="box span12">
                   <div class="box-header well" data-original-title>
-                    <h2>ELIMINAR CANCHA</h2>
+                    <h2>CONSULTAR CANCHA</h2>
                   </div>
                   <div class="box-content">
                     <form class="form-horizontal" name="frmDelete" action="<%= response.encodeURL("SMACancha")%>" method="post">
