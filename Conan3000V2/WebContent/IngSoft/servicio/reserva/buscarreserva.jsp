@@ -60,8 +60,8 @@ var lock4=1;
 function cambiarClase(elemento){
 
 if (elemento.className == "btn btn-success") {
-	elemento.className = "btn btn-inverse";
-	elemento.innerHTML=elemento.innerHTML.replace("Reservar&nbsp;&nbsp;&nbsp;","Pendiente");
+	elemento.className = "btn btn-warning";
+	elemento.innerHTML=elemento.innerHTML.replace("Reservar&nbsp;&nbsp;","Pendiente");
 	var temp=elemento.getAttribute("id")+"@";
 	if(cancelados.search(temp)<0)
 	pendientes=pendientes.concat(temp);
@@ -69,9 +69,9 @@ if (elemento.className == "btn btn-success") {
 
 	}
 	else 
-	if(elemento.className == "btn btn-inverse") {
+	if(elemento.className == "btn btn-warning") {
 	elemento.className = "btn btn-success";
-	elemento.innerHTML=elemento.innerHTML.replace("Pendiente","Reservar&nbsp;&nbsp;&nbsp;");
+	elemento.innerHTML=elemento.innerHTML.replace("Pendiente","Reservar&nbsp;&nbsp;");
 	var temp=elemento.getAttribute("id")+"@";
 	if(pendientes.search(temp)<0)
 	cancelados=cancelados.concat(temp);
@@ -97,7 +97,7 @@ function ajax_submit(tipo){
 			$("#resultadoBusqueda").html(msg);
 			pendientes="";
 			cancelados="";			
-			actualizar_pendientes();
+			actualizar_pendientes();			
 			lock1=1;
 		  },
 		  error: function(objeto, quepaso, otroobj){
@@ -108,7 +108,15 @@ function ajax_submit(tipo){
 		});
 		}
 }
-
+function cambiar(elem){
+	
+	var tabid='#'+elem.attr('class');	
+	$('.tabs').css('display','none');
+	var estado=$(tabid).css('display');
+	if(estado.indexOf('none')>=0) estado='inline';
+	else estado='none';
+	$(tabid).css('display',estado);
+}
 
 function ajax_search(){
 	//alert("accion=Buscar"+"&tipo=" + tipo + "&fecIni=" + $(fecIni).val()+"&cmbServicios"+$('#cmbServicios').val());
@@ -123,9 +131,8 @@ function ajax_search(){
    		  $("#resultadoBusqueda").html("<div align='center'><img src='img/ajax-loaders/ajax-loader-7.gif'></img></div>");
   		  },
 		  success: function(msg){
-			$("#resultadoBusqueda").html(msg);
-			lock2=1;		
-			
+			$("#resultadoBusqueda").html(msg);			
+			lock2=1;					
 		  },
 		  error: function(objeto, quepaso, otroobj){
 		  	lock2=1;
@@ -147,7 +154,7 @@ var ant=($("#pendientes").attr('value').split(','));
 						  			if(!$(temp).hasClass("btn-danger")){						  			
 						  			$(temp).html("<i class='icon-ok icon-white'></i>Pendiente");
 						  			
-						  			$(temp).toggleClass("btn-inverse btn-success");}						  			
+						  			$(temp).toggleClass("btn-warning btn-success");}						  			
 						  			
 						  		}
 						  		//else{
