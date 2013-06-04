@@ -144,7 +144,11 @@
 			  + "&cmbAmbientes=" + $(cmbAmbientes).val().join('/')+ "&cmbSedes=" + $(cmbSedes).val().join('/')  + "&fFecIncio=" + $(fFecIncio).val()+ "&fFecFin=" + $(fFecFin).val(),
 			  dataType: "text",
 			  success: function(msg){
-				  var url="<%=request.getContextPath()%>"+msg;				  
+				  var url="<%=request.getContextPath()%>"+msg;
+				  $("#linkAceptar").css("display","inline");
+				  $("#linkCerrar").css("display","none");
+				  $("#modalTitulo").html("EXITO");				  
+				  $("#modalContenido").html("La plantilla de evento ha sido agregada exitosamente");
 				  $("#linkAceptar").bind("click",function(){
 					  location.href=url;					  
 				  });
@@ -152,6 +156,11 @@
 				  				  								
 			  },
 			  error: function(objeto, quepaso, otroobj){
+				$("#linkAceptar").css("display","inline");
+				$("#linkCerrar").css("display","none");
+				$("#modalTitulo").html("ERROR");
+				$("#modalContenido").html("No se pudo agregar su plantilla de evento, intentelo mas tarde");
+				$("#bModal").trigger("click");
 				alert("ERROR!!");			
 			  }
 		
@@ -294,13 +303,15 @@
 		<div class="modal hide fade" id="myModal">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal">X</button>
-				<h3>EXITO</h3>
+				<h3 id="modalTitulo">EXITO</h3>
 			</div>
 			<div class="modal-body">
-				<p>La plantilla de evento ha sido agregada exitosamente</p>
+				<p id="modalContenido">La plantilla de evento ha sido agregada exitosamente</p>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn" id="linkAceptar">Aceptar</a>				
+				<button type="button" class="btn" id="linkAceptar" style="display: none">Aceptar</a>
+				<a href="#" class="btn" id="linkCerrar"  data-dismiss="modal" style="display: none">Cerrar</a>
+								
 			</div>
 		</div>
 		<br/>
