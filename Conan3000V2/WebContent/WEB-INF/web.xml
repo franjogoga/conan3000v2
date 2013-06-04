@@ -83,6 +83,10 @@
         <servlet-name>SMAInvitado</servlet-name>
 	<servlet-class>IngSoft.administracion.invitado.SMAInvitado</servlet-class>
 </servlet>
+<servlet id="Servlet_0019">
+        <servlet-name>SMAServicio</servlet-name>
+	<servlet-class>IngSoft.administracion.servicio.SMAServicio</servlet-class>
+</servlet>
 
 
 
@@ -161,6 +165,10 @@
 <servlet-mapping id="ServletMapping_0018">
         <servlet-name>SMAInvitado</servlet-name>
 <url-pattern>/IngSoft/administracion/invitado/SMAInvitado</url-pattern>
+</servlet-mapping>
+<servlet-mapping id="ServletMapping_0019">
+        <servlet-name>SMAServicio</servlet-name>
+<url-pattern>/IngSoft/administracion/servicio/SMAServicio</url-pattern>
 </servlet-mapping>
 
 <error-page>
