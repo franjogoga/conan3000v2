@@ -38,6 +38,47 @@ on r1.codigoBungalow=r2.codigoBungalow
 where r1.codigoSede like #{codigo}
 order by 2 asc,1,4;
 </select>
+<select id="searchCanchaxTipoxSede" parameterType="hashmap" resultType="IngSoft.servicio.bean.ReservaCanchaMiniBeanData">
+select r1.codigoCancha
+,r1.descCancha
+,r2.codigoSocio
+,r2.fecha
+,r2.horaIni
+,r2.horaFin 
+from
+(select c.IdCancha as codigoCancha
+,c.Descripcion as descCancha
+,a.IdSede as codigoSede
+,tc.Nombre as tipo
+from 
+CANCHA c 
+left join 
+AMBIENTE a
+on a.IdAmbiente=c.IdAmbiente
+left join 
+TIPO_CANCHA tc 
+on tc.IdTipoCancha=c.IdTipoCancha
+where 
+c.Estado ='ACTIVO'
+and a.IdSede like #{codSede}
+and tc.IdTipoCancha like #{codTipoCancha}) r1
+left join
+(select rc.IdCancha as codigoCancha
+,rc.IdReservaCancha as codigoReserva
+,rc.IdSocio  as codigoSocio
+,cf.Fecha as fecha
+,cf.HoraInicio as horaIni
+,cf.HoraFin as horaFin 
+from 
+RESERVA_CANCHA rc,
+CANCHAxFECHA cf 
+where cf.IdReservaCancha=rc.IdReservaCancha
+and rc.Estado='ACTIVO'
+and cf.Fecha &gt;= #{fecIni}
+and cf.Fecha &lt;= #{fecFin}) r2
+on r1.codigoCancha=r2.codigoCancha 
+order by 1 asc,5,4;
+</select>
 
 <select id="confirmarSocio" parameterType="java.lang.String" resultType="hashmap">
 select CONCAT(s.IdSocio,'/',p.Nombres
@@ -49,8 +90,12 @@ where s.IdSocio=p.IdPersona
 and p.NumeroDocumento=#{codigo};
 </select>
 
-<select id="getNextCodigo" resultType="java.lang.String">
+
+<select id="getNextCodigoB" resultType="java.lang.String">
 	select max(IdReservaBungalow) from RESERVA_BUNGALOW;	
+</select>
+<select id="getNextCodigoC" resultType="java.lang.String">
+	select max(IdReservaCancha) from RESERVA_CANCHA;	
 </select>
 <insert id="insertBungalowReserva" parameterType="hashmap">
 insert into RESERVA_BUNGALOW(Estado,IdSocio,IdBungalow,IdReservaBungalow)
