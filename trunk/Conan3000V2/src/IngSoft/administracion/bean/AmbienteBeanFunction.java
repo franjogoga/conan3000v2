@@ -76,7 +76,7 @@ public class AmbienteBeanFunction {
 		catch(Exception a){
 			sqlsesion.rollback();
 			a.printStackTrace();
-			throw CoException.set("Error: Nombre de ambiente repetido", "SMAAmbiente?accion=Agregar&tipo=1");
+			throw CoException.set("Error: El Ambiente no se pudo registrar", "SMAAmbiente?accion=Agregar&tipo=1");
 		}
 		
 		finally{

@@ -74,7 +74,7 @@ public class CanchaBeanFunction {
 		catch(Exception a){
 			sqlsesion.rollback();
 			a.printStackTrace();
-			throw CoException.set("Error: Cancha repetida", "SMACancha?accion=Agregar&tipo=1");
+			throw CoException.set("Error: La Cancha no se pudo registrar", "SMACancha?accion=Agregar&tipo=1");
 		}
 		finally{
 			sqlsesion.commit();
