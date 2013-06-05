@@ -251,6 +251,14 @@
 		      <!--/span-->
 	        </div>
 		    <!--/row-->
+		
+		    <form id="frmAlternativo" name="frmAlternativo" method="post" action="<%= response.encodeURL("SMSEmpleado")%>">
+			<input type="hidden" name="accion" value="Agregar"></input>
+			<input type="hidden" name="codigo" value=""></input>
+			<input type="hidden" name="tipo" value="1"></input>
+			</form>
+					
+					
 						
 		    <div class="row-fluid sortable">
 		      <div class="box span12">
@@ -259,8 +267,16 @@
 	            </div>
 		        <div class="box-content">
 		          <table class="table table-striped table-bordered bootstrap-datatable datatable">
+		            
 		            <!-- agregar nuevo boton -->
-		            <div  align="right"> <a class="btn btn-primary" href="agregarempleado.jsp"> <i class="icon icon-add icon-white"></i> Agregar </a> </div>
+		            <div  align="right">
+		            <a class="btn btn-primary" href="javascript:alt_agregar()">
+                    <i class="icon icon-add icon-white"></i>
+                    Agregar
+                    </a>
+                   </div>
+		            
+		            
 		            <thead>
 		              <tr>
 		                <th width="17%">Nombre</th>		                
@@ -314,11 +330,7 @@
 	          </div>
 		      <!--/span-->
 	        </div>
-	        <form id="frmAlternativo" name="frmAlternativo" method="post" action="<%= response.encodeURL("SMSEmpleado")%>">
-			<input type="hidden" name="accion" value="Agregar"></input>
-			<input type="hidden" name="codigo" value=""></input>
-			<input type="hidden" name="tipo" value="1"></input>
-			</form>
+	        
 	        
 	        
 		    <!--/row-->
