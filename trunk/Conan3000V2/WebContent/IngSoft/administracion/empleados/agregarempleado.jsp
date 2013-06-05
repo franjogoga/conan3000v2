@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+<%@page import="IngSoft.servicio.bean.AmbienteMiniBeanData"%>
+<%@page import="IngSoft.servicio.bean.SedeMiniBeanData"%>
+<%@page import="IngSoft.administracion.bean.HorarioEmpleados"%>
+
 <html lang="en">
 <head>
 
@@ -7,6 +11,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="Dos Virgenes">
 	<meta name="author" content="Dos Virgenes">
+		<!--The beans  -->
+	<jsp:useBean id="sedes" scope="request"class="java.util.Vector"></jsp:useBean>
+	<jsp:useBean id="horarios" scope="request"class="java.util.Vector"></jsp:useBean>
 
 	<!-- The styles -->
 	<link id="bs-css" href="css/bootstrap-cerulean.css" rel="stylesheet">    
@@ -42,6 +49,35 @@
 
 	<!-- The fav icon -->
 	<link rel="shortcut icon" href="img/conan_logo.png">
+		
+		<script>
+	function alfanumerico(e) 
+	{ 
+		var key = window.event.keyCode || event.keyCode;
+		return ((key >= 48 && key <= 57) ||(key >= 97 && key <= 122) ||(key >= 65 && key <=90) ||(key >= 192 && key <=246)||(key <=13) ||(key ==32));
+	} 	
+	
+	function validar(form){
+			if(form.txtRazonSocial.value.length <=0)return false;
+			if(form.txtRuc.value.length<=0)return false;
+			if(form.txtTelefono.value.lengtht<=0)return false;
+			if(form.txtCorreo.value.length<=0)return false;
+	return true;
+		
+		
+		}
+	
+	
+	
+	function alt_submit(){
+		var form= document.frmData;
+		if(validaForm()) form.submit();
+			
+			}
+	
+
+	</script>
+		
 		
 </head>
 
@@ -85,34 +121,34 @@
 		          </div>
 				  
 			      <div class="box-content">
-			        <form class="form-horizontal">
+			        <form class="form-horizontal" action="<%= response.encodeURL("SMSEmpleado")%>" onsubmit="alt_submit(); return false;"name="frmData" method="post">
 			          <fieldset>
 							
 							<div class="control-group">
 							  <label class="control-label" for="nombres">Nombres (*):</label>							  
 							  <div class="controls">
-								<input type="text" class="span6 typeahead" id="nombres"  data-provide="typeahead" data-items="4" ></input>								
+								<input type="text" class="span6 typeahead" data-provide="typeahead"  id="txtNombreEmpleado" name="txtNombreEmpleado" onkeypress="return alfanumerico(event);" autofocus maxlength="50"/>								
 							  </div>
 							</div>
 							
 							<div class="control-group">
 							  <label class="control-label" for="paterno">Apellido Paterno (*):</label>							  
 							  <div class="controls">
-								<input type="text" class="span6 typeahead" id="paterno"  data-provide="typeahead" data-items="4" ></input>								
+								<input type="text" class="span6 typeahead" data-provide="typeahead"  id="txtApellidoPaterno" name="txtApellidoPaterno" onkeypress="return alfanumerico(event);" autofocus maxlength="50"/>								
 							  </div>
 							</div>
 							
 							<div class="control-group">
 							  <label class="control-label" for="materno">Apellido Materno (*):</label>							  
 							  <div class="controls">
-								<input type="text" class="span6 typeahead" id="materno"  data-provide="typeahead" data-items="4" ></input>								
+								<input type="text" class="span6 typeahead" data-provide="typeahead"  id="txtApellidoMaterno" name="txtApellidoMaterno" onkeypress="return alfanumerico(event);" autofocus maxlength="50"/>														
 							  </div>
 							</div>
 							
 							<div class="control-group">
 							  <label class="control-label" for="fechanacimiento">Fecha de Nac. (*):</label>
 							  <div class="controls">
-								<input type="text" class="input-xlarge datepicker" id="fechanacimiento" readonly="true" value="02/16/12">
+								<input type="text" class="input-xlarge datepicker" id="txtfechanacimiento" name="txtfechanacimiento" readonly="true" value="">
 							  </div>
 							</div>
 							
@@ -120,17 +156,17 @@
 							<label class="control-label" for="dni">Tipo de Documento (*):</label>
 							<div class="controls">
 							  <label class="radio">
-								<input type="radio" name="optionsRadios" id="dni" value="dni" checked="">
+								<input type="text" class="input-xlarge datepicker" id="txtDNI" readonly="true" value="DNI">
 								DNI
 							  </label>					
 							  <div style="clear:both"></div>		  
 							  <label class="radio">
-								<input type="radio" name="optionsRadios" id="carnet" value="carnet">
+								<input type="radio" name="optionsRadios" id="txtcarnet" name="txtcarnet" value="carnet">
 								Carnet de extranjería
 							  </label>
 							  <div style="clear:both"></div>
 							  <label class="radio">
-								<input type="radio" name="optionsRadios" id="pasaporte" value="pasaporte">
+								<input type="radio" name="optionsRadios" id="txtpasaporte" name="txtpasaporte" value="pasaporte">
 								Pasaporte
 							  </label>
 							</div>
@@ -144,7 +180,7 @@
 							</div>
 							
 							<div class="control-group">
-								<label class="control-label" for="selectpuesto">Puesto (*):</label>
+								<label class="control-label" for="cmbPuesto">Puesto (*):</label>
 								<div class="controls">
 								  <select name="selectpuesto" id="selectpuesto" data-rel="chosen">
 									<option>Puesto 1</option>
@@ -156,44 +192,40 @@
 								</div>
 							</div>																			
 							
-							<div class="control-group">
-								<label class="control-label" for="selecthorario">Horario de Trabajo (*):</label>
+							 <div class="control-group">
+								<label class="control-label" for="cmbHorarios">Horario de Trabajo:</label>
 								<div class="controls">
-								  <select name="selecthorario" id="selecthorario" data-rel="chosen">
-									<option>Horario 1</option>
-									<option>Horario 2</option>
-									<option>Horario 3</option>
-									<option>Horario 4</option>
-									<option>Horario 5</option>
+								  <select  multiple data-rel="chosen" id="cmbHorarios" name="cmbHorarios" >
+									<%for(int i=0;i<sedes.size();i++){ %>
+										<option value="<%= ((SedeMiniBeanData)sedes.get(i)).getCodigo()%>"><%= ((SedeMiniBeanData)sedes.get(i)).getNombre()%></option>
+									<%} %>																									
 								  </select>
+								  <span class="help-inline" id="errSedes" style="display:none;">Este campo no puede estar vacio</span>
 								</div>
-							</div>
+							  </div>
 							
 							<div class="control-group">
-								<label class="control-label" for="selectarea">&Aacute;rea (*):</label>
+								<label class="control-label" for="cmbArea">&Aacute;rea (*):</label>
 								<div class="controls">
 								  <select name="selectarea" id="selectarea" data-rel="chosen">
-									<option>Area 1</option>
-									<option>Area 2</option>
-									<option>Area 3</option>
-									<option>Area 4</option>
-									<option>Area 5</option>
-								  </select>
+									<option>GERENCIA</option>
+									<option>ADMINISTRACION</option>
+									<option>OPERACIONES</option>
+									 </select>
 								</div>
 							</div>						
 													
-							<div class="control-group">
-								<label class="control-label" for="selectsede">Sede (*):</label>
+							  <div class="control-group">
+								<label class="control-label" for="cmbSedes">Sedes de Trabajo:</label>
 								<div class="controls">
-								  <select name="selectsede" id="selectsede" data-rel="chosen">
-									<option>Sede 1</option>
-									<option>Sede 2</option>
-									<option>Sede 3</option>
-									<option>Sede 4</option>
-									<option>Sede 5</option>
+								  <select  multiple data-rel="chosen" id="cmbSedes" name="cmbSedes" >
+									<%for(int i=0;i<sedes.size();i++){ %>
+										<option value="<%= ((SedeMiniBeanData)sedes.get(i)).getCodigo()%>"><%= ((SedeMiniBeanData)sedes.get(i)).getNombre()%></option>
+									<%} %>																									
 								  </select>
+								  <span class="help-inline" id="errSedes" style="display:none;">Este campo no puede estar vacio</span>
 								</div>
-							</div>																										
+							  </div>																									
 						
 			            <div class="form-actions">
 			              <button type="submit" class="btn btn-primary">Agregar</button>
