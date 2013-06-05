@@ -37,7 +37,7 @@ public class CriterioEventoBeanFunction {
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		Vector<ResultadoEventoBeanData> resultadosV=null;
 		try{		
-		List<ResultadoEventoBeanData> resultados=sqlsesion.selectList("searchPlantillaEvento",criterioEventoData);
+		List<ResultadoEventoBeanData> resultados=sqlsesion.selectList("Data.servicio.evento.searchPlantillaEvento",criterioEventoData);
 	
 		resultadosV= new Vector<>(resultados);
 		}

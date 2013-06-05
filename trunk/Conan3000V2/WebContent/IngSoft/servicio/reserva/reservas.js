@@ -29,7 +29,7 @@ function ajax_submit(tipo){
 		  type: "POST",
 		  url: "/Conan3000V2/IngSoft/servicio/reserva/SMSReserva",
 		  data: "accion=Buscar"+"&tipo=" + tipo + "&fecIni=" + $(fecIni).val()+"&cmbServicios="+$('#cmbServicios').val()+"&cmbSedes="+$('#cmbSedes').val()
-		  +"&pendientes="+pendientes+"&cancelados="+cancelados,
+		  +"&cmbTipoCancha="+$('#cmbTipoCancha').val()+"&pendientes="+pendientes+"&cancelados="+cancelados,
 		  dataType: "html",
 		  beforeSend: function ( xhr ) {
    		  $("#resultadoBusqueda").html("<div align='center'><img src='img/ajax-loaders/ajax-loader-7.gif'></img></div>");
@@ -69,7 +69,7 @@ function ajax_search(){
 	$.ajax({
 		  type: "POST",
 		  url: "/Conan3000V2/IngSoft/servicio/reserva/SMSReserva",
-		  data: "accion=Buscar"+"&tipo=2" +"&cmbServicios="+$('#cmbServicios').val()+"&cmbSedes="+$('#cmbSedes').val(),
+		  data: "accion=Buscar"+"&tipo=2" +"&cmbServicios="+$('#cmbServicios').val()+"&cmbSedes="+$('#cmbSedes').val()+"&cmbTipoCancha="+$('#cmbTipoCancha').val(),
 		  dataType: "html",
 		  beforeSend: function ( xhr ) {
    		  $("#resultadoBusqueda").html("<div align='center'><img src='img/ajax-loaders/ajax-loader-7.gif'></img></div>");
@@ -147,7 +147,7 @@ if(lock4==1){
 	$.ajax({
 		  type: "POST",
 		  url: "/Conan3000V2/IngSoft/servicio/reserva/SMSReserva",
-		  data: "accion=Buscar"+"&tipo=6" +"&cmbServicios="+$('#cmbServicios').val()+"&cmbSedes="+$('#cmbSedes').val()
+		  data: "accion=Buscar"+"&tipo=6" +"&cmbServicios="+$('#cmbServicios').val()+"&cmbSedes="+$('#cmbSedes').val()+"&cmbTipoCancha="+$('#cmbTipoCancha').val()
 		  +"&pendientes="+pendientes+"&cancelados="+cancelados,
 		  dataType: "text",
 		  success: function(msg){

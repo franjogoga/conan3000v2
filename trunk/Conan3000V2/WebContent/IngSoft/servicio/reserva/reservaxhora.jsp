@@ -27,6 +27,7 @@ right:11px">Siguiente</button>-->
   SimpleDateFormat DF=new SimpleDateFormat("dd/MM");
   SimpleDateFormat DFT=new SimpleDateFormat("dd/MM/yyyy");
   SimpleDateFormat DFI=new SimpleDateFormat("yyyy/MM/dd");
+  SimpleDateFormat DFH=new SimpleDateFormat("HH:mm");
  public String addHora(String hora){
  	try{
  	//System.out.println(hora);
@@ -50,12 +51,7 @@ right:11px">Siguiente</button>-->
  	return horaFin;} 
  }  
  %>
-<div id="tabs">
-<p class="btn-group">
-  <button class="btn tabsSel" data-tabs="tabs-1" onclick="cambiar($(this))">cancha 1</button>
-  <button class="btn tabsSel" data-tabs="tabs-2" onclick="cambiar($(this))" disabled="disabled">cancha 2</button>
-  </p>    
-</div> 
+
 <%
 int j=0;
 int k=0;
@@ -69,7 +65,7 @@ if(Cancha==null|| !Cancha.equals(codActual)){
 k++;
 esnull=false;
 %>
-<div id="tabs-<%=k%>" class="tabs">
+<div id="tabs-<%=k%>" class="tabs" st>
 <table class="table table-striped table-bordered bootstrap-datatable datatable">
 						 <thead>
 							  <tr>
@@ -82,28 +78,85 @@ esnull=false;
 						  </thead>
 						       
 						  <tbody>
-<%} %>
-							<%
-							String hora=horaIni;
+<%}%>			
+						<%if(((ReservaCanchaMiniBeanData)reservas.get(j)).getFecha()==null && !esnull) 
+							esnull=true;
+							if(esnull){
+								String hora=horaIni;
 							while(true){
-								if(hora.compareTo(horaFin)>=0)break;																
-							%>
-							<tr>
+								if(hora.compareTo(horaFin)>=0)break;
+								%>
+								<tr>
 								<td><%=hora%>-<%=addHora(hora)%></td>
-								
-							<%for(int l=0;l<dias.length;l++){%>
+								<%for(int l=0;l<dias.length;l++){								
+								%>
 								<td class="center">
-									<a id="<%codActual%><%=DFT.format(Utils.fechaMas(fecIni, k))%><%=hora%>" 
+									<a id="<%=codActual%><%=DFT.format(Utils.fechaMas(fecIni, k))%><%=hora%>" 
 									class="btn btn-success" 
 									onclick="javascript:cambiarClase(this)">
 										<i class="icon-ok icon-white"></i>  
 										Reservar&nbsp;&nbsp;&nbsp;                                
 									</a>									
 								</td>
-								<%}%>
+								<%							
+							}
+							hora=addHora(hora);}
+							}
+							else{
+								String hora=horaIni;
+							while(true){
+								if(hora.compareTo(horaFin)>=0)break;
+								String temp= DFI.format(((ReservaCanchaMiniBeanData)reservas.get(j)).getFecha());
+								boolean testD=false;
+								String HRI=DFH.format(((ReservaCanchaMiniBeanData)reservas.get(j)).getHoraIni());
+								String HRF=DFH.format(((ReservaCanchaMiniBeanData)reservas.get(j)).getHoraFin());
+								boolean test=false;
+								%>
+								<tr>
+								<td><%=hora%>-<%=addHora(hora)%></td>
+								<%for(int l=0;l<dias.length;l++){
+									test=(DFI.format(Utils.fechaMas(fecIni, k)).compareTo(temp)+HRI.compareTo(hora))==0;																											
+								%>
+								<td class="center">
+									<a id="<%=codActual%><%=DFT.format(Utils.fechaMas(fecIni, k))%><%=hora%>" 
+									class="btn btn-success" 
+									onclick="javascript:cambiarClase(this)">
+										<i class="icon-ok icon-white"></i>  
+										Reservar&nbsp;&nbsp;&nbsp;                                
+									</a>									
+								</td>
+								<%	
+								if(test){
+										test=false;
+										HRI=addHora(HRI);
+										if(HRI.compareTo(HRF)>=0) {
+										j++;
+										if(j>=reservas.size() || !((ReservaCanchaMiniBeanData)reservas.get(j)).getCodigoCancha().equals(codActual)) j--;
+										else{
+										 temp= DFI.format(((ReservaCanchaMiniBeanData)reservas.get(j)).getFecha());
+										 HRI=DFH.format(((ReservaCanchaMiniBeanData)reservas.get(j)).getHoraIni());
+										 HRF=DFH.format(((ReservaCanchaMiniBeanData)reservas.get(j)).getHoraFin());
+										 } 	
+										}										
+								 	}						
+							}																					
+							hora=addHora(hora);}
+								}%>
 								
-							<% hora=addHora(hora);} %>
+					
 						  </tbody>
 					  </table> 
 </div>
-<%} %>
+<%j++;
+}
+%>
+<div id="tabs">
+<p class="btn-group">
+<%if(k==1){%>
+ <button class="btn tabsSel" data-tabs="tabs-1" onclick="cambiar($(this))" disabled="disabled">cancha 1</button>
+ <%} else
+ for(int i=0;i<k;i++){ %>
+  <button class="btn tabsSel" data-tabs="tabs-<%=k%>" onclick="cambiar($(this))" disabled="<%=i>0?"disabled":""%>">cancha <%=k%></button>  
+  <%} %>
+  </p>    
+</div> 
