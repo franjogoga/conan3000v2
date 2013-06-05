@@ -78,10 +78,10 @@
 		      <div class="box span12">
 		        <div class="box-header well" data-original-title>
 		          <h2><i class="icon-search"></i> BUSCAR EMPLEADO</h2>
-		          <div class="box-icon"><a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a> <a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a> </div>
-	            </div>
+		          </div>
 		        <div class="box-content">
-		          <form class="form-horizontal">
+		         <form class="form-horizontal" name="frmCriteriosBusqueda" id="frmCriteriosBusqueda"  action="<%= response.encodeURL("SMSEmpleado")%>" method="post" >
+		             <input type="hidden" name="accion" value="Buscar"></input>
 		            <fieldset>		              			 
 		            
 		            	<div class="control-group">
