@@ -120,7 +120,7 @@
 						<a href="/Conan3000V2/IngSoft/general/index.jsp">Home</a> <span class="divider">/</span>
 					</li>
 					<li>
-						<a href="buscarevento.jsp">Mantenimiento de Persona Juridica</a> <span class="divider">/</span>
+						<a href="juridicabuscar.jsp">Mantenimiento de Persona Juridica</a> <span class="divider">/</span>
 					</li>
 					<li>
 						Consultar Plantilla de Persona Juridica
