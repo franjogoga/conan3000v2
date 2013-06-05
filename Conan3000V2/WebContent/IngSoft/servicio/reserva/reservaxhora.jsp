@@ -65,7 +65,7 @@ if(Cancha==null|| !Cancha.equals(codActual)){
 k++;
 esnull=false;
 %>
-<div id="tabs-<%=k%>" class="tabs" st>
+<div id="tabs-<%=k%>" class="tabs" style="display:<%=k>1?"none":"inline"%>;">
 <table class="table table-striped table-bordered bootstrap-datatable datatable">
 						 <thead>
 							  <tr>
