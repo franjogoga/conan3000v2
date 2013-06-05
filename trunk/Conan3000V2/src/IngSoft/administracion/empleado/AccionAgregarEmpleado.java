@@ -8,8 +8,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import IngSoft.general.CoAccion;
 import IngSoft.general.CoException;
-import IngSoft.servicio.bean.AmbienteMiniBeanData;
-import IngSoft.servicio.bean.EventoBeanData;
+import IngSoft.administracion.bean.*;
+import IngSoft.servicio.bean.*;
+
 import IngSoft.servicio.bean.EventoBeanFuncion;
 import IngSoft.servicio.bean.SedeMiniBeanData;
 import IngSoft.servicio.bean.TipoEventoMiniBeanData;
@@ -22,6 +23,17 @@ public class AccionAgregarEmpleado extends CoAccion {
 		// TODO Auto-generated method stub
 		int tipo=Integer.parseInt(request.getParameter("tipo"));
 		if(tipo==2){
+			EmpleadoBeanFuncion empleadoFuncion= EmpleadoBeanFuncion.getInstance();
+			EmpleadoBeanData empleadoData = empleadoFuncion.crearEmpleado(request, response);
+			
+			//empleadoFuncion.agregarEmpleado(empleadoData);
+			
+			
+		
+		    //sedes
+		    EventoBeanFuncion eventoFunction= EventoBeanFuncion.getInstance();
+			Vector<SedeMiniBeanData> sedeMiniData=eventoFunction.getSedes();
+			request.setAttribute("sedes",sedeMiniData );
 		
 			this.direccionar(sc, request, response, "/IngSoft/administracion/empleado/buscarempleado.jsp");
 		}
@@ -30,3 +42,5 @@ public class AccionAgregarEmpleado extends CoAccion {
 	}
 
 }
+
+
