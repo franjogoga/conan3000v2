@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Data.administracion.empleado">
+
+  <cache />
+
+<select id="searchPlantillaEvento" parameterType="IngSoft.servicio.bean.CriterioEventoBeanData" resultType="IngSoft.servicio.bean.ResultadoEventoBeanData">
+select 
+PLANTILLA_EVENTO.IdPlantillaEvento as codigo
+,TIPO_EVENTO.nombre as tipo
+,PLANTILLA_EVENTO.nombre as nombre
+,PLANTILLA_EVENTO.FechaInicio as limInicio
+,PLANTILLA_EVENTO.FechaFin as limFin
+from PLANTILLA_EVENTO 
+left JOIN TIPO_EVENTO on TIPO_EVENTO.IdTipoEvento=PLANTILLA_EVENTO.IdTipoEvento 
+<where>
+<if test="nombre != null ">
+        PLANTILLA_EVENTO.nombre  like  #{nombre}
+    </if>
+    <if test="tipo != null and tipo.length()>1">
+        AND TIPO_EVENTO.IdTipoEvento = #{tipo}
+    </if>
+    <if test="limInicio != null">
+        AND PLANTILLA_EVENTO.FechaInicio &gt;= #{limInicio}
+    </if>
+    <if test="limFin != null">
+        AND PLANTILLA_EVENTO.FechaFin &lt;= #{limFin}
+    </if>
+    AND PLANTILLA_EVENTO.Estado='A'
+</where>
+order by 1 asc
+</select>
+<select id="searchSedeMini" resultType="IngSoft.servicio.bean.SedeMiniBeanData">
+	select IdSede as codigo
+	,Nombre 
+	from 
+	SEDE
+	order by 1
+</select>
+<select id="searchAmbienteMini" resultType="IngSoft.servicio.bean.AmbienteMiniBeanData">
+	select IdTipoAmbiente as codigo
+	,Nombre 
+	from 
+	TIPO_AMBIENTE 
+	order by 1
+</select>
+<select id="searchTipoEventoMini" resultType="IngSoft.servicio.bean.TipoEventoMiniBeanData">
+	select IdTipoEvento as codigo
+	,Nombre 
+	from 
+	TIPO_EVENTO
+	order by 1
+</select>
+
+<!-- Agregar plantilla evento -->
+<insert id="insertPlantillaEvento" parameterType="IngSoft.servicio.bean.EventoBeanData" flushCache="true">
+	insert into PLANTILLA_EVENTO(IdPlantillaEvento,Nombre,FechaInicio,FechaFin,IdTipoEvento,Estado)
+	values (#{codigo},#{nombre},#{limiteInicio},#{limiteFin},#{idTipo},'A')
+</insert>
+<select id="getNextCodigo" resultType="java.lang.String">
+	select max(IdPlantillaEvento) from PLANTILLA_EVENTO	
+</select>
+<insert id="insertPlantillaEventoSedes" parameterType="IngSoft.servicio.bean.EventoBeanData" flushCache="true">
+ insert into SEDExPLANTILLA(IdPlantillaEvento,IdSede) values(#{codigo},
+ <foreach item="idSede" index="i" collection="idSede" separator="),(#{codigo}," close=")">
+ 	#{idSede}
+ </foreach>
+</insert>
+<insert id="insertPlantillaEventoAmbiente" parameterType="IngSoft.servicio.bean.EventoBeanData" flushCache="true">
+ insert into AMBIENTExPLANTILLA(IdPlantillaEvento,IdAmbiente) values(#{codigo},
+ <foreach item="idAmbientes" index="i" collection="idAmbientes" separator="),(#{codigo}," close=")">
+ 	#{idAmbientes}
+ </foreach>
+</insert>
+ <!-- Fin agregar  -->
+ 
+<select id="getAmbientesId" parameterType="java.lang.String"  resultType="java.lang.String">
+select IdAmbiente from AMBIENTExPLANTILLA where IdPlantillaEvento= #{codigo};
+</select>
+
+<select id="getSedesId" parameterType="java.lang.String"  resultType="java.lang.String">
+select IdSede  from SEDExPLANTILLA where IdPlantillaEvento= #{codigo};
+</select>
+
+<select id="getPLantillaEvento" parameterType="java.lang.String"  resultType="IngSoft.servicio.bean.EventoBeanData">
+select 
+IdPlantillaEvento as codigo
+,IdTipoEvento as idTipo
+,Nombre as nombre
+,FechaInicio as limiteInicio
+,FechaFin as limiteFin
+from PLANTILLA_EVENTO  pe where pe.Estado='A' and  pe.IdPlantillaEvento=#{codigo}; 
+</select>
+<!-- Modificar elemento -->
+<update id="updatePLantillaEvento" parameterType="IngSoft.servicio.bean.EventoBeanData">
+update PLANTILLA_EVENTO set nombre=#{nombre}
+ ,IdTipoEvento=#{idTipo}
+ ,FechaInicio=#{limiteInicio}
+ ,FechaFin=#{limiteFin}
+ where IdPlantillaEvento= #{codigo}
+</update>
+<insert id="insertPlantillaEventoSedesUpdate" parameterType="IngSoft.servicio.bean.ModificacionesEventoBeanData" >
+insert into SEDExPLANTILLA(IdPlantillaEvento,IdSede) values(#{codigo},#{nuevo})
+</insert>
+<update id="updatePlantillaEventoSedes" parameterType="IngSoft.servicio.bean.ModificacionesEventoBeanData">
+update SEDExPLANTILLA set IdSede=#{nuevo} where IdPlantillaEvento=#{codigo} and IdSede=#{antiguo}
+</update>
+<delete id="deletePlantillaEventoSede" parameterType="IngSoft.servicio.bean.ModificacionesEventoBeanData">
+delete from SEDExPLANTILLA where IdPlantillaEvento=#{codigo} and IdSede=#{antiguo}
+</delete>
+<insert id="insertPlantillaEventoAmbienteUpdate" parameterType="IngSoft.servicio.bean.ModificacionesEventoBeanData">
+insert into AMBIENTExPLANTILLA(IdPlantillaEvento,IdAmbiente) values(#{codigo},#{nuevo})
+</insert>
+<update id="updatePlantillaEventoAmbiente" parameterType="IngSoft.servicio.bean.ModificacionesEventoBeanData">
+update AMBIENTExPLANTILLA set IdAmbiente=#{nuevo} where IdPlantillaEvento=#{codigo} and IdAmbiente=#{antiguo}
+</update>
+<delete id="deletePlantillaEventoAmbiente" parameterType="IngSoft.servicio.bean.ModificacionesEventoBeanData">
+delete from AMBIENTExPLANTILLA where IdPlantillaEvento=#{codigo} and IdAmbiente=#{antiguo}
+</delete>
+<!-- Fin modificar -->
+<!--Eliminar evento -->
+<update id="deletePLantillaEvento" parameterType="java.lang.String" >
+update PLANTILLA_EVENTO set Estado='I' where IdPlantillaEvento= #{codigo}
+</update>
+<!-- Fin eliminar -->
+</mapper>
