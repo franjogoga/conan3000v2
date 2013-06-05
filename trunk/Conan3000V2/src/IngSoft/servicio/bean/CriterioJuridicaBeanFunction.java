@@ -22,7 +22,7 @@ public class CriterioJuridicaBeanFunction {
 		
 		juridicaData.setRazonSocial(("%" + request.getParameter("txtRazonSocial").trim()+"%").toUpperCase());
 		//juridicaData.setRuc(Integer.parseInt(request.getParameter("txtRuc")));
-	     //juridicaData.setRuc(Integer.parseInt(request.getParameter("txtRuc")==null?null:request.getParameter("txtRuc")));
+	    //juridicaData.setRuc(Integer.parseInt(request.getParameter("txtRuc")==null?null:request.getParameter("txtRuc")));
 		juridicaData.setRuc(Integer.parseInt(request.getParameter("txtRuc").equals("")?"0":request.getParameter("txtRuc")));
 		juridicaData.setEstado("Activo");
 		
