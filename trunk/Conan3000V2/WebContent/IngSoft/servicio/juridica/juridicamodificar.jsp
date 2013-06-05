@@ -84,8 +84,9 @@
 	
 	function alt_submit(){
 		var form= document.frmUpdate;
-		if(validar(form)) form.submit();
-		else alert("Uno o mas campos estan vacios");
+		 //if(validar(form))
+	     form.submit();
+		 //else alert("Uno o mas campos estan vacios");
 			
 			}
 		
@@ -140,7 +141,7 @@
 			<!-- content starts -->
 	<div>
 			    <ul class="breadcrumb">
-			      <li> <a href="#">Home</a> / <a href="#">Mantenimiento de Persona Jur&iacute;dica</a> / Modificar Persona Jur&iacute;dica</li>
+			      <li> <a href="#">Home</a> / <a href="juridicabuscar.jsp">Mantenimiento de Persona Jur&iacute;dica</a> / Modificar Persona Jur&iacute;dica</li>
 		        </ul>
 		      </div>
 			  <div class="row-fluid sortable">
@@ -252,9 +253,9 @@
                              
 		          
 			            <div class="form-actions">
-			              <button type="submit" class="btn btn-primary">Guardar</button>
-			              <button type="reset" class="btn">Cancelar</button>
-		                </div>
+							  <button type="button" class="btn btn-primary" onclick="javascript:alt_submit()">Guardar</button>
+							  <button type="button" class="btn" onclick="location.href='juridicabuscar.jsp'" >Cancelar</button>
+						</div>
 						
 					
 		              </fieldset>
