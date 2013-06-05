@@ -64,7 +64,7 @@
 	<servlet-class>IngSoft.venta.proveedor.SMVProveedor</servlet-class>
 </servlet>
   <servlet id="Servlet_0014">
-        <servlet-name>SMAActividad</servlet-name>
+        <servlet-name>SMAActividad</servlet-name>       
 	<servlet-class>IngSoft.administracion.actividad.SMAActividad</servlet-class>
 </servlet>
   <servlet id="Servlet_0015">
@@ -86,6 +86,10 @@
 <servlet id="Servlet_0019">
         <servlet-name>SMAServicio</servlet-name>
 	<servlet-class>IngSoft.administracion.servicio.SMAServicio</servlet-class>
+</servlet>
+<servlet id="Servlet_0020">
+        <servlet-name>SMSEmpleado</servlet-name>
+	<servlet-class>IngSoft.administracion.empleado.SMSEmpleado</servlet-class>
 </servlet>
 
 
@@ -170,6 +174,11 @@
         <servlet-name>SMAServicio</servlet-name>
 <url-pattern>/IngSoft/administracion/servicio/SMAServicio</url-pattern>
 </servlet-mapping>
+<servlet-mapping id="ServletMapping_0020">
+        <servlet-name>SMSEmpleado</servlet-name>
+<url-pattern>/IngSoft/administracion/empleados/SMSEmpleado</url-pattern>
+</servlet-mapping>
+
 
 <error-page>
 <error-code>404</error-code>
