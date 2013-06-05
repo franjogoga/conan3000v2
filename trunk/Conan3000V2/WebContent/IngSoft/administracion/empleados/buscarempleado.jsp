@@ -38,6 +38,54 @@
 
 	<!-- The fav icon -->
 	<link rel="shortcut icon" href="img/conan_logo.png">
+
+<script>
+			
+			function alfanumerico(e) 
+			{ 
+				var key = window.event.keyCode || event.keyCode;
+				return ((key >= 48 && key <= 57) ||(key >= 97 && key <= 122) ||(key >= 65 && key <=90) ||(key >= 192 && key <=246)||(key <=13) ||(key ==32));
+			} 	
+			function alt_fecha(obj){
+			obj.value=obj.value.slice(0,10);
+			
+			}
+			
+	
+	function alt_agregar(){
+		var form=document.getElementById("frmAlternativo");
+		form.accion.value="Agregar";
+		form.submit();
+	}
+	function alt_consultar(cod){
+		var form=document.getElementById("frmAlternativo");
+		form.accion.value="Consultar";
+		form.codigo.value=cod;
+		form.submit();
+	}
+	function alt_modificar(cod){
+		var form=document.getElementById("frmAlternativo");
+		form.accion.value="Modificar";
+		form.codigo.value=cod;
+		form.submit();
+	}
+	function alt_eliminar(cod){
+		var form=document.getElementById("frmAlternativo");
+		form.accion.value="Eliminar";
+		form.codigo.value=cod;
+		form.submit();
+	}
+	
+	function alt_submit(){
+		var form= document.frmUpdate;
+		if(validar(form)) form.submit();
+		else alert("Uno o mas campos estan vacios");
+			
+			}
+		
+	</script>			
+
+
 		
 </head>
 
@@ -266,6 +314,13 @@
 	          </div>
 		      <!--/span-->
 	        </div>
+	        <form id="frmAlternativo" name="frmAlternativo" method="post" action="<%= response.encodeURL("SMSEmpleado")%>">
+			<input type="hidden" name="accion" value="Agregar"></input>
+			<input type="hidden" name="codigo" value=""></input>
+			<input type="hidden" name="tipo" value="1"></input>
+			</form>
+	        
+	        
 		    <!--/row-->
 		    <!-- content ends -->
 	      </div>
