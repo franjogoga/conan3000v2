@@ -22,6 +22,8 @@
 	
 	<!--The beans  -->
 	<jsp:useBean id="resultados" scope="request"class="java.util.Vector"></jsp:useBean>
+	<script src="js/script.js"></script>
+	
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
@@ -169,7 +171,7 @@
 					   <div class="control-group">
 		                <label class="control-label" for="typehead">RUC</label>
 		                <div class="controls">
-		                  <input type="text" class="span6 typeahead" id="typehead" value="" name="txtRuc"  >
+		                  <input type="text" class="span6 typeahead" id="typehead" value="" name="txtRuc" onkeypress= "return numerico(event);"  >
 	                    </div>
 	                  </div>
 							
