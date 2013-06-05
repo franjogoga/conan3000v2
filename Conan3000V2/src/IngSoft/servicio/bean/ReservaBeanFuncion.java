@@ -37,7 +37,7 @@ public class ReservaBeanFuncion {
 	   }
 	   
 	   public Vector<ReservaBungalowMiniBeanData> buscarReservasBungalow(String codSede,java.util.Date fecIni){
-		   if(codSede==null && fecIni==null) return null;
+		   if(codSede==null || fecIni==null) return null;
 		   Vector<ReservaBungalowMiniBeanData> resultados=null;
 		   SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		   
@@ -59,6 +59,29 @@ public class ReservaBeanFuncion {
 		   
 		   return resultados;
 	   }
+	   public Vector<ReservaCanchaMiniBeanData> buscarReservasCanchas(String codSede, String codTipoCancha,java.util.Date fecIni){
+		   if(codSede==null || fecIni==null || codTipoCancha==null) return null;
+		   Vector<ReservaCanchaMiniBeanData> resultados=null;
+		   SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+		   try{
+			   HashMap<String, Object> hashMap = new HashMap<String, Object>();
+			   hashMap.put("codSede", codSede);
+			   hashMap.put("codTipoCancha", codTipoCancha);
+			   hashMap.put("fecIni", fecIni); 
+			   hashMap.put("fecFin", Utils.fechaMas(fecIni, 6));
+			   List<ReservaCanchaMiniBeanData> temp=sqlsesion.selectList("Data.servicio.reserva.searchCanchaxTipoxSede",hashMap);
+			   resultados= new Vector<ReservaCanchaMiniBeanData>(temp);
+			   resultados.trimToSize();
+		   }
+		   catch(Exception e){
+			   e.printStackTrace();			   
+		   }
+		   finally{
+			   sqlsesion.close();
+		   }
+		   return resultados;		   		  
+	   }
+	   
 	   public ReservaBugalowBeanData actualizarReservasPendientes(ReservaBugalowBeanData original,ReservaBugalowBeanData nuevo, java.util.Date fecIni){
 		   
 		   return null;
@@ -71,7 +94,7 @@ public class ReservaBeanFuncion {
 		   SimpleDateFormat df= new SimpleDateFormat("dd/MM/yyyy");			   
 		   Date temp;
 		   for(int i=0;i<a;i++){
-			   temp=df.parse(source.get(i).substring(9));
+			   temp=df.parse(source.get(i).substring(9, 19));
 			   if(temp.compareTo(fecIni)>=0 && temp.compareTo(fecFin)<=0) resultados.add(source.get(i));
 			   
 		   }

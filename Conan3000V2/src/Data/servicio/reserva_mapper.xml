@@ -32,8 +32,8 @@ RESERVA_BUNGALOW rb,
 BUNGALOWxFECHA bf 
 where bf.IdReservaBungalow=rb.IdReservaBungalow
 and rb.Estado='ACTIVO'
-and bf.Fecha &gt;= #{fecIni}
-and bf.Fecha &lt;= #{fecFin}) r2
+and bf.Fecha &gt;= DATE(#{fecIni})
+and bf.Fecha &lt;= DATE(#{fecFin})) r2
 on r1.codigoBungalow=r2.codigoBungalow
 where r1.codigoSede like #{codigo}
 order by 2 asc,1,4;
@@ -74,8 +74,8 @@ RESERVA_CANCHA rc,
 CANCHAxFECHA cf 
 where cf.IdReservaCancha=rc.IdReservaCancha
 and rc.Estado='ACTIVO'
-and cf.Fecha &gt;= #{fecIni}
-and cf.Fecha &lt;= #{fecFin}) r2
+and cf.Fecha &gt;=DATE(#{fecIni})
+and cf.Fecha &lt;= DATE(#{fecFin})) r2
 on r1.codigoCancha=r2.codigoCancha 
 order by 1 asc,5,4;
 </select>
@@ -103,7 +103,7 @@ values('ACTIVO',#{idsocio},#{idbungalow},#{idreservasbungalow})
 ;
 </insert>
 <insert id="insertBungalowReservaFecha" parameterType="hashmap">
-insert into BUNGALOWxFECHA(IdReservaBungalow,Fecha) values(#{idreservasbungalow},#{fecha})
+insert into BUNGALOWxFECHA(IdReservaBungalow,Fecha) values(#{idreservasbungalow},DATE(#{fecha}))
 ;
 </insert>
 </mapper>

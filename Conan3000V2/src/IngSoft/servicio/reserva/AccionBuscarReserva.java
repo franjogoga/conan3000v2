@@ -21,6 +21,7 @@ import IngSoft.servicio.bean.CriterioEventoBeanData;
 import IngSoft.servicio.bean.CriterioEventoBeanFunction;
 import IngSoft.servicio.bean.ReservaBeanFuncion;
 import IngSoft.servicio.bean.ReservaBungalowMiniBeanData;
+import IngSoft.servicio.bean.ReservaCanchaMiniBeanData;
 import IngSoft.servicio.bean.ResultadoEventoBeanData;
 import IngSoft.servicio.bean.SedeMiniBeanData;
 import IngSoft.servicio.bean.Utils;
@@ -56,7 +57,13 @@ public class AccionBuscarReserva extends CoAccion {
 				sesion.setAttribute("reservas",reservas);
 				sesion.setAttribute("listareservas",null);
 				this.direccionar(sc, request, response, "/IngSoft/servicio/reserva/reservaxdia.jsp");}		
-			else this.direccionar(sc, request, response, "/IngSoft/servicio/reserva/reservaxhora.jsp");
+			else {
+				Vector<ReservaCanchaMiniBeanData> reservas=
+						reservaFuncion.buscarReservasCanchas(request.getParameter("cmbSedes").toString(),request.getParameter("cmbTipoCancha").toString(),temp);
+				sesion.setAttribute("reservas",reservas);
+				sesion.setAttribute("listareservas",null);
+				this.direccionar(sc, request, response, "/IngSoft/servicio/reserva/reservaxhora.jsp");
+			}
 			
 			
 		}
@@ -66,25 +73,32 @@ public class AccionBuscarReserva extends CoAccion {
 			java.util.Date fecIniNue=Utils.fechaMas(fecIniAnt, 7);		
 			java.util.Date fecFinNue=Utils.fechaMas(fecIniNue,6);
 			request.setAttribute("fI", fecIniNue);
-			if("bungalow".equals(request.getParameter("cmbServicios"))){
-				String temp=request.getParameter("pendientes");
-				if(temp.length()>0)pendientes=new Vector<String>(Arrays.asList(temp.substring(0, temp.length()-1).split("@")));
-				pendientes.remove("");
-				temp=request.getParameter("cancelados");
-				if(temp.length()>0)cancelados=new Vector<String>(Arrays.asList(temp.substring(0, temp.length()-1).split("@")));
-				cancelados.remove("");
-				if(listareservas.size()==0) listareservas=pendientes;								
-				else{
-					if(cancelados!=null)listareservas.removeAll(cancelados);
-					if(pendientes!=null)listareservas.addAll(pendientes);					
-				}
-				sesion.setAttribute("listareservas",listareservas);
-				String res= Utils.unir(reservaFuncion.filtrarReservaXFechas(listareservas, fecIniNue, fecFinNue), ",","");				
+			String temp=request.getParameter("pendientes");
+			if(temp.length()>0)pendientes=new Vector<String>(Arrays.asList(temp.substring(0, temp.length()-1).split("@")));
+			pendientes.remove("");
+			temp=request.getParameter("cancelados");
+			if(temp.length()>0)cancelados=new Vector<String>(Arrays.asList(temp.substring(0, temp.length()-1).split("@")));
+			cancelados.remove("");
+			if(listareservas.size()==0) listareservas=pendientes;								
+			else{
+				if(cancelados!=null)listareservas.removeAll(cancelados);
+				if(pendientes!=null)listareservas.addAll(pendientes);					
+			}
+			sesion.setAttribute("listareservas",listareservas);
+			String res= Utils.unir(reservaFuncion.filtrarReservaXFechas(listareservas, fecIniNue, fecFinNue), ",","");
+			if("bungalow".equals(request.getParameter("cmbServicios"))){				
+								
 				Vector<ReservaBungalowMiniBeanData> reservas=reservaFuncion.buscarReservasBungalow(request.getParameter("cmbSedes").toString(), fecIniNue);
 				sesion.setAttribute("reservas",reservas);
 				sesion.setAttribute("pendientes",res);
 				this.direccionar(sc, request, response, "/IngSoft/servicio/reserva/reservaxdia.jsp");}	
-			else this.direccionar(sc, request, response, "/IngSoft/servicio/reserva/reservaxhora.jsp");
+			else {
+				Vector<ReservaCanchaMiniBeanData> reservas=
+						reservaFuncion.buscarReservasCanchas(request.getParameter("cmbSedes").toString(),request.getParameter("cmbTipoCancha").toString(),fecIniNue);
+				sesion.setAttribute("reservas",reservas);
+				sesion.setAttribute("pendientes",res);
+				this.direccionar(sc, request, response, "/IngSoft/servicio/reserva/reservaxhora.jsp");
+				}
 			}
 			catch (Exception e){
 				e.printStackTrace();
