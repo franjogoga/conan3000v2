@@ -141,7 +141,7 @@
 			<!-- content starts -->
 	<div>
 			    <ul class="breadcrumb">
-			      <li> <a href="#">Home</a> / <a href="juridicabuscar.jsp">Mantenimiento de Persona Jur&iacute;dica</a> / Modificar Persona Jur&iacute;dica</li>
+			      <li> <a href="/Conan3000V2/IngSoft/general/index.jsp">Home</a> / <a href="juridicabuscar.jsp">Mantenimiento de Persona Jur&iacute;dica</a> / Modificar Persona Jur&iacute;dica</li>
 		        </ul>
 		      </div>
 			  <div class="row-fluid sortable">
