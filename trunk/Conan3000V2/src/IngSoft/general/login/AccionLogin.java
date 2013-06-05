@@ -1,6 +1,9 @@
 package IngSoft.general.login;
 
+import java.io.IOException;
+
 import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -16,7 +19,16 @@ public class AccionLogin extends CoAccion {
 		// TODO Auto-generated method stub
 		
 		LoginBeanFuncion login = new LoginBeanFuncion();
-		int perfil = login.verificaUsuario(request, response);
+		int perfil = 0;
+		try {
+			perfil = login.verificaUsuario(request, response);
+		} catch (ServletException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		switch (perfil){
 		case 1: this.direccionar(sc, request, response, "/IngSoft/general/perfil1.jsp"); break;
 		case 2: this.direccionar(sc, request, response, "/IngSoft/general/perfil2.jsp"); break;
