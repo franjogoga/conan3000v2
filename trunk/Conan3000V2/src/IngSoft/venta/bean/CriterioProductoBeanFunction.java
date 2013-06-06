@@ -23,7 +23,7 @@ public class CriterioProductoBeanFunction {
 		
 		//criterioMembresiaData.setTipo(Integer.parseInt(request.getParameter("cmbTipoEvento")==null?"0":request.getParameter("cmbTipoEvento")));
 		criterioProductoData.setNombre(request.getParameter("txtNombre")+"%");
-		criterioProductoData.setProveedor(request.getParameter("txtProveedor")+"%");
+		criterioProductoData.setDescripcion((request.getParameter("txtDescripcion")+"%"));
 		if (request.getParameter("rButton")!=null){
 		String est;
 		est=request.getParameter("rButton");

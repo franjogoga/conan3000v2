@@ -30,7 +30,7 @@ public class ProductoBeanFunction {
 		ProductoBeanData productoData= new ProductoBeanData();
 		try{		
 	
-			productoData.setIdProveedor(request.getParameter("txtProveedor"));
+			productoData.setIdProveedor(request.getParameter("idProveedor"));
 			productoData.setDescripcion(request.getParameter("txtDescripcion"));
 			productoData.setNombre(request.getParameter("txtNombre"));
 			productoData.setPrecioU(Double.parseDouble(request.getParameter("txtPrecioU")));

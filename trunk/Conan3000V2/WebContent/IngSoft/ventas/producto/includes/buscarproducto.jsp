@@ -42,6 +42,13 @@
 	</script>	
 
 <jsp:useBean id="resultados" scope="request"class="java.util.Vector"></jsp:useBean>
+	<noscript>
+				<div class="alert alert-block span10">
+					<h4 class="alert-heading">Warning!</h4>
+					<p>You need to have <a href="http://en.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript</a> enabled to use this site.</p>
+				</div>
+	</noscript>
+
 		    <!-- content starts -->
 		    <div>
 				<ul class="breadcrumb">
@@ -53,16 +60,12 @@
 		      <div class="box span12">
 					<div class="box-header well" data-original-title>
 						<h2><i class="icon-search"></i> BUSCAR PRODUCTO</h2>
-                    <div class="box-icon">
-							
-							<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
-							<a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>
-						</div>
-                        
+                   
                     </div>
 					<div class="box-content" >
-						 <input type="hidden" name="accion" value="Buscar"/></input>
+						
 						<form class="form-horizontal" name="frmCriteriosBusqueda" id="frmCriteriosBusqueda"  method="POST" action="<%= response.encodeURL("SMVProducto")%>">
+						  <input type="hidden" name="accion" value="Buscar"/></input>
 						  <fieldset>
 						  
 							  
@@ -73,9 +76,9 @@
 						            </div>
 						          </div>
 						            <div class="control-group">
-							      <label class="control-label" for="selectError2">Proveedor:</label>
+							      <label class="control-label" for="selectError2">Descripcion:</label>
 							      <div class="controls">
-							       <input type="text" class="span6 typeahead" id="txtProveedor" name="txtProveedor"  data-provide="typeahead" >
+							       <input type="text" class="span6 typeahead" id="txtDescripcion" name="txtDescripcion"  data-provide="typeahead" >
 						          </div>
 						          
 						   
@@ -102,8 +105,8 @@
 						    
 						    <div class="form-actions">
 							 
-			                <a  name="btnBuscar" class="btn btn-primary" href="">Buscar</a>  
-			               <a  name="btnCancelar" class="btn" href="buscarproducto.jsp">Cancelar</a>  
+			                <button type="submit" class="btn btn-primary">Buscar</button>
+			              <button type="submit" class="btn"><a href="buscarproducto.jsp">Cancelar</a></button>
 			           
 			           
 							
@@ -130,7 +133,8 @@
 		        <div class="box-content">
 		          <table width="99%" class="table table-striped table-bordered bootstrap-datatable datatable">
 		            <!-- agregar nuevo boton -->
-		            <div  align="right"> <a class="btn btn-primary" href="javascript:alt_agregar()"> <i class="icon icon-add icon-white"></i> Agregar </a> </div>
+		            <div  align="right">
+		             <a class="btn btn-primary" href="javascript:alt_agregar()"> <i class="icon icon-add icon-white"></i> Agregar </a> </div>
 		            <thead>
 		              <tr>
 		                <th>Nombre</th>
@@ -140,7 +144,7 @@
 		                 <th>Acci&oacute;n</th>
 	                  </tr>
 	                </thead>
-		            <tbody>
+		            <tbody id="resultadobusqueda">
 		             <%           
 		             
                           			for(int i=0;
@@ -152,19 +156,19 @@
 		                ((ResultadoProductoBeanData)resultados.get(i)).getNombre()
                          %>
 						</td>
-						  <td class="center"><span class="label label-success">
+						  <td class="center">
 		                <%=
                          ((ResultadoProductoBeanData)resultados.get(i)).getDescripcion()
-                        %></span></td>
-                         <td class="center"><span class="label label-success">
+                        %></td>
+                         <td class="center">
 		                <%=
                          ((ResultadoProductoBeanData)resultados.get(i)).getPrecioU()
-                        %></span></td>
+                        %></td>
                         
-                         <td class="center"><span class="label label-success">
+                         <td class="center">
 		                <%=
                          ((ResultadoProductoBeanData)resultados.get(i)).getPresentacion()
-                        %></span></td>
+                        %></td>
 		                <td class="center">
 		                <a class="btn btn-success"
                           					href="javascript:alt_consultar('<%=((ResultadoProductoBeanData)resultados.get(i)).getIdProdProveedor()%>')">
