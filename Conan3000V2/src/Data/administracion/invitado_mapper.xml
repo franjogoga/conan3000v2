@@ -58,13 +58,13 @@ ORDER BY 1 ASC
 <!-- Agregar plantilla ACTIVIDAD -->
 
 <insert id="insertPlantillaPersona" parameterType="IngSoft.administracion.bean.InvitadoBeanData" flushCache="true">
-	insert into PERSONA (IdPersona ,Nombres ,ApePaterno  ,ApeMaterno  ,TipoDocumento  ,NumeroDocumento  ,FechaNac )
+	insert into inf245g2.PERSONA (IdPersona ,Nombres ,ApePaterno  ,ApeMaterno  ,TipoDocumento  ,NumeroDocumento  ,FechaNac )
 	values (#{codigo},#{nombres},#{aparterno},#{amaterno},#{tipodocumento},#{numerodoc},#{fechanacimiento})
 </insert>
 
 <insert id="insertPlantillaInvitado" parameterType="IngSoft.administracion.bean.InvitadoBeanData" flushCache="true">
-	insert into INVITADO (IdInvitado,FechaRegistro,Correo,TelefonoFijo,TelefonoCelular,Estado)
-	values (#{codigo},#{fecharegistro},#{correo},#{telefonofijo},#{telefonomovil},#{estado})
+	insert into inf245g2.INVITADO (IdInvitado,FechaRegistro,Correo,TelefonoFijo,TelefonoCelular,Estado)
+	values (#{codigo},#{fecharegistro},#{correo},#{telefonofijo},#{telefonomovil},'Activo')
 </insert>
 
 
