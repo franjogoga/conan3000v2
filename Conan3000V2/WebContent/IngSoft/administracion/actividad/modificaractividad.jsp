@@ -5,6 +5,7 @@
 <%@page import="IngSoft.administracion.bean.SedeBeanData"%>
 <%@page import="IngSoft.administracion.bean.AmbienteBeanData"%>
 <%@page import="IngSoft.administracion.bean.TipoActividadMiniBeanData"%>
+<%@page import="IngSoft.administracion.bean.ResultadoEmpleadoBeanData"%>
 
 <html lang="en">
 <head>
@@ -19,6 +20,7 @@
 	<jsp:useBean id="sedes"           scope="request"class="java.util.Vector"></jsp:useBean>
 	<jsp:useBean id="ambientes"       scope="request"class="java.util.Vector"></jsp:useBean>
 	<jsp:useBean id="tipoactividades"  scope="request"class="java.util.Vector"></jsp:useBean>
+	<jsp:useBean id="empleados"  scope="request"class="java.util.Vector"></jsp:useBean>
 	
 	<!-- The styles -->
 	<link id="bs-css" href="css/bootstrap-cerulean.css" rel="stylesheet">
@@ -234,16 +236,25 @@
 							<input type="hidden" name="cmbEncargadoCodigo" value="EMP000003"></input>
 							
 						    <div class="control-group">
-						      <label class="control-label" for="typeahead7">Encargado(*): </label>
+						      <label class="control-label" for="typeahead7">Encargado: </label>
 						      <div class="controls">
-						        <input type="text" class="span6 typeahead" id="cmbEncargado"  data-provide="typeahead"  name="cmbEncargado"  disabled value="Ronald">
+								  <%for(int i=0;i<empleados.size();i++) if( actividad.getNombreEncargado().equalsIgnoreCase(((ResultadoEmpleadoBeanData)empleados.get(i)).getCodigo())){     %>
+				
+ 								<input type="text" class="span6 typeahead" id="cmbEncargado"  data-provide="typeahead"  name="cmbEncargado" disabled value="<%= ((ResultadoEmpleadoBeanData)empleados.get(i)).getNombre()%>">
+
+									<%}   %>	
+
 					          </div>
 					        </div>
 					        
 						    <div class="control-group">
-						      <label class="control-label" for="typeahead7">Puesto(*): </label>
+						      <label class="control-label" for="typeahead7">Puesto: </label>
 						      <div class="controls">
-						        <input type="text" class="span6 typeahead" id="txtPuesto"  data-provide="typeahead"  name="txtPuesto" disabled value="PROFESOR NATACION">
+						      <%for(int i=0;i<empleados.size();i++) if( actividad.getNombreEncargado().equalsIgnoreCase(((ResultadoEmpleadoBeanData)empleados.get(i)).getCodigo())){     %>
+				
+						        <input type="text" class="span6 typeahead" id="txtPuesto"  data-provide="typeahead"  name="txtPuesto" disabled value="<%= ((ResultadoEmpleadoBeanData)empleados.get(i)).getPuesto()%>">
+					          
+					          <%}   %>
 					          </div>
 					        </div>
 
