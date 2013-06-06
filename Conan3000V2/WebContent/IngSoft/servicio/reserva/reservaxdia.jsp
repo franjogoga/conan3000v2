@@ -7,14 +7,7 @@
 <jsp:useBean id="pendientes" scope="session"class="java.lang.String"></jsp:useBean>
 
 <%Date fecIni=fI; %>
-<div align="center">
-<!--  <button class="btn">Anterior</button><button class="btn" style="position:absolute;
-left: 48%">Hoy</button><button class="btn" style="position: absolute;
-right:11px">Siguiente</button>-->
-<button class="btn" onclick="ajax_submit('4')"><i class="icon-chevron-left"></i>Anterior</button>
-<button class="btn">Actual</button>
-<button class="btn" onclick="ajax_submit('3')">Siguiente<i class="icon-chevron-right"></i></button>
-</div>
+
 <form name="frmAlternativo" id="frmAlternativo">
 <input type="hidden" value="<%= new SimpleDateFormat("dd/MM/yyyy").format(fecIni)%>" name="fecIni" id="fecIni">
 <input type="hidden" value="<%=(String)pendientes%>" name="pendientes" id="pendientes">
@@ -94,3 +87,14 @@ right:11px">Siguiente</button>-->
 							<%} %>			
 						  </tbody>				  					
 					  </table> 
+<%if(reservas.size()>0){ %>					  
+					  <div align="center">
+<!--  <button class="btn">Anterior</button><button class="btn" style="position:absolute;
+left: 48%">Hoy</button><button class="btn" style="position: absolute;
+right:11px">Siguiente</button>-->
+
+<button class="btn" onclick="ajax_submit('4')"><i class="icon-chevron-left"></i>Anterior</button>
+<button class="btn">Actual</button>
+<button class="btn" onclick="ajax_submit('3')">Siguiente<i class="icon-chevron-right"></i></button>
+</div>
+<%}%>

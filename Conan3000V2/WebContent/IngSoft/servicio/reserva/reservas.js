@@ -43,7 +43,7 @@ function ajax_submit(tipo){
 		  },
 		  error: function(objeto, quepaso, otroobj){
 		  	lock1=1;
-			alert("ERROR!! Pasó lo siguiente: "+quepaso);
+			alert("ERROR!! Pasï¿½ lo siguiente: "+quepaso);
 		  }
 	
 		});
@@ -73,6 +73,8 @@ function ajax_search(){
 		  dataType: "html",
 		  beforeSend: function ( xhr ) {
    		  $("#resultadoBusqueda").html("<div align='center'><img src='img/ajax-loaders/ajax-loader-7.gif'></img></div>");
+   		  pendientes='';
+   		  cancelados='';
   		  },
 		  success: function(msg){
 			$("#resultadoBusqueda").html(msg);			
@@ -80,7 +82,7 @@ function ajax_search(){
 		  },
 		  error: function(objeto, quepaso, otroobj){
 		  	lock2=1;
-			alert("ERROR!! Pasó lo siguiente: "+quepaso);
+			alert("ERROR!! Pasï¿½ lo siguiente: "+quepaso);
 		  }
 	
 		});
