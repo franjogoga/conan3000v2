@@ -1,5 +1,8 @@
 package IngSoft.administracion.bean;
 
+import java.text.SimpleDateFormat;
+import java.sql.Date;
+import java.util.Calendar;
 import java.util.List;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -16,6 +19,7 @@ public class SocioBeanFunction {
 
 	static private SocioBeanFunction FuncionSocio=null;
 	private Lock l = new ReentrantLock();
+	SimpleDateFormat DF = new SimpleDateFormat("dd/MM/yyyy");
 	
 	public static SocioBeanFunction getInstance() {
 		if (FuncionSocio==null) FuncionSocio = new SocioBeanFunction();
@@ -29,8 +33,19 @@ public class SocioBeanFunction {
 		SqlSession sesion = MyBatisSesion.metodo().openSession();
 		SocioBeanData datos = null;
 		try {
-			datos = sesion.selectOne("Data.administracion.socio.getSocio", codigo);
-			if (datos.getVitalicio().equalsIgnoreCase("No")) {
+			datos = sesion.selectOne("Data.administracion.socio.getSocio", codigo);			
+			String strfechaInicio = datos.getFechaInicio().toString();											
+			strfechaInicio = strfechaInicio.replace("-", "");
+			int fechaInicio = Integer.parseInt(strfechaInicio);			
+			
+			Calendar c = Calendar.getInstance();									
+			c.add(Calendar.YEAR, -30);
+			int dia = c.get(Calendar.DATE);		
+			int mes = 1+ c.get(Calendar.MONTH);
+			int annio = c.get(Calendar.YEAR);
+			int fechaActualmenos30 = annio*10000 + mes*100 + dia;													
+			
+			if (datos.getVitalicio().equalsIgnoreCase("No") && fechaInicio <= fechaActualmenos30) {							
 				sesion.update("Data.administracion.socio.vitalizarSocio",codigo);
 				resultado = true;
 			}						
