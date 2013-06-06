@@ -1,16 +1,42 @@
 <!DOCTYPE html>
+
+<!--  paso 2 configurarion link  + v ariables de retorno -->
+
+
+
+
+<%@page import="IngSoft.administracion.bean.TipoActividadMiniBeanData"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Calendar"%>
+<%@page import="IngSoft.administracion.bean.ResultadoEmpleadoBeanData"%>
+<%@page import="java.util.Vector"%>
+<!--  fin paso 2  -->
+
+
 <html lang="en">
 <head>
+	<!--
+		Charisma v1.0.0
 
+		Copyright 2012 Muhammad Usman
+		Licensed under the Apache License v2.0
+		http://www.apache.org/licenses/LICENSE-2.0
+
+		http://usman.it
+		http://twitter.com/halalit_usman
+	-->
 	<meta charset="utf-8">
-	<title>CONAN 3000</title>
+	<title>Buscar Emleado</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
-	<meta name="author" content="Dos virgenes">
+	<meta name="author" content="Muhammad Usman">
+	<!--The beans  -->
+	<jsp:useBean id="resultados" scope="request"class="java.util.Vector"></jsp:useBean>
+	
+
 
 	<!-- The styles -->
 	<link id="bs-css" href="css/bootstrap-cerulean.css" rel="stylesheet">
-    
 	<style type="text/css">
 	  body {
 		padding-bottom: 40px;
@@ -19,6 +45,7 @@
 		padding: 9px 0;
 	  }
 	</style>
+	<link href="css/bootstrap-responsive.css" rel="stylesheet">
 	<link href="css/bootstrap-responsive.css" rel="stylesheet">
 	<link href="css/charisma-app.css" rel="stylesheet">
 	<link href="css/jquery-ui-1.8.21.custom.css" rel="stylesheet">
@@ -36,22 +63,20 @@
 	<link href='css/opa-icons.css' rel='stylesheet'>
 	<link href='css/uploadify.css' rel='stylesheet'>
 
+	<!-- The HTML5 shim, for IE6-8 support of HTML5 elements -->
+	<!--[if lt IE 9]>
+	  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
 	<!-- The fav icon -->
 	<link rel="shortcut icon" href="img/conan_logo.png">
-
-<script>
-			
-			function alfanumerico(e) 
-			{ 
-				var key = window.event.keyCode || event.keyCode;
-				return ((key >= 48 && key <= 57) ||(key >= 97 && key <= 122) ||(key >= 65 && key <=90) ||(key >= 192 && key <=246)||(key <=13) ||(key ==32));
-			} 	
-			function alt_fecha(obj){
-			obj.value=obj.value.slice(0,10);
-			
-			}
-			
+	<!-- codigos  -->
 	
+	<script>
+	function alt_fecha(obj){
+	obj.value=obj.value.slice(0,5);
+	
+	}
 	function alt_agregar(){
 		var form=document.getElementById("frmAlternativo");
 		form.accion.value="Agregar";
@@ -75,275 +100,229 @@
 		form.codigo.value=cod;
 		form.submit();
 	}
-	
-	function alt_submit(){
-		var form= document.frmUpdate;
-		if(validar(form)) form.submit();
-		else alert("Uno o mas campos estan vacios");
+	function updatetable(){		
+			docReady();
 			
-			}
-		
+	}
+	
+
+
+	
+	
 	</script>			
-
-
-		
 </head>
 
 <body>
-		
-		<jsp:include page="/IngSoft/general/superior.jsp" />
+	<jsp:include page="/IngSoft/general/superior.jsp" />
 		<div class="container-fluid">
 		<div class="row-fluid">
 				
 			<!-- left menu starts -->
 			<jsp:include page="/IngSoft/general/leftmenu.jsp" />
-						<!-- left menu ends -->       
+						<!-- left menu ends -->
 			
-		<noscript>
+			<noscript>
 				<div class="alert alert-block span10">
 					<h4 class="alert-heading">Warning!</h4>
 					<p>You need to have <a href="http://en.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript</a> enabled to use this site.</p>
 				</div>
-		</noscript>
+			</noscript>
 			
-		  <div id="content" class="span10">
-		    <!-- content starts -->
-		    <div>
-		      <ul class="breadcrumb">
-					<li>
-						<a href="#">Inicio</a> <span class="divider">/</span>
-					</li>
-					<li>
-						<a href="#">Mantenimiento de Empleados</a> <span class="divider">/</span>
-					</li>
-					<li>
-						Buscar Empleado
-					</li>
-				</ul>
-	        </div>
+			<div id="content" class="span10">
+			<!-- content starts -->
 			
-		    <div class="row-fluid sortable">
-		      <div class="box span12">
-		        <div class="box-header well" data-original-title>
-		          <h2><i class="icon-search"></i> BUSCAR EMPLEADO</h2>
-		          </div>
-		        <div class="box-content">
-		         <form class="form-horizontal" name="frmCriteriosBusqueda" id="frmCriteriosBusqueda"  action="<%= response.encodeURL("SMSEmpleado")%>" method="post" >
-		             <input type="hidden" name="accion" value="Buscar"></input>
-		            <fieldset>		              			 
-		            
-		            	<div class="control-group">
-						  <label class="control-label" for="typeahead">C&oacute;digo :</label>							  
-						  <div class="controls">
-							<input type="text" class="span6 typeahead" id="typeahead"  data-provide="typeahead" data-items="4" ></input>								
-						  </div>
-						</div>
-						
-						<div class="control-group">
-						  <label class="control-label" for="typeahead">Nombres :</label>							  
-						  <div class="controls">
-							<input type="text" class="span6 typeahead" id="typeahead"  data-provide="typeahead" data-items="4" ></input>								
-						  </div>
-						</div>
-						
-						<div class="control-group">
-						  <label class="control-label" for="typeahead">Apellido Paterno :</label>							  
-						  <div class="controls">
-							<input type="text" class="span6 typeahead" id="typeahead"  data-provide="typeahead" data-items="4" ></input>								
-						  </div>
-						</div>
-						
-						<div class="control-group">
-						  <label class="control-label" for="typeahead">Apellido Materno :</label>							  
-						  <div class="controls">
-							<input type="text" class="span6 typeahead" id="typeahead"  data-provide="typeahead" data-items="4" ></input>								
-						  </div>
-						</div>
-						
-						<div class="control-group">
-							<label class="control-label" for="dni">Tipo de Documento :</label>
-							<div class="controls">
-							  <label class="radio">
-								<input type="radio" name="optionsRadios" id="dni" value="dni" checked="">
-								DNI
-							  </label>					
-							  <div style="clear:both"></div>		  
-							  <label class="radio">
-								<input type="radio" name="optionsRadios" id="carnet" value="carnet">
-								Carnet de extranjería
-							  </label>
-							  <div style="clear:both"></div>
-							  <label class="radio">
-								<input type="radio" name="optionsRadios" id="pasaporte" value="pasaporte">
-								Pasaporte
-							  </label>
-							</div>
-						  </div>						
 
+			<div>
+				<ul class="breadcrumb">
+					<li>
+						<a href="/Conan3000V2/IngSoft/general/index.jsp">Home</a> <span class="divider">/</span>
+					</li>
+					<li>
+						Mantenimiento de Empleado
+					</li>
+					
+				</ul>
+			</div>
+			
+			<div class="row-fluid sortable">
+				<div class="box span12">
+					<div class="box-header well" data-original-title>
+						<h2><i class="icon-search"></i> BUSCAR EMPLEADO</h2>
+						<div class="box-icon">
+							<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
+						</div>
+					</div>
+					<div class="box-content">
+						<!-- <form class="form-horizontal" name="frmCriteriosBusqueda" id="frmCriteriosBusqueda"  method="post" onsubmit="xmlhttpPost('/Conan3000V2/IngSoft/servicio/evento/SMSEvento?accion=Buscar', 'frmCriteriosBusqueda', 'resultadoBusqueda','<img >');
+		 return false;"> -->
+		 
+		 <!--  paso 1  configuracion de link + variables -->													 <!-- nos linkea al archivo SMSEmpleado -->
+		 <form class="form-horizontal" name="frmCriteriosBusqueda" id="frmCriteriosBusqueda"  method="post" action="<%= response.encodeURL("SMSEmpleado")%>">
+		                                      <!-- Buscar  variable  que pasa al archivo SMSEmpleado   -->	
+		 <input type="hidden" name="accion" value="Buscar"></input>
+		  <input type="hidden" name="tipo" value="2"></input>
+						
+						  <fieldset>
+							
 							<div class="control-group">
-							  <label class="control-label" for="numerodocumento">N&uacute;mero de Documento :</label>							  
-							  <div class="controls">
-								<input type="text" class="span6 typeahead" id="numerodocumento" data-provide="typeahead" data-items="4" ></input>								
+							  <label class="control-label" for="typeahead">Nombre de Empleado:</label>
+							  <div class="controls">									   <!-- txtNombre  variable     -->	
+								<input type="text" class="span6 typeahead" id="txtNombre" name="txtNombre">
 							  </div>
 							</div>
-						
-						<div class="control-group">
-							<label class="control-label" for="selectError">Puesto :</label>
-							<div class="controls">
-							  <select name="selectError5" id="selectError5" data-rel="chosen">
-								<option>Puesto 1</option>
-								<option>Puesto 2</option>
-								<option>Puesto 3</option>
-								<option>Puesto 4</option>
-								<option>Puesto 4</option>
-							  </select>
+							
+
+							  
+
+							  
+							<div class="form-actions">
+							  <button type="submit" class="btn btn-primary">Buscar</button>
+							  <button type="reset" class="btn">Cancelar</button>
 							</div>
-						</div>															
-						
-						<div class="control-group">
-							<label class="control-label" for="selectError">Horario de Trabajo :</label>
-							<div class="controls">
-							  <select id="selectError6" data-rel="chosen">
-								<option>Horario 1</option>
-								<option>Horario 2</option>
-								<option>Horario 3</option>
-								<option>Horario 4</option>
-								<option>Horario 5</option>
-							  </select>
-							</div>
-						</div>
-						
-						<div class="control-group">
-								<label class="control-label" for="selectarea">&Aacute;rea :</label>
-								<div class="controls">
-								  <select name="selectarea" id="selectarea" data-rel="chosen">
-									<option>Area 1</option>
-									<option>Area 2</option>
-									<option>Area 3</option>
-									<option>Area 4</option>
-									<option>Area 5</option>
-								  </select>
-								</div>
-							</div>	
-						
-						<div class="control-group">
-							<label class="control-label" for="selectError">Sede :</label>
-							<div class="controls">
-							  <select id="selectError7" data-rel="chosen">
-								<option>Sede 1</option>
-								<option>Sede 2</option>
-								<option>Sede 3</option>
-								<option>Sede 4</option>
-								<option>Sede 5</option>
-							  </select>
-							</div>
-						</div>						
-					  
-		              <div class="form-actions">
-		                <button type="submit" class="btn btn-primary">Buscar</button>
-		                <button type="reset" class="btn">Cancelar</button>	                
-	                  </div>
-					  
-	                </fieldset>
-	              </form>
-	            </div>
-	          </div>
-		      <!--/span-->
-	        </div>
-		    <!--/row-->
-		
-		    <form id="frmAlternativo" name="frmAlternativo" method="post" action="<%= response.encodeURL("SMSEmpleado")%>">
+						  </fieldset>
+						</form>   
+
+					</div>
+					
+				</div><!--/span-->
+
+			</div><!--/row-->
+			 <!-- fin  paso 1  --> 
+			
+			
+
+		    <!--  paso 3  configuracion de link + variables -->				  <!-- nos linkea al archivo SMSEmpleado -->
+			<form id="frmAlternativo" name="frmAlternativo" method="post" action="<%= response.encodeURL("SMSEmpleado")%>">
 			<input type="hidden" name="accion" value="Agregar"></input>
 			<input type="hidden" name="codigo" value=""></input>
 			<input type="hidden" name="tipo" value="1"></input>
 			</form>
-					
-					
+			<!--  fin paso 3 -->
+			
+			
+            <!--  paso 2 configurarion link  + v ariables de retorno -->
+            
+			<div class="row-fluid sortable">		
+				<div class="box span12">
+					<div class="box-header well" data-original-title>
+						<h2><i></i> RESULTADOS</h2>
+                        
 						
-		    <div class="row-fluid sortable">
-		      <div class="box span12">
-		        <div class="box-header well" data-original-title>
-		          <h2><i class="icon-th-list"></i> RESULTADOS</h2>
-	            </div>
-		        <div class="box-content">
-		          <table class="table table-striped table-bordered bootstrap-datatable datatable">
-		            
-		            <!-- agregar nuevo boton -->
-		            <div  align="right">
-		            <a class="btn btn-primary" href="javascript:alt_agregar()">
-                    <i class="icon icon-add icon-white"></i>
-                    Agregar
-                    </a>
-                   </div>
-		            
-		            
-		            <thead>
-		              <tr>
-		                <th width="17%">Nombre</th>		                
-		                <th width="10%">Tipo de Doc.</th>
-		                <th width="10%">N&uacute;m. de Doc.</th>
-		                <th width="10%">Puesto</th>
-						<th width="10%">Horario</th>
-						<th width="10%">&Aacute;rea</th>						
-						<th width="10%">Sede</th>
-						<th width="10%">Estado</th>								                
-		                <th width="29%">Acci&oacute;n</th>
-	                  </tr>
-	                </thead>
-		            <tbody>
-		              <tr>
-		                <td>Juan Perez</td>		                
-		                <td class="center">DNI</td>
-		                <td class="center">12345678</td>
-						<td class="center">Barredor</td>						
-		                <td class="center">L-V 8-10HS</td>
-		                <td class="center">Administraci&oacute;n</td>
-		                <td class="center">Los Olivos</td>
-		                <td class="center">Activo</td>
-		                <td class="center"><a class="btn btn-success" href="#"> <i class="icon-zoom-in icon-white"></i> Ver </a> <a class="btn btn-info" href="modificarempleado.jsp"> <i class="icon-edit icon-white"></i> Modificar </a> <a class="btn btn-danger" href="eliminarempleado.jsp"> <i class="icon-trash icon-white"></i> Eliminar </a></td>
-	                  </tr>					  
-		              <tr>
-		                <td>Jose Sanchez</td>		                
-		                <td class="center">DNI</td>
-		                <td class="center">234567890</td>
-						<td class="center">Huachim&aacute;n</td>						
-		                <td class="center">L-V 7-15HS</td>
-		                <td class="center">Administraci&oacute;n</td>
-		                <td class="center">Cercado</td>
-		                <td class="center">Activo</td>
-		                <td class="center"><a class="btn btn-success" href="#"> <i class="icon-zoom-in icon-white"></i> Ver </a> <a class="btn btn-info" href="modificarempleado.jsp"> <i class="icon-edit icon-white"></i> Modificar </a> <a class="btn btn-danger" href="eliminarempleado.jsp"> <i class="icon-trash icon-white"></i> Eliminar </a></td>
-	                  </tr>
-		              <tr>
-		                <td>Raul Bermudez</td>		                
-		                <td class="center">DNI</td>
-		                <td class="center">345678901</td>
-						<td class="center">T&eacute;cnico</td>						
-		                <td class="center">L-V 10-15HS</td>
-		                <td class="center">Administraci&oacute;n</td>
-		                <td class="center">Miraflores</td>
-		                <td class="center">Activo</td>
-		                <td class="center"><a class="btn btn-success" href="#"> <i class="icon-zoom-in icon-white"></i> Ver </a> <a class="btn btn-info" href="modificarempleado.jsp"> <i class="icon-edit icon-white"></i> Modificar </a> <a class="btn btn-danger" href="eliminarempleado.jsp"> <i class="icon-trash icon-white"></i> Eliminar </a></td>
-	                  </tr>
-	                </tbody>
-	              </table>
-	            </div>
-	          </div>
-		      <!--/span-->
-	        </div>
-	        
-	        
-	        
-		    <!--/row-->
-		    <!-- content ends -->
-	      </div>
-		  <!--/#content.span10-->
+					</div>           
+					<div class="box-content">
+                        <table class="table table-striped table-bordered bootstrap-datatable datatable">
+                            <!-- agregar nuevo boton -->
+                            
+                            
+                            <div align="right">
+                            
+                                <a class="btn btn-primary" href="javascript:alt_agregar()">
+                                    <i class="icon icon-add icon-white"></i>
+                                    Agregar
+                                </a>
+                              
+                             </div>          
+                          <thead>
+							  <tr>
+								    <th>Nombre</th>
+							        <th>Apellido Paterno</th>
+							        <th>Puesto</th>  
+							       	 <th>Estado</th>       							      							        
+							        <th>Accion</th>
+							
+							  </tr>
+						  </thead>
+                          <element>
+                          	<tbody id="resultadoBusqueda">
+                          		<% 
+                          			for(int i=0; i<resultados.size() ;i++){
+                          		%>
+                          		<tr>
+                          			<td>
+                          				<%=
+                          					((ResultadoEmpleadoBeanData)resultados.get(i)).getNombre()
+                          				%>
+                          			</td>
+                          			<td class="center">
+                          				<%=
+                          					((ResultadoEmpleadoBeanData)resultados.get(i)).getApaterno()
+                          				%>
+                          			</td>
+
+                          			<td class="center">
+                          				<%=
+                          					((ResultadoEmpleadoBeanData)resultados.get(i)).getPuesto()
+                          				%>
+                          			</td>
+                          			<td class="center">
+                          			
+	                          			
+								           <%
+									 
+												  if( ((ResultadoEmpleadoBeanData)resultados.get(i)).getEstado().equalsIgnoreCase("disponible") ){    
+								 out.print(" <span class='label label-success'> " + ((ResultadoEmpleadoBeanData)resultados.get(i)).getEstado()   +"   </span>       ");
+												  }
+												  else { 
+								 out.print(" <span class='label label-warning'> " + ((ResultadoEmpleadoBeanData)resultados.get(i)).getEstado()   +"   </span>       ");
+													
+												  }
+									  
+									   
+									 
+		                          					            
+	                          				%>
+	                          			
+                          			
+                          			</td>
+
+                          			<td class="center">
+                          				<a class="btn btn-success"
+                          					href="javascript:alt_consultar('<%=((ResultadoEmpleadoBeanData)resultados.get(i)).getCodigo()%>')">
+                          					<i
+                          						class="icon-zoom-in icon-white">
+                          					</i> 
+                          					Ver
+                          				</a>
+                          				<a class="btn btn-info"
+                          					href="javascript:alt_modificar('<%=((ResultadoEmpleadoBeanData)resultados.get(i)).getCodigo()%>')">
+                          					<i
+                          						class="icon-edit icon-white">
+                          					</i>
+                          					Modificar
+                          				</a>
+                          				<a class="btn btn-danger"
+                          					href="javascript:alt_eliminar('<%=((ResultadoEmpleadoBeanData)resultados.get(i)).getCodigo()%>')">
+                          					<i class="icon-trash icon-white">
+                          					</i>
+                          					Eliminar
+                          				</a>
+                          			</td>
+                          		</tr>
+
+
+                          		<%}%>
+
+                          	</tbody>
+                          </element>
+                        </table>       
+					</div>
+				</div><!--/span-->
+				
+				
+			</div><!--/row-->
+		   <!-- fin paso 2 -->
+    
+					<!-- content ends -->
+			</div><!--/#content.span10-->
 				</div><!--/fluid-row-->
+				
+				
 				
 		<hr>
 
 		<div class="modal hide fade" id="myModal">
 			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal">×</button>
+				<button type="button" class="close" data-dismiss="modal">Ãƒâ€”</button>
 				<h3>Settings</h3>
 			</div>
 			<div class="modal-body">
@@ -354,20 +333,16 @@
 				<a href="#" class="btn btn-primary">Save changes</a>
 			</div>
 		</div>
-
-		<footer>
-		  <p class="pull-left"><a href="http://usman.it/free-responsive-admin-template">Conan 3000</a> &copy;  2013</p>
-          <p class="pull-right">Powered by: <a href="http://usman.it/free-responsive-admin-template">Dos V&iacute;rgenes</a></p>
-		</footer>
+		<jsp:include page="/IngSoft/general/inferior.jsp" />
+		
 		
 	</div><!--/.fluid-container-->
-
-	<!-- external javascript
+		<!-- external javascript
 	================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->
 
 	<!-- jQuery -->
-	<script src="js/jquery-1.7.2.min.js"></script>
+    <script src="js/jquery-1.7.2.min.js"></script>
 	<!-- jQuery UI -->
 	<script src="js/jquery-ui-1.8.21.custom.min.js"></script>
 	<!-- transition / effect library -->
@@ -435,14 +410,8 @@
 	<script src="js/jquery.history.js"></script>
 	<!-- application script for Charisma demo -->
 	<script src="js/charisma.js"></script>
-	<script>
-	function loadContent() 
-{ 
-   $("#includedContent").load("menu.html"); 
-} 
+	
+	<script src="js/ajaxsbmt.js"></script>
 
-
-	</script>
-		<script>loadContent()</script> 
 </body>
 </html>
