@@ -6,7 +6,7 @@
 
   <cache />
 
-<select id="searchPlantillaEmpleado" parameterType="IngSoft.administracion.bean.CriterioEmpleadoBeanData" resultType="IngSoft.administracion.bean.ResultadoEmpleadoBeanData">
+  <select id="searchPlantillaEmpleado" parameterType="IngSoft.administracion.bean.CriterioEmpleadoBeanData" resultType="IngSoft.administracion.bean.ResultadoEmpleadoBeanData">
 
 SELECT
 inf245g2.PERSONA.IdPersona AS codigo ,
@@ -35,83 +35,53 @@ order by 1 asc;
 	TIPO_AMBIENTE 
 	order by 1
 </select>
-<select id="searchTipoEventoMini" resultType="IngSoft.servicio.bean.TipoEventoMiniBeanData">
-	select IdTipoEvento as codigo
-	,Nombre 
+  
+  
+<select id="searchHorarios" resultType="IngSoft.administracion.bean.HorarioEmpleados">
+	select IdHorario as codigo
+	,Descripcion 
 	from 
-	TIPO_EVENTO
+	HORARIO
 	order by 1
+	
 </select>
 
-<!-- Agregar plantilla evento -->
-<insert id="insertPlantillaEvento" parameterType="IngSoft.servicio.bean.EventoBeanData" flushCache="true">
-	insert into PLANTILLA_EVENTO(IdPlantillaEvento,Nombre,FechaInicio,FechaFin,IdTipoEvento,Estado)
-	values (#{codigo},#{nombre},#{limiteInicio},#{limiteFin},#{idTipo},'A')
-</insert>
+
 <select id="getNextCodigo" resultType="java.lang.String">
-	select max(IdPlantillaEvento) from PLANTILLA_EVENTO	
-</select>
-<insert id="insertPlantillaEventoSedes" parameterType="IngSoft.servicio.bean.EventoBeanData" flushCache="true">
- insert into SEDExPLANTILLA(IdPlantillaEvento,IdSede) values(#{codigo},
- <foreach item="idSede" index="i" collection="idSede" separator="),(#{codigo}," close=")">
- 	#{idSede}
- </foreach>
-</insert>
-<insert id="insertPlantillaEventoAmbiente" parameterType="IngSoft.servicio.bean.EventoBeanData" flushCache="true">
- insert into AMBIENTExPLANTILLA(IdPlantillaEvento,IdAmbiente) values(#{codigo},
- <foreach item="idAmbientes" index="i" collection="idAmbientes" separator="),(#{codigo}," close=")">
- 	#{idAmbientes}
- </foreach>
-</insert>
- <!-- Fin agregar  -->
- 
-<select id="getAmbientesId" parameterType="java.lang.String"  resultType="java.lang.String">
-select IdAmbiente from AMBIENTExPLANTILLA where IdPlantillaEvento= #{codigo};
+	select max(IdEmpleado) from EMPLEADO	
 </select>
 
-<select id="getSedesId" parameterType="java.lang.String"  resultType="java.lang.String">
-select IdSede  from SEDExPLANTILLA where IdPlantillaEvento= #{codigo};
-</select>
+<!-- inserts -->
 
-<select id="getPLantillaEvento" parameterType="java.lang.String"  resultType="IngSoft.servicio.bean.EventoBeanData">
-select 
-IdPlantillaEvento as codigo
-,IdTipoEvento as idTipo
-,Nombre as nombre
-,FechaInicio as limiteInicio
-,FechaFin as limiteFin
-from PLANTILLA_EVENTO  pe where pe.Estado='A' and  pe.IdPlantillaEvento=#{codigo}; 
-</select>
-<!-- Modificar elemento -->
-<update id="updatePLantillaEvento" parameterType="IngSoft.servicio.bean.EventoBeanData">
-update PLANTILLA_EVENTO set nombre=#{nombre}
- ,IdTipoEvento=#{idTipo}
- ,FechaInicio=#{limiteInicio}
- ,FechaFin=#{limiteFin}
- where IdPlantillaEvento= #{codigo}
-</update>
-<insert id="insertPlantillaEventoSedesUpdate" parameterType="IngSoft.servicio.bean.ModificacionesEventoBeanData" >
-insert into SEDExPLANTILLA(IdPlantillaEvento,IdSede) values(#{codigo},#{nuevo})
+<insert id="insertPlantillaEmpleado" parameterType="IngSoft.administracion.bean.EmpleadoBeanData"
+	flushCache="true">
+	insert into
+	EMPLEADO(IdSede,IdEmpleado,IdHorario,fechaContrato,Puesto,Area,Estado,CodigoEmpleado)
+	values (
+	<foreach item="idSede" index="i" collection="idSede" separator="),(#{codigo},"
+		close=")">
+		#{idSede}
+	</foreach>
+	,#{codigo},
+
+	<foreach item="idHorario" index="i" collection="idHorario"
+		separator="),(#{codigo}," close=")">
+		#{idSede}
+	</foreach>
+	,#{fechaContrato},#{puesto},#{area},'activo',#{codigo})
 </insert>
-<update id="updatePlantillaEventoSedes" parameterType="IngSoft.servicio.bean.ModificacionesEventoBeanData">
-update SEDExPLANTILLA set IdSede=#{nuevo} where IdPlantillaEvento=#{codigo} and IdSede=#{antiguo}
-</update>
-<delete id="deletePlantillaEventoSede" parameterType="IngSoft.servicio.bean.ModificacionesEventoBeanData">
-delete from SEDExPLANTILLA where IdPlantillaEvento=#{codigo} and IdSede=#{antiguo}
-</delete>
-<insert id="insertPlantillaEventoAmbienteUpdate" parameterType="IngSoft.servicio.bean.ModificacionesEventoBeanData">
-insert into AMBIENTExPLANTILLA(IdPlantillaEvento,IdAmbiente) values(#{codigo},#{nuevo})
+
+
+
+<insert id="insertPlantillaPersona" parameterType="IngSoft.administracion.bean.EmpleadoBeanData" flushCache="true">
+	insert into PERSONA (IdPersona ,Nombres ,ApePaterno  ,ApeMaterno  ,TipoDocumento  ,NumeroDocumento  ,FechaNac )
+	values (#{codigo},#{nombre},#{apellidoPaterno},#{apellidoMaterno},#{tipoDocumento},#{numeroDocumento},#{fechaNacimiento})
 </insert>
-<update id="updatePlantillaEventoAmbiente" parameterType="IngSoft.servicio.bean.ModificacionesEventoBeanData">
-update AMBIENTExPLANTILLA set IdAmbiente=#{nuevo} where IdPlantillaEvento=#{codigo} and IdAmbiente=#{antiguo}
-</update>
-<delete id="deletePlantillaEventoAmbiente" parameterType="IngSoft.servicio.bean.ModificacionesEventoBeanData">
-delete from AMBIENTExPLANTILLA where IdPlantillaEvento=#{codigo} and IdAmbiente=#{antiguo}
-</delete>
-<!-- Fin modificar -->
-<!--Eliminar evento -->
-<update id="deletePLantillaEvento" parameterType="java.lang.String" >
-update PLANTILLA_EVENTO set Estado='I' where IdPlantillaEvento= #{codigo}
-</update>
-<!-- Fin eliminar -->
+
+
+
+
+<!-- fin inserts -->
+
+
 </mapper>
