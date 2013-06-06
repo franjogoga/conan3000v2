@@ -68,7 +68,7 @@ function validar(form){
 	if(form.txtDescripcion.value.length<=0)return false;
 	if(form.txtPresentacion.value.lengtht<=0)return false;
 	if(form.txtProveedor.value.length<=0)return false;
-	if(form.txtPreciU.value.length<=0)return false;
+	//if(form.txtPreciU.value.length<=0)return false;
 	//if(form.cmbAmbientes.value.length<=0)return false;
 return true;
 
@@ -117,7 +117,8 @@ function anhadir(cod,name){
 							  <div class="control-group" id="dvDescripcion">
 			                <label class="control-label" for="textarea2">Descripci&oacute;n:</label>
 			                <div class="controls">
-			                  <textarea name="textarea" class="" id="txtDescripcion" name="txtDescripcion" style="resize:none; height: 74px; width: 273px" onKeyUp="limita(this,100);" onKeyDown="limita(this,100);" ></textarea>
+			                  <textarea id="txtDescripcion" name="txtDescripcion" style="resize:none; height: 74px; width: 273px" onKeyUp="limita(this,100);" onKeyDown="limita(this,100);" ></textarea>
+								
 								<span class="help-inline" id="errDescripcion">Please correct the error 	        
 					          </span>		                  
  							</div>
@@ -139,7 +140,7 @@ function anhadir(cod,name){
 							  <div class="control-group" id="dvPrecioU">
 							    <label class="control-label" for="typeahead10">Precio Unitario(S/.) (*): </label>
 							    <div class="controls">
-							      <input type="text" class="span6 typeahead" id="txtPrecioU" name="PrecioU"  data-provide="typeahead" data-items="4" >
+							      <input type="text" class="span6 typeahead" id="txtPrecioU" name="txtPrecioU"  data-provide="typeahead" data-items="4" >
 						         <span class="help-inline" id="errPrecioU">Please correct the error 	        
 					          </span>	
 						        </div>
