@@ -18,7 +18,7 @@ public class AccionVitalizarSocio extends CoAccion {
 		if (resultado) {
 			mensaje = "Se vitalizó el socio";
 		}
-		request.setAttribute("mensaje", mensaje);
+		//response.setContentType(arg0)		
 		this.direccionar(sc, request, response, "/IngSoft/administracion/socio/accionsocio.jsp");
 	}
 }
