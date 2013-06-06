@@ -73,8 +73,8 @@ public class EmpleadoBeanFuncion {
 		
 	
 		
-		 horariosData.setIdHorarios((request.getParameter("cmbSedes").split("/"))  );
-		 sedesData.setIdSedes(request.getParameter("cmbHorarios").split("/"));
+		 horariosData.setIdHorarios((request.getParameter("cmbHorarios").split("/"))  );
+		 sedesData.setIdSedes(request.getParameter("cmbSedes").split("/"));
 		
  		 
 		 for(int i=0; i< (horariosData.getIdHorarios()).length; i++){
@@ -121,7 +121,7 @@ public class EmpleadoBeanFuncion {
 			
 			sqlsesion.insert("Data.administracion.empleado.insertPlantillaEmpleado",eventoData);
 			
-			sqlsesion.insert("Data.administracion.empleado.insertPlantillaPersona",eventoData);
+			//sqlsesion.insert("Data.administracion.empleado.insertPlantillaPersona",eventoData);
 			
 			
 			resultado=true;
