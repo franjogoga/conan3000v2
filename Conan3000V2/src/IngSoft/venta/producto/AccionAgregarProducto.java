@@ -16,7 +16,7 @@ public class AccionAgregarProducto extends CoAccion {
 	public void ejecutar(ServletContext sc, HttpServletRequest request,
 			HttpServletResponse response) throws CoException {
 		// TODO Auto-generated method stub
-		// TODO Auto-generated method stub
+
 				int tipo=Integer.parseInt(request.getParameter("tipo"));
 				if(tipo==2){
 					ProductoBeanFunction productoFunction= ProductoBeanFunction.getInstance();
@@ -26,15 +26,7 @@ public class AccionAgregarProducto extends CoAccion {
 				}
 				
 				this.direccionar(sc, request, response, "/IngSoft/ventas/producto/agregarproducto.jsp");
-					
-				//EventoBeanFuncion eventoFunction= EventoBeanFuncion.getInstance();
-				//Vector<SedeMiniBeanData> sedeMiniData=eventoFunction.getSedes();
-				//Vector<TipoEventoMiniBeanData> tipoEventoMiniData=eventoFunction.getTipoEvento();
-				//Vector<AmbienteMiniBeanData> AmbienteMiniData=eventoFunction.getAmbientes();
-				//request.setAttribute("sedes",sedeMiniData );
-				//request.setAttribute("ambientes",AmbienteMiniData );
-				//request.setAttribute("tiposEvento",tipoEventoMiniData);
-				//this.direccionar(sc, request, response, "/IngSoft/servicio/evento/agregarevento.jsp");			
+							
 	}
 
 }
