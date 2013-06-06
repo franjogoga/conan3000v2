@@ -15,5 +15,16 @@
 	
 </select>
 
+<select id="getNextCodigo" resultType="java.lang.String">
+	select max(IdEmpleado) from EMPLEADO	
+</select>
+
+<insert id="insertPlantillaEmpleado" parameterType="IngSoft.administracion.bean.EmpleadoBeanData"
+	flushCache="true">
+	insert into
+	EMPLEADO(IdSede,IdEmpleado,IdHorario,fechaContrato,Puesto,Area,Estado,CodigoEmpleado)
+	values (#{idSede},#{codigo},#{idHorario},#{fechaContrato},#{puesto},#{area},#{estado},#{codigo})
+</insert>
+
 
 </mapper>
