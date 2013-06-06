@@ -91,6 +91,12 @@
         <servlet-name>SMSEmpleado</servlet-name>
 	<servlet-class>IngSoft.administracion.empleado.SMSEmpleado</servlet-class>
 </servlet>
+<servlet id="Servlet_0021">
+        <servlet-name>SMVProducto</servlet-name>
+	<servlet-class>IngSoft.venta.producto.SMVProducto</servlet-class>
+				   
+</servlet>
+
 
 
 
@@ -177,6 +183,10 @@
 <servlet-mapping id="ServletMapping_0020">
         <servlet-name>SMSEmpleado</servlet-name>
 <url-pattern>/IngSoft/administracion/empleados/SMSEmpleado</url-pattern>
+</servlet-mapping>
+<servlet-mapping id="ServletMapping_0021">
+        <servlet-name>SMVProducto</servlet-name>
+<url-pattern>/IngSoft/ventas/producto/SMVProducto</url-pattern>
 </servlet-mapping>
 
 
