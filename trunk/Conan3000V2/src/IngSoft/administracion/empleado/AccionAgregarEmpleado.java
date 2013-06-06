@@ -31,7 +31,7 @@ public class AccionAgregarEmpleado extends CoAccion {
 			
 			
 		
-		    //sedes
+		    
 		   
 		
 			this.direccionar(sc, request, response, "/IngSoft/administracion/empleados/buscarempleado.jsp");
@@ -39,9 +39,16 @@ public class AccionAgregarEmpleado extends CoAccion {
 		
 		if (tipo==1){
 	
-	    EventoBeanFuncion eventoFunction= EventoBeanFuncion.getInstance();
-	    Vector<SedeMiniBeanData> sedeMiniData=eventoFunction.getSedes();
+	    //sedes	
+	    EventoBeanFuncion eventoFunction = EventoBeanFuncion.getInstance();
+	    Vector<SedeMiniBeanData> sedeMiniData = eventoFunction.getSedes();
 		request.setAttribute("sedes",sedeMiniData );
+		
+		//horarios
+		EmpleadoBeanFuncion empleadoFuncion = EmpleadoBeanFuncion.getInstance();
+	    Vector<HorarioEmpleados> horarioData = empleadoFuncion.getHorarios();
+		request.setAttribute("horarios",horarioData );
+		
 		
 		this.direccionar(sc, request, response, "/IngSoft/administracion/empleados/agregarempleado.jsp");
 		
