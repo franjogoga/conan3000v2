@@ -10,6 +10,7 @@ public class ResultadoSocioBeanData implements Serializable{
 	private String direccion;
 	private String tipoDocumento;
 	private long numeroDocumento;
+	private String fechaInicio;
 	private String vitalicio;
 			
 	public String getDireccion() {
@@ -59,5 +60,11 @@ public class ResultadoSocioBeanData implements Serializable{
 	}
 	public void setVitalicio(String vitalicio) {
 		this.vitalicio = vitalicio;
-	}	
+	}
+	public String getFechaInicio() {
+		return fechaInicio;
+	}
+	public void setFechaInicio(String fechaInicio) {
+		this.fechaInicio = fechaInicio;
+	}					
 }
