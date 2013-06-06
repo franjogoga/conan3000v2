@@ -49,7 +49,7 @@ public class AccionBuscarEmpleado extends CoAccion{
 			
 			request.setAttribute("resultados", resultados);
 			
-			this.direccionar(sc, request, response, "/IngSoft/administracion/empleado/buscarempleado.jsp");	
+			this.direccionar(sc, request, response, "/IngSoft/administracion/empleados/buscarempleado.jsp");	
 			
 		}
 
