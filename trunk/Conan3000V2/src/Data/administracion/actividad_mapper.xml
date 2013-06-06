@@ -137,4 +137,34 @@ AMBIENTE;
 
 </select>
 
+
+<!-- complemto para buscar empleado   -->
+<select id="searchPlantillaEmpleado" parameterType="IngSoft.administracion.bean.CriterioEmpleadoBeanData" resultType="IngSoft.administracion.bean.ResultadoEmpleadoBeanData">
+
+
+
+SELECT 
+inf245g2.PERSONA.IdPersona AS codigo ,
+inf245g2.PERSONA.Nombres as nombre,
+inf245g2.PERSONA.ApePaterno as apaterno,
+inf245g2.EMPLEADO.Puesto as puesto,
+inf245g2.EMPLEADO.Estado as estado
+
+
+FROM inf245g2.EMPLEADO , inf245g2.PERSONA 
+
+
+WHERE
+
+inf245g2.EMPLEADO.IdEmpleado = inf245g2.PERSONA.IdPersona
+
+
+
+
+ORDER BY 1 ASC
+;
+
+
+</select>
+
 </mapper>

@@ -224,6 +224,17 @@
 
 
 
+			              <div class="control-group" id="dvSocio">
+			                <label class="control-label" for="typeahead8">Encargado (*): </label>
+			                <div class="controls">
+			                  <input type="text" class="span6 typeahead" id="typeahead8"  data-provide="typeahead" name="txtSocio" data-items="4" readonly="readonly">
+			                  <br>
+			                  <div  align="left"> <a class="btn btn-primary iframe" href="seleccionarempleado.jsp"> <i class="icon icon-search icon-white"></i> Buscar Socio</a> </div>
+			                  <span class="help-inline" id="errSocio">Please correct the error</span>
+			                </div>
+		                  </div>
+
+
 							 <div class="control-group">
 								<label class="control-label" for="selectError">Ambiente(*):</label>
 								<div class="controls">
@@ -403,6 +414,29 @@
 	<script src="js/jquery.history.js"></script>
 	<!-- application script for Charisma demo -->
 	<script src="js/charisma.js"></script>		
+	
+	
+	
+<!--     ---------------------- Sirve para poner un iframe ------------------------------   -->	
+
+
+<!--     -----------------------------------------------------   -->			
+	
+		<script>
+			$(document).ready(function(){
+				//Examples of how to assign the Colorbox event to elements
+				
+				$(".iframe").colorbox({iframe:true, width:"60%", height:"80%"});
+				
+				//Example of preserving a JavaScript event for inline calls.
+				$("#click").click(function(){ 
+					$('#click').css({"background-color":"#f00", "color":"#fff", "cursor":"inherit"}).text("Open this window again and this message will still be here.");
+					return false;
+				});
+			});
+		</script>
+	
+<!--     -----------------------------------------------------   -->	
 	
 	<script type="text/javascript" src="js/apprise-1.5.full.js"></script>
 	<link rel="stylesheet" href="css/apprise.css" type="text/css" />
