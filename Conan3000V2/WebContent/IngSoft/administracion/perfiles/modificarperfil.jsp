@@ -42,15 +42,51 @@
 	
 	<script>
 		function validar(form) {
-			if (form.txtNombre.value.length <= 0) return false;
-			if (form.txtDescripcion.value.length <= 0) return false;
-			return true;
+			var test=true;
+			if($('#txtNombre').val()==null || $('#txtNombre').val().length<=0){
+				$('#txtNombre').bind("change",function(){
+					var temp= $('#txtNombre');
+					if(temp.val()!=null && temp.val().length>0) {
+						temp.parent().parent().removeClass("error");
+						temp.parent().parent().addClass("success");
+						$('#errNombre').slideUp(1000);
+					}
+					else {
+						temp.parent().parent().removeClass("success");
+						temp.parent().parent().addClass("error");
+						$('#errNombre').slideDown(1000);
+					}				
+				})
+				$('#errNombre').slideDown(1000);
+				test=false;
+				$('#txtNombre').parent().parent().toggleClass("error");
+			};
+			
+			if($('#txtDescripcion').val()==null || $('#txtDescripcion').val().length<=0){
+				$('#txtDescripcion').bind("change",function(){
+					var temp= $('#txtDescripcion');
+					if(temp.val()!=null && temp.val().length>0) {
+						temp.parent().parent().removeClass("error");
+						temp.parent().parent().addClass("success");
+						$('#errDescripcion').slideUp(1000);
+					}
+					else {
+						temp.parent().parent().removeClass("success");
+						temp.parent().parent().addClass("error");
+						$('#errDescripcion').slideDown(1000);
+					}				
+				})
+				$('#errDescripcion').slideDown(1000);
+				test=false;
+				$('#txtDescripcion').parent().parent().toggleClass("error");
+			};
+			
+			return test;
 		}
 		
 		function alt_submit_modificar_perfil(){			
 			var form = document.frmUpdatePerfil;
 			if (validar(form)) form.submit();
-			else alert("Uno o mas campos estan vacios");
 		}
 	</script>	
 </head>
@@ -105,14 +141,16 @@
 									<div class="control-group">
 										<label class="control-label" for="txtNombre">Perfil (*):</label>							  
 									  	<div class="controls">
-											<input type="text" class="span6 typeahead" id="txtNombre" name="txtNombre" value="<%=perfil.getNombre()%>"></input>								
+											<input type="text" class="span6 typeahead" id="txtNombre" name="txtNombre" value="<%=perfil.getNombre()%>" onkeypress="return alfanumerico(event);" autofocus maxlength="50"></input>
+											<span class="help-inline" id="errNombre" style="display:none;">Este campo no puede estar vac&iacute;o</span>								
 									  	</div>
 									</div>
 						
 									<div class="control-group">
 										<label class="control-label" for="txtDescripcion">Descripci&oacute;n (*):</label>							  
 									  	<div class="controls">
-											<input type="text" class="span6 typeahead" id="txtDescripcion" name="txtDescripcion" value="<%=perfil.getDescripcion()%>"></input>								
+											<input type="text" class="span6 typeahead" id="txtDescripcion" name="txtDescripcion" value="<%=perfil.getDescripcion()%>" onkeypress="return alfanumerico(event);" autofocus maxlength="100"></input>
+											<span class="help-inline" id="errDescripcion" style="display:none;">Este campo no puede estar vac&iacute;o</span>								
 									  	</div>
 									</div>																
 						
@@ -233,9 +271,15 @@
 	<script src="js/jquery.history.js"></script>
 	<!-- application script for Charisma demo -->
 	<script src="js/charisma.js"></script>
-	<script>	
-
+	<script>
+		$('#txtNombre').bind('paste',function(){		
+			setTimeout(function(){filtrar('abcdefghijklmnopqrstuwxyzABCDEFGHIJKLMNOPQRSTUWXYZÒ—·¡È…ÌÕÛ”˙⁄1234567890',$('#txtNombre'),50)}, 0);
+		})
 	</script>
-		<script>loadContent()</script> 
+	<script>
+		$('#txtDescripcion').bind('paste',function(){		
+			setTimeout(function(){filtrar('abcdefghijklmnopqrstuwxyzABCDEFGHIJKLMNOPQRSTUWXYZÒ—·¡È…ÌÕÛ”˙⁄1234567890',$('#txtDescripcion'),100)}, 0);
+		})
+	</script> 
 </body>
 </html>
