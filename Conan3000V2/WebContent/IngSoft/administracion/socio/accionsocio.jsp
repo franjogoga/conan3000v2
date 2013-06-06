@@ -90,7 +90,7 @@
 							<a href="/Conan3000V2/IngSoft/general/index.jsp">Inicio</a> <span class="divider">/</span>
 						</li>
 						<li>
-							<a href="#">Transacciones de Socio</a> <span class="divider">/</span>
+							<a href="accionsocio.jsp">Transacciones de Socio</a> <span class="divider">/</span>
 						</li>
 						<li>
 							Buscar Socio
@@ -120,21 +120,21 @@
 									<div class="control-group">
 							    		<label class="control-label" for="txtNombres">Nombres: </label>
 							    		<div class="controls">
-							      			<input type="text" class="span6 typeahead" id="txtNombres" name="txtNombres">
+							      			<input type="text" class="span6 typeahead" id="txtNombres" name="txtNombres" onkeypress="return alfanumerico(event);" autofocus maxlength="50">
 						        		</div>
 						      		</div>
 						    
 							  		<div class="control-group">
 							   			<label class="control-label" for="txtApellidoPaterno">Apellido Paterno: </label>
 							    		<div class="controls">
-							      			<input type="text" class="span6 typeahead" id="txtApellidoPaterno" name="txtApellidoPaterno">
+							      			<input type="text" class="span6 typeahead" id="txtApellidoPaterno" name="txtApellidoPaterno" onkeypress="return alfanumerico(event);" autofocus maxlength="50">
 						        		</div>
 						      		</div>
 						      		
 							  		<div class="control-group">
 							    		<label class="control-label" for="txtApellidoMaterno">Apellido Materno: </label>
 							    		<div class="controls">
-							      			<input type="text" class="span6 typeahead" id="txtApellidoMaterno" name="txtApellidoMaterno">
+							      			<input type="text" class="span6 typeahead" id="txtApellidoMaterno" name="txtApellidoMaterno" onkeypress="return alfanumerico(event);" autofocus maxlength="50">
 						        		</div>						        	
 						      		</div>
 						      		
@@ -181,6 +181,7 @@
 										<th>Apellido Materno</th>
 										<th>Tipo Documento</th>
 										<th>Numero Documento</th>
+										<th>Fecha de Inicio</th>
 										<th>Vitalicio</th>
 										<th>Acci&oacute;n</th>
 							  		</tr>
@@ -195,6 +196,7 @@
 										<td><%=((ResultadoSocioBeanData)resultados.get(i)).getApellidoMaterno()%></td>
 										<td><%=((ResultadoSocioBeanData)resultados.get(i)).getTipoDocumento()%></td>
 										<td><%=((ResultadoSocioBeanData)resultados.get(i)).getNumeroDocumento()%></td>
+										<td><%=((ResultadoSocioBeanData)resultados.get(i)).getFechaInicio()%></td>
 										<td><%=((ResultadoSocioBeanData)resultados.get(i)).getVitalicio()%></td>										
 										<td class="center">
 											<a class="btn btn-success" href="javascript:alt_vitalizar('<%=((ResultadoSocioBeanData)resultados.get(i)).getIdSocio()%>')">
@@ -312,13 +314,21 @@
 	<!-- application script for Charisma demo -->
 	<script src="js/charisma.js"></script>
 	
+	<script src="js/conan3000.js"></script>
 	<script>
-	function loadContent() 
-	{ 
-	   $("#includedContent").load("menu.html"); 
-	} 
+		$('#txtNombres').bind('paste',function(){		
+			setTimeout(function(){filtrar('abcdefghijklmnopqrstuwxyzABCDEFGHIJKLMNOPQRSTUWXYZÒ—·¡È…ÌÕÛ”˙⁄1234567890',$('#txtNombres'),50)}, 0);
+		})
 	</script>
-	
-	<script>loadContent()</script> 
+	<script>
+		$('#txtApellidoPaterno').bind('paste',function(){		
+			setTimeout(function(){filtrar('abcdefghijklmnopqrstuwxyzABCDEFGHIJKLMNOPQRSTUWXYZÒ—·¡È…ÌÕÛ”˙⁄1234567890',$('#txtApellidoPaterno'),50)}, 0);
+		})
+	</script>
+	<script>
+		$('#txtApellidoMaterno').bind('paste',function(){		
+			setTimeout(function(){filtrar('abcdefghijklmnopqrstuwxyzABCDEFGHIJKLMNOPQRSTUWXYZÒ—·¡È…ÌÕÛ”˙⁄1234567890',$('#txtApellidoMaterno'),50)}, 0);
+		})
+	</script>
 </body>
 </html>
