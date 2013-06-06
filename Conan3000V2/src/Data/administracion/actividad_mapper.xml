@@ -139,7 +139,7 @@ AMBIENTE;
 
 
 <!-- complemto para buscar empleado   -->
-<select id="searchPlantillaEmpleado" parameterType="IngSoft.administracion.bean.CriterioEmpleadoBeanData" resultType="IngSoft.administracion.bean.ResultadoEmpleadoBeanData">
+<select id="searchPlantillaEmpleado2" parameterType="IngSoft.administracion.bean.CriterioEmpleadoBeanData" resultType="IngSoft.administracion.bean.ResultadoEmpleadoBeanData">
 
 
 
