@@ -22,23 +22,30 @@ public class AccionAgregarEmpleado extends CoAccion {
 			HttpServletResponse response) throws CoException {
 		// TODO Auto-generated method stub
 		int tipo=Integer.parseInt(request.getParameter("tipo"));
+		
 		if(tipo==2){
 			EmpleadoBeanFuncion empleadoFuncion= EmpleadoBeanFuncion.getInstance();
 			EmpleadoBeanData empleadoData = empleadoFuncion.crearEmpleado(request, response);
 			
-			//empleadoFuncion.agregarEmpleado(empleadoData);
+		//empleadoFuncion.agregarEmpleado(empleadoData);
 			
 			
 		
 		    //sedes
-		    EventoBeanFuncion eventoFunction= EventoBeanFuncion.getInstance();
-			Vector<SedeMiniBeanData> sedeMiniData=eventoFunction.getSedes();
-			request.setAttribute("sedes",sedeMiniData );
+		   
 		
-			this.direccionar(sc, request, response, "/IngSoft/administracion/empleado/buscarempleado.jsp");
+			this.direccionar(sc, request, response, "/IngSoft/administracion/empleados/buscarempleado.jsp");
 		}
+		
+		if (tipo==1){
 	
-		this.direccionar(sc, request, response, "/IngSoft/servicio/evento/agregarempleado.jsp");
+	    EventoBeanFuncion eventoFunction= EventoBeanFuncion.getInstance();
+	    Vector<SedeMiniBeanData> sedeMiniData=eventoFunction.getSedes();
+		request.setAttribute("sedes",sedeMiniData );
+		
+		this.direccionar(sc, request, response, "/IngSoft/administracion/empleados/agregarempleado.jsp");
+		
+		}
 	}
 
 }
