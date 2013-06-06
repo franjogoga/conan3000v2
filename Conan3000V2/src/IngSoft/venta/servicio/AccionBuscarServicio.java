@@ -24,7 +24,7 @@ public class AccionBuscarServicio extends CoAccion{
 		
 		//request.setAttribute(name, o)
 		request.setAttribute("resultados", resultados);
-		this.direccionar(sc, request, response, "/IngSoft/ventas/proveedor/buscarproveedor.jsp");
+		this.direccionar(sc, request, response, "/IngSoft/ventas/servicio/buscarservicio.jsp");
 		
 	}
 	
