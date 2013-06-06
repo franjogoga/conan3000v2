@@ -2,6 +2,7 @@
 <%@page import="IngSoft.servicio.bean.AmbienteMiniBeanData"%>
 <%@page import="IngSoft.servicio.bean.SedeMiniBeanData"%>
 <%@page import="IngSoft.administracion.bean.HorarioEmpleados"%>
+<%@page import="IngSoft.administracion.bean.*"%>
 
 <html lang="en">
 <head>
@@ -71,9 +72,10 @@
 	
 	function alt_submit(){
 		var form= document.frmData;
-		if(validaForm()) form.submit();
+		 form.submit();
 			
 			}
+	
 	
 
 	</script>
@@ -121,7 +123,9 @@
 		          </div>
 				  
 			      <div class="box-content">
-			        <form class="form-horizontal" action="<%= response.encodeURL("SMSEmpleado")%>" onsubmit="alt_submit(); return false;"name="frmData" method="post">
+			        <form class="form-horizontal" action="<%= response.encodeURL("SMSEmpleado")%>" name="frmData" method="post">
+						<input type="hidden" name="accion" id="accion" value="Agregar"></input>
+						<input type="hidden" name="tipo" id="tipo" value="2"></input>
 			          <fieldset>
 							
 							<div class="control-group">
@@ -146,32 +150,21 @@
 							</div>
 							
 							<div class="control-group">
-							  <label class="control-label" for="fechanacimiento">Fecha de Nac. (*):</label>
+							  <label class="control-label" for="fechaNacimiento">Fecha de Nac. (*):</label>
 							  <div class="controls">
-								<input type="text" class="input-xlarge datepicker" id="txtfechanacimiento" name="txtfechanacimiento" readonly="true" value="">
+								<input type="text" class="input-xlarge datepicker" id="txtFechaFacimiento"  name="txtFechaFacimiento" >
+							  
 							  </div>
 							</div>
 							
 							<div class="control-group">
-							<label class="control-label" for="dni">Tipo de Documento (*):</label>
-							<div class="controls">
-							  <label class="radio">
-								<input type="text" class="input-xlarge datepicker" id="txtDNI" readonly="true" value="DNI">
-								DNI
-							  </label>					
-							  <div style="clear:both"></div>		  
-							  <label class="radio">
-								<input type="radio" name="optionsRadios" id="txtcarnet" name="txtcarnet" value="carnet">
-								Carnet de extranjería
-							  </label>
-							  <div style="clear:both"></div>
-							  <label class="radio">
-								<input type="radio" name="optionsRadios" id="txtpasaporte" name="txtpasaporte" value="pasaporte">
-								Pasaporte
-							  </label>
+							  <label class="control-label" for="fechaContrato">Fecha de Contrato. (*):</label>
+							  <div class="controls">
+								<input type="text" class="input-xlarge datepicker" id="txtFechaContrato" name="txtFechaContrato" >
+							  </div>
 							</div>
-						  </div>						
-
+							
+							
 							<div class="control-group">
 							  <label class="control-label" for="numerodocumento">N&uacute;mero de Documento (*):</label>							  
 							  <div class="controls">
@@ -180,15 +173,12 @@
 							</div>
 							
 							<div class="control-group">
-								<label class="control-label" for="cmbPuesto">Puesto (*):</label>
+								<label class="control-label" for="cmbTipoDocumento">Tipo de Documento (*):</label>
 								<div class="controls">
-								  <select name="selectpuesto" id="selectpuesto" data-rel="chosen">
-									<option>Puesto 1</option>
-									<option>Puesto 2</option>
-									<option>Puesto 3</option>
-									<option>Puesto 4</option>
-									<option>Puesto 4</option>
-								  </select>
+								  <select name="selectTipoDocumento" id="selectTipoDocumento" data-rel="chosen">
+									<option>DNI</option>
+									<option>Carnet de extranjería</option>
+									</select>
 								</div>
 							</div>																			
 							
@@ -196,8 +186,8 @@
 								<label class="control-label" for="cmbHorarios">Horario de Trabajo:</label>
 								<div class="controls">
 								  <select  multiple data-rel="chosen" id="cmbHorarios" name="cmbHorarios" >
-									<%for(int i=0;i<sedes.size();i++){ %>
-										<option value="<%= ((SedeMiniBeanData)sedes.get(i)).getCodigo()%>"><%= ((SedeMiniBeanData)sedes.get(i)).getNombre()%></option>
+									<%for(int i=0;i<horarios.size();i++){ %>
+										<option value="<%= ((HorarioEmpleados)horarios.get(i)).getCodigo()%>"><%= ((HorarioEmpleados)horarios.get(i)).getDescripcion()%></option>
 									<%} %>																									
 								  </select>
 								  <span class="help-inline" id="errSedes" style="display:none;">Este campo no puede estar vacio</span>
@@ -228,9 +218,9 @@
 							  </div>																									
 						
 			            <div class="form-actions">
-			              <button type="submit" class="btn btn-primary">Agregar</button>
-			              <button type="reset" class="btn">Cancelar</button>
-		                </div>
+							<button type="button" class="btn btn-primary" onclick="javascript:alt_submit()">Agregar</button>
+							<button type="button" class="btn" onclick="location.href='juridicabuscar.jsp'" >Cancelar</button>
+										</div>
 		                
 		              </fieldset>
 		            </form>
