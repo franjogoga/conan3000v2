@@ -8,16 +8,6 @@
 
 <html lang="en">
 <head>
-	<!--
-		Charisma v1.0.0
-
-		Copyright 2012 Muhammad Usman
-		Licensed under the Apache License v2.0
-		http://www.apache.org/licenses/LICENSE-2.0
-
-		http://usman.it
-		http://twitter.com/halalit_usman
-	-->
 	<meta charset="utf-8">
 	<title>Agregar Actividad</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -29,12 +19,6 @@
 	<jsp:useBean id="sedes"           scope="request"class="java.util.Vector"></jsp:useBean>
 	<jsp:useBean id="ambientes"       scope="request"class="java.util.Vector"></jsp:useBean>
 	<jsp:useBean id="tipoactividades"  scope="request"class="java.util.Vector"></jsp:useBean>
-	
-	
-	
-	
-	
-	
 	
 	<!-- The styles -->
 	<link id="bs-css" href="css/bootstrap-cerulean.css" rel="stylesheet">
@@ -69,56 +53,57 @@
 	<![endif]-->
 
 	<!-- The fav icon -->
-	<link rel="shortcut icon" href="img/conan_logo.png">
+	<link rel="shortcut icon" href="img/favicon.ico">
+	
+	
+	
 	<script>
-		function validar(form){
-			if(form.txtNombre.value.length <=0)return false;
-			if(form.cmbEncargado.value.length<=0)return false;
-			if(form.fFecIncio.value.lengtht<=0)return false;
-			if(form.fFecFin.value.length<=0)return false;
-			
-	return true;
-		
-		
-		}
-	
 	function alt_fecha(obj){
-	obj.value=obj.value.slice(0,5);
-	
-	}
-	
-	function alt_submit(){
-		var form= document.frmUpdate;
-		if(validar(form)) form.submit();
-		else alert("Uno o más campos están vacios");
-			
-			}
+		obj.value=obj.value.slice(0,5);
 		
-		
-		
-			//document.fmrData.submit();
-
-	</script>	
-	<%! public boolean  encontrar(String a, String[] b){
-		for(int i=0;i<b.length;i++){			
-			if(b[i].equals(a)) return true;	
 		}
-	return false;
+
+	function verificar_fecha(comparacion,fecha1,fecha2){
+		var fec1=fecha1.value.split("/");
+		var fec2=document.getElementById(fecha2).value.split("/");
+		var resultado=true;
+		if(fec1.length==fec2.length) {
+			var size=fec1.length;
+			for(i=size-1;i>=0;i--){
+				if(comparacion==0){
+					if(fec1[i].indexOf(fec2[i])<0)  resultado= false;
+					}
+				if(comparacion==1){
+					if(parseInt(fec1[i])<parseInt(fec2[i]))  resultado= false;
+					}
+				if(comparacion==-1){
+					if(parseInt(fec1[i])>parseInt(fec2[i]))  resultado= false;
+					}
+				}
+			if(resultado==false){			
+					fecha1.value=document.getElementById(fecha2).value;			
+				}
+				
+			} 
+		else{
+			alert("Error al comparar fechas");
+		}			
 	}
-	public String formatear(java.util.Date date){
-		SimpleDateFormat DF= new SimpleDateFormat("dd/MM");
-		return DF.format(date);
+
+	function alfanumerico(e) 
+	{ 
+	var key = window.event.keyCode || event.keyCode;
+	return ((key >= 48 && key <= 57) ||(key >= 97 && key <= 122) ||(key >= 65 && key <=90) ||(key >= 192 && key <=246)||(key <=13) ||(key ==32));
+	} 	
+
+	
+		
+	function alt_submit(){
+		var form= document.frmData;
+		if(validaForm()) form.submit();
 	}
 	
-	public String generarCadena(String[] t){
-		String a="";
-		for(int i=0;i<t.length;i++)
-			a= a.concat(t[i]+"/");
-			if(a.length()>0) a=a.substring(0, a.length()-1);
-		return a;
-	}
-	%>
-		
+	</script>		
 </head>
 
 <body>
@@ -130,62 +115,39 @@
 			<jsp:include page="/IngSoft/general/leftmenu.jsp" />
 						<!-- left menu ends -->
 			
-			
-			<noscript>
+		<noscript>
 				<div class="alert alert-block span10">
 					<h4 class="alert-heading">Warning!</h4>
 					<p>You need to have <a href="http://en.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript</a> enabled to use this site.</p>
 				</div>
 			</noscript>
 			
-		
-			<div id="content" class="span10">
-			<!-- content starts -->
-			
-
-			<div>
-				<ul class="breadcrumb">
-					<li>
-						<a href="/Conan3000V2/IngSoft/general/index.jsp">Home</a> <span class="divider">/</span>
-					</li>
-					<li>
-						<a href="buscaractividad.jsp">Mantenimiento de Actividad</a> <span class="divider">/</span>
-					</li>
-					
-					
-					<li>
-						Agregar de Actividad
-					</li>
-				</ul>
-			</div>
-			
-			<div class="row-fluid sortable">
-				<div class="box span12">
-					<div class="box-header well" data-original-title>
-					  <h2><i class="icon-plus-sign"></i>AGREGAR ACTIVIDAD</h2>
-				  </div>
-					<div class="box-content">
-					
-					
-						<form class="form-horizontal" name="frmUpdate" action="<%= response.encodeURL("SMAActividad")%>" method="post">
-						
-						
-						<input type="hidden" name="accion" value="Agregar"></input>
-						<input type="hidden" name="tipo" value="2"></input>
-						  
-						  
-						  
-						  <fieldset>
-						  
-						  
-
-						  
-						  
+            <div id="content" class="span10">
+              <!-- content starts -->
+              <div>
+                <ul class="breadcrumb">
+                  <li> <a href="../../general/index.jsp">Home</a> <span class="divider">/</span> </li>
+                  <li> <a href="buscarambiente.jsp">Mantenimiento de Actividad</a> <span class="divider">/</span></li>
+                  <li>Agregar Actividad</li>
+                </ul>
+              </div>
+              <div class="row-fluid sortable">
+                <div class="box span12">
+                  <div class="box-header well" data-original-title>
+                    <h2>AGREGAR ACTIVIDAD</h2>
+                  </div>
+                  <div class="box-content">
+                    <form class="form-horizontal" action="<%= response.encodeURL("SMAActividad")%>" name="frmData" method="post">
+                    <input type="hidden" name="accion" value="Agregar"></input>
+					<input type="hidden" name="tipo" value="2"></input>
+                      <fieldset>
+                      
+                      
 							 <div class="control-group" id="dvSede">
 								<label class="control-label" for="selectError">Sede(*):</label>
 								<div class="controls">
 																						  
-							 	<select  id="selectError11" data-rel="chosen" name="cmbSede">
+							 	<select  id="cmbSede" data-rel="chosen" name="cmbSede">
 								  
 								  <%for(int i=0;i<sedes.size();i++) if( i!=0){     %>
 										<option value="<%= ((SedeBeanData)sedes.get(i)).getCodigo()%>" >
@@ -203,25 +165,20 @@
 										</option>
 									<%}   %>				
 								  </select>
-								  <span class="help-inline" id="errSede">Please correct the error</span>
+								  
 								</div>
 							  </div>	
-							  
 
-							  
-							  
-							  
-							    
-						  
-						    <div class="control-group">
-						      <label class="control-label" for="typeahead7">Nombre(*): </label>
-						      <div class="controls">
-						        <input type="text" class="span6 typeahead" id="txtNombre"  data-provide="typeahead"  name="txtNombre"  onkeypress="return alfanumerico(event);">
-					          </div>
-					        </div>
-
-
-
+                      
+                        <div class="control-group" id="dvNombreAmbiente">
+                          <label class="control-label" for="typeahead">Nombre (*):</label>
+                          <div class="controls">
+                            <input type="text" class="span6 typeahead" id="txtNombre"  data-provide="typeahead" name="txtNombre">
+                          	<span class="help-inline" id="errNombreAmbiente">Please correct the error</span>
+                          </div>
+                        </div>
+                        
+                        
 
 							  
 							 <div class="control-group">
@@ -292,53 +249,66 @@
 								</div>
 							  </div>
 
-							  <div class="control-group">
-							  <label class="control-label" for="date01">Fecha Inicio(*):</label>
+
+
+
+						   <div class="control-group">
+							  <label class="control-label" for="date01">Limite Inicio(*):</label>
 							  <div class="controls">
-								<input type="text" class="input-xlarge datepicker" id="date01"  name="fFecIncio" onchange="alt_fecha(this)" >
+								<input type="text" class="input-xlarge datepicker" id="fFecIncio" readonly="true" value="01/01"  name="fFecIncio" onchange="alt_fecha(this);verificar_fecha(-1,this,'fFecFin');">
 							  </div>
 							</div>
 							
 							<div class="control-group">
-							  <label class="control-label" for="date02">Fecha Fin(*):</label>
+							  <label class="control-label" for="date02">Limite Fin(*):</label>
 							  <div class="controls">
-								<input type="text" class="input-xlarge datepicker" id="date02" name="fFecFin" onchange="alt_fecha(this)" >
+								<input type="text" class="input-xlarge datepicker" id="fFecFin" readonly="true" value="31/12"  name="fFecFin" onchange="alt_fecha(this);verificar_fecha(1,this,'fFecIncio');">
 							  </div>
 							</div>
-							
-							
-
-                                <div class="control-group">
-                                    <label class="control-label" for="textarea2">Descripcion:</label>
-			                          <div class="controls">
-			                            <textarea name="txtDescripcion" rows="3" id="textarea2" style="resize:none"></textarea>
-			                          </div>
-                               </div>
-					        
-					        
-					        
-					        <input type="hidden" name="optionsRadios" value="Disponible"></input>
-					        
-					        
-					        				
-						   		 <div class="form-actions">
-							  		<button type="button" class="btn btn-primary" onclick="javascript:alt_submit()">Guardar</button>
-							  		<button type="button" class="btn" onclick="location.href='buscaractividad.jsp'" >Cancelar</button>
-								</div>
-						  </fieldset>
-					  </form>   
-
-				  </div>
-				</div><!--/span-->
-
-			</div><!--/row-->
 
 
-			<div class="row-fluid sortable"><!--/span-->
+                        
+                        <div class="control-group" id="dvDescripcion">
+                  		  <label class="control-label" for="textarea2">Descripci&oacute;n:</label>
+                          <div class="controls">
+                            <textarea name="txtDescripcion" rows="3" id="txtDescripcion" style="resize:none"></textarea>
+                          	<span class="help-inline" id="errDescripcion">Please correct the error</span>
+                          </div>
+                        </div>
 
-			</div><!--/row-->		 
-					<!-- content ends -->
-			</div><!--/#content.span10-->
+
+
+                      <input type="hidden" name="optionsRadios" value="Disponible"></input>
+                        
+                        
+                        <div class="form-actions">
+                          <button type="button" class="btn btn-primary" onclick="javascript:alt_submit()">Agregar</button>
+                          <button type="button" class="btn" onclick="location.href='buscaractividad.jsp'" >Cancelar</button>
+                        </div>
+                        
+                        
+                        
+                      </fieldset>
+                    </form>
+					<span style="font-size:70%">(*)Campos Obligatorios</span>
+                  </div>
+                </div>
+                <!--/span-->
+              </div>
+              <!--/row-->
+              <div class="row-fluid sortable">
+                
+                <!--/span-->
+              </div>
+              <!--/row-->
+              <div class="row-fluid sortable">
+                
+                <!--/span-->
+              </div>
+              <!--/row-->
+              <!-- content ends -->
+            </div>
+          <!--/#content.span10-->
 				</div><!--/fluid-row-->
 				
 		<hr>
@@ -356,7 +326,6 @@
 				<a href="#" class="btn btn-primary">Save changes</a>
 			</div>
 		</div>
-
 		<jsp:include page="/IngSoft/general/inferior.jsp" />
 		
 	</div><!--/.fluid-container-->
@@ -433,83 +402,66 @@
 	<!-- history.js for cross-browser state change on ajax -->
 	<script src="js/jquery.history.js"></script>
 	<!-- application script for Charisma demo -->
-	<script src="js/charisma.js"></script>
+	<script src="js/charisma.js"></script>		
 	
 	<script type="text/javascript" src="js/apprise-1.5.full.js"></script>
-<link rel="stylesheet" href="css/apprise.css" type="text/css" />
-<script type="text/javascript" src="js/script.js"></script>
-		<script>
-
-
+	<link rel="stylesheet" href="css/apprise.css" type="text/css" />
+	<script type="text/javascript" src="js/script.js"></script>
+    <script>
+ 
+ 
 function validaForm(){
-		/*
-	esValido(nombre, casilla, id, tipoValidacion, minimo,maximo)
-	nombre: es el nombre de la casilla: ejemplo -> Nombre, Apellido, Fecha de Nacimiento, etc
-	casilla: corresponde a la casilla en si, para esto colocamos por ejemplo form.txtNombre, donde form ya fue definido
-	id: identificador de los divs para efectuar las validaciones
-	tipoValidacion: es un valor numerico el cual permite identificar el tipo de validacion que se efectuara
-	1: Validacion con cantidad de caracteres Minimo y maximo
-	2: Validación de cantidad de caracteres de fecha
-	3: validacion de llenado de radio button
-	4: Validacion de alfanumerico
-	5: validacion de valores Float
-	6: Validacion de enteros
-	8
-	minimo: valor numerico que indica la menor cantidad de caracteres que como minimo debe ser llenado (Solo para tipoValidacion 1 y 2, en el resto poner 1)
-	maximo: valor numerico que indica la maxima cantidad de caracteres que como maximo debe ser llenado (Solo para tipoValidacion 1 y 2, en el resto poner 1)
-	
-	El valor que va en cadena[i] es el nombre del campo
-	
-	#############################ADICIONAL#########################
-	Para validar una fecha Inicial y fecha Final usar la siguiente funcion
-	validarFechas(nombre[Fecha Final], casilla[Fecha Final], id[Fecha Final],nombre[Fecha Inicial],casilla[Fecha Inicial])
-	OJO: no va como parametro el id de la fecha Inicial
-	###############################################################
-	
-	*/
-	
-	var form=document.frmUpdate;
-
-	var cadena= new Array();
-	var i=0;
-	var error=false;
-	if(!esValido("Sede",form.cmbSede,"NombrePromocion",1,1,50)){cadena[i]="Nombre";i++;}
-	if(!esValido("Fecha Inicio",form.fFechInicio,"FechaInicio",2,1,10)){cadena[i]="Fecha Inicio";i++;}
-	if(!esValido("Fecha Fin",form.fFechFin,"FechaFin",2,1,10)){
-		cadena[i]="Fecha Fin";i++;
-	}else{
-		if(!validarFechas("Fecha Final",form.fFechFin,"FechaFin","Fecha Inicio",form.fFechInicio)){
-		cadena[i]="Fecha Fin";i++;
-		}
-	}
-	if(!esValido("Descripcion",form.txtDescripcion,"Descripcion",1,1,100)){cadena[i]="Descripcion";i++;}
-	
-	
-	//No tocar
-	if(i>0){
-	crearAlert(cadena);
-	return false;
-	}else{
-		return true;
-		
-	}
-
-}
-
-
+                /*
+        esValido(nombre, casilla, id, tipoValidacion, minimo,maximo)
+        nombre: es el nombre de la casilla: ejemplo -> Nombre, Apellido, Fecha de Nacimiento, etc
+        casilla: corresponde a la casilla en si, para esto colocamos por ejemplo form.txtNombre, donde form ya fue definido
+        id: identificador de los divs para efectuar las validaciones
+        tipoValidacion: es un valor numerico el cual permite identificar el tipo de validacion que se efectuara
+        1: Validacion con cantidad de caracteres Minimo y maximo
+        2: Validación de cantidad de caracteres de fecha
+        3: validacion de llenado de radio button
+        4: Validacion de alfanumerico
+        5: validacion de valores Float
+        6: Validacion de enteros
+        7: Validacion de fechas
+        minimo: valor numerico que indica la menor cantidad de caracteres que como minimo debe ser llenado (Solo para tipoValidacion 1 y 2, en el resto poner 1)
+        maximo: valor numerico que indica la maxima cantidad de caracteres que como maximo debe ser llenado (Solo para tipoValidacion 1 y 2, en el resto poner 1)
+       
+        El valor que va en cadena[i] es el nombre del campo
+       
+        #############################ADICIONAL#########################
+        Para validar una fecha Inicial y fecha Final usar la siguiente funcion
+        validarFechas(nombre[Fecha Final], casilla[Fecha Final], id[Fecha Final],nombre[Fecha Inicial],casilla[Fecha Inicial])
+        OJO: no va como parametro el id de la fecha Inicial
+        ###############################################################
+        */
+       
+        var form=document.frmData;
+ 
+        var cadena= new Array();
+        var i=0;
+        var error=false;
+        if(!esValido("Nombre",form.txtNombre,"NombreAmbiente",1,1,50)){cadena[i]="Nombre";i++;}
+        if(!esValido("Descripci&oacute;n",form.txtDescripcion,"Descripcion",1,0,100)){cadena[i]="Descripci&oacute;n";i++;}
+        //if(!esValido("Caracter&iacute;sticas",form.txtCaracteristica,"Caracteristica",1,0,100)){cadena[i]="Caracter&iacute;sticas";i++;}
+       
+        //No tocar
+        if(i>0){
+        crearAlert(cadena);
+        return false;
+        }else{
+                return true;      
+        }
+} 
+ 
 function inicializa(){
-	document.getElementById("errNombrePromocion").style.display='none';
-	document.getElementById("errFechaInicio").style.display='none';
-	document.getElementById("errFechaFin").style.display='none';
-	document.getElementById("errDescripcion").style.display='none';
-	
-}
-
-
+        document.getElementById("errNombreAmbiente").style.display='none';
+        document.getElementById("errDescripcion").style.display='none'; 
+        //document.getElementById("errCaracteristica").style.display='none';    
+} 
+ 
 inicializa();
-
+ 
 </script>
-	
-		
 </body>
 </html>
