@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Data.venta.servicio">
+
+  <cache />
+
+<select id="searchPlantillaServicio" parameterType="IngSoft.venta.bean.CriterioServicioBeanData" resultType="IngSoft.venta.bean.ResultadoServicioBeanData">
+select 
+SERVICIO_PROV.IdServicioProv as codigo
+,FechaInicio as limInicio
+,FechaFin as limFin
+,Nombre as nombre
+,Estado as estado
+from SERVICIO_PROV
+<where>
+	<if test="nombre != null ">
+        PROMOCION.nombre  like  #{nombre}
+    </if>
+    <if test="proveedor != null ">
+        PROMOCION.nombre  like  #{nombre}
+    </if>
+
+      
+</where>
+</select>
+
+  
+<!-- Agregar plantilla promocion -->
+<insert id="insertServicio" parameterType="IngSoft.venta.bean.ServicioBeanData" flushCache="true">
+	insert into PROMOCION(IdPromocion,Nombre,FechaInicio,FechaFin,Descripcion,Estado)
+	values (#{codigo},#{nombre},#{fechaInicio},#{fechaFin},#{descripcion},'Activo')
+</insert>
+
+<select id="getNextCodigo" resultType="java.lang.String">
+	select max(IdPromocion) from PROMOCION
+</select>
+
+
+ <!-- Fin agregar  -->
+ 
+ <!-- Modificar elemento -->
+<update id="updateServicio" parameterType="IngSoft.venta.bean.ServicioBeanData">
+update PROMOCION set Nombre=#{nombre}
+ ,FechaInicio=#{fechaInicio}
+ ,FechaFin=#{fechaFin}
+ ,Descripcion=#{descripcion}
+ where IdPromocion= #{codigo}
+</update>
+
+<!-- Fin modificar -->
+
+
+
+<!--Eliminar servicio -->
+<update id="deleteServicio" parameterType="java.lang.String" >
+update PROMOCION set Estado='Inactivo' where IdPromocion= #{codigo}
+</update>
+<!-- Fin eliminar -->
+
+<select id="getPlantillaServicio" parameterType="java.lang.String"  resultType="IngSoft.venta.bean.ServicioBeanData">
+select 
+IdPromocion as codigo
+,Nombre as nombre
+,FechaInicio as fechaInicio
+,FechaFin as fechaFin
+,Descripcion as descripcion
+,Estado as estado
+from PROMOCION  where IdPromocion=#{codigo}; 
+
+
+</select>
+
+
+</mapper>
+ 
