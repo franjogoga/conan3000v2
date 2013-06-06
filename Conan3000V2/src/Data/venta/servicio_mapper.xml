@@ -9,17 +9,18 @@
 <select id="searchPlantillaServicio" parameterType="IngSoft.venta.bean.CriterioServicioBeanData" resultType="IngSoft.venta.bean.ResultadoServicioBeanData">
 select 
 SERVICIO_PROV.IdServicioProv as codigo
-,FechaInicio as limInicio
-,FechaFin as limFin
-,Nombre as nombre
-,Estado as estado
-from SERVICIO_PROV
+,SERVICIO_PROV.Nombre as nombreServicio
+,PROVEEDOR.RazonSocial as nombreProveedor
+,SERVICIO_PROV.Estado as estado
+,SERVICIO_PROV.Precio as precio
+from SERVICIO_PROV,PROVEEDOR
 <where>
-	<if test="nombre != null ">
-        PROMOCION.nombre  like  #{nombre}
+	 PROVEEDOR.IdProveedor=SERVICIO_PROV.IdProveedor
+	<if test="nombreServicio != null ">
+     AND SERVICIO_PROV.Nombre like  #{nombreServicio}
     </if>
-    <if test="proveedor != null ">
-        PROMOCION.nombre  like  #{nombre}
+    <if test="nombreProveedor != null ">
+     OR PROVEEDOR.RazonSocial like  #{nombreProveedor}
     </if>
 
       
