@@ -173,7 +173,7 @@ public class InvitadoBeanFunction {
 		catch(Exception a)		
 		{sqlsesion.rollback();
 		a.printStackTrace();
-			throw CoException.set("Error en ingreso de datos: No se puede agregar el invitado", "SMAActividad?accion=Agregar&tipo=1");
+			throw CoException.set("Error: Nombre de Invitado repetido XD", "SMAActividad?accion=Agregar&tipo=1");
 			
 		}
 		
@@ -205,7 +205,7 @@ public class InvitadoBeanFunction {
 		catch(Exception a)		
 		{sqlsesion.rollback();
 		a.printStackTrace();
-			throw CoException.set("Error: No se pudo modificar el invitado ", "SMAInvitado?accion=Agregar&tipo=1");
+			throw CoException.set("Error: Nose pudo modificar la plantilla ", "SMAInvitado?accion=Agregar&tipo=1");
 			
 		}
 		
@@ -256,7 +256,7 @@ public class InvitadoBeanFunction {
 		catch(Exception a)		
 		{sqlsesion.rollback();
 		a.printStackTrace();
-			throw CoException.set("Error: No se pudo eliminar el Invitado intente de nuevo", "SMAInvitado?accion=Agregar&tipo=1");
+			throw CoException.set("Error: No se pudo eliminar la plantilla Invitado intente de nuevo", "SMAInvitado?accion=Agregar&tipo=1");
 			
 		}
 		
