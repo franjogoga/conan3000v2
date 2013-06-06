@@ -13,7 +13,7 @@
 			
 				<div id="content" class="span10">
 				    <!-- content starts -->
-				   <jsp:include page="includes/seleccionarproveedor.jsp" />
+				  <jsp:include page="includes/seleccionarproveedor.jsp" />
 				    <!-- content ends -->
 				</div>
 			 </div>
