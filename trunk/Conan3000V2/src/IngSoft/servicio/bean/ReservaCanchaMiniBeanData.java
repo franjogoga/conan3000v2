@@ -7,8 +7,8 @@ public class ReservaCanchaMiniBeanData implements Serializable{
 	private String descCancha;
 	private String codigoSocio;
 	private java.sql.Date fecha;
-	private java.sql.Date horaIni;
-	private java.sql.Date horaFin;
+	private String horaIni;
+	private String horaFin;
 	public String getCodigoCancha() {
 		return codigoCancha;
 	}
@@ -28,27 +28,24 @@ public class ReservaCanchaMiniBeanData implements Serializable{
 	public void setFecha(java.sql.Date fecha) {
 		this.fecha = fecha;
 	}
-	public java.sql.Date getHoraIni() {
-		return horaIni;
-	}
-	public void setHoraIni(java.sql.Date horaIni) {
-		this.horaIni = horaIni;
-	}
-	public java.sql.Date getHoraFin() {
-		return horaFin;
-	}
-	public void setHoraFin(java.sql.Date horaFin) {
-		this.horaFin = horaFin;
-	}
 	public String getDescCancha() {
 		return descCancha;
 	}
 	public void setDescCancha(String descCancha) {
 		this.descCancha = descCancha;
 	}
-	
-	
-
+	public String getHoraIni() {
+		return horaIni;
+	}
+	public void setHoraIni(String horaIni) {
+		this.horaIni = horaIni;
+	}
+	public String getHoraFin() {
+		return horaFin;
+	}
+	public void setHoraFin(String horaFin) {
+		this.horaFin = horaFin;
+	}
 	
 	
 }
