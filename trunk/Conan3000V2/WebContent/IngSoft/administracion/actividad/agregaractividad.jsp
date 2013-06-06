@@ -317,7 +317,7 @@
 					        
 					        
 					        
-					        <input type="hidden" name="txtEstado" value="Disponible"></input>
+					        <input type="hidden" name="optionsRadios" value="Disponible"></input>
 					        
 					        
 					        				
@@ -334,10 +334,6 @@
 			</div><!--/row-->
 
 
-			<div class="row-fluid sortable"><!--/span-->
-			
-			</div><!--/row-->
-			
 			<div class="row-fluid sortable"><!--/span-->
 
 			</div><!--/row-->		 
