@@ -11,11 +11,16 @@ select
 PRODUCTO_PROV.IdProdProveedor as codigo
 ,PRODUCTO_PROV.IdProveedor as proveedor
 ,PRODUCTO_PROV.Nombre as nombre
+,PRODUCTO_PROV.Descripcion as desc
+,PRODUCTO_PROV.PrecioUnitario as pu
+,PRODUCTO_PROV.Presentacion as pre
 ,PRODUCTO_PROV.Estado as estado
 
 from PRODUCTO_PROV
 <where>
-	
+	 <if test="proveedor != null">
+       PRODUCTO_PROV.IdProdProveedor= #{codigo}
+    </if>
     <if test="proveedor != null">
        PRODUCTO_PROV.IdProveedor= #{proveedor}
     </if>
@@ -34,7 +39,7 @@ from PRODUCTO_PROV
 <!-- Agregar plantilla membresia -->
 <insert id="insertProducto" parameterType="IngSoft.venta.bean.ProductoBeanData" flushCache="true">
 	insert into PRODUCTO_PROV(IdProdProveedor,IdProveedor,Nombre,Descripcion,PrecioUnitario,Estado)
-	values (#{codigo},#{proveedor},#{nombre},#{desc},#{pu},#{estado})
+	values (#{codigo},#{proveedor},#{nombre},#{desc},#{pu},'Activo')
 </insert>
 
 <select id="getNextCodigo6" resultType="java.lang.String">

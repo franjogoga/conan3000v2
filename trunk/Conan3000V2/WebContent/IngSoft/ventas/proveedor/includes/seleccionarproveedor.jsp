@@ -86,7 +86,7 @@
 		          </div>
 			      <div class="box-content">
 			        <form class="form-horizontal" name="frmCriteriosBusqueda" id="frmCriteriosBusqueda"  method="POST" action="<%= response.encodeURL("SMVProveedor")%>">
-			         <input type="hidden" name="accion" value="Buscar"/></input>
+			         <input type="hidden" name="accion" value="Seleccionar"/></input>
 			          <fieldset>
 			          
 			            <div class="control-group">
@@ -109,7 +109,7 @@
 			            
 			            <div class="form-actions">
 			              <button type="submit" class="btn btn-primary">Buscar</button>
-			              <button type="submit" class="btn"><a href="buscarproveedor.jsp">Cancelar</a></button>
+			              <button type="submit" class="btn"><a href="../producto/agregarproducto.jsp">Cancelar</a></button>
 		                </div>
 		              </fieldset>
 		            </form>
@@ -134,10 +134,7 @@
 			      <div class="box-content">
 			      <table class="table table-striped table-bordered bootstrap-datatable datatable" >
 					    <!-- agregar nuevo boton -->
-					    <div  align="right">
-					     <a class="btn btn-primary" href="javascript:alt_agregar()"> <i class="icon icon-add icon-white"></i> Agregar </a> 
-					     </div>
-					     
+					   
 					    <thead>
 					      <tr>
 					        <th>Raz&oacute;n Social</th>
