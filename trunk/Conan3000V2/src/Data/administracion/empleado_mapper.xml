@@ -6,31 +6,20 @@
 
   <cache />
 
-<select id="searchPlantillaEvento" parameterType="IngSoft.servicio.bean.CriterioEventoBeanData" resultType="IngSoft.servicio.bean.ResultadoEventoBeanData">
-select 
-PLANTILLA_EVENTO.IdPlantillaEvento as codigo
-,TIPO_EVENTO.nombre as tipo
-,PLANTILLA_EVENTO.nombre as nombre
-,PLANTILLA_EVENTO.FechaInicio as limInicio
-,PLANTILLA_EVENTO.FechaFin as limFin
-from PLANTILLA_EVENTO 
-left JOIN TIPO_EVENTO on TIPO_EVENTO.IdTipoEvento=PLANTILLA_EVENTO.IdTipoEvento 
-<where>
-<if test="nombre != null ">
-        PLANTILLA_EVENTO.nombre  like  #{nombre}
-    </if>
-    <if test="tipo != null and tipo.length()>1">
-        AND TIPO_EVENTO.IdTipoEvento = #{tipo}
-    </if>
-    <if test="limInicio != null">
-        AND PLANTILLA_EVENTO.FechaInicio &gt;= #{limInicio}
-    </if>
-    <if test="limFin != null">
-        AND PLANTILLA_EVENTO.FechaFin &lt;= #{limFin}
-    </if>
-    AND PLANTILLA_EVENTO.Estado='A'
-</where>
-order by 1 asc
+<select id="searchPlantillaEmpleado" parameterType="IngSoft.administracion.bean.CriterioEmpleadoBeanData" resultType="IngSoft.administracion.bean.ResultadoEmpleadoBeanData">
+
+SELECT
+inf245g2.PERSONA.IdPersona AS codigo ,
+inf245g2.PERSONA.Nombres AS nombre,
+inf245g2.PERSONA.ApePaterno AS apaterno,
+inf245g2.EMPLEADO.Puesto AS puesto,
+inf245g2.EMPLEADO.Estado AS estado
+
+FROM inf245g2.PERSONA , inf245g2.EMPLEADO
+WHERE 
+inf245g2.PERSONA.IdPersona = inf245g2.EMPLEADO.IdEmpleado
+
+order by 1 asc;
 </select>
 <select id="searchHorarios" resultType="IngSoft.administracion.bean.HorarioEmpleados">
 	select IdHorario as codigo
