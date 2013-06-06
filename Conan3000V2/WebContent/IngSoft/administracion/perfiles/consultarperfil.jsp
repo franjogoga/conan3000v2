@@ -71,10 +71,10 @@
 				<div>
 					<ul class="breadcrumb">
 						<li>
-							<a href="#">Inicio</a> <span class="divider">/</span>
+							<a href="/Conan3000V2/IngSoft/general/index.jsp">Inicio</a> <span class="divider">/</span>
 						</li>
 						<li>
-							<a href="#">Mantenimiento de Perfiles de Usuario</a> <span class="divider">/</span>
+							<a href="buscarperfil.jsp">Mantenimiento de Perfiles de Usuario</a> <span class="divider">/</span>
 						</li>
 						<li>
 							Consultar Perfil de Usuario
