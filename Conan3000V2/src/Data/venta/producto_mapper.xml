@@ -8,33 +8,26 @@
 
 <select id="searchPlantillaProducto" parameterType="IngSoft.venta.bean.CriterioProductoBeanData" resultType="IngSoft.venta.bean.ResultadoProductoBeanData">
 select 
-PRODUCTO_PROV.IdProdProveedor as codigo
+PRODUCTO_PROV.IdProductoProv as idProdProveedor
 ,PRODUCTO_PROV.IdProveedor as proveedor
 ,PRODUCTO_PROV.Nombre as nombre
-,PRODUCTO_PROV.Descripcion as desc
-,PRODUCTO_PROV.PrecioUnitario as pu
-,PRODUCTO_PROV.Presentacion as pres
+,PRODUCTO_PROV.Descripcion as descripcion
+,PRODUCTO_PROV.PrecioUnitario as precioU
+,PRODUCTO_PROV.Presentacion as presentacion
 ,PRODUCTO_PROV.Estado as estado
 
 from PRODUCTO_PROV
 <where>
-	<if test="codigo != null ">
-       PRODUCTO_PROV.IdProdProveedor= #{codigo})
-    </if>
+	
     <if test="proveedor != null">
-       PRODUCTO_PROV.IdProveedor= #{proveedor}
+       PRODUCTO_PROV.Descripcion like #{descripcion}
     </if>
     <if test="nombre != null">
-        AND PRODUCTO_PROV.Nombre= #{nombre}
+        AND PRODUCTO_PROV.Nombre like #{nombre}
     </if>
-    <if test="desc != null">
-        AND PRODUCTO_PROV.Descripcion= #{desc}
-    </if>
-     <if test="pu != null">
-        AND PRODUCTO_PROV.PrecioUnitario= #{pu}
-    </if>  
+   
      <if test="estado != null">
-        AND PRODUCTO_PROV.Estado= #{estado}
+        AND PRODUCTO_PROV.Estado like #{estado}
     </if>  
       
 </where>
@@ -62,7 +55,7 @@ IdProveedor=#{proveedor}
  ,Descripcion=#{desc}
  ,PrecioUnitario=#{pu}
  ,Estado=#{estado}
- where IdProdProveedor= #{codigo}
+ where IdProductoProv= #{idProdProveedor}
 </update>
 
 <!-- Fin modificar -->
@@ -71,19 +64,20 @@ IdProveedor=#{proveedor}
 
 <!--Eliminar membresia -->
 <update id="deleteProducto" parameterType="java.lang.String" >
-update PRODUCTO_PROV set Estado='Inactivo' where IdProdProveedor= #{codigo}
+update PRODUCTO_PROV set Estado='Inactivo' where IdProductoProv= #{idProdProveedor}
 </update>
 <!-- Fin eliminar -->
 
 <select id="getPlantillaProducto" parameterType="java.lang.String"  resultType="IngSoft.venta.bean.ProductoBeanData">
 select 
-PRODUCTO_PROV.IdProdProveedor as codigo
-,PRODUCTO_PROV.IdProveedor as proveedor
+PRODUCTO_PROV.IdProductoProv as idProdProveedor
+,PRODUCTO_PROV.IdProveedor as idProveedor
 ,PRODUCTO_PROV.Nombre as nombre
-,PRODUCTO_PROV.Descripcion as desc
-,PRODUCTO_PROV.PrecioUnitario as pu
+,PRODUCTO_PROV.Descripcion as descripcion
+,PRODUCTO_PROV.PrecioUnitario as precioU
+,PRODUCTO_PROV.Presentacion as presentacion
 ,PRODUCTO_PROV.Estado as estado
-from PRODUCTO_PROV; 
+from PRODUCTO_PROV  where IdProductoProv=#{idProdProveedor}; ; 
 
 
 </select>
