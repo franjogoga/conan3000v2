@@ -60,9 +60,9 @@
 						</div>
                         
                     </div>
-					<div class="box-content" name="frmCriteriosBusqueda" id="frmCriteriosBusqueda"  method="POST" action="<%= response.encodeURL("SMVProducto")%>">
+					<div class="box-content" >
 						 <input type="hidden" name="accion" value="Buscar"/></input>
-						<form class="form-horizontal">
+						<form class="form-horizontal" name="frmCriteriosBusqueda" id="frmCriteriosBusqueda"  method="POST" action="<%= response.encodeURL("SMVProducto")%>">
 						  <fieldset>
 						  
 							  
