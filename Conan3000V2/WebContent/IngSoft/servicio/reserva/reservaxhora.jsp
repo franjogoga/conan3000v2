@@ -1,3 +1,4 @@
+<%@page import="java.util.Vector"%>
 <%@page import="IngSoft.servicio.bean.ReservaCanchaMiniBeanData"%>
 <%@page import="java.util.Date"%>
 <%@page import="IngSoft.servicio.bean.Utils"%>
@@ -50,13 +51,14 @@
 int j=0;
 int k=0;
 int indIni=0;
-int a= reservas.size();
+//int a= reservas.size();
 String Cancha=null;
 boolean esnull=false;
-
-while(j<a){ 
-String codActual= ((ReservaCanchaMiniBeanData)reservas.get(j)).getCodigoCancha();
+Vector<ReservaCanchaMiniBeanData> reservasV= reservas;
+while(j<reservasV.size()){ 
+String codActual= ((ReservaCanchaMiniBeanData)reservasV.get(j)).getCodigoCancha();
 if(Cancha==null|| !Cancha.equals(codActual)){
+Cancha=codActual;
 indIni=j;
 k++;
 esnull=false;
@@ -75,7 +77,7 @@ esnull=false;
 						       
 						  <tbody>
 <%}%>			
-						<%if(((ReservaCanchaMiniBeanData)reservas.get(j)).getFecha()==null && !esnull) 
+						<%if(((ReservaCanchaMiniBeanData)reservasV.get(j)).getFecha()==null && !esnull) 
 							esnull=true;
 							if(esnull){
 								String hora=horaIni;
@@ -103,15 +105,20 @@ esnull=false;
 							while(true){
 								j=indIni;
 								if(hora.compareTo(horaFin)>=0)break;
-								String temp= DFI.format(((ReservaCanchaMiniBeanData)reservas.get(j)).getFecha());								
-								String HRI=((ReservaCanchaMiniBeanData)reservas.get(j)).getHoraIni();
-								String HRF=((ReservaCanchaMiniBeanData)reservas.get(j)).getHoraFin();
+								String temp=null;
+								String HRI=null;
+								String HRF=null;
+								if(!esnull){
+								temp= DFI.format(((ReservaCanchaMiniBeanData)reservasV.get(j)).getFecha());								
+								HRI=((ReservaCanchaMiniBeanData)reservasV.get(j)).getHoraIni();
+								HRF=((ReservaCanchaMiniBeanData)reservasV.get(j)).getHoraFin();
+								}
 								boolean test=false;								
 								%>
 								<tr>
 								<td><%=hora%>-<%=addHora(hora)%></td>
 								<%for(int l=0;l<dias.length;l++){
-									test=((DFI.format(Utils.fechaMas(fecIni, l)).compareTo(temp)==0)&&(HRI.compareTo(hora))==0)&&(!esnull);																											
+									test=(!esnull)&&((DFI.format(Utils.fechaMas(fecIni, l)).compareTo(temp)==0)&&(HRI.compareTo(hora))==0);																											
 								%>
 								<td class="center">
 									<a id="<%=codActual%><%=DFT.format(Utils.fechaMas(fecIni, l))%><%=hora%>" 
@@ -133,22 +140,24 @@ esnull=false;
 								if(test && !esnull){
 										test=false;
 										HRI=addHora(HRI);
-										if(HRI.compareTo(HRF)>=0) {
-												((ReservaCanchaMiniBeanData)reservas.get(j)).setHoraIni(HRI);
-												reservas.remove(j);
-										}
-										else{											
+										if(HRI.compareTo(HRF)>=0) {												
+												reservasV.remove(j);
+												reservasV.trimToSize();
+										}	
+										else{
+											((ReservaCanchaMiniBeanData)reservasV.get(j)).setHoraIni(HRI);											
 											j++;											
 										}
-										if(j>=reservas.size() || !((ReservaCanchaMiniBeanData)reservas.get(j)).getCodigoCancha().equals(codActual)){
+										if(j>=reservasV.size() || !((ReservaCanchaMiniBeanData)reservasV.get(j)).getCodigoCancha().equals(codActual)){
 										if(j==indIni)esnull=true;
+										//if(j>0)
 										j--;
 										
 										}
 										else{
-										 temp= DFI.format(((ReservaCanchaMiniBeanData)reservas.get(j)).getFecha());
-										 HRI=((ReservaCanchaMiniBeanData)reservas.get(j)).getHoraIni();
-										 HRF=((ReservaCanchaMiniBeanData)reservas.get(j)).getHoraFin();
+										 temp= DFI.format(((ReservaCanchaMiniBeanData)reservasV.get(j)).getFecha());
+										 HRI=((ReservaCanchaMiniBeanData)reservasV.get(j)).getHoraIni();
+										 HRF=((ReservaCanchaMiniBeanData)reservasV.get(j)).getHoraFin();
 										 } 	
 																				
 								 	}						
@@ -160,7 +169,7 @@ esnull=false;
 						  </tbody>
 					  </table> 
 </div>
-<%j++;
+<%if(((ReservaCanchaMiniBeanData)reservasV.get(j)).getCodigoCancha().equals(codActual))j++;
 }
 %>
 <div id="temptabs">
@@ -179,7 +188,7 @@ $('#temptabs').html('');
 $('#tabs').html(htmltemp);
 </script>
 
-<%if(reservas.size()>0){ %>					  
+<%if(k>0){ %>					  
 					  <div align="center">
 <!--  <button class="btn">Anterior</button><button class="btn" style="position:absolute;
 left: 48%">Hoy</button><button class="btn" style="position: absolute;
