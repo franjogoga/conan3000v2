@@ -166,16 +166,16 @@
 							
 							
 							<div class="control-group">
-							  <label class="control-label" for="numerodocumento">N&uacute;mero de Documento (*):</label>							  
+							  <label class="control-label" for="txtNumeroDocumento">Numero de Documento (*):</label>							  
 							  <div class="controls">
-								<input type="text" class="span6 typeahead" id="numerodocumento" data-provide="typeahead" data-items="4" ></input>								
+								<input type="text" class="span6 typeahead" data-provide="typeahead"  id="txtNumeroDocumento" name="txtNumeroDocumento" onkeypress="return alfanumerico(event);" autofocus maxlength="50"/>														
 							  </div>
 							</div>
 							
 							<div class="control-group">
 								<label class="control-label" for="cmbTipoDocumento">Tipo de Documento (*):</label>
 								<div class="controls">
-								  <select name="selectTipoDocumento" id="selectTipoDocumento" data-rel="chosen">
+								  <select name="cmbTipoDocumento" id="cmbTipoDocumento" data-rel="chosen">
 									<option>DNI</option>
 									<option>Carnet de extranjería</option>
 									</select>
@@ -197,14 +197,23 @@
 							<div class="control-group">
 								<label class="control-label" for="cmbArea">&Aacute;rea (*):</label>
 								<div class="controls">
-								  <select name="selectarea" id="selectarea" data-rel="chosen">
+								  <select name="cmbArea" id="cmbArea" data-rel="chosen">
 									<option>GERENCIA</option>
 									<option>ADMINISTRACION</option>
 									<option>OPERACIONES</option>
-									 </select>
+								  </select>
 								</div>
 							</div>						
-													
+							<div class="control-group">
+								<label class="control-label" for="cmbPuesto">Puesto (*):</label>
+								<div class="controls">
+								  <select name="cmbPuesto" id="cmbPuesto" data-rel="chosen">
+									<option>Gerente</option>
+									<option>Adminitrador</option>
+									<option>Operador</option>
+									 </select>
+								</div>
+							</div>							
 							  <div class="control-group">
 								<label class="control-label" for="cmbSedes">Sedes de Trabajo:</label>
 								<div class="controls">
