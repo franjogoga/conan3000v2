@@ -6,13 +6,74 @@ function alt_submit(){
 }
 
 
-function validar(form){
-			if(form.txtProveedor.value.length <=0)return false;
-			
-	return true;
-		
-		
+function esCorrecto(valor,minimo, maximo){
+	
+	if(valor.length>maximo){ 
+		return false;
+	}else{
+		if(valor.length<=minimo){
+			return false;
+		}else{
+			return true;	
 		}
+
+	}
+
+}
+
+function validarEntero(valor){ 
+ 
+ valor = parseInt(valor); 
+ 	if (isNaN(valor)) { 
+       	 return null;
+ 	}else{ 
+       	 return valor; 
+ 	}
+}
+
+function generaMensaje(cadena){
+	var i;
+	var mensaje="Los siguientes campos no han sido llenados correctamente\n";
+	for(i=0;i<cadena.lenght;i++){
+		if(i+1<cadena.lenght){
+			mensaje+=cadena[i]+', ';
+			
+		}else{
+			mensaje=+cadena[i];
+			
+		}
+		
+	}
+	return mensaje;
+	
+}
+
+
+function crearAlert(cadena){
+	mensaje=generaMensaje(cadena);
+	$(document).ready(function() {
+		apprise(mensaje, {'animate':true}, function(r) {
+
+			if(r) { 
+			
+			} else { 
+		
+			}
+		});
+	});
+}
+
+function validar(form){
+	if(form.txtNombre.value.length <=0)return false;
+	if(form.txtDescripcion.value.length<=0)return false;
+	if(form.txtPresentacion.value.lengtht<=0)return false;
+	if(form.txtProveedor.value.length<=0)return false;
+	if(form.txtPreciU.value.length<=0)return false;
+	//if(form.cmbAmbientes.value.length<=0)return false;
+return true;
+
+
+}
 		
 function anhadir(cod,name){
 	var form=document.frmProducto;
@@ -56,7 +117,7 @@ function anhadir(cod,name){
 							  <div class="control-group" id="dvDescripcion">
 			                <label class="control-label" for="textarea2">Descripci&oacute;n:</label>
 			                <div class="controls">
-			                  <textarea name="textarea" class="" id="txtDescripcion" name="txtDescripcion" style="resize:none; height: 74px; width: 273px" ></textarea>
+			                  <textarea name="textarea" class="" id="txtDescripcion" name="txtDescripcion" style="resize:none; height: 74px; width: 273px" onKeyUp="limita(this,100);" onKeyDown="limita(this,100);" ></textarea>
 								<span class="help-inline" id="errDescripcion">Please correct the error 	        
 					          </span>		                  
  							</div>
