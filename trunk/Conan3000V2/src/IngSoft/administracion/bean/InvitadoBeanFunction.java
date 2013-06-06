@@ -134,7 +134,7 @@ public class InvitadoBeanFunction {
 		return invitadoData;		
 	}
 
-	public boolean agregarInvitado(InvitadoBeanData invitadosData) throws CoException {
+	public boolean agregarInvitado(InvitadoBeanData invitadoData) throws CoException {
 		boolean resultado=false;		
 		
 		l.lock();
@@ -146,7 +146,7 @@ public class InvitadoBeanFunction {
 			// conesta sentencia podemos tener el codigo
 			String codigo = (String)sqlsesion.selectOne("Data.administracion.invitado.getNextCodigo");
 
-			System.out.print(" invitadosData ----> "+ codigo);
+			System.out.print(" invitadoData ----> "+ codigo);
 			
 			
 			if(codigo!=null)
@@ -155,17 +155,19 @@ public class InvitadoBeanFunction {
 			String defecto= "000000";
 			String temp= defecto.substring(0, defecto.length()-String.valueOf(cod).length()).concat(String.valueOf(cod));
 			
-			invitadosData.setCodigo(codigo.substring(0,3).concat(temp));
+			invitadoData.setCodigo(codigo.substring(0,3).concat(temp));
 			}
-			else invitadosData.setCodigo("INV000001");
+			else invitadoData.setCodigo("INV000001");
 			
+			
+			System.out.print(" invitadoData " + invitadoData.getNombres());
 			
 		
 			
 
-			sqlsesion.insert("Data.administracion.invitado.insertPlantillaPersona",invitadosData);
+			sqlsesion.insert("Data.administracion.invitado.insertPlantillaPersona",invitadoData);
 			
-			sqlsesion.insert("Data.administracion.invitado.insertPlantillaInvitado",invitadosData);
+			sqlsesion.insert("Data.administracion.invitado.insertPlantillaInvitado",invitadoData);
 
 			
 			resultado=true;
@@ -173,7 +175,7 @@ public class InvitadoBeanFunction {
 		catch(Exception a)		
 		{sqlsesion.rollback();
 		a.printStackTrace();
-			throw CoException.set("Error: Nombre de Invitado repetido XD", "SMAActividad?accion=Agregar&tipo=1");
+			throw CoException.set("Error: Nombre de Invitado repetido XD", "SMAInvitado=Agregar&tipo=1");
 			
 		}
 		
