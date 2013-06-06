@@ -49,6 +49,8 @@
 	<!-- The conan3000 icon -->
 	<link rel="shortcut icon" href="img/conan_logo.png">
 	
+	<script src="perfiles.js"></script>
+	
 	<script>	
 	function alt_agregar_perfil(){
 		var formPerfil=document.getElementById("frmPerfil");
@@ -128,14 +130,14 @@
 									<div class="control-group">
 										<label class="control-label" for="txtNombre">Perfil :</label>							  
 										<div class="controls">
-											<input type="text" class="span6 typeahead" id="txtNombre" name="txtNombre"></input>								
+											<input type="text" class="span6 typeahead" id="txtNombre" name="txtNombre" onkeypress="return alfanumerico(event);" autofocus maxlength="50"></input>								
 										</div>
 									</div>
 									
 									<div class="control-group">
 										<label class="control-label" for="txtDescripcion">Descripci&oacute;n :</label>							  
 										<div class="controls">
-											<input type="text" class="span6 typeahead" id="txtDescripcion" name="txtDescripcion"></input>								
+											<input type="text" class="span6 typeahead" id="txtDescripcion" name="txtDescripcion" onkeypress="return alfanumerico(event);" autofocus maxlength="100"></input>								
 										</div>
 									</div>															
 									  
@@ -303,13 +305,16 @@
 	<!-- application script for Charisma demo -->
 	<script src="js/charisma.js"></script>
 	
+	<script src="js/conan3000.js"></script>	
 	<script>
-	function loadContent() 
-	{ 
-	   $("#includedContent").load("menu.html"); 
-	} 
+		$('#txtNombre').bind('paste',function(){		
+			setTimeout(function(){filtrar('abcdefghijklmnopqrstuwxyzABCDEFGHIJKLMNOPQRSTUWXYZÒ—·¡È…ÌÕÛ”˙⁄1234567890',$('#txtNombre'),50)}, 0);
+		})
+	</script> 
+	<script>
+		$('#txtDescripcion').bind('paste',function(){		
+			setTimeout(function(){filtrar('abcdefghijklmnopqrstuwxyzABCDEFGHIJKLMNOPQRSTUWXYZÒ—·¡È…ÌÕÛ”˙⁄1234567890',$('#txtDescripcion'),100)}, 0);
+		})
 	</script>
-	
-	<script>loadContent()</script> 
 </body>
 </html>
