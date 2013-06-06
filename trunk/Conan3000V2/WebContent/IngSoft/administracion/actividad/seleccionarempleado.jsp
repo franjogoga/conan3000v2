@@ -54,9 +54,9 @@
 		form.submit();
 	}
 	
-	function alt_Insertar(cod,name){
+	function alt_Insertar(cod,name,puesto){
 		
-		parent.anhadir(cod,name);
+		parent.anhadir(cod,name,puesto);
 	}
 	</script>	
 	
@@ -188,7 +188,7 @@
                        
                                <td class="center">
                           				<a class="btn btn-success"
-                          					href="javascript:alt_Insertar('<%=((ResultadoEmpleadoBeanData)resultados.get(i)).getCodigo()%>','<%= ((ResultadoEmpleadoBeanData)resultados.get(i)).getNombre()+' '+((ResultadoEmpleadoBeanData)resultados.get(i)).getApaterno() %>')">
+                          					href="javascript:alt_Insertar('<%=((ResultadoEmpleadoBeanData)resultados.get(i)).getCodigo()%>','<%= ((ResultadoEmpleadoBeanData)resultados.get(i)).getNombre()+' '+((ResultadoEmpleadoBeanData)resultados.get(i)).getApaterno() %>','<%= ((ResultadoEmpleadoBeanData)resultados.get(i)).getPuesto()%>')">
                           					<i
                           						class="icon-zoom-in icon-white">
                           					</i>

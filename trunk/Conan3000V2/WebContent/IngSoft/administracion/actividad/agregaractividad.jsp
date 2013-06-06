@@ -58,6 +58,17 @@
 	
 	
 	<script>
+	
+	
+	function anhadir(cod, name,puesto){
+		var form= document.frmData;
+		form.cmbEncargado.value=name;
+		form.cmbEncargadoCodigo.value=cod;
+		form.txtPuesto.value=puesto;
+		$.fn.colorbox.close();
+		
+	} 
+	
 	function alt_fecha(obj){
 		obj.value=obj.value.slice(0,5);
 		
@@ -225,12 +236,11 @@
 
 
 			              <div class="control-group" id="dvSocio">
-			                <label class="control-label" for="typeahead8">Encargado (*): </label>
+			                
 			                <div class="controls">
-			                  <input type="text" class="span6 typeahead" id="typeahead8"  data-provide="typeahead" name="txtSocio" data-items="4" readonly="readonly">
-			                  <br>
+			           
 			                  <div  align="left"> <a class="btn btn-primary iframe" href="seleccionarempleado.jsp"> <i class="icon icon-search icon-white"></i> Buscar Socio</a> </div>
-			                  <span class="help-inline" id="errSocio">Please correct the error</span>
+			                  <span class="help-inline" id="errSocio"></span>
 			                </div>
 		                  </div>
 
