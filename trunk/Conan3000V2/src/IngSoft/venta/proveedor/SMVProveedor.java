@@ -14,7 +14,7 @@ public class SMVProveedor extends CoServlet{
 		acciones.put("Buscar", new AccionBuscarProveedor());
 		acciones.put("Consultar", new AccionConsultarProveedor());
 		acciones.put("Agregar", new AccionAgregarProveedor());
-		//acciones.put("Modificar", new AccionModificarProveedor());
+		acciones.put("Modificar", new AccionModificarProveedor());
 		acciones.put("Eliminar", new AccionEliminarProveedor());
 		acciones.put("Seleccionar", new AccionSeleccionarProveedor());
 	}
