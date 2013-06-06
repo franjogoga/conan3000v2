@@ -278,6 +278,7 @@
 	<script src="js/jquery.history.js"></script>
 	<!-- application script for Charisma demo -->
 	<script src="js/charisma.js"></script>
+	
 	<script src="js/conan3000.js"></script>
 	<script>
 		$('#txtNombre').bind('paste',function(){		
