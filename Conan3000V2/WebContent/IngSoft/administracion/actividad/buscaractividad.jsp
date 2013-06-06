@@ -1,39 +1,22 @@
 <!DOCTYPE html>
 
-<!--  paso 2 configurarion link  + v ariables de retorno -->
-
-
-
-
-<%@page import="IngSoft.administracion.bean.TipoActividadMiniBeanData"%>
-<%@page import="java.text.SimpleDateFormat"%>
-<%@page import="java.util.Calendar"%>
 <%@page import="IngSoft.administracion.bean.ResultadoActividadBeanData"%>
 <%@page import="java.util.Vector"%>
-<!--  fin paso 2  -->
+
 
 
 <html lang="en">
 <head>
-	<!--
-		Charisma v1.0.0
-
-		Copyright 2012 Muhammad Usman
-		Licensed under the Apache License v2.0
-		http://www.apache.org/licenses/LICENSE-2.0
-
-		http://usman.it
-		http://twitter.com/halalit_usman
-	-->
 	<meta charset="utf-8">
 	<title>Buscar Actividad</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
 	<meta name="author" content="Muhammad Usman">
-	<!--The beans  -->
-	<jsp:useBean id="resultados" scope="request"class="java.util.Vector"></jsp:useBean>
-	<jsp:useBean id="tipoactividades" scope="request"class="java.util.Vector"></jsp:useBean>
 
+	<!--The beans  -->
+	<jsp:useBean id="sedes" scope="request" class="java.util.Vector"></jsp:useBean>
+	<jsp:useBean id="tiposAmbiente" scope="request" class="java.util.Vector"></jsp:useBean>
+	<jsp:useBean id="resultados" scope="request"class="java.util.Vector"></jsp:useBean>
 
 	<!-- The styles -->
 	<link id="bs-css" href="css/bootstrap-cerulean.css" rel="stylesheet">
@@ -45,7 +28,6 @@
 		padding: 9px 0;
 	  }
 	</style>
-	<link href="css/bootstrap-responsive.css" rel="stylesheet">
 	<link href="css/bootstrap-responsive.css" rel="stylesheet">
 	<link href="css/charisma-app.css" rel="stylesheet">
 	<link href="css/jquery-ui-1.8.21.custom.css" rel="stylesheet">
@@ -63,20 +45,10 @@
 	<link href='css/opa-icons.css' rel='stylesheet'>
 	<link href='css/uploadify.css' rel='stylesheet'>
 
-	<!-- The HTML5 shim, for IE6-8 support of HTML5 elements -->
-	<!--[if lt IE 9]>
-	  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
-
 	<!-- The fav icon -->
-	<link rel="shortcut icon" href="img/conan_logo.png">
-	<!-- codigos  -->
-	
+	<link rel="shortcut icon" href="img/favicon.ico">
+		
 	<script>
-	function alt_fecha(obj){
-	obj.value=obj.value.slice(0,5);
-	
-	}
 	function alt_agregar(){
 		var form=document.getElementById("frmAlternativo");
 		form.accion.value="Agregar";
@@ -100,27 +72,18 @@
 		form.codigo.value=cod;
 		form.submit();
 	}
-	function updatetable(){		
-			docReady();
-			
-	}
-	
-
-
-	
-	
-	</script>			
+	</script>
+		
 </head>
 
 <body>
-	<jsp:include page="/IngSoft/general/superior.jsp" />
+		<jsp:include page="/IngSoft/general/superior.jsp" />
 		<div class="container-fluid">
 		<div class="row-fluid">
 				
 			<!-- left menu starts -->
 			<jsp:include page="/IngSoft/general/leftmenu.jsp" />
 						<!-- left menu ends -->
-			
 			<noscript>
 				<div class="alert alert-block span10">
 					<h4 class="alert-heading">Warning!</h4>
@@ -134,121 +97,85 @@
 
 			<div>
 				<ul class="breadcrumb">
-					<li>
-						<a href="/Conan3000V2/IngSoft/general/index.jsp">Home</a> <span class="divider">/</span>
-					</li>
-					<li>
-						Mantenimiento de Actividad 
-					</li>
-					
+                  <li> <a href="../../general/index.jsp">Home</a> <span class="divider">/</span> </li>
+                  <li>Mantenimiento de Actividad</li>
 				</ul>
 			</div>
 			
-			<div class="row-fluid sortable">
-				<div class="box span12">
-					<div class="box-header well" data-original-title>
-						<h2><i class="icon-search"></i> BUSCAR ACTIVIDAD</h2>
-						<div class="box-icon">
+			<div class="row-fluid sortable">		
+				
+                <div class="row-fluid sortable">
+                  <div class="box span12">
+                    <div class="box-header well" data-original-title>
+                      <h2><i class="icon-search"></i> BUSCAR ACTIVIDAD</h2>
+                      <div class="box-icon">
 							<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
 						</div>
-					</div>
-					<div class="box-content">
-						<!-- <form class="form-horizontal" name="frmCriteriosBusqueda" id="frmCriteriosBusqueda"  method="post" onsubmit="xmlhttpPost('/Conan3000V2/IngSoft/servicio/evento/SMSEvento?accion=Buscar', 'frmCriteriosBusqueda', 'resultadoBusqueda','<img >');
-		 return false;"> -->
-		 
-		 <!--  paso 1  configuracion de link + variables -->													 <!-- nos linkea al archivo SMAActividad -->
-		 <form class="form-horizontal" name="frmCriteriosBusqueda" id="frmCriteriosBusqueda"  method="post" action="<%= response.encodeURL("SMAActividad")%>">
-		                                      <!-- Buscar  variable  que pasa al archivo SMAActividad   -->	
-		 <input type="hidden" name="accion" value="Buscar"></input>
-		  <input type="hidden" name="tipo" value="2"></input>
-						
-						  <fieldset>
-							
-							<div class="control-group">
-							  <label class="control-label" for="typeahead">Nombre de Actividad:</label>
-							  <div class="controls">									   <!-- txtNombre  variable     -->	
-								<input type="text" class="span6 typeahead" id="txtNombre" name="txtNombre">
-							  </div>
-							</div>
-							
-
-							  
-
-							  
-							<div class="form-actions">
-							  <button type="submit" class="btn btn-primary">Buscar</button>
-							  <button type="reset" class="btn">Cancelar</button>
-							</div>
-						  </fieldset>
-						</form>   
-
-					</div>
-					
-				</div><!--/span-->
-
-			</div><!--/row-->
-			 <!-- fin  paso 1  --> 
-			
-			
-
-		    <!--  paso 3  configuracion de link + variables -->				  <!-- nos linkea al archivo SMAActividad -->
-			<form id="frmAlternativo" name="frmAlternativo" method="post" action="<%= response.encodeURL("SMAActividad")%>">
-			<input type="hidden" name="accion" value="Agregar"></input>
-			<input type="hidden" name="codigo" value=""></input>
-			<input type="hidden" name="tipo" value="1"></input>
-			</form>
-			<!--  fin paso 3 -->
-			
-			
-            <!--  paso 2 configurarion link  + v ariables de retorno -->
-            
-			<div class="row-fluid sortable">		
-				<div class="box span12">
-					<div class="box-header well" data-original-title>
-						<h2><i></i> RESULTADOS</h2>
+                    </div>
+                    <div class="box-content">
+                      <form class="form-horizontal" name="frmCriteriosBusqueda" id="frmCriteriosBusqueda"  method="post" action="<%=response.encodeURL("SMAActividad")%>">
+						<input type="hidden" id="accion" name="accion" value="Buscar"></input>
+		  				<input type="hidden" id="tipo" name="tipo" value="2"></input>                      
+                        <fieldset> 
                         
-						
-					</div>           
-					<div class="box-content">
+                        <div class="control-group">
+                          <label class="control-label" for="typeahead">Nombre:</label>
+                          <div class="controls">
+                            <input type="text" class="span6 typeahead" id="txtNombre" name="txtNombre">
+                          </div>
+                        </div>
+                        
+                        
+                        
+                        
+                       
+                        
+                        <div class="form-actions">
+                          <button type="submit" class="btn btn-primary">Buscar</button>
+                          <button type="reset" id="boton" class="btn">Cancelar</button>
+                        </div>
+                        
+                      </fieldset>
+                      </form>
+                    </div>
+                  </div>
+                  <!--/span-->
+                </div>
+                <form id="frmAlternativo" name="frmAlternativo" method="post" action="<%= response.encodeURL("SMAActividad")%>">
+				<input type="hidden" name="accion" value="Agregar"></input>
+				<input type="hidden" name="codigo" value=""></input>
+				<input type="hidden" name="tipo" value="1"></input>
+				</form>	
+				
+				
+				
+				
+                <div class="row-fluid sortable">
+                  <div class="row-fluid sortable">
+                    <div class="box span12">
+                      <div class="box-header well" data-original-title>
+                        <h2><i class="icon-th-list"></i> RESULTADOS</h2>
+                      </div>
+                      <div class="box-content">
                         <table class="table table-striped table-bordered bootstrap-datatable datatable">
-                            <!-- agregar nuevo boton -->
-                            
-                            
-                            <div align="right">
-                            
-                                <a class="btn btn-primary" href="javascript:alt_agregar()">
-                                    <i class="icon icon-add icon-white"></i>
-                                    Agregar
-                                </a>
-                              
-                             </div>          
+                          <!-- agregar nuevo boton -->
+                          <div  align="right"> <a class="btn btn-primary" href="javascript:alt_agregar()"> <i class="icon icon-add icon-white"></i> Agregar </a> </div>
                           <thead>
-							  <tr>
-								    <th>Nombre</th>
-							        <th>Tipo actividad</th>
-							       	 <th>Estado</th>       							      							        
-							        <th>Accion</th>
-							
-							  </tr>
-						  </thead>
-                          <element>
-                          	<tbody id="resultadoBusqueda">
-                          		<% 
-                          			for(int i=0; i<resultados.size() ;i++){
-                          		%>
-                          		<tr>
-                          			<td>
-                          				<%=
-                          					((ResultadoActividadBeanData)resultados.get(i)).getNombre()
-                          				%>
-                          			</td>
-                          			<td class="center">
-                          				<%=
-                          					((ResultadoActividadBeanData)resultados.get(i)).getTipoactividad()
-                          				%>
-                          			</td>
-
-                          			<td class="center">
+                            <tr>
+                              <th>Nombre</th>
+                              <th>Tipo ACtividad</th>
+                              
+                              <th>Estado</th>
+                              <th>Acci&oacute;n</th>
+                            </tr>
+                          </thead>
+                          <tbody id="resultadoBusqueda">
+                          	<% for(int i=0; i<resultados.size(); i++) { %>
+                            <tr>
+                              <td class="center"><%=((ResultadoActividadBeanData)resultados.get(i)).getNombre()%></td>
+                              <td class="center"><%=((ResultadoActividadBeanData)resultados.get(i)).getTipoactividad()%></td>
+                             
+								<td class="center">
                           			
 	                          			
 								           <%
@@ -268,55 +195,58 @@
 	                          			
                           			
                           			</td>
-
-                          			<td class="center">
-                          				<a class="btn btn-success"
-                          					href="javascript:alt_consultar('<%=((ResultadoActividadBeanData)resultados.get(i)).getCodigo()%>')">
-                          					<i
-                          						class="icon-zoom-in icon-white">
-                          					</i> 
-                          					Ver
-                          				</a>
-                          				<a class="btn btn-info"
-                          					href="javascript:alt_modificar('<%=((ResultadoActividadBeanData)resultados.get(i)).getCodigo()%>')">
-                          					<i
-                          						class="icon-edit icon-white">
-                          					</i>
-                          					Modificar
-                          				</a>
-                          				<a class="btn btn-danger"
-                          					href="javascript:alt_eliminar('<%=((ResultadoActividadBeanData)resultados.get(i)).getCodigo()%>')">
-                          					<i class="icon-trash icon-white">
-                          					</i>
-                          					Eliminar
-                          				</a>
-                          			</td>
-                          		</tr>
-
-
-                          		<%}%>
-
-                          	</tbody>
-                          </element>
-                        </table>       
-					</div>
-				</div><!--/span-->
-				
-				
+                              
+                              
+                              
+                              <td class="center">
+                              				<a class="btn btn-success" href="javascript:alt_consultar('<%=((ResultadoActividadBeanData)resultados.get(i)).getCodigo()%>')">
+												<i class="icon-zoom-in icon-white"></i> Ver 
+											</a>
+											<a class="btn btn-info" href="javascript:alt_modificar('<%=((ResultadoActividadBeanData)resultados.get(i)).getCodigo()%>')">
+												<i class="icon-edit icon-white"></i> Modificar
+											</a>
+											<a class="btn btn-danger" href="javascript:alt_eliminar('<%=((ResultadoActividadBeanData)resultados.get(i)).getCodigo()%>')">
+												<i class="icon-trash icon-white"></i> Eliminar
+											</a>
+							  </td>
+							</tr>
+                            <%}%>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                    <!--/span-->
+                  </div>
+                  <!--/span-->
+                </div>
+                <!--/span-->
+			
 			</div><!--/row-->
-		   <!-- fin paso 2 -->
+                
+                
+                
+                
+                
+
+			<div class="row-fluid sortable"><!--/span--><!--/span-->
+			</div><!--/row-->
+			
+			<div class="row-fluid sortable"><!--/span--><!--/span-->
+			
+			</div><!--/row-->
+			
+			<div class="row-fluid sortable"><!--/span-->
+			</div><!--/row-->
     
 					<!-- content ends -->
 			</div><!--/#content.span10-->
 				</div><!--/fluid-row-->
 				
-				
-				
 		<hr>
 
 		<div class="modal hide fade" id="myModal">
 			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal">Ã—</button>
+				<button type="button" class="close" data-dismiss="modal">×</button>
 				<h3>Settings</h3>
 			</div>
 			<div class="modal-body">
@@ -328,15 +258,15 @@
 			</div>
 		</div>
 		<jsp:include page="/IngSoft/general/inferior.jsp" />
-		
-		
+				
 	</div><!--/.fluid-container-->
-		<!-- external javascript
+
+	<!-- external javascript
 	================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->
 
 	<!-- jQuery -->
-    <script src="js/jquery-1.7.2.min.js"></script>
+	<script src="js/jquery-1.7.2.min.js"></script>
 	<!-- jQuery UI -->
 	<script src="js/jquery-ui-1.8.21.custom.min.js"></script>
 	<!-- transition / effect library -->
@@ -405,7 +335,6 @@
 	<!-- application script for Charisma demo -->
 	<script src="js/charisma.js"></script>
 	
-	<script src="js/ajaxsbmt.js"></script>
-
+		
 </body>
 </html>
