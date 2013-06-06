@@ -9,8 +9,8 @@
 	<select id="searchSocios" parameterType="IngSoft.administracion.bean.CriterioSocioBeanData" resultType="IngSoft.administracion.bean.ResultadoSocioBeanData">
 		select SOCIO.IdSocio as idSocio, SOCIO.Direccion as direccion, PERSONA.Nombres as nombres, 
 			PERSONA.ApePaterno as apellidoPaterno, PERSONA.ApeMaterno as apellidoMaterno, 
-			PERSONA.TipoDocumento as tipoDocumento, PERSONA.NumeroDocumento as numeroDocumento,
-			MEMBRESIA.Vitalicio as vitalicio
+			PERSONA.TipoDocumento as tipoDocumento, PERSONA.NumeroDocumento as numeroDocumento, 
+			MEMBRESIA.FechaInicio as fechaInicio, MEMBRESIA.Vitalicio as vitalicio
 		from SOCIO, PERSONA, MEMBRESIA
 		<where>
 			<if test="nombres != null ">
