@@ -10,7 +10,8 @@ public class EmpleadoBeanData implements Serializable{
 	private String nombre;
 	private Date fechaNacimiento;
 	private String tipoDocumento;
-	private Integer numeroDocumento;
+	private int numeroDocumento;
+
 	private String apellidoPaterno;
 	private String apellidoMaterno;
 	private String puesto;
@@ -21,7 +22,12 @@ public class EmpleadoBeanData implements Serializable{
 	private Date fechaContrato;
 	private String estado;
 	
-	
+	public int getNumeroDocumento() {
+		return numeroDocumento;
+	}
+	public void setNumeroDocumento(int numeroDocumento) {
+		this.numeroDocumento = numeroDocumento;
+	}
 	
 	
 	public String getTipoDocumento() {
@@ -36,13 +42,6 @@ public class EmpleadoBeanData implements Serializable{
 	public void setFechaNacimiento(Date fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
 	}
-	public Integer getNumeroDocumento() {
-		return numeroDocumento;
-	}
-	public void setNumeroDocumento(Integer numeroDocumento) {
-		this.numeroDocumento = numeroDocumento;
-	}
-	
 		
 	public String getApellidoPaterno() {
 		return apellidoPaterno;
