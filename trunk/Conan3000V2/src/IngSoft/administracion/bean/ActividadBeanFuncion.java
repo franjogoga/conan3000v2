@@ -313,5 +313,26 @@ public class ActividadBeanFuncion {
 		return ambientes;
 	}
 	
+	
+	public Vector<ResultadoEmpleadoBeanData> getEmpleados() throws CoException {
+		Vector<ResultadoEmpleadoBeanData> empleados= null;
+		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+		
+		
+		try{
+			List<ResultadoEmpleadoBeanData> temp=sqlsesion.selectList("Data.administracion.actividad.getEmpleado");			
+			empleados= new Vector<ResultadoEmpleadoBeanData>(temp);
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			throw CoException.set("Error: No se pudo obtener la lista de departamentos", "SMAActividad?accion=Agregar&tipo=1");
+		}
+		finally{
+			sqlsesion.close();
+			
+		}
+		return empleados;
+	}
+	
 
 }
