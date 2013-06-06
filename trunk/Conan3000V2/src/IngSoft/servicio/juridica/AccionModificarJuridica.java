@@ -21,9 +21,9 @@ public class AccionModificarJuridica extends CoAccion {
 		if(Integer.valueOf(request.getParameter("tipo"))==2){
 		
 			
-			String RazonSocial=(request.getParameter("txtRazonSocial"));
+			//String RazonSocial=(request.getParameter("txtRazonSocial"));
 			PersonaJuridicaBeanData juridicaData=juridicaFuncion.crearJuridica(request, response);
-			juridicaData.setCodigo(request.getParameter("txtCodigo"));
+			juridicaData.setCodigo(request.getParameter("codigo"));
 		    juridicaFuncion.modificarJuridica(juridicaData);
 			this.direccionar(sc, request, response, "/IngSoft/servicio/juridica/juridicabuscar.jsp");
 		}	
