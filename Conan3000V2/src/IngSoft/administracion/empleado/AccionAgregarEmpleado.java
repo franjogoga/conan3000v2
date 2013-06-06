@@ -24,15 +24,11 @@ public class AccionAgregarEmpleado extends CoAccion {
 		int tipo=Integer.parseInt(request.getParameter("tipo"));
 		
 		if(tipo==2){
-			EmpleadoBeanFuncion empleadoFuncion= EmpleadoBeanFuncion.getInstance();
-			EmpleadoBeanData empleadoData = empleadoFuncion.crearEmpleado(request, response);
-			
-		//empleadoFuncion.agregarEmpleado(empleadoData);
-			
-			
 		
-		    
-		   
+		EmpleadoBeanFuncion empleadoFuncion= EmpleadoBeanFuncion.getInstance();
+		EmpleadoBeanData empleadoData = empleadoFuncion.crearEmpleado(request, response);
+			
+		empleadoFuncion.agregarEmpleado(empleadoData);
 		
 			this.direccionar(sc, request, response, "/IngSoft/administracion/empleados/buscarempleado.jsp");
 		}
