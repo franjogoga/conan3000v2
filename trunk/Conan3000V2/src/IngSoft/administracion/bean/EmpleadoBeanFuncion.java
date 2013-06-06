@@ -65,9 +65,10 @@ public class EmpleadoBeanFuncion {
 		empleadoData.setFechaNacimiento(new Date(DF.parse(request.getParameter("txtFechaFacimiento")).getTime()));
 		empleadoData.setFechaContrato(new Date(DF.parse(request.getParameter("txtFechaContrato")).getTime()));
 		empleadoData.setArea(request.getParameter("cmbArea"));	
-		empleadoData.setPuesto(request.getParameter("txtPuesto"));
+		empleadoData.setPuesto(request.getParameter("cmbPuesto"));
 		empleadoData.setEstado("activo");
 		empleadoData.setTipoDocumento(request.getParameter("cmbTipoDocumento"));
+		//String numDoc=request.getParameter("txtNumeroDocumento");
 		empleadoData.setNumeroDocumento(Integer.parseInt(request.getParameter("txtNumeroDocumento")));
 		
 	
