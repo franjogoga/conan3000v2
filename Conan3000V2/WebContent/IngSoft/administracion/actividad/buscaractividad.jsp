@@ -161,6 +161,7 @@
 		                                      <!-- Buscar  variable  que pasa al archivo SMAActividad   -->	
 		 <input type="hidden" name="accion" value="Buscar"></input>
 		  <input type="hidden" name="tipo" value="2"></input>
+						
 						  <fieldset>
 							
 							<div class="control-group">
