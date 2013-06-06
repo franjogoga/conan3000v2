@@ -32,11 +32,11 @@ left JOIN TIPO_EVENTO on TIPO_EVENTO.IdTipoEvento=PLANTILLA_EVENTO.IdTipoEvento
 </where>
 order by 1 asc
 </select>
-<select id="searchSedeMini" resultType="IngSoft.servicio.bean.SedeMiniBeanData">
-	select IdSede as codigo
-	,Nombre 
+<select id="searchHorarios" resultType="IngSoft.administracion.bean.HorarioEmpleados">
+	select IdHorario as codigo
+	,Descripcion 
 	from 
-	SEDE
+	HORARIO
 	order by 1
 </select>
 <select id="searchAmbienteMini" resultType="IngSoft.servicio.bean.AmbienteMiniBeanData">
