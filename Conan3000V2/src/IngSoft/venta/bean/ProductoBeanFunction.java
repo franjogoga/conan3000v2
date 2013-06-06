@@ -1,6 +1,5 @@
 package IngSoft.venta.bean;
 
-import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -41,23 +40,7 @@ public class ProductoBeanFunction {
 				String estado;
 				estado=request.getParameter("rButton");
 				productoData.setEstado(estado);}
-			
-		//membresiaData.setCodigoSocio(request.getParameter("idSocio"));
-		//embresiaData.setFechaInicio(new Date(DF.parse(request.getParameter("fFechaInicio")).getTime()));
-		//membresiaData.setFechafin(new Date(DF.parse(request.getParameter("fFechaFin")).getTime()));
-		//membresiaData.setCosto(Double.parseDouble(request.getParameter("txtCosto")));
-		//membresiaData.setPeriodo(request.getParameter("cmbPeriodo"));
-		//membresiaData.setEstado(request.getParameter("rButton"));
 		
-		//if (request.getParameter("rButton")!=null){
-		//String est;
-		//est=request.getParameter("rButton");
-		//membresiaData.setEstado(est);}
-		
-		//if(request.getParameter("rButton").equals("option1")) {
-		//membresiaData.setEstado(request.getParameter("option1"));}
-          // else if (request.getParameter("rButton").equals("option2"))
-            //	membresiaData.setEstado(request.getParameter("option2"));
          	
 		}
 		catch(Exception e){
@@ -74,17 +57,16 @@ public class ProductoBeanFunction {
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		
 		try{
-			String codigo= (String)sqlsesion.selectOne("Data.venta.producto.getNextCodigo6");
+			String codigo= (String)sqlsesion.selectOne("Data.venta.producto.getNextCodigo");
 			if(codigo!=null){
 			int cod= Integer.parseInt(codigo.substring(3))+1;
 			String defecto= "000000";
 			String temp= defecto.substring(0, defecto.length()-String.valueOf(cod).length()).concat(String.valueOf(cod));
 			
 			productoData.setIdProdProveedor(codigo.substring(0,3).concat(temp));}
-			else productoData.setIdProdProveedor("PRO00001");
-			//insertMembresia esta en membresia mapper
+			else productoData.setIdProdProveedor("PRD00001");
+
 			sqlsesion.insert("insertProducto",productoData);
-			//sqlsesion.insert("insertPlantillaEventoSedes",eventoData);
 			
 			resultado=true;
 		}
