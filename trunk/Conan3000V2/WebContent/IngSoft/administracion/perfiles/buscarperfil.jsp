@@ -102,7 +102,7 @@
 							<a href="/Conan3000V2/IngSoft/general/index.jsp">Inicio</a> <span class="divider">/</span>
 						</li>
 						<li>
-							<a href="#">Mantenimiento de Perfil de Usuario</a> <span class="divider">/</span>
+							<a href="buscarperfil.jsp">Mantenimiento de Perfil de Usuario</a> <span class="divider">/</span>
 						</li>
 						<li>
 							Buscar Perfil de Usuario
