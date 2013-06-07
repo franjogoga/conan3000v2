@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+ <%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Calendar"%>
+<%@page import="java.util.GregorianCalendar"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="IngSoft.administracion.bean.InvitadoBeanData"%>
@@ -73,6 +76,9 @@
 
 	<!-- The fav icon -->
 	<link rel="shortcut icon" href="img/conan_logo.png">
+	
+	
+	
 	<script>
 		function validar(form){
 			if(form.txtNombre.value.length <=0)return false;
@@ -92,6 +98,41 @@
 	obj.value=obj.value.slice(0,5);
 	
 	}
+	
+	function verificar_fecha(comparacion,fecha1,fecha2){
+		var fec1=fecha1.value.split("/");
+		var fec2=document.getElementById(fecha2).value.split("/");
+		var resultado=true;
+		if(fec1.length==fec2.length) {
+			var size=fec1.length;
+			for(i=size-1;i>=0;i--){
+				if(comparacion==0){
+					if(fec1[i].indexOf(fec2[i])<0)  resultado= false;
+					}
+				if(comparacion==1){
+					if(parseInt(fec1[i])<parseInt(fec2[i]))  resultado= false;
+					}
+				if(comparacion==-1){
+					if(parseInt(fec1[i])>parseInt(fec2[i]))  resultado= false;
+					}
+				}
+			if(resultado==false){			
+					fecha1.value=document.getElementById(fecha2).value;			
+				}
+				
+			} 
+		else{
+			alert("Error al comparar fechas");
+		}			
+	}
+	
+	
+	function alfanumerico(e) 
+	{ 
+	var key = window.event.keyCode || event.keyCode;
+	return ((key >= 48 && key <= 57) ||(key >= 97 && key <= 122) ||(key >= 65 && key <=90) ||(key >= 192 && key <=246)||(key <=13) ||(key ==32));
+	} 	
+	
 	
 	function alt_submit(){
 		var form= document.frmUpdate;
@@ -118,12 +159,23 @@
 	
 	public String generarCadena(String[] t){
 		String a="";
-		for(int i=0;i<t.length;i++)
+		for(int i=0;i<t.length;i++){
 			a= a.concat(t[i]+"/");
-			if(a.length()>0) a=a.substring(0, a.length()-1);
+			if(a.length()>0) a=a.substring(0, a.length()-1);}
 		return a;
 	}
+	
+	
 	%>
+	
+	
+<%
+Calendar c1 = GregorianCalendar.getInstance();
+c1.add(Calendar.YEAR, 1);
+SimpleDateFormat dfActual= new SimpleDateFormat("dd/MM/YYYY");
+String fecAnoIni=dfActual.format(new java.util.Date());
+
+String fecAnoFin=dfActual.format(c1.getTime()); %>
 		
 </head>
 
@@ -152,7 +204,7 @@
 			<div>
 				<ul class="breadcrumb">
 					<li>
-						<a href="/Conan3000V2/IngSoft/general/index.jsp">Home</a> <span class="divider">/</span>
+						<a href="../../general/index.jsp">Home</a> <span class="divider">/</span>
 					</li>
 					<li>
 						<a href="buscarinvitado.jsp">Mantenimiento de Invitado</a> <span class="divider">/</span>
@@ -245,23 +297,23 @@
 
 
 
-							  <div class="control-group">
-							  <label class="control-label" for="date01">Fecha Nacimiento(*):</label>
+							  <div class="control-group" id="dvFecNacimiento">
+							  <label class="control-label" for="typeahead7" name="fFecNacimiento">Fecha Nacimiento(*): </label>
 							  <div class="controls">
-								<input type="text" class="input-xlarge datepicker" id="date01"  name="fFecNacimiento" onchange="alt_fecha(this)" >
+								<input type="text" class="input-xlarge datepicker"  id="fFecNacimiento" name="fFecNacimiento" value="<%=fecAnoIni%>" readonly="readonly">
+			                	<span class="help-inline" id="errFecNacimiento">Please correct the error</span>
 							  </div>
 							</div>
 							
-							<div class="control-group">
-							  <label class="control-label" for="date02">Fecha Registro(*):</label>
-							  <div class="controls">
-								<input type="text" class="input-xlarge datepicker" id="date02" name="fFecRegistro" onchange="alt_fecha(this)" >
-							  </div>
-							</div>
+							 <div class="control-group" id="dvFecRegistro">
+			              <label class="control-label" for="typeahead6">Fecha Registro (*): </label>
+			                <div class="controls">
+			                  <input type="text" class="input-xlarge datepicker" id="fFecRegistro" name="fFecRegistro" value="<%=fecAnoFin%>" readonly="readonly">
+			                  <span class="help-inline" id="errFecRegistro">Please correct the error</span>
+			                </div>
+		                  </div>
 							
-							
-
-						   
+									   
 					        
 					        <div class="control-group" id="dvCorreo" >
 						      <label class="control-label" for="typeahead7">Correo (*): </label>
@@ -476,8 +528,11 @@ function validaForm(){
 	if(!esValido("Apellido Paterno",form.txtApaterno,"Apaterno",1,1,50)){cadena[i]="Apellido Paterno";i++;}
 	if(!esValido("Apellido Materno",form.txtAmaterno,"Amaterno",1,1,50)){cadena[i]="Apellido Materno";i++;}
 	if(!esValido("Nro. de Doc",form.txtNrodoc,"Nrodoc",1,1,8)){cadena[i]="Nro. de Doc";i++;}
-	
 	if(!esValido("Correo",form.txtCorreo,"Correo",1,1,50)){cadena[i]="Correo";i++;}
+	if(!esValido("Fecha Nacimiento",form.fFecNacimiento,"FecNacimiento",2,1,10)){cadena[i]="Fecha Nacimiento";i++;}
+	if(!esValido("Fecha Registro",form.fFecRegistro,"FecRegistro",2,1,10)){cadena[i]="Fecha Registro";i++;}
+	if(!validarFechas("Fecha Registro",form.fFecRegistro,"FecRegistro","Fecha Nacimiento",form.fFecNacimiento)){cadena[i]="Fecha Registro";i++;};
+	
 	
 	/*if(!esValido("Fecha Inicio",form.fFechInicio,"FechaInicio",2,1,10)){cadena[i]="Fecha Inicio";i++;}
 	
@@ -537,8 +592,8 @@ Solo poner el id de los <span> segun corresponda
 	document.getElementById("errNrodoc").style.display='none';
 	document.getElementById("errCorreo").style.display='none';
 	//document.getElementById("errRuc").style.display='none';
-	//document.getElementById("errFechaInicio").style.display='none';
-	//document.getElementById("errFechaFin").style.display='none';
+	document.getElementById("errFecNacimiento").style.display='none';
+	document.getElementById("errFecRegistro").style.display='none';
 	//document.getElementById("errFechaSorteo").style.display='none';
 	//document.getElementById("errSocio").style.display='none';
 	//document.getElementById("errCosto").style.display='none';
