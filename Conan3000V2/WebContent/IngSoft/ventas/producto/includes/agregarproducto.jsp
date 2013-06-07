@@ -77,7 +77,7 @@ function anhadir(cod,name){
 		                  </div>
 							  
 						      
-						       <div class="control-group" id="dv'Presentacion">
+						       <div class="control-group" id="dvPresentacion">
 
 							    <label class="control-label" for="typeahead14">Presentaci&oacute;n: </label>
 							    <div class="controls">
@@ -97,7 +97,7 @@ function anhadir(cod,name){
 					          </span>	
 						        </div>
 						      </div>
-						 <div class="control-group" id="dvProvedor">
+						 <div class="control-group" id="dvProveedor">
 			                <label class="control-label" for="typeahead8">Proveedor (*): </label>
 			                <div class="controls">
 			                  <input type="text" class="span6 typeahead" id="txtProveedor"  data-provide="typeahead" name="txtProveedor" data-items="4" readonly="readonly">
