@@ -63,4 +63,24 @@ order by 1 asc
 </insert>
 
 
+
+
+<update id="deletePLantillaEmpleado" parameterType="java.lang.String" >
+update EMPLEADO set Estado='inactivo' where IdEmpleado= #{codigo}
+</update>
+
+<select id="getPLantillaEmpleado" parameterType="String" resultType="IngSoft.administracion.bean.ResultadoEmpleadoBeanData">
+
+select 
+ EMPLEADO.IdEmpleado as codigo
+,PERSONA.Nombres as nombre
+,PERSONA.apePaterno as apellidoPaterno
+,PERSONA.NumeroDocumento as numeroDocumento
+,EMPLEADO.Area as area
+from EMPLEADO e, PERSONA  where e.IdEmpleado=#{codigo};
+
+
+</select>
+
+
 </mapper>
