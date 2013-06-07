@@ -43,9 +43,12 @@ public class SedeBeanFuncion {
 			System.out.print("  SedeBeanFuncion ---> crearSede  -->nombre == "+ request.getParameter("txtNombre"));
 			
 		sedeData.setNombre(    request.getParameter("txtNombre") );
+		sedeData.setDistrito(   request.getParameter("cmbDistrito") );
+		
 		sedeData.setDireccion(    request.getParameter("txtDireccion") );
 		sedeData.setTelefono(    Long.parseLong(request.getParameter("txtTelefono") )    );
 		sedeData.setAreaterreno( Double.parseDouble(request.getParameter("txtAreaterreno")) );
+		sedeData.setEstado(   request.getParameter("txtEstado") );
 		
 		
 		//sedeData.setDepartamento(    request.getParameter("cmbDepartamento") );
