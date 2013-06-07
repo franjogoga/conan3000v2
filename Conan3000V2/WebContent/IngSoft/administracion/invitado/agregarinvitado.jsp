@@ -194,24 +194,29 @@
 					          	<span class="help-inline" id="errNombre">Please correct the error</span>
 					          </div>
 					        </div>
-
-						    <div class="control-group">
-						      <label class="control-label" for="typeahead7">Apellido Paterno(*): </label>
+					        
+					        <div class="control-group" id="dvApaterno" >
+						      <label class="control-label" for="typeahead7">Apellido Paterno (*): </label>
 						      <div class="controls">
-						        <input type="text" class="span6 typeahead" id="txtApaterno"  data-provide="typeahead"  name="txtApaterno"  >
+						        <input type="text" class="span6 typeahead" 
+						        id="txtApaterno" name="txtApaterno" 
+						        data-provide="typeahead" >
+					          	<span class="help-inline" id="errApaterno">Please correct the error</span>
 					          </div>
 					        </div>
 
-							  
-						    <div class="control-group">
-						      <label class="control-label" for="typeahead7">Apellido Marteno(*): </label>
+						    
+							<div class="control-group" id="dvAmaterno" >
+						      <label class="control-label" for="typeahead7">Apellido Materno (*): </label>
 						      <div class="controls">
-						        <input type="text" class="span6 typeahead" id="txtAmaterno"  data-provide="typeahead"  name="txtAmaterno"  >
+						        <input type="text" class="span6 typeahead" 
+						        id="txtAmaterno" name="txtAmaterno" 
+						        data-provide="typeahead" >
+					          	<span class="help-inline" id="errAmaterno">Please correct the error</span>
 					          </div>
 					        </div>
-
-
-                              <div class="control-group">
+					          
+						    <div class="control-group">
 								<label class="control-label" for="selectError">Tipo de Doc.(*):</label>
 								<div class="controls">
 								  <select  id="selectError" data-rel="chosen" name="cmbTipodoc">
@@ -250,10 +255,15 @@
 							
 
 
-						    <div class="control-group">
-						      <label class="control-label" for="typeahead7"> Correo(*): </label>
+						   
+					        
+					        <div class="control-group" id="dvCorreo" >
+						      <label class="control-label" for="typeahead7">Correo (*): </label>
 						      <div class="controls">
-						        <input type="text" class="span6 typeahead" id="txtCorreo"  data-provide="typeahead"  name="txtCorreo"  >
+						        <input type="text" class="span6 typeahead" 
+						        id="txtCorreo" name="txtCorreo" 
+						        data-provide="typeahead" >
+					          	<span class="help-inline" id="errCorreo">Please correct the error</span>
 					          </div>
 					        </div>
 
@@ -457,6 +467,9 @@ function validaForm(){
 	var i=0;
 	var error=false;
 	if(!esValido("Nombre",form.txtNombre,"Nombre",1,1,50)){cadena[i]="Nombre";i++;}
+	if(!esValido("Apellido Paterno",form.txtApaterno,"Apaterno",1,1,50)){cadena[i]="Apaterno";i++;}
+	if(!esValido("Apellido Materno",form.txtAmaterno,"Amaterno",1,1,50)){cadena[i]="Amaterno";i++;}
+	if(!esValido("Correo",form.txtCorreo,"Correo",1,1,50)){cadena[i]="Correo";i++;}
 	
 	/*if(!esValido("Fecha Inicio",form.fFechInicio,"FechaInicio",2,1,10)){cadena[i]="Fecha Inicio";i++;}
 	
