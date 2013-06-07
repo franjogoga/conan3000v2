@@ -15,6 +15,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import IngSoft.general.CoException;
 import IngSoft.general.MyBatisSesion;
+import IngSoft.servicio.bean.PersonaJuridicaBeanData;
 import IngSoft.servicio.bean.SedeMiniBeanData;
 
 import java.text.SimpleDateFormat;
@@ -98,7 +99,52 @@ public class EmpleadoBeanFuncion {
 			
 		}
 		return empleadoData;		
-	} 
+	}
+	
+	
+	
+	public boolean eliminarEmpleado(String codigo) throws CoException {
+		boolean resultado=false;		
+		
+		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+		try{
+		
+			sqlsesion.update("Data.administracion.empleado.deletePLantillaEmpleado",codigo);
+			
+			resultado=true;
+		}
+		catch(Exception a)		
+		{sqlsesion.rollback();
+		a.printStackTrace();
+			throw CoException.set("Error: No se pudo eliminar la plantilla intente de nuevo", "SMSEmpleado?accion=Agregar&tipo=1");
+			
+		}
+		
+		finally{
+			sqlsesion.commit();
+			sqlsesion.close();					
+		}
+			
+		return resultado;
+	}
+	
+	
+	
+	
+	public EmpleadoBeanData consultarEmpleado(String codigo){
+		EmpleadoBeanData EmpleadoData=null;
+		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+		try{
+			EmpleadoData= sqlsesion.selectOne("Data.administracion.empleado.getPLantillaEmpleado",codigo);
+		}
+		finally{
+			sqlsesion.close();
+		}
+		return EmpleadoData;
+	}
+	
+	
+	
 	
 	public boolean agregarEmpleado(EmpleadoBeanData eventoData) throws CoException {
 		boolean resultado=false;		
