@@ -50,7 +50,7 @@ from PRODUCTO_PROV
  <!-- Modificar elemento -->
 <update id="updateProducto" parameterType="IngSoft.venta.bean.ProductoBeanData">
 update PRODUCTO_PROV set 
-IdProveedor=#{proveedor}
+IdProveedor=#{idProveedor}
  ,Nombre=#{nombre}
  ,Descripcion=#{descripcion}
  ,PrecioUnitario=#{precioU}
@@ -77,7 +77,8 @@ PRODUCTO_PROV.IdProductoProv as idProdProveedor
 ,PRODUCTO_PROV.PrecioUnitario as precioU
 ,PRODUCTO_PROV.Presentacion as presentacion
 ,PRODUCTO_PROV.Estado as estado
-from PRODUCTO_PROV  where IdProductoProv=#{codigo}; ; 
+,PROVEEDOR.RazonSocial as proveedor
+from PRODUCTO_PROV, PROVEEDOR  where IdProductoProv=#{codigo} and PRODUCTO_PROV.IdProveedor=PROVEEDOR.IdProveedor ; 
 
 
 </select>

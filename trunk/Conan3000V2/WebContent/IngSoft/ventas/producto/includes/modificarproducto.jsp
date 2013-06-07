@@ -23,7 +23,7 @@
 <script>
 function alt_submit(){
 	var form= document.frmProducto;
-	if (validaForm()) {form.submit();}
+	if (validaForm()) form.submit();
 		
 }
 
@@ -35,29 +35,9 @@ function anhadir(cod, name){
 	
 } 
 
-
-
 </script>
 
-<%! public boolean  encontrar(String a, String[] b){
-		for(int i=0;i<b.length;i++){			
-			if(b[i].equals(a)) return true;	
-		}
-	return false;
-	}
-	public String formatear(java.util.Date date){
-		SimpleDateFormat DF= new SimpleDateFormat("dd/MM/YYYY");
-		return DF.format(date);
-	}
-	
-	public String generarCadena(String[] t){
-		String a="";
-		for(int i=0;i<t.length;i++)
-			a= a.concat(t[i]+"/");
-			if(a.length()>0) a=a.substring(0, a.length()-1);
-		return a;
-	}
-	%>
+
 
 <!--The beans  -->
 	<jsp:useBean id="producto" scope="request"class="IngSoft.venta.bean.ProductoBeanData"></jsp:useBean>	
@@ -70,7 +50,7 @@ function anhadir(cod, name){
 				<ul class="breadcrumb">
 					     <li> <a href="index.jsp">Home</a> <span class="divider">/</span></li>
 		        <li> <a href="buscarproducto.jsp">Mantenimiento de Productos</a> <span class="divider">/</span></li>
-		        <li> Modificar  Prodcuto</li>
+		        <li> Modificar  Producto</li>
 				</ul>
 			</div>
 			
@@ -105,7 +85,7 @@ function anhadir(cod, name){
 						      
 						      <div class="control-group" id="dvPresentacion">
 
-							    <label class="control-label" for="typeahead14">Presentación: </label>
+							    <label class="control-label" for="typeahead14">Presentaci&oacute;n: </label>
 							    <div class="controls">
 							      <input type="text" name="txtPresentacion" id="txtPresentacion" class="span6 typeahead" value="<%=producto.getPresentacion() %>"id="typeahead14" data-provide="typeahead" data-items="4"/>
 						        <span class="help-inline" id="errPresentacion">Please correct the error</span>
@@ -113,17 +93,17 @@ function anhadir(cod, name){
 						        
 						      </div>
 						      
-							  <div class="control-group" id="dvPrecio">
-							    <label class="control-label" for="typeahead10">Precio Unitario(S/.) (*): </label>
+							  <div class="control-group" id="dvPrecioU">
+							    <label class="control-label" for="typeahead10">Precio Unitario (S/.) (*): </label>
 							    <div class="controls">
 							      <input type="text" value="<%=producto.getPrecioU() %>" class="span6 typeahead" name="txtPrecioU" id="txtPrecioU"  data-provide="typeahead" data-items="4" >
 						         <span class="help-inline" id="errPrecioU">Please correct the error</span>
 						        </div>
 						      </div>
-							 <div class="control-group" id="dvProvedor">
+							 <div class="control-group" id="dvProveedor">
 			                <label class="control-label" for="typeahead8">Provedor (*): </label>
 			                <div class="controls">
-			                  <input type="text" class="span6 typeahead" id="txtProveedor"  data-provide="typeahead" name="txtProveedor" data-items="4" readonly="readonly"  value="<%=producto.getIdProveedor() %>">
+			                  <input type="text" class="span6 typeahead" id="txtProveedor"  data-provide="typeahead" name="txtProveedor" data-items="4" readonly="readonly"  value="<%=producto.getProveedor() %>">
 			                  <br>
 			                  <div  align="left"> <a class="btn btn-primary iframe" href="../proveedor/seleccionarproveedor.jsp"> <i class="icon icon-search icon-white"></i> Buscar Proveedor</a> </div>
 			                  <span class="help-inline" id="errProveedor">Please correct the error</span>
