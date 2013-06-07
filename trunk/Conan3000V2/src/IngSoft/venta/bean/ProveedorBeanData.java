@@ -5,7 +5,6 @@ import java.io.Serializable;
 public class ProveedorBeanData implements Serializable {
 	
 	private String idProveedor;
-	
 	private String razonSocial;
 	private long ruc;
 	private String direccion;
