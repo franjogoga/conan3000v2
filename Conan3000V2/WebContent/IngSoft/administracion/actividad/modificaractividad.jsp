@@ -174,9 +174,9 @@
               </div>
               <div class="row-fluid sortable">
                 <div class="box span12">
-                  <div class="box-header well" data-original-title>
-                    <h2>MODIFICAR ACTIVIDAD</h2>
-                  </div>
+					<div class="box-header well" data-original-title>
+					  <h2><i class="icon-edit"></i>MODIFICAR ACTIVIDAD</h2>
+				  </div>
                   <div class="box-content">
                     <form class="form-horizontal" action="<%= response.encodeURL("SMAActividad")%>" name="frmData" method="post">
                     <input type="hidden" name="codigo" value="<%=actividad.getCodigo()%>"></input>
@@ -255,7 +255,7 @@
 						      <div class="controls">
 								  <%for(int i=0;i<empleados.size();i++) if( actividad.getNombreEncargado().equalsIgnoreCase(((ResultadoEmpleadoBeanData)empleados.get(i)).getCodigo())){     %>
 				
- 								<input type="text" class="span6 typeahead" id="cmbEncargado"  data-provide="typeahead"  name="cmbEncargado" disabled value="<%= ((ResultadoEmpleadoBeanData)empleados.get(i)).getNombre()%>">
+ 								<input type="text" class="span6 typeahead" id="cmbEncargado"  data-provide="typeahead"  name="cmbEncargado" disabled value="<%= ((ResultadoEmpleadoBeanData)empleados.get(i)).getNombre()  +' '+ ((ResultadoEmpleadoBeanData)empleados.get(i)).getApaterno() %>">
 
 									<%}   %>	
 

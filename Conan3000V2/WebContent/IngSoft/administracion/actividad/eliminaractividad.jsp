@@ -233,7 +233,7 @@
 						      <div class="controls">
 								  <%for(int i=0;i<empleados.size();i++) if( actividad.getNombreEncargado().equalsIgnoreCase(((ResultadoEmpleadoBeanData)empleados.get(i)).getCodigo())){     %>
 				
- 								<input type="text" class="span6 typeahead" id="cmbEncargado"  data-provide="typeahead"  name="cmbEncargado" disabled value="<%= ((ResultadoEmpleadoBeanData)empleados.get(i)).getNombre()%>">
+ 								<input type="text" class="span6 typeahead" id="cmbEncargado"  data-provide="typeahead"  name="cmbEncargado" disabled value="<%= ((ResultadoEmpleadoBeanData)empleados.get(i)).getNombre()+' '+ ((ResultadoEmpleadoBeanData)empleados.get(i)).getApaterno() %>">
 
 									<%}   %>	
 
@@ -298,9 +298,9 @@
 							
 
                                 <div class="control-group">
-                                    <label class="control-label" for="textarea2">Descripcion:</label>
+                                    <label class="control-label" for="textarea2">Descripci&oacute;n:</label>
 			                          <div class="controls">
-			                            <textarea name="textarea" rows="3" id="textarea2" style="resize:none"></textarea>
+			                            <textarea  disabled="" name="textarea" rows="3" id="textarea2" style="resize:none"><%=actividad.getDescripcion()%></textarea>
 			                          </div>
                                </div>
 					        
