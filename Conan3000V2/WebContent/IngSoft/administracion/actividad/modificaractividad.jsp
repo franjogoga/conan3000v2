@@ -7,6 +7,7 @@
 <%@page import="IngSoft.administracion.bean.TipoActividadMiniBeanData"%>
 <%@page import="IngSoft.administracion.bean.ResultadoEmpleadoBeanData"%>
 
+
 <html lang="en">
 <head>
 	<meta charset="utf-8">
@@ -60,6 +61,17 @@
 	
 	
 	<script>
+	
+	
+	function anhadir(cod, name,puesto){
+		var form= document.frmData;
+		form.cmbEncargado.value=name;
+		form.cmbEncargadoCodigo.value=cod;
+		form.txtPuesto.value=puesto;
+		$.fn.colorbox.close();
+		
+	} 
+	
 	function alt_fecha(obj){
 		obj.value=obj.value.slice(0,5);
 		
@@ -129,6 +141,9 @@
 	}
 	%>
 	
+	
+	
+	
 		
 </head>
 
@@ -194,7 +209,7 @@
 								  </select>
 								  
 								</div>
-							  </div>	
+							  </div>		
 
                       
                         <div class="control-group" id="dvNombreAmbiente">
@@ -247,6 +262,9 @@
 					          </div>
 					        </div>
 					        
+							
+							
+							
 						    <div class="control-group">
 						      <label class="control-label" for="typeahead7">Puesto: </label>
 						      <div class="controls">
@@ -257,6 +275,17 @@
 					          <%}   %>
 					          </div>
 					        </div>
+
+
+
+			              <div class="control-group" id="dvSocio">
+			                
+			                <div class="controls">
+			           
+			                  <div  align="left"> <a class="btn btn-primary iframe" href="seleccionarempleado.jsp"> <i class="icon icon-search icon-white"></i> Buscar Socio</a> </div>
+			                  <span class="help-inline" id="errSocio"></span>
+			                </div>
+		                  </div>
 
 
 
@@ -288,10 +317,11 @@
 
 
 
+
 						   <div class="control-group">
 							  <label class="control-label" for="date01">Fecha Inicio(*):</label>
 							  <div class="controls">
-								<input type="text" class="input-xlarge datepicker" id="fFecIncio" readonly="true" value="<%=formatear(new Date(actividad.getFechaInicio().getTime())) %>"   name="fFecIncio" onchange="alt_fecha(this);verificar_fecha(-1,this,'fFecFin');">
+								<input type="text" class="input-xlarge datepicker" id="fFecIncio" readonly="true"  value="<%=formatear(new Date(actividad.getFechaInicio().getTime())) %>"   name="fFecIncio" onchange="alt_fecha(this);verificar_fecha(-1,this,'fFecFin');">
 							  </div>
 							</div>
 							
@@ -307,10 +337,11 @@
                         <div class="control-group" id="dvDescripcion">
                   		  <label class="control-label" for="textarea2">Descripci&oacute;n:</label>
                           <div class="controls">
-                            <textarea name="txtDescripcion" rows="3" id="txtDescripcion" style="resize:none"  > <%=actividad.getDescripcion()%></textarea>
+                            <textarea name="txtDescripcion" rows="3" id="txtDescripcion" style="resize:none">   <%=actividad.getDescripcion()%>    </textarea>
                           	<span class="help-inline" id="errDescripcion">Please correct the error</span>
                           </div>
                         </div>
+
 
 
 							<div class="control-group">
@@ -348,6 +379,7 @@
 								  </label>
 								</div>
 							</div>
+                        
                         
                         <div class="form-actions">
                           <button type="button" class="btn btn-primary" onclick="javascript:alt_submit()">Guardar</button>
@@ -471,6 +503,29 @@
 	<script src="js/jquery.history.js"></script>
 	<!-- application script for Charisma demo -->
 	<script src="js/charisma.js"></script>		
+	
+	
+	
+<!--     ---------------------- Sirve para poner un iframe ------------------------------   -->	
+
+
+<!--     -----------------------------------------------------   -->			
+	
+		<script>
+			$(document).ready(function(){
+				//Examples of how to assign the Colorbox event to elements
+				
+				$(".iframe").colorbox({iframe:true, width:"60%", height:"80%"});
+				
+				//Example of preserving a JavaScript event for inline calls.
+				$("#click").click(function(){ 
+					$('#click').css({"background-color":"#f00", "color":"#fff", "cursor":"inherit"}).text("Open this window again and this message will still be here.");
+					return false;
+				});
+			});
+		</script>
+	
+<!--     -----------------------------------------------------   -->	
 	
 	<script type="text/javascript" src="js/apprise-1.5.full.js"></script>
 	<link rel="stylesheet" href="css/apprise.css" type="text/css" />
