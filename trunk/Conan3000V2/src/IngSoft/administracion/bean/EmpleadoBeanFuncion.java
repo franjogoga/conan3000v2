@@ -43,6 +43,7 @@ public class EmpleadoBeanFuncion {
 		}
 	   
 	   
+  
 	   
 	   private EmpleadoBeanFuncion() {}
 	
@@ -100,6 +101,31 @@ public class EmpleadoBeanFuncion {
 		}
 		return empleadoData;		
 	}
+	
+	
+	
+	   public void modificarEmpleado(EmpleadoBeanData empleado) throws CoException {
+			
+			SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+			try{
+				
+				sqlsesion.update("Data.administracion.empleado.updatePlantillaEmpleado",empleado);
+				
+			}
+			catch(Exception a)		
+			{sqlsesion.rollback();
+			a.printStackTrace();
+				throw CoException.set("Error: No se pudo modificar el empleado intente de nuevo", "SMSEmpleado?accion=Modificar&tipo=1");
+				
+			}
+			
+			finally{
+				sqlsesion.commit();
+				sqlsesion.close();					
+			}
+				
+			return ;
+		}
 	
 	
 	
