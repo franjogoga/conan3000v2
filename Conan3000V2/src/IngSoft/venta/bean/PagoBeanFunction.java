@@ -180,7 +180,7 @@ public class PagoBeanFunction {
 		PagoBeanData pagoData=null;
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
-			pagoData= sqlsesion.selectOne("Data.venta.pago.getPlantillaPago",codigo);
+			pagoData= sqlsesion.selectOne("Data.venta.pago.getPagoMembresia",codigo);
 		}
 		finally{
 			sqlsesion.close();
