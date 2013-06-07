@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="IngSoft.servicio.bean.*"%>
+<%@page import="IngSoft.administracion.bean.*"%>
+<%@page import="java.util.Date"%>
 <html lang="en">
 <head>
 
@@ -7,6 +11,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
 	<meta name="author" content="Dos Virgenes">
+	
+	<jsp:useBean id="empleado" scope="request" class="IngSoft.administracion.bean.EmpleadoBeanData">></jsp:useBean>
 
 	<!-- The styles -->
 	<link id="bs-css" href="css/bootstrap-cerulean.css" rel="stylesheet">    
@@ -35,13 +41,31 @@
 	<link href='css/opa-icons.css' rel='stylesheet'>
 	<link href='css/uploadify.css' rel='stylesheet'>
 
-	<!-- The HTML5 shim, for IE6-8 support of HTML5 elements -->
-	<!--[if lt IE 9]>
-	  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
-
 	<!-- The fav icon -->
 	<link rel="shortcut icon" href="img/conan_logo.png">
+	
+	
+		<script>
+	function alfanumerico(e) 
+	{ 
+		var key = window.event.keyCode || event.keyCode;
+		return ((key >= 48 && key <= 57) ||(key >= 97 && key <= 122) ||(key >= 65 && key <=90) ||(key >= 192 && key <=246)||(key <=13) ||(key ==32));
+	} 
+	function alt_fecha(obj){
+	obj.value=obj.value.slice(0,5);
+	
+	}
+	
+	function alt_submit(){
+		var form= document.frmUpdate;
+		 //if(validar(form))
+	     form.submit();
+		 //else alert("Uno o mas campos estan vacios");
+			
+			}
+		
+	
+	</script>
 		
 </head>
 
@@ -67,13 +91,13 @@
 			
 			<div id="content" class="span10">
 			  <!-- content starts -->
-			  <div>
+					<div>
 				<ul class="breadcrumb">
 					<li>
-						<a href="#">Inicio</a> <span class="divider">/</span>
+						<a href="/Conan3000V2/IngSoft/general/index.jsp">Home</a> <span class="divider">/</span>
 					</li>
 					<li>
-						<a href="#">Mantenimiento de Empleados</a> <span class="divider">/</span>
+						<a href="buscarempleado.jsp">Mantenimiento de Empleados</a> <span class="divider">/</span>
 					</li>
 					<li>
 						Modificar Empleado
@@ -88,142 +112,57 @@
 		          </div>
 				  
 			      <div class="box-content">
-			        <form class="form-horizontal">
-			          <fieldset>			            							
-							
-							<div class="control-group">
-							  <label class="control-label" for="codigo">C&oacute;digo :</label>							  
-							  <div class="controls">
-								<input type="text" class="span6 typeahead" id="codigo"  data-provide="typeahead" data-items="4" value="EMP001" disabled=""></input>								
-							  </div>
-							</div>
-							
-							<div class="control-group">
-							  <label class="control-label" for="typeahead">Nombres (*):</label>							  
-							  <div class="controls">
-								<input type="text" class="span6 typeahead" id="typeahead"  data-provide="typeahead" data-items="4" value="Juan"></input>								
-							  </div>
-							</div>
-							
-							<div class="control-group">
-							  <label class="control-label" for="typeahead">Apellido Paterno (*):</label>							  
-							  <div class="controls">
-								<input type="text" class="span6 typeahead" id="typeahead"  data-provide="typeahead" data-items="4" value="P&eacute;rez"></input>								
-							  </div>
-							</div>
-							
-							<div class="control-group">
-							  <label class="control-label" for="typeahead">Apellido Materno (*):</label>							  
-							  <div class="controls">
-								<input type="text" class="span6 typeahead" id="typeahead"  data-provide="typeahead" data-items="4" value="Garc&iacute;a"></input>								
-							  </div>
-							</div>
-							
-							<div class="control-group">
-							  <label class="control-label" for="date01">Fecha de Nac. (*):</label>
-							  <div class="controls">
-								<input type="text" class="input-xlarge datepicker" id="date01" value="02/16/12" readonly="true">
-							  </div>
-							</div>
+			        <form class="form-horizontal" name="frmUpdate"  action="<%=response.encodeURL("SMSEmpleado")%>" method="post">
+						<input type="hidden" name="codigo"  value="<%=empleado.getCodigo()%>"></input>						
+						<input type="hidden" name="accion" value="Modificar"></input>
+						<input type="hidden" name="tipo" value="2"></input>
+			          
+			          
+			          <fieldset>
 
-							<div class="control-group">
-							<label class="control-label" for="dni">Tipo de Documento (*):</label>
-							<div class="controls">
-							  <label class="radio">
-								<input type="radio" name="optionsRadios" id="dni" value="dni" checked="">
-								DNI
-							  </label>					
-							  <div style="clear:both"></div>		  
-							  <label class="radio">
-								<input type="radio" name="optionsRadios" id="carnet" value="carnet">
-								Carnet de extranjería
-							  </label>
-							  <div style="clear:both"></div>
-							  <label class="radio">
-								<input type="radio" name="optionsRadios" id="pasaporte" value="pasaporte">
-								Pasaporte
-							  </label>
-							</div>
-						  </div>						
-
-							<div class="control-group">
-							  <label class="control-label" for="numerodocumento">N&uacute;mero de Documento (*):</label>							  
-							  <div class="controls">
-								<input type="text" class="span6 typeahead" id="numerodocumento" data-provide="typeahead" data-items="4" value=12345678></input>								
-							  </div>
-							</div>
 							
 							<div class="control-group">
-								<label class="control-label" for="selectError">Puesto (*):</label>
-								<div class="controls">
-								  <select name="selectError5" id="selectError5" data-rel="chosen">
-									<option>Puesto 1</option>
-									<option>Puesto 2</option>
-									<option>Puesto 3</option>
-									<option>Puesto 4</option>
-									<option>Puesto 4</option>
-								  </select>
-								</div>
-							</div>																	
+						      <label class="control-label" for="disabledInput"> Codigo: </label>
+						      <div class="controls">
+						        <input class="input-xlarge disabled" id="disabledInput" type="text"  disabled id="txtCodigo" name="txtCodigo" value="<%= empleado.getCodigo()%>" onkeypress="return alfanumerico(event);" autofocus>
+					          </div>
+					        </div>
+							
 							
 							<div class="control-group">
-								<label class="control-label" for="selectError">Horario de Trabajo (*):</label>
-								<div class="controls">
-								  <select id="selectError6" data-rel="chosen">
-									<option>Horario 1</option>
-									<option>Horario 2</option>
-									<option>Horario 3</option>
-									<option>Horario 4</option>
-									<option>Horario 5</option>
-								  </select>
-								</div>
-							</div>
+						      <label class="control-label" for="disabledInput"> Nombre: </label>
+						      <div class="controls">
+						        <input class="input-xlarge disabled"  type="text"  id="txtNombreEmpleado" name="txtNombreEmpleado" value="<%= empleado.getNombre()%>" onkeypress="return alfanumerico(event);" autofocus>
+					          </div>
+					        </div>
 							
 							<div class="control-group">
-								<label class="control-label" for="selectarea">&Aacute;rea (*):</label>
-								<div class="controls">
-								  <select name="selectarea" id="selectarea" data-rel="chosen">
-									<option>Area 1</option>
-									<option>Area 2</option>
-									<option>Area 3</option>
-									<option>Area 4</option>
-									<option>Area 5</option>
-								  </select>
-								</div>
-							</div>	
+						      <label class="control-label" for="disabledInput"> Apellido Paterno: </label>
+						      <div class="controls">
+						        <input class="input-xlarge disabled"  type="text"  id="txtApellidoPaterno" name="txtApellidoPaterno" value="<%= empleado.getApellidoPaterno()%>" onkeypress="return alfanumerico(event);" autofocus>
+					          </div>
+					        </div>
+							
 							
 							<div class="control-group">
-								<label class="control-label" for="selectError">Sede (*):</label>
-								<div class="controls">
-								  <select id="selectError7" data-rel="chosen">
-									<option>Sede 1</option>
-									<option>Sede 2</option>
-									<option>Sede 3</option>
-									<option>Sede 4</option>
-									<option>Sede 5</option>
-								  </select>
-								</div>
-							</div>			
-							
-							<div class="control-group">
-							<label class="control-label">Estado</label>
-							<div class="controls">
-							  <label class="radio">
-								<input type="radio" name="opcionactivo" id="opcionactivo" value="activo" checked="">
-								Activo
-							  </label>
-							  <div style="clear:both"></div>
-							  <label class="radio">
-								<input type="radio" name="opcioninactivo" id="opcioninactivo" value="inactivo">
-								Inactivo
-							  </label>
-							</div>
-						  </div>			
+						      <label class="control-label" for="disabledInput"> Numero de Documento: </label>
+						      <div class="controls">
+						        <input class="input-xlarge disabled"  type="text" id="txtNumeroDocumento" name="txtNumeroDocumento" value="<%= empleado.getNumeroDocumento()%>"  onkeypress="return alfanumerico(event);" autofocus>
+					          </div>
+					        </div>
+					
+						<div class="control-group">
+						      <label class="control-label" for="disabledInput"> Area: </label>
+						      <div class="controls">
+						        <input class="input-xlarge disabled" id="txtArea" type="text"  name="txtArea" value="<%= empleado.getArea()%>" onkeypress="return alfanumerico(event);" autofocus>
+					          </div>
+					        </div>
+					
 						
 			            <div class="form-actions">
-			              <button type="submit" class="btn btn-primary">Guardar</button>
-			              <button type="reset" class="btn">Cancelar</button>
-		                </div>
+							  <button type="button" class="btn btn-primary" onclick="javascript:alt_submit()">Modificar</button>
+							  <button type="button" class="btn" onclick="location.href='buscarempleado.jsp'" >Cancelar</button>
+							</div>
 		              </fieldset>
 		            </form>
 		          </div>
