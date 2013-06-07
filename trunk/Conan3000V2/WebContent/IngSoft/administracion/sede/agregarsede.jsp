@@ -290,10 +290,11 @@
                                 
                                 
                                 
-						    <div class="control-group">
+						    <div class="control-group" id="dvArea">
 						      <label class="control-label" for="typeahead7">Area de Terreno: </label>
 						      <div class="controls">
 						        <input    type="text" class="span6 typeahead" id="typeahead7"  data-provide="typeahead" id="txtAreaterreno"   maxlength="7" name="txtAreaterreno" onkeypress="return numerico(event);">
+					            <span class="help-inline" id="errAreaterreno">Please correct the error</span>
 					          </div>
 					        </div>
 					        
@@ -491,6 +492,7 @@ function validaForm(){
         //if(!esValido("Descripci&oacute;n",form.txtDescripcion,"Descripcion",1,0,100)){cadena[i]="Descripci&oacute;n";i++;}
         if(!esValido("Direccion",form.txtDireccion,"Direccion",1,1,50)){cadena[i]="Direccion";i++;}
         if(!esValido("Telefono",form.txtTelefono,"Telefono",1,6,7)){cadena[i]="Telefono";i++;}
+        if(!esValido("Area de Terreno",form.txtTelefono,"Area",1,1,7)){cadena[i]="Area";i++;}
         //if(!esValido("Caracter&iacute;sticas",form.txtCaracteristica,"Caracteristica",1,0,100)){cadena[i]="Caracter&iacute;sticas";i++;}
        
         //No tocar
@@ -507,6 +509,8 @@ function inicializa(){
         //document.getElementById("errDescripcion").style.display='none'; 
         document.getElementById("errTelefono").style.display='none';
         document.getElementById("errDireccion").style.display='none'; 
+        document.getElementById("errAreaterreno").style.display='none';
+        
         //document.getElementById("errCaracteristica").style.display='none';    
 } 
  
