@@ -15,6 +15,42 @@
 	
 </select>
 
+<select id="searchPlantillaEmpleado" parameterType="IngSoft.administracion.bean.CriterioEmpleadoBeanData" resultType="IngSoft.administracion.bean.ResultadoEmpleadoBeanData">
+select 
+ EMPLEADO.IdEmpleado as codigo
+,PERSONA.Nombres as nombre
+,PERSONA.apePaterno as apellidoPaterno
+,PERSONA.NumeroDocumento as numeroDocumento
+,EMPLEADO.Area as area
+from EMPLEADO, PERSONA 
+
+
+<where>
+<if test="nombre != null ">
+        PERSONA.Nombres  like  #{nombre}
+    </if>
+    
+    <if test="apellidoPaterno != null ">
+        AND PERSONA.ApePaterno like #{apellidoPaterno}
+    </if>
+    
+    <if test="numeroDocumento > null">
+        AND PERSONA.NumeroDocumento = #{numeroDocumento}
+    </if>
+    
+    <if test="area != null">
+        AND EMPLEADO.Area like #{area}
+    </if>
+    AND EMPLEADO.Estado='activo' AND EMPLEADO.IdEmpleado = PERSONA.IdPersona
+</where>
+
+order by 1 asc
+</select>
+
+
+
+
+
 <select id="getNextCodigo" resultType="java.lang.String">
 	select max(IdEmpleado) from EMPLEADO	
 </select>
