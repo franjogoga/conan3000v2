@@ -61,14 +61,14 @@ function anhadir(cod, name){
 				  </div>
 					<div class="box-content">
 						   <form class="form-horizontal"  name="frmProducto" method="Post"  action="SMVProducto">
-					<input type="hidden" name="codigo" value="<%=producto.getIdProdProveedor()%>"></input>
+					<input type="hidden" name="codigo" value="<%=producto.getIdProdProveedor()%>" ></input>
 			        <input type="hidden" name="accion" value="Modificar"></input>
 					<input type="hidden" name="tipo" value="2"></input>
 						  <fieldset>
 						    <div class="control-group" id="dvNombre">
 						      <label class="control-label" for="typeahead7">Nombre(*): </label>
 						      <div class="controls">
-						        <input type="text" value="<%=producto.getNombre() %>" class="span6 typeahead" name="txtNombre "id="txtNombre"  data-provide="typeahead" >
+						        <input type="text" value="<%=producto.getNombre() %>"  onpaste="return false;" class="span6 typeahead" name="txtNombre "id="txtNombre"  data-provide="typeahead" >
 					          <span class="help-inline" id="errNombre">Please correct the error</span>
 					          </div>
 					        </div>
@@ -78,7 +78,7 @@ function anhadir(cod, name){
 							  <div class="control-group" id="dvDescripcion">
 			                <label class="control-label" for="textarea2">Descripci&oacute;n:</label>
 			                <div class="controls">
-			                  <textarea name="txtDescripcion" class=""  id="txtDescripcion" ><%=producto.getDescripcion() %></textarea>
+			                  <textarea name="txtDescripcion" class=""  id="txtDescripcion"   onpaste="return false;"><%=producto.getDescripcion() %></textarea>
 			                   <span class="help-inline" id="errDescripcion">Please correct the error</span>
 		                    </div>
 		                  </div>
@@ -87,7 +87,7 @@ function anhadir(cod, name){
 
 							    <label class="control-label" for="typeahead14">Presentaci&oacute;n: </label>
 							    <div class="controls">
-							      <input type="text" name="txtPresentacion" id="txtPresentacion" class="span6 typeahead" value="<%=producto.getPresentacion() %>"id="typeahead14" data-provide="typeahead" data-items="4"/>
+							      <input type="text" name="txtPresentacion" id="txtPresentacion" class="span6 typeahead" value="<%=producto.getPresentacion() %>"   onpaste="return false;" id="typeahead14" data-provide="typeahead" data-items="4"/>
 						        <span class="help-inline" id="errPresentacion">Please correct the error</span>
 						        </div>
 						        
@@ -96,7 +96,7 @@ function anhadir(cod, name){
 							  <div class="control-group" id="dvPrecioU">
 							    <label class="control-label" for="typeahead10">Precio Unitario (S/.) (*): </label>
 							    <div class="controls">
-							      <input type="text" value="<%=producto.getPrecioU() %>" class="span6 typeahead" name="txtPrecioU" id="txtPrecioU"  data-provide="typeahead" data-items="4" >
+							      <input type="text" value="<%=producto.getPrecioU() %>"  onpaste="return false;" class="span6 typeahead" name="txtPrecioU" id="txtPrecioU"  data-provide="typeahead" data-items="4" >
 						         <span class="help-inline" id="errPrecioU">Please correct the error</span>
 						        </div>
 						      </div>
