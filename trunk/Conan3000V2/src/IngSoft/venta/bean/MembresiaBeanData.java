@@ -17,7 +17,121 @@ public class MembresiaBeanData implements Serializable {
 	private String periodo;
 	private String estado;
 	
+	private Date fechaCreacion;
+	private Date fechaEmision;
+	private Date fechaVencimiento;
+	private String idDetalleCuota;
+	private Integer cantCuota;
+	private String EstadoDetalle;
+	private String idCuota;
+	private Integer numCuota;
+	private Double monto;
+	private Integer cantidad;
+	private String EstadoCuota;
+	private Integer mesIni;
 	
+	
+	
+	
+	
+	
+	
+	public Integer getMesIni() {
+		return mesIni;
+	}
+
+	public void setMesIni(Integer mesIni) {
+		this.mesIni = mesIni;
+	}
+
+	public Date getFechaCreacion() {
+		return fechaCreacion;
+	}
+
+	public void setFechaCreacion(Date fechaCreacion) {
+		this.fechaCreacion = fechaCreacion;
+	}
+
+	public Date getFechaEmision() {
+		return fechaEmision;
+	}
+
+	public void setFechaEmision(Date fechaEmision) {
+		this.fechaEmision = fechaEmision;
+	}
+
+	public Date getFechaVencimiento() {
+		return fechaVencimiento;
+	}
+
+	public void setFechaVencimiento(Date fechaVencimiento) {
+		this.fechaVencimiento = fechaVencimiento;
+	}
+
+	public String getIdDetalleCuota() {
+		return idDetalleCuota;
+	}
+
+	public void setIdDetalleCuota(String idDetalleCuota) {
+		this.idDetalleCuota = idDetalleCuota;
+	}
+
+	public Integer getCantCuota() {
+		return cantCuota;
+	}
+
+	public void setCantCuota(Integer cantCuota) {
+		this.cantCuota = cantCuota;
+	}
+
+	public String getEstadoDetalle() {
+		return EstadoDetalle;
+	}
+
+	public void setEstadoDetalle(String estadoDetalle) {
+		EstadoDetalle = estadoDetalle;
+	}
+
+	public String getIdCuota() {
+		return idCuota;
+	}
+
+	public void setIdCuota(String idCuota) {
+		this.idCuota = idCuota;
+	}
+
+	public Integer getNumCuota() {
+		return numCuota;
+	}
+
+	public void setNumCuota(Integer numCuota) {
+		this.numCuota = numCuota;
+	}
+
+	public Double getMonto() {
+		return monto;
+	}
+
+	public void setMonto(Double monto) {
+		this.monto = monto;
+	}
+
+	public Integer getCantidad() {
+		return cantidad;
+	}
+
+	public void setCantidad(Integer cantidad) {
+		this.cantidad = cantidad;
+	}
+
+	public String getEstadoCuota() {
+		return EstadoCuota;
+	}
+
+	public void setEstadoCuota(String estadoCuota) {
+		EstadoCuota = estadoCuota;
+	}
+
 	public String getDescripcion() {
 		return descripcion;
 	}

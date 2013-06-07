@@ -18,20 +18,20 @@
 			            <div class="control-group">
 			              <label class="control-label" for="typeahead8">Socio (*): </label>
 			              <div class="controls">
-			                <input type="text" class="span6 typeahead" id="typeahead8"  data-provide="typeahead" data-items="4" >
+			                <input type="text" class="span6 typeahead" id="txtSocio" name="txtSocio"  data-provide="typeahead" data-items="4" >
 			                <p class="help-block">Escriba sobre la casilla un nombre de socio para ser autocompletado</p>
 		                  </div>
 		                </div>
                         <div class="control-group">
 			                <label class="control-label" for="typeahead4">C&oacute;digo de Socio (*): </label>
 			                <div class="controls">
-			                  <input type="text" class="span6 typeahead disabled" id="typeahead4"  data-provide="typeahead" data-items="4" disabled="" >
+			                  <input type="text" class="span6 typeahead disabled" id="txtCodigoSocio" name="txtSocio"  data-provide="typeahead" data-items="4" disabled="" >
 		                    </div>
 		                  </div>
 			            <div class="control-group">
 			              <label class="control-label" for="typeahead7">Concepto: </label>
 			              <div class="controls">
-								  <select id="selectError" data-rel="chosen">
+								  <select id="cmbConcepto" data-rel="chosen">
 									<option>Bungalows</option>
 									<option>Canchas</option>
 									<option>Eventos</option>
@@ -43,14 +43,14 @@
                         <div class="control-group">
                           <label class="control-label" for="typeahead2">Fecha de Pago (*): </label>
                           <div class="controls">
-                            <input type="text" class="input-xlarge datepicker" id="date" value="02/16/2012">
+                            <input type="text" class="input-xlarge datepicker" id="fFechaPago" name="fFechaPago" value="">
                           </div>
                         </div>
 <div class="control-group">
           <div class="control-group">
 			                <label class="control-label" for="typeahead4">Monto (S/.) (*): </label>
 			                <div class="controls">
-			                  <input type="text" class="input-xlarge" id="typeahead4"  data-provide="typeahead" data-items="4" >
+			                  <input type="text" class="input-xlarge" id="txtMonto" name="txtMonto"  data-provide="typeahead" data-items="4" >
 			                </div>
 		                  </div>
 			            </div>
