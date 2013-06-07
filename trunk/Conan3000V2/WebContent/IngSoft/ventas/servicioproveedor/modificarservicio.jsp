@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <jsp:include page="/IngSoft/general/header.jsp" />
+<link rel="shortcut icon" href="img/conan_logo.png">
 </head>
 <body>
 		<jsp:include page="/IngSoft/general/superior.jsp" />
