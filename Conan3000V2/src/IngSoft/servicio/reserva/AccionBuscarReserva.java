@@ -17,6 +17,7 @@ import IngSoft.administracion.bean.CanchaBeanFunction;
 import IngSoft.administracion.bean.TipoCanchaMiniBeanData;
 import IngSoft.general.CoAccion;
 import IngSoft.general.CoException;
+import IngSoft.general.bean.Conan3000Constantes;
 import IngSoft.servicio.bean.CriterioEventoBeanData;
 import IngSoft.servicio.bean.CriterioEventoBeanFunction;
 import IngSoft.servicio.bean.ReservaBeanFuncion;
@@ -38,6 +39,7 @@ public class AccionBuscarReserva extends CoAccion {
 		HttpSession sesion= request.getSession(true);
 		request.setAttribute("sedes",sedeMiniData );
 		request.setAttribute("tiposCancha",tipoCanchaMiniData);
+		request.setAttribute("step",Conan3000Constantes.step);
 		Vector<String> listareservas=(Vector<String>)sesion.getAttribute("listareservas");
 		listareservas=listareservas==null?new Vector<String>():listareservas;
 		Vector<String> pendientes=new Vector<String>();
@@ -147,7 +149,7 @@ public class AccionBuscarReserva extends CoAccion {
 		if(tipo==5){//consulta socio
 			response.setContentType("text/plain");  
 		    response.setCharacterEncoding("UTF-8");
-		    String temp=reservaFuncion.confirmarSocio(request.getParameter("txtDNISocio")==null?"":request.getParameter("txtDNISocio").toString());
+		    String temp=reservaFuncion.confirmarSocio(request.getParameter("txtDNISocio")==null?"":request.getParameter("txtDNISocio").toString().trim());
 		    try {
 				response.getWriter().write(temp);
 			} catch (IOException e) {				

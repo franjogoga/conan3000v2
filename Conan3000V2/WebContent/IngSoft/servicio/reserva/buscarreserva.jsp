@@ -59,6 +59,8 @@ var lock1=1;
 var lock2=1;
 var lock3=1;
 var lock4=1;
+var ctipo=2;
+var aTipo=1;
 </script>
 <script src="reservas.js"></script>	
 </head>

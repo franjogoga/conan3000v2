@@ -102,8 +102,17 @@ insert into RESERVA_BUNGALOW(Estado,IdSocio,IdBungalow,IdReservaBungalow)
 values('ACTIVO',#{idsocio},#{idbungalow},#{idreservasbungalow})
 ;
 </insert>
+<insert id="insertCanchaReserva" parameterType="hashmap">
+insert into RESERVA_CANCHA(Estado,IdSocio,IdCancha,IdReservaCancha)
+values('ACTIVO',#{idsocio},#{idcancha},#{idreservascancha})
+;
+</insert>
 <insert id="insertBungalowReservaFecha" parameterType="hashmap">
 insert into BUNGALOWxFECHA(IdReservaBungalow,Fecha) values(#{idreservasbungalow},DATE(#{fecha}))
+;
+</insert>
+<insert id="insertBungalowCanchaFecha" parameterType="hashmap">
+insert into BUNGALOWxFECHA(IdReservaCancha,Fecha,HoraInicio,HoraFin) values(#{idreservascancha},DATE(#{fecha}),#{horaIni},#{horaFin})
 ;
 </insert>
 </mapper>
