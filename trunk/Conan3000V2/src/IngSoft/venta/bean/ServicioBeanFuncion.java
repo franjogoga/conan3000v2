@@ -67,7 +67,7 @@ static private ServicioBeanFuncion ServicioFuncion=null;
 		catch(Exception a)		
 		{sqlsesion.rollback();
 		a.printStackTrace();
-			//throw CoException.set("Error: Nombre de evento repetido", "SMSEvento?accion=Agregar&tipo=1");
+			throw CoException.set("Error: Nombre de servicio repetido", "SMVServicio?accion=Agregar&tipo=1");
 			
 		}
 		
