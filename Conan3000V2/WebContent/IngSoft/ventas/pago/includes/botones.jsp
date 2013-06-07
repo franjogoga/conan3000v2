@@ -4,9 +4,9 @@
 					<div>PAGO DE MEMBRESIAS</div>
 				</a>
 
-				<a data-rel="tooltip" title="Pago de Otros Servicios" class="well span3 top-block" href="buscarpagootros.jsp">
+				<a data-rel="tooltip" title="Ordenes de Pago" class="well span3 top-block" href="buscarpagootros.jsp">
 					<span class="icon32 icon-color icon-star-on"></span>
-					<div>PAGO DE OTROS SERVICIOS</div>
+					<div>ORDENES DE PAGO</div>
 				</a>
 
 				<a data-rel="tooltip" title="Membresias Vencidas" class="well span3 top-block" href="buscarvencido.jsp">

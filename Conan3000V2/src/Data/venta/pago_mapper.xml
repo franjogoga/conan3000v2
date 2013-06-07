@@ -3,5 +3,94 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="Data.venta.pago">
+<select id="searchPago" parameterType="IngSoft.venta.bean.CriterioPagoBeanData" resultType="IngSoft.venta.bean.ResultadoPagoBeanData">
+select 
+distinct PERSONA.IdPersona idSocio 
+,CUOTA.NumCuota as numCuota
+,CUOTA.IdCuota as idCuota
+,CUOTA.Monto as monto
+,CUOTA.Cantidad as cantidad
+,CONCAT(PERSONA.Nombres,' ',PERSONA.ApePaterno,' ',PERSONA.ApeMaterno) as socio
+,CUOTA.FechaEmision as fechaEmision
+,CUOTA.FechaVencimiento as fechaVencimiento
+,CUOTA.Estado as estadoCuota
+from CUOTA, DETALLE_CUOTA, MEMBRESIA, PERSONA
+<where>
+	<if test="socio != null ">
+        CUOTA.IdDetalleCuota=DETALLE_CUOTA.IdDetalleCuota and DETALLE_CUOTA.IdMembresia=MEMBRESIA.IdMembresia and MEMBRESIA.IdSocio=PERSONA.IdPersona and (PERSONA.Nombres LIKE #{socio} or PERSONA.ApePaterno LIKE #{socio} or PERSONA.ApeMaterno LIKE #{socio})
+    </if>
+    <if test="fechaEmisionIni != null">
+        AND CUOTA.FechaEmision &gt;= #{fechaEmisionIni}
+    </if>
+    <if test="fechaEmisionFin != null">
+        AND CUOTA.FechaEmision &lt;= #{fechaEmisionFin}
+    </if>
+    
+    <if test="fechaVencimientoIni != null">
+        AND CUOTA.FechaVencimiento &gt;= #{fechaVencimientoIni}
+    </if>
+    <if test="fechaVencimientoFin != null">
+        AND CUOTA.FechaVencimiento &lt;= #{fechaVencimientoFin}
+    </if>
+    
+    <if test="estado != null">
+        AND CUOTA.Estado= #{estado}
+       
+    </if>
+   ORDER BY CUOTA.fechaVencimiento ASC
+      
+</where>
+</select>
+
+
+<select id="getPagoMembresia" parameterType="java.lang.String"  resultType="IngSoft.venta.bean.PagoBeanData">
+select 
+PERSONA.IdPersona idSocio 
+,CUOTA.NumCuota as numCuota
+,CUOTA.IdCuota as idCuota
+,CUOTA.Monto as monto
+,CUOTA.Cantidad as cantidad
+,CONCAT(PERSONA.Nombres,' ',PERSONA.ApePaterno,' ',PERSONA.ApeMaterno) as socio
+,CUOTA.FechaEmision as fechaEmision
+,CUOTA.FechaVencimiento as fechaVencimiento
+,CUOTA.Estado as estadoCuota
+
+ 
+from CUOTA,DETALLE_CUOTA, MEMBRESIA, PERSONA  where CUOTA.IdDetalleCuota=DETALLE_CUOTA.IdDetalleCuota and DETALLE_CUOTA.IdMembresia=MEMBRESIA.IdMembresia and CUOTA.IdCuota=#{codigo} and MEMBRESIA.IdSocio=PERSONA.IdPersona; 
+
+
+</select>
+
+
+
+ <!-- Modificar elemento -->
+<update id="registrarPago" parameterType="IngSoft.venta.bean.PagoBeanData">
+update CUOTA set Estado='Cancelado'
+ where IdCuota= #{idCuota}
+</update>
+
+ <!-- Modificar elemento -->
+<update id="anularPago" parameterType="IngSoft.venta.bean.PagoBeanData">
+update CUOTA set Estado='No Cancelado'
+ where IdCuota= #{idCuota}
+</update>
+
+
+<!-- Agregar plantilla membresia -->
+<insert id="insertIngreso" parameterType="IngSoft.venta.bean.MembresiaBeanData" flushCache="true">
+	insert into INGRESO(IdIngreso,FechaPago,Estado,idCuota)
+	values (#{idIngreso},#{fechaPago},'Cancelado',#{idCuota})
+</insert>
+
+<select id="getNextCodigo2" resultType="java.lang.String">
+	select max(IdIngreso) from INGRESO
+</select>
+
+
+ <!-- Modificar elemento -->
+<update id="deletePago" parameterType="IngSoft.venta.bean.PagoBeanData">
+update CUOTA set Estado='Eliminado'
+ where IdCuota= #{idCuota}
+</update>
 
 </mapper>

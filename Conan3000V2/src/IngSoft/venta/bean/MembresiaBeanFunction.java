@@ -2,6 +2,10 @@ package IngSoft.venta.bean;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.util.Locale;
+import java.util.Calendar;
+
+import java.util.GregorianCalendar;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -36,6 +40,21 @@ public class MembresiaBeanFunction {
 		membresiaData.setCosto(Double.parseDouble(request.getParameter("txtCosto")));
 		membresiaData.setPeriodo(request.getParameter("cmbPeriodo"));
 		membresiaData.setEstado(request.getParameter("rButton"));
+		if(membresiaData.getPeriodo().equals("Anual")){
+		membresiaData.setCantCuota(12);
+		}else{
+			if(membresiaData.getPeriodo().equals("Semestral")){
+				membresiaData.setCantCuota(6);
+				}else{
+					if(membresiaData.getPeriodo().equals("Indefinido")){
+						membresiaData.setCantCuota(12);
+						}
+					
+					
+				}
+			
+		}
+		
 		
 		if (request.getParameter("rButton")!=null){
 		String est;
@@ -72,14 +91,85 @@ public class MembresiaBeanFunction {
 			else membresiaData.setCodigo("MO000001");
 			//insertMembresia esta en membresia mapper
 			sqlsesion.insert("insertMembresia",membresiaData);
-			//sqlsesion.insert("insertPlantillaEventoSedes",eventoData);
 			
+			//Ingreso para detalle de cuota
+			String codigoDetalle= (String)sqlsesion.selectOne("Data.venta.membresia.getNextCodigoDetalle");
+			if(codigoDetalle!=null){
+			int codDet= Integer.parseInt(codigoDetalle.substring(3))+1;
+			String defectoDetalle= "000000";
+			String tempDetalle= defectoDetalle.substring(0, defectoDetalle.length()-String.valueOf(codDet).length()).concat(String.valueOf(codDet));
+			
+			membresiaData.setIdDetalleCuota(codigoDetalle.substring(0,3).concat(tempDetalle));}
+			else membresiaData.setIdDetalleCuota("DTC000001");
+			
+			java.util.Date fechaActual = new java.util.Date();
+			membresiaData.setFechaCreacion(fechaActual);
+			membresiaData.setEstadoDetalle("Activo");
+			membresiaData.setIdMembresia(membresiaData.getCodigo());
+			
+			
+			
+			
+			
+			
+			sqlsesion.insert("insertDetalleCuota",membresiaData);
+			
+			
+			//Ingreso por cuota
+			//calculo de cuota hasta fin de anho
+			//monto igual a costo
+			
+			
+			
+			
+			final Calendar c = Calendar.getInstance();
+			final Calendar c2 = Calendar.getInstance();
+			
+			String fechaEmision=DF.format(fechaActual);
+			
+			String codigoCuota= (String)sqlsesion.selectOne("Data.venta.membresia.getNextCodigoCuota");
+			
+			int codCuota=0;
+			for(int i=0;i<membresiaData.getCantCuota();i++){
+				
+				if(codigoCuota!=null){
+				if(codCuota==0)	
+				codCuota= Integer.parseInt(codigoCuota.substring(3))+1;
+				else
+					codCuota++;
+				String defectoCuota= "000000";
+				String tempCuota= defectoCuota.substring(0, defectoCuota.length()-String.valueOf(codCuota).length()).concat(String.valueOf(codCuota));
+				
+				membresiaData.setIdCuota(codigoCuota.substring(0,3).concat(tempCuota));}
+				else membresiaData.setIdCuota("CUO000001");
+				
+				Integer mes=c.get(Calendar.MONTH);
+				if(mes.equals(12)) membresiaData.setEstadoCuota("No Facturado"); 
+				else
+				membresiaData.setEstadoCuota("No Cancelado");
+				
+				
+			
+					c.set(c.get(Calendar.YEAR), c.get(Calendar.MONTH)+1,7);// dia del mes que vence hardcodeado
+					
+					
+					
+				
+			membresiaData.setNumCuota(i+1);
+			membresiaData.setFechaEmision(new Date(DF.parse(fechaEmision).getTime()));
+			String fechaVencimiento=DF.format(c.getTime());
+			membresiaData.setCantidad(1);
+			membresiaData.setMonto(membresiaData.getCosto());
+			
+			membresiaData.setFechaVencimiento(new Date(DF.parse(fechaVencimiento).getTime()));
+			sqlsesion.insert("insertCuota",membresiaData);
+			}
 			resultado=true;
 		}
 		catch(Exception a)		
 		{sqlsesion.rollback();
 		a.printStackTrace();
-			//throw CoException.set("Error: Nombre de membresia repetido", "SMVMembresia?accion=Agregar&tipo=1");
+			throw CoException.set("Error: Ha ocurrido un error al guardar los datos", "SMVMembresia?accion=Agregar&tipo=1");
 		}
 		
 		finally{

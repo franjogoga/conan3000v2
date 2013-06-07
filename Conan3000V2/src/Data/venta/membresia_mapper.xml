@@ -44,6 +44,13 @@ from MEMBRESIA, PERSONA
 	select max(IdMembresia) from MEMBRESIA
 </select>
 
+<select id="getNextCodigoDetalle" resultType="java.lang.String">
+	select max(IdDetalleCuota) from DETALLE_CUOTA
+</select>
+
+<select id="getNextCodigoCuota" resultType="java.lang.String">
+	select max(IdCuota) from CUOTA
+</select>
 
  <!-- Fin agregar  -->
  
@@ -83,8 +90,20 @@ from MEMBRESIA, PERSONA  where MEMBRESIA.IdMembresia=#{codigo} and MEMBRESIA.IdS
 
 </select>
 
+<!-- guardar cuota -->
+
+<insert id="insertCuota" parameterType="IngSoft.venta.bean.MembresiaBeanData" flushCache="true">
+	insert into CUOTA(IdDetalleCuota,IdCuota,NumCuota,Monto,Cantidad,FechaEmision,FechaVencimiento,Estado)
+	values (#{idDetalleCuota},#{idCuota},#{numCuota},#{monto},#{cantidad},#{fechaEmision},#{fechaVencimiento},#{estadoCuota})
+</insert>
 
 
+<!-- guardar detalle cuota -->
+
+<insert id="insertDetalleCuota" parameterType="IngSoft.venta.bean.MembresiaBeanData" flushCache="true">
+	insert into DETALLE_CUOTA(IdMembresia,IdDetalleCuota,FechaCreacion,CantCuota,Estado)
+	values (#{idMembresia},#{idDetalleCuota},#{fechaCreacion},#{cantCuota},#{estadoDetalle})
+</insert>
 
 </mapper>
  
