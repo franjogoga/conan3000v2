@@ -37,6 +37,7 @@
     <mapper resource="Data/venta/proveedor_mapper.xml"/> 
     <mapper resource="Data/venta/producto_mapper.xml"/> 
     <mapper resource="Data/venta/servicio_mapper.xml"/>  
+    <mapper resource="Data/venta/pago_mapper.xml"/>  
     <mapper resource="Data/general/login_mapper.xml"/>
     
       

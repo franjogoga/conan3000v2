@@ -99,6 +99,11 @@
         <servlet-name>SMVServicio</servlet-name>
 	<servlet-class>IngSoft.venta.servicio.SMVServicio</servlet-class>				   
 </servlet>
+<servlet id="Servlet_0023">
+        <servlet-name>SMVPago</servlet-name>
+	<servlet-class>IngSoft.venta.pago.SMVPago</servlet-class>				   
+</servlet>
+
 
 
 
@@ -194,6 +199,10 @@
 <servlet-mapping id="ServletMapping_0022">
         <servlet-name>SMVServicio</servlet-name>
 <url-pattern>/IngSoft/ventas/servicioproveedor/SMVServicio</url-pattern>
+</servlet-mapping>
+<servlet-mapping id="ServletMapping_0023">
+        <servlet-name>SMVPago</servlet-name>
+<url-pattern>/IngSoft/ventas/pago/SMVPago</url-pattern>
 </servlet-mapping>
 
 
