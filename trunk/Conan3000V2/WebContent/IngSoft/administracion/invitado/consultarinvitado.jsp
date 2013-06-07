@@ -123,7 +123,7 @@
 						<a href="buscaractividad.jsp">Mantenimiento de Invitado</a> <span class="divider">/</span>
 					</li>
 					<li>
-						Consultar de Invitado
+						Consultar Invitado
 					</li>
 				</ul>
 			</div>
