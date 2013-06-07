@@ -557,11 +557,19 @@ function validaForm(){
 	if(!esValido("Nombre",form.txtNombre,"Nombre",1,1,50)){cadena[i]="Nombre";i++;}
 	if(!esValido("Apellido Paterno",form.txtApaterno,"Apaterno",1,1,50)){cadena[i]="Apellido Paterno";i++;}
 	if(!esValido("Apellido Materno",form.txtAmaterno,"Amaterno",1,1,50)){cadena[i]="Apellido Materno";i++;}
-	if(!esValido("Nro. de Doc",form.txtNrodoc,"Nrodoc",1,1,8)){cadena[i]="Nro. de Doc";i++;}
-	if(!esValido("Correo",form.txtCorreo,"Correo",1,1,50)){cadena[i]="Correo";i++;}
+	if(!esValido("Nro. de Doc",form.txtNrodoc,"Nrodoc",1,1,8)){cadena[i]="Nro. de Doc";i++;}else{
+		if(!esValido("Nro. de Doc",form.txtNrodoc,"Nrodoc",6,1,50)){cadena[i]="Nro. de Doc";i++;}
+	}
+	if(!esValido("Correo",form.txtCorreo,"Correo",9,1,50)){cadena[i]="Correo";i++;}
 	if(!esValido("Fecha Nacimiento",form.fFecNacimiento,"FecNacimiento",2,1,10)){cadena[i]="Fecha Nacimiento";i++;}
 	if(!esValido("Fecha Registro",form.fFecRegistro,"FecRegistro",2,1,10)){cadena[i]="Fecha Registro";i++;}
 	if(!validarFechas("Fecha Registro",form.fFecRegistro,"FecRegistro","Fecha Nacimiento",form.fFecNacimiento)){cadena[i]="Fecha Registro";i++;};
+	if(!esValido("Tel&eacutefono Fijo",form.txtTelefonofijo,"Telefonofijo",1,1,7)){cadena[i]="Tel&eacutefono Fijo";i++;}else{
+		if(!esValido("Tel&eacutefono Fijo",form.txtTelefonofijo,"Telefonofijo",6,1,50)){cadena[i]="Tel&eacutefono Fijo";i++;}
+	}
+	if(!esValido("Tel&eacutefono Celular",form.txtTelefonocelular,"Telefonocelular",1,1,9)){cadena[i]="Tel&eacutefono Celular";i++;}else{
+		if(!esValido("Tel&eacutefono Celular",form.txtTelefonocelular,"Telefonocelular",6,1,50)){cadena[i]="Tel&eacutefono Celular";i++;}
+	}
 	
 	
 	/*if(!esValido("Fecha Inicio",form.fFechInicio,"FechaInicio",2,1,10)){cadena[i]="Fecha Inicio";i++;}
@@ -624,6 +632,8 @@ Solo poner el id de los <span> segun corresponda
 	//document.getElementById("errRuc").style.display='none';
 	document.getElementById("errFecNacimiento").style.display='none';
 	document.getElementById("errFecRegistro").style.display='none';
+	document.getElementById("errTelefonofijo").style.display='none';
+	document.getElementById("errTelefonocelular").style.display='none';
 	//document.getElementById("errFechaSorteo").style.display='none';
 	//document.getElementById("errSocio").style.display='none';
 	//document.getElementById("errCosto").style.display='none';
