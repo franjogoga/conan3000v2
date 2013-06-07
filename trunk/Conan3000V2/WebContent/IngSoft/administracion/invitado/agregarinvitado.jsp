@@ -80,6 +80,69 @@
 	
 	
 	<script>
+	function validaCorreo(valor)
+{
+	var reg=/(^[a-zA-Z0-9._-]{1,30})@([a-zA-Z0-9.-]{1,30}$)/;
+	if(reg.test(valor)) return true;
+	else return false;
+}
+
+function esCorrecto(valor,minimo, maximo){
+	
+	if(valor.length>maximo){ 
+		return false;
+	}else{
+		if(valor.length<=minimo){
+			return false;
+		}else{
+			return true;	
+		}
+
+	}
+
+}
+
+function validarEntero(valor){ 
+ 
+ valor = parseInt(valor); 
+ 	if (isNaN(valor)) { 
+       	 return null;
+ 	}else{ 
+       	 return valor; 
+ 	}
+}
+
+function generaMensaje(cadena){
+	var i;
+	var mensaje="Los siguientes campos no han sido llenados correctamente\n";
+	for(i=0;i<cadena.lenght;i++){
+		if(i+1<cadena.lenght){
+			mensaje+=cadena[i]+', ';
+			
+		}else{
+			mensaje=+cadena[i];
+			
+		}
+		
+	}
+	return mensaje;
+	
+}
+
+
+function crearAlert(cadena){
+	mensaje=generaMensaje(cadena);
+	$(document).ready(function() {
+		apprise(mensaje, {'animate':true}, function(r) {
+
+			if(r) { 
+			
+			} else { 
+		
+			}
+		});
+	});
+}
 		function validar(form){
 			if(form.txtNombre.value.length <=0)return false;
 			if(form.txtApaterno.value.length<=0)return false;
@@ -285,8 +348,8 @@ String fecAnoFin=dfActual.format(c1.getTime()); %>
 							  
 						  					   
 							
-							<div class="control-group" id="dvNrodoc" >
-						      <label class="control-label" for="typeahead7">Nro. de Doc(*): </label>
+							<div class="control-group" id="dvNrodoc">
+						      <label class="control-label" for="typeahead6">Nro. de Doc(*): </label>
 						      <div class="controls">
 						        <input type="text" class="span6 typeahead" 
 						        id="txtNrodoc" name="txtNrodoc" 
@@ -328,18 +391,20 @@ String fecAnoFin=dfActual.format(c1.getTime()); %>
 
 
 
-						    <div class="control-group">
-						      <label class="control-label" for="typeahead7"> Teléfono Fijo: </label>
+						    <div class="control-group" id="dvTelefonofijo">
+						      <label class="control-label" for="typeahead9"> Tel&eacutefono Fijo: </label>
 						      <div class="controls">
-						        <input type="text" class="span6 typeahead" id="txtTelefonofijo"  data-provide="typeahead"  name="txtTelefonofijo"  >
+						        <input type="text" class="span6 typeahead" id="txtTelefonofijo"  name="txtTelefonofijo" data-provide="txtTelefonofijo" data-items="4" >
+					          	<span class="help-inline" id="errTelefonofijo">Please correct the error</span>
 					          </div>
 					        </div>
 
 
-						    <div class="control-group">
-						      <label class="control-label" for="typeahead7"> Teléfono Celular: </label>
+						    <div class="control-group" id="dvTelefonocelular">
+						      <label class="control-label" for="typeahead10"> Tel&eacutefono Celular: </label>
 						      <div class="controls">
-						        <input type="text" class="span6 typeahead" id="txtTelefonocelular"  data-provide="typeahead"  name="txtTelefonocelular"  >
+						        <input type="text" class="span6 typeahead" id="txtTelefonocelular"  name="txtTelefonocelular"  data-provide="txtTelefonocelular" data-items="4" >
+					          	<span class="help-inline" id="errTelefonocelular">Please correct the error</span>
 					          </div>
 					        </div>
         
@@ -527,11 +592,19 @@ function validaForm(){
 	if(!esValido("Nombre",form.txtNombre,"Nombre",1,1,50)){cadena[i]="Nombre";i++;}
 	if(!esValido("Apellido Paterno",form.txtApaterno,"Apaterno",1,1,50)){cadena[i]="Apellido Paterno";i++;}
 	if(!esValido("Apellido Materno",form.txtAmaterno,"Amaterno",1,1,50)){cadena[i]="Apellido Materno";i++;}
-	if(!esValido("Nro. de Doc",form.txtNrodoc,"Nrodoc",1,1,8)){cadena[i]="Nro. de Doc";i++;}
-	if(!esValido("Correo",form.txtCorreo,"Correo",1,1,50)){cadena[i]="Correo";i++;}
+	if(!esValido("Nro. de Doc",form.txtNrodoc,"Nrodoc",1,1,8)){cadena[i]="Nro. de Doc";i++;}else{
+		if(!esValido("Nro. de Doc",form.txtNrodoc,"Nrodoc",6,1,50)){cadena[i]="Nro. de Doc";i++;}
+	}
+	if(!esValido("Correo",form.txtCorreo,"Correo",9,1,50)){cadena[i]="Correo";i++;}
 	if(!esValido("Fecha Nacimiento",form.fFecNacimiento,"FecNacimiento",2,1,10)){cadena[i]="Fecha Nacimiento";i++;}
 	if(!esValido("Fecha Registro",form.fFecRegistro,"FecRegistro",2,1,10)){cadena[i]="Fecha Registro";i++;}
 	if(!validarFechas("Fecha Registro",form.fFecRegistro,"FecRegistro","Fecha Nacimiento",form.fFecNacimiento)){cadena[i]="Fecha Registro";i++;};
+	if(!esValido("Tel&eacutefono Fijo",form.txtTelefonofijo,"Telefonofijo",1,1,7)){cadena[i]="Tel&eacutefono Fijo";i++;}else{
+		if(!esValido("Tel&eacutefono Fijo",form.txtTelefonofijo,"Telefonofijo",6,1,50)){cadena[i]="Tel&eacutefono Fijo";i++;}
+	}
+	if(!esValido("Tel&eacutefono Celular",form.txtTelefonocelular,"Telefonocelular",1,1,9)){cadena[i]="Tel&eacutefono Celular";i++;}else{
+		if(!esValido("Tel&eacutefono Celular",form.txtTelefonocelular,"Telefonocelular",6,1,50)){cadena[i]="Tel&eacutefono Celular";i++;}
+	}
 	
 	
 	/*if(!esValido("Fecha Inicio",form.fFechInicio,"FechaInicio",2,1,10)){cadena[i]="Fecha Inicio";i++;}
@@ -594,6 +667,8 @@ Solo poner el id de los <span> segun corresponda
 	//document.getElementById("errRuc").style.display='none';
 	document.getElementById("errFecNacimiento").style.display='none';
 	document.getElementById("errFecRegistro").style.display='none';
+	document.getElementById("errTelefonofijo").style.display='none';
+	document.getElementById("errTelefonocelular").style.display='none';
 	//document.getElementById("errFechaSorteo").style.display='none';
 	//document.getElementById("errSocio").style.display='none';
 	//document.getElementById("errCosto").style.display='none';
