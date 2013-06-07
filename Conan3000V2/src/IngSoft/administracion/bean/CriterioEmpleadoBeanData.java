@@ -4,37 +4,44 @@ import java.io.Serializable;
 import java.sql.Date;
 
 public class CriterioEmpleadoBeanData implements Serializable{
-	private String nombre; 
-	private String apaterno;
-	private String puesto;
-	private String estado;
+	
+
+	private String nombre;
+	private String apellidoPaterno;
+	private int numeroDocumento;
+    private String area;
+	
+ 
+    
+    
+    
+	public String getArea() {
+		return area;
+	}
+	public void setArea(String area) {
+		this.area = area;
+	}
+	
 	public String getNombre() {
 		return nombre;
 	}
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public String getApaterno() {
-		return apaterno;
+	public String getApellidoPaterno() {
+		return apellidoPaterno;
 	}
-	public void setApaterno(String apaterno) {
-		this.apaterno = apaterno;
+	public void setApellidoPaterno(String apellidoPaterno) {
+		this.apellidoPaterno = apellidoPaterno;
 	}
-	public String getPuesto() {
-		return puesto;
+	public int getNumeroDocumento() {
+		return numeroDocumento;
 	}
-	public void setPuesto(String puesto) {
-		this.puesto = puesto;
+	public void setNumeroDocumento(int numeroDocumento) {
+		this.numeroDocumento = numeroDocumento;
 	}
-	public String getEstado() {
-		return estado;
-	}
-	public void setEstado(String estado) {
-		this.estado = estado;
-	}
+
 	
 	
-
-
 
 }
