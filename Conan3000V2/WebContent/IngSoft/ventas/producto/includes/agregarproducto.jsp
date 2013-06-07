@@ -58,7 +58,7 @@ function anhadir(cod,name){
 						    <div class="control-group" id="dvNombre">
 						      <label class="control-label" for="typeahead7">Nombre (*): </label>
 						      <div class="controls">
-						        <input type="text" class="span6 typeahead" id="txtNombre" name="txtNombre"  data-provide="typeahead" >
+						        <input type="text" class="span6 typeahead" id="txtNombre" name="txtNombre"  onpaste="return false;" data-provide="typeahead" >
 						        <span class="help-inline" id="errNombre">Please correct the error 	        
 					          </span>
 					        </div>
@@ -69,7 +69,7 @@ function anhadir(cod,name){
 							  <div class="control-group" id="dvDescripcion">
 			                <label class="control-label" for="textarea2">Descripci&oacute;n:</label>
 			                <div class="controls">
-			                  <textarea id="txtDescripcion" name="txtDescripcion" style="resize:none; height: 74px; width: 273px" onKeyUp="limita(this,100);" onKeyDown="limita(this,100);" ></textarea>
+			                  <textarea id="txtDescripcion" name="txtDescripcion"  onpaste="return false;" style="resize:none; height: 74px; width: 273px" onKeyUp="limita(this,100);" onKeyDown="limita(this,100);" ></textarea>
 								
 								<span class="help-inline" id="errDescripcion">Please correct the error 	        
 					          </span>		                  
@@ -81,7 +81,7 @@ function anhadir(cod,name){
 
 							    <label class="control-label" for="typeahead14">Presentaci&oacute;n: </label>
 							    <div class="controls">
-							      <input type="text" class="span6 typeahead" id="txtPresentacion" name="txtPresentacion"  data-provide="typeahead" data-items="4" >
+							      <input type="text" class="span6 typeahead"  onpaste="return false;" id="txtPresentacion" name="txtPresentacion"  data-provide="typeahead" data-items="4" >
 						       <span class="help-inline" id="errPresentacion">Please correct the error 	        
 					          </span>	
 						        </div>
@@ -92,7 +92,7 @@ function anhadir(cod,name){
 							  <div class="control-group" id="dvPrecioU">
 							    <label class="control-label" for="typeahead10">Precio Unitario (S/.) (*): </label>
 							    <div class="controls">
-							      <input type="text" class="span6 typeahead" id="txtPrecioU" name="txtPrecioU"  data-provide="typeahead" data-items="4" >
+							      <input type="text" class="span6 typeahead"   onpaste="return false;"id="txtPrecioU" name="txtPrecioU"  data-provide="typeahead" data-items="4" >
 						         <span class="help-inline" id="errPrecioU">Please correct the error 	        
 					          </span>	
 						        </div>
