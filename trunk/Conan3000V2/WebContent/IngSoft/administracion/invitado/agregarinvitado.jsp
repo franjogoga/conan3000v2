@@ -221,6 +221,8 @@
 								<div class="controls">
 								  <select  id="selectError" data-rel="chosen" name="cmbTipodoc">
 									<option>DNI</option>
+									<option>Carnet de Extranjer&iacutea</option>
+									<option>Pasaporte</option>
 
 								
 								  </select>
@@ -228,14 +230,17 @@
 							  </div>
 							  
 							  
-						  
-						    <div class="control-group">
+						  					   
+							
+							<div class="control-group" id="dvNrodoc" >
 						      <label class="control-label" for="typeahead7">Nro. de Doc(*): </label>
 						      <div class="controls">
-						        <input type="text" class="span6 typeahead" id="txtNrodoc"  data-provide="typeahead"  name="txtNrodoc"  >
+						        <input type="text" class="span6 typeahead" 
+						        id="txtNrodoc" name="txtNrodoc" 
+						        data-provide="typeahead" >
+					          	<span class="help-inline" id="errNrodoc">Please correct the error</span>
 					          </div>
 					        </div>
-
 
 
 
@@ -253,7 +258,7 @@
 							  </div>
 							</div>
 							
-
+							
 
 						   
 					        
@@ -469,6 +474,8 @@ function validaForm(){
 	if(!esValido("Nombre",form.txtNombre,"Nombre",1,1,50)){cadena[i]="Nombre";i++;}
 	if(!esValido("Apellido Paterno",form.txtApaterno,"Apaterno",1,1,50)){cadena[i]="Apellido Paterno";i++;}
 	if(!esValido("Apellido Materno",form.txtAmaterno,"Amaterno",1,1,50)){cadena[i]="Apellido Materno";i++;}
+	if(!esValido("Nro. de Doc",form.txtAmaterno,"Nrodoc",1,1,8)){cadena[i]="Nro. de Doc";i++;}
+	
 	if(!esValido("Correo",form.txtCorreo,"Correo",1,1,50)){cadena[i]="Correo";i++;}
 	
 	/*if(!esValido("Fecha Inicio",form.fFechInicio,"FechaInicio",2,1,10)){cadena[i]="Fecha Inicio";i++;}
@@ -524,6 +531,10 @@ function inicializa(){
 Solo poner el id de los <span> segun corresponda
 */
 	document.getElementById("errNombre").style.display='none';
+	document.getElementById("errApaterno").style.display='none';
+	document.getElementById("errAmaterno").style.display='none';
+	document.getElementById("errNrodoc").style.display='none';
+	document.getElementById("errCorreo").style.display='none';
 	//document.getElementById("errRuc").style.display='none';
 	//document.getElementById("errFechaInicio").style.display='none';
 	//document.getElementById("errFechaFin").style.display='none';
