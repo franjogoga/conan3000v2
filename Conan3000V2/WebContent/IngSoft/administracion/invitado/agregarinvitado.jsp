@@ -592,7 +592,7 @@ function validaForm(){
 	if(!esValido("Nombre",form.txtNombre,"Nombre",1,1,50)){cadena[i]="Nombre";i++;}
 	if(!esValido("Apellido Paterno",form.txtApaterno,"Apaterno",1,1,50)){cadena[i]="Apellido Paterno";i++;}
 	if(!esValido("Apellido Materno",form.txtAmaterno,"Amaterno",1,1,50)){cadena[i]="Apellido Materno";i++;}
-	if(!esValido("Nro. de Doc",form.txtNrodoc,"Nrodoc",1,1,8)){cadena[i]="Nro. de Doc";i++;}else{
+	if(!esValido("Nro. de Doc",form.txtNrodoc,"Nrodoc",1,8,8)){cadena[i]="Nro. de Doc";i++;}else{
 		if(!esValido("Nro. de Doc",form.txtNrodoc,"Nrodoc",6,1,50)){cadena[i]="Nro. de Doc";i++;}
 	}
 	if(!esValido("Correo",form.txtCorreo,"Correo",9,1,50)){cadena[i]="Correo";i++;}
@@ -602,7 +602,7 @@ function validaForm(){
 	if(!esValido("Tel&eacutefono Fijo",form.txtTelefonofijo,"Telefonofijo",1,6,7)){cadena[i]="Tel&eacutefono Fijo";i++;}else{
 		if(!esValido("Tel&eacutefono Fijo",form.txtTelefonofijo,"Telefonofijo",6,1,50)){cadena[i]="Tel&eacutefono Fijo";i++;}
 	}
-	if(!esValido("Tel&eacutefono Celular",form.txtTelefonocelular,"Telefonocelular",1,1,9)){cadena[i]="Tel&eacutefono Celular";i++;}else{
+	if(!esValido("Tel&eacutefono Celular",form.txtTelefonocelular,"Telefonocelular",1,9,9)){cadena[i]="Tel&eacutefono Celular";i++;}else{
 		if(!esValido("Tel&eacutefono Celular",form.txtTelefonocelular,"Telefonocelular",6,1,50)){cadena[i]="Tel&eacutefono Celular";i++;}
 	}
 	
