@@ -1,82 +1,32 @@
 <script type="text/javascript" src="js/apprise-1.5.full.js"></script>
-<link rel="stylesheet" href="css/apprise.css" type="text/css" />
+
+<link rel="stylesheet" href="css/apprise.css" type="text/css" />	</style>
+	<link href="css/bootstrap-responsive.css" rel="stylesheet">
+	<link href="css/charisma-app.css" rel="stylesheet">
+	<link href="css/jquery-ui-1.8.21.custom.css" rel="stylesheet">
+	<link href='css/fullcalendar.css' rel='stylesheet'>
+	<link href='css/fullcalendar.print.css' rel='stylesheet'  media='print'>
+	<link href='css/chosen.css' rel='stylesheet'>
+	<link href='css/uniform.default.css' rel='stylesheet'>
+	<link href='css/colorbox.css' rel='stylesheet'>
+	<link href='css/jquery.cleditor.css' rel='stylesheet'>
+	<link href='css/jquery.noty.css' rel='stylesheet'>
+	<link href='css/noty_theme_default.css' rel='stylesheet'>
+	<link href='css/elfinder.min.css' rel='stylesheet'>
+	<link href='css/elfinder.theme.css' rel='stylesheet'>
+	<link href='css/jquery.iphone.toggle.css' rel='stylesheet'>
+	<link href='css/opa-icons.css' rel='stylesheet'>
+	<link href='css/uploadify.css' rel='stylesheet'>
+
+
 <script>
 function alt_submit(){
 	var form= document.frmProducto;
-	if(validar(form)) form.submit();
+	if (validaForm()) {form.submit();}
 		
 }
 
-
-function esCorrecto(valor,minimo, maximo){
 	
-	if(valor.length>maximo){ 
-		return false;
-	}else{
-		if(valor.length<=minimo){
-			return false;
-		}else{
-			return true;	
-		}
-
-	}
-
-}
-
-function validarEntero(valor){ 
- 
- valor = parseInt(valor); 
- 	if (isNaN(valor)) { 
-       	 return null;
- 	}else{ 
-       	 return valor; 
- 	}
-}
-
-function generaMensaje(cadena){
-	var i;
-	var mensaje="Los siguientes campos no han sido llenados correctamente\n";
-	for(i=0;i<cadena.lenght;i++){
-		if(i+1<cadena.lenght){
-			mensaje+=cadena[i]+', ';
-			
-		}else{
-			mensaje=+cadena[i];
-			
-		}
-		
-	}
-	return mensaje;
-	
-}
-
-
-function crearAlert(cadena){
-	mensaje=generaMensaje(cadena);
-	$(document).ready(function() {
-		apprise(mensaje, {'animate':true}, function(r) {
-
-			if(r) { 
-			
-			} else { 
-		
-			}
-		});
-	});
-}
-
-function validar(form){
-	if(form.txtNombre.value.length <=0)return false;
-	if(form.txtDescripcion.value.length<=0)return false;
-	if(form.txtPresentacion.value.lengtht<=0)return false;
-	if(form.txtProveedor.value.length<=0)return false;
-     if(form.txtPrecioU.value.length<=0)return false;
-	//if(form.cmbAmbientes.value.length<=0)return false;
-return true;
-
-
-}
-		
 function anhadir(cod,name){
 	var form=document.frmProducto;
 	form.idProveedor.value=cod;
@@ -106,7 +56,7 @@ function anhadir(cod,name){
 						<input type="hidden" name="tipo" value="2" ></input>
 						  <fieldset>
 						    <div class="control-group" id="dvNombre">
-						      <label class="control-label" for="typeahead7">Nombre(*): </label>
+						      <label class="control-label" for="typeahead7">Nombre (*): </label>
 						      <div class="controls">
 						        <input type="text" class="span6 typeahead" id="txtNombre" name="txtNombre"  data-provide="typeahead" >
 						        <span class="help-inline" id="errNombre">Please correct the error 	        
@@ -140,7 +90,7 @@ function anhadir(cod,name){
 						      
 						      
 							  <div class="control-group" id="dvPrecioU">
-							    <label class="control-label" for="typeahead10">Precio Unitario(S/.) (*): </label>
+							    <label class="control-label" for="typeahead10">Precio Unitario (S/.) (*): </label>
 							    <div class="controls">
 							      <input type="text" class="span6 typeahead" id="txtPrecioU" name="txtPrecioU"  data-provide="typeahead" data-items="4" >
 						         <span class="help-inline" id="errPrecioU">Please correct the error 	        
@@ -148,7 +98,7 @@ function anhadir(cod,name){
 						        </div>
 						      </div>
 						 <div class="control-group" id="dvProvedor">
-			                <label class="control-label" for="typeahead8">Provedor (*): </label>
+			                <label class="control-label" for="typeahead8">Proveedor (*): </label>
 			                <div class="controls">
 			                  <input type="text" class="span6 typeahead" id="txtProveedor"  data-provide="typeahead" name="txtProveedor" data-items="4" readonly="readonly">
 			                  <br>
