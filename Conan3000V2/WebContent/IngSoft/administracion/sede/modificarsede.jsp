@@ -125,7 +125,7 @@
                         
 
 							 <div class="control-group">
-								<label class="control-label" for="selectError">Departamento:   <%=sede.getDepartamento()%>  </label>
+								<label class="control-label" for="selectError">Departamento: </label>
 								<div class="controls">
 					             <!-- cmbDepartamento  variable     -->	
 							 		<select data-rel="chosen" id="cmbDepartamento" name="cmbDepartamento" onchange="alt_provincia()">
@@ -138,7 +138,7 @@
 							  
 							  
 							 <div class="control-group">
-								<label class="control-label" for="selectError">Provincia:   <%=sede.getProvincia()%>    </label>
+								<label class="control-label" for="selectError">Provincia:</label>
 								<div class="controls">
 																					 <!-- cmbProvincia  variable     -->	
 							 		<select  data-rel="chosen" id="cmbProvincia" name="cmbProvincia" onchange="alt_distrito()">
@@ -150,7 +150,7 @@
 							  </div>
 							  
 							 <div class="control-group">
-								<label class="control-label" for="selectError">Distrito:    <%=sede.getDistrito()%>  </label>
+								<label class="control-label" for="selectError">Distrito: </label>
 								<div class="controls">
 																					 <!-- cmbDistrito  variable     -->	
 							 		<select data-rel="chosen" id="cmbDistrito" name="cmbDistrito">
