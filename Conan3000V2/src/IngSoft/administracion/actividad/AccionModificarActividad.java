@@ -19,6 +19,7 @@ import IngSoft.administracion.bean.CriterioActividadBeanFunction;
 import IngSoft.administracion.bean.CriterioSedeBeanData;
 import IngSoft.administracion.bean.CriterioSedeBeanFunction;
 import IngSoft.administracion.bean.ResultadoActividadBeanData;
+import IngSoft.administracion.bean.ResultadoEmpleadoBeanData;
 import IngSoft.administracion.bean.ResultadoSedeBeanData;
 import IngSoft.administracion.bean.SedeBeanData;
 import IngSoft.administracion.bean.SedeBeanFuncion;
@@ -54,11 +55,13 @@ public class AccionModificarActividad extends CoAccion{
 
 			Vector<AmbienteBeanData> 				ambientes = ActividadBeanFuncion.getInstance().getAmbientes();	
 			Vector<SedeBeanData> 						sedes = ActividadBeanFuncion.getInstance().getSedes();	
-			Vector<TipoActividadMiniBeanData> tipoactividades = ActividadBeanFuncion.getInstance().getTipoactividades();	
+			Vector<TipoActividadMiniBeanData> tipoactividades = ActividadBeanFuncion.getInstance().getTipoactividades();
+			Vector<ResultadoEmpleadoBeanData> 				empleados = ActividadBeanFuncion.getInstance().getEmpleados();
 
 			request.setAttribute("ambientes", ambientes);
 			request.setAttribute("tipoactividades", tipoactividades);
 			request.setAttribute("sedes", sedes);
+			request.setAttribute("empleados", empleados);
 			
 			request.setAttribute("actividad",actividadData );
 			this.direccionar(sc, request, response, "/IngSoft/administracion/actividad/modificaractividad.jsp");

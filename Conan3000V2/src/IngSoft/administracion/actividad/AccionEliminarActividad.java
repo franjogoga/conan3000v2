@@ -13,6 +13,7 @@ import IngSoft.general.CoException;
 import IngSoft.administracion.bean.ActividadBeanData;
 import IngSoft.administracion.bean.ActividadBeanFuncion;
 import IngSoft.administracion.bean.AmbienteBeanData;
+import IngSoft.administracion.bean.ResultadoEmpleadoBeanData;
 import IngSoft.administracion.bean.SedeBeanData;
 import IngSoft.administracion.bean.SedeBeanFuncion;
 import IngSoft.administracion.bean.TipoActividadMiniBeanData;
@@ -40,13 +41,14 @@ public class AccionEliminarActividad extends CoAccion{
 			
 			Vector<AmbienteBeanData> 				ambientes = ActividadBeanFuncion.getInstance().getAmbientes();	
 			Vector<SedeBeanData> 						sedes = ActividadBeanFuncion.getInstance().getSedes();	
-			Vector<TipoActividadMiniBeanData> tipoactividades = ActividadBeanFuncion.getInstance().getTipoactividades();	
+			Vector<TipoActividadMiniBeanData> tipoactividades = ActividadBeanFuncion.getInstance().getTipoactividades();
+			Vector<ResultadoEmpleadoBeanData> 				empleados = ActividadBeanFuncion.getInstance().getEmpleados();	
+			
 
 			request.setAttribute("ambientes", ambientes);
 			request.setAttribute("tipoactividades", tipoactividades);
 			request.setAttribute("sedes", sedes);
-			
-			
+			request.setAttribute("empleados", empleados);
 			request.setAttribute("actividad",actividadData );
 			this.direccionar(sc, request, response, "/IngSoft/administracion/actividad/eliminaractividad.jsp");
 			
