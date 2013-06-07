@@ -104,7 +104,10 @@
 	<servlet-class>IngSoft.venta.pago.SMVPago</servlet-class>				   
 </servlet>
 
-
+<servlet id="Servlet_0024">
+        <servlet-name>SMAJornada</servlet-name>
+	<servlet-class>IngSoft.administracion.jornada.SMAJornada</servlet-class>				   
+</servlet>
 
 
 
@@ -204,7 +207,10 @@
         <servlet-name>SMVPago</servlet-name>
 <url-pattern>/IngSoft/ventas/pago/SMVPago</url-pattern>
 </servlet-mapping>
-
+<servlet-mapping id="ServletMapping_0024">
+        <servlet-name>SMAJornada</servlet-name>
+<url-pattern>/IngSoft/administracion/jornada/SMAJornada</url-pattern>
+</servlet-mapping>
 
 <error-page>
 <error-code>404</error-code>
