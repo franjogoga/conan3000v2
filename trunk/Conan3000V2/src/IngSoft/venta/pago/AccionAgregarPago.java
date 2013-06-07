@@ -21,7 +21,7 @@ public class AccionAgregarPago extends CoAccion {
 				PagoBeanFunction PagoFunction= PagoBeanFunction.getInstance();
 				if(tipo==2){
 					
-					PagoBeanData pagoData=PagoFunction.crearPago(request, response);
+					PagoBeanData pagoData=PagoFunction.crearPagoMembresia(request, response);
 					
 					PagoFunction.agregarPago(pagoData);
 					this.direccionar(sc, request, response, "/IngSoft/ventas/pago/buscarpago.jsp");

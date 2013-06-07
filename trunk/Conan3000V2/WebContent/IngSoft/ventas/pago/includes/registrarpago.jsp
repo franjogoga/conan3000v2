@@ -88,7 +88,7 @@ String fecHoy=dfActual.format(new java.util.Date());
 			      <div class="box-content">
 			        <form class="form-horizontal"  name="frmPago" method="Post"  action="SMVPago">
 			        <input type="hidden" name="codigo" value="<%=pago.getIdCuota()%>"></input>
-			        <input type="hidden" name="accion" value="Modificar"></input>
+			        <input type="hidden" name="accion" value="Pagar"></input>
 					<input type="hidden" name="tipo" value="2"></input>
 			          <fieldset>
 			            <div class="control-group">
