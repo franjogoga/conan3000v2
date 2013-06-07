@@ -1,25 +1,52 @@
 function cambiarClase(elemento){
+	if(aTipo==1) cAgregar(elemento);
+	else cEliminar(elemento);
 
-if (elemento.className == "btn btn-success") {
-	elemento.className = "btn btn-warning";
-	elemento.innerHTML=elemento.innerHTML.replace("Reservar&nbsp;&nbsp;&nbsp;","Pendiente");
-	var temp=elemento.getAttribute("id")+"@";
-	if(cancelados.search(temp)<0)
-	pendientes=pendientes.concat(temp);
-	else cancelados=cancelados.replace(temp,"");
-
-	}
-	else 
-	if(elemento.className == "btn btn-warning") {
-	elemento.className = "btn btn-success";
-	elemento.innerHTML=elemento.innerHTML.replace("Pendiente","Reservar&nbsp;&nbsp;&nbsp;");
-	var temp=elemento.getAttribute("id")+"@";
-	if(pendientes.search(temp)<0)
-	cancelados=cancelados.concat(temp);
-	else pendientes=pendientes.replace(temp,"");
-	}
 	
 }
+
+function cAgregar(elemento){
+	if (elemento.className == "btn btn-success") {
+		elemento.className = "btn btn-warning";
+		elemento.innerHTML=elemento.innerHTML.replace("Reservar&nbsp;&nbsp;&nbsp;","Pendiente");
+		var temp=elemento.getAttribute("id")+"@";
+		if(cancelados.search(temp)<0)
+		pendientes=pendientes.concat(temp);
+		else cancelados=cancelados.replace(temp,"");
+
+		}
+		else 
+		if(elemento.className == "btn btn-warning") {
+		elemento.className = "btn btn-success";
+		elemento.innerHTML=elemento.innerHTML.replace("Pendiente","Reservar&nbsp;&nbsp;&nbsp;");
+		var temp=elemento.getAttribute("id")+"@";
+		if(pendientes.search(temp)<0)
+		cancelados=cancelados.concat(temp);
+		else pendientes=pendientes.replace(temp,"");
+		}	
+}
+
+function cEliminar(elemento){
+	if (elemento.className == "btn btn-danger") {
+		elemento.className = "btn btn-warning";
+		elemento.innerHTML=elemento.innerHTML.replace("Pendiente","Reservado");
+		var temp=elemento.getAttribute("id")+"@";
+		if(cancelados.search(temp)<0)
+		pendientes=pendientes.concat(temp);
+		else cancelados=cancelados.replace(temp,"");
+
+		}
+		else 
+		if(elemento.className == "btn btn-warning") {
+		elemento.className = "btn btn-danger";
+		elemento.innerHTML=elemento.innerHTML.replace("Reservado","Pendiente");
+		var temp=elemento.getAttribute("id")+"@";
+		if(pendientes.search(temp)<0)
+		cancelados=cancelados.concat(temp);
+		else pendientes=pendientes.replace(temp,"");
+		}	
+}
+
 
 function ajax_submit(tipo){
 	//alert("accion=Buscar"+"&tipo=" + tipo + "&fecIni=" + $(fecIni).val()+"&cmbServicios"+$('#cmbServicios').val());
@@ -156,7 +183,7 @@ if(lock4==1){
 			$.ajax({
 		  type: "POST",
 		  url: "/Conan3000V2/IngSoft/servicio/reserva/SMSReserva",
-		  data: "accion=Crear"+"&tipo=2" +"&txtIdSocio="+$('#txtIdSocio').val(),
+		  data: "accion=Crear"+"&tipo="+ctipo +"&txtIdSocio="+$('#txtIdSocio').val(),
 		  dataType: "text",		  
 		  success: function(msg){
 		  	lock4=1;
@@ -180,9 +207,13 @@ if(lock4==1){
 }
 function activarTipoCancha(elem){
 var temp=$('#TipoCancha')
-if(elem.val().indexOf('cancha')>=0)
+if(elem.val().indexOf('cancha')>=0){
 	temp.slideDown('fast');
-else
+	ctipo=3;
+}
+else{
 	temp.slideUp('fast');
+	ctipo=2;
+}
 
 }

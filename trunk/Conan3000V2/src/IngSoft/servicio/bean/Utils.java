@@ -31,5 +31,27 @@ public class Utils {
 		   }
 		   return result;
 	   }
-
+	   
+	   public static String addHora(String hora,int step){
+		 	try{
+		 	//System.out.println(hora);
+		 	String arr[]= hora.split(":");
+		 	//System.out.println(arr.toString());
+		 	int hh= Integer.parseInt(arr[0]);
+		 	int mm= Integer.parseInt(arr[1]);
+		 	mm=mm+step;
+		 	if(mm>=60) hh=hh+mm/60;
+		 	mm=mm%60;
+		 	String resultado=""; 
+		 	String temp=String.valueOf(hh);
+		 	temp=temp.length()>1?temp:"0"+temp;
+		 	resultado=resultado+temp+":";
+		 	temp=String.valueOf(mm);
+		 	temp=temp.length()>1?temp:"0"+temp;
+		 	resultado=resultado+temp;
+		 	return resultado;
+		 	}
+		 	catch(Exception e){
+		 	return null;} 
+	   }
 }

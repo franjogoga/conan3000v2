@@ -10,6 +10,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import IngSoft.general.CoException;
 import IngSoft.general.MyBatisSesion;
+import IngSoft.general.bean.Conan3000Constantes;
 
 public class ReservaBeanFuncion {
 	static private ReservaBeanFuncion ReservaFuncion=null;
@@ -138,6 +139,41 @@ public class ReservaBeanFuncion {
 				   map.put("fecha",df.parseObject(listareservas.get(i).substring(9)));
 				   sqlsesion.insert("Data.servicio.reserva.insertBungalowReserva",map);
 				   sqlsesion.insert("Data.servicio.reserva.insertBungalowReservaFecha",map);
+				   
+			   }
+			   sqlsesion.commit();
+			   
+		   }catch(Exception e){
+			   sqlsesion.rollback();
+			   e.printStackTrace();			   
+		   }
+		   finally{			   
+			   sqlsesion.close();
+			   
+		   }
+		   
+	   }
+	   public void agregarReservaCancha(Vector<String> listareservas, String codSocio){
+		   String nextcodigo;
+		   SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+		   try{
+			   nextcodigo=sqlsesion.selectOne("Data.servicio.reserva.getNextCodigoC");
+			   nextcodigo=nextcodigo==null?"RSC000000":nextcodigo;
+			   SimpleDateFormat df= new SimpleDateFormat("dd/MM/yyyy");
+			   String horaIni=null;
+			   int a= listareservas.size();
+			   HashMap<String, Object> map=new HashMap<String, Object>();
+			   map.put("idsocio",codSocio);
+			   for(int i=0;i<a;i++){
+				   nextcodigo=this.generaSiguienteCodigo(nextcodigo);
+				   horaIni=listareservas.get(i).substring(19);
+				   map.put("idcancha", listareservas.get(i).substring(0, 9)); 
+				   map.put("idreservascancha", nextcodigo);
+				   map.put("fecha",df.parseObject(listareservas.get(i).substring(9,19)));
+				   map.put("horaIni",horaIni);
+				   map.put("horaFin",Utils.addHora(horaIni, Conan3000Constantes.step.intValue()));
+				   sqlsesion.insert("Data.servicio.reserva.insertCanchaReserva",map);
+				   sqlsesion.insert("Data.servicio.reserva.insertCanchaReservaFecha",map);
 				   
 			   }
 			   sqlsesion.commit();

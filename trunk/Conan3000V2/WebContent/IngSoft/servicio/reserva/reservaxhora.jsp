@@ -6,6 +6,7 @@
 <jsp:useBean id="fI" scope="request"class="java.util.Date"></jsp:useBean>
 <jsp:useBean id="reservas" scope="session"class="java.util.Vector"></jsp:useBean>
 <jsp:useBean id="pendientes" scope="session"class="java.lang.String"></jsp:useBean>
+<jsp:useBean id="step" scope="request"class="java.lang.Integer"></jsp:useBean>
 
 <%Date fecIni=fI; %>
 <div id="tabs">
@@ -15,15 +16,15 @@
 <input type="hidden" value="<%= new SimpleDateFormat("dd/MM/yyyy").format(fecIni)%>" name="fecIni" id="fecIni">
 <input type="hidden" value="<%=(String)pendientes%>" name="pendientes" id="pendientes">
 </form>
-
-<%!int step=60;
+<%int stepI=step.intValue(); %>
+<%!//int step=60;
   String horaIni="07:00";
   String horaFin="15:00";
   String dias[]={"Lunes","Martes","Miercoles","Jueves","Viernes","Sabado","Domingo"};
   SimpleDateFormat DF=new SimpleDateFormat("dd/MM");
   SimpleDateFormat DFT=new SimpleDateFormat("dd/MM/yyyy");
   SimpleDateFormat DFI=new SimpleDateFormat("yyyy/MM/dd");
- public String addHora(String hora){
+ public String addHora(String hora,int step){
  	try{
  	//System.out.println(hora);
  	String arr[]= hora.split(":");
@@ -85,7 +86,7 @@ esnull=false;
 								if(hora.compareTo(horaFin)>=0)break;
 								%>
 								<tr>
-								<td><%=hora%>-<%=addHora(hora)%></td>
+								<td><%=hora%>-<%=addHora(hora,stepI)%></td>
 								<%for(int l=0;l<dias.length;l++){								
 								%>
 								<td class="center">
@@ -98,7 +99,7 @@ esnull=false;
 								</td>
 								<%							
 							}
-							hora=addHora(hora);}
+							hora=addHora(hora,stepI);}
 							}
 							else{
 								String hora=horaIni;
@@ -116,7 +117,7 @@ esnull=false;
 								boolean test=false;								
 								%>
 								<tr>
-								<td><%=hora%>-<%=addHora(hora)%></td>
+								<td><%=hora%>-<%=addHora(hora,stepI)%></td>
 								<%for(int l=0;l<dias.length;l++){
 									test=(!esnull)&&((DFI.format(Utils.fechaMas(fecIni, l)).compareTo(temp)==0)&&(HRI.compareTo(hora))==0);																											
 								%>
@@ -139,7 +140,7 @@ esnull=false;
 								<%	
 								if(test && !esnull){
 										test=false;
-										HRI=addHora(HRI);
+										HRI=addHora(HRI,stepI);
 										if(HRI.compareTo(HRF)>=0) {												
 												reservasV.remove(j);
 												reservasV.trimToSize();
@@ -162,7 +163,7 @@ esnull=false;
 																				
 								 	}						
 							}																					
-							hora=addHora(hora);}
+							hora=addHora(hora,stepI);}
 								}%>
 								
 					

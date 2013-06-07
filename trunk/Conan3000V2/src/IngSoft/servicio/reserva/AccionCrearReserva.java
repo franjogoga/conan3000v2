@@ -41,6 +41,18 @@ public class AccionCrearReserva extends CoAccion {
 				sesion.removeAttribute("listareservas");								
 			}
 		}
+		if(tipo==3){
+			HttpSession sesion= request.getSession(true);
+			Vector<String> listareservas=(Vector<String>)sesion.getAttribute("listareservas");
+			listareservas=listareservas==null?new Vector<String>():listareservas;
+			String codSocio=request.getParameter("txtIdSocio");
+			if(listareservas.size()>0){
+				ReservaBeanFuncion reservaFuncion=ReservaBeanFuncion.getInstance();
+				reservaFuncion.agregarReservaBungalow(listareservas,codSocio);
+				sesion.removeAttribute("reservas");
+				sesion.removeAttribute("listareservas");								
+			}
+		}
 	}
 
 }
