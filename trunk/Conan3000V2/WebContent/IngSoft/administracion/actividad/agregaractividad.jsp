@@ -145,7 +145,7 @@
               <div class="row-fluid sortable">
                 <div class="box span12">
                   <div class="box-header well" data-original-title>
-                    <h2>AGREGAR ACTIVIDAD</h2>
+                    <h2><i class="icon-plus-sign"></i>AGREGAR ACTIVIDAD</h2>
                   </div>
                   <div class="box-content">
                     <form class="form-horizontal" action="<%= response.encodeURL("SMAActividad")%>" name="frmData" method="post">

@@ -1,29 +1,36 @@
 <!DOCTYPE html>
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="IngSoft.administracion.bean.ActividadBeanData"%>
+<%@page import="IngSoft.administracion.bean.SedeBeanData"%>
+<%@page import="IngSoft.administracion.bean.AmbienteBeanData"%>
+<%@page import="IngSoft.administracion.bean.TipoActividadMiniBeanData"%>
+
 
 <%@page import="IngSoft.administracion.bean.DepartamentoBeanData"%>
 <%@page import="IngSoft.administracion.bean.ProvinciaBeanData"%>
 <%@page import="IngSoft.administracion.bean.DistritoBeanData"%>
+
+
 <html lang="en">
 <head>
-	<!--
-		Charisma v1.0.0
-
-		Copyright 2012 Muhammad Usman
-		Licensed under the Apache License v2.0
-		http://www.apache.org/licenses/LICENSE-2.0
-
-		http://usman.it
-		http://twitter.com/halalit_usman
-	-->
 	<meta charset="utf-8">
 	<title>Agregar Sede</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
 	<meta name="author" content="Muhammad Usman">
+	
 	<!--The beans  -->
-		<jsp:useBean id="departamentos" scope="request"class="java.util.Vector"></jsp:useBean>
+	<jsp:useBean id="actividad" scope="request"class="IngSoft.administracion.bean.ActividadBeanData"></jsp:useBean>
+	<jsp:useBean id="sedes"           scope="request"class="java.util.Vector"></jsp:useBean>
+	<jsp:useBean id="ambientes"       scope="request"class="java.util.Vector"></jsp:useBean>
+	<jsp:useBean id="tipoactividades"  scope="request"class="java.util.Vector"></jsp:useBean>
+	
+	
+	<jsp:useBean id="departamentos" scope="request"class="java.util.Vector"></jsp:useBean>
 	<jsp:useBean id="provincias" scope="request"class="java.util.Vector"></jsp:useBean>
 	<jsp:useBean id="distritos" scope="request"class="java.util.Vector"></jsp:useBean>
+	
 	
 	<!-- The styles -->
 	<link id="bs-css" href="css/bootstrap-cerulean.css" rel="stylesheet">
@@ -58,31 +65,70 @@
 	<![endif]-->
 
 	<!-- The fav icon -->
-	<link rel="shortcut icon" href="img/conan_logo.png">
+	<link rel="shortcut icon" href="img/favicon.ico">
+	
+	
+	
 	<script>
-	function validar(form){
-			if(form.txtNombre.value.length <=0)return false;
-			if(form.cmbDepartamento.value.length<=0)return false;
-			if(form.cmbProvincia.value.lengtht<=0)return false;
-			if(form.cmbDistrito.value.length<=0)return false;
-			if(form.txtDireccion.value.length<=0)return false;
-	return true;
+	
+	
+	function anhadir(cod, name,puesto){
+		var form= document.frmData;
+		form.cmbEncargado.value=name;
+		form.cmbEncargadoCodigo.value=cod;
+		form.txtPuesto.value=puesto;
+		$.fn.colorbox.close();
 		
-		
-		}
+	} 
 	
 	function alt_fecha(obj){
-	obj.value=obj.value.slice(0,5);
-	
+		obj.value=obj.value.slice(0,5);
+		
+		}
+
+	function verificar_fecha(comparacion,fecha1,fecha2){
+		var fec1=fecha1.value.split("/");
+		var fec2=document.getElementById(fecha2).value.split("/");
+		var resultado=true;
+		if(fec1.length==fec2.length) {
+			var size=fec1.length;
+			for(i=size-1;i>=0;i--){
+				if(comparacion==0){
+					if(fec1[i].indexOf(fec2[i])<0)  resultado= false;
+					}
+				if(comparacion==1){
+					if(parseInt(fec1[i])<parseInt(fec2[i]))  resultado= false;
+					}
+				if(comparacion==-1){
+					if(parseInt(fec1[i])>parseInt(fec2[i]))  resultado= false;
+					}
+				}
+			if(resultado==false){			
+					fecha1.value=document.getElementById(fecha2).value;			
+				}
+				
+			} 
+		else{
+			alert("Error al comparar fechas");
+		}			
 	}
+
+	function alfanumerico(e) 
+	{ 
+	var key = window.event.keyCode || event.keyCode;
+	return ((key >= 48 && key <= 57) ||(key >= 97 && key <= 122) ||(key >= 65 && key <=90) ||(key >= 192 && key <=246)||(key <=13) ||(key ==32));
+	} 	
+
 	
+		
 	function alt_submit(){
 		var form= document.frmData;
-		if(validar(form)) form.submit();
-		else alert("Uno o mas campos estan vacios");
-			
-			}
-function alt_provincia(){
+		if(validaForm()) form.submit();
+	}
+	
+	
+	
+	function alt_provincia(){
 		$.ajax({
 		  type: "POST",
 		  url: "/Conan3000V2/IngSoft/administracion/sede/SMASede",
@@ -127,10 +173,10 @@ function alt_provincia(){
 		});
 	}		
 		
-		
-			//document.fmrData.submit();
-
-	</script>	
+	
+	
+	
+	</script>		
 </head>
 
 <body>
@@ -142,55 +188,46 @@ function alt_provincia(){
 			<jsp:include page="/IngSoft/general/leftmenu.jsp" />
 						<!-- left menu ends -->
 			
-			
-			<noscript>
+		<noscript>
 				<div class="alert alert-block span10">
 					<h4 class="alert-heading">Warning!</h4>
 					<p>You need to have <a href="http://en.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript</a> enabled to use this site.</p>
 				</div>
 			</noscript>
 			
-			<div id="content" class="span10">
-			<!-- content starts -->
-			
+            <div id="content" class="span10">
+              <!-- content starts -->
+              <div>
+                <ul class="breadcrumb">
+                  <li> <a href="../../general/index.jsp">Home</a> <span class="divider">/</span> </li>
+                  <li> <a href="buscarambiente.jsp">Mantenimiento de Sede</a> <span class="divider">/</span></li>
+                  <li>Agregar Sede</li>
+                </ul>
+              </div>
+              <div class="row-fluid sortable">
+                <div class="box span12">
+                  <div class="box-header well" data-original-title>
+                    <h2><i class="icon-plus-sign"></i>AGREGAR SEDE</h2>
+                  </div>
+                  <div class="box-content">
+                    <form class="form-horizontal" action="<%= response.encodeURL("SMASede")%>" name="frmData" method="post">
+                    <input type="hidden" name="accion" value="Agregar"></input>
+					<input type="hidden" name="tipo" value="2"></input>
+                      <fieldset>
+                      
+                      
 
-			<div>
-				<ul class="breadcrumb">
-					<li>
-						<a href="/Conan3000V2/IngSoft/general/index.jsp">Home</a> <span class="divider">/</span>
-					</li>
-					<li>
-						<a href="buscarsede.jsp">Mantenimiento de Sede</a> <span class="divider">/</span>
-					</li>
-					<li>
-						Agregar de Sede
-					</li>
-				</ul>
-			</div>
-			
-			<div class="row-fluid sortable">
-				<div class="box span12">
-					<div class="box-header well" data-original-title>
-					  <h2><i class="icon-plus-sign"></i>AGREGAR SEDE</h2>
-				  </div>
-					<div class="box-content">
-						
-						
-					<form class="form-horizontal" name="frmData" id="frmData"  method="post" action="<%= response.encodeURL("SMASede")%>">
-						
-						<input type="hidden" name="accion" value="Agregar"></input>
-						<input type="hidden" name="tipo" value="2"></input>
-						
-						  <fieldset>
-				
-				
-							<div class="control-group">
-							  <label class="control-label" for="typeahead7">Nombre(*): </label>
-							  <div class="controls">
-								<input   type="text" class="span6 typeahead" id="typeahead7"  data-provide="typeahead"  id="txtNombre" name="txtNombre" onkeypress="return alfanumerico(event);">
-							  </div>
-							</div>
 
+                      
+                        <div class="control-group" id="dvNombreAmbiente">
+                          <label class="control-label" for="typeahead">Nombre (*):</label>
+                          <div class="controls">
+                            <input type="text" class="span6 typeahead" id="txtNombre"  data-provide="typeahead" name="txtNombre">
+                          	<span class="help-inline" id="errNombreAmbiente">Please correct the error</span>
+                          </div>
+                        </div>
+                        
+                        
 
 							 <div class="control-group">
 								<label class="control-label" for="selectError">Departamento:</label>
@@ -203,6 +240,7 @@ function alt_provincia(){
 								  </select>
 								</div>
 							  </div>
+							  
 							  
 							 <div class="control-group">
 								<label class="control-label" for="selectError">Provincia:</label>
@@ -227,20 +265,26 @@ function alt_provincia(){
 								  </select>
 								</div>
 							  </div>
-							  
-							  
-						  
+
 						    <div class="control-group">
 						      <label class="control-label" for="typeahead7">Direccion(*): </label>
 						      <div class="controls">
-						        <input    type="text" class="span6 typeahead" id="typeahead7"  data-provide="typeahead" id="txtDireccion" name="txtDireccion" onkeypress="return alfanumerico(event);">
+						        
+
+	                            <input    type="text" class="span6 typeahead"  data-provide="typeahead" id="txtDireccion"  name="txtDireccion" onkeypress="return alfanumerico(event);">
+	                          	<span class="help-inline" id="errDireccion">Please correct the error</span>
+	                          	
 					          </div>
 					        </div>
 							
 						    <div class="control-group">
 						      <label class="control-label" for="typeahead7">Telefono: </label>
 						      <div class="controls">
-						        <input    type="text" class="span6 typeahead" id="typeahead7"  data-provide="typeahead" id="txtTelefono" name="txtTelefono" maxlength="12" onkeypress="return numerico(event);">
+						        
+
+	                            <input    type="text" class="span6 typeahead"  data-provide="typeahead" id="txtTelefono"  name="txtTelefono" maxlength="12" onkeypress="return alfanumerico(event);">
+	                          	<span class="help-inline" id="errTelefono">Please correct the error</span>
+	                     
 					          </div>
 					        </div>
                                 
@@ -252,30 +296,50 @@ function alt_provincia(){
 						        <input    type="text" class="span6 typeahead" id="typeahead7"  data-provide="typeahead" id="txtAreaterreno" name="txtAreaterreno" onkeypress="return numerico(event);">
 					          </div>
 					        </div>
-				
-				
-						    <div class="form-actions">
-							  <button type="button" class="btn btn-primary" onclick="javascript:alt_submit()">Agregar</button>
-							  <button type="button" class="btn" onclick="location.href='buscarsede.jsp'" >Cancelar</button>
-							</div>
-						  </fieldset>
-					  </form>   
+					        
+					        
+                        
+                        <div class="control-group" id="dvDescripcion">
+                  		  <label class="control-label" for="textarea2">Descripci&oacute;n:</label>
+                          <div class="controls">
+                            <textarea name="txtDescripcion" rows="3" id="txtDescripcion" style="resize:none"></textarea>
+                          	<span class="help-inline" id="errDescripcion">Please correct the error</span>
+                          </div>
+                        </div>
+
+
+
+                     
+                        
+                        
+                        <div class="form-actions">
+                          <button type="button" class="btn btn-primary" onclick="javascript:alt_submit()">Agregar</button>
+                          <button type="button" class="btn" onclick="location.href='buscaractividad.jsp'" >Cancelar</button>
+                        </div>
+                        
+                        
+                        
+                      </fieldset>
+                    </form>
 					<span style="font-size:70%">(*)Campos Obligatorios</span>
-				  </div>
-				</div><!--/span-->
-
-			</div><!--/row-->
-
-
-			<div class="row-fluid sortable"><!--/span-->
-			
-			</div><!--/row-->
-			
-			<div class="row-fluid sortable"><!--/span-->
-
-			</div><!--/row-->		 
-					<!-- content ends -->
-			</div><!--/#content.span10-->
+                  </div>
+                </div>
+                <!--/span-->
+              </div>
+              <!--/row-->
+              <div class="row-fluid sortable">
+                
+                <!--/span-->
+              </div>
+              <!--/row-->
+              <div class="row-fluid sortable">
+                
+                <!--/span-->
+              </div>
+              <!--/row-->
+              <!-- content ends -->
+            </div>
+          <!--/#content.span10-->
 				</div><!--/fluid-row-->
 				
 		<hr>
@@ -293,7 +357,6 @@ function alt_provincia(){
 				<a href="#" class="btn btn-primary">Save changes</a>
 			</div>
 		</div>
-		<br/>
 		<jsp:include page="/IngSoft/general/inferior.jsp" />
 		
 	</div><!--/.fluid-container-->
@@ -370,10 +433,89 @@ function alt_provincia(){
 	<!-- history.js for cross-browser state change on ajax -->
 	<script src="js/jquery.history.js"></script>
 	<!-- application script for Charisma demo -->
-	<script src="js/charisma.js"></script>
-	<!--utils-->
-	<script src="js/conan3000.js"></script>
+	<script src="js/charisma.js"></script>		
 	
-		
+	
+	
+<!--     ---------------------- Sirve para poner un iframe ------------------------------   -->	
+
+
+<!--     -----------------------------------------------------   -->			
+	
+		<script>
+			$(document).ready(function(){
+				//Examples of how to assign the Colorbox event to elements
+				
+				$(".iframe").colorbox({iframe:true, width:"60%", height:"80%"});
+				
+				//Example of preserving a JavaScript event for inline calls.
+				$("#click").click(function(){ 
+					$('#click').css({"background-color":"#f00", "color":"#fff", "cursor":"inherit"}).text("Open this window again and this message will still be here.");
+					return false;
+				});
+			});
+		</script>
+	
+<!--     -----------------------------------------------------   -->	
+	
+	<script type="text/javascript" src="js/apprise-1.5.full.js"></script>
+	<link rel="stylesheet" href="css/apprise.css" type="text/css" />
+	<script type="text/javascript" src="js/script.js"></script>
+    <script>
+ 
+ 
+function validaForm(){
+                /*
+        esValido(nombre, casilla, id, tipoValidacion, minimo,maximo)
+        nombre: es el nombre de la casilla: ejemplo -> Nombre, Apellido, Fecha de Nacimiento, etc
+        casilla: corresponde a la casilla en si, para esto colocamos por ejemplo form.txtNombre, donde form ya fue definido
+        id: identificador de los divs para efectuar las validaciones
+        tipoValidacion: es un valor numerico el cual permite identificar el tipo de validacion que se efectuara
+        1: Validacion con cantidad de caracteres Minimo y maximo
+        2: Validación de cantidad de caracteres de fecha
+        3: validacion de llenado de radio button
+        4: Validacion de alfanumerico
+        5: validacion de valores Float
+        6: Validacion de enteros
+        7: Validacion de fechas
+        minimo: valor numerico que indica la menor cantidad de caracteres que como minimo debe ser llenado (Solo para tipoValidacion 1 y 2, en el resto poner 1)
+        maximo: valor numerico que indica la maxima cantidad de caracteres que como maximo debe ser llenado (Solo para tipoValidacion 1 y 2, en el resto poner 1)
+       
+        El valor que va en cadena[i] es el nombre del campo
+       
+        #############################ADICIONAL#########################
+        Para validar una fecha Inicial y fecha Final usar la siguiente funcion
+        validarFechas(nombre[Fecha Final], casilla[Fecha Final], id[Fecha Final],nombre[Fecha Inicial],casilla[Fecha Inicial])
+        OJO: no va como parametro el id de la fecha Inicial
+        ###############################################################
+        */
+       
+        var form=document.frmData;
+ 
+        var cadena= new Array();
+        var i=0;
+        var error=false;
+        if(!esValido("Nombre",form.txtNombre,"NombreAmbiente",1,1,50)){cadena[i]="Nombre";i++;}
+        if(!esValido("Descripci&oacute;n",form.txtDescripcion,"Descripcion",1,0,100)){cadena[i]="Descripci&oacute;n";i++;}
+        //if(!esValido("Caracter&iacute;sticas",form.txtCaracteristica,"Caracteristica",1,0,100)){cadena[i]="Caracter&iacute;sticas";i++;}
+       
+        //No tocar
+        if(i>0){
+        crearAlert(cadena);
+        return false;
+        }else{
+                return true;      
+        }
+} 
+ 
+function inicializa(){
+        document.getElementById("errNombreAmbiente").style.display='none';
+        document.getElementById("errDescripcion").style.display='none'; 
+        //document.getElementById("errCaracteristica").style.display='none';    
+} 
+ 
+inicializa();
+ 
+</script>
 </body>
 </html>
