@@ -1,10 +1,26 @@
-function alt_submit(){
+ <script>
+	function alt_fecha(obj){
+	obj.value=obj.value.slice(0,5);
+	
+	}
+	
+	function alt_submit(){
 		var form= document.frmDelete;
 		var r=confirm("¿Esta seguro que desea borrar este producto?");
 		if(r==true){form.submit();}
 			}	
 
-		
+
+	</script>	
+	
+	<%! public boolean  encontrar(String a, String[] b){
+		for(int i=0;i<b.length;i++){			
+			if(b[i].equals(a)) return true;	
+		}
+	return false;
+	}
+	
+	%>	
 		
 		
 			<!-- content starts -->
@@ -13,7 +29,7 @@ function alt_submit(){
 			<div>
 				<ul class="breadcrumb">
 					<li>
-					<a href="#">Home / Mantenimiento de Productos /</a> Eliminar Producto</li>
+					<a href="#">Home /<a href="buscarproducto.jsp"> Mantenimiento de Productos /</a> Eliminar Producto</li>
 				</ul>
 			</div>
 			
@@ -23,7 +39,7 @@ function alt_submit(){
 						<h2>ELIMINAR PRODUCTO				  </h2>
 				  </div>
 					<div class="box-content">
-						<form class="form-horizontal"  name="frmProducto" method="Post"  action="SMVProducto">
+						<form class="form-horizontal"  name="frmDelete " action="<%= response.encodeURL("SMVProducto")%>" method="post">
 					
 					<input type="hidden" name="codigo" value="<%=producto.getIdProdProveedor()%>"></input>
 			        <input type="hidden" name="accion" value="Eliminar"></input>

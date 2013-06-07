@@ -90,7 +90,7 @@ public class ProductoBeanFunction {
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
 		
-			sqlsesion.update("Data.venta.prodcuto.deleteProducto",codigo);
+			sqlsesion.update("Data.venta.producto.deleteProducto",codigo);
 			
 			resultado=true;
 		}

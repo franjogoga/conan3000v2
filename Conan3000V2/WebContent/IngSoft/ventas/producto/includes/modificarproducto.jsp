@@ -1,10 +1,59 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Date"%>
+
+<script type="text/javascript" src="js/apprise-1.5.full.js"></script>
+<link rel="stylesheet" href="css/apprise.css" type="text/css" />
+<script>
+function alt_submit(){
+		var form= document.frmProducto;
+		if(validaForm()) form.submit();
+			
+}
+
+function anhadir(cod, name){
+	var form= document.frmProducto;
+	form.txtProveedor.value=name;
+	form.idProveedor.value=cod;
+	$.fn.colorbox.close();
+	
+} 
+
+
+
+</script>
+
+<%! public boolean  encontrar(String a, String[] b){
+		for(int i=0;i<b.length;i++){			
+			if(b[i].equals(a)) return true;	
+		}
+	return false;
+	}
+	public String formatear(java.util.Date date){
+		SimpleDateFormat DF= new SimpleDateFormat("dd/MM/YYYY");
+		return DF.format(date);
+	}
+	
+	public String generarCadena(String[] t){
+		String a="";
+		for(int i=0;i<t.length;i++)
+			a= a.concat(t[i]+"/");
+			if(a.length()>0) a=a.substring(0, a.length()-1);
+		return a;
+	}
+	%>
+
+<!--The beans  -->
+	<jsp:useBean id="producto" scope="request"class="IngSoft.venta.bean.ProductoBeanData"></jsp:useBean>	
+
+
 			<!-- content starts -->
 			
 
 			<div>
 				<ul class="breadcrumb">
-					<li>
-					<a href="#">Home / Mantenimiento de Productos / </a>Modificar Producto</li>
+					     <li> <a href="index.jsp">Home</a> <span class="divider">/</span></li>
+		        <li> <a href="buscarproducto.jsp">Mantenimiento de Productos</a> <span class="divider">/</span></li>
+		        <li> Modificar  Prodcuto</li>
 				</ul>
 			</div>
 			
@@ -14,65 +63,77 @@
 						<h2>MODIFICAR  PRODUCTO				  </h2>
 				  </div>
 					<div class="box-content">
-						<form class="form-horizontal">
+						   <form class="form-horizontal"  name="frmProducto" method="Post"  action="SMVProducto">
+					<input type="hidden" name="codigo" value="<%=producto.getIdProdProveedor()%>"></input>
+			        <input type="hidden" name="accion" value="Modificar"></input>
+					<input type="hidden" name="tipo" value="2"></input>
 						  <fieldset>
-						    <div class="control-group">
+						    <div class="control-group" id="dvNombre">
 						      <label class="control-label" for="typeahead7">Nombre(*): </label>
 						      <div class="controls">
-						        <input type="text" value="Gaseosa Inca-Cola" class="span6 typeahead" id="typeahead7"  data-provide="typeahead" >
+						        <input type="text" value="<%=producto.getNombre() %>" class="span6 typeahead" name="txtNombre "id="txtNombre"  data-provide="typeahead" >
+					          <span class="help-inline" id="errNombre">Please correct the error</span>
 					          </div>
 					        </div>
 						    
 							 
 							  
-							  <div class="control-group">
+							  <div class="control-group" id="dvDescripcion">
 			                <label class="control-label" for="textarea2">Descripci&oacute;n:</label>
 			                <div class="controls">
-			                  <textarea name="textarea" class=""  id="textarea" >Gaseosa de 1L retornable</textarea>
+			                  <textarea name="txtDescripcion" class=""  id="txtDescripcion" ><%=producto.getDescripcion() %></textarea>
+			                   <span class="help-inline" id="errDescripcion">Please correct the error</span>
 		                    </div>
 		                  </div>
 						      
-						      <div class="control-group">
+						      <div class="control-group" id="dvPresentacion">
 
 							    <label class="control-label" for="typeahead14">Presentación: </label>
 							    <div class="controls">
-							      <input type="text" class="span6 typeahead" value="botella"id="typeahead14" data-provide="typeahead" data-items="4"/>
+							      <input type="text" name="txtPresentacion" id="txtPresentacion" class="span6 typeahead" value="<%=producto.getPresentacion() %>"id="typeahead14" data-provide="typeahead" data-items="4"/>
+						        <span class="help-inline" id="errPresentacion">Please correct the error</span>
 						        </div>
+						        
 						      </div>
 						      
-							  <div class="control-group">
+							  <div class="control-group" id="dvPrecio">
 							    <label class="control-label" for="typeahead10">Precio Unitario(S/.) (*): </label>
 							    <div class="controls">
-							      <input type="text" value="3.00" class="span6 typeahead" id="typeahead10"  data-provide="typeahead" data-items="4" >
+							      <input type="text" value="<%=producto.getPrecioU() %>" class="span6 typeahead" name="txtPrecioU" id="txtPrecioU"  data-provide="typeahead" data-items="4" >
+						         <span class="help-inline" id="errPrecioU">Please correct the error</span>
 						        </div>
 						      </div>
-							  <div class="control-group">
-							  <label class="control-label" for="typeahead">Proveedor(*): </label>
-							  <div class="controls">
-								<input type="text" class="span6 typeahead" id="typeahead" value="Liz GyM"  data-provide="typeahead" data-items="4" data-source='["Liz Gym","Heli MeO","Viejo JyQ"]'>
-								<p class="help-block">Escriba sobre la casilla un proveedor para ser autocompletado</p>
-							  </div>
-							</div>
+							 <div class="control-group" id="dvProvedor">
+			                <label class="control-label" for="typeahead8">Provedor (*): </label>
+			                <div class="controls">
+			                  <input type="text" class="span6 typeahead" id="txtProveedor"  data-provide="typeahead" name="txtProveedor" data-items="4" readonly="readonly"  value="<%=producto.getIdProveedor() %>">
+			                  <br>
+			                  <div  align="left"> <a class="btn btn-primary iframe" href="../proveedor/seleccionarproveedor.jsp"> <i class="icon icon-search icon-white"></i> Buscar Proveedor</a> </div>
+			                  <span class="help-inline" id="errProveedor">Please correct the error</span>
+			                </div>
+		                  </div>  
 							
-							<div class="control-group">
-								<label class="control-label" for="typeahead3">Estado</label>
-								<div class="controls">
-								  <label class="radio">
-									<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
+							<div class="control-group" id="dvEstado">
+	                <label class="control-label" for="selectError">Estado (*):</label>
+			                <div class="controls">
+			                 <label class="radio">
+									<input type="radio" name="rButton" id="optionsRadios1" value="Activo" <% if(producto.getEstado().toUpperCase().equals("ACTIVO")){ %> checked <%}%>class="">
 									Activo
 								  </label>
 								  <div style="clear:both"></div>
 								  <label class="radio">
-									<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+									<input type="radio" name="rButton" id="optionsRadios2" value="Eliminado" class="" <% if(producto.getEstado().toUpperCase().equals("ELIMINADO")){ %> checked <%}%>>
 									Inactivo
-								  </label>
-								</div>
-							  </div>
+								  </label><br>
+		                      <span class="help-inline" id="errEstado">Please correct the error</span>
+			                </div>
+		                  </div>
 							
 							
 						    <div class="form-actions">
-						 <a  name="btnGuardar" class="btn btn-primary" href="">Guardar</a>  
-			               <a  name="btnCancelar" class="btn" href="buscarproducto.jsp">Cancelar</a>  
+						<input type="hidden" name="idProveedor" value="<%=producto.getIdProveedor() %>"/></input>
+			              <button type="button" class="btn btn-primary" onclick="javascript:alt_submit()">Modificar</button>
+			              <button type="button" class="btn" onclick="location.href='buscarproducto.jsp'">Cancelar</button>
 			           
 							</div>
 						  </fieldset>
