@@ -306,7 +306,7 @@
                         
                         <div class="form-actions">
                           <button type="button" class="btn btn-primary" onclick="javascript:alt_submit()">Agregar</button>
-                          <button type="button" class="btn" onclick="location.href='buscaractividad.jsp'" >Cancelar</button>
+                          <button type="button" class="btn" onclick="location.href='buscarsede.jsp'" >Cancelar</button>
                         </div>
                         
                         
