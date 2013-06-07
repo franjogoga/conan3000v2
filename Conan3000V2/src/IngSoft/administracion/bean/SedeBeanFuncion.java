@@ -40,10 +40,14 @@ public class SedeBeanFuncion {
 		SedeBeanData sedeData= new SedeBeanData();
 		try{		
 			
-			System.out.print("  SedeBeanFuncion ---> crearSede  -->nombre == "+ request.getParameter("txtNombre"));
+			System.out.print("  SedeBeanFuncion ---> crearSede  -->nombre == "+ request.getParameter("cmbDistrito")  );
 			
 		sedeData.setNombre(    request.getParameter("txtNombre") );
-		sedeData.setDistrito(   request.getParameter("cmbDistrito") );
+		//sedeData.setDistrito(   request.getParameter("cmbDistrito") );
+		
+		sedeData.setCoddistrito(   request.getParameter("cmbDistrito")  );
+		
+		
 		
 		sedeData.setDireccion(    request.getParameter("txtDireccion") );
 		sedeData.setTelefono(    Long.parseLong(request.getParameter("txtTelefono") )    );
@@ -51,9 +55,9 @@ public class SedeBeanFuncion {
 		sedeData.setEstado(   request.getParameter("txtEstado") );
 		
 		
-		//sedeData.setDepartamento(    request.getParameter("cmbDepartamento") );
-		//sedeData.setProvincia(    request.getParameter("cmbProvincia") );
-		//sedeData.setDireccion(    request.getParameter("cmbDireccion") );
+		sedeData.setDepartamento(    request.getParameter("cmbDepartamento") );
+		sedeData.setProvincia(    request.getParameter("cmbProvincia") );
+		sedeData.setDireccion(    request.getParameter("cmbDireccion") );
 		
 		//						            para combobox
 		//sedeData.setDireccion( request.getParameterValues("cmbSedes")     );
@@ -74,6 +78,9 @@ public class SedeBeanFuncion {
 		sedeData.setCodigo(        request.getParameter("codigo") );	
 		sedeData.setNombre(        request.getParameter("txtNombre") );
 		sedeData.setDireccion(     request.getParameter("txtDireccion") );
+		
+		sedeData.setCoddistrito(   request.getParameter("cmbDistrito")  );
+		
 		sedeData.setTelefono(      Long.parseLong(request.getParameter("txtTelefono") )    );
 		sedeData.setAreaterreno(   Double.parseDouble(request.getParameter("txtAreaterreno")) );
 		sedeData.setEstado(        request.getParameter("optionsRadios"));
@@ -231,7 +238,7 @@ public class SedeBeanFuncion {
 		Vector<DepartamentoBeanData> deps= null;
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
-			List<DepartamentoBeanData> temp=sqlsesion.selectList("Data.administracion.sede.getDepartamentos");			
+			List<DepartamentoBeanData> temp=sqlsesion.selectList("Data.administracion.sede.getDepartamentos" );			
 			deps= new Vector<DepartamentoBeanData>(temp);
 		}
 		catch(Exception e){
