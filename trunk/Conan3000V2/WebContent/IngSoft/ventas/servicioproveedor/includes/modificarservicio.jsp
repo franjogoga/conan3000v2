@@ -1,26 +1,11 @@
-<%@page import="java.text.SimpleDateFormat"%>
-<%@page import="java.util.Date"%>			
-			
+				
 		<script>
-		function validar(form){
-			if(form.txtNombreProv.value.length <=0)return false;
-			if(form.txtDescripcion.value.length<=0)return false;
-		return true;
-		
-		
-		}
 	
-		function alt_fecha(obj){
-		obj.value=obj.value.slice(0,5);
-	
-		}
-	
-		function alt_submit(){
+function alt_submit(){
 		var form= document.frmUpdate;
-		if(validar(form)) form.submit();
-		else alert("Uno o mas campos estan vacios");
+		if(validaForm()) form.submit();
 			
-		}
+}
 		
 	</script>	
 
@@ -29,10 +14,6 @@
 			if(b[i].equals(a)) return true;	
 		}
 	return false;
-	}
-	public String formatear(java.util.Date date){
-		SimpleDateFormat DF= new SimpleDateFormat("dd/MM/YYYY");
-		return DF.format(date);
 	}
 	
 	public String generarCadena(String[] t){
@@ -71,38 +52,41 @@
 					    <input type="hidden" name="tipo" value="2"></input>
 						  <fieldset>
 						  
-						   <div class="control-group">
+						   <div class="control-group" id="dvNombreServ">
 						      <label class="control-label" for="typeahead1">Nombre Servicio(*): </label>
 						      <div class="controls">
 						        <input type="text" class="span6 typeahead" id="txtNombreServ" name="txtNombreServ" data-provide="typeahead" value=<%=servicio.getNombreServicio() %>>
+					             <span class="help-inline" id="errNombreServ">Please correct the error</span>
 					          </div>
 					       </div>
 
-						   <div class="control-group">
+						   <div class="control-group" id="dvDescripcion">
 			                <label class="control-label" for="textarea2">Descripci&oacute;n:</label>
 			                <div class="controls">
 			                  <textarea id="txtDescripcion" name="txtDescripcion" style="resize:none" rows="3" ><%=servicio.getDescripcion() %></textarea>
+		                      <span class="help-inline" id="errDescripcion">Please correct the error</span>
 		                    </div>
 		                   </div>
  
-							<div class="control-group">
+							<div class="control-group" >
 							    <label class="control-label" for="typeahead3">Precio(S/.) (*): </label>
 							    <div class="controls">
 							      <input type="text" class="span6 typeahead" id="txtPrecio" name="txtPrecio" data-provide="typeahead" data-items="4" value=<%=servicio.getPrecio() %>>
 						        </div>
 						    </div>
 						      
-							<div class="control-group">
+							<div class="control-group" id="dvNombreProv">
 							  <label class="control-label" for="typeahead4">Nombre Proveedor(*): </label>
 							  <div class="controls">
 								<input type="text" class="span6 typeahead" id="txtNombreProv" name="txtNombreProv"  data-provide="typeahead" data-items="4" value=<%=proveedor.getRazonSocial()%>>
+							    <span class="help-inline" id="errNombreProv">Please correct the error</span>
 							  </div>
 							</div>
 							
 
 						    <div class="form-actions">
-							   <button type="submit"   class="btn btn-primary" onclick="javascript:alt_submit()">Guardar</button>  
-			               <button type="submit" class="btn" href="buscarservicio.jsp">Cancelar</button> 
+							   <button type="button"   class="btn btn-primary" onclick="javascript:alt_submit()">Guardar</button>  
+			               <button type="button" class="btn" href="buscarservicio.jsp">Cancelar</button> 
 							</div>
 						  </fieldset>
 					  </form>
