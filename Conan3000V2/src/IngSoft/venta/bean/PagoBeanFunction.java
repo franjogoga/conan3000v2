@@ -31,9 +31,9 @@ public class PagoBeanFunction {
 		try{		
 	
 		pagoData.setIdSocio(request.getParameter("idSocio"));
-		pagoData.setIdConcepto(request.getParameter("cmbConcepto"));
+		//pagoData.setIdConcepto(request.getParameter("cmbConcepto"));
 		pagoData.setFechaPago(new Date(DF.parse(request.getParameter("fFechaPago")).getTime()));
-		pagoData.setMonto(Double.parseDouble(request.getParameter("txtMonto")));
+		
 				
 		
          	
@@ -49,10 +49,10 @@ public class PagoBeanFunction {
 		PagoBeanData pagoData= new PagoBeanData();
 		try{		
 	
-		pagoData.setIdSocio(request.getParameter("idSocio"));
+		//pagoData.setIdSocio(request.getParameter("idSocio"));
 		pagoData.setIdCuota(request.getParameter("idCuota"));
 		pagoData.setFechaPago(new Date(DF.parse(request.getParameter("fFechaPago")).getTime()));
-		pagoData.setMonto(Double.parseDouble(request.getParameter("txtMonto")));
+		//pagoData.setMonto(Double.parseDouble(request.getParameter("txtMonto")));
 				
 		
          	
@@ -81,7 +81,7 @@ public class PagoBeanFunction {
 			else pagoData.setIdIngreso("ING000001");
 			//insertPago esta en pago mapper
 			
-			
+			sqlsesion.update("Data.venta.pago.registrarPago",pagoData);
 			sqlsesion.insert("insertIngreso",pagoData);
 			//sqlsesion.insert("insertPlantillaEventoSedes",eventoData);
 			
