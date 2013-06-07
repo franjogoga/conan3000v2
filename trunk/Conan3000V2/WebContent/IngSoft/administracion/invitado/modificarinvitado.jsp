@@ -95,8 +95,7 @@
 	
 	function alt_submit(){
 		var form= document.frmUpdate;
-		if(validar(form)) form.submit();
-		else alert("Uno o mas campos estan vacios");
+		if(validaForm()) form.submit();
 			
 			}
 		
@@ -160,7 +159,7 @@
 					
 					
 					<li>
-						Modificar de Invitado
+						Modificar Invitado
 					</li>
 				</ul>
 			</div>
@@ -187,26 +186,29 @@
 
 							  
 						  
-											    <div class="control-group">
-						      <label class="control-label" for="typeahead7">Nombre(*): </label>
+							<div class="control-group" id="dvNombre" >
+						      <label class="control-label" for="typeahead7">Nombre (*): </label>
 						      <div class="controls">
 						        <input type="text" class="span6 typeahead" id="txtNombre"  data-provide="typeahead"  name="txtNombre" value="<%= invitado.getNombres()%>">
+					          	<span class="help-inline" id="errNombre">Please correct the error</span>
 					          </div>
 					        </div>
 
 
-						    <div class="control-group">
-						      <label class="control-label" for="typeahead7">Apellido Paterno(*): </label>
+						    <div class="control-group" id="dvApaterno" >
+						      <label class="control-label" for="typeahead7">Apellido Paterno (*): </label>
 						      <div class="controls">
 						        <input type="text" class="span6 typeahead" id="txtApaterno"  data-provide="typeahead"  name="txtApaterno"  value="<%= invitado.getAparterno()%>">
+						        <span class="help-inline" id="errApaterno">Please correct the error</span>
 					          </div>
 					        </div>
 
 							  
-						    <div class="control-group">
-						      <label class="control-label" for="typeahead7">Apellido Marteno(*): </label>
+						    <div class="control-group" id="dvAmaterno" >
+						      <label class="control-label" for="typeahead7">Apellido Materno (*): </label>
 						      <div class="controls">
 						        <input type="text" class="span6 typeahead" id="txtAmaterno"  data-provide="typeahead"  name="txtAmaterno"  value="<%= invitado.getAmaterno()%>">
+						        <span class="help-inline" id="errAmaterno">Please correct the error</span>
 					          </div>
 					        </div>
 
@@ -216,18 +218,20 @@
 								<div class="controls">
 								  <select  id="selectError" data-rel="chosen" name="cmbTipodoc">
 									<option><%= invitado.getTipodocumento()%></option>
-
-								
+									<option>DNI</option>
+									<option>Carnet de Extranjer&iacutea</option>
+									<option>Pasaporte</option>
 								  </select>
 								</div>
 							  </div>
 							  
 							  
 						  
-						    <div class="control-group">
+						    <div class="control-group" id="dvNrodoc" >
 						      <label class="control-label" for="typeahead7">Nro. de Doc(*): </label>
 						      <div class="controls">
 						        <input type="text" class="span6 typeahead" id="txtNrodoc"  data-provide="typeahead"  name="txtNrodoc"  value="<%= invitado.getNumerodoc()%>">
+						        <span class="help-inline" id="errNrodoc">Please correct the error</span>
 					          </div>
 					        </div>
 
@@ -250,10 +254,11 @@
 							
 
 
-						    <div class="control-group">
-						      <label class="control-label" for="typeahead7"> Correo(*): </label>
+						    <div class="control-group" id="dvCorreo" >
+						      <label class="control-label" for="typeahead7">Correo (*): </label>
 						      <div class="controls">
 						        <input type="text" class="span6 typeahead" id="txtCorreo"  data-provide="typeahead"  name="txtCorreo"  value="<%= invitado.getCorreo()%>">
+						        <span class="help-inline" id="errCorreo">Please correct the error</span>
 					          </div>
 					        </div>
 
@@ -439,7 +444,139 @@
 	<script src="js/jquery.history.js"></script>
 	<!-- application script for Charisma demo -->
 	<script src="js/charisma.js"></script>
+	<script>
+			$(document).ready(function(){
+				//Examples of how to assign the Colorbox event to elements
+				
+				$(".iframe").colorbox({iframe:true, width:"60%", height:"80%"});
+				
+				//Example of preserving a JavaScript event for inline calls.
+				$("#click").click(function(){ 
+					$('#click').css({"background-color":"#f00", "color":"#fff", "cursor":"inherit"}).text("Open this window again and this message will still be here.");
+					return false;
+				});
+			});
+		</script>
+		
+		<script type="text/javascript" src="js/apprise-1.5.full.js"></script>
+<link rel="stylesheet" href="css/apprise.css" type="text/css" />
+<script type="text/javascript" src="js/script.js"></script>
+		<script>
+
+
+function validaForm(){
+	/*
+	esValido(nombre, casilla, id, tipoValidacion, minimo,maximo)
+	nombre: es el nombre de la casilla: ejemplo -> Nombre, Apellido, Fecha de Nacimiento, etc
+	casilla: corresponde a la casilla en si, para esto colocamos por ejemplo form.txtNombre, donde form ya fue definido
+	id: identificador de los divs para efectuar las validaciones
+	tipoValidacion: es un valor numerico el cual permite identificar el tipo de validacion que se efectuara
+	1: Validacion con cantidad de caracteres Minimo y maximo
+	2: Validación de cantidad de caracteres de fecha
+	3: validacion de llenado de radio button
+	4: Validacion de alfanumerico
+	5: validacion de valores Float
+	6: Validacion de enteros
+	7: validacion de fechas con formato dd/mm/YYYY
+	8: No vale
+	9: Validacion de correos
+	minimo: valor numerico que indica la menor cantidad de caracteres que como minimo debe ser llenado (Solo para tipoValidacion 1 y 2, en el resto poner 1)
+	maximo: valor numerico que indica la maxima cantidad de caracteres que como maximo debe ser llenado (Solo para tipoValidacion 1 y 2, en el resto poner 1)
 	
+	El valor que va en cadena[i] es el nombre del campo
+	
+	#############################ADICIONAL#########################
+	Para validar una fecha Inicial y fecha Final usar la siguiente funcion
+	validarFechas(nombre[Fecha Final], casilla[Fecha Final], id[Fecha Final],nombre[Fecha Inicial],casilla[Fecha Inicial])
+	OJO: no va como parametro el id de la fecha Inicial
+	###############################################################
+	
+	*/
+	
+	
+	var form=document.frmUpdate;
+
+	var cadena= new Array();
+	var i=0;
+	var error=false;
+	if(!esValido("Nombre",form.txtNombre,"Nombre",1,1,50)){cadena[i]="Nombre";i++;}
+	if(!esValido("Apellido Paterno",form.txtApaterno,"Apaterno",1,1,50)){cadena[i]="Apellido Paterno";i++;}
+	if(!esValido("Apellido Materno",form.txtAmaterno,"Amaterno",1,1,50)){cadena[i]="Apellido Materno";i++;}
+	if(!esValido("Nro. de Doc",form.txtAmaterno,"Nrodoc",1,1,8)){cadena[i]="Nro. de Doc";i++;}
+	
+	if(!esValido("Correo",form.txtCorreo,"Correo",1,1,50)){cadena[i]="Correo";i++;}
+	
+	/*if(!esValido("Fecha Inicio",form.fFechInicio,"FechaInicio",2,1,10)){cadena[i]="Fecha Inicio";i++;}
+	
+	if(!esValido("Fecha Fin",form.fFechFin,"FechaFin",2,1,10)){
+		cadena[i]="Fecha Fin";i++;
+	}else{
+		if(!validarFechas("Fecha Final",form.fFechFin,"FechaFin","Fecha Inicio",form.fFechInicio)){
+		cadena[i]="Fecha Fin";i++;
+		}
+	}
+	
+	if(!esValido("Fecha Sorteo",form.fFechSorteo,"FechaSorteo",2,1,10)){
+		cadena[i]="Fecha Sorteo";i++;
+	}else{
+		if(!validarFechas("Fecha Sorteo",form.fFechSorteo,"FechaSorteo","Fecha Fin",form.fFechFin)){
+		cadena[i]="Fecha Sorteo";i++;
+		}
+	}*/
+	//if(!esValido("RUC",form.txtRuc,"Ruc",2,1,11)){cadena[i]="RUC";i++;}
+	//else{
+	
+	//if(!esValido("RUC",form.txtCosto,"Ruc",6,1,1)){cadena[i]="RUC";i++;}
+	
+	//}
+	//if(!esValido("Fecha Fin",form.fFechaFin,"FechaFin",2,1,10)){cadena[i]="Fecha Fin";i++;}
+	//if(!validarFechas("Fecha Final",form.fFechaFin,"FechaFin","Fecha Inicio",form.fFechaInicio)){cadena[i]="Fecha Fin";i++;};
+	//if(!esValido("Socio",form.txtSocio,"Socio",1,1,50)){cadena[i]="Socio";i++;}
+	//if(!esValido("Periodo",form.cmbPeriodo,"Periodo",1,1,50)){cadena[i]="Periodo";i++;}
+	//if(!esValido("Costo",form.txtCosto,"Costo",1,1,50)){
+		//cadena[i]="Costo";i++;
+	//}else{
+		//valida si es float o entero
+		//if(!esValido("Costo",form.txtCosto,"Costo",5,1,1)){cadena[i]="Costo";i++;}
+	//}
+	//if(!esValido("Estado",form.rButton,"Estado",3,1,1)){cadena[i]="Estado";i++;}
+	
+	
+	//No tocar
+	if(i>0){
+	crearAlert(cadena);
+	return false;
+	}else{
+		return true;
+		
+	}
+
+}
+
+
+function inicializa(){
+/*Esto se debe llenar siempre deacuerdo a las etiuquetas <span> del formulario, esto sirve para ocultar inicialmente los avisos
+Solo poner el id de los <span> segun corresponda
+*/
+	document.getElementById("errNombre").style.display='none';
+	document.getElementById("errApaterno").style.display='none';
+	document.getElementById("errAmaterno").style.display='none';
+	document.getElementById("errNrodoc").style.display='none';
+	document.getElementById("errCorreo").style.display='none';
+	//document.getElementById("errRuc").style.display='none';
+	//document.getElementById("errFechaInicio").style.display='none';
+	//document.getElementById("errFechaFin").style.display='none';
+	//document.getElementById("errFechaSorteo").style.display='none';
+	//document.getElementById("errSocio").style.display='none';
+	//document.getElementById("errCosto").style.display='none';
+	//document.getElementById("errPeriodo").style.display='none';
+	
+}
+
+
+inicializa();
+
+</script>
 		
 </body>
 </html>
