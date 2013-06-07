@@ -300,7 +300,7 @@
 					        
 
 
-
+						<input type="hidden" name="txtEstado" value="Disponible"></input>
                      
                         
                         
