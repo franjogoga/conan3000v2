@@ -1,3 +1,54 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Date"%>			
+			
+		<script>
+		function validar(form){
+			if(form.txtNombreProv.value.length <=0)return false;
+			if(form.txtDescripcion.value.length<=0)return false;
+		return true;
+		
+		
+		}
+	
+		function alt_fecha(obj){
+		obj.value=obj.value.slice(0,5);
+	
+		}
+	
+		function alt_submit(){
+		var form= document.frmUpdate;
+		if(validar(form)) form.submit();
+		else alert("Uno o mas campos estan vacios");
+			
+		}
+		
+	</script>	
+
+	<%! public boolean  encontrar(String a, String[] b){
+		for(int i=0;i<b.length;i++){			
+			if(b[i].equals(a)) return true;	
+		}
+	return false;
+	}
+	public String formatear(java.util.Date date){
+		SimpleDateFormat DF= new SimpleDateFormat("dd/MM/YYYY");
+		return DF.format(date);
+	}
+	
+	public String generarCadena(String[] t){
+		String a="";
+		for(int i=0;i<t.length;i++)
+			a= a.concat(t[i]+"/");
+			if(a.length()>0) a=a.substring(0, a.length()-1);
+		return a;
+	}
+	%>
+	
+	<!--The beans  -->
+	<jsp:useBean id="servicio" scope="request" class="IngSoft.venta.bean.ServicioBeanData"></jsp:useBean>	
+
+	<jsp:useBean id="proveedor" scope="request" class="IngSoft.venta.bean.ProveedorBeanData"></jsp:useBean>	
+
 			<!-- content starts -->
 			
 
@@ -14,56 +65,44 @@
 						<h2>MODIFICAR  SERVICIO				  </h2>
 				  </div>
 					<div class="box-content">
-						<form class="form-horizontal">
+						<form class="form-horizontal" name="frmUpdate" method="Post" action="<%= response.encodeURL("SMVServicio")%>">
+						<input type="hidden" name="codigo" value="<%=servicio.getCodServicio()%>"></input>
+			       		<input type="hidden" name="accion" value="Modificar"></input>
+					    <input type="hidden" name="tipo" value="2"></input>
 						  <fieldset>
-						    <div class="control-group">
-						      <label class="control-label" for="typeahead7">Nombre(*): </label>
+						  
+						   <div class="control-group">
+						      <label class="control-label" for="typeahead1">Nombre Servicio(*): </label>
 						      <div class="controls">
-						        <input type="text" value="Limpieza" class="span6 typeahead" id="typeahead7"  data-provide="typeahead" >
+						        <input type="text" class="span6 typeahead" id="txtNombreServ" name="txtNombreServ" data-provide="typeahead" value=<%=servicio.getNombreServicio() %>>
 					          </div>
-					        </div>
-						    
-							 
-							  
-							  <div class="control-group">
+					       </div>
+
+						   <div class="control-group">
 			                <label class="control-label" for="textarea2">Descripci&oacute;n:</label>
 			                <div class="controls">
-			                  <textarea name="textarea" class=""  id="textarea" >Limpieza de piscinas</textarea>
+			                  <textarea id="txtDescripcion" name="txtDescripcion" style="resize:none" rows="3" ><%=servicio.getDescripcion() %></textarea>
 		                    </div>
-		                  </div>
-						      
-						      
-						      
-							  <div class="control-group">
-							    <label class="control-label" for="typeahead10">Precio(S/.) (*): </label>
+		                   </div>
+ 
+							<div class="control-group">
+							    <label class="control-label" for="typeahead3">Precio(S/.) (*): </label>
 							    <div class="controls">
-							      <input type="text" value="400.00" class="span6 typeahead" id="typeahead10"  data-provide="typeahead" data-items="4" >
+							      <input type="text" class="span6 typeahead" id="txtPrecio" name="txtPrecio" data-provide="typeahead" data-items="4" value=<%=servicio.getPrecio() %>>
 						        </div>
-						      </div>
-							  <div class="control-group">
-							  <label class="control-label" for="typeahead">Proveedor(*): </label>
+						    </div>
+						      
+							<div class="control-group">
+							  <label class="control-label" for="typeahead4">Nombre Proveedor(*): </label>
 							  <div class="controls">
-								<input type="text" class="span6 typeahead" id="typeahead" value="Liz GyM"  data-provide="typeahead" data-items="4" data-source='["Liz Gym","Heli MeO","Viejo JyQ"]'>
-								<p class="help-block">Escriba sobre la casilla un proveedor para ser autocompletado</p>
+								<input type="text" class="span6 typeahead" id="txtNombreProv" name="txtNombreProv"  data-provide="typeahead" data-items="4" value=<%=proveedor.getRazonSocial()%>>
 							  </div>
 							</div>
 							
-							<div class="control-group">
-								<label class="control-label" for="typeahead3">Estado</label>
-								<div class="controls">
-								  <label class="radio">
-									<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">Disponible
-								  </label>
-								  <div style="clear:both"></div>
-								  <label class="radio">
-									<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">No Disponible</label>
-								</div>
-							  </div>
-							
-							
+
 						    <div class="form-actions">
-							   <a  name="btnGuardar" class="btn btn-primary" href="">Guardar</a>  
-			               <a  name="btnCancelar" class="btn" href="buscarservicio.jsp">Cancelar</a> 
+							   <button type="submit"   class="btn btn-primary" onclick="javascript:alt_submit()">Guardar</button>  
+			               <button type="submit" class="btn" href="buscarservicio.jsp">Cancelar</button> 
 							</div>
 						  </fieldset>
 					  </form>
