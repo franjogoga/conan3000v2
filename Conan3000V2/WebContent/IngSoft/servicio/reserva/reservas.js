@@ -188,7 +188,7 @@ if(lock4==1){
 		  success: function(msg){
 		  	lock4=1;
 		  	$("#resultadoBusqueda").html("");
-			alert("Operacion realizada sin problemas")},
+			alert("Operacion realizada sin problemas");},
 		  error: function(objeto, quepaso, otroobj){
 		  	lock4=1;
 		  	alert("ERROR!! No se pudo completar la operacion intente de nuevo");
@@ -206,7 +206,7 @@ if(lock4==1){
 		}
 }
 function activarTipoCancha(elem){
-var temp=$('#TipoCancha')
+var temp=$('#TipoCancha');
 if(elem.val().indexOf('cancha')>=0){
 	temp.slideDown('fast');
 	ctipo=3;
