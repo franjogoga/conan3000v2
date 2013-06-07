@@ -9,7 +9,7 @@
 							  </div>
 							  <label class="control-label" for="txtNombreSocio">Nombre del socio</label>
 							  <div class="controls">
-								<input type="text" class="span6 typeahead uneditable-input" id="txtNombreSocio" name="txtNombreSocio" data-provide="typeahead" >
+								<input type="text" class="span6 typeahead" id="txtNombreSocio" name="txtNombreSocio" data-provide="typeahead" disabled>
 								
 								<!--data-source='["Alarcon Mendieta Carlos Alberto","Aragón  Sanchez Felipe","Atiti Bustamante Pedro","Colorado Gutierrez Dania","Dante Chacón Fiorella"]'-->																
 							  </div>

@@ -111,8 +111,19 @@ values('ACTIVO',#{idsocio},#{idcancha},#{idreservascancha})
 insert into BUNGALOWxFECHA(IdReservaBungalow,Fecha) values(#{idreservasbungalow},DATE(#{fecha}))
 ;
 </insert>
-<insert id="insertBungalowCanchaFecha" parameterType="hashmap">
-insert into BUNGALOWxFECHA(IdReservaCancha,Fecha,HoraInicio,HoraFin) values(#{idreservascancha},DATE(#{fecha}),#{horaIni},#{horaFin})
+<insert id="insertCanchaReservaFecha" parameterType="hashmap">
+insert into CANCHAxFECHA(IdReservaCancha,Fecha,HoraInicio,HoraFin) values(#{idreservascancha},DATE(#{fecha}),#{horaIni},#{horaFin})
 ;
 </insert>
+<update id="eliminarReservaBungalow" parameterType="java.util.Date">
+update RESERVA_BUNGALOW rb 
+set rb.Estado='ELIMINADO'
+where 
+rb.Estado='ACTIVO' 
+and  rb.IdReservaBungalow in (
+select bf.IdReservaBungalow 
+from BUNGALOWxFECHA bf 
+where bf.Fecha = #{fecha}) 
+</update>
+
 </mapper>

@@ -170,7 +170,7 @@ esnull=false;
 						  </tbody>
 					  </table> 
 </div>
-<%if(((ReservaCanchaMiniBeanData)reservasV.get(j)).getCodigoCancha().equals(codActual))j++;
+<%if(reservasV.size()>0 &&((ReservaCanchaMiniBeanData)reservasV.get(j)).getCodigoCancha().equals(codActual))j++;
 }
 %>
 <div id="temptabs">

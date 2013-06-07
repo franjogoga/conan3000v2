@@ -60,7 +60,7 @@ var lock2=1;
 var lock3=1;
 var lock4=1;
 var ctipo=2;
-var aTipo=1;
+var atipo=1;
 </script>
 <script src="reservas.js"></script>	
 </head>
@@ -98,9 +98,12 @@ var aTipo=1;
 			<div class="row-fluid sortable">
 				<div class="box span12">
 					<div class="box-header well" data-original-title>
-						<h2><i class="icon-edit"></i> MANTENIMIENTO DE RESERVAS</h2>
-						
+						<h2 id="titulo"><i class="icon-plus"></i> AGREGAR RESERVAS</h2>
+						<div class="box-icon">							
+							<button onclick="cambiaModo()" class="btn btn-round" title="Cambiar entre agregar y eliminar" data-rel="tooltip"><i class="icon-retweet"></i></button>
+						</div>
 					</div>
+					
 					<div class="box-content">
 						<form class="form-horizontal" name="frmCriteriosBusqueda" id="frmCriteriosBusqueda" method="post" onsubmit="return ajax_search()">
 						<input type="hidden" name="accion" value="Buscar"></input>
@@ -140,6 +143,7 @@ var aTipo=1;
 						  </div>
 							<div class="form-actions">
 							  <button type="submit" class="btn btn-primary">Buscar</button>
+							 <!--<button type="reset" class="btn">Limpiar</button>-->
 			
 							</div>
 						  </fieldset>
@@ -161,7 +165,9 @@ var aTipo=1;
   </div><!--/span-->
     				
                       <div class="form-actions" id="reserva_boton">
-			             <button class="btn btn-primary btn-setting" >Crear Reserva</button>                                                
+			             <button class="btn btn-primary btn-setting crear" >Crear Reserva</button>
+			             <button class="btn btn-primary btn-setting elim" style="display: none;">Eliminar Reserva</button>
+			                                                             
 		                </div>
 				</div><!--/span-->
 
@@ -174,6 +180,7 @@ var aTipo=1;
 <input type="hidden" value="" id="txtIdSocio" name="txtIdSocio"></input>
 </form>
 		<div class="modal hide fade" id="myModal">
+		<div class="modAgregar">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal">X</button>
 				<h3>Datos de socio</h3>
@@ -185,6 +192,19 @@ var aTipo=1;
 				<a href="#" class="btn" data-dismiss="modal">Cancelar</a>
 				<a class="btn btn-primary" onclick="ajax_crearReserva();">Guardar Reservas</a>
 			</div>
+		</div>
+		<div class="modEliminar" style="display: none;">
+			<div class="modal-header">				
+				<h3>Confirmaci&oacute;n</h3>
+			</div>
+			<div class="modal-body">
+				¿Desea eliminar las reservas seleccionadas?
+			</div>
+			<div class="modal-footer">
+				<a href="#" class="btn" data-dismiss="modal">No</a>
+				<a class="btn btn-primary" onclick="">S&iacute;</a>
+			</div>
+		</div>	
 		</div>
 	<jsp:include page="/IngSoft/general/inferior.jsp" />
 		
