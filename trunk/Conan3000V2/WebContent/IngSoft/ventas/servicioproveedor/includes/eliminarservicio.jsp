@@ -1,5 +1,45 @@
+
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
+			
+	<script>
+	function alt_fecha(obj){
+	obj.value=obj.value.slice(0,5);
+	
+	}
+	
+	function alt_submit(){
+		var form= document.frmDelete;
+		var r=confirm("¿Esta seguro que desea borrar este servicio?");
+		if(r==true){form.submit();}
+	}	
+
+
+	</script>	
+	
+	<%! public boolean  encontrar(String a, String[] b){
+		for(int i=0;i<b.length;i++){			
+			if(b[i].equals(a)) return true;	
+		}
+	return false;
+	}
+	public String formatear(java.util.Date date){
+		SimpleDateFormat DF= new SimpleDateFormat("dd/MM");
+		return DF.format(date);
+	}
+	%>
+			
+			
+
+				
+
+
+
+	
 			<!-- content starts -->
 			
+<jsp:useBean id="proveedor" scope="request"class="IngSoft.venta.bean.ProveedorBeanData"></jsp:useBean>		
+<jsp:useBean id="servicio" scope="request"class="IngSoft.venta.bean.ServicioBeanData"></jsp:useBean>	
 
 			<div>
 				<ul class="breadcrumb">
@@ -13,54 +53,53 @@
 					<div class="box-header well" data-original-title>
 						<h2>ELIMINAR SERVICIO				  </h2>
 				  </div>
+				  
 					<div class="box-content">
-						<form class="form-horizontal">
+						<form class="form-horizontal" name="frmDelete"  action="<%= response.encodeURL("SMVServicio")%>" method="post">
+					    <input type="hidden" name="codigo" value="<%=servicio.getCodServicio()%>" ></input>
+						<input type="hidden" name="accion" value="Eliminar"></input>
+						<input type="hidden" name="tipo" value="2"></input>
 						  <fieldset>
+						  
 						    <div class="control-group">
-						      <label class="control-label" for="typeahead7">Nombre: </label>
+						      <label class="control-label" for="typeahead7">Nombre Servicio: </label>
 						      <div class="controls">
-						        <input type="text" value="Limpieza" class="span6 typeahead" id="typeahead7"  data-provide="typeahead" disabled="" > 
+						        <input type="text" class="span6 typeahead" id="txtNombreServ" name="txtNombreServ" data-provide="typeahead" disabled value=<%=servicio.getNombreServicio() %>> 
 					          </div>
 					        </div>
-						    
-							   <div class="control-group">
-							  
+
 							  <div class="control-group">
 			                <label class="control-label" for="textarea2">Descripci&oacute;n:</label>
 			                <div class="controls">
-			                  <textarea name="textarea" class="" id="textarea" disabled="">Limpieza de piscina</textarea>
+			                  <textarea name="textarea" class="" id="textarea" rows="3" disabled style="resize:none"><%=servicio.getDescripcion() %></textarea>
 		                    </div>
 		                  </div>
-						      
-						      
-						      
+
 							  <div class="control-group">
 							    <label class="control-label" for="typeahead10">Precio (S/.): </label>
 							    <div class="controls">
-							      <input type="text" value="400.00" class="span6 typeahead" id="typeahead10"  data-provide="typeahead" data-items="4" disabled="">
+							      <input type="text" class="span6 typeahead" id="txtPrecio" name="txtPrecio"  data-provide="typeahead" data-items="4" disabled value=<%=servicio.getPrecio() %>>
 						        </div>
 						      </div>
-							  <div class="control-group">
+
 							    <div class="control-group">
-							      <label class="control-label" for="selectError2">Proveedor:</label>
+							      <label class="control-label" for="selectError2">Nombre Proveedor:</label>
 							      <div class="controls">
-							       <input type="text" value="Liz GyM" class="span6 typeahead" id="typeahead10"  data-provide="typeahead" data-items="4" disabled="">
+							       <input type="text" class="span6 typeahead" id="txtNombreProv" name="txtNombreProv" data-provide="typeahead" data-items="4" disabled value=<%=proveedor.getRazonSocial() %>>
 						          </div>
 						        </div>
-							    <div class="controls"></div>
-						      </div>
-						    </div>
-						    <div class="form-actions">
-							    <a  name="btnEliminar" class="btn btn-primary" href="">Eliminar</a>  
-			               <a  name="btnCancelar" class="btn" href="buscarservicio.jsp">Cancelar</a>  
-							</div>
+
+				
+						<button  type="submit" class="btn btn-primary"  onclick="javascript:alt_submit()">Eliminar</button>  
+			               <button type="submit" class="btn" href="buscarservicio.jsp">Cancelar</button> 
+							
 						  </fieldset>
 					  </form>   
-
+					</div>
 				  </div>
 				</div><!--/span-->
 
-			</div><!--/row-->
+			<!--/row-->
 
 
 			<div class="row-fluid sortable"><!--/span-->
