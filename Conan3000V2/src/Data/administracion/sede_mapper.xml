@@ -66,7 +66,7 @@ order by 1 asc
 
 <insert id="insertPlantillaSede" parameterType="IngSoft.administracion.bean.SedeBeanData" flushCache="true">
 	insert into SEDE (IdSede,Nombre,Direccion,Telefono,AreaTerreno,IdDistrito,Estado)
-	values (#{codigo},#{nombre},#{direccion},#{telefono},#{areaterreno},#{coddistrito},#{estado})
+	values (#{codigo},#{nombre},#{direccion},#{telefono},#{areaterreno},#{distrito},#{estado})
 </insert>
 
 
