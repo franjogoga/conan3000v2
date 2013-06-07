@@ -76,14 +76,14 @@
 			
 			if(!esValido("Proveedor",form.txtProveedor,"Proveedor",1,1,50)){cadena[i]="Proveedor";i++;}
 			if(!esValido("Nombre",form.txtNombre,"Nombre",1,1,50)){cadena[i]="Nombre";i++;}
-			if(!esValido("Presentacion",form.txtPresentacion,"Presentacion",1,1,50)){cadena[i]="Presentacion";i++;}
-			if(!esValido("PrecioU",form.txtPrecioU,"PrecioU",1,1,50)){
-				cadena[i]="PrecioU";i++;
+			if(!esValido("Presentaci&oacute;n",form.txtPresentacion,"Presentacion",1,1,50)){cadena[i]="Presentaci&oacute;n";i++;}
+			if(!esValido("Precio Unitario",form.txtPrecioU,"PrecioU",1,1,50)){
+				cadena[i]="Precio Unitario";i++;
 			}else{
 				//valida si es float o entero
-				if(!esValido("PrecioU",form.txtPrecioU,"PrecioU",5,1,1)){cadena[i]="PrecioU";i++;}
+				if(!esValido("Precio Unitario",form.txtPrecioU,"PrecioU",5,1,1)){cadena[i]="Precio Unitario";i++;}
 			}
-			if(!esValido("Descripcion",form.txtDescripcion,"Descripcion",1,1,100)){cadena[i]="Descripcion";i++;}
+			if(!esValido("Descripci&oacute;n",form.txtDescripcion,"Descripcion",1,1,100)){cadena[i]="Descripci&oacute;n";i++;}
 			
 			
 			//No tocar
