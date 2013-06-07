@@ -68,7 +68,7 @@ function anhadir(cod, name){
 						    <div class="control-group" id="dvNombre">
 						      <label class="control-label" for="typeahead7">Nombre(*): </label>
 						      <div class="controls">
-						        <input type="text" value="<%=producto.getNombre() %>"  onpaste="return false;" class="span6 typeahead" name="txtNombre "id="txtNombre"  data-provide="typeahead" >
+						        <input type="text" value="<%=producto.getNombre() %>"  onpaste="return false;" class="span6 typeahead" name="txtNombre" id="txtNombre"  data-provide="typeahead" >
 					          <span class="help-inline" id="errNombre">Please correct the error</span>
 					          </div>
 					        </div>
