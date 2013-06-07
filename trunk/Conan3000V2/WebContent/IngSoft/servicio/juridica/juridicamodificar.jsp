@@ -188,15 +188,7 @@
 							  
 							  
 							  
-							  <div class="control-group">
-                                  
-                                  
-                                  <label class="control-label" for="typeahead7">Direccion: </label>
-                                  <div class="controls">
-                                      <input type="text" class="span6 typeahead"   data-provide="typeahead" id="txtDireccion" name="txtDireccion" value="<%=juridica.getDireccion()%>" onkeypress="return alfanumerico(event);" autofocus>
-                                          </div>
-                              </div>
-							  
+							  						  
 							  
 							     <div class="control-group">
                                   
