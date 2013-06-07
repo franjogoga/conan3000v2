@@ -77,8 +77,8 @@ PRODUCTO_PROV.IdProductoProv as idProdProveedor
 ,PRODUCTO_PROV.PrecioUnitario as precioU
 ,PRODUCTO_PROV.Presentacion as presentacion
 ,PRODUCTO_PROV.Estado as estado
-,PROVEEDOR.RazonSocial as proveedor
-from PRODUCTO_PROV, PROVEEDOR  where IdProductoProv=#{codigo} and PRODUCTO_PROV.IdProveedor=PROVEEDOR.IdProveedor ; 
+
+from PRODUCTO_PROV  where IdProductoProv=#{codigo} 
 
 
 </select>
