@@ -26,7 +26,7 @@ public class AccionEliminarPago extends CoAccion {
 		}
 		if(Integer.valueOf(request.getParameter("tipo"))==1){
 		PagoBeanFunction pagoFuncion= PagoBeanFunction.getInstance();
-		PagoBeanData pagoData=pagoFuncion.consultarPago(request.getParameter("codigo"));
+		PagoBeanData pagoData=pagoFuncion.consultarPagoMembresia(request.getParameter("codigo"));
 		
 		request.setAttribute("pago", pagoData);
 		this.direccionar(sc, request, response, "/IngSoft/ventas/pago/eliminarpago.jsp");
