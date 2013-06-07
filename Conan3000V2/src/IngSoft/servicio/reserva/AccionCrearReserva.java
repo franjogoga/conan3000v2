@@ -45,10 +45,10 @@ public class AccionCrearReserva extends CoAccion {
 			HttpSession sesion= request.getSession(true);
 			Vector<String> listareservas=(Vector<String>)sesion.getAttribute("listareservas");
 			listareservas=listareservas==null?new Vector<String>():listareservas;
-			String codSocio=request.getParameter("txtIdSocio");
-			if(listareservas.size()>0){
+			String codSocio=request.getParameter("txtIdSocio");			
+			if(listareservas.size()>0 && !"".equals(codSocio)){
 				ReservaBeanFuncion reservaFuncion=ReservaBeanFuncion.getInstance();
-				reservaFuncion.agregarReservaBungalow(listareservas,codSocio);
+				reservaFuncion.agregarReservaCancha(listareservas,codSocio);
 				sesion.removeAttribute("reservas");
 				sesion.removeAttribute("listareservas");								
 			}

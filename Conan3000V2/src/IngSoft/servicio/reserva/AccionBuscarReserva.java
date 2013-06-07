@@ -159,27 +159,26 @@ public class AccionBuscarReserva extends CoAccion {
 			
 		}
 		if(tipo==6){//antes de agregar
-			if("bungalow".equals(request.getParameter("cmbServicios"))){
-				String temp=request.getParameter("pendientes");
-				if(temp.length()>0)pendientes=new Vector<String>(Arrays.asList(temp.substring(0, temp.length()-1).split("@")));
-				pendientes.remove("");
-				temp=request.getParameter("cancelados");
-				if(temp.length()>0)cancelados=new Vector<String>(Arrays.asList(temp.substring(0, temp.length()-1).split("@")));
-				cancelados.remove("");
-				if(listareservas.size()==0) listareservas=pendientes;								
-				else{
-					if(cancelados!=null)listareservas.removeAll(cancelados);
-					if(pendientes!=null)listareservas.addAll(pendientes);					
-				}
-				sesion.setAttribute("listareservas",listareservas);
-				response.setContentType("text/plain");  
-			    response.setCharacterEncoding("UTF-8");			    
+			String temp=request.getParameter("pendientes");
+			if(temp.length()>0)pendientes=new Vector<String>(Arrays.asList(temp.substring(0, temp.length()-1).split("@")));
+			pendientes.remove("");
+			temp=request.getParameter("cancelados");
+			if(temp.length()>0)cancelados=new Vector<String>(Arrays.asList(temp.substring(0, temp.length()-1).split("@")));
+			cancelados.remove("");
+			if(listareservas.size()==0) listareservas=pendientes;								
+			else{
+				if(cancelados!=null)listareservas.removeAll(cancelados);
+				if(pendientes!=null)listareservas.addAll(pendientes);					
+			}
+			sesion.setAttribute("listareservas",listareservas);
+			response.setContentType("text/plain");  
+			response.setCharacterEncoding("UTF-8");			    
 			    try {
 					response.getWriter().write("exito");
 				} catch (IOException e) {				
 					e.printStackTrace();
 				}
-			}
+			
 			
 		}
 		if(tipo==7){//ir actual?						

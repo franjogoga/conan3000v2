@@ -1,5 +1,5 @@
 function cambiarClase(elemento){
-	if(aTipo==1) cAgregar(elemento);
+	if(atipo==1) cAgregar(elemento);
 	else cEliminar(elemento);
 
 	
@@ -29,7 +29,7 @@ function cAgregar(elemento){
 function cEliminar(elemento){
 	if (elemento.className == "btn btn-danger") {
 		elemento.className = "btn btn-warning";
-		elemento.innerHTML=elemento.innerHTML.replace("Pendiente","Reservado");
+		elemento.innerHTML=elemento.innerHTML.replace("Reservado","Pendiente");
 		var temp=elemento.getAttribute("id")+"@";
 		if(cancelados.search(temp)<0)
 		pendientes=pendientes.concat(temp);
@@ -39,7 +39,7 @@ function cEliminar(elemento){
 		else 
 		if(elemento.className == "btn btn-warning") {
 		elemento.className = "btn btn-danger";
-		elemento.innerHTML=elemento.innerHTML.replace("Reservado","Pendiente");
+		elemento.innerHTML=elemento.innerHTML.replace("Pendiente","Reservado");
 		var temp=elemento.getAttribute("id")+"@";
 		if(pendientes.search(temp)<0)
 		cancelados=cancelados.concat(temp);
@@ -111,29 +111,72 @@ function ajax_search(){
 		  	lock2=1;
 			alert("ERROR!! Pas� lo siguiente: "+quepaso);
 		  }
-	
+	 
 		});
 	}
 		return false
 		
 }
 
+function cambiaModo() {
+	var temp='';
+	if(atipo==1) {
+		atipo=2;
+		temp=$('#titulo').html();
+		temp=temp.replace('AGREGAR','ELIMINAR');
+		$('#titulo').html(temp);
+		$('.elim').css('display','inline');
+		$('.crear').css('display','none');
+		$('.modEliminar').css('display','inline');
+		$('.modAgregar').css('display','none');
+		}
+	else {
+		atipo=1;
+		temp=$('#titulo').html();
+		temp=temp.replace('ELIMINAR','AGREGAR');
+		$('#titulo').html(temp);
+		$('.crear').css('display','inline');
+		$('.elim').css('display','none');
+		$('.modAgregar').css('display','inline');
+		$('.modEliminar').css('display','none');
+		}	
+	//$('#TipoCancha').slideUp('fast');
+	//$('#cmbServicios').selectedIndex = 0;
+	$("#resultadoBusqueda").html('');
+	
+	
+}
 function actualizar_pendientes(){
-
-var ant=($("#pendientes").attr('value').split(','));						  								  		
-						  		var temp;
-						  		for(i=0;i<ant.length ;i++){						  		
-						  			temp=".btn-success[id='"+ant[i]+"']";						  			
-						  			if(!$(temp).hasClass("btn-danger")){						  			
-						  			$(temp).html("<i class='icon-ok icon-white'></i>Pendiente");
-						  			
-						  			$(temp).toggleClass("btn-warning btn-success");}						  			
-						  			
-						  		}
-						  		//else{
-						  		//var temp=ant[i]+"@";
-						  		//cancelados=cancelados.concat(temp);
-						  		//}
+	var ant=($("#pendientes").attr('value').split(','));						  								  		
+		var temp;
+	if(atipo==1){
+	  		for(i=0;i<ant.length ;i++){						  		
+	  			temp=".btn-success[id='"+ant[i]+"']";						  			
+	  			if(!$(temp).hasClass("btn-danger")){						  			
+	  			$(temp).html("<i class='icon-ok icon-white'></i>Pendiente");						  			
+	  			$(temp).toggleClass("btn-warning btn-success");}
+	  			//else{
+		  		//var temp=ant[i]+"@";
+		  		//cancelados=cancelados.concat(temp);
+		  		//}						  									  			
+	  		}
+	}
+	else{
+		for(i=0;i<ant.length ;i++){						  		
+  			temp=".btn-danger[id='"+ant[i]+"']";						  			
+  			if($(temp).hasClass("btn-danger")){						  			
+  			$(temp).html("<i class='icon-ok icon-white'></i>Pendiente");						  			
+  			$(temp).toggleClass("btn-warning btn-danger");}
+  			//else{
+	  		//var temp=ant[i]+"@";
+	  		//cancelados=cancelados.concat(temp);
+	  		//}						  									  			
+  		}
+	
+	
+	
+}
+						  		
 
 }
 
@@ -205,6 +248,46 @@ if(lock4==1){
 		});
 		}
 }
+
+function ajax_elim(){
+	//if(lock4==1){
+		//lock4=0;
+		$.ajax({
+			  type: "POST",
+			  url: "/Conan3000V2/IngSoft/servicio/reserva/SMSReserva",
+			  data: "accion=Eliminar"+"&tipo=2" +"&cmbServicios="+$('#cmbServicios').val()+"&cmbSedes="+$('#cmbSedes').val()+"&cmbTipoCancha="+$('#cmbTipoCancha').val()
+			  +"&pendientes="+pendientes+"&cancelados="+cancelados,
+			  dataType: "text",
+			  success: function(msg){
+				$.ajax({
+			  type: "POST",
+			  url: "/Conan3000V2/IngSoft/servicio/reserva/SMSReserva",
+			  data: "accion=Crear"+"&tipo="+ctipo +"&txtIdSocio="+$('#txtIdSocio').val(),
+			  dataType: "text",		  
+			  success: function(msg){
+			  	lock4=1;
+			  	$("#resultadoBusqueda").html("");
+				alert("Operacion realizada sin problemas");},
+			  error: function(objeto, quepaso, otroobj){
+			  	lock4=1;
+			  	alert("ERROR!! No se pudo completar la operacion intente de nuevo");
+			  }
+		
+			});
+			  },
+			  error: function(objeto, quepaso, otroobj){
+			  	lock4=1;
+				alert("ERROR!! No se pudo completar la operacion intente de nuevo");
+				
+			  }
+		
+			});
+		//	}
+	
+	
+}
+
+
 function activarTipoCancha(elem){
 var temp=$('#TipoCancha');
 if(elem.val().indexOf('cancha')>=0){
