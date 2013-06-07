@@ -2,6 +2,7 @@ package IngSoft.venta.bean;
 
 import java.util.List;
 import java.util.Vector;
+import java.text.ParseException;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -30,12 +31,13 @@ static private ServicioBeanFuncion ServicioFuncion=null;
 	
 	public ServicioBeanData crearServicio(HttpServletRequest request, HttpServletResponse response){
 		ServicioBeanData servicioData= new ServicioBeanData();
-		try{		
 
 		servicioData.setDescripcion(request.getParameter("txtDescripcion"));
 		servicioData.setNombreProveedor(request.getParameter("txtNombreProv"));
 		servicioData.setNombreServicio(request.getParameter("txtNombreServ"));
-		servicioData.setPrecio(Long.parseLong(request.getParameter("txtPrecio")));
+		try{		
+
+		servicioData.setPrecio(Double.parseDouble(request.getParameter("txtPrecio")));
 
 		}catch(Exception e){
 			e.printStackTrace();
@@ -44,22 +46,21 @@ static private ServicioBeanFuncion ServicioFuncion=null;
 		return servicioData;		
 	} 
 	
-	public boolean agregarSocio(SocioBeanData socioData) throws CoException {
+	public boolean agregarServicio(ServicioBeanData servicioData) throws CoException {
 		boolean resultado=false;		
 		l.lock();
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
-			String codigo= (String)sqlsesion.selectOne("Data.venta.socio.getNextCodigo3");
+			String codigo= (String)sqlsesion.selectOne("Data.venta.servicio.getNextCodigo");
 			if(codigo!=null){
 			int cod= Integer.parseInt(codigo.substring(3))+1;
 			String defecto= "000000";
 			String temp= defecto.substring(0, defecto.length()-String.valueOf(cod).length()).concat(String.valueOf(cod));
-			//String codigoM=;
 			
-			socioData.setCodigo(codigo.substring(0,3).concat(temp));}
-			else socioData.setCodigo("SOC000001");
+			servicioData.setCodServicio(codigo.substring(0,3).concat(temp));}
+			else servicioData.setCodServicio("SEP000001");
 
-			sqlsesion.insert("Data.venta.socio.insertSocio",socioData);
+			sqlsesion.insert("Data.venta.servicio.insertServicio",servicioData);
 
 			resultado=true;
 		}
@@ -90,6 +91,19 @@ static private ServicioBeanFuncion ServicioFuncion=null;
 		sqlsesion.close();
 	}
 	return servicioData;
+	}
+	
+
+	public ProveedorBeanData BuscarProveedor(String nombre){
+	ProveedorBeanData proveedorData=null;
+	SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+	try{
+		proveedorData= sqlsesion.selectOne("Data.venta.servicio.getPlantillaMiniProveedor",nombre);
+	}
+	finally{
+		sqlsesion.close();
+	}
+	return proveedorData;
 	}
 	
 	public boolean eliminarServicio(String codigo) throws CoException {
@@ -138,7 +152,7 @@ static private ServicioBeanFuncion ServicioFuncion=null;
 		catch(Exception a)		
 		{sqlsesion.rollback();
 		a.printStackTrace();
-			throw CoException.set("Error: No se pudo modificar la plantilla intente de nuevo", "SMVServico?accion=Modificar&tipo=1");
+			throw CoException.set("Error: No se pudo modificar la plantilla intente de nuevo", "SMVServicio?accion=Modificar&tipo=1");
 			
 		}
 		
