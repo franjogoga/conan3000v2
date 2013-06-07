@@ -103,7 +103,7 @@ function anhadir(cod, name){
 							 <div class="control-group" id="dvProveedor">
 			                <label class="control-label" for="typeahead8">Provedor (*): </label>
 			                <div class="controls">
-			                  <input type="text" class="span6 typeahead" id="txtProveedor"  data-provide="typeahead" name="txtProveedor" data-items="4" readonly="readonly"  value="<%=producto.getProveedor() %>">
+			                  <input type="text" class="span6 typeahead" id="txtProveedor"  data-provide="typeahead" name="txtProveedor" data-items="4" readonly="readonly"  value="<%=producto.getIdProveedor() %>">
 			                  <br>
 			                  <div  align="left"> <a class="btn btn-primary iframe" href="../proveedor/seleccionarproveedor.jsp"> <i class="icon icon-search icon-white"></i> Buscar Proveedor</a> </div>
 			                  <span class="help-inline" id="errProveedor">Please correct the error</span>
