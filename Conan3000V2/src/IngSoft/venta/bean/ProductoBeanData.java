@@ -8,11 +8,20 @@ public class ProductoBeanData implements Serializable{
 	
 	private String idProdProveedor;
 	private String idProveedor;
+	private String proveedor;
+	
 	private String nombre;
 	private String presentacion;
 	private String descripcion;
 	private Double precioU;
 	private String estado;
+	
+	public String getProveedor() {
+		return proveedor;
+	}
+	public void setProveedor(String proveedor) {
+		this.proveedor = proveedor;
+	}
 	
 	public String getIdProdProveedor() {
 		return idProdProveedor;
