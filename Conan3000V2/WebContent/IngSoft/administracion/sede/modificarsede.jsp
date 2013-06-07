@@ -1,21 +1,19 @@
 <!DOCTYPE html>
 <%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
+<%@page import="IngSoft.administracion.bean.ActividadBeanData"%>
 <%@page import="IngSoft.administracion.bean.SedeBeanData"%>
+<%@page import="IngSoft.administracion.bean.AmbienteBeanData"%>
+<%@page import="IngSoft.administracion.bean.TipoActividadMiniBeanData"%>
+
+
+<%@page import="IngSoft.administracion.bean.DepartamentoBeanData"%>
+<%@page import="IngSoft.administracion.bean.ProvinciaBeanData"%>
+<%@page import="IngSoft.administracion.bean.DistritoBeanData"%>
 
 
 <html lang="en">
 <head>
-	<!--
-		Charisma v1.0.0
-
-		Copyright 2012 Muhammad Usman
-		Licensed under the Apache License v2.0
-		http://www.apache.org/licenses/LICENSE-2.0
-
-		http://usman.it
-		http://twitter.com/halalit_usman
-	-->
 	<meta charset="utf-8">
 	<title>Modificar Sede</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,6 +21,15 @@
 	<meta name="author" content="Muhammad Usman">
 	
 	<!--The beans  -->
+	<jsp:useBean id="actividad" scope="request"class="IngSoft.administracion.bean.ActividadBeanData"></jsp:useBean>
+	<jsp:useBean id="sedes"           scope="request"class="java.util.Vector"></jsp:useBean>
+	<jsp:useBean id="ambientes"       scope="request"class="java.util.Vector"></jsp:useBean>
+	<jsp:useBean id="tipoactividades"  scope="request"class="java.util.Vector"></jsp:useBean>
+	
+	
+	<jsp:useBean id="departamentos" scope="request"class="java.util.Vector"></jsp:useBean>
+	<jsp:useBean id="provincias" scope="request"class="java.util.Vector"></jsp:useBean>
+	<jsp:useBean id="distritos" scope="request"class="java.util.Vector"></jsp:useBean>
 	<jsp:useBean id="sede" scope="request"class="IngSoft.administracion.bean.SedeBeanData"></jsp:useBean>
 	
 	<!-- The styles -->
@@ -58,56 +65,10 @@
 	<![endif]-->
 
 	<!-- The fav icon -->
-	<link rel="shortcut icon" href="img/conan_logo.png">
-	<script>
-		function validar(form){
-			if(form.txtNombre.value.length <=0)return false;
-			if(form.txtDireccion.value.length<=0)return false;
-			if(form.txtTelefono.value.lengtht<=0)return false;
-			if(form.txtAreaterreno.value.length<=0)return false;
-			
-	return true;
-		
-		
-		}
+	<link rel="shortcut icon" href="img/favicon.ico">
 	
-	function alt_fecha(obj){
-	obj.value=obj.value.slice(0,5);
 	
-	}
 	
-	function alt_submit(){
-		var form= document.frmUpdate;
-		if(validar(form)) form.submit();
-		else alert("Uno o mas campos estan vacios");
-			
-			}
-		
-		
-		
-			//document.fmrData.submit();
-
-	</script>	
-	<%! public boolean  encontrar(String a, String[] b){
-		for(int i=0;i<b.length;i++){			
-			if(b[i].equals(a)) return true;	
-		}
-	return false;
-	}
-	public String formatear(java.util.Date date){
-		SimpleDateFormat DF= new SimpleDateFormat("dd/MM");
-		return DF.format(date);
-	}
-	
-	public String generarCadena(String[] t){
-		String a="";
-		for(int i=0;i<t.length;i++)
-			a= a.concat(t[i]+"/");
-			if(a.length()>0) a=a.substring(0, a.length()-1);
-		return a;
-	}
-	%>
-		
 </head>
 
 <body>
@@ -119,122 +80,121 @@
 			<jsp:include page="/IngSoft/general/leftmenu.jsp" />
 						<!-- left menu ends -->
 			
-			
-			<noscript>
+		<noscript>
 				<div class="alert alert-block span10">
 					<h4 class="alert-heading">Warning!</h4>
 					<p>You need to have <a href="http://en.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript</a> enabled to use this site.</p>
 				</div>
 			</noscript>
 			
-		
-			<div id="content" class="span10">
-			<!-- content starts -->
-			
-
-			<div>
-				<ul class="breadcrumb">
-					<li>
-						<a href="/Conan3000V2/IngSoft/general/index.jsp">Home</a> <span class="divider">/</span>
-					</li>
-					<li>
-						<a href="buscarsede.jsp">Mantenimiento de Sede</a> <span class="divider">/</span>
-					</li>
-					
-					
-					<li>
-						Modificar de Sede
-					</li>
-				</ul>
-			</div>
-			
-			<div class="row-fluid sortable">
-				<div class="box span12">
-					<div class="box-header well" data-original-title>
-					  <h2><i class="icon-edit"></i>MODIFICAR SEDE</h2>
-				  </div>
-					<div class="box-content">
-					
-					
-						<form class="form-horizontal" name="frmUpdate" action="<%= response.encodeURL("SMASede")%>" method="post">
-						
+            <div id="content" class="span10">
+              <!-- content starts -->
+              <div>
+                <ul class="breadcrumb">
+                  <li> <a href="../../general/index.jsp">Home</a> <span class="divider">/</span> </li>
+                  <li> <a href="buscarambiente.jsp">Mantenimiento de Sede</a> <span class="divider">/</span></li>
+                  <li>Modificar Sede</li>
+                </ul>
+              </div>
+              <div class="row-fluid sortable">
+                <div class="box span12">
+                  <div class="box-header well" data-original-title>
+                    <h2><i class="icon-edit"></i>MODIFICAR SEDE</h2>
+                  </div>
+                  <div class="box-content">
+                    <form class="form-horizontal" action="<%= response.encodeURL("SMASede")%>" name="frmData" method="post">
 						<input type="hidden" name="codigo" value="<%=sede.getCodigo()%>"></input>
 						<input type="hidden" name="accion" value="Modificar"></input>
 						<input type="hidden" name="tipo" value="2"></input>
 						  
 						  
-						  
-						  <fieldset>
-						  
-						  
-						    <div class="control-group">
-						      <label class="control-label" for="typeahead7">Nombre(*): </label>
-						      <div class="controls">
-						        <input type="text" class="span6 typeahead" id="txtNombresede"  data-provide="typeahead"  name="txtNombre" value="<%= sede.getNombre()%>" onkeypress="return alfanumerico(event);" >
-					          </div>
-					        </div>
+                      <fieldset>
+                      
+                      
 
 
+                      
+                        <div class="control-group" id="dvNombreAmbiente">
+                          <label class="control-label" for="typeahead">Nombre (*):</label>
+                          <div class="controls">
+                            <input type="text" class="span6 typeahead" id="txtNombre"  data-provide="typeahead" name="txtNombre"   value="<%= sede.getNombre()%>"      >
+                          	<span class="help-inline" id="errNombreAmbiente">Please correct the error</span>
+                          </div>
+                        </div>
+                        
+                        
 
 							 <div class="control-group">
-								<label class="control-label" for="selectError">Departamento(*):</label>
+								<label class="control-label" for="selectError">Departamento:   <%=sede.getDepartamento()%>  </label>
 								<div class="controls">
-																						   <!-- cmbDepartamento  variable     -->	
-							 		<select id="selectError11" data-rel="chosen" name="cmbDepartamento">
-								  	<option  selected value=""><%=sede.getDepartamento()%></option>							
+					             <!-- cmbDepartamento  variable     -->	
+							 		<select data-rel="chosen" id="cmbDepartamento" name="cmbDepartamento" onchange="alt_provincia()">
+								  <%for(int i=0;i<departamentos.size();i++){ %>
+										<option value="<%= ((DepartamentoBeanData)departamentos.get(i)).getCodigo()%>" <%=sede.getDepartamento().equalsIgnoreCase(     ((DepartamentoBeanData)departamentos.get(i)).getNombre()        )?"selected":""%>><%= ((DepartamentoBeanData)departamentos.get(i)).getNombre()%></option>
+									<%} %>						
+								  </select>
+								</div>
+							  </div>
+							  
+							  
+							 <div class="control-group">
+								<label class="control-label" for="selectError">Provincia:   <%=sede.getProvincia()%>    </label>
+								<div class="controls">
+																					 <!-- cmbProvincia  variable     -->	
+							 		<select  data-rel="chosen" id="cmbProvincia" name="cmbProvincia" onchange="alt_distrito()">
+								  		<%for(int i=0;i<provincias.size();i++){ %>
+										<option value="<%= ((ProvinciaBeanData)provincias.get(i)).getCodigo()%>" <%=sede.getProvincia().equalsIgnoreCase(      ((ProvinciaBeanData)provincias.get(i)).getNombre()            )?"selected":""%>><%= ((ProvinciaBeanData)provincias.get(i)).getNombre()%></option>
+									<%} %>						
 								  </select>
 								</div>
 							  </div>
 							  
 							 <div class="control-group">
-								<label class="control-label" for="selectError">Provincia(*):</label>
+								<label class="control-label" for="selectError">Distrito:    <%=sede.getDistrito()%>  </label>
 								<div class="controls">
-																						   <!-- cmbDepartamento  variable     -->	
-							 		<select  id="selectError12" data-rel="chosen" name="cmbDepartamento">
-								  	<option  selected value=""><%=sede.getProvincia()%></option>							
+																					 <!-- cmbDistrito  variable     -->	
+							 		<select data-rel="chosen" id="cmbDistrito" name="cmbDistrito">
+								  		<%for(int i=0;i<distritos.size();i++){ %>
+										<option value="<%= ((DistritoBeanData)distritos.get(i)).getCodigo()%>" <%=sede.getDistrito().equalsIgnoreCase(  ((DistritoBeanData)distritos.get(i)).getNombre()    )?"selected":""%>><%= ((DistritoBeanData)distritos.get(i)).getNombre()   %></option>
+									<%} %>						
 								  </select>
 								</div>
 							  </div>
 
-
-							 <div class="control-group">
-								<label class="control-label" for="selectError">Distrito(*):</label>
-								<div class="controls">
-																						   <!-- cmbDepartamento  variable     -->	
-							 		<select  id="selectError13" data-rel="chosen" name="cmbDepartamento">
-								  	<option  selected value="<%=sede.getCodigo()%>"><%=sede.getDistrito()%></option>							
-								  </select>
-								</div>
-							  </div>
-
-	
-
-						    <div class="control-group">
+						    <div class="control-group" id="dvDireccion">
 						      <label class="control-label" for="typeahead7">Direccion(*): </label>
 						      <div class="controls">
-						        <input type="text" class="span6 typeahead" id="txtNombreEvento"  data-provide="typeahead"  name="txtDireccion"  value="<%=sede.getDireccion()%>" onkeypress="return alfanumerico(event);">
+						        
+
+	                            <input    type="text" class="span6 typeahead"  data-provide="typeahead" id="txtDireccion"  name="txtDireccion"  value="<%=sede.getDireccion()%>"     onkeypress="return alfanumerico(event);">
+	                          	<span class="help-inline" id="errDireccion">Please correct the error</span>
+	                          	
 					          </div>
 					        </div>
-
-
-
-						    <div class="control-group">
+							
+						    <div class="control-group"  id="dvTelefono">
 						      <label class="control-label" for="typeahead7">Telefono: </label>
 						      <div class="controls">
-						        <input type="text" class="span6 typeahead" id="txtNombreEvento"  data-provide="typeahead"  name="txtTelefono"  value="<%=sede.getTelefono()%>" onkeypress="return numerico(event);">
+						        
+
+	                            <input    type="text" class="span6 typeahead"  data-provide="typeahead" id="txtTelefono"  name="txtTelefono" maxlength="7"   value="<%=sede.getTelefono()%>" onkeypress="return alfanumerico(event);">
+	                          	<span class="help-inline" id="errTelefono">Please correct the error</span>
+	                     
 					          </div>
 					        </div>
-
-
-
+                                
+                                
+                                
 						    <div class="control-group">
-						      <label class="control-label" for="typeahead7">AreaTereno: </label>
+						      <label class="control-label" for="typeahead7">Area de Terreno: </label>
 						      <div class="controls">
-						        <input type="text" class="span6 typeahead" id="txtNombreEvento"  data-provide="typeahead"  name="txtAreaterreno"  value="<%=sede.getAreaterreno()%>" onkeypress="return numerico(event);">
+						        <input    type="text" class="span6 typeahead" id="typeahead7"  data-provide="typeahead" id="txtAreaterreno"   maxlength="7"    value="<%=sede.getAreaterreno()%>"    name="txtAreaterreno" onkeypress="return numerico(event);">
 					          </div>
 					        </div>
 					        
 					        
+
+
 							<div class="control-group">
 								<label class="control-label">Estado </label>
 								<div class="controls">
@@ -273,33 +233,37 @@
 								 
 								</div>
 							</div>
-							
-							
-							
-							
-							
-						    <div class="form-actions">
-							  <button type="button" class="btn btn-primary" onclick="javascript:alt_submit()">Guardar</button>
-							  <button type="button" class="btn" onclick="location.href='buscarsede.jsp'" >Cancelar</button>
-							</div>
-						  </fieldset>
-					  </form>   
-
-				  </div>
-				</div><!--/span-->
-
-			</div><!--/row-->
-
-
-			<div class="row-fluid sortable"><!--/span-->
-			
-			</div><!--/row-->
-			
-			<div class="row-fluid sortable"><!--/span-->
-
-			</div><!--/row-->		 
-					<!-- content ends -->
-			</div><!--/#content.span10-->
+                     
+                        
+                        
+                        <div class="form-actions">
+                          <button type="button" class="btn btn-primary" onclick="javascript:alt_submit()">Guardar</button>
+                          <button type="button" class="btn" onclick="location.href='buscarsede.jsp'" >Cancelar</button>
+                        </div>
+                        
+                        
+                        
+                      </fieldset>
+                    </form>
+					<span style="font-size:70%">(*)Campos Obligatorios</span>
+                  </div>
+                </div>
+                <!--/span-->
+              </div>
+              <!--/row-->
+              <div class="row-fluid sortable">
+                
+                <!--/span-->
+              </div>
+              <!--/row-->
+              <div class="row-fluid sortable">
+                
+                <!--/span-->
+              </div>
+              <!--/row-->
+              <!-- content ends -->
+            </div>
+          <!--/#content.span10-->
 				</div><!--/fluid-row-->
 				
 		<hr>
@@ -317,7 +281,6 @@
 				<a href="#" class="btn btn-primary">Save changes</a>
 			</div>
 		</div>
-
 		<jsp:include page="/IngSoft/general/inferior.jsp" />
 		
 	</div><!--/.fluid-container-->
@@ -394,8 +357,212 @@
 	<!-- history.js for cross-browser state change on ajax -->
 	<script src="js/jquery.history.js"></script>
 	<!-- application script for Charisma demo -->
-	<script src="js/charisma.js"></script>
+	<script src="js/charisma.js"></script>		
+	
+	
+	
+	
+	
+<!--       ------------------------------------------------------------------------------- -->	
+	
+	
+	
+	<script>
+	
+	
+	function anhadir(cod, name,puesto){
+		var form= document.frmData;
+		form.cmbEncargado.value=name;
+		form.cmbEncargadoCodigo.value=cod;
+		form.txtPuesto.value=puesto;
+		$.fn.colorbox.close();
+		
+	} 
+	
+	function alt_fecha(obj){
+		obj.value=obj.value.slice(0,5);
+		
+		}
+
+	function verificar_fecha(comparacion,fecha1,fecha2){
+		var fec1=fecha1.value.split("/");
+		var fec2=document.getElementById(fecha2).value.split("/");
+		var resultado=true;
+		if(fec1.length==fec2.length) {
+			var size=fec1.length;
+			for(i=size-1;i>=0;i--){
+				if(comparacion==0){
+					if(fec1[i].indexOf(fec2[i])<0)  resultado= false;
+					}
+				if(comparacion==1){
+					if(parseInt(fec1[i])<parseInt(fec2[i]))  resultado= false;
+					}
+				if(comparacion==-1){
+					if(parseInt(fec1[i])>parseInt(fec2[i]))  resultado= false;
+					}
+				}
+			if(resultado==false){			
+					fecha1.value=document.getElementById(fecha2).value;			
+				}
+				
+			} 
+		else{
+			alert("Error al comparar fechas");
+		}			
+	}
+
+	function alfanumerico(e) 
+	{ 
+	var key = window.event.keyCode || event.keyCode;
+	return ((key >= 48 && key <= 57) ||(key >= 97 && key <= 122) ||(key >= 65 && key <=90) ||(key >= 192 && key <=246)||(key <=13) ||(key ==32));
+	} 	
+
 	
 		
+	function alt_submit(){
+		var form= document.frmData;
+		if(validaForm()) form.submit();
+	}
+	
+	
+	
+	function alt_provincia(){
+		$.ajax({
+		  type: "POST",
+		  url: "/Conan3000V2/IngSoft/administracion/sede/SMASede",
+		  data: "accion=Buscar"+ "&tipo=3" + "&cmbDepartamento=" + $(cmbDepartamento).val(),
+		  dataType: "html",
+		  beforeSend: function ( xhr ) {
+   		  $("#cmbProvincia").html("");
+			//chosen - improves select
+			$("#cmbProvincia").trigger("liszt:updated");
+  		  },
+		  success: function(msg){
+			$("#cmbProvincia").html(msg);
+			//chosen - improves select
+			$("#cmbProvincia").trigger("liszt:updated");
+		  },
+		  error: function(objeto, quepaso, otroobj){
+			alert("ERROR!! Pasó lo siguiente: "+quepaso);
+		  }
+	
+		});
+	}
+	function alt_distrito(){
+		$.ajax({
+		  type: "POST",
+		  url: "/Conan3000V2/IngSoft/administracion/sede/SMASede",
+		  data: "accion=Buscar"+ "&tipo=4" + "&cmbProvincia=" + $(cmbProvincia).val(),
+		  dataType: "html",
+		  beforeSend: function ( xhr ) {
+   		  $("#cmbDistrito").html("");
+			//chosen - improves select
+			$("#cmbDistrito").trigger("liszt:updated");
+  		  },
+		  success: function(msg){
+			$("#cmbDistrito").html(msg);
+			//chosen - improves select
+			$("#cmbDistrito").trigger("liszt:updated");
+		  },
+		  error: function(objeto, quepaso, otroobj){
+			alert("ERROR!! Pasó lo siguiente: "+quepaso);
+		  }
+	
+		});
+	}		
+		
+	
+	
+	
+	</script>		
+	
+	
+	
+	
+	
+<!--     ---------------------- Sirve para poner un iframe ------------------------------   -->	
+
+
+<!--     -----------------------------------------------------   -->			
+	
+		<script>
+			$(document).ready(function(){
+				//Examples of how to assign the Colorbox event to elements
+				
+				$(".iframe").colorbox({iframe:true, width:"60%", height:"80%"});
+				
+				//Example of preserving a JavaScript event for inline calls.
+				$("#click").click(function(){ 
+					$('#click').css({"background-color":"#f00", "color":"#fff", "cursor":"inherit"}).text("Open this window again and this message will still be here.");
+					return false;
+				});
+			});
+		</script>
+	
+<!--     -----------------------------------------------------   -->	
+	
+	<script type="text/javascript" src="js/apprise-1.5.full.js"></script>
+	<link rel="stylesheet" href="css/apprise.css" type="text/css" />
+	<script type="text/javascript" src="js/script.js"></script>
+    <script>
+ 
+ 
+function validaForm(){
+                /*
+        esValido(nombre, casilla, id, tipoValidacion, minimo,maximo)
+        nombre: es el nombre de la casilla: ejemplo -> Nombre, Apellido, Fecha de Nacimiento, etc
+        casilla: corresponde a la casilla en si, para esto colocamos por ejemplo form.txtNombre, donde form ya fue definido
+        id: identificador de los divs para efectuar las validaciones
+        tipoValidacion: es un valor numerico el cual permite identificar el tipo de validacion que se efectuara
+        1: Validacion con cantidad de caracteres Minimo y maximo
+        2: Validación de cantidad de caracteres de fecha
+        3: validacion de llenado de radio button
+        4: Validacion de alfanumerico
+        5: validacion de valores Float
+        6: Validacion de enteros
+        7: Validacion de fechas
+        minimo: valor numerico que indica la menor cantidad de caracteres que como minimo debe ser llenado (Solo para tipoValidacion 1 y 2, en el resto poner 1)
+        maximo: valor numerico que indica la maxima cantidad de caracteres que como maximo debe ser llenado (Solo para tipoValidacion 1 y 2, en el resto poner 1)
+       
+        El valor que va en cadena[i] es el nombre del campo
+       
+        #############################ADICIONAL#########################
+        Para validar una fecha Inicial y fecha Final usar la siguiente funcion
+        validarFechas(nombre[Fecha Final], casilla[Fecha Final], id[Fecha Final],nombre[Fecha Inicial],casilla[Fecha Inicial])
+        OJO: no va como parametro el id de la fecha Inicial
+        ###############################################################
+        */
+       
+        var form=document.frmData;
+ 
+        var cadena= new Array();
+        var i=0;
+        var error=false;
+        if(!esValido("Nombre",form.txtNombre,"NombreAmbiente",1,1,50)){cadena[i]="Nombre";i++;}
+        //if(!esValido("Descripci&oacute;n",form.txtDescripcion,"Descripcion",1,0,100)){cadena[i]="Descripci&oacute;n";i++;}
+        if(!esValido("Direccion",form.txtDireccion,"Direccion",1,1,50)){cadena[i]="Direccion";i++;}
+        if(!esValido("Telefono",form.txtTelefono,"Telefono",1,6,7)){cadena[i]="Telefono";i++;}
+        //if(!esValido("Caracter&iacute;sticas",form.txtCaracteristica,"Caracteristica",1,0,100)){cadena[i]="Caracter&iacute;sticas";i++;}
+       
+        //No tocar
+        if(i>0){
+        crearAlert(cadena);
+        return false;
+        }else{
+                return true;      
+        }
+} 
+ 
+function inicializa(){
+        document.getElementById("errNombreAmbiente").style.display='none';
+        //document.getElementById("errDescripcion").style.display='none'; 
+        document.getElementById("errTelefono").style.display='none';
+        document.getElementById("errDireccion").style.display='none'; 
+        //document.getElementById("errCaracteristica").style.display='none';    
+} 
+ 
+inicializa();
+ 
+</script>
 </body>
 </html>
