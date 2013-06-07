@@ -6,27 +6,37 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import IngSoft.administracion.bean.*;
 import IngSoft.general.CoAccion;
 import IngSoft.general.CoException;
-import IngSoft.servicio.bean.AmbienteMiniBeanData;
-import IngSoft.servicio.bean.EventoBeanData;
-import IngSoft.servicio.bean.EventoBeanFuncion;
-import IngSoft.servicio.bean.SedeMiniBeanData;
-import IngSoft.servicio.bean.TipoEventoMiniBeanData;
+import IngSoft.servicio.bean.*;
 
 public class AccionModificarEmpleado extends CoAccion {
 
 	@Override
 	public void ejecutar(ServletContext sc, HttpServletRequest request,
-			HttpServletResponse response) throws CoException{
+			HttpServletResponse response) throws CoException {
 		// TODO Auto-generated method stub
-		
-		if(Integer.valueOf(request.getParameter("tipo"))==2){
-		;
-			this.direccionar(sc, request, response, "/IngSoft/servicio//empleado/buscarempleado");
-		}	
-	
-		this.direccionar(sc, request, response, "/IngSoft/servicio/empleado/modificarempleado.jsp");
+
+		EmpleadoBeanFuncion empleadoFuncion = EmpleadoBeanFuncion.getInstance();
+
+		if (Integer.valueOf(request.getParameter("tipo")) == 2) {
+
+			EmpleadoBeanData empleadoData = empleadoFuncion.crearEmpleado(request, response);
+					
+			empleadoData.setCodigo(request.getParameter("codigo"));
+			empleadoFuncion.modificarEmpleado(empleadoData);
+
+			this.direccionar(sc, request, response,"/IngSoft/administracion/empleados/buscarempleado.jsp");
+					
+		}
+		    EmpleadoBeanData empleado =empleadoFuncion.consultarEmpleado(request.getParameter("codigo"));
+			request.setAttribute("empleado", empleado);
+
+			this.direccionar(sc, request, response,"/IngSoft/administracion/empleados/modificarempleado.jsp");
+					
+		}
+
 	}
 
-}
+
