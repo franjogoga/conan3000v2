@@ -1,4 +1,4 @@
-		    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <jsp:include page="/IngSoft/general/header.jsp" />
@@ -20,8 +20,7 @@
 			<jsp:include page="/IngSoft/general/footer.jsp" />
 		</div>
 		<jsp:include page="/IngSoft/general/jsexternal.jsp" />
-		
-		<script>
+	<script>
 			$(document).ready(function(){
 				//Examples of how to assign the Colorbox event to elements
 				
@@ -69,7 +68,7 @@
 			*/
 			
 			
-			var form=document.frmMembresia;
+			var form=document.frmProducto;
 
 			var cadena= new Array();
 			var i=0;
@@ -78,11 +77,11 @@
 			if(!esValido("Proveedor",form.txtProveedor,"Proveedor",1,1,50)){cadena[i]="Proveedor";i++;}
 			if(!esValido("Nombre",form.txtNombre,"Nombre",1,1,50)){cadena[i]="Nombre";i++;}
 			if(!esValido("Presentacion",form.txtPresentacion,"Presentacion",1,1,50)){cadena[i]="Presentacion";i++;}
-			if(!esValido("Precio",form.txtPrecioU,"Precio",1,1,50)){
-				cadena[i]="Precio";i++;
+			if(!esValido("PrecioU",form.txtPrecioU,"PrecioU",1,1,50)){
+				cadena[i]="PrecioU";i++;
 			}else{
 				//valida si es float o entero
-				if(!esValido("Precio",form.txtCosto,"Precio",5,1,1)){cadena[i]="Precio";i++;}
+				if(!esValido("PrecioU",form.txtPrecioU,"PrecioU",5,1,1)){cadena[i]="PrecioU";i++;}
 			}
 			if(!esValido("Descripcion",form.txtDescripcion,"Descripcion",1,1,100)){cadena[i]="Descripcion";i++;}
 			

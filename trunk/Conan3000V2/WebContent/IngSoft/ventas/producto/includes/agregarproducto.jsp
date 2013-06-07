@@ -1,3 +1,5 @@
+<script type="text/javascript" src="js/apprise-1.5.full.js"></script>
+<link rel="stylesheet" href="css/apprise.css" type="text/css" />
 <script>
 function alt_submit(){
 	var form= document.frmProducto;
@@ -68,7 +70,7 @@ function validar(form){
 	if(form.txtDescripcion.value.length<=0)return false;
 	if(form.txtPresentacion.value.lengtht<=0)return false;
 	if(form.txtProveedor.value.length<=0)return false;
-	//if(form.txtPreciU.value.length<=0)return false;
+     if(form.txtPrecioU.value.length<=0)return false;
 	//if(form.cmbAmbientes.value.length<=0)return false;
 return true;
 
