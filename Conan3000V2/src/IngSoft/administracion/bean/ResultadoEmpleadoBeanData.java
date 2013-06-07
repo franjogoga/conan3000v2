@@ -1,13 +1,18 @@
 package IngSoft.administracion.bean;
 
 import java.io.Serializable;
+import java.util.Date;
+
 
 public class ResultadoEmpleadoBeanData implements Serializable{
-	private String codigo;
-	private String nombre; 
-	private String apaterno;
-	private String puesto;
-	private String estado;
+	
+	
+    private String codigo;	
+	private String nombre;
+	private String apellidoPaterno;
+	private int numeroDocumento;
+    private String area;
+	
 	
 	public String getCodigo() {
 		return codigo;
@@ -21,25 +26,22 @@ public class ResultadoEmpleadoBeanData implements Serializable{
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public String getApaterno() {
-		return apaterno;
+	public int getNumeroDocumento() {
+		return numeroDocumento;
 	}
-	public void setApaterno(String apaterno) {
-		this.apaterno = apaterno;
+	public void setNumeroDocumento(int numeroDocumento) {
+		this.numeroDocumento = numeroDocumento;
 	}
-	public String getPuesto() {
-		return puesto;
+	public String getApellidoPaterno() {
+		return apellidoPaterno;
 	}
-	public void setPuesto(String puesto) {
-		this.puesto = puesto;
+	public void setApellidoPaterno(String apellidoPaterno) {
+		this.apellidoPaterno = apellidoPaterno;
 	}
-	public String getEstado() {
-		return estado;
+	public String getArea() {
+		return area;
 	}
-	public void setEstado(String estado) {
-		this.estado = estado;
+	public void setArea(String area) {
+		this.area = area;
 	}
-	
-	
-	
 }
