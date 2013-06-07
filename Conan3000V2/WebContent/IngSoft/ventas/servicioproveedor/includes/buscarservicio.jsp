@@ -12,34 +12,36 @@
                     <div class="box-icon">
 							
 							<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
-							<a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>
+
 						</div>
                     
                         
                         
                     </div>
 					<div class="box-content">
+					
 						<form class="form-horizontal">
 						  <fieldset>
-						    <div class="control-group">
-						      <div class="control-group">
+						  
+	
 							    <div class="control-group">
+							    
 							      <div class="control-group">
 							        <label class="control-label" for="typeahead2">Nombre: </label>
 							        <div class="controls">
-							          <input type="text" class="span6 typeahead" id="typeahead2"  data-provide="typeahead" >
+							          <input type="text" class="span6 typeahead" id="txtNombre" name="txtNombre"  data-provide="typeahead" >
 						            </div>
 						          </div>
 							      <label class="control-label" for="selectError2">Proveedor:</label>
 							      <div class="controls">
-							       <input type="text" class="span6 typeahead" id="typeahead2"  data-provide="typeahead" >
+							       <input type="text" class="span6 typeahead" id="txtProveedor" name="txtProveedor"  data-provide="typeahead" >
 						          </div>
 						        </div>
-						      </div>
-						    </div>
+
+						    
 						    <div class="form-actions">
-					       <a  name="btnBuscar" class="btn btn-primary" href="">Buscar</a>  
-			               <a  name="btnCancelar" class="btn" href="buscarservicio.jsp">Cancelar</a>  
+					       <button  type="submit" class="btn btn-primary" href="">Buscar</button>  
+			               <button type="submit" class="btn" href="buscarservicio.jsp">Cancelar</button>  
 							
 							</div>
 						  </fieldset>
@@ -50,6 +52,7 @@
 		      <!--/span-->
 	        </div>
 		    <!--/row-->
+		    
 		    <div class="row-fluid sortable">
 		      <div class="box span12">
 		        <div class="box-header well" data-original-title>
