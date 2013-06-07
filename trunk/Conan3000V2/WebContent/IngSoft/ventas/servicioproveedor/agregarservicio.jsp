@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <jsp:include page="/IngSoft/general/header.jsp" />
+<link rel="shortcut icon" href="img/conan_logo.png">
 </head>
 <body>
 		<jsp:include page="/IngSoft/general/superior.jsp" />
@@ -20,6 +21,20 @@
 			<jsp:include page="/IngSoft/general/footer.jsp" />
 		</div>
 		<jsp:include page="/IngSoft/general/jsexternal.jsp" />
+				<script>
+			$(document).ready(function(){
+				//Examples of how to assign the Colorbox event to elements
+				
+				$(".iframe").colorbox({iframe:true, width:"60%", height:"80%"});
+				
+				//Example of preserving a JavaScript event for inline calls.
+				$("#click").click(function(){ 
+					$('#click').css({"background-color":"#f00", "color":"#fff", "cursor":"inherit"}).text("Open this window again and this message will still be here.");
+					return false;
+				});
+			});
+		</script>
+		
 </body>
 </html>
 
