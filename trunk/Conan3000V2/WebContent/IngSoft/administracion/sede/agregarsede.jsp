@@ -282,7 +282,7 @@
 						      <div class="controls">
 						        
 
-	                            <input    type="text" class="span6 typeahead"  data-provide="typeahead" id="txtTelefono"  name="txtTelefono" maxlength="7" onkeypress="return alfanumerico(event);">
+	                            <input    type="text" class="span6 typeahead"  data-provide="typeahead" id="txtTelefono"  name="txtTelefono" maxlength="7" onkeypress="return numerico(event);">
 	                          	<span class="help-inline" id="errTelefono">Please correct the error</span>
 	                     
 					          </div>
@@ -295,7 +295,7 @@
 						      <div class="controls">
 						        
 
-	                            <input    type="text" class="span6 typeahead"  data-provide="typeahead" id="txtAreaterreno"  name="txtAreaterreno" maxlength="7" onkeypress="return alfanumerico(event);">
+	                            <input    type="text" class="span6 typeahead"  data-provide="typeahead" id="txtAreaterreno"  name="txtAreaterreno" maxlength="7" onkeypress="return numerico(event);">
 	                          	<span class="help-inline" id="errAreaterreno">Please correct the error</span>
 	                     
 					          </div>
