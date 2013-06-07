@@ -109,7 +109,7 @@ public class EmpleadoBeanFuncion {
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
 		
-			sqlsesion.update("Data.administracion.empleado.deletePLantillaEmpleado",codigo);
+			sqlsesion.update("Data.administracion.empleado.deletePlantillaEmpleado",codigo);
 			
 			resultado=true;
 		}
@@ -135,7 +135,7 @@ public class EmpleadoBeanFuncion {
 		EmpleadoBeanData EmpleadoData=null;
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
-			EmpleadoData= sqlsesion.selectOne("Data.administracion.empleado.getPLantillaEmpleado",codigo);
+			EmpleadoData= sqlsesion.selectOne("Data.administracion.empleado.getPlantillaEmpleado",codigo);
 		}
 		finally{
 			sqlsesion.close();
