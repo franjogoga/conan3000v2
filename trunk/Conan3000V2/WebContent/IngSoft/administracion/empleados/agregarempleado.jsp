@@ -102,19 +102,12 @@
 			
 			<div id="content" class="span10">
 			  <!-- content starts -->
-			  <div>
-				<ul class="breadcrumb">
-					<li>
-						<a href="#">Inicio</a> <span class="divider">/</span>
-					</li>
-					<li>
-						<a href="#">Mantenimiento de Empleados</a> <span class="divider">/</span>
-					</li>
-					<li>
-						Agregar Empleado
-					</li>
-				</ul>
-			</div>
+			<div>
+						<ul class="breadcrumb">
+							<li><a href="/Conan3000V2/IngSoft/general/index.jsp">Home</a> / <a href="buscarempleado.jsp">Mantenimiento de
+									Empleados</a> / Agregar Empleado</li>
+						</ul>
+					</div>
 			  
 			  <div class="row-fluid sortable">
 			    <div class="box span12">
