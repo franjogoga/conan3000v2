@@ -279,9 +279,9 @@ String fecAnoFin=dfActual.format(c1.getTime()); %>
 							  
 						  
 						    <div class="control-group" id="dvNrodoc" >
-						      <label class="control-label" for="typeahead7">Nro. de Doc(*): </label>
+						      <label class="control-label" for="typeahead6">Nro. de Doc(*): </label>
 						      <div class="controls">
-						        <input type="text" class="span6 typeahead" id="txtNrodoc"  data-provide="typeahead"  name="txtNrodoc"  value="<%= invitado.getNumerodoc()%>">
+						        <input type="text" class="span6 typeahead" id="txtNrodoc"  name="txtNrodoc" data-provide="typeahead" data-items="4" value="<%= invitado.getNumerodoc()%>"  >
 						        <span class="help-inline" id="errNrodoc">Please correct the error</span>
 					          </div>
 					        </div>
@@ -312,7 +312,7 @@ String fecAnoFin=dfActual.format(c1.getTime()); %>
 						    <div class="control-group" id="dvCorreo" >
 						      <label class="control-label" for="typeahead7">Correo (*): </label>
 						      <div class="controls">
-						        <input type="text" class="span6 typeahead" id="txtCorreo"  data-provide="typeahead"  name="txtCorreo"  value="<%= invitado.getCorreo()%>">
+						        <input type="text" class="span6 typeahead" id="txtCorreo"  data-provide="typeahead" data-items="4" name="txtCorreo"  value="<%= invitado.getCorreo()%>">
 						        <span class="help-inline" id="errCorreo">Please correct the error</span>
 					          </div>
 					        </div>
@@ -320,18 +320,20 @@ String fecAnoFin=dfActual.format(c1.getTime()); %>
 
 
 
-						    <div class="control-group">
-						      <label class="control-label" for="typeahead7"> Teléfono Fijo: </label>
+						    <div class="control-group" id="dvTelefonofijo">
+						      <label class="control-label" for="typeahead9"> Tel&eacutefono Fijo: </label>
 						      <div class="controls">
-						        <input type="text" class="span6 typeahead" id="txtTelefonofijo"  data-provide="typeahead"  name="txtTelefonofijo"  value="<%= invitado.getTelefonofijo()%>">
+						        <input type="text" class="span6 typeahead" id="txtTelefonofijo"  data-provide="typeahead" data-items="4" name="txtTelefonofijo"  value="<%= invitado.getTelefonofijo()%>">
+					          	<span class="help-inline" id="errTelefonofijo">Please correct the error</span>
 					          </div>
 					        </div>
 
 
-						    <div class="control-group">
-						      <label class="control-label" for="typeahead7"> Teléfono Celular: </label>
+						    <div class="control-group" id="dvTelefonocelular">
+						      <label class="control-label" for="typeahead10"> Tel&eacutefono Celular: </label>
 						      <div class="controls">
-						        <input type="text" class="span6 typeahead" id="txtTelefonocelular"  data-provide="typeahead"  name="txtTelefonocelular"  value="<%= invitado.getTelefonomovil()%>">
+						        <input type="text" class="span6 typeahead" id="txtTelefonocelular"  data-provide="typeahead"  data-items="4" name="txtTelefonocelular"  value="<%= invitado.getTelefonomovil()%>">
+					          	 <span class="help-inline" id="errTelefonocelular">Please correct the error</span>
 					          </div>
 					        </div>
         
