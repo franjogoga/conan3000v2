@@ -86,7 +86,7 @@ function alt_submit(){
 
 						    <div class="form-actions">
 							   <button type="button"   class="btn btn-primary" onclick="javascript:alt_submit()">Guardar</button>  
-			               <button type="button" class="btn" href="buscarservicio.jsp">Cancelar</button> 
+			               <button type="button" class="btn" onclick="location.href='../servicioproveedor/buscarservicio.jsp'">Cancelar</button> 
 							</div>
 						  </fieldset>
 					  </form>
