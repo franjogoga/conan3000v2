@@ -140,7 +140,7 @@
 					        <div class="control-group">
                                   
                                   
-                                  <label class="control-label" for="typeahead7">RAOZON SOCIAL: </label>
+                                  <label class="control-label" for="typeahead7">RAZON SOCIAL: </label>
                                   <div class="controls">
                                       <input type="text" class="span6 typeahead"   data-provide="typeahead" id="txtRuc" name="txtRuc" value="<%=Juridica.getRazonSocial()%>">
                                           </div>
@@ -162,17 +162,7 @@
                                           </div>
                               </div>
 							  
-							  
-							  
-							  <div class="control-group">
-                                  
-                                  
-                                  <label class="control-label" for="typeahead7">Direccion: </label>
-                                  <div class="controls">
-                                      <input type="text" class="span6 typeahead"   data-provide="typeahead" id="txtDireccion" name="txtDireccion" value="<%=Juridica.getDireccion()%>" onkeypress="return alfanumerico(event);" autofocus>
-                                          </div>
-                              </div>
-							  
+						
 							  
 							     <div class="control-group">
                                   
