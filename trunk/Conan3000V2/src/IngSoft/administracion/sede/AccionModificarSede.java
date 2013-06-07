@@ -25,7 +25,7 @@ public class AccionModificarSede extends CoAccion{
 		
 		if(Integer.valueOf(request.getParameter("tipo"))==2){
 		
-			
+			System.out.print("  AccionModificarSede ---> crearSede  -->cmbDistrito == "+ request.getParameter("cmbDistrito")  );
 		SedeBeanFuncion sedeFuncion= SedeBeanFuncion.getInstance();
 		SedeBeanData sedeoData=sedeFuncion.crearSedeModificada(request, response);
 		sedeFuncion.modificarSede(sedeoData);
@@ -38,10 +38,14 @@ public class AccionModificarSede extends CoAccion{
 		SedeBeanFuncion sedeFuncion= SedeBeanFuncion.getInstance(); 
 		SedeBeanData sedeData=sedeFuncion.consultarSede(request.getParameter("codigo"));	
 		
+		System.out.print("sedeData.getDepartamento()"+ sedeData.getCoddepartamento()      );
+		System.out.print("sedeData.getCodprovincia()"+  sedeData.getCodprovincia()     );
 		
-		Vector<DepartamentoBeanData> departamentos =SedeBeanFuncion.getInstance().getDepartamentos();
-		Vector<ProvinciaBeanData> provincias =SedeBeanFuncion.getInstance().getProvincias(departamentos.get(0).getCodigo());
-		Vector<DistritoBeanData> distritos =SedeBeanFuncion.getInstance().getDistritos(provincias.get(0).getCodigo());			
+		
+		
+		Vector<DepartamentoBeanData> departamentos =SedeBeanFuncion.getInstance().getDepartamentos(                   );
+		Vector<ProvinciaBeanData> provincias =SedeBeanFuncion.getInstance().getProvincias(               sedeData.getCoddepartamento()              );
+		Vector<DistritoBeanData> distritos =SedeBeanFuncion.getInstance().getDistritos(                 sedeData.getCodprovincia()                          );			
 		request.setAttribute("distritos", distritos);
 		request.setAttribute("provincias", provincias);
 		request.setAttribute("departamentos", departamentos);	
