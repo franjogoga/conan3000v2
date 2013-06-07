@@ -1,6 +1,8 @@
 package IngSoft.venta.bean;
 
-public class ResultadoProductoBeanData {
+import java.io.Serializable;
+
+public class ResultadoProductoBeanData implements Serializable {
 	
 	private String idProdProveedor;
 	private String nombre;
