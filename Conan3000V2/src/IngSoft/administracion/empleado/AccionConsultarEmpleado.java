@@ -11,6 +11,8 @@ import IngSoft.general.CoAccion;
 import IngSoft.general.CoException;
 import IngSoft.servicio.bean.*;
 import IngSoft.administracion.*;
+import IngSoft.administracion.bean.EmpleadoBeanData;
+import IngSoft.administracion.bean.EmpleadoBeanFuncion;
 
 public class AccionConsultarEmpleado extends CoAccion {
 
@@ -18,10 +20,15 @@ public class AccionConsultarEmpleado extends CoAccion {
 	public void ejecutar(ServletContext sc, HttpServletRequest request,
 			HttpServletResponse response)  throws CoException{
 	
-
-		this.direccionar(sc, request, response, "/IngSoft/servicio/evento/consultarempleado.jsp");
+		EmpleadoBeanFuncion empleadoFuncion= EmpleadoBeanFuncion.getInstance();
+		EmpleadoBeanData empleadoData = empleadoFuncion.consultarEmpleado(request.getParameter("codigo"));
+		request.setAttribute("empleado", empleadoData);
+		this.direccionar(sc, request, response, "/IngSoft/administracion/empleados/consultarempleado.jsp");
 		
 
 	}
 
 }
+
+
+
