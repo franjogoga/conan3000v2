@@ -74,7 +74,7 @@
 	
 	function alt_submit(){
 		var form= document.frmDelete;
-		var r=confirm("¿Esta seguro que desea eliminar esta Invitado ?");
+		var r=confirm("¿Esta seguro que desea eliminar este Invitado ?");
 		if(r==true){form.submit();}
 			}
 		
