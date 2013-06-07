@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<%@page import="IngSoft.administracion.bean.HorarioEmpleados"%>
+<%@page import="IngSoft.servicio.bean.SedeMiniBeanData"%>
 <html lang="en">
 <head>
 	<!--
@@ -12,14 +14,15 @@
 		http://twitter.com/halalit_usman
 	-->
 	<meta charset="utf-8">
-	<title>Conan3000</title>
+	<title>Agregar Jornada</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
 	<meta name="author" content="Muhammad Usman">
-
+	<!--The beans  -->
+	<jsp:useBean id="horarios" scope="request"class="java.util.Vector"></jsp:useBean>	
+	
 	<!-- The styles -->
 	<link id="bs-css" href="css/bootstrap-cerulean.css" rel="stylesheet">
-    
 	<style type="text/css">
 	  body {
 		padding-bottom: 40px;
@@ -51,8 +54,40 @@
 	<![endif]-->
 
 	<!-- The fav icon -->
-	<link rel="shortcut icon" href="img/favicon.ico">
+	<link rel="shortcut icon" href="img/conan_logo.png">
+	<script>
+	function alfanumerico(e) 
+	{ 
+		var key = window.event.keyCode || event.keyCode;
+		return ((key >= 48 && key <= 57) ||(key >= 97 && key <= 122) ||(key >= 65 && key <=90) ||(key >= 192 && key <=246)||(key <=13) ||(key ==32));
+	} 	
+	
+	function validar(form){
+			if(form.txtNombreJornada.value.length <=0)return false;
+			if(form.fFecInicio.value.length<=0)return false;
+			if(form.fFecFin.value.lengtht<=0)return false;
+			if(form.cmbSedes.value.length<=0)return false;
+	return true;
 		
+		
+		}
+	
+	function alt_Hora(obj){
+	obj.value=obj.value.slice(0,5);
+	
+	}
+	
+	function alt_submit(){
+		var form= document.frmData;
+		if(validaForm()) form.submit();
+			
+			}
+		
+		
+		
+			//document.fmrData.submit();
+
+	</script>	
 </head>
 
 <body>
@@ -63,11 +98,9 @@
 			<!-- left menu starts -->
 			<jsp:include page="/IngSoft/general/leftmenu.jsp" />
 						<!-- left menu ends -->
-            
-            
-           
 			
-		  <noscript>
+			
+			<noscript>
 				<div class="alert alert-block span10">
 					<h4 class="alert-heading">Warning!</h4>
 					<p>You need to have <a href="http://en.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript</a> enabled to use this site.</p>
@@ -75,124 +108,83 @@
 			</noscript>
 			
 			<div id="content" class="span10">
-			  <!-- content starts -->
-			  <div>
-			    <ul class="breadcrumb">
-			      <li> <a href="#">Home</a> / <a href="#">Mantenimiento de Jornada</a> / Agregar Jornada</li>
-		        </ul>
-		      </div>
-			  <div class="row-fluid sortable">
-			    <div class="box span12">
-			      <div class="box-header well" data-original-title>
-			        <h2>AGREGAR JORNADA</h2>
-		          </div>
-			      <div class="box-content">
-			        <form class="form-horizontal">
-			          <fieldset>
-					  
-					  <!--    ----------------------------------------------------------------------------------------------    -->
-							<div class="control-group">
-							  <label class="control-label" for="typeahead7">Nombre(*): </label>
-							  <div class="controls">
-								<input   type="text" class="span6 typeahead" id="typeahead7"  data-provide="typeahead" >
-							  </div>
-							</div>
+			<!-- content starts -->
+			
 
-
-
-
-                          <div class="control-group">
-                                    <label class="control-label" for="typeahead">Hora inicio(*):</label>
-                                <div class="controls">
-                                        <input type="text" class="span6 typeahead" id="typeahead"  data-provide="typeahead" data-items="4" data-source='["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Dakota","North Carolina","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"]'>
-                                            <!--
-                                             <p class="help-block">Start typing to activate auto complete!</p>
-                                             
-                                             -->
-								</div>			 
-                          </div>
-                                
-                                
-                          <div class="control-group">
-                                    <label class="control-label" for="typeahead">Hora Fin(*):</label>
-                                <div class="controls">
-                                        <input type="text" class="span6 typeahead" id="typeahead"  data-provide="typeahead" data-items="4" data-source='["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Dakota","North Carolina","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"]'>
-                                            <!--
-                                             <p class="help-block">Start typing to activate auto complete!</p>
-                                             
-                                             -->
-							    </div>
-                          </div>
-						
-							  
-							  
-
-                                <div class="control-group">
-                                    <label class="control-label" for="textarea2">Descripcion:</label>
-			                          <div class="controls">
-			                            <textarea name="textarea" rows="3" id="textarea2" style="resize:none"></textarea>
-			                          </div>
-                               </div>
-                               
-												
-						
-						
-						
-							  <div class="control-group">
-								<label class="control-label">Estado</label>
-								
+			<div>
+				<ul class="breadcrumb">
+					<li>
+						<a href="/Conan3000V2/IngSoft/general/index.jsp">Home</a> <span class="divider">/</span>
+					</li>
+					<li>
+						<a href="buscarJornada.jsp">Mantenimiento de Jornadas</a> <span class="divider">/</span>
+					</li>
+					<li>
+						Agregar de Jornadas
+					</li>
+				</ul>
+			</div>
+			
+			<div class="row-fluid sortable">
+				<div class="box span12">
+					<div class="box-header well" data-original-title>
+					  <h2><i class="icon-plus-sign"></i>AGREGAR JORNADA</h2>
+				  </div>
+					<div class="box-content">
+						<form class="form-horizontal" action="<%= response.encodeURL("SMAJornada")%>" onsubmit="alt_submit();return false;" name="frmData" method="post">
+						<input type="hidden" name="accion" value="Agregar"></input>
+						<input type="hidden" name="tipo" value="2"></input>
+						  <fieldset>
+						    <div class="control-group" id="dvNombreJornada" >
+						      <label class="control-label" for="typeahead7">Nombre de Jornada(*): </label>
+						      <div class="controls">
+						        <input type="text" class="span6 typeahead" 
+						        id="txtNombreJornada" name="txtNombreJornada" 
+						        data-provide="typeahead" >
+					          	<span class="help-inline" id="errNombreJornada">Please correct the error</span>
+					          </div>
+					        </div>
+			  
+						  <div class="control-group">
+								<label class="control-label" for="cmbHorarios">Horario de Trabajo:</label>
 								<div class="controls">
-								
-								  <label class="radio">
-									<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
-									Activo
-								  </label>
-								  
-								    <div style="clear:both"></div>   
-								  
-								  
-								  <label class="radio">
-									<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-									Desactivo
-								  </label>
-								  
-
-								  
+								  <select  multiple data-rel="chosen" id="cmbHorarios" name="cmbHorarios" >
+									<%for(int i=0;i<horarios.size();i++){ %>
+										<option value="<%= ((HorarioEmpleados)horarios.get(i)).getCodigo()%>"><%= ((HorarioEmpleados)horarios.get(i)).getDescripcion()%></option>
+									<%} %>																									
+								  </select>
+								  <span class="help-inline" id="errSedes" style="display:none;">Este campo no puede estar vacio</span>
 								</div>
-								
-							  </div>	
-				
-						
-						
-						<!--    ----------------------------------------------------------------------------------------------    -->
-						
-						
-			            <div class="form-actions">
-			              <button type="submit" class="btn btn-primary">Agregar</button>
-			              <button type="reset" class="btn">Cancelar</button>
-		                </div>
-						(*)Campos Obligatorios
-		              </fieldset>
-		            </form>
-		          </div>
-		        </div>
-			    <!--/span-->
-		      </div>
-			  <!--/row-->
-			  <div class="row-fluid sortable">
-			    <!--/span-->
-		      </div>
-			  <!--/row-->
-			  <div class="row-fluid sortable">
-			    <!--/span-->
-		      </div>
-			  <!--/row-->
-			 
+						  </div>
+							<div class="control-group" id="dvFechaJornada">
+			                <label class="control-label" for="date03">Fecha de Jornada(*):</label>
+			                <div class="controls">
+			                  <input type="text" name="fFechaJornada" class="input-xlarge datepicker" id="fFechaJornada" value="" readonly="true">
+			                  <span class="help-inline" id="errFechaJornada"></span>
+		                    </div>
+		                  </div>
+							<div class="form-actions">
+							  <button type="button" class="btn btn-primary" onclick="javascript:alt_submit()">Agregar</button>
+							  <button type="button" class="btn" onclick="location.href='buscarjornada.jsp'" >Cancelar</button>
+							</div>
+						  </fieldset>
+					  </form>   
+					<span style="font-size:70%">(*)Campos Obligatorios</span>
+				  </div>
+				</div><!--/span-->
 
-		  
-       
+			</div><!--/row-->
+
+
+			<div class="row-fluid sortable"><!--/span-->
+			
+			</div><!--/row-->
+			
+			<div class="row-fluid sortable"><!--/span-->
+
+			</div><!--/row-->		 
 					<!-- content ends -->
-		  </div><!--/#content.span10-->
+			</div><!--/#content.span10-->
 				</div><!--/fluid-row-->
 				
 		<hr>
@@ -210,10 +202,8 @@
 				<a href="#" class="btn btn-primary">Save changes</a>
 			</div>
 		</div>
-
-		<footer>
-		 Conan 3000 Â© 2013 <p class="pull-right">Powered by: <a href="http://usman.it/free-responsive-admin-template">Las dos virgenes</a></p>
-		</footer>
+		<br/>
+		<jsp:include page="/IngSoft/general/inferior.jsp" />
 		
 	</div><!--/.fluid-container-->
 
@@ -291,13 +281,129 @@
 	<!-- application script for Charisma demo -->
 	<script src="js/charisma.js"></script>
 	<script>
-	function loadContent() 
-{ 
-   $("#includedContent").load("menu.html"); 
-} 
+			$(document).ready(function(){
+				//Examples of how to assign the Colorbox event to elements
+				
+				$(".iframe").colorbox({iframe:true, width:"60%", height:"80%"});
+				
+				//Example of preserving a JavaScript event for inline calls.
+				$("#click").click(function(){ 
+					$('#click').css({"background-color":"#f00", "color":"#fff", "cursor":"inherit"}).text("Open this window again and this message will still be here.");
+					return false;
+				});
+			});
+		</script>
+		
+		<script type="text/javascript" src="js/apprise-1.5.full.js"></script>
+<link rel="stylesheet" href="css/apprise.css" type="text/css" />
+<script type="text/javascript" src="js/script.js"></script>
+		<script>
 
 
-	</script>
-		<script>loadContent()</script> 
+function validaForm(){
+	/*
+	esValido(nombre, casilla, id, tipoValidacion, minimo,maximo)
+	nombre: es el nombre de la casilla: ejemplo -> Nombre, Apellido, Hora de Nacimiento, etc
+	casilla: corresponde a la casilla en si, para esto colocamos por ejemplo form.txtNombre, donde form ya fue definido
+	id: identificador de los divs para efectuar las validaciones
+	tipoValidacion: es un valor numerico el cual permite identificar el tipo de validacion que se efectuara
+	1: Validacion con cantidad de caracteres Minimo y maximo
+	2: Validación de cantidad de caracteres de Hora
+	3: validacion de llenado de radio button
+	4: Validacion de alfanumerico
+	5: validacion de valores Float
+	6: Validacion de enteros
+	7: validacion de Horas con formato dd/mm/YYYY
+	8: No vale
+	9: Validacion de correos
+	minimo: valor numerico que indica la menor cantidad de caracteres que como minimo debe ser llenado (Solo para tipoValidacion 1 y 2, en el resto poner 1)
+	maximo: valor numerico que indica la maxima cantidad de caracteres que como maximo debe ser llenado (Solo para tipoValidacion 1 y 2, en el resto poner 1)
+	
+	El valor que va en cadena[i] es el nombre del campo
+	
+	#############################ADICIONAL#########################
+	Para validar una Hora Inicial y Hora Final usar la siguiente funcion
+	validarHoras(nombre[Hora Final], casilla[Hora Final], id[Hora Final],nombre[Hora Inicial],casilla[Hora Inicial])
+	OJO: no va como parametro el id de la Hora Inicial
+	###############################################################
+	
+	*/
+	
+	
+	var form=document.frmData;
+
+	var cadena= new Array();
+	var i=0;
+	var error=false;
+	if(!esValido("Nombre de Jornada",form.txtNombreJornada,"NombreJornada",1,1,50)){cadena[i]="Nombre de Jornada";i++;}
+	
+	if(!esValido("Hora Inicio",form.fFechInicio,"HoraInicio",2,1,10)){cadena[i]="Hora Inicio";i++;}
+	
+	if(!esValido("Hora Fin",form.fFechFin,"HoraFin",2,1,10)){
+		cadena[i]="Hora Fin";i++;
+	}else{
+		if(!validarHoras("Hora Final",form.fFechFin,"HoraFin","Hora Inicio",form.fFechInicio)){
+		cadena[i]="Hora Fin";i++;
+		}
+	}
+	
+	if(!esValido("Hora Jornada",form.fFechJornada,"HoraJornada",2,1,10)){
+		cadena[i]="Hora Jornada";i++;
+	}else{
+		if(!validarHoras("Hora Jornada",form.fFechJornada,"HoraJornada","Hora Fin",form.fFechFin)){
+		cadena[i]="Hora Jornada";i++;
+		}
+	}
+	//if(!esValido("RUC",form.txtRuc,"Ruc",2,1,11)){cadena[i]="RUC";i++;}
+	//else{
+	
+	//if(!esValido("RUC",form.txtCosto,"Ruc",6,1,1)){cadena[i]="RUC";i++;}
+	
+	//}
+	//if(!esValido("Hora Fin",form.fHoraFin,"HoraFin",2,1,10)){cadena[i]="Hora Fin";i++;}
+	//if(!validarHoras("Hora Final",form.fHoraFin,"HoraFin","Hora Inicio",form.fHoraInicio)){cadena[i]="Hora Fin";i++;};
+	//if(!esValido("Socio",form.txtSocio,"Socio",1,1,50)){cadena[i]="Socio";i++;}
+	//if(!esValido("Periodo",form.cmbPeriodo,"Periodo",1,1,50)){cadena[i]="Periodo";i++;}
+	//if(!esValido("Costo",form.txtCosto,"Costo",1,1,50)){
+		//cadena[i]="Costo";i++;
+	//}else{
+		//valida si es float o entero
+		//if(!esValido("Costo",form.txtCosto,"Costo",5,1,1)){cadena[i]="Costo";i++;}
+	//}
+	//if(!esValido("Estado",form.rButton,"Estado",3,1,1)){cadena[i]="Estado";i++;}
+	
+	
+	//No tocar
+	if(i>0){
+	crearAlert(cadena);
+	return false;
+	}else{
+		return true;
+		
+	}
+
+}
+
+
+function inicializa(){
+/*Esto se debe llenar siempre deacuerdo a las etiuquetas <span> del formulario, esto sirve para ocultar inicialmente los avisos
+Solo poner el id de los <span> segun corresponda
+*/
+	document.getElementById("errNombreJornada").style.display='none';
+	//document.getElementById("errRuc").style.display='none';
+	document.getElementById("errHoraInicio").style.display='none';
+	document.getElementById("errHoraFin").style.display='none';
+	document.getElementById("errHoraJornada").style.display='none';
+	//document.getElementById("errSocio").style.display='none';
+	//document.getElementById("errCosto").style.display='none';
+	//document.getElementById("errPeriodo").style.display='none';
+	
+}
+
+
+inicializa();
+
+</script>
+		
 </body>
 </html>
