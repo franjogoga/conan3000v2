@@ -502,7 +502,7 @@ function validaForm(){
 	if(!esValido("Nombre",form.txtNombre,"Nombre",1,1,50)){cadena[i]="Nombre";i++;}
 	if(!esValido("Apellido Paterno",form.txtApaterno,"Apaterno",1,1,50)){cadena[i]="Apellido Paterno";i++;}
 	if(!esValido("Apellido Materno",form.txtAmaterno,"Amaterno",1,1,50)){cadena[i]="Apellido Materno";i++;}
-	if(!esValido("Nro. de Doc",form.txtAmaterno,"Nrodoc",1,1,8)){cadena[i]="Nro. de Doc";i++;}
+	if(!esValido("Nro. de Doc",form.txtNrodoc,"Nrodoc",1,1,8)){cadena[i]="Nro. de Doc";i++;}
 	
 	if(!esValido("Correo",form.txtCorreo,"Correo",1,1,50)){cadena[i]="Correo";i++;}
 	
