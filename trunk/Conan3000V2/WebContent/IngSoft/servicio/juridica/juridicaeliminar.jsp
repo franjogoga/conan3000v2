@@ -75,12 +75,7 @@
 
 	</script>	
 	
-	<%! 
-	public String formatear(java.util.Date date){
-		SimpleDateFormat DF= new SimpleDateFormat("dd/MM");
-		return DF.format(date);
-	}
-	%>	
+	
 </head>
 
 <body>
