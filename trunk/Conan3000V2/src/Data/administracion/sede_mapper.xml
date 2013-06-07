@@ -40,8 +40,12 @@ SEDE.IdSede as codigo
 ,SEDE.AREATERRENO as areaterreno
 ,SEDE.ESTADO as estado
 ,DEPARTAMENTO.NOMBRE as departamento
+,DEPARTAMENTO.IdDepartamento as coddepartamento
 ,PROVINCIA.NOMBRE as provincia
+,PROVINCIA.IdProvincia as codprovincia
 ,DISTRITO.NOMBRE as distrito
+,DISTRITO.IdDistrito as coddistrito
+
 from DEPARTAMENTO  , PROVINCIA  , DISTRITO  , SEDE 
 WHERE
         SEDE.IdSede = #{codigo}
@@ -62,7 +66,7 @@ order by 1 asc
 
 <insert id="insertPlantillaSede" parameterType="IngSoft.administracion.bean.SedeBeanData" flushCache="true">
 	insert into SEDE (IdSede,Nombre,Direccion,Telefono,AreaTerreno,IdDistrito,Estado)
-	values (#{codigo},#{nombre},#{direccion},#{telefono},#{areaterreno},#{distrito},#{estado})
+	values (#{codigo},#{nombre},#{direccion},#{telefono},#{areaterreno},#{coddistrito},#{estado})
 </insert>
 
 
@@ -74,7 +78,7 @@ order by 1 asc
 <!--Eliminar sede -->
 
 <update id="deletePLantillaSede" parameterType="java.lang.String" >
-update SEDE set Estado='Eliminado' where IdSede= #{codigo}
+update SEDE set Estado='No disponible' where IdSede= #{codigo}
 </update>
 <!-- Fin eliminar -->
 
@@ -91,7 +95,7 @@ Nombre=#{nombre} ,
 Direccion=#{direccion} ,
 Telefono=#{telefono} ,
 AreaTerreno=#{areaterreno} ,
-IdDistrito='DIS000001' ,
+IdDistrito=#{coddistrito} ,
 Estado=#{estado}
 
 where IdSede= #{codigo}
@@ -103,7 +107,9 @@ where IdSede= #{codigo}
 select IdDepartamento as codigo
 , Nombre as nombre
 from 
-DEPARTAMENTO; 
+DEPARTAMENTO
+
+; 
 
 </select>
 
