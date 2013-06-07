@@ -27,7 +27,7 @@ from CUOTA, DETALLE_CUOTA, MEMBRESIA, PERSONA
     </if>
     
     <if test="fechaVencimientoIni != null">
-        AND CUOTA.FechaVencimiento &gt;= #{fechaVencimientoIni}
+        AND CUOTA.FechaVencimiento &gt;= #{fechaVencimientoIni} 
     </if>
     <if test="fechaVencimientoFin != null">
         AND CUOTA.FechaVencimiento &lt;= #{fechaVencimientoFin}
