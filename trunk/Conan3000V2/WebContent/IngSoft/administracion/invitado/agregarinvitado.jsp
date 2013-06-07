@@ -599,7 +599,7 @@ function validaForm(){
 	if(!esValido("Fecha Nacimiento",form.fFecNacimiento,"FecNacimiento",2,1,10)){cadena[i]="Fecha Nacimiento";i++;}
 	if(!esValido("Fecha Registro",form.fFecRegistro,"FecRegistro",2,1,10)){cadena[i]="Fecha Registro";i++;}
 	if(!validarFechas("Fecha Registro",form.fFecRegistro,"FecRegistro","Fecha Nacimiento",form.fFecNacimiento)){cadena[i]="Fecha Registro";i++;};
-	if(!esValido("Tel&eacutefono Fijo",form.txtTelefonofijo,"Telefonofijo",1,1,7)){cadena[i]="Tel&eacutefono Fijo";i++;}else{
+	if(!esValido("Tel&eacutefono Fijo",form.txtTelefonofijo,"Telefonofijo",1,6,7)){cadena[i]="Tel&eacutefono Fijo";i++;}else{
 		if(!esValido("Tel&eacutefono Fijo",form.txtTelefonofijo,"Telefonofijo",6,1,50)){cadena[i]="Tel&eacutefono Fijo";i++;}
 	}
 	if(!esValido("Tel&eacutefono Celular",form.txtTelefonocelular,"Telefonocelular",1,1,9)){cadena[i]="Tel&eacutefono Celular";i++;}else{
