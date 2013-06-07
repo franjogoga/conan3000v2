@@ -75,16 +75,18 @@ function validaForm(){
 	var i=0;
 	var error=false;
 	
+
 	if(!esValido("Proveedor",form.txtProveedor,"Proveedor",1,1,50)){cadena[i]="Proveedor";i++;}
 	if(!esValido("Nombre",form.txtNombre,"Nombre",1,1,50)){cadena[i]="Nombre";i++;}
-	if(!esValido("Presentacion",form.txtPresentacion,"Presentacion",1,1,50)){cadena[i]="Presentacion";i++;}
-	if(!esValido("Precio",form.txtPrecioU,"Precio",1,1,50)){
-		cadena[i]="Precio";i++;
+	if(!esValido("Presentaci&oacute;n",form.txtPresentacion,"Presentacion",1,1,50)){cadena[i]="Presentaci&oacute;n";i++;}
+	if(!esValido("Precio Unitario",form.txtPrecioU,"PrecioU",1,1,50)){
+		cadena[i]="Precio Unitario";i++;
 	}else{
 		//valida si es float o entero
-		if(!esValido("Precio",form.txtPrecioU,"Precio",5,1,1)){cadena[i]="Precio";i++;}
+		if(!esValido("Precio Unitario",form.txtPrecioU,"PrecioU",5,1,1)){cadena[i]="Precio Unitario";i++;}
 	}
-	if(!esValido("Descripcion",form.txtDescripcion,"Descripcion",1,1,100)){cadena[i]="Descripcion";i++;}
+	if(!esValido("Descripci&oacute;n",form.txtDescripcion,"Descripcion",1,1,100)){cadena[i]="Descripci&oacute;n";i++;}
+	
 	if(!esValido("Estado",form.rButton,"Estado",3,1,1)){cadena[i]="Estado";i++;}
 	
 	//No tocar
