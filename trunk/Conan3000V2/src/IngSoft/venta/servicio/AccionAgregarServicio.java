@@ -22,7 +22,7 @@ public class AccionAgregarServicio extends CoAccion{
 				if(tipo==2){
 					ServicioBeanFuncion servicioFunction= ServicioBeanFuncion.getInstanceS();
 					ServicioBeanData servicioData=servicioFunction.crearServicio(request, response);
-					String nombre=request.getParameter("txtNombreProv").equals("")?request.getParameter("txtNombreProv"):request.getParameter("txtNombreProv");
+					String nombre=request.getParameter("txtNombreProv");
 					ProveedorBeanData proveedorData=servicioFunction.BuscarProveedor(nombre);
 					
 					String codigo=proveedorData.getIdProveedor();
