@@ -56,7 +56,8 @@ public class AccionBuscarActividad extends CoAccion{
 
 			//request.setAttribute("tipoactividades", tipoactividades);
 			
-			
+			Vector<TipoActividadMiniBeanData> tipoactividades = ActividadBeanFuncion.getInstance().getTipoactividades();
+			request.setAttribute("tipoactividades", tipoactividades);
 			
 			request.setAttribute("resultados", resultados);
 			
