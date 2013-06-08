@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 
+
+<%@page import="IngSoft.administracion.bean.TipoActividadMiniBeanData"%>
 <%@page import="IngSoft.administracion.bean.ResultadoActividadBeanData"%>
 <%@page import="java.util.Vector"%>
 
@@ -17,6 +19,7 @@
 	<jsp:useBean id="sedes" scope="request" class="java.util.Vector"></jsp:useBean>
 	<jsp:useBean id="tiposAmbiente" scope="request" class="java.util.Vector"></jsp:useBean>
 	<jsp:useBean id="resultados" scope="request"class="java.util.Vector"></jsp:useBean>
+	<jsp:useBean id="tipoactividades"  scope="request"class="java.util.Vector"></jsp:useBean>
 
 	<!-- The styles -->
 	<link id="bs-css" href="css/bootstrap-cerulean.css" rel="stylesheet">
@@ -72,6 +75,41 @@
 		form.codigo.value=cod;
 		form.submit();
 	}
+	
+ // validaciones fechas 
+	function alt_fecha(obj){
+		obj.value=obj.value.slice(0,5);
+		
+		}
+
+	function verificar_fecha(comparacion,fecha1,fecha2){
+		var fec1=fecha1.value.split("/");
+		var fec2=document.getElementById(fecha2).value.split("/");
+		var resultado=true;
+		if(fec1.length==fec2.length) {
+			var size=fec1.length;
+			for(i=size-1;i>=0;i--){
+				if(comparacion==0){
+					if(fec1[i].indexOf(fec2[i])<0)  resultado= false;
+					}
+				if(comparacion==1){
+					if(parseInt(fec1[i])<parseInt(fec2[i]))  resultado= false;
+					}
+				if(comparacion==-1){
+					if(parseInt(fec1[i])>parseInt(fec2[i]))  resultado= false;
+					}
+				}
+			if(resultado==false){			
+					fecha1.value=document.getElementById(fecha2).value;			
+				}
+				
+			} 
+		else{
+			alert("Error al comparar fechas");
+		}			
+	}
+	
+	
 	</script>
 		
 </head>
@@ -126,9 +164,46 @@
                         </div>
                         
                         
+							 <div class="control-group">
+								<label class="control-label" for="selectError">Tipo Actividad(*):</label>
+								<div class="controls">
+																						   <!-- cmbTipoactividad  variable     -->	
+							 		<select id="selectError12" data-rel="chosen" name="cmbTipoactividad">
+								  
+								  <%for(int i=0;i<tipoactividades.size();i++) if( i!=0){     %>
+										<option value="<%= ((TipoActividadMiniBeanData)tipoactividades.get(i)).getCodigo()%>" >
+										
+										<%= ((TipoActividadMiniBeanData)tipoactividades.get(i)).getNombre()%>
+										
+										
+										</option>
+									<%} else {   %>		
+										<option selected value="<%= ((TipoActividadMiniBeanData)tipoactividades.get(i)).getCodigo()%>" >
+										
+										<%= ((TipoActividadMiniBeanData)tipoactividades.get(i)).getNombre()%>
+										
+										
+										</option>
+									<%}   %>				
+								  </select>
+								</div>
+							  </div>           
+                        
+						   <div class="control-group">
+							  <label class="control-label" for="date01">Fecha Inicio(*):</label>
+							  <div class="controls">
+								<input type="text" class="input-xlarge datepicker" id="fFecIncio" readonly="true" value="01/01"  name="fFecIncio" onchange="alt_fecha(this);verificar_fecha(-1,this,'fFecFin');">
+							  </div>
+							</div>
+							
+							<div class="control-group">
+							  <label class="control-label" for="date02">Fecha Fin(*):</label>
+							  <div class="controls">
+								<input type="text" class="input-xlarge datepicker" id="fFecFin" readonly="true" value="31/12"  name="fFecFin" onchange="alt_fecha(this);verificar_fecha(1,this,'fFecIncio');">
+							  </div>
+							</div>
                         
                         
-                       
                         
                         <div class="form-actions">
                           <button type="submit" class="btn btn-primary">Buscar</button>
