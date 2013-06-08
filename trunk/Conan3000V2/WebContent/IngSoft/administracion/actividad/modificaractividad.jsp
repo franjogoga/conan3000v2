@@ -248,7 +248,7 @@
 								</div>
 							  </div>
 
-							
+							<input type="hidden" name="cmbEncargadoCodigo" value="EMP000003"></input>
 							
 						    <div class="control-group">
 						      <label class="control-label" for="typeahead7">Encargado: </label>
@@ -256,7 +256,7 @@
 								  <%for(int i=0;i<empleados.size();i++) if( actividad.getNombreEncargado().equalsIgnoreCase(     ((ResultadoEmpleadoBeanData)empleados.get(i)).getCodigo())    ){     %>
 				
  								<input type="text" class="span6 typeahead" id="cmbEncargado"  data-provide="typeahead"  name="cmbEncargado" disabled value="<%= ((ResultadoEmpleadoBeanData)empleados.get(i)).getNombre()  +' '+ ((ResultadoEmpleadoBeanData)empleados.get(i)).getApaterno() %>">
-								<input type="hidden" name="cmbEncargadoCodigo" value="<%=   ((ResultadoEmpleadoBeanData)empleados.get(i)).getCodigo())  %>"></input>
+								
 									<%}   %>	
 								
 								
