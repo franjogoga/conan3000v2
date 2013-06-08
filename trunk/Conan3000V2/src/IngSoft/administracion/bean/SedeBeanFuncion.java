@@ -42,26 +42,21 @@ public class SedeBeanFuncion {
 			
 			System.out.print("  SedeBeanFuncion ---> crearSede  -->txtDireccion == "+ request.getParameter("txtDireccion")  );
 			
-		sedeData.setNombre(    request.getParameter("txtNombre") );
-		sedeData.setDistrito(   request.getParameter("cmbDistrito") );
+		sedeData.setNombre(       request.getParameter("txtNombre") );		
+		sedeData.setDireccion(     request.getParameter("txtDireccion") );
 		
-		//sedeData.setCoddistrito(   request.getParameter("cmbDistrito")  );
-		
-		
-		
-		sedeData.setDireccion(    request.getParameter("txtDireccion") );
+		sedeData.setDistrito(     request.getParameter("cmbDistrito") );
+
 		sedeData.setTelefono(    Long.parseLong(request.getParameter("txtTelefono") )    );
 		sedeData.setAreaterreno( Double.parseDouble(request.getParameter("txtAreaterreno")) );
-		sedeData.setEstado(   request.getParameter("txtEstado") );
+		sedeData.setEstado(   request.getParameter("optionsRadios") );
 		
 		
 		sedeData.setDepartamento(    request.getParameter("cmbDepartamento") );
 		sedeData.setProvincia(    request.getParameter("cmbProvincia") );
-		sedeData.setDireccion(    request.getParameter("cmbDireccion") );
 		
-		//						            para combobox
-		//sedeData.setDireccion( request.getParameterValues("cmbSedes")     );
 
+		System.out.print("  SedeBeanFuncion ---> crearSede  -->txtDireccion == "+ sedeData.getDireccion()  );
 
 		}catch(Exception e){
 			e.printStackTrace();
@@ -125,6 +120,8 @@ public class SedeBeanFuncion {
 			
 			
 			System.out.print("  SedeBeanFuncion ---> sedeData--> "+ sedeData.getCodigo() );
+			System.out.print("  SedeBeanFuncion ---> txtDistrito--> "+ sedeData.getDistrito() );
+			System.out.print("  SedeBeanFuncion ---> txtDistrito--> "+ sedeData.getDireccion() );
 			
 			sqlsesion.insert("Data.administracion.sede.insertPlantillaSede",sedeData);
 
