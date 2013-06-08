@@ -36,6 +36,19 @@ public class AccionBuscarActividad extends CoAccion{
 		System.out.print("AccionBuscarActividad ----->");
 
 		
+		
+		if(tipo==1){
+			
+			
+			Vector<TipoActividadMiniBeanData> tipoactividades = ActividadBeanFuncion.getInstance().getTipoactividades();
+			request.setAttribute("tipoactividades", tipoactividades);
+			
+			System.out.print("tipo =1  ----->"+ tipoactividades.size());
+
+			this.direccionar(sc, request, response, "/IngSoft/administracion/actividad/buscaractividad.jsp");
+			
+		}
+		
 		if(tipo==2){
 			CriterioActividadBeanData criterioActividadData =new CriterioActividadBeanFunction().crearCriterio(request,response);
 			Vector<ResultadoActividadBeanData> resultados=new CriterioActividadBeanFunction().buscarPlantillaActividad(criterioActividadData);
@@ -50,6 +63,7 @@ public class AccionBuscarActividad extends CoAccion{
 			this.direccionar(sc, request, response, "/IngSoft/administracion/actividad/buscaractividad.jsp");	
 			
 		}
+		
 
 		
 		
