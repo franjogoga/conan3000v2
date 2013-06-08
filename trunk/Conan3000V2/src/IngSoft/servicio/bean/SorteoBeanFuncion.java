@@ -33,7 +33,7 @@ public class SorteoBeanFuncion {
 			sorteoData.setFechaInicio(new Date(DF.parse(request.getParameter("fFecInicio")).getTime()));
 			sorteoData.setFechaFin(new Date(DF.parse(request.getParameter("fFecFin")).getTime()));
 			sorteoData.setFechaSorteo(new Date(DF.parse(request.getParameter("fFecSorteo")).getTime()));
-			sorteoData.setDescripcion(request.getParameter("txtNombreSorteo"));
+			sorteoData.setDescripcion(request.getParameter("txtNombre"));
 			sorteoData.setEstado(request.getParameter("txtCodigoSorteo"));
 			}catch(Exception e){
 				e.printStackTrace();		
