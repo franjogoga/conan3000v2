@@ -306,7 +306,7 @@
 					        
 
 
-						<input type="hidden" name="txtEstado" value="Disponible"></input>
+						<input type="hidden" name="optionsRadios" value="Disponible"></input>
                      
                         
                         
