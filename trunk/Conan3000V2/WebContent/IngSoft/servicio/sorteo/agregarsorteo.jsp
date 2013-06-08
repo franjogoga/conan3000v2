@@ -62,7 +62,7 @@
 	} 	
 	
 	function validar(form){
-			if(form.txtNombreSorteo.value.length <=0)return false;
+			if(form.txtNombre.value.length <=0)return false;
 			if(form.fFecInicio.value.length<=0)return false;
 			if(form.fFecFin.value.lengtht<=0)return false;
 			if(form.cmbSedes.value.length<=0)return false;
@@ -138,7 +138,7 @@
 						      <label class="control-label" for="typeahead7">Nombre de sorteo(*): </label>
 						      <div class="controls">
 						        <input type="text" class="span6 typeahead" 
-						        id="txtNombreSorteo" name="txtNombreSorteo" 
+						        id="txtNombre" name="txtNombre" 
 						        data-provide="typeahead" >
 					          	<span class="help-inline" id="errNombreSorteo">Please correct the error</span>
 					          </div>
@@ -158,21 +158,21 @@
 						  <div class="control-group" id="dvFechaInicio">
 			              <label class="control-label" for="date01">Fecha de inicio(*):</label>
 			                <div class="controls">
-			                  <input type="text" name="fFechInicio" class="input-xlarge datepicker" id="fFechInicio" value="" readonly="true">
+			                  <input type="text" name="fFecInicio" class="input-xlarge datepicker" id="fFecInicio" value="" readonly="true">
 			                  <span class="help-inline" id="errFechaInicio">Please correct the error</span>
 		                    </div>
 		                  </div>
 			              <div class="control-group" id="dvFechaFin">
 			                <label class="control-label" for="date02">Fecha de fin(*):</label>
 			                <div class="controls">
-			                  <input type="text" name="fFechFin" class="input-xlarge datepicker" id="fFechFin" value="" readonly="true">
+			                  <input type="text" name="fFecFin" class="input-xlarge datepicker" id="fFecFin" value="" readonly="true">
 			                  <span class="help-inline" id="errFechaFin">Please correct the error</span>
 		                    </div>
 		                  </div>
 							<div class="control-group" id="dvFechaSorteo">
 			                <label class="control-label" for="date03">Fecha de Sorteo(*):</label>
 			                <div class="controls">
-			                  <input type="text" name="fFechSorteo" class="input-xlarge datepicker" id="fFechSorteo" value="" readonly="true">
+			                  <input type="text" name="fFecSorteo" class="input-xlarge datepicker" id="fFecSorteo" value="" readonly="true">
 			                  <span class="help-inline" id="errFechaSorteo">Please correct the error</span>
 		                    </div>
 		                  </div>
@@ -348,22 +348,22 @@ function validaForm(){
 	var cadena= new Array();
 	var i=0;
 	var error=false;
-	if(!esValido("Nombre de sorteo",form.txtNombreSorteo,"NombreSorteo",1,1,50)){cadena[i]="Nombre de sorteo";i++;}
+	if(!esValido("Nombre de sorteo",form.txtNombre,"NombreSorteo",1,1,50)){cadena[i]="Nombre de sorteo";i++;}
 	
-	if(!esValido("Fecha Inicio",form.fFechInicio,"FechaInicio",2,1,10)){cadena[i]="Fecha Inicio";i++;}
+	if(!esValido("Fecha Inicio",form.fFecInicio,"FechaInicio",2,1,10)){cadena[i]="Fecha Inicio";i++;}
 	
-	if(!esValido("Fecha Fin",form.fFechFin,"FechaFin",2,1,10)){
+	if(!esValido("Fecha Fin",form.fFecFin,"FechaFin",2,1,10)){
 		cadena[i]="Fecha Fin";i++;
 	}else{
-		if(!validarFechas("Fecha Final",form.fFechFin,"FechaFin","Fecha Inicio",form.fFechInicio)){
+		if(!validarFechas("Fecha Final",form.fFecFin,"FechaFin","Fecha Inicio",form.fFecInicio)){
 		cadena[i]="Fecha Fin";i++;
 		}
 	}
 	
-	if(!esValido("Fecha Sorteo",form.fFechSorteo,"FechaSorteo",2,1,10)){
+	if(!esValido("Fecha Sorteo",form.fFecSorteo,"FechaSorteo",2,1,10)){
 		cadena[i]="Fecha Sorteo";i++;
 	}else{
-		if(!validarFechas("Fecha Sorteo",form.fFechSorteo,"FechaSorteo","Fecha Fin",form.fFechFin)){
+		if(!validarFechas("Fecha Sorteo",form.fFecSorteo,"FechaSorteo","Fecha Fin",form.fFecFin)){
 		cadena[i]="Fecha Sorteo";i++;
 		}
 	}
