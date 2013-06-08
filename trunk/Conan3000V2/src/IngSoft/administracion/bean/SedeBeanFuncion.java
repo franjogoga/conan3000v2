@@ -40,7 +40,7 @@ public class SedeBeanFuncion {
 		SedeBeanData sedeData= new SedeBeanData();
 		try{		
 			
-			System.out.print("  SedeBeanFuncion ---> crearSede  -->nombre == "+ request.getParameter("cmbDistrito")  );
+			System.out.print("  SedeBeanFuncion ---> crearSede  -->txtDireccion == "+ request.getParameter("txtDireccion")  );
 			
 		sedeData.setNombre(    request.getParameter("txtNombre") );
 		sedeData.setDistrito(   request.getParameter("cmbDistrito") );
