@@ -45,8 +45,8 @@ order by 1 asc
 </select>
 <!-- Agregar plantilla Sorteo -->
 <insert id="insertPlantillaSorteo" parameterType="IngSoft.servicio.bean.SorteoBeanData" flushCache="true">
-	insert into SORTEO(idSede,idSorteo,FechaInicioIncr,Descripcion,FechaFinInscr,FechaSorteo, Estado)
-	values (#{idSede},#{idSorteo},#{fechaInicio},#{descripcion},#{fechaFin},#{fechaSorteo},'ACTIVADO')
+	insert into SORTEO(idSede,idSorteo,FechaInicioIncr,Descripcion,FechaFinInscr,FechaSorteo, Flag, Estado)
+	values (#{idSede},#{idSorteo},#{fechaInicio},#{descripcion},#{fechaFin},#{fechaSorteo},0,'ACTIVADO')
 </insert>
 <select id="getNextCodigo" resultType="java.lang.String">
 	select max(IdSorteo) from SORTEO	
