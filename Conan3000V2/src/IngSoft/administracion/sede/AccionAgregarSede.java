@@ -39,6 +39,8 @@ public class AccionAgregarSede extends CoAccion {
 		
 		System.out.print(" AccionAgregarSede  ---> "+ tipo );
 		
+		
+		System.out.print(" AccionAgregarSede --> sedeoData.getDireccion() ---> "+ sedeoData.getDireccion() );
 		sedeFuncion.agregarSede(sedeoData);
 		
 		
