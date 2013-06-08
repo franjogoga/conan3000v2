@@ -76,7 +76,7 @@ body {
 	
 	function alt_submit(){
 		var form= document.frmData;
-		if(validaForm()) form.submit();
+		 form.submit();
 			
 			}
 	
