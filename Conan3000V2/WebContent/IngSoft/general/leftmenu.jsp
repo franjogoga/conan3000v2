@@ -4,7 +4,7 @@
                         <li><a class="ajax-link" href="<%=request.getContextPath()%>/IngSoft/general/index.jsp"><i class="icon-home"></i><span class="hidden-tablet"> Home</span></a></li>
    						
    						<a style="CURSOR: hand; text-decoration:none" href="#"> <li class="nav-header hidden-tablet" onclick="$('.administracion').slideToggle(800)">Administracion</li> </a>						   					
-						<li><a class="ajax-link administracion" href="<%=request.getContextPath()%>/IngSoft/administracion/actividad/buscaractividad.jsp"style="display:none"><i class="icon-wrench"></i><span class="hidden-tablet"> Actividades</span></a></li>
+						<li><a class="ajax-link administracion" href="<%=request.getContextPath()%>/IngSoft/administracion/actividad/SMAActividad?accion=Buscar&tipo=1"style="display:none"><i class="icon-wrench"></i><span class="hidden-tablet"> Actividades</span></a></li>
 						<li><a class="ajax-link administracion" href="<%=request.getContextPath()%>/IngSoft/administracion/ambiente/SMAAmbiente?accion=Buscar&tipo=1"style="display:none"><i class="icon-wrench"></i><span class="hidden-tablet"> Ambientes</span></a></li>
 						<li><a class="ajax-link administracion" href="<%=request.getContextPath()%>/IngSoft/administracion/bungalow/SMABungalow?accion=Buscar&tipo=1"style="display:none"><i class="icon-wrench"></i><span class="hidden-tablet"> Bungalows</span></a></li>
 						<li><a class="ajax-link administracion" href="<%=request.getContextPath()%>/IngSoft/administracion/cancha/SMACancha?accion=Buscar&tipo=1"style="display:none"><i class="icon-wrench"></i><span class="hidden-tablet"> Canchas </span></a></li>      
