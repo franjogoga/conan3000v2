@@ -205,14 +205,47 @@
 					        
 					        
 						
-						    <div class="control-group">
-						      <label class="control-label" for="typeahead7">Estado: </label>
-						      <div class="controls">
-						        <input type="text" class="span6 typeahead" id="txtNombresede"  data-provide="typeahead"  name="txtNombresede" disabled value="<%= sede.getEstado()%>">
-					          </div>
-					        </div>   
-							   			  
-	
+
+							<div class="control-group">
+								<label class="control-label">Estado </label>
+								<div class="controls">
+								  <label class="radio">
+								  <%
+								 
+								  if( sede.getEstado().equalsIgnoreCase("disponible") ){
+									  out.print(" <input  disabled type='radio' name='optionsRadios' id='optionsRadios1' value='Disponible' checked=''  >");
+								  }
+								  else
+								  {  out.print(" <input   disabled type='radio' name='optionsRadios' id='optionsRadios1' value='Disponible'  >");
+								  }
+								  
+								   
+								  %>
+								Disponible
+								  </label>
+								 
+								    <div style="clear:both"></div>   
+								 
+								 
+								  <label class="radio">
+								 
+								  <%
+								  if( sede.getEstado().equalsIgnoreCase("no disponible") ){
+									  out.print(" <input  disabled type='radio' name='optionsRadios' id='optionsRadios2' value='No Disponible' checked=''  >");
+								  }
+								  else
+								  {  out.print(" <input  disabled type='radio' name='optionsRadios' id='optionsRadios2' value='No Disponible'  >");
+								  }
+								  %>
+								No disponible
+								  </label>
+								
+								 
+								 
+								</div>
+							</div>
+                     
+                    
 	
 	
 	
