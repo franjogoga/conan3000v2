@@ -248,10 +248,10 @@
 								</div>
 							  </div>
 
-							<input type="hidden" name="cmbEncargadoCodigo" value="EMP000003"></input>
+							<input type="hidden" name="cmbEncargadoCodigo" value="<%= actividad.getNombreEncargado() %>"></input>
 							
 						    <div class="control-group">
-						      <label class="control-label" for="typeahead7">Encargado: </label>
+						      <label class="control-label" for="typeahead7">Encargado: <%= actividad.getNombreEncargado() %> </label>
 						      <div class="controls">
 								  <%for(int i=0;i<empleados.size();i++) if( actividad.getNombreEncargado().equalsIgnoreCase(     ((ResultadoEmpleadoBeanData)empleados.get(i)).getCodigo())    ){     %>
 				
