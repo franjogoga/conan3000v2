@@ -339,7 +339,7 @@
                         <div class="control-group" id="dvDescripcion">
                   		  <label class="control-label" for="textarea2">Descripci&oacute;n:</label>
                           <div class="controls">
-                            <textarea name="txtDescripcion" rows="3" id="txtDescripcion" style="resize:none">   <%=actividad.getDescripcion()%>    </textarea>
+                            <textarea name="txtDescripcion"  id="txtDescripcion" style="resize:none"><%=actividad.getDescripcion()%></textarea>
                           	<span class="help-inline" id="errDescripcion">Please correct the error</span>
                           </div>
                         </div>
