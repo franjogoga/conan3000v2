@@ -7,13 +7,11 @@ import java.util.Date;
 public class ResultadoEmpleadoBeanData implements Serializable{
 	
 	
-    private String codigo;	
-	private String nombre;
-	private String apellidoPaterno;
-	private int numeroDocumento;
-    private String area;
-	
-	
+	private String codigo;
+	private String nombre; 
+	private String apaterno;
+	private String puesto;
+	private String estado;
 	public String getCodigo() {
 		return codigo;
 	}
@@ -26,22 +24,25 @@ public class ResultadoEmpleadoBeanData implements Serializable{
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public int getNumeroDocumento() {
-		return numeroDocumento;
+	public String getApaterno() {
+		return apaterno;
 	}
-	public void setNumeroDocumento(int numeroDocumento) {
-		this.numeroDocumento = numeroDocumento;
+	public void setApaterno(String apaterno) {
+		this.apaterno = apaterno;
 	}
-	public String getApellidoPaterno() {
-		return apellidoPaterno;
+	public String getPuesto() {
+		return puesto;
 	}
-	public void setApellidoPaterno(String apellidoPaterno) {
-		this.apellidoPaterno = apellidoPaterno;
+	public void setPuesto(String puesto) {
+		this.puesto = puesto;
 	}
-	public String getArea() {
-		return area;
+	public String getEstado() {
+		return estado;
 	}
-	public void setArea(String area) {
-		this.area = area;
+	public void setEstado(String estado) {
+		this.estado = estado;
 	}
+	
+	
+	
 }
