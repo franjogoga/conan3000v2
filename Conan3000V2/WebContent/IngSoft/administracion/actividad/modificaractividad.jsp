@@ -168,7 +168,7 @@
               <div>
                 <ul class="breadcrumb">
                   <li> <a href="../../general/index.jsp">Home</a> <span class="divider">/</span> </li>
-                  <li> <a href="buscarambiente.jsp">Mantenimiento de Actividad</a> <span class="divider">/</span></li>
+                  <li> <a href="buscaractividad.jsp">Mantenimiento de Actividad</a> <span class="divider">/</span></li>
                   <li>Modificar Actividad</li>
                 </ul>
               </div>
@@ -248,17 +248,19 @@
 								</div>
 							  </div>
 
-							<input type="hidden" name="cmbEncargadoCodigo" value="EMP000003"></input>
+							
 							
 						    <div class="control-group">
 						      <label class="control-label" for="typeahead7">Encargado: </label>
 						      <div class="controls">
-								  <%for(int i=0;i<empleados.size();i++) if( actividad.getNombreEncargado().equalsIgnoreCase(((ResultadoEmpleadoBeanData)empleados.get(i)).getCodigo())){     %>
+								  <%for(int i=0;i<empleados.size();i++) if( actividad.getNombreEncargado().equalsIgnoreCase(     ((ResultadoEmpleadoBeanData)empleados.get(i)).getCodigo())    ){     %>
 				
  								<input type="text" class="span6 typeahead" id="cmbEncargado"  data-provide="typeahead"  name="cmbEncargado" disabled value="<%= ((ResultadoEmpleadoBeanData)empleados.get(i)).getNombre()  +' '+ ((ResultadoEmpleadoBeanData)empleados.get(i)).getApaterno() %>">
-
+								<input type="hidden" name="cmbEncargadoCodigo" value="<%=   ((ResultadoEmpleadoBeanData)empleados.get(i)).getCodigo())  %>"></input>
 									<%}   %>	
-
+								
+								
+								
 					          </div>
 					        </div>
 					        
@@ -282,7 +284,7 @@
 			                
 			                <div class="controls">
 			           
-			                  <div  align="left"> <a class="btn btn-primary iframe" href="seleccionarempleado.jsp"> <i class="icon icon-search icon-white"></i> Buscar Socio</a> </div>
+			                  <div  align="left"> <a class="btn btn-primary iframe" href="seleccionarempleado.jsp"> <i class="icon icon-search icon-white"></i> Buscar Encargado</a> </div>
 			                  <span class="help-inline" id="errSocio"></span>
 			                </div>
 		                  </div>

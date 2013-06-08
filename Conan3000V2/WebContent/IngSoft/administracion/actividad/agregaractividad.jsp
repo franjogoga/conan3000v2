@@ -138,7 +138,7 @@
               <div>
                 <ul class="breadcrumb">
                   <li> <a href="../../general/index.jsp">Home</a> <span class="divider">/</span> </li>
-                  <li> <a href="buscarambiente.jsp">Mantenimiento de Actividad</a> <span class="divider">/</span></li>
+                  <li> <a href="buscaractividad.jsp">Mantenimiento de Actividad</a> <span class="divider">/</span></li>
                   <li>Agregar Actividad</li>
                 </ul>
               </div>
@@ -239,7 +239,7 @@
 			                
 			                <div class="controls">
 			           
-			                  <div  align="left"> <a class="btn btn-primary iframe" href="seleccionarempleado.jsp"> <i class="icon icon-search icon-white"></i> Buscar Socio</a> </div>
+			                  <div  align="left"> <a class="btn btn-primary iframe" href="seleccionarempleado.jsp"> <i class="icon icon-search icon-white"></i> Buscar Encargado</a> </div>
 			                  <span class="help-inline" id="errSocio"></span>
 			                </div>
 		                  </div>
