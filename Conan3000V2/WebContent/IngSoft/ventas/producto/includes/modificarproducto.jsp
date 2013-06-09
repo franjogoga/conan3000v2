@@ -78,7 +78,7 @@ function anhadir(cod, name){
 							  <div class="control-group" id="dvDescripcion">
 			                <label class="control-label" for="textarea2">Descripci&oacute;n:</label>
 			                <div class="controls">
-			                  <textarea name="txtDescripcion" class=""  id="txtDescripcion"   onpaste="return false;"><%=producto.getDescripcion() %></textarea>
+			                  <textarea name="txtDescripcion" class=""  id="txtDescripcion"  onKeyUp="limita(this,100);" onKeyDown="limita(this,100);" onpaste="return false;"><%=producto.getDescripcion() %></textarea>
 			                   <span class="help-inline" id="errDescripcion">Please correct the error</span>
 		                    </div>
 		                  </div>
@@ -87,7 +87,7 @@ function anhadir(cod, name){
 
 							    <label class="control-label" for="typeahead14">Presentaci&oacute;n: </label>
 							    <div class="controls">
-							      <input type="text" name="txtPresentacion" id="txtPresentacion" class="span6 typeahead" value="<%=producto.getPresentacion() %>"   onpaste="return false;" id="typeahead14" data-provide="typeahead" data-items="4"/>
+							      <input type="text" name="txtPresentacion" id="txtPresentacion" class="span6 typeahead"  onKeyUp="limita(this,50);" onKeyDown="limita(this,50);" value="<%=producto.getPresentacion() %>"   onpaste="return false;" id="typeahead14" data-provide="typeahead" data-items="4"/>
 						        <span class="help-inline" id="errPresentacion">Please correct the error</span>
 						        </div>
 						        
@@ -96,14 +96,14 @@ function anhadir(cod, name){
 							  <div class="control-group" id="dvPrecioU">
 							    <label class="control-label" for="typeahead10">Precio Unitario (S/.) (*): </label>
 							    <div class="controls">
-							      <input type="text" value="<%=producto.getPrecioU() %>"  onpaste="return false;" class="span6 typeahead" name="txtPrecioU" id="txtPrecioU"  data-provide="typeahead" data-items="4" >
+							      <input type="text" value="<%=producto.getPrecioU() %>"  onpaste="return false;"  onKeyUp="limita(this,50);" onKeyDown="limita(this,50);" class="span6 typeahead" name="txtPrecioU" id="txtPrecioU"  data-provide="typeahead" data-items="4" >
 						         <span class="help-inline" id="errPrecioU">Please correct the error</span>
 						        </div>
 						      </div>
 							 <div class="control-group" id="dvProveedor">
 			                <label class="control-label" for="typeahead8">Provedor (*): </label>
 			                <div class="controls">
-			                  <input type="text" class="span6 typeahead" id="txtProveedor"  data-provide="typeahead" name="txtProveedor" data-items="4" readonly="readonly"  value="<%=producto.getIdProveedor() %>">
+			                  <input type="text" class="span6 typeahead" id="txtProveedor"  data-provide="typeahead" name="txtProveedor"  onKeyUp="limita(this,50);" onKeyDown="limita(this,50);" data-items="4" readonly="readonly"  value="<%=producto.getIdProveedor() %>">
 			                  <br>
 			                  <div  align="left"> <a class="btn btn-primary iframe" href="../proveedor/seleccionarproveedor.jsp"> <i class="icon icon-search icon-white"></i> Buscar Proveedor</a> </div>
 			                  <span class="help-inline" id="errProveedor">Please correct the error</span>

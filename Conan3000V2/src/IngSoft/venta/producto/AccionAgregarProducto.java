@@ -1,5 +1,7 @@
 package IngSoft.venta.producto;
 
+import java.io.IOException;
+
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,11 +24,24 @@ public class AccionAgregarProducto extends CoAccion {
 					ProductoBeanFunction productoFunction= ProductoBeanFunction.getInstance();
 					ProductoBeanData productoData=productoFunction.crearProducto(request, response);
 					productoFunction.agregarProducto(productoData);
-					this.direccionar(sc, request, response, "/IngSoft/ventas/producto/buscarproducto.jsp");
+					response.setContentType("text/plain");  
+				    response.setCharacterEncoding("UTF-8");
+				    try {
+						response.getWriter().write( "/IngSoft/ventas/producto/SMVProducto?accion=Buscar&tipo=1");
+					} catch (IOException e) {				
+						e.printStackTrace();
+					}
 				}
+				    if(tipo==1){
+				      
+					    this.direccionar(sc, request, response, "/IngSoft/ventas/producto/agregarproducto.jsp");
+				    }
 				
-				this.direccionar(sc, request, response, "/IngSoft/ventas/producto/agregarproducto.jsp");
+				
+				
+				
 							
 	}
 
 }
+			

@@ -1,3 +1,9 @@
+<meta charset="utf-8">
+	<title>Agregar Producto</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
+	<meta name="author" content="Muhammad Usman">
+	
 <script type="text/javascript" src="js/apprise-1.5.full.js"></script>
 
 <link rel="stylesheet" href="css/apprise.css" type="text/css" />	</style>
@@ -20,12 +26,44 @@
 
 
 <script>
+
 function alt_submit(){
 	var form= document.frmProducto;
-	if (validaForm()) {form.submit();}
-		
+	if (validaForm())  alt_submit2();
+	else alert("Uno o mas campos estan vacios");			
+		}
+function alt_submit2(){
+	
+	$.ajax({
+		  type: "POST",
+		  url: "/Conan3000V2/IngSoft/ventas/producto/SMVProducto",
+		  data: "&accion=" + $(accion).val() + "&tipo=" + $(tipo).val() + "&txtNombre=" + $(txtNombre).val() + "&txtDescripcion=" + $(txtDescripcion).val()+ "&txtPresentacion=" + $(txtPresentacion).val()+ "&txtPrecioU=" + $(txtPrecioUo).val() + "&txtProveedor=" + $(txtProveedor).val(),
+		  dataType: "text",
+		  success: function(msg){
+			  var url="<%=request.getContextPath()%>"+msg;
+			  $("#linkAceptar").css("display","inline");
+			  $("#linkCerrar").css("display","none");
+			  $("#modalTitulo").html("EXITO");				  
+			  $("#modalContenido").html("El producto ha sido agregado exitosamente");
+			  $("#linkAceptar").bind("click",function(){
+				  location.href=url;					  
+			  });
+			  $("#bModal").trigger("click");
+			  				  								
+		  },
+		  error: function(objeto, quepaso, otroobj){
+			$("#linkAceptar").css("display","inline");
+			$("#linkCerrar").css("display","none");
+			$("#modalTitulo").html("ERROR");
+			$("#modalContenido").html("No se pudo agregar el producto, intentelo mas tarde");
+			$("#bModal").trigger("click");
+			alert("ERROR!!");			
+		  }
+	
+		});		
 }
-
+	
+	
 	
 function anhadir(cod,name){
 	var form=document.frmProducto;
@@ -40,8 +78,10 @@ function anhadir(cod,name){
 
 			<div>
 				<ul class="breadcrumb">
-					<li>
-					<a href="#">Home / Mantenimiento de Productos /</a> Agregar Producto</li>
+				<li> <a href="../../general/index.jsp">Home</a> <span class="divider">/</span></li>
+		        <li> <a href="buscarproducto.jsp">Mantenimiento de Productos</a> <span class="divider">/</span></li>
+		        <li>Agregar Producto</li>
+				
 				</ul>
 			</div>
 			
@@ -51,14 +91,14 @@ function anhadir(cod,name){
 						<h2>AGREGAR PRODUCTO				  </h2>
 				  </div>
 					<div class="box-content">
-						<form class="form-horizontal" name="frmProducto"  method="Post"  action="SMVProducto">
-						<input type="hidden" name="accion" value="Agregar" ></input>
-						<input type="hidden" name="tipo" value="2" ></input>
+						<form class="form-horizontal" name="frmProducto"  method="Post"  action="SMVProducto" onsubmit="alt_submit();return false;" >
+						<input type="hidden" name="accion" id="accion" value="Agregar" ></input>
+						<input type="hidden" name="tipo" id="tipo" value="2" ></input>
 						  <fieldset>
 						    <div class="control-group" id="dvNombre">
 						      <label class="control-label" for="typeahead7">Nombre (*): </label>
 						      <div class="controls">
-						        <input type="text" class="span6 typeahead" id="txtNombre" name="txtNombre"  onpaste="return false;" data-provide="typeahead" >
+						        <input type="text" class="span6 typeahead" id="txtNombre" name="txtNombre" onKeyUp="limita(this,50);" onKeyDown="limita(this,50);" onpaste="return false;" data-provide="typeahead" >
 						        <span class="help-inline" id="errNombre">Please correct the error 	        
 					          </span>
 					        </div>
@@ -81,7 +121,7 @@ function anhadir(cod,name){
 
 							    <label class="control-label" for="typeahead14">Presentaci&oacute;n: </label>
 							    <div class="controls">
-							      <input type="text" class="span6 typeahead"  onpaste="return false;" id="txtPresentacion" name="txtPresentacion"  data-provide="typeahead" data-items="4" >
+							      <input type="text" class="span6 typeahead"  onpaste="return false;" id="txtPresentacion" name="txtPresentacion" onKeyUp="limita(this,50);" onKeyDown="limita(this,50);" data-provide="typeahead" data-items="4" >
 						       <span class="help-inline" id="errPresentacion">Please correct the error 	        
 					          </span>	
 						        </div>
@@ -92,7 +132,7 @@ function anhadir(cod,name){
 							  <div class="control-group" id="dvPrecioU">
 							    <label class="control-label" for="typeahead10">Precio Unitario (S/.) (*): </label>
 							    <div class="controls">
-							      <input type="text" class="span6 typeahead"   onpaste="return false;"id="txtPrecioU" name="txtPrecioU"  data-provide="typeahead" data-items="4" >
+							      <input type="text" class="span6 typeahead"   onpaste="return false;"id="txtPrecioU" name="txtPrecioU" onKeyUp="limita(this,50);" onKeyDown="limita(this,50);" data-provide="typeahead" data-items="4" >
 						         <span class="help-inline" id="errPrecioU">Please correct the error 	        
 					          </span>	
 						        </div>
@@ -110,7 +150,7 @@ function anhadir(cod,name){
                             
 						    <div class="form-actions">
 			            <input type="hidden" name="idProveedor" value=""/></input>
-			              <button type="button" class="btn btn-primary" onclick="javascript:alt_submit()">Agregar</button>
+			           <button type="submit" class="btn btn-primary" >Agregar</button>
 			              <button type="button" class="btn" onclick="location.href='buscarproducto.jsp'">Cancelar</button>
 		                </div>
 						  </fieldset>
@@ -122,6 +162,7 @@ function anhadir(cod,name){
 			</div><!--/row-->
 
 
+
 			<div class="row-fluid sortable"><!--/span-->
 			
 			</div><!--/row-->
@@ -131,3 +172,24 @@ function anhadir(cod,name){
 			</div><!--/row-->
     
 					<!-- content ends -->
+					
+					
+					<hr>
+		<but>
+		<div style="display: none;">
+			<button class="btn btn-primary btn-setting" id="bModal"/>
+		</div>
+		<div class="modal hide fade" id="myModal">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">X</button>
+				<h3 id="modalTitulo">EXITO</h3>
+			</div>
+			<div class="modal-body">
+				<p id="modalContenido">El producto ha sido agregado exitosamente</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn" id="linkAceptar" style="display: none">Aceptar</a>
+				<a href="#" class="btn" id="linkCerrar"  data-dismiss="modal" style="display: none">Cerrar</a>
+								
+			</div>
+		</div>
