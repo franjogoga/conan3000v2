@@ -8,6 +8,39 @@
 	obj.value=obj.value.slice(0,5);
 	
 	}
+	
+	function alt_submit(){
+		var form= document.frmCriteriosBusqueda;
+		if(validaForm()) form.submit();
+			
+			}
+	
+	function validaForm(){
+		var form=document.frmPromocion;
+		var cadena= new Array();
+		var i=0;
+		
+		
+		if(!esCorrecto(form.fFechInicio.value,1,10)){
+			cadena[i]="Fecha Inicio";
+			i++;
+		}
+		if(!esCorrecto(form.fFechaFin.value,1,10)){
+			cadena[i]="Fecha Fin";
+			i++;
+		}
+	
+		
+		crearAlert(cadena);
+		
+		
+		
+		
+		
+		
+
+	}
+	
 	function alt_agregar(){
 		var form=document.getElementById("frmAlternativo");
 		form.accion.value="Agregar";
@@ -61,8 +94,13 @@
 			        <h2><i class="icon-search"></i>BUSCAR PROMOCION</h2>
 		          </div>
 			      <div class="box-content">
-			        <form class="form-horizontal" name="frmCriteriosBusqueda" id="frmCriteriosBusqueda"  method="POST" action="<%= response.encodeURL("SMVPromocion")%>">
-			         <input type="hidden" name="accion" value="Buscar"/></input>
+						         
+			         	<form class="form-horizontal" name="frmCriteriosBusqueda"  id="frmCriteriosBusqueda"   method="Post"  action="<%= response.encodeURL("SMVPromocion")%>" onsubmit="alt_submit();return false;" >
+						<input type="hidden" name="accion" id="accion" value="Buscar" ></input>
+						<input type="hidden" name="tipo" id="tipo" value="2" ></input>
+			         
+			         
+			         
 			          <fieldset>
 			          
 			            <div class="control-group">
@@ -74,16 +112,19 @@
 		                      </div>
 		                    </div>
 		                     
+			                  <div class="control-group" id="dvFechaInicio">
 			                <label class="control-label" for="date01">Fecha de inicio:</label>
 			                <div class="controls">
-			                  <input type="text" class="input-xlarge datepicker" id="fFechInicio" name="fFechInicio" value="01/01/2013" readonly="readonly">
-			                  
+			                  <input type="text" class="input-xlarge datepicker" id="fFechInicio" name="fFechInicio" value="01/01/2013" readonly="true" >
+			                  <span class="help-inline" id="errFechaInicio">Please correct the error</span>
 		                    </div>
 		                  </div>
-			              <div class="control-group">
+		                  
+			              <div class="control-group" id="dvFechaFin">
 			                <label class="control-label" for="date02">Fecha de fin:</label>
 			                <div class="controls">
-			                  <input type="text" class="input-xlarge datepicker" id="fFechFin" name="fFechFin" value="31/12/2013" readonly="readonly">
+			                  <input type="text" class="input-xlarge datepicker" id="fFechFin" name="fFechFin" value="31/12/2013" readonly="true" >
+			                  <span class="help-inline" id="errFechaFin">Please correct the error</span>
 		                    </div>
 		                  </div>
 			          
@@ -104,8 +145,9 @@
 							  </div>
 			            </div>
 			            <div class="form-actions">
-			              <button type="submit" class="btn btn-primary">Buscar</button>
-			              <button type="submit" class="btn"><a href="buscarpromocion.jsp">Cancelar</a></button>
+			              <button type="button" class="btn btn-primary" onclick="javascript:alt_submit()">Buscar</button>
+			              <button type="button" class="btn"><a href="buscarpromocion.jsp">Cancelar</a></button>
+			            
 		                </div>
 		              </fieldset>
 		            </form>
