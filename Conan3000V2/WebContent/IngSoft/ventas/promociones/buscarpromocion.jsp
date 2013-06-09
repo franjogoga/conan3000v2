@@ -105,19 +105,7 @@ function validaForm(){
 	var i=0;
 	var error=false;
 	
-	
-	function validarFechas(nombreFinal, casillaFinal, idFinal,nombreInicial, casillaInicial){
-		status=validarFechaInicialFechaFinal(-1,casillaInicial,casillaFinal);
-		mensaje="Error al comparar fechas. La Fecha Final debe ser como minimo igual a la Fecha Inicial";
-	if(!status){
-		validarxId(idFinal,mensaje);
-		return 0;
-	}else{
-		MostrarOkDivInput(idFinal);
-		return 1;
-	}
 
-}
 	
 	
 	if(!esValido("Fecha de inicio",form.fFechInicio,"FechaInicio",2,1,10)){cadena[i]="Fecha de inicio";i++;}
