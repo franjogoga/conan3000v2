@@ -78,7 +78,7 @@ function anhadir(cod, name){
 							  <div class="control-group" id="dvDescripcion">
 			                <label class="control-label" for="textarea2">Descripci&oacute;n:</label>
 			                <div class="controls">
-			                  <textarea name="txtDescripcion" class=""  id="txtDescripcion"  onKeyUp="limita(this,100);" onKeyDown="limita(this,100);" onpaste="return false;"><%=producto.getDescripcion() %></textarea>
+			                  <textarea name="txtDescripcion" class=""  id="txtDescripcion"  onKeyUp="limita(this,100);" onKeyDown="limita(this,100);" style="resize:none;  onpaste="return false;" ><%=producto.getDescripcion() %></textarea>
 			                   <span class="help-inline" id="errDescripcion">Please correct the error</span>
 		                    </div>
 		                  </div>
