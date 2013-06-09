@@ -115,12 +115,4 @@ public class EmpleadoBeanData implements Serializable{
 	
 
 	
-	
-	
-	
-	
-	
-	
-	
-	
 }
