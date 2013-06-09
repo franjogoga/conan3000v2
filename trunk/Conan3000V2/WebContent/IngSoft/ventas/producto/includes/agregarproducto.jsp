@@ -37,7 +37,7 @@ function alt_submit2(){
 	$.ajax({
 		  type: "POST",
 		  url: "/Conan3000V2/IngSoft/ventas/producto/SMVProducto",
-		  data: "&accion=" + $(accion).val() + "&tipo=" + $(tipo).val() + "&txtNombre=" + $(txtNombre).val() + "&txtDescripcion=" + $(txtDescripcion).val()+ "&txtPresentacion=" + $(txtPresentacion).val()+ "&txtPrecioU=" + $(txtPrecioUo).val() + "&txtProveedor=" + $(txtProveedor).val(),
+		  data: "&accion=" + $(accion).val() + "&tipo=" + $(tipo).val() + "&txtNombre=" + $(txtNombre).val() + "&txtDescripcion=" + $(txtDescripcion).val()+ "&txtPresentacion=" + $(txtPresentacion).val()+ "&txtPrecioU=" + $(txtPrecioU).val() + "&txtProveedor=" + $(txtProveedor).val(),
 		  dataType: "text",
 		  success: function(msg){
 			  var url="<%=request.getContextPath()%>"+msg;
