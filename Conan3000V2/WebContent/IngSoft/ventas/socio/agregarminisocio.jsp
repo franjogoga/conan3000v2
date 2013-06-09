@@ -88,7 +88,7 @@ function validaForm(){
 	if(!esValido("Distrito",form.cmdDistrito,"Distrito",1,1,50)){cadena[i]="Distrito";i++;}
 	//if(!validarEntero(form.txtNumeroDocumento)){cadena[i]="Numero de Documento";i++;}
 	if(!esValido("Direccion",form.txtDireccion,"Direccion",1,1,100)){cadena[i]="Direccion";i++;}
-	if(!esValido("Numero Documento",form.txtNumeroDocumento,"NumDoc",1,1,8)){cadena[i]="Numero de documento";i++;}else{
+	if(!esValido("Numero Documento",form.txtNumeroDocumento,"NumDoc",1,1,9)){cadena[i]="Numero de documento";i++;}else{
 		if(!esValido("Numero Documento",form.txtNumeroDocumento,"NumDoc",6,1,50)){cadena[i]="Numero de documento";i++;}
 	}
 	
