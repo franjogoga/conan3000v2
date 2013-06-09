@@ -29,8 +29,10 @@ public class CriterioProveedorBeanFunction {
 	criterioProveedorData.setRazonSocial((request.getParameter("txtRazon"))+"%");
 	
 	criterioProveedorData.setRuc(Long.parseLong(request.getParameter("txtRuc").equals("")?"0":request.getParameter("txtRuc")));
-	if( (criterioProveedorData.getRazonSocial()==null) && (criterioProveedorData.getRuc()!=0) ){
-		criterioProveedorData.setRazonSocial("jdajfwelkfedada");	
+	
+	if( (criterioProveedorData.getRazonSocial()!="%") && (criterioProveedorData.getRuc()!=0)  ){
+		criterioProveedorData.setRazonSocial("");
+		
 	}
 	
 	//juridicaData.setRuc(Integer.parseInt(request.getParameter("txtRuc").equals("")?"0":request.getParameter("txtRuc")));
