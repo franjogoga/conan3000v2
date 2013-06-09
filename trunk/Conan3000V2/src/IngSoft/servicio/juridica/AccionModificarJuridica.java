@@ -18,6 +18,7 @@ public class AccionModificarJuridica extends CoAccion {
 			HttpServletResponse response) throws CoException{
 		
 		JuridicaBeanFuncion juridicaFuncion= JuridicaBeanFuncion.getInstance();
+		
 		if(Integer.valueOf(request.getParameter("tipo"))==2){
 		
 			
