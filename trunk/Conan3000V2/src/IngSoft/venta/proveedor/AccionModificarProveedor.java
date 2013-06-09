@@ -1,5 +1,6 @@
 package IngSoft.venta.proveedor;
 
+
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -26,9 +27,11 @@ public class AccionModificarProveedor extends CoAccion{
 			ProveedorFuncion.modificarProveedor(ProveedorData);
 			this.direccionar(sc, request, response, "/IngSoft/ventas/proveedor/buscarproveedor.jsp");
 		}	
+		if(Integer.valueOf(request.getParameter("tipo"))==1){
 		ProveedorBeanData ProveedorData=ProveedorFuncion.consultarProveedor(request.getParameter("codigo"));
 
 		request.setAttribute("proveedor", ProveedorData);
 		this.direccionar(sc, request, response, "/IngSoft/ventas/proveedor/modificarproveedor.jsp");
+		}
 	}
 }
