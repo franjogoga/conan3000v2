@@ -26,7 +26,7 @@ public class CriterioEmpleadoBeanFunction {
 		criterioEmpleadoData.setNombre(request.getParameter("txtNombreEmpleado").trim()+"%");
 		criterioEmpleadoData.setApellidoPaterno(("%" + request.getParameter("txtApellidoPaterno").trim()+"%").toUpperCase());
 		//juridicaData.setRazonSocial(("%" + request.getParameter("txtRazonSocial").trim()+"%").toUpperCase());
-		criterioEmpleadoData.setNumeroDocumento(Integer.parseInt(request.getParameter("txtNumeroDocumento")));
+		criterioEmpleadoData.setNumeroDocumento(Integer.parseInt(request.getParameter("txtNumeroDocumento").equals("")?"0":request.getParameter("txtNumeroDocumento")));
 		criterioEmpleadoData.setArea(request.getParameter("cmbArea")==null?null:request.getParameter("cmbArea"));
 
 		return criterioEmpleadoData;				
