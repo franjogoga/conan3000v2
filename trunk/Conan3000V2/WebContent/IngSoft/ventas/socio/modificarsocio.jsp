@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <jsp:include page="/IngSoft/general/header.jsp" />
+<link rel="shortcut icon" href="img/conan_logo.png">
 </head>
 <body>
 		<jsp:include page="/IngSoft/general/superior.jsp" />
@@ -20,8 +21,9 @@
 			<jsp:include page="/IngSoft/general/footer.jsp" />
 		</div>
 		<jsp:include page="/IngSoft/general/jsexternal.jsp" />
+		<script type="text/javascript" src="js/apprise-1.5.full.js"></script>
 		
-<script>
+		<script>
 			$(document).ready(function(){
 				//Examples of how to assign the Colorbox event to elements
 				
@@ -34,8 +36,6 @@
 				});
 			});
 		</script>
-		
-		<script type="text/javascript" src="js/apprise-1.5.full.js"></script>
 <link rel="stylesheet" href="css/apprise.css" type="text/css" />
 <script type="text/javascript" src="js/script.js"></script>
 		<script>
@@ -79,10 +79,8 @@ function validaForm(){
 	if(!esValido("Apellido Paterno",form.txtApellidoPaterno,"ApellidoP",1,1,50)){cadena[i]="Apellido Paterno";i++;}
 	//if(!verificar_fecha(-1,form.fFechaInicio,form.fFechaFin)){cadena[i]="Fecha Fin";i++;};
 	if(!esValido("Apellido Materno",form.txtApellidoMaterno,"ApellidoM",1,1,50)){cadena[i]="Apellido Materno";i++;}
-	//if(!esValido("Distrito",form.cmdDistrito,"Distrito",1,1,50)){cadena[i]="Distrito";i++;}
-	//if(!validarEntero(form.txtNumeroDocumento)){cadena[i]="Numero de Documento";i++;}
 	if(!esValido("Direccion",form.txtDireccion,"Direccion",1,1,100)){cadena[i]="Direccion";i++;}
-	if(!esValido("Numero Documento",form.txtNumeroDocumento,"NumDoc",1,1,8)){cadena[i]="Numero de documento";i++;}else{
+	if(!esValido("Numero Documento",form.txtNumeroDocumento,"NumDoc",1,1,9)){cadena[i]="Numero de documento";i++;}else{
 		if(!esValido("Numero Documento",form.txtNumeroDocumento,"NumDoc",6,1,50)){cadena[i]="Numero de documento";i++;}
 	}
 	
@@ -95,8 +93,7 @@ function validaForm(){
 	
 	if(!esValido("Correo Electronico",form.txtCorreoElectronico,"CorreoE",9,1,50)){cadena[i]="Correo Electronico";i++;}
 	if(!esValido("Fecha",form.fFechaNacimiento,"Fecha",2,1,10)){cadena[i]="Fecha de Nacimiento";i++;}
-	if(!esValido("Tipo de Documento",form.optionsRadios,"Tipo",3,1,100)){cadena[i]="Tipo de Documento";i++;}
-	
+	if(!esValido("Tipo de Documento",form.rButton,"Tipo",3,1,100)){cadena[i]="Tipo de Documento";i++;}
 	
 	
 	//No tocar
@@ -130,6 +127,9 @@ function inicializa(){
 inicializa();
 
 </script>
+		
+		
 </body>
 </html>
+
 
