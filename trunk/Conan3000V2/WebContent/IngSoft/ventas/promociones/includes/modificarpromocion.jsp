@@ -63,6 +63,7 @@
 			      <div class="box-header well" data-original-title>
 			        <h2> MODIFICAR PROMOCI&Oacute;N</h2>
 		          </div>
+		          
 			      <div class="box-content">
 			        <form class="form-horizontal" name="frmUpdate" method="Post">
 			        <input type="hidden" name="codigo" value="<%=promocion.getCodigo()%>"></input>
@@ -78,6 +79,7 @@
 		                  <span class="help-inline" id="errNombrePromocion">Please correct the error</span>
 		                  </div>
 		                </div>
+		                
 			              <div class="control-group" id="dvFechaInicio">
 			                <label class="control-label" for="date01">Fecha de inicio:</label>
 			                <div class="controls">
@@ -85,6 +87,7 @@
 			                  <span class="help-inline" id="errFechaInicio">Please correct the error</span>
 		                    </div>
 		                  </div>
+		                  
 			              <div class="control-group" id="dvFechaFin">
 			                <label class="control-label" for="date02">Fecha de fin:</label>
 			                <div class="controls">
@@ -120,8 +123,4 @@
 			    <!--/span-->
 		      </div>
 			  <!--/row-->
-			 
-
-		  
-       
-					<!-- content ends -->
+			 			<!-- content ends -->
