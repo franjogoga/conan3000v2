@@ -31,18 +31,9 @@ public class SocioBeanFuncion {
 	public SocioBeanData crearSocio(HttpServletRequest request, HttpServletResponse response){
 		SocioBeanData socioData= new SocioBeanData();
 		try{		
-		//socioData.setNombres(request.getParameter("txtNombres"));
-		//if((request.getParameter("txtDireccion"))!=null){	
+
 		socioData.setDireccion(request.getParameter("txtDireccion"));
-		//}
-		//else{socioData.setDireccion(" ");}
-		
-		//if((request.getParameter("txtCorreoElectronico"))!=null){	
 		socioData.setCorreoElectronico(request.getParameter("txtCorreoElectronico"));
-		//}
-		//else{socioData.setCorreoElectronico(" ");}
-		
-		//if((request.getParameter("txtTelefonoFijo"))!=null){
 		socioData.setTelefonoFijo(Long.parseLong(request.getParameter("txtTelefonoFijo")));
 		
 		
@@ -50,14 +41,10 @@ public class SocioBeanFuncion {
 		socioData.setIdDistrito((request.getParameter("cmdDistrito")));
 		
 		MembresiaBeanFunction membresiaFuncion=MembresiaBeanFunction.getInstance();
-		//MembresiaBeanData membresiaData2=membresiaFuncion.crearMembresia(request, response);
-		
 		
 		socioData.setIdMembresia(membresiaFuncion.consultarMembresiaMax());
 		socioData.setCodigo2(request.getParameter("txtIdMembresiaAntiguo"));
-		//socioData.setLimiteInicio(new Date(DF.parse(request.getParameter("fFecIncio")+"/0000").getTime()));
-		//socioData.setLimiteFin(new Date(DF.parse(request.getParameter("fFecFin")+"/0000").getTime()));
-		
+
 		}catch(Exception e){
 			e.printStackTrace();
 			
@@ -81,8 +68,6 @@ public class SocioBeanFuncion {
 			else socioData.setCodigo("SOC000001");
 			//aca validar si el get te da null y hacer otro insert !!!!!!
 			sqlsesion.insert("Data.venta.socio.insertSocio",socioData);
-			//sqlsesion.insert("Data.servicio.evento.insertPlantillaEventoSedes",eventoData);
-			//sqlsesion.insert("Data.servicio.evento.insertPlantillaEventoAmbiente",eventoData);
 			
 			resultado=true;
 		}
