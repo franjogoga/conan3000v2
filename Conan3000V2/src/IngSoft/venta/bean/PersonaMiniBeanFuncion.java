@@ -27,7 +27,7 @@ public class PersonaMiniBeanFuncion {
 	public PersonaMiniBeanData crearPersona(HttpServletRequest request, HttpServletResponse response){
 		PersonaMiniBeanData personaData= new PersonaMiniBeanData();
 		try{		
-		//socioData.setNombres(request.getParameter("txtNombres"));
+
 		personaData.setNombres(request.getParameter("txtNombres"));
 		personaData.setApellidoMaterno(request.getParameter("txtApellidoMaterno"));
 		personaData.setApellidoPaterno(request.getParameter("txtApellidoPaterno"));
@@ -36,13 +36,10 @@ public class PersonaMiniBeanFuncion {
 		if (request.getParameter("rButton")!=null){
 			String tipoDocumento;
 			tipoDocumento=request.getParameter("rButton");
-		
 		personaData.setTipoDocumento(tipoDocumento);}
 
 		personaData.setFechaNacimiento(new Date(DF.parse(request.getParameter("fFechaNacimiento")).getTime()));
-		
-		//socioData.setLimiteInicio(new Date(DF.parse(request.getParameter("fFecIncio")+"/0000").getTime()));
-		//socioData.setLimiteFin(new Date(DF.parse(request.getParameter("fFecFin")+"/0000").getTime()));
+
 		
 		}catch(Exception e){
 			e.printStackTrace();
