@@ -74,7 +74,7 @@
 			            <div class="control-group" id="dvNombrePromocion">
 			              <label class="control-label" for="typeahead7">Nombre  de Promoci&oacute;n:</label>
 			              <div class="controls">
-			                <input type="text" class="span6 typeahead" id="txtNombrePromocion" name="txtNombrePromocion" onKeyUp="limita(this,50);" onKeyDown="limita(this,50);" value="<%=promocion.getNombre()%>">
+			                <input type="text" class="span6 typeahead" id="txtNombrePromocion" name="txtNombrePromocion" onpaste="return false;" onKeyUp="limita(this,50);" onKeyDown="limita(this,50);" value="<%=promocion.getNombre()%>">
 		                  <span class="help-inline" id="errNombrePromocion">Please correct the error</span>
 		                  </div>
 		                </div>
@@ -96,7 +96,7 @@
 			              <div class="control-group" id="dvDescripcion">
 			                <label class="control-label" for="textarea2">Descripci&oacute;n:</label>
 			                <div class="controls">
-			                  <textarea name="txtDescripcion" rows="3" class="" id="txtDescripcion" style="resize:none" onKeyUp="limita(this,100);" onKeyDown="limita(this,100);"><%=promocion.getDescripcion()%></textarea>
+			                  <textarea name="txtDescripcion" rows="3" class="" id="txtDescripcion" style="resize:none" onpaste="return false;"  onKeyUp="limita(this,100);" onKeyDown="limita(this,100);"><%=promocion.getDescripcion()%></textarea>
 			                  <span class="help-inline" id="errDescripcion">Please correct the error</span>
 		                    </div>
 		                  </div>
