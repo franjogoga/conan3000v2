@@ -175,22 +175,22 @@
 							
 									
 									
-							<!-- <div class="control-group">
-								<label class="control-label" for="typeahead5">Tipo de Documento(*):</label>
+							<div class="control-group" >
+								<label class="control-label" for="typeahead13">Tipo de Documento:</label>
 								<div class="controls">
 								  <label class="radio">
-									<input type="radio" name="rButton" id="optionsRadios1" value="DNI" >
+									<input type="radio" name="rButton" id="optionsRadios1" value="DNI" <% if(persona.getTipoDocumento().toUpperCase().equals("DNI")){ %> checked <%}%> disabled>
 									DNI
 								  </label>
 								  <div style="clear:both">
 								  <label class="radio">
-									<input type="radio" name="rButton" id="optionsRadios2" value="Carnet de Extranjeria">
+									<input type="radio" name="rButton" id="optionsRadios2" value="Carnet de Extranjeria" <% if(persona.getTipoDocumento().toUpperCase().equals("CARNET DE EXTRANJERIA")){ %> checked <%}%> disabled>
 									Carnet de Extranjeria
 								  </label>
+								  
 								  </div>
 								</div>
-							  </div>	
-							 -->
+							  </div>
 					
 							<div class="control-group">
 						      <label class="control-label" for="typeahead7">Numero de documento(*): </label>
