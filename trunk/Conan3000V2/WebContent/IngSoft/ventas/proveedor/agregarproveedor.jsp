@@ -90,6 +90,9 @@ function validaForm(){
 	if(!esValido("Numero Documento",form.txtNumDoc,"NumDoc",1,1,9)){cadena[i]="Numero Documento";i++;}else{
 		if(!esValido("Numero Documento",form.txtNumDoc,"NumDoc",6,1,50)){cadena[i]="Numero Documento";i++;}
 	}
+	if(!esValido("Correo Electronico",form.txtCorreo,"CorreoE",1,1,50)){cadena[i]="Correo Electronico";i++;}else{
+		if(!esValido("Correo Electronico",form.txtCorreo,"CorreoE",9,1,100)){cadena[i]="Correo Electronico";i++;}
+	}
 	
 	
 	//No tocar
@@ -117,7 +120,7 @@ Solo poner el id de los <span> segun corresponda
 	document.getElementById("errTipo").style.display='none';
 	document.getElementById("errTelefono").style.display='none';
 	document.getElementById("errNumDoc").style.display='none';
-	//document.getElementById("errCorreoE").style.display='none';
+	document.getElementById("errCorreoE").style.display='none';
 	
 }
 
