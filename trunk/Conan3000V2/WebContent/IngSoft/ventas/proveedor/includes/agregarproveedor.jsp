@@ -65,7 +65,7 @@ function confFecha(){
 		              <div class="control-group"  id="dvRazonSocial">
 		                <label class="control-label" for="typeahead7">Raz&oacute;n Social (*):</label>
 		                <div class="controls">
-		                  <input type="text" class="span6 typeahead" id="txtRazonSocial" name="txtRazonSocial"  data-provide="typeahead" >
+		                  <input type="text" class="span6 typeahead" id="txtRazonSocial" name="txtRazonSocial"  data-provide="typeahead" onKeyUp="limita(this,100);" onKeyDown="limita(this,100);" onpaste="return false;">
 		                  <span class="help-inline" id="errRazonSocial">Please correct the error</span>
 		                </div>
 	                  </div>
@@ -73,14 +73,14 @@ function confFecha(){
 		                <div class="control-group">
 		                  <label class="control-label" for="typeahead6">RUC (*): </label>
 		                  <div class="controls">
-		                    <input type="text" class="span6 typeahead" id="txtRuc" name="txtRuc"  data-provide="typeahead" data-items="4" >
+		                    <input type="text" class="span6 typeahead" id="txtRuc" name="txtRuc"  data-provide="typeahead" data-items="4" onKeyUp="limita(this,11);" onKeyDown="limita(this,11);" onpaste="return false;">
 		                  	<span class="help-inline" id="errRuc">Please correct the error</span>
 		                  </div>
 	                    </div>
 		                <div class="control-group" id="dvDireccion">
 		                  <label class="control-label" for="typeahead4">Direcci&oacute;n: </label>
 		                  <div class="controls">
-		                    <input type="text" class="span6 typeahead" id="txtDireccion"  name="txtDireccion" data-provide="typeahead" data-items="4" >
+		                    <input type="text" class="span6 typeahead" id="txtDireccion"  name="txtDireccion" data-provide="typeahead" data-items="4" onKeyUp="limita(this,100);" onKeyDown="limita(this,100);" onpaste="return false;">
 		                    <span class="help-inline" id="errDireccion">Please correct the error</span>
 		                  </div>
 	                    </div>
@@ -98,23 +98,23 @@ function confFecha(){
 		                <div class="control-group" id="dvTelefono">
 		                  <label class="control-label" for="typeahead8">Tel&eacute;fono / Celular: </label>
 		                  <div class="controls">
-		                    <input type="text" class="span6 typeahead" id="txtTelefono" name="txtTelefono"  data-provide="typeahead" data-items="4" >
+		                    <input type="text" class="span6 typeahead" id="txtTelefono" name="txtTelefono"  data-provide="typeahead" data-items="4" onKeyUp="limita(this,8);" onKeyDown="limita(this,8);" onpaste="return false;">
 		                    <span class="help-inline" id="errTelefono">Please correct the error</span>
 		                  </div>
 	                    </div>
 	                    
-		                <div class="control-group" id="CorreoE">
+		                <div class="control-group" id="dvCorreoE">
 		                  <label class="control-label" for="typeahead9">Correo electr&oacute;nico: </label>
 		                  <div class="controls">
-		                    <input type="text" class="span6 typeahead" id="txtCorreo" name="txtCorreo"  data-provide="typeahead" data-items="4" >
-		                    <!--  <span class="help-inline" id="errCorreoE">Please correct the error</span> -->
+		                    <input type="text" class="span6 typeahead" id="txtCorreo" name="txtCorreo"  data-provide="typeahead" data-items="4" onKeyUp="limita(this,50);" onKeyDown="limita(this,50);" onpaste="return false;">
+		                      <span class="help-inline" id="errCorreoE">Please correct the error</span> 
 		                  </div>
 	                    </div>
 	                    
 		                <div class="control-group" id="dvNombre">
 		                  <label class="control-label" for="typeahead10">Nombre Contacto: </label>
 		                  <div class="controls">
-		                    <input type="text" class="span6 typeahead" id="txtNombre"  name="txtNombre" data-provide="typeahead" data-items="4">
+		                    <input type="text" class="span6 typeahead" id="txtNombre"  name="txtNombre" data-provide="typeahead" data-items="4" onKeyUp="limita(this,50);" onKeyDown="limita(this,50);" onpaste="return false;" >
 		                    <span class="help-inline" id="errNombre">Please correct the error</span>
 		                  </div>
 	                    </div>
@@ -122,7 +122,7 @@ function confFecha(){
 	                      <div class="control-group" id="dvApellidoP">
 		                  <label class="control-label" for="typeahead11">Apellido Paterno: </label>
 		                  <div class="controls">
-		                    <input type="text" class="span6 typeahead" id="txtApPaterno"  name="txtApPaterno" data-provide="typeahead" data-items="4">
+		                    <input type="text" class="span6 typeahead" id="txtApPaterno"  name="txtApPaterno" data-provide="typeahead" data-items="4" onKeyUp="limita(this,50);" onKeyDown="limita(this,50);" onpaste="return false;">
 		                    <span class="help-inline" id="errApellidoP">Please correct the error</span>
 		                  </div>
 	                    </div>
@@ -130,14 +130,14 @@ function confFecha(){
 	                      <div class="control-group" id="dvApellidoM">
 		                  <label class="control-label" for="typeahead12">Apellido Materno: </label>
 		                  <div class="controls">
-		                    <input type="text" class="span6 typeahead" id="txtApMaterno" name="txtApMaterno"  data-provide="typeahead" data-items="4">
+		                    <input type="text" class="span6 typeahead" id="txtApMaterno" name="txtApMaterno"  data-provide="typeahead" data-items="4" onKeyUp="limita(this,50);" onKeyDown="limita(this,50);" onpaste="return false;">
 		                    <span class="help-inline" id="errApellidoM">Please correct the error</span>
 		                  </div>
 	                    </div>
 	                    
 	                      <!--REVISAR!!! -->
 	                    <div class="control-group" id="dvTipo">
-								<label class="control-label" for="typeahead5">Tipo de Documento(*):</label>
+								<label class="control-label" for="typeahead5">Tipo de Documento:</label>
 								<div class="controls">
 								  <label class="radio">
 									<input type="radio" name="rButton" id="optionsRadios1" value="DNI" >
@@ -156,7 +156,7 @@ function confFecha(){
 		                <div class="control-group" id="dvNumDoc">
 		                  <label class="control-label" for="typeahead2">Numero de Documento: </label>
 		                  <div class="controls">
-		                    <input type="text" class="span6 typeahead" id="txtNumDoc"  name="txtNumDoc" data-provide="typeahead" data-items="4" >
+		                    <input type="text" class="span6 typeahead" id="txtNumDoc"  name="txtNumDoc" data-provide="typeahead" data-items="4" onKeyUp="limita(this,9);" onKeyDown="limita(this,9);" onpaste="return false;">
 	                         <span class="help-inline" id="errNumDoc">Please correct the error</span>
 	                      </div>
 	                    </div>
