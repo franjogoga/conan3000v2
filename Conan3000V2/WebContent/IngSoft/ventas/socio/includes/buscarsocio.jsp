@@ -59,7 +59,6 @@
                         <div class="box-icon">
 							
 							<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
-							<a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>
 						</div>
                         
                         
