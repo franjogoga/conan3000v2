@@ -15,11 +15,24 @@
 	
 </select>
 
+<update id="updatePlantillaEmpleado" parameterType="IngSoft.administracion.bean.EmpleadoBeanData">
+update PERSONA set PERSONA.Nombres =#{Nombres}
+ ,PERSONA.ApePaterno=#{apellidoPaterno}
+ ,PERSONA.NumeroDocumento= #{numeroDocumento} 
+where  IdPersona= #{codigo};
+</update>
+
+
+
+
+
 <select id="searchPlantillaEmpleado" parameterType="IngSoft.administracion.bean.CriterioEmpleadoBeanData" resultType="IngSoft.administracion.bean.ResultadoEmpleadoBeanData">
 select 
  EMPLEADO.IdEmpleado as codigo
 ,PERSONA.Nombres as nombre
-,PERSONA.apePaterno as apellidoPaterno
+<!-- Cambio David: apellidoPaterno por aPaterno -->
+,PERSONA.apePaterno as aPaterno
+<!-- Fin cambios -->
 ,PERSONA.NumeroDocumento as numeroDocumento
 ,EMPLEADO.Area as area
 from EMPLEADO, PERSONA 
@@ -64,23 +77,35 @@ order by 1 asc
 
 
 
+<insert id="insertPlantillaPersona" parameterType="IngSoft.administracion.bean.EmpleadoBeanData"
+	flushCache="true">
+	insert into
+	PERSONA(IdPersona,Nombres,apePaterno,apeMaterno)
+	values (#{codigo},#{nombre},#{apellidoPaterno},#{apellidoMaterno})
+</insert>
 
-<update id="deletePLantillaEmpleado" parameterType="java.lang.String" >
+
+
+<update id="deletePlantillaEmpleado" parameterType="java.lang.String" >
 update EMPLEADO set Estado='inactivo' where IdEmpleado= #{codigo}
 </update>
 
-<select id="getPLantillaEmpleado" parameterType="String" resultType="IngSoft.administracion.bean.ResultadoEmpleadoBeanData">
+
+<select id="getPlantillaEmpleado" parameterType="String" resultType="IngSoft.administracion.bean.EmpleadoBeanData">
+
 
 select 
- EMPLEADO.IdEmpleado as codigo
-,PERSONA.Nombres as nombre
-,PERSONA.apePaterno as apellidoPaterno
-,PERSONA.NumeroDocumento as numeroDocumento
-,EMPLEADO.Area as area
-from EMPLEADO e, PERSONA  where e.IdEmpleado=#{codigo};
+IdEmpleado as codigo,
+Nombres as nombre,
+apePaterno as apellidoPaterno,
+NumeroDocumento as numeroDocumento,
+Area as area
+from EMPLEADO e, PERSONA p  where e.IdEmpleado = #{codigo} AND p.IdPersona = #{codigo} ;
 
 
+ 
 </select>
+
 
 
 </mapper>
