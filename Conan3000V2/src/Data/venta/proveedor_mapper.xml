@@ -67,7 +67,7 @@ from PROVEEDOR
     
     <if test="razonSocial!=null">
        OR PROVEEDOR.RazonSocial  like #{razonSocial}
-    </if>
+    </if>    
     AND PROVEEDOR.Estado='Activo'  
 </where>
 </select>
@@ -126,6 +126,7 @@ PROVEEDOR.IdProveedor as idProveedor
 ,PROVEEDOR.ApeMaternoContacto as apMaterno
 ,PROVEEDOR.NumeroDocumentoContacto as numDoc
 ,PROVEEDOR.Estado as estado
+,PROVEEDOR.TipoDocumentoContacto as tipoDoc
 from PROVEEDOR  where PROVEEDOR.IdProveedor=#{codigo}; 
 
 
