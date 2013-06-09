@@ -186,14 +186,13 @@ public class EmpleadoBeanFuncion {
 			eventoData.setCodigo(codigo.substring(0,3).concat(temp));}
 			else {eventoData.setCodigo("EMP000001"); eventoData.setIdEmpleado("EMP000001"); }
 			
-			//fro
-			//inser(sedes,null,bulll,nukl)
 			
-			// for 
+			
+			// Agrego un insert en Persona 
 			
 			sqlsesion.insert("Data.administracion.empleado.insertPlantillaEmpleado",eventoData);
 			
-			//sqlsesion.insert("Data.administracion.empleado.insertPlantillaPersona",eventoData);
+			sqlsesion.insert("Data.administracion.empleado.insertPlantillaPersona",eventoData);
 			
 			
 			resultado=true;
