@@ -58,7 +58,7 @@
 							  <div class="control-group">
 			                <label class="control-label" for="textarea2">Descripci&oacute;n:</label>
 			                <div class="controls">
-			                  <textarea name="textarea" class="" id="txtDescripcion" name="txtDescripcion" ><%=producto.getDescripcion()%></textarea>
+			                  <textarea name="textarea" class="" id="txtDescripcion" style="resize:none; name="txtDescripcion" ><%=producto.getDescripcion()%></textarea>
 		                    </div>
 		                  </div>
 						      
