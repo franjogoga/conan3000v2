@@ -16,11 +16,10 @@
 			}
 	
 	function validaForm(){
-		var form=document.frmPromocion;
+		var form=document.frmCriteriosBusqueda;
 		var cadena= new Array();
 		var i=0;
-		
-		
+				
 		if(!esCorrecto(form.fFechInicio.value,1,10)){
 			cadena[i]="Fecha Inicio";
 			i++;
