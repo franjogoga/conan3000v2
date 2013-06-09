@@ -49,12 +49,7 @@ public class ProveedorBeanFuncion {
 			proveedorData.setNomContacto(request.getParameter("txtNombre"));
 		    proveedorData.setApPaterno(request.getParameter("txtApPaterno"));
 			proveedorData.setNumDoc(Long.parseLong(request.getParameter("txtNumDoc")));
-			//if (request.getParameter("rButton")!=null){
-				//String tipoDocumento;
-				//tipoDocumento=request.getParameter("rButton");
-			//}
-		
-			
+
 			if (request.getParameter("rButton")!=null){
 				String tipo;
 				tipo=request.getParameter("rButton");
