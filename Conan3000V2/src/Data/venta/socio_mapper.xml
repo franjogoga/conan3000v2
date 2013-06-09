@@ -106,6 +106,7 @@ update PERSONA set PERSONA.ApeMaterno=#{apellidoMaterno}
 ,PERSONA.ApePaterno=#{apellidoPaterno} 
 ,PERSONA.FechaNac=#{fechaNacimiento}
 ,PERSONA.NumeroDocumento=#{numeroDocumento}
+,PERSONA.TipoDocumento=#{tipoDocumento}
  where PERSONA.IdPersona= #{codigo}
 </update>
 
