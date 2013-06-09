@@ -71,7 +71,7 @@
 		            <fieldset>
 		            
 		              <div class="control-group" id="dvRazonSocial">
-		                <label class="control-label" for="typeahead7">Raz&oacute;n Social (*): </label>
+		                <label class="control-label" for="typeahead7">Raz&oacute;n Social: </label>
 		                <div class="controls">
 		                  <input type="text" class="span6 typeahead" id="txtRazonSocial"  name="txtRazonSocial" data-provide="typeahead" value=<%=proveedor.getRazonSocial() %> onKeyUp="limita(this,100);" onKeyDown="limita(this,100);" onpaste="return false;"    >
 						  <span class="help-inline" id="errRazonSocial">Please correct the error</span>
@@ -79,7 +79,7 @@
 	                  </div>
 	                  
 		                <div class="control-group" id="dvRuc">
-		                  <label class="control-label" for="typeahead6">RUC (*): </label>
+		                  <label class="control-label" for="typeahead6">RUC: </label>
 		                  <div class="controls">
 		                    <input type="text" class="span6 typeahead" id="txtRuc" name="txtRuc"  data-provide="typeahead" data-items="4" value=<%=proveedor.getRuc() %> onKeyUp="limita(this,11);" onKeyDown="limita(this,11);" onpaste="return false;">
 							<span class="help-inline" id="errRuc">Please correct the error</span>
@@ -135,7 +135,7 @@
 	                    </div>
 	                    
 	                    <div class="control-group" id="dvTipo">
-								<label class="control-label" for="typeahead13">Tipo de Documento(*):</label>
+								<label class="control-label" for="typeahead13">Tipo de Documento:</label>
 								<div class="controls">
 								  <label class="radio">
 									<input type="radio" name="rButton" id="optionsRadios1" value="DNI" <% if(proveedor.getTipoDoc().toUpperCase().equals("DNI")){ %> checked <%}%> >
@@ -162,7 +162,7 @@
 	                  </div>
 	                  
 		              <div class="form-actions">
-		                 <button  type="button"  class="btn btn-primary" onclick="javascript:alt_submit()">Agregar</button>   
+		                 <button  type="button"  class="btn btn-primary" onclick="javascript:alt_submit()">Guardar</button>   
 			                      		   <button  type="button"  class="btn" onclick="location.href='buscarproveedor.jsp'">Cancelar</button>  
 	                  </div>
 	                  
