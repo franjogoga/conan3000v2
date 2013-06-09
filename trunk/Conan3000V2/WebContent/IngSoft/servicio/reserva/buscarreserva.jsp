@@ -94,14 +94,24 @@ var atipo=1;
 					</li>
 				</ul>
 			</div>
-			
+			<div class="row-fluid">
+				<a data-rel="tooltip" title="Buscar Reservas" class="well span3 top-block" href="javascript:cambiaModo(3)">
+					<span class="icon32 icon-blue icon-search"></span>
+					<div>Buscar Reservas</div>
+				</a>
+				<a data-rel="tooltip" title="Agregar Reservas" class="well span3 top-block" href="javascript:cambiaModo(1)">
+					<span class="icon32 icon-green icon-plus"></span>
+					<div>Agregar Reservas</div>
+				</a>
+				<a data-rel="tooltip" title="Eliminar Reservas" class="well span3 top-block" href="javascript:cambiaModo(2)">
+					<span class="icon32 icon-red icon-minus"></span>
+					<div>Eliminar Reservas</div>
+				</a>			
+			</div>
 			<div class="row-fluid sortable">
 				<div class="box span12">
 					<div class="box-header well" data-original-title>
-						<h2 id="titulo"><i class="icon-plus"></i> AGREGAR RESERVAS</h2>
-						<div class="box-icon">							
-							<button onclick="cambiaModo()" class="btn btn-round" title="Cambiar entre agregar y eliminar" data-rel="tooltip"><i class="icon-retweet"></i></button>
-						</div>
+						<h2 id="titulo"><i class="icon-plus"></i> BUSCAR RESERVAS</h2>						
 					</div>
 					
 					<div class="box-content">
@@ -111,7 +121,30 @@ var atipo=1;
 						<input type="hidden" name="reservas" value=""></input>
 						
 						  <fieldset>
-							
+					<div class="control-group">
+						      <label class="control-label" for="typeahead7">Documento de socio(*): </label>
+						      <div class="controls">
+						        <input type="text" class="span3 typeahead"  data-provide="typeahead"  id="txtDocSocio" name="txtDocSocio" onblur="javascript:ajax_confirmaSocio($(this),$('#txtNomSocio'),$('#imagenCargaTxt'));" autofocus maxlength="50"/>
+								<span class="help-inline" id="errDocumentoSocio" style="display:none;">Este campo no puede estar vacio</span>
+								<img src="img/ajax-loaders/ajax-loader-3.gif" style="display: none" id="imagenCargaTxt"></img>
+																						        													      
+					          </div>
+					        </div>
+					 <div class="control-group">
+						      <label class="control-label" for="typeahead7">Nombre de socio(*): </label>
+						      <div class="controls">
+						        <input type="text" class="span3 typeahead"  data-provide="typeahead"  id="txtNomSocio" name="txtNomSocio"  autofocus maxlength="50" readonly="readonly"/>
+								<span class="help-inline" id="errNombreSocio" style="display:none;">Este campo no puede estar vacio</span>						        													       
+					          </div>
+					 </div>	
+					 <div class="control-group">
+								<label class="control-label" for="appendedInputButton">Append with button</label>
+								<div class="controls">
+								  <div class="input-append">
+									<input id="appendedInputButton" size="16" type="text"><button class="btn" type="button">s</button>
+								  </div>
+								</div>
+							  </div>	
 					<div class="control-group">
 								<label class="control-label" for="cmbSedes">Sedes relacionadas(*):</label>
 								<div class="controls">
@@ -165,7 +198,7 @@ var atipo=1;
   </div><!--/span-->
     				
                       <div class="form-actions" id="reserva_boton">
-			             <button class="btn btn-primary btn-setting crear" >Crear Reserva</button>
+			             <button class="btn btn-primary btn-setting crear" style="display: none;">Crear Reserva</button>
 			             <button class="btn btn-primary btn-setting elim" style="display: none;">Eliminar Reserva</button>
 			                                                             
 		                </div>
