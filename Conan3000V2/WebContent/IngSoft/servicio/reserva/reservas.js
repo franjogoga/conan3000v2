@@ -118,28 +118,41 @@ function ajax_search(){
 		
 }
 
-function cambiaModo() {
+function cambiaModo(numero) {
 	var temp='';
-	if(atipo==1) {
+	if(numero==2) {
 		atipo=2;
 		temp=$('#titulo').html();
 		temp=temp.replace('AGREGAR','ELIMINAR');
+		temp=temp.replace('BUSCAR','ELIMINAR');
 		$('#titulo').html(temp);
 		$('.elim').css('display','inline');
 		$('.crear').css('display','none');
 		$('.modEliminar').css('display','inline');
 		$('.modAgregar').css('display','none');
 		}
-	else {
+	else if(numero==1){
 		atipo=1;
 		temp=$('#titulo').html();
 		temp=temp.replace('ELIMINAR','AGREGAR');
+		temp=temp.replace('BUSCAR','AGREGAR');
 		$('#titulo').html(temp);
 		$('.crear').css('display','inline');
 		$('.elim').css('display','none');
 		$('.modAgregar').css('display','inline');
 		$('.modEliminar').css('display','none');
-		}	
+		}
+	else if(numero==3){
+		atipo=3;
+		temp=$('#titulo').html();
+		temp=temp.replace('ELIMINAR','BUSCAR');
+		temp=temp.replace('AGREGAR','BUSCAR');
+		$('#titulo').html(temp);
+		$('.crear').css('display','none');
+		$('.elim').css('display','none');
+		$('.modAgregar').css('display','none');
+		$('.modEliminar').css('display','none');		
+	}
 	//$('#TipoCancha').slideUp('fast');
 	//$('#cmbServicios').selectedIndex = 0;
 	$("#resultadoBusqueda").html('');
@@ -180,35 +193,38 @@ function actualizar_pendientes(){
 
 }
 
-function ajax_confirmaSocio(){
+function ajax_confirmaSocio(origen,salida,img){
 	//alert("accion=Buscar"+"&tipo=" + tipo + "&fecIni=" + $(fecIni).val()+"&cmbServicios"+$('#cmbServicios').val());
 	if(lock3==1){
 	lock3=0;
-	if($('#txtDNISocio').val().length >0){
+	if(origen.val().length >0){
 	$.ajax({
 		  type: "POST",
 		  url: "/Conan3000V2/IngSoft/servicio/reserva/SMSReserva",
-		  data: "accion=Buscar"+"&tipo=5" +"&txtDNISocio="+$('#txtDNISocio').val(),
+		  data: "accion=Buscar"+"&tipo=5" +"&txtDNISocio="+origen.val(),
 		  dataType: "text",	
 		   beforeSend: function ( xhr ) {
    		  $('#txtIdSocio').val("");
-			$('#txtNombreSocio').val("");
+			salida.val("");
+			img.css('display','inline');
   		  },	  
 		  success: function(msg){
 			var temp;
 			temp=msg.split('/');
 			$('#txtIdSocio').val(temp[0]);
-			$('#txtNombreSocio').val(temp[1]);
+			salida.val(temp[1]);
+			img.css('display','none');
 			lock3=1;						
 		  },
 		  error: function(objeto, quepaso, otroobj){
+			img.css('display','none');
 		  	lock3=1;
 			alert("ERROR!! No se pudo completar la operacion intente de nuevo");
 		  }
 	
 		});
 		
-	}
+	}else lock3=1;
 	}
 }
 
