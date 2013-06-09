@@ -30,15 +30,13 @@
 			i++;
 		}
 	
+		if(i>0){
+			crearAlert(cadena);
+			return false;
+			}else{
+				return true;
 		
-		crearAlert(cadena);
-		
-		
-		
-		
-		
-		
-
+			}
 	}
 	
 	function alt_agregar(){
