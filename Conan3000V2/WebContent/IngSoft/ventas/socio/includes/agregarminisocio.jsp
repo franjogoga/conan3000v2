@@ -1,16 +1,6 @@
 <%@page import="IngSoft.venta.bean.DistritoMiniBeanData"%>
 <script>
 
-		function validar(form){
-			if(form.txtNombres.value.length <=0)return false;
-			if(form.txtApellidoPaterno.value.length<=0)return false;
-			if(form.txtApellidoMaterno.value.lengtht<=0)return false;
-			if(form.fFechaNacimiento.value.length<=0)return false;
-			//if(form.cmbAmbientes.value.length<=0)return false;
-	return true;
-		
-		
-		}
 
 function alt_submit(){
 		var form= document.frmSocio;
@@ -58,7 +48,7 @@ function anhadir(cod, name){
 			                    <div class="control-group" id="dvNombres">
 			                      <label class="control-label" for="typeahead1">Nombres(*): </label>
 			                      <div class="controls">
-			                        <input type="text" class="span6 typeahead" id="txtNombres" name="txtNombres"  >
+			                        <input type="text" class="span6 typeahead" id="txtNombres" name="txtNombres" onKeyUp="limita(this,50);" onKeyDown="limita(this,50);" onpaste="return false;" >
 			                         <span class="help-inline" id="errNombres">Please correct the error</span>
 		                          </div>
 		                        </div>
@@ -66,7 +56,7 @@ function anhadir(cod, name){
 			                      <div class="control-group" id="dvApellidoP">
 			                        <label class="control-label" for="typeahead2">Apellido Paterno(*): </label>
 			                        <div class="controls">
-			                          <input type="text" class="span6 typeahead" id="txtApellidoPaterno" name="txtApellidoPaterno">
+			                          <input type="text" class="span6 typeahead" id="txtApellidoPaterno" name="txtApellidoPaterno" onKeyUp="limita(this,50);" onKeyDown="limita(this,50);" onpaste="return false;">
 			                           <span class="help-inline" id="errApellidoP">Please correct the error</span>
 		                            </div>
 		                          </div>
@@ -74,7 +64,7 @@ function anhadir(cod, name){
 			                      <div class="control-group" id="dvApellidoM">
 			                        <label class="control-label" for="typeahead3">Apellido Materno(*): </label>
 			                        <div class="controls">
-			                          <input type="text" class="span6 typeahead" id="txtApellidoMaterno" name="txtApellidoMaterno"  data-provide="typeahead">
+			                          <input type="text" class="span6 typeahead" id="txtApellidoMaterno" name="txtApellidoMaterno"  data-provide="typeahead" onKeyUp="limita(this,50);" onKeyDown="limita(this,50);" onpaste="return false;">
 			                           <span class="help-inline" id="errApellidoM">Please correct the error</span>
 		                            </div>
 		                          </div>
@@ -83,7 +73,7 @@ function anhadir(cod, name){
                                   <div class="control-group" id="dvFecha">
 			              		<label class="control-label" for="typeahead4">Fecha Nacimiento(*): </label>
 			              		<div class="controls">
-			               		 <input type="text" class="input-xlarge datepicker" id="fFechaNacimiento" name="fFechaNacimiento">
+			               		 <input type="text" class="input-xlarge datepicker" id="fFechaNacimiento" name="fFechaNacimiento" onKeyUp="limita(this,10);" onKeyDown="limita(this,10);" onpaste="return false;">
 			             		  <span class="help-inline" id="errFecha">Please correct the error</span>
 			             		</div>
 		                		</div>
@@ -120,7 +110,7 @@ function anhadir(cod, name){
 		                          <div class="control-group" id="dvNumDoc">
 			                          <label class="control-label" for="typeahead6">N&uacute;mero de Documento(*): </label>
 			                          <div class="controls">
-			                            <input type="text" class="span6 typeahead" id="txtNumeroDocumento" name="txtNumeroDocumento" data-provide="typeahead" >
+			                            <input type="text" class="span6 typeahead" id="txtNumeroDocumento" name="txtNumeroDocumento" data-provide="typeahead" onKeyUp="limita(this,9);" onKeyDown="limita(this,9);" onpaste="return false;" >
 		                                <span class="help-inline" id="errNumDoc">Please correct the error</span>
 		                              </div>
 		                      	</div>
@@ -128,7 +118,7 @@ function anhadir(cod, name){
 			                        <div class="control-group" id="dvCorreoE">
 			                          <label class="control-label" for="typeahead7">Correo Electr&oacute;nico(*): </label>
 			                          <div class="controls">
-			                            <input type="text" class="span6 typeahead" id="txtCorreoElectronico" name="txtCorreoElectronico"  data-provide="typeahead">
+			                            <input type="text" class="span6 typeahead" id="txtCorreoElectronico" name="txtCorreoElectronico"  data-provide="typeahead" onKeyUp="limita(this,50);" onKeyDown="limita(this,50);" onpaste="return false;">
 		                                 <span class="help-inline" id="errCorreoE">Please correct the error</span>
 		                              </div>
 		                            </div>
@@ -136,7 +126,7 @@ function anhadir(cod, name){
 			                        <div class="control-group" id="dvDireccion">
 			                          <label class="control-label" for="typeahead8">Direcci&oacute;n(*): </label>
 			                          <div class="controls">
-			                            <input type="text" class="span6 typeahead" id="txtDireccion" name="txtDireccion"  data-provide="typeahead" data-items="4">
+			                            <input type="text" class="span6 typeahead" id="txtDireccion" name="txtDireccion"  data-provide="typeahead" data-items="4" onKeyUp="limita(this,100);" onKeyDown="limita(this,100);" onpaste="return false;">
 		                                <span class="help-inline" id="errDireccion">Please correct the error</span>
 		                              </div>
 		                            </div>
@@ -144,7 +134,7 @@ function anhadir(cod, name){
 		                             <div class="control-group" id="dvTelefonoFijo">
 			                        <label class="control-label" for="typeahead9">Tel&eacute;fono Fijo(*): </label>
 			                        <div class="controls">
-			                          <input type="text" class="span6 typeahead" id="txtTelefonoFijo"  name="txtTelefonoFijo" data-provide="txtTelefonoFijo" data-items="4" >
+			                          <input type="text" class="span6 typeahead" id="txtTelefonoFijo"  name="txtTelefonoFijo" data-provide="txtTelefonoFijo" data-items="4" onKeyUp="limita(this,7);" onKeyDown="limita(this,7);" onpaste="return false;" >
 		                            <span class="help-inline" id="errTelefonoFijo">Please correct the error</span>
 									</div>
 		                            </div>
@@ -153,7 +143,7 @@ function anhadir(cod, name){
 		                             <label class="control-label" for="typeahead10">Tel&eacute;fono Celular(*): </label>
 			                        
 			                        <div class="controls">
-			                          <input type="text" class="span6 typeahead" id="txtTelefonoCelular" name="txtTelefonoCelular" data-provide="txtTelefonoCelular" data-items="4" >
+			                          <input type="text" class="span6 typeahead" id="txtTelefonoCelular" name="txtTelefonoCelular" data-provide="txtTelefonoCelular" data-items="4" onKeyUp="limita(this,9);" onKeyDown="limita(this,9);" onpaste="return false;">
 		                            <span class="help-inline" id="errCelular">Please correct the error</span>
 									</div>
 		                            </div>
