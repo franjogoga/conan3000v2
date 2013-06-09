@@ -243,8 +243,10 @@
                           				%>
                           			</td>
                           			<td class="center">
+                          			<!-- cambio del getApaterno() -->
+                          			
                           			<%=
-                          				((ResultadoEmpleadoBeanData)resultados.get(i)).getApellidoPaterno()
+                          				((ResultadoEmpleadoBeanData)resultados.get(i)).getApaterno()
                           				%>
                           			</td>
                           				                          			
