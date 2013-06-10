@@ -152,11 +152,15 @@
 					        </div>
 					
 						<div class="control-group">
-						      <label class="control-label" for="disabledInput"> Area: </label>
-						      <div class="controls">
-						        <input class="input-xlarge disabled" id="txtArea" type="text"  name="txtArea" value="<%= empleado.getArea()%>" onkeypress="return alfanumerico(event);" autofocus>
-					          </div>
-					        </div>
+								<label class="control-label" for="cmbArea">&Aacute;rea (*):</label>
+								<div class="controls">
+								  <select name="cmbArea" id="cmbArea" data-rel="chosen">
+									<option>GERENCIA</option>
+									<option>ADMINISTRACION</option>
+									<option>OPERACIONES</option>
+								  </select>
+								</div>
+							</div>
 					
 						
 			            <div class="form-actions">
