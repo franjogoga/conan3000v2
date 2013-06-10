@@ -1,6 +1,6 @@
 function cambiarClase(elemento){
 	if(atipo==1) cAgregar(elemento);
-	else cEliminar(elemento);
+	else if(atipo==2)cEliminar(elemento);
 
 	
 }
@@ -46,7 +46,17 @@ function cEliminar(elemento){
 		else pendientes=pendientes.replace(temp,"");
 		}	
 }
-
+function actFecha(elem){
+	var temp= elem.val();
+	var now=$.datepicker.parseDate("dd/mm/yy",temp);
+	a=now.getDay();
+	if(a==0)a=6;
+	else a=a-1;
+	now.setDate(now.getDate()-a);
+	$('#fFechaIni').val($.datepicker.formatDate("dd/mm/yy",now));
+	now.setDate(now.getDate()+6);
+	$('#fFechaFin').val($.datepicker.formatDate("dd/mm/yy",now));
+}
 
 function ajax_submit(tipo){
 	//alert("accion=Buscar"+"&tipo=" + tipo + "&fecIni=" + $(fecIni).val()+"&cmbServicios"+$('#cmbServicios').val());
@@ -125,6 +135,13 @@ function cambiaModo(numero) {
 		temp=$('#titulo').html();
 		temp=temp.replace('AGREGAR','ELIMINAR');
 		temp=temp.replace('BUSCAR','ELIMINAR');
+		$('#txtDocSocio').prop('disabled', false);
+		$('#txtNomSocio').prop('disabled', false);
+		$('#txtDocSocio').val('');
+		$('#txtNomSocio').val('');
+		$('#txtIdSocio').val('');
+		$('#txtDNISocio').val('');
+		$('#txtNombreSocio').val('');
 		$('#titulo').html(temp);
 		$('.elim').css('display','inline');
 		$('.crear').css('display','none');
@@ -136,6 +153,13 @@ function cambiaModo(numero) {
 		temp=$('#titulo').html();
 		temp=temp.replace('ELIMINAR','AGREGAR');
 		temp=temp.replace('BUSCAR','AGREGAR');
+		$('#txtDocSocio').prop('disabled', true);
+		$('#txtNomSocio').prop('disabled', true);
+		$('#txtDocSocio').val('');
+		$('#txtNomSocio').val('');
+		$('#txtIdSocio').val('');
+		$('#txtDNISocio').val('');
+		$('#txtNombreSocio').val('');
 		$('#titulo').html(temp);
 		$('.crear').css('display','inline');
 		$('.elim').css('display','none');
@@ -147,6 +171,13 @@ function cambiaModo(numero) {
 		temp=$('#titulo').html();
 		temp=temp.replace('ELIMINAR','BUSCAR');
 		temp=temp.replace('AGREGAR','BUSCAR');
+		$('#txtDocSocio').prop('disabled', false);
+		$('#txtNomSocio').prop('disabled', false);
+		$('#txtDocSocio').val('');
+		$('#txtNomSocio').val('');
+		$('#txtIdSocio').val('');
+		$('#txtDNISocio').val('');
+		$('#txtNombreSocio').val('');
 		$('#titulo').html(temp);
 		$('.crear').css('display','none');
 		$('.elim').css('display','none');
@@ -224,13 +255,18 @@ function ajax_confirmaSocio(origen,salida,img){
 	
 		});
 		
-	}else lock3=1;
+	}else{
+		$('#txtNomSocio').val('');
+		$('#txtIdSocio').val('');
+		$('#txtNombreSocio').val('');
+		lock3=1;}
 	}
 }
 
 function ajax_crearReserva(){
 //alert("accion=Buscar"+"&tipo=" + tipo + "&fecIni=" + $(fecIni).val()+"&cmbServicios"+$('#cmbServicios').val());
 if(lock4==1){
+	if($('#txtIdSocio').val().length >0){
 	lock4=0;
 	$.ajax({
 		  type: "POST",
@@ -262,7 +298,8 @@ if(lock4==1){
 		  }
 	
 		});
-		}
+} alert("Debe seleccionar un socio")
+	}
 }
 
 function ajax_elim(){
@@ -302,7 +339,6 @@ function ajax_elim(){
 	
 	
 }
-
 
 function activarTipoCancha(elem){
 var temp=$('#TipoCancha');
