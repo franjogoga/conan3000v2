@@ -22,7 +22,7 @@ public class AccionModificarEmpleado extends CoAccion {
 
 		if (Integer.valueOf(request.getParameter("tipo")) == 2) {
 
-			EmpleadoBeanData empleadoData = empleadoFuncion.crearEmpleado(request, response);
+			EmpleadoBeanData empleadoData = empleadoFuncion.crearEmpleado2(request, response);
 					
 			empleadoData.setCodigo(request.getParameter("codigo"));
 			empleadoFuncion.modificarEmpleado(empleadoData);
