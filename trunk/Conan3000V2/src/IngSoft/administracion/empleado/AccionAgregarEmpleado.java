@@ -25,6 +25,7 @@ public class AccionAgregarEmpleado extends CoAccion {
 		
 		if(tipo==2){
 		
+		//funcionando	
 		EmpleadoBeanFuncion empleadoFuncion= EmpleadoBeanFuncion.getInstance();
 		EmpleadoBeanData empleadoData = empleadoFuncion.crearEmpleado(request, response);
 			
