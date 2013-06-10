@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Data.administracion.concesionario">
+	<cache />
+
+	<select id="searchConcesionario" parameterType="IngSoft.administracion.bean.CriterioConcesionarioBeanData" resultType="IngSoft.administracion.bean.ResultadoConcesionarioBeanData">
+		SELECT IdConcesionario as codigo, RazonSocial as razonSocial, Ruc as ruc, Estado as estado
+		FROM CONCESIONARIO
+		<where>
+		<if test="razonSocial != null">
+       		RazonSocial  like  #{razonSocial}
+    	</if>
+    	<if test="ruc != 0">
+       		AND Ruc = #{ruc}
+    	</if>
+    		AND (Estado='Activo' OR Estado='Inactivo')
+		</where>
+	</select>
+
+	<insert id="insertConcesionario" parameterType="IngSoft.administracion.bean.ConcesionarioBeanData" flushCache="true">
+		insert into CONCESIONARIO (IdConcesionario,RazonSocial,Ruc,Descripcion,Estado)
+		values (#{codigo},#{razonSocial},#{ruc},#{descripcion},'Activo')
+	</insert>
+
+	<select id="getNextCodigo" resultType="java.lang.String">
+	 	SELECT MAX(IdConcesionario) FROM CONCESIONARIO
+	</select>
+
+	<select id="getConcesionario" parameterType="java.lang.String"  resultType="IngSoft.administracion.bean.ConcesionarioBeanData">
+		SELECT IdConcesionario as codigo, RazonSocial as razonSocial, Ruc as ruc, Descripcion as descripcion, Estado as estado
+		FROM CONCESIONARIO
+		WHERE (Estado = 'Activo' OR Estado = 'Inactivo') AND  IdConcesionario = #{codigo}; 
+	</select>
+
+	<update id="updateConcesionario" parameterType="IngSoft.administracion.bean.ConcesionarioBeanData">
+		update CONCESIONARIO set
+		RazonSocial = #{razonSocial},
+		Ruc = #{ruc},
+		Descripcion = #{descripcion},
+		Estado = #{estado}
+	 	where IdConcesionario = #{codigo}
+	</update>
+
+	<update id="deleteConcesionario" parameterType="java.lang.String" >
+		UPDATE CONCESIONARIO SET Estado='Eliminado' WHERE IdConcesionario = #{codigo}
+	</update>
+</mapper>
