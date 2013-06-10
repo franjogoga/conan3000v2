@@ -108,7 +108,10 @@
         <servlet-name>SMAJornada</servlet-name>
 	<servlet-class>IngSoft.administracion.jornada.SMAJornada</servlet-class>				   
 </servlet>
-
+<servlet id="Servlet_0025">
+        <servlet-name>SMAConcesionario</servlet-name>
+	<servlet-class>IngSoft.administracion.concesionario.SMAConcesionario</servlet-class>				   
+</servlet>
 
 
 <servlet-mapping id="ServletMapping_0001">
@@ -210,6 +213,10 @@
 <servlet-mapping id="ServletMapping_0024">
         <servlet-name>SMAJornada</servlet-name>
 <url-pattern>/IngSoft/administracion/jornada/SMAJornada</url-pattern>
+</servlet-mapping>
+<servlet-mapping id="ServletMapping_0025">
+        <servlet-name>SMAConcesionario</servlet-name>
+<url-pattern>/IngSoft/administracion/concesionario/SMAConcesionario</url-pattern>
 </servlet-mapping>
 
 <error-page>
