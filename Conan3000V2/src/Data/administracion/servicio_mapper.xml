@@ -15,7 +15,7 @@
     	<if test="idAmbiente != null ">
        		AND a.IdAmbiente = #{idAmbiente}
     	</if>
-    		AND se.idAmbiente=a.idAmbiente AND a.IdSede=s.IdSede AND (se.Estado='Activo' OR se.Estado='Inactivo')
+    		AND se.IdAmbiente=a.IdAmbiente AND a.IdSede=s.IdSede AND (se.Estado='Activo' OR se.Estado='Inactivo')
 		</where>
 	</select>
 
