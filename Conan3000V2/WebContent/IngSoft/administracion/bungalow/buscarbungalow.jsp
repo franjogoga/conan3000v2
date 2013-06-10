@@ -102,8 +102,7 @@
 				</ul>
 			</div>
 			
-			<div class="row-fluid sortable">		
-				
+			<div class="row-fluid sortable">
                 <div class="row-fluid sortable">
                   <div class="box span12">
                     <div class="box-header well" data-original-title>
@@ -214,11 +213,7 @@
                 <!--/span-->
 			
 			</div><!--/row-->
-                
-                
-                
-                
-                
+                                
 
 			<div class="row-fluid sortable"><!--/span--><!--/span-->
 			</div><!--/row-->
@@ -233,7 +228,6 @@
 					<!-- content ends -->
 			</div><!--/#content.span10-->
 				</div><!--/fluid-row-->
-				
 		<hr>
 
 		<div class="modal hide fade" id="myModal">
@@ -327,7 +321,6 @@
 	<script src="js/jquery.history.js"></script>
 	<!-- application script for Charisma demo -->
 	<script src="js/charisma.js"></script>
-	
 		
 </body>
 </html>
