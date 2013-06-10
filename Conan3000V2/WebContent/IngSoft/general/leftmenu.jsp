@@ -7,7 +7,8 @@
 						<li><a class="ajax-link administracion" href="<%=request.getContextPath()%>/IngSoft/administracion/actividad/SMAActividad?accion=Buscar&tipo=1"style="display:none"><i class="icon-wrench"></i><span class="hidden-tablet"> Actividades</span></a></li>
 						<li><a class="ajax-link administracion" href="<%=request.getContextPath()%>/IngSoft/administracion/ambiente/SMAAmbiente?accion=Buscar&tipo=1"style="display:none"><i class="icon-wrench"></i><span class="hidden-tablet"> Ambientes</span></a></li>
 						<li><a class="ajax-link administracion" href="<%=request.getContextPath()%>/IngSoft/administracion/bungalow/SMABungalow?accion=Buscar&tipo=1"style="display:none"><i class="icon-wrench"></i><span class="hidden-tablet"> Bungalows</span></a></li>
-						<li><a class="ajax-link administracion" href="<%=request.getContextPath()%>/IngSoft/administracion/cancha/SMACancha?accion=Buscar&tipo=1"style="display:none"><i class="icon-wrench"></i><span class="hidden-tablet"> Canchas </span></a></li>      
+						<li><a class="ajax-link administracion" href="<%=request.getContextPath()%>/IngSoft/administracion/cancha/SMACancha?accion=Buscar&tipo=1"style="display:none"><i class="icon-wrench"></i><span class="hidden-tablet"> Canchas </span></a></li>
+						<li><a class="ajax-link venta" href="<%=request.getContextPath()%>/IngSoft/administracion/concesionario/buscarconcesionario.jsp"style="display:none"><i class="icon-wrench"></i><span class="hidden-tablet"> Concesionarios</span></a></li>      
 						<li><a class="ajax-link administracion" href="<%=request.getContextPath()%>/IngSoft/administracion/configuracion/configuracion.jsp"style="display:none"><i class="icon-wrench"></i><span class="hidden-tablet"> Configuracion</span></a></li>   
 						<li><a class="ajax-link administracion" href="<%=request.getContextPath()%>/IngSoft/administracion/empleados/buscarempleado.jsp"style="display:none"><i class="icon-wrench"></i><span class="hidden-tablet"> Empleados</span></a></li>
 						<li><a class="ajax-link administracion" href="<%=request.getContextPath()%>/IngSoft/administracion/horarioactividad/buscarhorarioactividad.jsp"style="display:none"><i class="icon-wrench"></i><span class="hidden-tablet"> Horario Actividad</span></a></li>
@@ -20,7 +21,7 @@
 						<li><a class="ajax-link administracion" href="<%=request.getContextPath()%>/IngSoft/administracion/socio/accionsocio.jsp"style="display:none"><i class="icon-wrench"></i><span class="hidden-tablet"> Socio</span></a></li>
 						<li><a class="ajax-link administracion" href="<%=request.getContextPath()%>/IngSoft/administracion/usuarios/buscarusuario.jsp"style="display:none"><i class="icon-wrench"></i><span class="hidden-tablet"> Usuarios</span></a></li>
 						<li><a class="ajax-link administracion" href="<%=request.getContextPath()%>/IngSoft/administracion/invitados/visitaregistrar.jsp"style="display:none"><i class="icon-wrench"></i><span class="hidden-tablet"> Visitas</span></a></li>
-
+				
 
 						<a style="CURSOR: hand; text-decoration:none" href="#"> <li class="nav-header hidden-tablet" onclick="$('.servicio').slideToggle(800)">Servicios</li> </a>
 						<li><a class="ajax-link servicio" href="<%=request.getContextPath()%>/IngSoft/servicio/evento/SMSEvento?accion=Buscar&tipo=1"style="display:none"><i class="icon-wrench"></i><span class="hidden-tablet"> Eventos</span></a></li>
@@ -31,7 +32,7 @@
 						
   						
 						<a style="CURSOR: hand; text-decoration:none" href="#"> <li class="nav-header hidden-tablet" onclick="$('.venta').slideToggle(800)">Ventas</li> </a>  					
-						<li><a class="ajax-link venta" href="<%=request.getContextPath()%>/IngSoft/administracion/concesionario/buscarconcesionario.jsp"style="display:none"><i class="icon-wrench"></i><span class="hidden-tablet"> Concesionarios</span></a></li>
+						
 						<li><a class="ajax-link venta" href="<%=request.getContextPath()%>/IngSoft/administracion/cuotasmultas/cuotaagregar.jsp"style="display:none"><i class="icon-wrench"></i><span class="hidden-tablet"> Cuotas</span></a></li>
 						<li><a class="ajax-link venta" href="<%=request.getContextPath()%>/IngSoft/ventas/familia/buscarfamiliar.jsp"style="display:none"><i class="icon-wrench"></i><span class="hidden-tablet"> Familiares</span></a></li>
 						<li><a class="ajax-link venta" href="<%=request.getContextPath()%>/IngSoft/ventas/membresia/buscarmembresia.jsp"style="display:none"><i class="icon-wrench"></i><span class="hidden-tablet"> Membresias</span></a></li>
