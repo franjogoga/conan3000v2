@@ -10,7 +10,7 @@
 		FROM CANCHA c, TIPO_CANCHA tc, AMBIENTE a, SEDE s
 		<where>
 		<if test="nombre != null">
-       		c.Nombre = #{nombre}
+       		c.Nombre like #{nombre}
     	</if>
     	<if test="idTipoCancha != null">
        		AND c.IdTipoCancha = #{idTipoCancha}
