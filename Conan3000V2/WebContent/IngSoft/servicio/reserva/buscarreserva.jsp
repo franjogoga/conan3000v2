@@ -51,7 +51,9 @@
 
 	<!-- The fav icon -->
 	<link rel="shortcut icon" href="img/favicon.ico">
-		
+	
+	<!-- jQuery -->
+	<script src="js/jquery-1.7.2.min.js"></script>	
 	<script> 
 var pendientes="";
 var cancelados="";
@@ -59,8 +61,9 @@ var lock1=1;
 var lock2=1;
 var lock3=1;
 var lock4=1;
-var ctipo=2;
-var atipo=1;
+var ctipo=3;
+var atipo=3;
+
 </script>
 <script src="reservas.js"></script>	
 </head>
@@ -121,7 +124,7 @@ var atipo=1;
 						<input type="hidden" name="reservas" value=""></input>
 						
 						  <fieldset>
-					<div class="control-group">
+					<div class="control-group" id="alt_socioDoc">
 						      <label class="control-label" for="typeahead7">Documento de socio(*): </label>
 						      <div class="controls">
 						        <input type="text" class="span3 typeahead"  data-provide="typeahead"  id="txtDocSocio" name="txtDocSocio" onblur="javascript:ajax_confirmaSocio($(this),$('#txtNomSocio'),$('#imagenCargaTxt'));" autofocus maxlength="50"/>
@@ -130,21 +133,13 @@ var atipo=1;
 																						        													      
 					          </div>
 					        </div>
-					 <div class="control-group">
+					 <div class="control-group" id="alt_socioNom">
 						      <label class="control-label" for="typeahead7">Nombre de socio(*): </label>
 						      <div class="controls">
 						        <input type="text" class="span3 typeahead"  data-provide="typeahead"  id="txtNomSocio" name="txtNomSocio"  autofocus maxlength="50" readonly="readonly"/>
 								<span class="help-inline" id="errNombreSocio" style="display:none;">Este campo no puede estar vacio</span>						        													       
 					          </div>
-					 </div>	
-					 <div class="control-group">
-								<label class="control-label" for="appendedInputButton">Append with button</label>
-								<div class="controls">
-								  <div class="input-append">
-									<input id="appendedInputButton" size="16" type="text"><button class="btn" type="button">s</button>
-								  </div>
-								</div>
-							  </div>	
+					 </div>						 	
 					<div class="control-group">
 								<label class="control-label" for="cmbSedes">Sedes relacionadas(*):</label>
 								<div class="controls">
@@ -174,6 +169,13 @@ var atipo=1;
 								  </select>
 								</div>
 						  </div>
+						  <div class="control-group">
+							  <label class="control-label" for="date01">Semana</label>
+							  <div class="controls">
+								<input type="text" class="datepicker" id="fFechaIni" name="fFechaIni" readonly="readonly"  onchange="actFecha($(this))">&nbsp;a&nbsp;
+								<input type="text" id="fFechaFin" name="fFechaFin" readonly="readonly">
+							  </div>
+							</div>
 							<div class="form-actions">
 							  <button type="submit" class="btn btn-primary">Buscar</button>
 							 <!--<button type="reset" class="btn">Limpiar</button>-->
@@ -247,8 +249,7 @@ var atipo=1;
 	================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->
 
-	<!-- jQuery -->
-	<script src="js/jquery-1.7.2.min.js"></script>
+	
 	<!-- jQuery UI -->
 	<script src="js/jquery-ui-1.8.21.custom.min.js"></script>
 	<!-- transition / effect library -->
@@ -316,7 +317,16 @@ var atipo=1;
 	<script src="js/jquery.history.js"></script>
 	<!-- application script for Charisma demo -->
 	<script src="js/charisma.js"></script>
-	
+	<script>
+		var now=new Date();
+		a=now.getDay();
+		if(a==0)a=6;
+		else a=a-1;
+		now.setDate(now.getDate()-a);
+		$('#fFechaIni').val($.datepicker.formatDate("dd/mm/yy",now));
+		now.setDate(now.getDate()+6);
+		$('#fFechaFin').val($.datepicker.formatDate("dd/mm/yy",now));
+	</script>
 		
 </body>
 </html>
