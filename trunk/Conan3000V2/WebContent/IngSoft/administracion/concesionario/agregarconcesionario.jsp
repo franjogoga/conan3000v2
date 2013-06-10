@@ -1,18 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<!--
-		Charisma v1.0.0
-
-		Copyright 2012 Muhammad Usman
-		Licensed under the Apache License v2.0
-		http://www.apache.org/licenses/LICENSE-2.0
-
-		http://usman.it
-		http://twitter.com/halalit_usman
-	-->
 	<meta charset="utf-8">
-	<title>Conan3000</title>
+	<title>Agregar Concesionario</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
 	<meta name="author" content="Muhammad Usman">
@@ -52,6 +42,12 @@
 	<!-- The fav icon -->
 	<link rel="shortcut icon" href="img/favicon.ico">
 		
+	<script>
+	function alt_submit(){
+		var form= document.frmData;
+		if(validaForm()) form.submit();
+	}
+	</script>
 </head>
 
 <body>
@@ -75,72 +71,48 @@
               <div>
                 <ul class="breadcrumb">
                   <li> <a href="../../general/index.jsp">Home</a> <span class="divider">/</span> </li>
-                  <li> <a href="#">Mantenimiento de Concesionarios</a> <span class="divider">/</span></li>
+                  <li> <a href="buscarconcesionario.jsp">Mantenimiento de Concesionarios</a> <span class="divider">/</span></li>
                   <li>Agregar Concesionario</li>
                 </ul>
               </div>
               <div class="row-fluid sortable">
                 <div class="box span12">
                   <div class="box-header well" data-original-title>
-                    <h2></i>AGREGAR CONCESIONARIO</h2>
+                    <h2>AGREGAR CONCESIONARIO</h2>
                   </div>
                   <div class="box-content">
-                    <form class="form-horizontal">
+                    <form class="form-horizontal" action="<%=response.encodeURL("SMAConcesionario")%>" name="frmData" method="post">
+                    <input type="hidden" name="accion" value="Agregar"></input>
+					<input type="hidden" name="tipo" value="2"></input>
                       <fieldset>
-                        <div class="control-group">
-                          <label class="control-label" for="typeahead">Raz&oacuten Social (*):</label>
+                        <div class="control-group" id="dvRazonSocial">
+                          <label class="control-label" for="typeahead">Raz&oacute;n Social (*):</label>
                           <div class="controls">
-                            <input type="text" class="span6 typeahead" id="typeahead"  data-provide="typeahead" >
+                            <input type="text" class="span6 typeahead" id="txtRazonSocial" name="txtRazonSocial" data-provide="typeahead" >
+                          	<span class="help-inline" id="errRazonSocial">Please correct the error</span>
                           </div>
                         </div>
-                        <div class="control-group">
+                        <div class="control-group" id="dvRuc">
                           <label class="control-label" for="typeahead2">RUC (*):</label>
                           <div class="controls">
-                            <input type="text" class="span6 typeahead" id="typeahead2"  data-provide="typeahead" >
+                            <input type="text" class="span6 typeahead" id="txtRuc" name="txtRuc" data-provide="typeahead" >
+                            <span class="help-inline" id="errRuc">Please correct the error</span>
                           </div>
                         </div>
-                        <div class="control-group">
-                          <label class="control-label" for="selectError">Tipo (*):</label>
+                        <div class="control-group" id="dvDescripcion">
+                  		  <label class="control-label" for="textarea2">Descripci&oacute;n:</label>
                           <div class="controls">
-                            <select name="selectError" id="selectError" data-rel="chosen">
-                              <option>Pastas</option>
-                              <option>Criolla</option>
-                              <option>Pasteler&iacutea</option>
-                            </select>
-                          </div>
-                        </div>
-                        <div class="control-group">
-                          <label class="control-label" for="selectError">Sede (*):</label>
-                          <div class="controls">
-                            <select name="selectError2" id="selectError2" data-rel="chosen">
-                              <option>Chosica</option>
-                            </select>
-                          </div>
-                        </div>
-                        <div class="control-group">
-                          <label class="control-label" for="date01">Fecha inicial de concesi&oacuten (*):</label>
-                          <div class="controls">
-                            <input type="text" class="input-xlarge datepicker" id="date01" value="" readonly="true">
-                          </div>
-                        </div>
-                        <div class="control-group">
-                          <label class="control-label" for="date01">Fecha final de concesi&oacuten (*):</label>
-                          <div class="controls">
-                            <input type="text" class="input-xlarge datepicker" id="date02" value="" readonly="true">
-                          </div>
-                        </div>
-                        <div class="control-group">
-                  		  <label class="control-label" for="textarea2">Descripci&oacuten (*):</label>
-                          <div class="controls">
-                            <textarea name="textarea" rows="3" id="textarea2" style="resize:none"></textarea>
+                            <textarea name="txtDescripcion" rows="3" id="txtDescripcion" style="resize:none"></textarea>
+                          	<span class="help-inline" id="errDescripcion">Please correct the error</span>
                           </div>
                         </div>
                         <div class="form-actions">
-                          <button type="submit" class="btn btn-primary">Agregar</button>
-                          <button type="reset" class="btn">Cancelar</button>
+                          <button type="button" class="btn btn-primary" onclick="javascript:alt_submit()">Agregar</button>
+                          <button type="button" class="btn" onclick="location.href='buscarconcesionario.jsp'">Cancelar</button>
                         </div>
                       </fieldset>
-                    </form>(*) Datos Obligatorios
+                    </form>
+					<span style="font-size:70%">(*)Campos Obligatorios</span>
                   </div>
                 </div>
                 <!--/span-->
@@ -255,6 +227,72 @@
 	<!-- application script for Charisma demo -->
 	<script src="js/charisma.js"></script>
 	
-		
+	<script type="text/javascript" src="js/apprise-1.5.full.js"></script>
+	<link rel="stylesheet" href="css/apprise.css" type="text/css" />
+	<script type="text/javascript" src="js/script.js"></script>
+                <script>
+ 
+ 
+function validaForm(){
+                /*
+        esValido(nombre, casilla, id, tipoValidacion, minimo,maximo)
+        nombre: es el nombre de la casilla: ejemplo -> Nombre, Apellido, Fecha de Nacimiento, etc
+        casilla: corresponde a la casilla en si, para esto colocamos por ejemplo form.txtNombre, donde form ya fue definido
+        id: identificador de los divs para efectuar las validaciones
+        tipoValidacion: es un valor numerico el cual permite identificar el tipo de validacion que se efectuara
+        1: Validacion con cantidad de caracteres Minimo y maximo
+        2: Validación de cantidad de caracteres de fecha
+        3: validacion de llenado de radio button
+        4: Validacion de alfanumerico
+        5: validacion de valores Float
+        6: Validacion de enteros
+        7: Validacion de fechas
+        minimo: valor numerico que indica la menor cantidad de caracteres que como minimo debe ser llenado (Solo para tipoValidacion 1 y 2, en el resto poner 1)
+        maximo: valor numerico que indica la maxima cantidad de caracteres que como maximo debe ser llenado (Solo para tipoValidacion 1 y 2, en el resto poner 1)
+       
+        El valor que va en cadena[i] es el nombre del campo
+       
+        #############################ADICIONAL#########################
+        Para validar una fecha Inicial y fecha Final usar la siguiente funcion
+        validarFechas(nombre[Fecha Final], casilla[Fecha Final], id[Fecha Final],nombre[Fecha Inicial],casilla[Fecha Inicial])
+        OJO: no va como parametro el id de la fecha Inicial
+        ###############################################################
+       
+        */
+       
+        var form=document.frmData;
+ 
+        var cadena= new Array();
+        var i=0;
+        var error=false;
+        
+        if(!esValido("Raz&oacute;n Social",form.txtRazonSocial,"RazonSocial",1,1,100)){cadena[i]="Raz&oacute;n Social";i++;}
+        
+        if(!esValido("RUC",form.txtRuc,"Ruc",1,11,11)){cadena[i]="RUC";i++;}else{
+			if(!esValido("RUC",form.txtRuc,"Ruc",6,11,11)){cadena[i]="RUC";i++;}
+		}
+
+        if(!esValido("Descripci&oacute;n",form.txtDescripcion,"Descripcion",1,0,100)){cadena[i]="Descripci&oacute;n";i++;}
+        
+        //No tocar
+        if(i>0){
+        crearAlert(cadena);
+        return false;
+        }else{
+                return true;               
+        }
+}
+ 
+ 
+function inicializa(){
+        document.getElementById("errRazonSocial").style.display='none';
+        document.getElementById("errRuc").style.display='none';
+        document.getElementById("errDescripcion").style.display='none'; 
+}
+ 
+inicializa();
+ 
+</script>
+	
 </body>
 </html>
