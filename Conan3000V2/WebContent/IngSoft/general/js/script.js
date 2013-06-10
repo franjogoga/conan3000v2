@@ -269,10 +269,17 @@ function esValido(nombre, casilla, id, tipoValidacion, minimo,maximo){
 	
 	var status;
 	switch(tipoValidacion){
-		case 1: 
-			status=esCorrecto(casilla.value,minimo,maximo);
-			mensaje="La casilla "+nombre+" debe tener entre "+minimo+" a "+maximo+" caracteres";
-			break;
+		case 1:
+			if (minimo==maximo){
+				status=esCorrecto(casilla.value,minimo,maximo);
+				mensaje="La casilla "+nombre+" debe tener "+minimo+" caracteres";
+				break;
+			}
+			else {
+				status=esCorrecto(casilla.value,minimo,maximo);
+				mensaje="La casilla "+nombre+" debe tener entre "+minimo+" a "+maximo+" caracteres";
+				break;
+			}
 		case 2:	
 			status=esCorrecto(casilla.value,minimo,maximo);
 			mensaje="La casilla "+nombre+" no ha sido llenado correctamente";
