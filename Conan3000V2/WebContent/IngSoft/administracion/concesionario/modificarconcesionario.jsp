@@ -1,22 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<!--
-		Charisma v1.0.0
-
-		Copyright 2012 Muhammad Usman
-		Licensed under the Apache License v2.0
-		http://www.apache.org/licenses/LICENSE-2.0
-
-		http://usman.it
-		http://twitter.com/halalit_usman
-	-->
 	<meta charset="utf-8">
-	<title>Conan3000</title>
+	<title>Modificar Concesionario</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
 	<meta name="author" content="Muhammad Usman">
 
+	<!--The beans  -->
+	<jsp:useBean id="concesionario" scope="request" class="IngSoft.administracion.bean.ConcesionarioBeanData"></jsp:useBean>
+	
 	<!-- The styles -->
 	<link id="bs-css" href="css/bootstrap-cerulean.css" rel="stylesheet">
 	<style type="text/css">
@@ -51,7 +44,33 @@
 
 	<!-- The fav icon -->
 	<link rel="shortcut icon" href="img/favicon.ico">
+	
+	<script>
+	
+	function alt_submit(){
+		var form= document.frmUpdate;
+		if(validaForm()) form.submit();
+	}
+	</script>
+	<%! public boolean  encontrar(String a, String b){		
+			if(b.equals(a)) return true;
+			return false;
+		}
 		
+		public boolean Estado_Activo (String estado){
+			if (estado.equals("Activo"))
+				return true;
+			else
+				return false;
+		}
+	
+		public boolean Estado_Inactivo(String estado){
+			if (estado.equals("Inactivo"))
+				return true;
+			else
+				return false;
+		}
+	%>	
 </head>
 
 <body>
@@ -75,84 +94,63 @@
               <div>
                 <ul class="breadcrumb">
                   <li> <a href="../../general/index.jsp">Home</a> <span class="divider">/</span> </li>
-                  <li> <a href="#">Mantenimiento de Concesionarios</a> <span class="divider">/</span></li>
+                  <li> <a href="buscarconcesionario.jsp">Mantenimiento de Concesionarios</a> <span class="divider">/</span></li>
                   <li>Modificar Concesionario</li>
                 </ul>
               </div>
               <div class="row-fluid sortable">
                 <div class="box span12">
                   <div class="box-header well" data-original-title>
-                    <h2></i>MODIFICAR CONCESIONARIO</h2>
+                    <h2>MODIFICAR CONCESIONARIO</h2>
                   </div>
                   <div class="box-content">
-                    <form class="form-horizontal">
+                    <form class="form-horizontal" action="<%= response.encodeURL("SMAConcesionario")%>" name="frmUpdate" method="post">
+                      <input type="hidden" name="codigo" value="<%=concesionario.getCodigo()%>"></input>                      
+                      <input type="hidden" name="accion" value="Modificar"></input>
+					  <input type="hidden" name="tipo" value="2"></input>
                       <fieldset>
-                        <div class="control-group">
-                          <label class="control-label" for="typeahead">Raz&oacute Social (*):</label>
+                        <div class="control-group" id="dvRazonSocial">
+                          <label class="control-label" for="typeahead">Raz&oacute;n Social (*):</label>
                           <div class="controls">
-                            <input type="text" class="span6 typeahead" id="typeahead"  data-provide="typeahead" placeholder="Pizzas Saul">
+                            <input type="text" class="span6 typeahead" id="txtRazonSocial" name="txtRazonSocial" data-provide="typeahead" value="<%=concesionario.getRazonSocial()%>">
+                          	<span class="help-inline" id="errRazonSocial">Please correct the error</span>
                           </div>
                         </div>
-                        <div class="control-group">
+                        <div class="control-group" id="dvRuc">
                           <label class="control-label" for="typeahead2">RUC (*):</label>
                           <div class="controls">
-                            <input type="text" class="span6 typeahead" id="typeahead2"  data-provide="typeahead" placeholder="00912947361">
+                            <input type="text" class="span6 typeahead" id="txtRuc" name="txtRuc" data-provide="typeahead" value="<%=concesionario.getRuc()%>">
+                          	<span class="help-inline" id="errRuc">Please correct the error</span>
                           </div>
                         </div>
-                        <div class="control-group">
-                          <label class="control-label" for="selectError">Tipo (*):</label>
+                        <div class="control-group" id="dvDescripcion">
+                  		  <label class="control-label" for="textarea2">Descripci&oacute;n (*):</label>
                           <div class="controls">
-                            <select name="selectError" id="selectError" data-rel="chosen">
-                              <option>Pastas</option>
-                            </select>
-                          </div>
-                        </div>
-                        <div class="control-group">
-                          <label class="control-label" for="selectError">Sede (*):</label>
-                          <div class="controls">
-                            <select name="selectError2" id="selectError2" data-rel="chosen">
-                              <option>Chosica</option>
-                            </select>
-                          </div>
-                        </div>
-                        <div class="control-group">
-                          <label class="control-label" for="date01">Fecha inicial de concesi&oacuten (*):</label>
-                          <div class="controls">
-                            <input type="text" class="input-xlarge datepicker" id="date01" value="02/16/2009" readonly="true">
-                          </div>
-                        </div>
-                        <div class="control-group">
-                          <label class="control-label" for="date01">Fecha final de concesi&oacuten (*):</label>
-                          <div class="controls">
-                            <input type="text" class="input-xlarge datepicker" id="date02" value="02/16/2014" readonly="true">
-                          </div>
-                        </div>
-                        <div class="control-group">
-                  		  <label class="control-label" for="textarea2">Descripci&oacuten (*):</label>
-                          <div class="controls">
-                            <textarea name="textarea" rows="3" id="textarea2" style="resize:none" placeholder="Pastas y pizzas."></textarea>
+                            <textarea name="txtDescripcion" rows="3" id="txtDescripcion" style="resize:none"><%=concesionario.getDescripcion()%></textarea>
+                          	<span class="help-inline" id="errDescripcion">Please correct the error</span>
                           </div>
                         </div>
                         <div class="control-group">
 								<label class="control-label" for="typeahead3">Estado:</label>
 								<div class="controls">
 								  <label class="radio">
-									<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
+									<input type="radio" name="optionsRadios" id="optionsRadios1" value="Activo" <%=Estado_Activo(concesionario.getEstado())?"checked":""%>>
 									Activo
 								  </label>
 								  <div style="clear:both"></div>
 								  <label class="radio">
-									<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+									<input type="radio" name="optionsRadios" id="optionsRadios2" value="Inactivo" <%=Estado_Inactivo(concesionario.getEstado())?"checked":""%>>
 									Inactivo
 								  </label>
 								</div>
 							  </div>
                         <div class="form-actions">
-                          <button type="submit" class="btn btn-primary">Guardar</button>
-                          <button type="reset" class="btn">Cancelar</button>
+                          <button type="button" class="btn btn-primary" onclick="javascript:alt_submit()">Guardar</button>
+                          <button type="button" class="btn" onclick="location.href='buscarconcesionario.jsp'">Cancelar</button>
                         </div>
                       </fieldset>
-                    </form>(*) Datos Obligatorios
+                    </form>
+                    <span style="font-size:70%">(*)Campos Obligatorios</span>
                   </div>
                 </div>
                 <!--/span-->
@@ -266,6 +264,72 @@
 	<!-- application script for Charisma demo -->
 	<script src="js/charisma.js"></script>
 	
-		
+	<script type="text/javascript" src="js/apprise-1.5.full.js"></script>
+<link rel="stylesheet" href="css/apprise.css" type="text/css" />
+<script type="text/javascript" src="js/script.js"></script>
+                <script>
+ 
+ 
+function validaForm(){
+                /*
+        esValido(nombre, casilla, id, tipoValidacion, minimo,maximo)
+        nombre: es el nombre de la casilla: ejemplo -> Nombre, Apellido, Fecha de Nacimiento, etc
+        casilla: corresponde a la casilla en si, para esto colocamos por ejemplo form.txtNombre, donde form ya fue definido
+        id: identificador de los divs para efectuar las validaciones
+        tipoValidacion: es un valor numerico el cual permite identificar el tipo de validacion que se efectuara
+        1: Validacion con cantidad de caracteres Minimo y maximo
+        2: Validación de cantidad de caracteres de fecha
+        3: validacion de llenado de radio button
+        4: Validacion de alfanumerico
+        5: validacion de valores Float
+        6: Validacion de enteros
+        7: Validacion de fechas
+        minimo: valor numerico que indica la menor cantidad de caracteres que como minimo debe ser llenado (Solo para tipoValidacion 1 y 2, en el resto poner 1)
+        maximo: valor numerico que indica la maxima cantidad de caracteres que como maximo debe ser llenado (Solo para tipoValidacion 1 y 2, en el resto poner 1)
+       
+        El valor que va en cadena[i] es el nombre del campo
+       
+        #############################ADICIONAL#########################
+        Para validar una fecha Inicial y fecha Final usar la siguiente funcion
+        validarFechas(nombre[Fecha Final], casilla[Fecha Final], id[Fecha Final],nombre[Fecha Inicial],casilla[Fecha Inicial])
+        OJO: no va como parametro el id de la fecha Inicial
+        ###############################################################
+       
+        */
+       
+        var form=document.frmUpdate;
+ 
+        var cadena= new Array();
+        var i=0;
+        var error=false;
+
+        if(!esValido("Raz&oacute;n Social",form.txtRazonSocial,"RazonSocial",1,1,100)){cadena[i]="Raz&oacute;n Social";i++;}
+        
+        if(!esValido("RUC",form.txtRuc,"Ruc",1,11,11)){cadena[i]="RUC";i++;}else{
+			if(!esValido("RUC",form.txtRuc,"Ruc",6,11,11)){cadena[i]="RUC";i++;}
+		}
+
+        if(!esValido("Descripci&oacute;n",form.txtDescripcion,"Descripcion",1,0,100)){cadena[i]="Descripci&oacute;n";i++;}
+        
+        //No tocar
+        if(i>0){
+        crearAlert(cadena);
+        return false;
+        }else{
+                return true;               
+        }
+}
+ 
+ 
+function inicializa(){
+        document.getElementById("errRazonSocial").style.display='none';
+        document.getElementById("errRuc").style.display='none';
+        document.getElementById("errDescripcion").style.display='none'; 
+}
+ 
+inicializa();
+ 
+</script>
+	
 </body>
 </html>

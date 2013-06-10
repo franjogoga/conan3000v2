@@ -1,22 +1,16 @@
 <!DOCTYPE html>
+<%@page import="IngSoft.administracion.bean.ResultadoConcesionarioBeanData"%>
 <html lang="en">
 <head>
-	<!--
-		Charisma v1.0.0
-
-		Copyright 2012 Muhammad Usman
-		Licensed under the Apache License v2.0
-		http://www.apache.org/licenses/LICENSE-2.0
-
-		http://usman.it
-		http://twitter.com/halalit_usman
-	-->
 	<meta charset="utf-8">
-	<title>Conan3000</title>
+	<title>Buscar Concesionario</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
 	<meta name="author" content="Muhammad Usman">
 
+	<!--The beans  -->
+	<jsp:useBean id="resultados" scope="request"class="java.util.Vector"></jsp:useBean>
+	
 	<!-- The styles -->
 	<link id="bs-css" href="css/bootstrap-cerulean.css" rel="stylesheet">
 	<style type="text/css">
@@ -51,6 +45,32 @@
 
 	<!-- The fav icon -->
 	<link rel="shortcut icon" href="img/favicon.ico">
+	
+	<script>
+	function alt_agregar(){
+		var form=document.getElementById("frmAlternativo");
+		form.accion.value="Agregar";
+		form.submit();
+	}
+	function alt_consultar(cod){
+		var form=document.getElementById("frmAlternativo");
+		form.accion.value="Consultar";
+		form.codigo.value=cod;
+		form.submit();
+	}
+	function alt_modificar(cod){
+		var form=document.getElementById("frmAlternativo");
+		form.accion.value="Modificar";
+		form.codigo.value=cod;
+		form.submit();
+	}
+	function alt_eliminar(cod){
+		var form=document.getElementById("frmAlternativo");
+		form.accion.value="Eliminar";
+		form.codigo.value=cod;
+		form.submit();
+	}
+	</script>
 		
 </head>
 
@@ -77,8 +97,7 @@
 			<div>
 				<ul class="breadcrumb">
                   <li> <a href="../../general/index.jsp">Home</a> <span class="divider">/</span> </li>
-                  <li> <a href="#">Mantenimiento de Concesionarios</a> <span class="divider">/</span></li>
-                  <li>Buscar Concesionario</li>
+                  <li>Mantenimiento de Concesionarios</li>
 				</ul>
 			</div>
 			
@@ -87,55 +106,25 @@
               <div class="box span12">
                 <div class="box-header well" data-original-title>
                   <h2><i class="icon-search"></i>BUSCAR CONCESIONARIO</h2>
-                  
                       <div class="box-icon">
 							<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
-							<a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>
 						</div>
                 </div>
                 <div class="box-content">
-                  <form class="form-horizontal">
+                  <form class="form-horizontal"  name="frmCriteriosBusqueda" id="frmCriteriosBusqueda"  method="post" action="<%=response.encodeURL("SMAConcesionario")%>">
+				  <input type="hidden" id="accion" name="accion" value="Buscar"></input>
+		  		  <input type="hidden" id="tipo" name="tipo" value="2"></input>
                     <fieldset>
                       <div class="control-group">
-                        <label class="control-label" for="typeahead">Raz&oacuten Social:</label>
+                        <label class="control-label" for="typeahead">Raz&oacute;n Social:</label>
                         <div class="controls">
-                          <input type="text" class="span6 typeahead" id="typeahead"  data-provide="typeahead" >
+                          <input type="text" class="span6 typeahead" id="txtRazonSocial" name="txtRazonSocial" data-provide="typeahead" >
                         </div>
                       </div>
                       <div class="control-group">
                         <label class="control-label" for="typeahead2">RUC:</label>
                         <div class="controls">
-                          <input type="text" class="span6 typeahead" id="typeahead2"  data-provide="typeahead" >
-                        </div>
-                      </div>
-                      <div class="control-group">
-                        <label class="control-label" for="selectError">Tipo:</label>
-                        <div class="controls">
-                          <select name="selectError" id="selectError" data-rel="chosen">
-                            <option>Pastas</option>
-                            <option>Criolla</option>
-                            <option>Pasteler&iacutea</option>
-                          </select>
-                        </div>
-                      </div>
-                      <div class="control-group">
-                        <label class="control-label" for="selectError">Sede:</label>
-                        <div class="controls">
-                          <select name="selectError2" id="selectError2" data-rel="chosen">
-                            <option>Chosica</option>
-                          </select>
-                        </div>
-                      </div>
-                      <div class="control-group">
-                        <label class="control-label" for="date01">Fecha inicial de concesi&oacuten:</label>
-                        <div class="controls">
-                          <input type="text" class="input-xlarge datepicker" id="date01" value="" readonly="true">
-                        </div>
-                      </div>
-                      <div class="control-group">
-                        <label class="control-label" for="date01">Fecha final de concesi&oacuten:</label>
-                        <div class="controls">
-                          <input type="text" class="input-xlarge datepicker" id="date02" value="" readonly="true">
+                          <input type="text" class="span6 typeahead" id="txtRuc" name="txtRuc" data-provide="typeahead" >
                         </div>
                       </div>
                       <div class="form-actions">
@@ -148,8 +137,13 @@
               </div>
               <!--/span-->
             </div>
-<div class="row-fluid sortable">
-          <div class="row-fluid sortable">
+            <form id="frmAlternativo" name="frmAlternativo" method="post" action="<%= response.encodeURL("SMAConcesionario")%>">
+			<input type="hidden" name="accion" value="Agregar"></input>
+			<input type="hidden" name="codigo" value=""></input>
+			<input type="hidden" name="tipo" value="1"></input>
+			</form>	
+            <div class="row-fluid sortable">
+          		<div class="row-fluid sortable">
                     <div class="box span12">
                       <div class="box-header well" data-original-title>
                         <h2><i class="icon-th-list"></i> RESULTADOS</h2>
@@ -161,44 +155,30 @@
                           <thead>
                             <tr>
                               <th>RUC</th>
-                              <th>Raz&oacuten Social</th>
-                              <th>Tipo</th>
-                              <th>Sede</th>
+                              <th>Raz&oacute;n Social</th>
                               <th>Estado</th>
-                              <th>Acci&oacuten</th>
+                              <th>Acci&oacute;n</th>
                             </tr>
                           </thead>
                           <tbody>
+                          	<%for(int i=0; i<resultados.size(); i++) { %>
                             <tr>
-                              <td>93212542819</td>
-                              <td>Per&uacute Campe&oacuten</td>
-                              <td class="center">Criolla</td>
-                              <td class="center">Chosica</td>
+                              <td class="center"><%=((ResultadoConcesionarioBeanData)resultados.get(i)).getRazonSocial()%></td>
+                              <td class="center"><%=((ResultadoConcesionarioBeanData)resultados.get(i)).getRuc()%></td>
+                              <td class="center"><%=((ResultadoConcesionarioBeanData)resultados.get(i)).getEstado()%></td>
                               <td class="center">
-									 <span class="label label-success">Activo</span>
-							  </td>                              
-                              <td class="center"><a class="btn btn-success" href="#"> <i class="icon-zoom-in icon-white"></i> Ver </a> <a class="btn btn-info" href="modificarconcesionario.jsp"> <i class="icon-edit icon-white"></i> Modificar </a> <a class="btn btn-danger" href="eliminarconcesionario.jsp"> <i class="icon-trash icon-white"></i> Eliminar </a></td>
-                            </tr>
-                            <tr>
-                              <td>98347823912</td>
-                              <td>Pastelicia</td>
-                              <td class="center">Pasteler&iacutea</td>
-                              <td class="center">Chosica</td>
-                              <td class="center">
-									 <span class="label label-success">Activo</span>
+                              				<a class="btn btn-success" href="javascript:alt_consultar('<%=((ResultadoConcesionarioBeanData)resultados.get(i)).getCodigo()%>')">
+												<i class="icon-zoom-in icon-white"></i> Ver 
+											</a>
+											<a class="btn btn-info" href="javascript:alt_modificar('<%=((ResultadoConcesionarioBeanData)resultados.get(i)).getCodigo()%>')">
+												<i class="icon-edit icon-white"></i> Modificar
+											</a>
+											<a class="btn btn-danger" href="javascript:alt_eliminar('<%=((ResultadoConcesionarioBeanData)resultados.get(i)).getCodigo()%>')">
+												<i class="icon-trash icon-white"></i> Eliminar
+											</a>
 							  </td>
-                              <td class="center"><a class="btn btn-success" href="#"> <i class="icon-zoom-in icon-white"></i> Ver </a> <a class="btn btn-info" href="modificarconcesionario.jsp"> <i class="icon-edit icon-white"></i> Modificar </a> <a class="btn btn-danger" href="eliminarconcesionario.jsp"> <i class="icon-trash icon-white"></i> Eliminar </a></td>
                             </tr>
-                            <tr>
-                              <td>00912947361</td>
-                              <td>Pizzas Saul</td>
-                              <td class="center">Pastas</td>
-                              <td class="center">Chosica</td>
-                              <td class="center">
-									 <span class="label label-success">Activo</span>
-							  </td>
-                              <td class="center"><a class="btn btn-success" href="#"> <i class="icon-zoom-in icon-white"></i> Ver </a> <a class="btn btn-info" href="modificarconcesionario.jsp"> <i class="icon-edit icon-white"></i> Modificar </a> <a class="btn btn-danger" href="eliminarconcesionario.jsp"> <i class="icon-trash icon-white"></i> Eliminar </a></td>
-                            </tr>
+                            <%}%>	  
                           </tbody>
                         </table>
                       </div>
@@ -210,10 +190,6 @@
                 <!--/span-->
 			
 			</div><!--/row-->
-                
-                
-                
-                
                 
 
 			<div class="row-fluid sortable"><!--/span--><!--/span-->
@@ -229,7 +205,6 @@
 					<!-- content ends -->
 			</div><!--/#content.span10-->
 				</div><!--/fluid-row-->
-				
 		<hr>
 
 		<div class="modal hide fade" id="myModal">
@@ -323,7 +298,6 @@
 	<script src="js/jquery.history.js"></script>
 	<!-- application script for Charisma demo -->
 	<script src="js/charisma.js"></script>
-	
 		
 </body>
 </html>
