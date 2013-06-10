@@ -14,7 +14,7 @@
 						
   						
 						<li class="nav-header hidden-tablet" onclick="$('.venta').toggle(800)">Ventas</li>  					
-						<li><a class="ajax-link venta" href="/Conan3000V2/IngSoft/administracion/concesionario/buscarconcesionario.jsp"><i class="icon-wrench"></i><span class="hidden-tablet"> Concesionarios</span></a></li>
+						
 						<li><a class="ajax-link venta" href="/Conan3000V2/IngSoft/administracion/cuotasmultas/cuotaagregar.jsp"><i class="icon-wrench"></i><span class="hidden-tablet"> Cuotas</span></a></li>
 						<li><a class="ajax-link venta" href="/Conan3000V2/IngSoft/ventas/familia/buscarfamiliar.jsp"><i class="icon-wrench"></i><span class="hidden-tablet"> Familiares</span></a></li>
 						<li><a class="ajax-link venta" href="/Conan3000V2/IngSoft/ventas/membresia/buscarmembresia.jsp"><i class="icon-wrench"></i><span class="hidden-tablet"> Membresias</span></a></li>
