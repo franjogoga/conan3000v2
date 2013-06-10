@@ -104,12 +104,85 @@ public class EmpleadoBeanFuncion {
 	
 	
 	
+	
+	/**
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	public EmpleadoBeanData crearEmpleado2(HttpServletRequest request, HttpServletResponse response){
+		
+		EmpleadoBeanData empleadoData= new EmpleadoBeanData();
+		
+		//HorariosEmpleado horariosData = new HorariosEmpleado();
+		//SedesEmpleado sedesData = new SedesEmpleado();
+		
+		//AregloEmpleados
+		
+		
+		
+		try{		
+	
+			
+			
+		empleadoData.setNombre(request.getParameter("txtNombreEmpleado"));
+		empleadoData.setApellidoPaterno(request.getParameter("txtApellidoPaterno"));
+		empleadoData.setNumeroDocumento(Integer.parseInt(request.getParameter("txtNumeroDocumento")));
+		empleadoData.setArea(request.getParameter("cmbArea"));
+		//empleadoData.setApellidoMaterno(request.getParameter("txtApellidoMaterno"));
+		//empleadoData.setFechaNacimiento(new Date(DF.parse(request.getParameter("txtFechaFacimiento")).getTime()));
+		//empleadoData.setFechaContrato(new Date(DF.parse(request.getParameter("txtFechaContrato")).getTime()));
+			
+		//empleadoData.setPuesto(request.getParameter("cmbPuesto"));
+		//empleadoData.setEstado("activo");
+		//empleadoData.setTipoDocumento(request.getParameter("cmbTipoDocumento"));
+		//String numDoc=request.getParameter("txtNumeroDocumento");
+		
+		
+	
+		
+//		 horariosData.setIdHorarios((request.getParameter("cmbHorarios").split("/"))  );
+//		 sedesData.setIdSedes(request.getParameter("cmbSedes").split("/"));
+//		
+// 		 
+//		 for(int i=0; i< (horariosData.getIdHorarios()).length; i++){
+//			 
+//			 empleadoData.setIdHorario(horariosData.getIdHorarios()[i]);
+//			 
+//			 
+//		 }
+//		
+//		 for(int i=0; i< sedesData.getIdSedes().length; i++){
+//			 
+//		 
+//		 	 empleadoData.setIdSede(sedesData.getIdSedes()[i]);
+//		 }
+//		
+		 
+		 
+		
+		}catch(Exception e){
+			e.printStackTrace();
+			
+		}
+		return empleadoData;		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	   public void modificarEmpleado(EmpleadoBeanData empleado) throws CoException {
 			
 			SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 			try{
 				
 				sqlsesion.update("Data.administracion.empleado.updatePlantillaEmpleado",empleado);
+				sqlsesion.update("Data.administracion.empleado.updatePlantillaPersona",empleado);
 				
 			}
 			catch(Exception a)		
