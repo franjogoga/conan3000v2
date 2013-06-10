@@ -85,8 +85,8 @@ order by 1 asc
 <insert id="insertPlantillaPersona" parameterType="IngSoft.administracion.bean.EmpleadoBeanData"
 	flushCache="true">
 	insert into
-	PERSONA(IdPersona,Nombres,apePaterno,apeMaterno)
-	values (#{codigo},#{nombre},#{apellidoPaterno},#{apellidoMaterno})
+	PERSONA(IdPersona,Nombres,apePaterno,apeMaterno,NumeroDocumento,fechaNac,TipoDocumento)
+	values (#{codigo},#{nombre},#{apellidoPaterno},#{apellidoMaterno},#{numeroDocumento},#{fechaNacimiento},#{tipoDocumento})
 </insert>
 
 
