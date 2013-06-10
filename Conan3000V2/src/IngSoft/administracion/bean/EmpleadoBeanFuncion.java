@@ -172,27 +172,28 @@ public class EmpleadoBeanFuncion {
 	
 	
 	
-	public boolean agregarEmpleado(EmpleadoBeanData eventoData) throws CoException {
+	public boolean agregarEmpleado(EmpleadoBeanData empleadoData) throws CoException {
 		boolean resultado=false;		
 		l.lock();
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
 			String codigo= (String)sqlsesion.selectOne("Data.administracion.empleado.getNextCodigo");
+			
 			if(codigo!=null){
 			int cod= Integer.parseInt(codigo.substring(3))+1;
 			String defecto= "000000";
 			String temp= defecto.substring(0, defecto.length()-String.valueOf(cod).length()).concat(String.valueOf(cod));
 			
-			eventoData.setCodigo(codigo.substring(0,3).concat(temp));}
-			else {eventoData.setCodigo("EMP000001"); eventoData.setIdEmpleado("EMP000001"); }
+			empleadoData.setCodigo(codigo.substring(0,3).concat(temp));}
+			else {empleadoData.setCodigo("EMP000001"); empleadoData.setIdEmpleado("EMP000001"); }
 			
 			
 			
 			// Agrego un insert en Persona 
 			
-			sqlsesion.insert("Data.administracion.empleado.insertPlantillaEmpleado",eventoData);
+			sqlsesion.insert("Data.administracion.empleado.insertPlantillaEmpleado",empleadoData);
 			
-			sqlsesion.insert("Data.administracion.empleado.insertPlantillaPersona",eventoData);
+			sqlsesion.insert("Data.administracion.empleado.insertPlantillaPersona",empleadoData);
 			
 			
 			resultado=true;
