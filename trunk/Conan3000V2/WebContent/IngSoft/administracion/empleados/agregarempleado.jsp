@@ -13,6 +13,7 @@
 	<meta name="description" content="Dos Virgenes">
 	<meta name="author" content="Dos Virgenes">
 		<!--The beans  -->
+	
 	<jsp:useBean id="sedes" scope="request"class="java.util.Vector"></jsp:useBean>
 	<jsp:useBean id="horarios" scope="request"class="java.util.Vector"></jsp:useBean>
 
@@ -221,7 +222,7 @@
 						
 			            <div class="form-actions">
 							<button type="button" class="btn btn-primary" onclick="javascript:alt_submit()">Agregar</button>
-							<button type="button" class="btn" onclick="location.href='juridicabuscar.jsp'" >Cancelar</button>
+							<button type="button" class="btn" onclick="location.href='buscarempleado.jsp'" >Cancelar</button>
 										</div>
 		                
 		              </fieldset>
