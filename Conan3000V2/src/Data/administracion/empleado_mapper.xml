@@ -16,7 +16,12 @@
 </select>
 
 <update id="updatePlantillaEmpleado" parameterType="IngSoft.administracion.bean.EmpleadoBeanData">
-update PERSONA set PERSONA.Nombres =#{Nombres}
+update EMPLEADO set EMPLEADO.Area =#{area}
+where  IdEmpleado= #{codigo};
+</update>
+
+<update id="updatePlantillaPersona" parameterType="IngSoft.administracion.bean.EmpleadoBeanData">
+update PERSONA set PERSONA.Nombres =#{nombre}
  ,PERSONA.ApePaterno=#{apellidoPaterno}
  ,PERSONA.NumeroDocumento= #{numeroDocumento} 
 where  IdPersona= #{codigo};
