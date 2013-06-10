@@ -290,7 +290,7 @@ function esValido(nombre, casilla, id, tipoValidacion, minimo,maximo){
 			break;
 		case 4:
 			status=isAlfaNum(casilla.value);
-			mensaje="La casilla "+nombre+" contiene caracteres alfanumericos";
+			mensaje="La casilla "+nombre+" debe contener solo caracteres alfanumericos";
 			break;
 		case 5:
 			status=esFloat(casilla.value);
