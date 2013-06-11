@@ -172,7 +172,7 @@ var atipo=3;
 						  <div class="control-group">
 							  <label class="control-label" for="date01">Semana</label>
 							  <div class="controls">
-								<input type="text" class="datepicker" id="fFechaIni" name="fFechaIni" readonly="readonly"  onchange="actFecha($(this))">&nbsp;a&nbsp;
+								<input type="text" class="datepickerB" id="fFechaIni" name="fFechaIni" readonly="readonly"  onchange="actFecha($(this))">&nbsp;a&nbsp;
 								<input type="text" id="fFechaFin" name="fFechaFin" readonly="readonly">
 							  </div>
 							</div>
@@ -326,6 +326,11 @@ var atipo=3;
 		$('#fFechaIni').val($.datepicker.formatDate("dd/mm/yy",now));
 		now.setDate(now.getDate()+6);
 		$('#fFechaFin').val($.datepicker.formatDate("dd/mm/yy",now));
+		$(function() {
+    	$( ".datepickerB" ).datepicker({
+      showButtonPanel: true
+    });
+  });
 	</script>
 		
 </body>
