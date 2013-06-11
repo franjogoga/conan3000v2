@@ -112,14 +112,14 @@
         <servlet-name>SMAConcesionario</servlet-name>
 	<servlet-class>IngSoft.administracion.concesionario.SMAConcesionario</servlet-class>				   
 </servlet>
-
-
-
 <servlet id="Servlet_0026">
         <servlet-name>SMAHorariodeactividad</servlet-name>
 	<servlet-class>IngSoft.administracion.horariodeactividad.SMAHorariodeactividad</servlet-class>				   
 </servlet>
-
+<servlet id="Servlet_0027">
+        <servlet-name>SMAHorariodetrabajo</servlet-name>
+	<servlet-class>IngSoft.administracion.horariodetrabajo.SMAHorariodetrabajo</servlet-class>				   
+</servlet>
 
 
 
@@ -241,7 +241,10 @@
         <servlet-name>SMAHorariodeactividad</servlet-name>
 <url-pattern>/IngSoft/administracion/horariodeactividad/SMAHorariodeactividad</url-pattern>
 </servlet-mapping>
-
+<servlet-mapping id="ServletMapping_0027">
+        <servlet-name>SMAHorariodetrabajo</servlet-name>
+<url-pattern>/IngSoft/administracion/horariodetrabajo/SMAHorariodetrabajo</url-pattern>
+</servlet-mapping>
 
 
 
