@@ -12,7 +12,8 @@ public class SMSReserva extends CoServlet{
 	@Override
 	protected void initAcciones() {
 		acciones.put("Buscar", new AccionBuscarReserva());
-		acciones.put("Crear", new AccionCrearReserva());	
+		acciones.put("Crear", new AccionCrearReserva());
+		acciones.put("Eliminar", new AccionEliminarReserva());
 	}
 	
 }

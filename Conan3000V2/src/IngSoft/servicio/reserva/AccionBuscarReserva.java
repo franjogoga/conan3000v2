@@ -37,7 +37,7 @@ public class AccionBuscarReserva extends CoAccion {
 		ReservaBeanFuncion reservaFuncion= ReservaBeanFuncion.getInstance();
 		Vector<SedeMiniBeanData> sedeMiniData=reservaFuncion.getSedes();
 		Vector<TipoCanchaMiniBeanData> tipoCanchaMiniData= CanchaBeanFunction.getInstance().getTipoCancha();
-		HttpSession sesion= request.getSession(true);
+		HttpSession sesion= request.getSession(true);		
 		request.setAttribute("sedes",sedeMiniData );
 		request.setAttribute("tiposCancha",tipoCanchaMiniData);
 		request.setAttribute("step",Conan3000Constantes.step);
@@ -61,14 +61,17 @@ public class AccionBuscarReserva extends CoAccion {
 			temp=Utils.fechaMenos(temp==null?new Date():temp,Integer.valueOf( Integer.valueOf( new SimpleDateFormat("uu").format(temp)).intValue()-1));
 			request.setAttribute("fI", temp);
 			sesion.setAttribute("listareservas", null);
+			String idsocio= request.getParameter("txtIdSocio");
+			idsocio= idsocio.isEmpty()?"%":idsocio;
+			sesion.setAttribute("idsocio",idsocio);
 			if("bungalow".equals(request.getParameter("cmbServicios"))){			
-				Vector<ReservaBungalowMiniBeanData> reservas=reservaFuncion.buscarReservasBungalow(request.getParameter("cmbSedes").toString(),temp);
+				Vector<ReservaBungalowMiniBeanData> reservas=reservaFuncion.buscarReservasBungalow(request.getParameter("cmbSedes").toString(),temp,idsocio);
 				sesion.setAttribute("reservas",reservas);
 				sesion.setAttribute("listareservas",null);
 				this.direccionar(sc, request, response, "/IngSoft/servicio/reserva/reservaxdia.jsp");}		
 			else {
 				Vector<ReservaCanchaMiniBeanData> reservas=
-						reservaFuncion.buscarReservasCanchas(request.getParameter("cmbSedes").toString(),request.getParameter("cmbTipoCancha").toString(),temp);
+						reservaFuncion.buscarReservasCanchas(request.getParameter("cmbSedes").toString(),request.getParameter("cmbTipoCancha").toString(),temp,idsocio);
 				sesion.setAttribute("reservas",reservas);
 				sesion.setAttribute("listareservas",null);
 				this.direccionar(sc, request, response, "/IngSoft/servicio/reserva/reservaxhora.jsp");
@@ -97,13 +100,13 @@ public class AccionBuscarReserva extends CoAccion {
 			String res= Utils.unir(reservaFuncion.filtrarReservaXFechas(listareservas, fecIniNue, fecFinNue), ",","");
 			if("bungalow".equals(request.getParameter("cmbServicios"))){				
 								
-				Vector<ReservaBungalowMiniBeanData> reservas=reservaFuncion.buscarReservasBungalow(request.getParameter("cmbSedes").toString(), fecIniNue);
+				Vector<ReservaBungalowMiniBeanData> reservas=reservaFuncion.buscarReservasBungalow(request.getParameter("cmbSedes").toString(), fecIniNue,sesion.getAttribute("idsocio").toString());
 				sesion.setAttribute("reservas",reservas);
 				sesion.setAttribute("pendientes",res);
 				this.direccionar(sc, request, response, "/IngSoft/servicio/reserva/reservaxdia.jsp");}	
 			else {
 				Vector<ReservaCanchaMiniBeanData> reservas=
-						reservaFuncion.buscarReservasCanchas(request.getParameter("cmbSedes").toString(),request.getParameter("cmbTipoCancha").toString(),fecIniNue);
+						reservaFuncion.buscarReservasCanchas(request.getParameter("cmbSedes").toString(),request.getParameter("cmbTipoCancha").toString(),fecIniNue,sesion.getAttribute("idsocio").toString());
 				sesion.setAttribute("reservas",reservas);
 				sesion.setAttribute("pendientes",res);
 				this.direccionar(sc, request, response, "/IngSoft/servicio/reserva/reservaxhora.jsp");
@@ -135,13 +138,13 @@ public class AccionBuscarReserva extends CoAccion {
 			sesion.setAttribute("listareservas",listareservas);
 			String res= Utils.unir(reservaFuncion.filtrarReservaXFechas(listareservas, fecIniNue, fecFinNue), ",","");
 			if("bungalow".equals(request.getParameter("cmbServicios"))){								
-				Vector<ReservaBungalowMiniBeanData> reservas=reservaFuncion.buscarReservasBungalow(request.getParameter("cmbSedes").toString(), fecIniNue);
+				Vector<ReservaBungalowMiniBeanData> reservas=reservaFuncion.buscarReservasBungalow(request.getParameter("cmbSedes").toString(), fecIniNue,sesion.getAttribute("idsocio").toString());
 				sesion.setAttribute("reservas",reservas);
 				sesion.setAttribute("pendientes",res);
 				this.direccionar(sc, request, response, "/IngSoft/servicio/reserva/reservaxdia.jsp");}	
 			else {
 				Vector<ReservaCanchaMiniBeanData> reservas=
-						reservaFuncion.buscarReservasCanchas(request.getParameter("cmbSedes").toString(),request.getParameter("cmbTipoCancha").toString(),fecIniNue);
+						reservaFuncion.buscarReservasCanchas(request.getParameter("cmbSedes").toString(),request.getParameter("cmbTipoCancha").toString(),fecIniNue,sesion.getAttribute("idsocio").toString());
 				sesion.setAttribute("reservas",reservas);
 				sesion.setAttribute("pendientes",res);
 				this.direccionar(sc, request, response, "/IngSoft/servicio/reserva/reservaxhora.jsp");
@@ -208,13 +211,13 @@ public class AccionBuscarReserva extends CoAccion {
 				sesion.setAttribute("listareservas",listareservas);
 				String res= Utils.unir(reservaFuncion.filtrarReservaXFechas(listareservas, fecIniNue, fecFinNue), ",","");
 			if("bungalow".equals(request.getParameter("cmbServicios"))){								
-				Vector<ReservaBungalowMiniBeanData> reservas=reservaFuncion.buscarReservasBungalow(request.getParameter("cmbSedes").toString(), fecIniNue);
+				Vector<ReservaBungalowMiniBeanData> reservas=reservaFuncion.buscarReservasBungalow(request.getParameter("cmbSedes").toString(), fecIniNue,sesion.getAttribute("idsocio").toString());
 				sesion.setAttribute("reservas",reservas);
 				sesion.setAttribute("pendientes",res);
 				this.direccionar(sc, request, response, "/IngSoft/servicio/reserva/reservaxdia.jsp");}	
 			else {
 				Vector<ReservaCanchaMiniBeanData> reservas=
-						reservaFuncion.buscarReservasCanchas(request.getParameter("cmbSedes").toString(),request.getParameter("cmbTipoCancha").toString(),fecIniNue);
+						reservaFuncion.buscarReservasCanchas(request.getParameter("cmbSedes").toString(),request.getParameter("cmbTipoCancha").toString(),fecIniNue,sesion.getAttribute("idsocio").toString());
 				sesion.setAttribute("reservas",reservas);
 				sesion.setAttribute("pendientes",res);
 				this.direccionar(sc, request, response, "/IngSoft/servicio/reserva/reservaxhora.jsp");
@@ -224,6 +227,10 @@ public class AccionBuscarReserva extends CoAccion {
 				e.printStackTrace();
 			}
 			
+		}
+		if(tipo==8){
+			sesion.removeAttribute("reservas");
+			sesion.removeAttribute("listareservas");			
 		}
 	}
 
