@@ -42,6 +42,7 @@
     <mapper resource="Data/venta/pago_mapper.xml"/>  
     <mapper resource="Data/general/login_mapper.xml"/>
     
+	<mapper resource="Data/administracion/horariodeactividad_mapper.xml"/>
       
   </mappers>
 </configuration>

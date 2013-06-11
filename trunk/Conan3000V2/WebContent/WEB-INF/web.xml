@@ -114,6 +114,24 @@
 </servlet>
 
 
+
+<servlet id="Servlet_0026">
+        <servlet-name>SMAHorariodeactividad</servlet-name>
+	<servlet-class>IngSoft.administracion.horariodeactividad.SMAHorariodeactividad</servlet-class>				   
+</servlet>
+
+
+
+
+
+
+
+
+
+
+
+
+
 <servlet-mapping id="ServletMapping_0001">
         <servlet-name>SMSEvento</servlet-name>
 <url-pattern>/IngSoft/servicio/evento/SMSEvento</url-pattern>
@@ -218,6 +236,16 @@
         <servlet-name>SMAConcesionario</servlet-name>
 <url-pattern>/IngSoft/administracion/concesionario/SMAConcesionario</url-pattern>
 </servlet-mapping>
+
+<servlet-mapping id="ServletMapping_0026">
+        <servlet-name>SMAHorariodeactividad</servlet-name>
+<url-pattern>/IngSoft/administracion/horariodeactividad/SMAHorariodeactividad</url-pattern>
+</servlet-mapping>
+
+
+
+
+
 
 <error-page>
 <error-code>404</error-code>
