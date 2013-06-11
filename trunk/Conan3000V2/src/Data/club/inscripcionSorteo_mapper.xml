@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Data.club">
+
+  <cache />
+
+<select id="searchPlantillaInscripcionSorteo" parameterType="IngSoft.servicio.bean.CriterioInscripcionSorteoBeanData" resultType="IngSoft.servicio.bean.ResultadoInscripcionSorteoBeanData">
+select 
+SORTEO.IdSorteo as codigo,
+SORTEO.Descripcion as nombre,
+SORTEO.FechaInicioIncr as fechaIni,
+SORTEO.FechaFinInscr as fechaFin,
+SORTEO.FechaSorteo fechaSorteo,
+SORTEO.Estado as estado,
+SORTEO.Flag as flag,
+SEDE.Nombre as nombSede
+from SORTEO, SEDE 
+<where>
+    <if test="fechaIni != null">
+        AND SORTEO.FechaInicioIncr &gt;= #{fechaIni}
+        AND SEDE.IdSede=SORTEO.IdSede
+    </if>
+    <if test="fechaFin != null">
+        AND SORTEO.FechaFinInscr &lt;= #{fechaFin}
+        AND SEDE.IdSede=SORTEO.IdSede
+    </if>
+        AND SORTEO.Estado &lt;= "ACTIVADO"
+        AND SEDE.IdSede=SORTEO.IdSede    
+</where>
+order by 1 asc
+</select>
+
+
+</mapper>
