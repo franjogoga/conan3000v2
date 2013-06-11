@@ -1,6 +1,7 @@
 package IngSoft.servicio.reserva;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
@@ -50,8 +51,14 @@ public class AccionBuscarReserva extends CoAccion {
 			sesion.removeAttribute("listareservas");
 		}
 		if(tipo==2){//buscar
-			java.util.Date temp= new Date();
-			temp=Utils.fechaMenos(temp,Integer.valueOf( Integer.valueOf( new SimpleDateFormat("uu").format(temp)).intValue()-1));
+			java.util.Date temp=null;
+			try {
+				temp = new SimpleDateFormat("dd/MM/yyyy").parse(request.getParameter("fFechaIni").toString());
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			temp=Utils.fechaMenos(temp==null?new Date():temp,Integer.valueOf( Integer.valueOf( new SimpleDateFormat("uu").format(temp)).intValue()-1));
 			request.setAttribute("fI", temp);
 			sesion.setAttribute("listareservas", null);
 			if("bungalow".equals(request.getParameter("cmbServicios"))){			
