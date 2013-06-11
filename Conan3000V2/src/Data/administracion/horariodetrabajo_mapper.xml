@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Data.administracion.horariodetrabajo">
+
+  <cache />
+  
+  
+<select id="getNextCodigo" resultType="java.lang.String">
+	select max(IdHorario) from HORARIO	
+</select>
+  
+<select id="searchPlantillaHorariodetrabajo" parameterType="IngSoft.administracion.bean.CriterioHorariodetrabajoBeanData" resultType="IngSoft.administracion.bean.ResultadoHorariodetrabajoBeanData">
+
+
+	
+
+SELECT 
+ inf245g2.HORARIO.IdHorario AS codigo
+,inf245g2.HORARIO.Descripcion AS nombre
+,inf245g2.DIA_SEMANA.IdDiaSemana AS codDiasemana
+,inf245g2.HORARIOxDIA_SEMANA.HoraInicio AS horaInicio
+,inf245g2.HORARIOxDIA_SEMANA.HoraFin AS horaFin
+
+FROM
+      inf245g2.HORARIO,  inf245g2.DIA_SEMANA, inf245g2.HORARIOxDIA_SEMANA
+WHERE
+		
+	  inf245g2.HORARIO.IdHorario         = inf245g2.HORARIOxDIA_SEMANA.IdHorario 
+AND   inf245g2.DIA_SEMANA.IdDiaSemana    = inf245g2.HORARIOxDIA_SEMANA.IdDiaSemana
+
+
+
+AND inf245g2.HORARIO.Descripcion  like  #{nombre}
+
+
+ORDER BY 1 ASC
+;
+
+
+</select>
+
+
+
+<select id="getPLantillaHorariodetrabajo" parameterType="java.lang.String"  resultType="IngSoft.administracion.bean.HorariodetrabajoBeanData">
+
+
+SELECT 
+ DISTINCT inf245g2.HORARIO.IdHorario AS codigo
+,inf245g2.HORARIO.Descripcion AS nombre
+,inf245g2.DIA_SEMANA.IdDiaSemana AS codDiasemana
+,inf245g2.DIA_SEMANA.Nombre AS diaSemana
+,inf245g2.HORARIOxDIA_SEMANA.HoraInicio AS horaInicio
+,inf245g2.HORARIOxDIA_SEMANA.HoraFin AS horaFin
+
+FROM
+      inf245g2.HORARIO,  inf245g2.DIA_SEMANA, inf245g2.HORARIOxDIA_SEMANA
+WHERE
+		
+	  inf245g2.HORARIO.IdHorario         = inf245g2.HORARIOxDIA_SEMANA.IdHorario 
+AND   inf245g2.DIA_SEMANA.IdDiaSemana    = inf245g2.HORARIOxDIA_SEMANA.IdDiaSemana
+
+
+AND   inf245g2.HORARIO.IdHorario        = #{codigo}
+
+
+ORDER BY 1 ASC
+
+
+</select>
+
+
+
+<!--Eliminar  -->
+
+<update id="deletePLantillaActividad" parameterType="java.lang.String" >
+update inf245g2.HORARIO set Estado ='No Activado' where IdActividad = #{codigo}
+</update>
+<!-- Fin eliminar -->
+
+
+
+<!--Eliminar dias -->
+<select id="getDias" parameterType="java.lang.String" resultType="IngSoft.administracion.bean.DiasBeanData">
+select 
+  inf245g2.DIA_SEMANA.IdDiaSemana as codigo
+, inf245g2.DIA_SEMANA.Nombre as nombre
+from 
+DIA_SEMANA
+ 
+</select>
+
+
+
+
+</mapper>
