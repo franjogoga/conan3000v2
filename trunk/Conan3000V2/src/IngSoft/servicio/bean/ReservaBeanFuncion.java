@@ -37,7 +37,7 @@ public class ReservaBeanFuncion {
 			return new Vector<>(resultados);		   
 	   }
 	   
-	   public Vector<ReservaBungalowMiniBeanData> buscarReservasBungalow(String codSede,java.util.Date fecIni){
+	   public Vector<ReservaBungalowMiniBeanData> buscarReservasBungalow(String codSede,java.util.Date fecIni,String idsocio){
 		   if(codSede==null || fecIni==null) return null;
 		   Vector<ReservaBungalowMiniBeanData> resultados=null;
 		   SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
@@ -45,7 +45,8 @@ public class ReservaBeanFuncion {
 		   try{
 			   HashMap<String, Object> hashMap = new HashMap<String, Object>(); 
 			   hashMap.put("codigo",codSede); 
-			   hashMap.put("fecIni", fecIni); 
+			   hashMap.put("fecIni", fecIni);
+			   hashMap.put("idsocio", idsocio);
 			   hashMap.put("fecFin", Utils.fechaMas(fecIni, 6)); 
 			   List<ReservaBungalowMiniBeanData> temp=sqlsesion.selectList("Data.servicio.reserva.searchBungalowxSede",hashMap);
 			   resultados= new Vector<ReservaBungalowMiniBeanData>(temp);
@@ -60,7 +61,7 @@ public class ReservaBeanFuncion {
 		   
 		   return resultados;
 	   }
-	   public Vector<ReservaCanchaMiniBeanData> buscarReservasCanchas(String codSede, String codTipoCancha,java.util.Date fecIni){
+	   public Vector<ReservaCanchaMiniBeanData> buscarReservasCanchas(String codSede, String codTipoCancha,java.util.Date fecIni,String idsocio){
 		   if(codSede==null || fecIni==null || codTipoCancha==null) return null;
 		   Vector<ReservaCanchaMiniBeanData> resultados=null;
 		   SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
@@ -69,6 +70,7 @@ public class ReservaBeanFuncion {
 			   hashMap.put("codSede", codSede);
 			   hashMap.put("codTipoCancha", codTipoCancha);
 			   hashMap.put("fecIni", fecIni); 
+			   hashMap.put("idsocio", idsocio);
 			   hashMap.put("fecFin", Utils.fechaMas(fecIni, 6));
 			   List<ReservaCanchaMiniBeanData> temp=sqlsesion.selectList("Data.servicio.reserva.searchCanchaxTipoxSede",hashMap);
 			   resultados= new Vector<ReservaCanchaMiniBeanData>(temp);
@@ -186,6 +188,24 @@ public class ReservaBeanFuncion {
 			   sqlsesion.close();
 			   
 		   }
+		   
+	   }
+	   
+	   public void eliminarResevaBungalow(Vector<String> listareservas){
+		   SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+		   try{			   
+			   
+		   }
+		   catch(Exception e){
+			   sqlsesion.rollback();
+			   e.printStackTrace();			   
+		   }
+		   finally{			   
+			   sqlsesion.close();			  
+		   }
+		   
+	   }
+	   public void eliminarResevaCancha(Vector<String> listareservas){
 		   
 	   }
 	   

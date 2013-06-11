@@ -107,7 +107,7 @@ function ajax_search(){
 		  type: "POST",
 		  url: "/Conan3000V2/IngSoft/servicio/reserva/SMSReserva",
 		  data: "accion=Buscar"+"&tipo=2" +"&cmbServicios="+$('#cmbServicios').val()+"&cmbSedes="+$('#cmbSedes').val()+"&cmbTipoCancha="+$('#cmbTipoCancha').val()
-		  +"&fFechaIni="+$('#fFechaIni').val(),
+		  +"&fFechaIni="+$('#fFechaIni').val()+"&txtIdSocio="+$('#txtIdSocio').val(),
 		  dataType: "html",
 		  beforeSend: function ( xhr ) {
    		  $("#resultadoBusqueda").html("<div align='center'><img src='img/ajax-loaders/ajax-loader-7.gif'></img></div>");
@@ -131,6 +131,7 @@ function ajax_search(){
 
 function cambiaModo(numero) {
 	var temp='';
+	if(numero!=atipo){
 	if(numero==2) {
 		atipo=2;
 		temp=$('#titulo').html();
@@ -187,9 +188,9 @@ function cambiaModo(numero) {
 	}
 	//$('#TipoCancha').slideUp('fast');
 	//$('#cmbServicios').selectedIndex = 0;
+	ajax_reset();
 	$("#resultadoBusqueda").html('');
-	
-	
+	}	
 }
 function actualizar_pendientes(){
 	var ant=($("#pendientes").attr('value').split(','));						  								  		
@@ -338,6 +339,21 @@ function ajax_elim(){
 			});
 		//	}
 	
+	
+}
+function ajax_reset(){
+	$.ajax({
+		  type: "POST",
+		  url: "/Conan3000V2/IngSoft/servicio/reserva/SMSReserva",
+		  data: "accion=Buscar"+"&tipo=8",
+		  dataType: "text",
+		  success: function(msg){			  
+		  },
+		  error: function(){
+			  alert("No se pudo vaciar la memoria")
+		  			  }
+	
+		});
 	
 }
 
