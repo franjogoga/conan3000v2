@@ -397,11 +397,11 @@ function validaForm(){
 		
  		}
 	
-	if(!esValido("RUC",form.txtRuc,"Ruc",1,1,11)){cadena[i]="RUC";i++;}
+	if(!esValido("RUC",form.txtRuc,"Ruc",1,11,11)){cadena[i]="RUC";i++;}
 	
 	else{
 	
-		if(!esValido("RUC",form.txtRuc,"Ruc",6,1,11)){cadena[i]="RUC";i++;}
+		if(!esValido("RUC",form.txtRuc,"Ruc",6,11,11)){cadena[i]="RUC";i++;}
 	
 		}
 	
