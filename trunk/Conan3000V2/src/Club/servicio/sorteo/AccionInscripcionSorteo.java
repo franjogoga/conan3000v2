@@ -23,9 +23,13 @@ public class AccionInscripcionSorteo extends CoAccion{
 		int tipo=Integer.parseInt(request.getParameter("tipo"));
 		if(tipo==2){
 			InscripcionBeanData sorteoData=sorteoFuncion.crearInscripcion(request, response);
-			sorteoFuncion.agregarInscripcion(sorteoData);
-			request.setAttribute("sorteo",sorteoData );
-			this.direccionar(sc, request, response, "/Club/servicio/sorteo/generarInscripcion.jsp");
+			if (sorteoFuncion.agregarInscripcion(sorteoData)){
+				request.setAttribute("sorteo",sorteoData );
+				this.direccionar(sc, request, response, "/Club/servicio/sorteo/generarInscripcion.jsp");
+			}
+			else{
+				this.direccionar(sc, request, response, "/Club/servicio/sorteo/inscripcionRepetida.jsp");
+			}
 		}
 		
 		SorteoBeanData sorteoData=sorteoFuncion.consultarSorteo(request.getParameter("codigo"));
