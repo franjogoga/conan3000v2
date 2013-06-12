@@ -7,8 +7,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import IngSoft.general.CoAccion;
 import IngSoft.general.CoException;
-import IngSoft.venta.bean.PromocionBeanData;
-import IngSoft.venta.bean.PromocionBeanFuncion;
 import IngSoft.venta.bean.ProveedorBeanData;
 import IngSoft.venta.bean.ProveedorBeanFuncion;
 
