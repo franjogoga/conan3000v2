@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="Data.club">
+<mapper namespace="Data.club.inscripcionSorteo">
 
   <cache />
 
@@ -32,5 +32,15 @@ from SORTEO, SEDE
 order by 1 asc
 </select>
 
+<select id="getNextCodigoInscripcionSorteo" resultType="java.lang.String">
+	select max(CodParticipante) from INSCRIPCION_SORTEO	
+</select>
+
+<insert id="insertInscripcionSorteo" parameterType="IngSoft.servicio.bean.InscripcionBeanData"
+	flushCache="true">
+	insert into
+	INSCRIPCION_SORTEO(IdSocio,IdSorteo,Fecha,CodParticipante)
+	values (#{idSocio},#{idSorteo},#{fecha},#{codParticipante})
+</insert>
 
 </mapper>
