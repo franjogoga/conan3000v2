@@ -305,8 +305,8 @@ if(lock4==1){
 }
 
 function ajax_elim(){
-	//if(lock4==1){
-		//lock4=0;
+	if(lock5==1){
+		lock5=0;
 		$.ajax({
 			  type: "POST",
 			  url: "/Conan3000V2/IngSoft/servicio/reserva/SMSReserva",
@@ -320,24 +320,24 @@ function ajax_elim(){
 			  data: "accion=Crear"+"&tipo="+ctipo +"&txtIdSocio="+$('#txtIdSocio').val(),
 			  dataType: "text",		  
 			  success: function(msg){
-			  	lock4=1;
+			  	lock5=1;
 			  	$("#resultadoBusqueda").html("");
 				alert("Operacion realizada sin problemas");},
 			  error: function(objeto, quepaso, otroobj){
-			  	lock4=1;
+			  	lock5=1;
 			  	alert("ERROR!! No se pudo completar la operacion intente de nuevo");
 			  }
 		
 			});
 			  },
 			  error: function(objeto, quepaso, otroobj){
-			  	lock4=1;
+			  	lock5=1;
 				alert("ERROR!! No se pudo completar la operacion intente de nuevo");
 				
 			  }
 		
 			});
-		//	}
+		}
 	
 	
 }

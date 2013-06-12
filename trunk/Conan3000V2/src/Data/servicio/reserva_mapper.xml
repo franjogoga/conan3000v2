@@ -117,15 +117,24 @@ insert into BUNGALOWxFECHA(IdReservaBungalow,Fecha) values(#{idreservasbungalow}
 insert into CANCHAxFECHA(IdReservaCancha,Fecha,HoraInicio,HoraFin) values(#{idreservascancha},DATE(#{fecha}),#{horaIni},#{horaFin})
 ;
 </insert>
+<select id="getElimReservBungalowCod" parameterType="java.util.Vector" resultType="java.lang.String">
+select bf.IdReservaBungalow 
+from BUNGALOWxFECHA bf,
+RESERVA_BUNGALOW rb 
+where bf.IdReservaBungalow=rb.IdReservaBungalow
+and CONCAT(rb.IdBungalow,DATE_FORMAT(bf.fecha,'%d/%m/%Y')) in 
+ <foreach item="listareservas" index="i" collection="listareservas" open="('" separator="','" close="')">
+ 	#{listareservas}
+ </foreach>
+
+</select>
 <update id="eliminarReservaBungalow" parameterType="java.util.Date">
 update RESERVA_BUNGALOW rb 
 set rb.Estado='ELIMINADO'
 where 
 rb.Estado='ACTIVO' 
-and  rb.IdReservaBungalow in (
-select bf.IdReservaBungalow 
-from BUNGALOWxFECHA bf 
-where bf.Fecha = #{fecha}) 
+and  rb.IdReservaBungalow in () 
 </update>
+
 
 </mapper>

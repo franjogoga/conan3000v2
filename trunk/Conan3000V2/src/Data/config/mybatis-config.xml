@@ -45,6 +45,8 @@
     
 	<mapper resource="Data/administracion/horariodeactividad_mapper.xml"/>
 	<mapper resource="Data/administracion/horariodetrabajo_mapper.xml"/>
+	
+	<mapper resource="Data/club/inscripcionSorteo_mapper.xml"/>
       
   </mappers>
 </configuration>

@@ -25,7 +25,8 @@ public class AccionEliminarReserva extends CoAccion {
 			//String codSocio=request.getParameter("txtIdSocio");
 			if(listareservas.size()>0){
 				ReservaBeanFuncion reservaFuncion=ReservaBeanFuncion.getInstance();
-				reservaFuncion.agregarReservaBungalow(listareservas,codSocio);
+				//reservaFuncion.agregarReservaBungalow(listareservas,codSocio);
+				reservaFuncion.eliminarResevaBungalow(listareservas);
 				sesion.removeAttribute("reservas");
 				sesion.removeAttribute("listareservas");								
 			}
@@ -37,7 +38,7 @@ public class AccionEliminarReserva extends CoAccion {
 			//String codSocio=request.getParameter("txtIdSocio");			
 			if(listareservas.size()>0){
 				ReservaBeanFuncion reservaFuncion=ReservaBeanFuncion.getInstance();
-				reservaFuncion.agregarReservaCancha(listareservas,codSocio);
+				//reservaFuncion.agregarReservaCancha(listareservas,codSocio);
 				sesion.removeAttribute("reservas");
 				sesion.removeAttribute("listareservas");								
 			}
@@ -47,4 +48,4 @@ public class AccionEliminarReserva extends CoAccion {
 
 	}
 
-}
+
