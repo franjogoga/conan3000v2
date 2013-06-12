@@ -19,7 +19,8 @@
 SELECT 
  inf245g2.HORARIO.IdHorario AS codigo
 ,inf245g2.HORARIO.Descripcion AS nombre
-,inf245g2.DIA_SEMANA.IdDiaSemana AS codDiasemana
+,group_concat(inf245g2.DIA_SEMANA.IdDiaSemana) AS codDiasemana
+,group_concat(inf245g2.DIA_SEMANA.Nombre) AS diaSemana
 ,inf245g2.HORARIOxDIA_SEMANA.HoraInicio AS horaInicio
 ,inf245g2.HORARIOxDIA_SEMANA.HoraFin AS horaFin
 
@@ -33,7 +34,7 @@ AND   inf245g2.DIA_SEMANA.IdDiaSemana    = inf245g2.HORARIOxDIA_SEMANA.IdDiaSema
 
 
 AND inf245g2.HORARIO.Descripcion  like  #{nombre}
-
+group by inf245g2.HORARIO.IdHorario
 
 ORDER BY 1 ASC
 ;
@@ -47,10 +48,10 @@ ORDER BY 1 ASC
 
 
 SELECT 
- DISTINCT inf245g2.HORARIO.IdHorario AS codigo
+ inf245g2.HORARIO.IdHorario AS codigo
 ,inf245g2.HORARIO.Descripcion AS nombre
-,inf245g2.DIA_SEMANA.IdDiaSemana AS codDiasemana
-,inf245g2.DIA_SEMANA.Nombre AS diaSemana
+,group_concat(inf245g2.DIA_SEMANA.IdDiaSemana) AS codDiasemana
+,group_concat(inf245g2.DIA_SEMANA.Nombre) AS diaSemana
 ,inf245g2.HORARIOxDIA_SEMANA.HoraInicio AS horaInicio
 ,inf245g2.HORARIOxDIA_SEMANA.HoraFin AS horaFin
 
@@ -62,10 +63,12 @@ WHERE
 AND   inf245g2.DIA_SEMANA.IdDiaSemana    = inf245g2.HORARIOxDIA_SEMANA.IdDiaSemana
 
 
-AND   inf245g2.HORARIO.IdHorario        = #{codigo}
 
+AND   inf245g2.HORARIO.IdHorario  = #{codigo}
+group by inf245g2.HORARIO.IdHorario
 
 ORDER BY 1 ASC
+;
 
 
 </select>
