@@ -6,14 +6,76 @@
 
   <cache />
   
-  <select id="searchPlantillaJornada" parameterType="IngSoft.administracion.bean.CriterioJornadaBeanData" resultType="IngSoft.administracion.bean.ResultadoJornadaBeanData">
+  
+<select id="getNextCodigo" resultType="java.lang.String">
+	select max(idJornada) from JORNADA	
+</select>
+
+
+<select id="getFlagEmpleado" resultType="java.lang.String">
+	select inf245g2.EMPLEADO.Flag from inf245g2.EMPLEADO where	 inf245g2.EMPLEADO.IdEmpleado = #{codigoEmpleado}
+</select>
+
+<select id="searchPlantillaJornada" parameterType="IngSoft.administracion.bean.CriterioJornadaBeanData" resultType="IngSoft.administracion.bean.ResultadoJornadaBeanData">
+
+
+
 SELECT 
-JORNADA.IdJornada AS idJornada,
-JORNADA.IdEmpleado AS idEmpleado,
-JORNADA.HoraEntrada AS horaEntrada,
-JORNADA.HoraSalida AS horaSalida,
-JORNADA.Fecha AS fecha
-FROM JORNADA;
+inf245g2.JORNADA.IdJornada AS idJornada,
+inf245g2.JORNADA.IdEmpleado AS idEmpleado,
+
+inf245g2.PERSONA.Nombres as nombreEmpleado,
+inf245g2.PERSONA.ApePaterno as apaterno,
+
+inf245g2.JORNADA.HoraEntrada AS horaEntrada,
+inf245g2.JORNADA.HoraSalida AS horaSalida,
+inf245g2.JORNADA.Fecha AS fecha,
+inf245g2.JORNADA.HoraMarca AS horaMarca,
+inf245g2.JORNADA.Flag AS flag
+
+FROM inf245g2.JORNADA , inf245g2.EMPLEADO , inf245g2.PERSONA
+
+WHERE 
+
+    inf245g2.EMPLEADO.IdEmpleado = inf245g2.PERSONA.IdPersona
+AND inf245g2.EMPLEADO.IdEmpleado = inf245g2.JORNADA.IdEmpleado
+
+
+ORDER BY 1 DESC 
+;
+
 
 </select>
+
+
+
+<!-- Agregar plantilla JORNADA -->
+
+<insert id="insertPlantillaJornada" parameterType="IngSoft.administracion.bean.JornadaBeanData" flushCache="true">
+	insert into JORNADA (IdJornada,IdEmpleado,HoraEntrada,HoraSalida,Fecha,HoraMarca,Flag)
+	values (#{idJornada},#{idEmpleado},#{horaInicio},#{horaInicio},#{fecha},#{horaMarca},#{flag} )
+</insert>
+
+
+<!--actualizar flag del empleado  -->
+
+<update id="updateFlagEmpleadoJornada" parameterType="java.lang.String" >
+         update inf245g2.empleado
+         set 
+           inf245g2.empleado.Flag =   IF( inf245g2.empleado.Flag >0,0,1)
+         where 
+         inf245g2.empleado.IdEmpleado =   #{codigo}
+</update>
+
+
+<!-- Fin actualizar -->
+
+
+
+
+
+
+
+
+
 </mapper>
