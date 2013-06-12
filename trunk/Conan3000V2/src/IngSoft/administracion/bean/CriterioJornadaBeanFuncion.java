@@ -17,8 +17,13 @@ public class CriterioJornadaBeanFuncion {
 	SimpleDateFormat DF = new SimpleDateFormat("dd/MM/yyyy"); //
 	
 	public CriterioJornadaBeanData crearCriterio(HttpServletRequest request, HttpServletResponse response){
+		
+		
 		CriterioJornadaBeanData criterioJornadaData= new CriterioJornadaBeanData();
-		criterioJornadaData.setIdJornada(("%"+request.getParameter("txtNombreJornada")+"%").toUpperCase());
+		criterioJornadaData.setIdEmpleado((request.getParameter("txtNombreJornada")).toUpperCase());
+		
+		
+		
 		try {
 			/*Date fecha = new Date(DF.parse(request.getParameter("date01")).getTime());
 			criterioSorteoData.setFechaIni(fecha);*/
@@ -28,6 +33,9 @@ public class CriterioJornadaBeanFuncion {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
+		
+		
+		
 		return criterioJornadaData;				
 	}
 	
