@@ -127,14 +127,6 @@
 
 
 
-
-
-
-
-
-
-
-
 <servlet-mapping id="ServletMapping_0001">
         <servlet-name>SMSEvento</servlet-name>
 <url-pattern>/IngSoft/servicio/evento/SMSEvento</url-pattern>
