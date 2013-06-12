@@ -16,6 +16,8 @@ public class SMAJornada extends CoServlet{
 		acciones.put("Agregar", new AccionAgregarJornada());
 		//acciones.put("Modificar", new AccionModificarJornada());
 		//acciones.put("Eliminar", new AccionEliminarJornada());
+		
+		acciones.put("Marcar", new AccionMarcarJornadaEmpleado());
 	}
 	
 }
