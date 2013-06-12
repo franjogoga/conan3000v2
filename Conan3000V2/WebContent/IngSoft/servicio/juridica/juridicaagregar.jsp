@@ -176,13 +176,14 @@ body {
 
 
 
-										<div class="control-group">
+										<div class="control-group" id="dvTelefono">
 											<label class="control-label" for="typeahead7">Telefono:
 											</label>
 											<div class="controls">
 												<input type="text" class="span6 typeahead" id="txtTelefono"
 													name="txtTelefono" data-provide="typeahead"
 													onkeypress="return alfanumerico(event);" autofocus>
+													<span class="help-inline" id="errTelefono">Please correct the error</span>
 											</div>
 										</div>
 
@@ -368,19 +369,33 @@ function validaForm(){
 	
 	
 	var form=document.frmData;
-
+	
 	var cadena= new Array();
 	var i=0;
 	var error=false;
+	
+    var correo = frmData.txtCorreo.value;
+    var telefono = frmData.txtTelefono.value;
+    //var correo = "viejo"
+    //alert(correo);
+	
+	
 	if(!esValido("Razon Social",form.txtRazonSocial,"RazonSocial",1,1,50)){cadena[i]="Razon Social";i++;}
+	
+	
 	
 	if(!esValido("Correo",form.txtCorreo,"Correo",1,0,50)){cadena[i]="Correo";i++;}
 	
-	else{
+ 	else{
 		
-		if(!esValido("Correo",form.txtCorreo,"Correo",9,1,1)){cadena[i]="Correo";i++;}
-	
-		}
+  
+			if (correo.length > 0){
+ 		
+  				if(!esValido("Correo",form.txtCorreo,"Correo",9,1,1)){cadena[i]="Correo";i++;}
+ 			
+  			}
+		
+ 		}
 	
 	if(!esValido("RUC",form.txtRuc,"Ruc",1,1,11)){cadena[i]="RUC";i++;}
 	
@@ -388,6 +403,18 @@ function validaForm(){
 	
 		if(!esValido("RUC",form.txtRuc,"Ruc",6,1,11)){cadena[i]="RUC";i++;}
 	
+		}
+	
+	if(!esValido("Telefono",form.txtTelefono,"Telefono",1,0,7)){cadena[i]="Telefono";i++;}
+	
+	else{
+		
+
+		if (telefono.length > 0){
+		
+				if(!esValido("Telefono",form.txtTelefono,"Telefono",6,1,7)){cadena[i]="Telefono";i++;}
+			
+			}
 		}
 	
 	//if(!esValido("Fecha Fin",form.fFechaFin,"FechaFin",2,1,10)){cadena[i]="Fecha Fin";i++;}
@@ -422,6 +449,7 @@ Solo poner el id de los <span> segun corresponda
 	document.getElementById("errRazonSocial").style.display='none';
 	document.getElementById("errRuc").style.display='none';
 	document.getElementById("errCorreo").style.display='none';
+	document.getElementById("errTelefono").style.display='none';
 	//document.getElementById("errCorreo").style.display='none';
 	//document.getElementById("errFechaInicio").style.display='none';
 	//document.getElementById("errFechaFin").style.display='none';
