@@ -9,6 +9,9 @@ public class ResultadoHorariodetrabajoBeanData implements Serializable{
 
 	
 	private String codDiasemana;
+	
+	private String diaSemana;
+	
 	private String horaInicio;
 	private String horaFin;
 	
@@ -49,6 +52,12 @@ public class ResultadoHorariodetrabajoBeanData implements Serializable{
 	}
 	public void setEstado(String estado) {
 		this.estado = estado;
+	}
+	public String getDiaSemana() {
+		return diaSemana;
+	}
+	public void setDiaSemana(String diaSemana) {
+		this.diaSemana = diaSemana;
 	}
 
 
