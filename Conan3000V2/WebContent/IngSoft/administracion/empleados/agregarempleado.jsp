@@ -147,42 +147,44 @@
 							  </div>
 							</div>
 							
-							<div class="control-group">
+							<div class="control-group" id="dvFechaNacimiento">
 							  <label class="control-label" for="fechaNacimiento">Fecha de Nac. (*):</label>
 							  <div class="controls">
-								<input type="text" class="input-xlarge datepicker" id="txtFechaFacimiento"  name="txtFechaFacimiento" >
-							  
+								<input type="text" class="input-xlarge datepicker" id="txtFechaNacimiento"  name="txtFechaNacimiento" >
+							  <span class="help-inline" id="errFechaNacimiento">Please correct the error</span>
 							  </div>
 							</div>
 							
-							<div class="control-group">
+							<div class="control-group" id="dvFechaContrato">
 							  <label class="control-label" for="fechaContrato">Fecha de Contrato. (*):</label>
 							  <div class="controls">
 								<input type="text" class="input-xlarge datepicker" id="txtFechaContrato" name="txtFechaContrato" >
+							  <span class="help-inline" id="errFechaContrato">Please correct the error</span>
 							  </div>
 							</div>
 							
 							
-							<div class="control-group">
+							<div class="control-group" id="dvTipoDocumento">
 								<label class="control-label" for="cmbTipoDocumento">Tipo de Documento (*):</label>
 								<div class="controls">
-								  <select name="cmbTipoDocumento" id="cmbTipoDocumento" data-rel="chosen">
+								  <select name="cmbTipoDocumento" id="cmbTipoDocumento" name="cmbTipoDocumento"  data-rel="chosen">
 									<option>DNI</option>
-									<option>Carnet de extranjería</option>
+									<option>Carnet de extranjeria</option>
 									</select>
 								</div>
 							</div>
 							
-							<div class="control-group">
+							<div class="control-group" id="dvNumeroDocumento">
 							  <label class="control-label" for="txtNumeroDocumento">Numero de Documento (*):</label>							  
 							  <div class="controls">
 								<input type="text" class="span6 typeahead" data-provide="typeahead"  id="txtNumeroDocumento" name="txtNumeroDocumento" onkeypress="return alfanumerico(event);" autofocus maxlength="50"/>														
+							  <span class="help-inline" id="errNumeroDocumento">Please correct the error</span>
 							  </div>
 							</div>
 							
 																										
 							
-							 <div class="control-group">
+							 <div class="control-group" id="dvHorarios" >
 								<label class="control-label" for="cmbHorarios">Horario de Trabajo:</label>
 								<div class="controls">
 								  <select  multiple data-rel="chosen" id="cmbHorarios" name="cmbHorarios" >
@@ -194,7 +196,7 @@
 								</div>
 							  </div>
 							
-							<div class="control-group">
+							<div class="control-group" id="dvArea">
 								<label class="control-label" for="cmbArea">&Aacute;rea (*):</label>
 								<div class="controls">
 								  <select name="cmbArea" id="cmbArea" data-rel="chosen">
@@ -204,7 +206,7 @@
 								  </select>
 								</div>
 							</div>						
-							<div class="control-group">
+							<div class="control-group" id="dvPuesto">
 								<label class="control-label" for="cmbPuesto">Puesto (*):</label>
 								<div class="controls">
 								  <select name="cmbPuesto" id="cmbPuesto" data-rel="chosen">
@@ -214,7 +216,7 @@
 									 </select>
 								</div>
 							</div>							
-							  <div class="control-group">
+							  <div class="control-group" id="dvHorarios">
 								<label class="control-label" for="cmbSedes">Sedes de Trabajo:</label>
 								<div class="controls">
 								  <select  multiple data-rel="chosen" id="cmbSedes" name="cmbSedes" >
@@ -396,14 +398,67 @@
 
 			var cadena= new Array();
 			var i=0;
-			var error=false;
-
+			var error=false;	
+			var tipoDocumento = frmData.cmbTipoDocumento.value;
 			
 			if(!esValido("Nombres",form.txtNombreEmpleado,"NombreEmpleado",1,1,50)){cadena[i]="Nombres";i++;}
 			
 			if(!esValido("Apellido Paterno",form.txtApellidoPaterno,"ApellidoPaterno",1,1,50)){cadena[i]="Apellido Paterno";i++;}
 
-			if(!esValido("Apellido Materno",form.txtApellidoPaterno,"ApellidoMaterno",1,1,50)){cadena[i]="Apellido Materno";i++;}
+			if(!esValido("Apellido Materno",form.txtApellidoMaterno,"ApellidoMaterno",1,1,50)){cadena[i]="Apellido Materno";i++;}
+			
+			
+			
+ 			if  (tipoDocumento == "DNI"){
+			
+ 				//alert(tipoDocumento);
+ 				
+ 				if(!esValido("Numero de Documento",form.txtNumeroDocumento,"NumeroDocumento",1,7,7)){cadena[i]="Numero de Documento";i++;}
+			
+ 					else{
+				
+ 				if(!esValido("Numero de Documento",form.txtNumeroDocumento,"NumeroDocumento",6,7,7)){cadena[i]="Numero de Documento";i++;}
+			
+ 				}
+			
+ 			}
+			
+			else if(tipoDocumento == "Carnet de extranjeria"){
+				
+				//alert("entre");
+				
+ 				if(!esValido("Numero de Documento",form.txtNumeroDocumento,"NumeroDocumento",1,11,11)){cadena[i]="Numero de Documento";i++;}
+				
+ 				else{
+			
+ 			if(!esValido("Numero de Documento",form.txtNumeroDocumento,"NumeroDocumento",6,11,11)){cadena[i]="Numero de Documento";i++;}
+		
+			}
+				
+			
+ 			}
+			
+			
+				
+			
+			if(!esValido("Fecha Nacimiento",form.txtFechaNacimiento,"FechaNacimiento",2,1,10)){cadena[i]="Fecha de Nacimiento";i++;}
+			
+			if(!esValido("Fecha de Contrato",form.txtFechaContrato,"FechaContrato",2,1,10)){cadena[i]="Fecha de Contrato";i++;}
+			
+			else{
+				if(!validarFechas("Fecha de Contrato",form.txtFechaContrato,"FechaContrato","Fecha de Nacimiento",form.txtFechaNacimiento)){
+				cadena[i]="Fecha de Contrato";i++;
+				}
+			}
+			
+			
+// 			if(!esValido("Fecha Fin",form.fFecFin,"FechaFin",2,1,10)){
+// 				cadena[i]="Fecha Fin";i++;
+// 			}else{
+// 				if(!validarFechas("Fecha Final",form.fFecFin,"FechaFin","Fecha Inicio",form.fFecInicio)){
+// 				cadena[i]="Fecha Fin";i++;
+// 				}
+// 			}
 			
 			//if(!esValido("RUC",form.txtRuc,"Ruc",2,1,11)){cadena[i]="RUC";i++;}
 			//else{
@@ -443,7 +498,9 @@
 			document.getElementById("errNombreEmpleado").style.display='none';
 			document.getElementById("errApellidoPaterno").style.display='none';
 			document.getElementById("errApellidoMaterno").style.display='none';
-			
+			document.getElementById("errNumeroDocumento").style.display='none';
+			document.getElementById("errFechaNacimiento").style.display='none';
+			document.getElementById("errFechaContrato").style.display='none';
 		}
 
 
