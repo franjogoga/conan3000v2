@@ -148,12 +148,9 @@
 						      <label class="control-label" for="typeahead7">Nombre: </label>
 						      <div class="controls">
 						        <input type="text" class="span6 typeahead" id="txtNombre"  data-provide="typeahead"  name="txtNombre" disabled value="  <%=((HorariodeactividadBeanData)horariodeactividad.get(0)).getNombre()%>     ">
-					          </div>
-					       <!--- </div> -->
-<!--- ------------  -->
-							
-								<!--  	<div class="row-fluid sortable"> -->
-									
+					         
+					        
+<!--- ------------  -->			
 								<div class="control-group">	
 								
 											<div class="box span6">
@@ -222,14 +219,10 @@
 											</div><!--/span-->
 											
 							
-										</div><!--/row-->
-										
-										
-									</div> 
-											          
-					       
+								</div><!--/row-->       
 <!-- -------- -->		
-
+								 </div><!-- fin controls -->
+							</div> <!--  fin control-group -->
 
 
 		         
