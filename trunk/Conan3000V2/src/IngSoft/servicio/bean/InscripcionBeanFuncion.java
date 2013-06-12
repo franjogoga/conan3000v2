@@ -85,8 +85,9 @@ public class InscripcionBeanFuncion {
 		} catch (Exception a) {
 			sqlsesion.rollback();
 			a.printStackTrace();
-			throw CoException.set("Error: No se puede agregar xD!",
-					"SMCSorteo?accion=Inscripcion&tipo=1");
+			return false;
+			/*throw CoException.set("Error: No se puede agregar xD!",
+					"SMCSorteo?accion=Inscripcion&tipo=1");*/
 
 		}
 
