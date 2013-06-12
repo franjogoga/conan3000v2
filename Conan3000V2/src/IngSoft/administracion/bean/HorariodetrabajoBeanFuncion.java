@@ -174,23 +174,28 @@ public class HorariodetrabajoBeanFuncion {
 		return resultado;
 	}
 
-	/*
+	
 	public HorariodetrabajoBeanData consultarHorariodetrabajo(String codigo){
 		HorariodetrabajoBeanData horariodetrabajoData=null;
 		
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
+			
+			System.out.print(" entra a la consulta ---> "+ codigo  );
 			horariodetrabajoData= sqlsesion.selectOne("Data.administracion.horariodetrabajo.getPLantillaHorariodetrabajo",codigo);
 		}
 		finally{
+			
+			System.out.print(" fallo ---> "+ codigo  );
+			
 			sqlsesion.close();
 		}
 
 		return horariodetrabajoData;
 	}
 	
-	*/
-	
+	 
+	/*
 	public Vector<HorariodetrabajoBeanData> consultarHorariodetrabajo(String codigo){	
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		Vector<HorariodetrabajoBeanData> resultadosV=null;
@@ -202,7 +207,7 @@ public class HorariodetrabajoBeanFuncion {
 		sqlsesion.close();}
 		return resultadosV;
 	}
-	
+	*/ 
 	
 	
 	

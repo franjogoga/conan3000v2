@@ -253,4 +253,26 @@ public class HorariodeactividadBeanFuncion {
 		return diassemana;
 	}
 
+	public Vector<ResultadoActividadBeanData> getActividades() throws CoException {
+		Vector<ResultadoActividadBeanData> actividades= null;
+		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+		try{
+			List<ResultadoActividadBeanData> temp=sqlsesion.selectList("Data.administracion.horariodeactividad.getActividadesX" );			
+			actividades= new Vector<ResultadoActividadBeanData>(temp);
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			throw CoException.set("Error: No se pudo obtener la lista de actividades", "SMAHorariodeactividad?accion=Agregar&tipo=1");
+		}
+		finally{
+			sqlsesion.close();
+			
+		}
+		return actividades;
+	}
+	
+	
+	
+	
+	
 }
