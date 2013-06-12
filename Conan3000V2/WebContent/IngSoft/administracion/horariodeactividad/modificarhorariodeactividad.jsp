@@ -121,15 +121,12 @@
                           <div class="controls">
                             <input type="text" class="span6 typeahead" id="txtNombre"  data-provide="typeahead" name="txtNombre"   value="<%=((HorariodeactividadBeanData)horariodeactividad.get(0)).getNombre()%> "      >
                           	<span class="help-inline" id="errNombreAmbiente">Please correct the error</span>
-                          </div>
-                        </div>
+                        
                         
                         
 
 
 <!---------------  -->
-							
-								<!--  	<div class="row-fluid sortable"> -->
 									
 								<div class="control-group">	
 								
@@ -199,10 +196,10 @@
 											</div><!--/span-->
 											
 							
-										</div><!--/row-->
-											          
-					       
-<!-- -------- -->	
+								</div><!--/row-->       
+<!-- -------- -->		
+								 </div><!-- fin controls -->
+							</div> <!--  fin control-group -->
                      
                         
                         
