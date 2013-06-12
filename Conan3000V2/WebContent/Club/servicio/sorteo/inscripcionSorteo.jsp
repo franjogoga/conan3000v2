@@ -79,11 +79,11 @@
 	
 	}
 	
-	function alt_inscripcion(cod){
-		var form=document.getElementById("form-horizontal");
-		form.accion.value="Inscripcion";
-		form.submit();
-	}
+	function alt_submit(){
+		var form= document.frmData;
+		 form.submit();			
+			}
+	
 		
 			//document.fmrData.submit();
 
@@ -142,6 +142,12 @@
 						<input type="hidden" name="tipo" value="2"></input>
 						  <fieldset>
 						  
+						  <div class="control-group">
+						      <label class="control-label" for="typeahead7">Id Sorteo: </label>
+						      <div class="controls">
+						        <input type="text" class="span6 typeahead" readonly="true"  data-provide="typeahead" id="txtCodigoSorteo" name="txtCodigoSorteo" value="<%=sorteo.getIdSorteo()%>" onkeypress="return alfanumerico(event);" autofocus>
+					          </div>
+					        </div>
 						    <div class="control-group">
 						      <label class="control-label" for="typeahead7">Nombre de sorteo: </label>
 						      <div class="controls">
@@ -177,7 +183,7 @@
 					          </div>
 					        </div>	
 							<div class="form-actions">
-							  <button type="button" class="btn btn-primary" onclick="javascript:alt_submit()">Inscribete!!</button>
+							  <button type="button" class="btn btn-primary" onclick="javascript:alt_submit()">Inscripcion</button>
 							  <button type="button" class="btn" onclick="location.href='buscarInscripcionSorteo.jsp'" >Cancelar</button>
 							</div>
 						  </fieldset>
