@@ -120,7 +120,10 @@
         <servlet-name>SMAHorariodetrabajo</servlet-name>
 	<servlet-class>IngSoft.administracion.horariodetrabajo.SMAHorariodetrabajo</servlet-class>				   
 </servlet>
-
+<servlet id="Servlet_0028">
+        <servlet-name>SMCSorteo</servlet-name>
+	<servlet-class>Club.servicio.sorteo.SMCSorteo</servlet-class>				   
+</servlet>
 
 
 
@@ -245,10 +248,10 @@
         <servlet-name>SMAHorariodetrabajo</servlet-name>
 <url-pattern>/IngSoft/administracion/horariodetrabajo/SMAHorariodetrabajo</url-pattern>
 </servlet-mapping>
-
-
-
-
+<servlet-mapping id="ServletMapping_0028">
+        <servlet-name>SMCSorteo</servlet-name>
+<url-pattern>/Club/servicio/sorteo/SMCSorteo</url-pattern>
+</servlet-mapping>
 
 <error-page>
 <error-code>404</error-code>

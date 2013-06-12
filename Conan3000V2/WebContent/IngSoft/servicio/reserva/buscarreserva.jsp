@@ -61,6 +61,7 @@ var lock1=1;
 var lock2=1;
 var lock3=1;
 var lock4=1;
+var lock5=1;
 var ctipo=3;
 var atipo=3;
 
