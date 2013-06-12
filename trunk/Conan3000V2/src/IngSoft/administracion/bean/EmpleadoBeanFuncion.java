@@ -64,7 +64,7 @@ public class EmpleadoBeanFuncion {
 		empleadoData.setNombre(request.getParameter("txtNombreEmpleado"));
 		empleadoData.setApellidoPaterno(request.getParameter("txtApellidoPaterno"));
 		empleadoData.setApellidoMaterno(request.getParameter("txtApellidoMaterno"));
-		empleadoData.setFechaNacimiento(new Date(DF.parse(request.getParameter("txtFechaFacimiento")).getTime()));
+		empleadoData.setFechaNacimiento(new Date(DF.parse(request.getParameter("txtFechaNacimiento")).getTime()));
 		empleadoData.setFechaContrato(new Date(DF.parse(request.getParameter("txtFechaContrato")).getTime()));
 		empleadoData.setArea(request.getParameter("cmbArea"));	
 		empleadoData.setPuesto(request.getParameter("cmbPuesto"));
