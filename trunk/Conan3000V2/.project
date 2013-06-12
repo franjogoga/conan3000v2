@@ -75,6 +75,21 @@
 			<locationURI>CLUB_JS</locationURI>
 		</link>
 		<link>
+			<name>WebContent/Club/servicio/sorteo/css</name>
+			<type>2</type>
+			<locationURI>CSS</locationURI>
+		</link>
+		<link>
+			<name>WebContent/Club/servicio/sorteo/img</name>
+			<type>2</type>
+			<locationURI>IMG</locationURI>
+		</link>
+		<link>
+			<name>WebContent/Club/servicio/sorteo/js</name>
+			<type>2</type>
+			<locationURI>JS</locationURI>
+		</link>
+		<link>
 			<name>WebContent/IngSoft/administracion/ambiente/css</name>
 			<type>2</type>
 			<locationURI>CSS</locationURI>
