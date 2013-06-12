@@ -107,7 +107,7 @@ function ajax_search(){
 		  type: "POST",
 		  url: "/Conan3000V2/IngSoft/servicio/reserva/SMSReserva",
 		  data: "accion=Buscar"+"&tipo=2" +"&cmbServicios="+$('#cmbServicios').val()+"&cmbSedes="+$('#cmbSedes').val()+"&cmbTipoCancha="+$('#cmbTipoCancha').val()
-		  +"&fFechaIni="+$('#fFechaIni').val()+"&txtIdSocio="+$('#txtIdSocio').val(),
+		  +"&fFechaIni="+$('#fFechaIni').val()+"&txtIdSocio="+$('#txtIdSocioAlt').val(),
 		  dataType: "html",
 		  beforeSend: function ( xhr ) {
    		  $("#resultadoBusqueda").html("<div align='center'><img src='img/ajax-loaders/ajax-loader-7.gif'></img></div>");
@@ -132,6 +132,12 @@ function ajax_search(){
 function cambiaModo(numero) {
 	var temp='';
 	if(numero!=atipo){
+		$('#txtDocSocio').val('');
+		$('#txtNomSocio').val('');
+		$('#txtIdSocioAlt').val('');
+		$('#txtIdSocio').val('');
+		$('#txtDNISocio').val('');
+		$('#txtNombreSocio').val('');
 	if(numero==2) {
 		atipo=2;
 		temp=$('#titulo').html();
@@ -139,11 +145,6 @@ function cambiaModo(numero) {
 		temp=temp.replace('BUSCAR','ELIMINAR');
 		$('#txtDocSocio').prop('disabled', false);
 		$('#txtNomSocio').prop('disabled', false);
-		$('#txtDocSocio').val('');
-		$('#txtNomSocio').val('');
-		$('#txtIdSocio').val('');
-		$('#txtDNISocio').val('');
-		$('#txtNombreSocio').val('');
 		$('#titulo').html(temp);
 		$('.elim').css('display','inline');
 		$('.crear').css('display','none');
@@ -157,11 +158,6 @@ function cambiaModo(numero) {
 		temp=temp.replace('BUSCAR','AGREGAR');
 		$('#txtDocSocio').prop('disabled', true);
 		$('#txtNomSocio').prop('disabled', true);
-		$('#txtDocSocio').val('');
-		$('#txtNomSocio').val('');
-		$('#txtIdSocio').val('');
-		$('#txtDNISocio').val('');
-		$('#txtNombreSocio').val('');
 		$('#titulo').html(temp);
 		$('.crear').css('display','inline');
 		$('.elim').css('display','none');
@@ -175,11 +171,6 @@ function cambiaModo(numero) {
 		temp=temp.replace('AGREGAR','BUSCAR');
 		$('#txtDocSocio').prop('disabled', false);
 		$('#txtNomSocio').prop('disabled', false);
-		$('#txtDocSocio').val('');
-		$('#txtNomSocio').val('');
-		$('#txtIdSocio').val('');
-		$('#txtDNISocio').val('');
-		$('#txtNombreSocio').val('');
 		$('#titulo').html(temp);
 		$('.crear').css('display','none');
 		$('.elim').css('display','none');
@@ -310,14 +301,14 @@ function ajax_elim(){
 		$.ajax({
 			  type: "POST",
 			  url: "/Conan3000V2/IngSoft/servicio/reserva/SMSReserva",
-			  data: "accion=Eliminar"+"&tipo=2" +"&cmbServicios="+$('#cmbServicios').val()+"&cmbSedes="+$('#cmbSedes').val()+"&cmbTipoCancha="+$('#cmbTipoCancha').val()
+			  data: "accion=Buscar"+"&tipo=6" +"&cmbServicios="+$('#cmbServicios').val()+"&cmbSedes="+$('#cmbSedes').val()+"&cmbTipoCancha="+$('#cmbTipoCancha').val()
 			  +"&pendientes="+pendientes+"&cancelados="+cancelados,
 			  dataType: "text",
 			  success: function(msg){
 				$.ajax({
 			  type: "POST",
 			  url: "/Conan3000V2/IngSoft/servicio/reserva/SMSReserva",
-			  data: "accion=Crear"+"&tipo="+ctipo +"&txtIdSocio="+$('#txtIdSocio').val(),
+			  data: "accion=Eliminar"+"&tipo="+ctipo +"&txtIdSocio="+$('#txtIdSocio').val(),
 			  dataType: "text",		  
 			  success: function(msg){
 			  	lock5=1;

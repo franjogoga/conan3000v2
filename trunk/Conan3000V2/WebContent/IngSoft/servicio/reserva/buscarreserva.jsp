@@ -62,7 +62,7 @@ var lock2=1;
 var lock3=1;
 var lock4=1;
 var lock5=1;
-var ctipo=3;
+var ctipo=2;
 var atipo=3;
 
 </script>
@@ -214,6 +214,7 @@ var atipo=3;
 		<hr>
 <form id="frmReservas" name="frmReservas">
 <input type="hidden" value="" id="txtIdSocio" name="txtIdSocio"></input>
+<input type="hidden" value="" id="txtIdSocioAlt" name="txtIdSocioAlt"></input>
 </form>
 		<div class="modal hide fade" id="myModal">
 		<div class="modAgregar">
@@ -238,7 +239,7 @@ var atipo=3;
 			</div>
 			<div class="modal-footer">
 				<a href="#" class="btn" data-dismiss="modal">No</a>
-				<a class="btn btn-primary" onclick="">S&iacute;</a>
+				<a class="btn btn-primary" onclick="ajax_elim()">S&iacute;</a>
 			</div>
 		</div>	
 		</div>

@@ -194,9 +194,9 @@ public class ReservaBeanFuncion {
 	   public void eliminarResevaBungalow(Vector<String> listareservas){
 		   SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		   try{			   
-			   List<String> temp=sqlsesion.selectList("Data.servicio.reserva.getElimReservBungalowCod",listareservas);
-			   int i=0;
-			   i++;
+			   List<String> temp=sqlsesion.selectList("Data.servicio.reserva.getElimReservBungalowCod",listareservas);			   
+			   sqlsesion.update("Data.servicio.reserva.eliminarReservaBungalow",temp);			   
+			   sqlsesion.commit();
 		   }
 		   catch(Exception e){
 			   sqlsesion.rollback();

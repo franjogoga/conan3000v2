@@ -123,17 +123,20 @@ from BUNGALOWxFECHA bf,
 RESERVA_BUNGALOW rb 
 where bf.IdReservaBungalow=rb.IdReservaBungalow
 and CONCAT(rb.IdBungalow,DATE_FORMAT(bf.fecha,'%d/%m/%Y')) in 
- <foreach item="listareservas" index="i" collection="listareservas" open="('" separator="','" close="')">
- 	#{listareservas}
+ <foreach item="item" index="i" collection="list" open="(" separator="," close=")">
+ 	#{item}
  </foreach>
 
 </select>
-<update id="eliminarReservaBungalow" parameterType="java.util.Date">
+<update id="eliminarReservaBungalow" parameterType="java.util.List">
 update RESERVA_BUNGALOW rb 
 set rb.Estado='ELIMINADO'
 where 
 rb.Estado='ACTIVO' 
-and  rb.IdReservaBungalow in () 
+and  rb.IdReservaBungalow in 
+<foreach item="item" index="i" collection="list" open="(" separator="," close=")">
+ 	#{item}
+ </foreach> 
 </update>
 
 
