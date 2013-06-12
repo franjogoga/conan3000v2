@@ -5,10 +5,10 @@ import java.sql.Date;
 
 public class CriterioHorariodetrabajoBeanData implements Serializable{
 	private String nombre; 
-	
-
-	
 	private String codDiasemana;
+	private String diaSemana;	
+	
+	
 	private String horaInicio;
 	private String horaFin;
 	public String getNombre() {
@@ -37,8 +37,13 @@ public class CriterioHorariodetrabajoBeanData implements Serializable{
 	}
 
 	
-	
-	
+	public String getDiaSemana() {
+		return diaSemana;
+	}
+	public void setDiaSemana(String diaSemana) {
+		this.diaSemana = diaSemana;
+	}
+
 
 	
 
