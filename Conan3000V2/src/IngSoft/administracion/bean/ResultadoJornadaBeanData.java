@@ -6,9 +6,17 @@ import java.sql.Date;
 public class ResultadoJornadaBeanData implements Serializable{
 	private String idJornada;
 	private String idEmpleado;
-	private Date horaEntrada;
-	private Date horaSalida;
-	private Date fecha;
+	private String horaEntrada;
+	private String horaSalida;
+	
+	   //----- atributos nuevos ----
+		private String nombreEmpleado;
+		private String apaterno;
+		private String amaterno; 
+	    private Date fecha;
+	    private String horaMarca;	
+	    private int flag;
+		//----- fin atributos nuevos ----
 	
 	public String getIdJornada() {
 		return idJornada;
@@ -22,17 +30,39 @@ public class ResultadoJornadaBeanData implements Serializable{
 	public void setIdEmpleado(String idEmpleado) {
 		this.idEmpleado = idEmpleado;
 	}
-	public Date getHoraEntrada() {
+	public String getHoraEntrada() {
 		return horaEntrada;
 	}
-	public void setHoraEntrada(Date horaEntrada) {
+	public void setHoraEntrada(String horaEntrada) {
 		this.horaEntrada = horaEntrada;
 	}
-	public Date getHoraSalida() {
+	public String getHoraSalida() {
 		return horaSalida;
 	}
-	public void setHoraSalida(Date horaSalida) {
+	public void setHoraSalida(String horaSalida) {
 		this.horaSalida = horaSalida;
+	}
+
+	
+	
+	//----------  metodos nuevos --------------
+	public String getNombreEmpleado() {
+		return nombreEmpleado;
+	}
+	public void setNombreEmpleado(String nombEmpleado) {
+		this.nombreEmpleado = nombEmpleado;
+	}
+	public String getApaterno() {
+		return apaterno;
+	}
+	public void setApaterno(String apaterno) {
+		this.apaterno = apaterno;
+	}
+	public String getAmaterno() {
+		return amaterno;
+	}
+	public void setAmaterno(String amaterno) {
+		this.amaterno = amaterno;
 	}
 	public Date getFecha() {
 		return fecha;
@@ -40,5 +70,19 @@ public class ResultadoJornadaBeanData implements Serializable{
 	public void setFecha(Date fecha) {
 		this.fecha = fecha;
 	}
+	public String getHoraMarca() {
+		return horaMarca;
+	}
+	public void setHoraMarca(String horaMarca) {
+		this.horaMarca = horaMarca;
+	}
+	public int getFlag() {
+		return flag;
+	}
+	public void setFlag(int flag) {
+		this.flag = flag;
+	}
+//---------- fin metodos nuevos --------------
+
 
 }
