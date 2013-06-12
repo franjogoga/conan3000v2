@@ -83,6 +83,30 @@ DIA_SEMANA
 
 
 
+<select id="getActividadesX" parameterType="java.lang.String" resultType="IngSoft.administracion.bean.ResultadoActividadBeanData">
+
+
+
+SELECT 
+inf245g2.ACTIVIDAD.IdActividad AS codigo ,
+inf245g2.ACTIVIDAD.nombre as nombre,
+inf245g2.TIPO_ACTIVIDAD.nombre as tipoactividad,
+inf245g2.ACTIVIDAD.estado as estado
+
+
+FROM inf245g2.ACTIVIDAD , inf245g2.TIPO_ACTIVIDAD 
+
+
+WHERE
+
+inf245g2.ACTIVIDAD.IdTipoActividad = inf245g2.TIPO_ACTIVIDAD.IdTipoActividad
+
+ORDER BY 1 ASC
+;
+
+
+</select>
+
 
 
 </mapper>
