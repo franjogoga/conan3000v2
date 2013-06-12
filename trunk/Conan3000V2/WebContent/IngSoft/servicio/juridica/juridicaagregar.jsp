@@ -76,7 +76,8 @@ body {
 	
 	function alt_submit(){
 		var form= document.frmData;
-		 form.submit();
+		if(validaForm(form)) form.submit();
+		 
 			
 			}
 	
@@ -157,16 +158,22 @@ body {
 											</div>
 										</div>
 
-										<div class="control-group">
+
+
+										<div class="control-group" id="dvCorreo">
+
+
 											<label class="control-label" for="typeahead7">Correo:
 											</label>
 											<div class="controls">
 												<input type="text" class="span6 typeahead" id="txtCorreo"
-													name="txtCorreo" data-provide="typeahead"
-													onkeypress="return alfanumerico(event);" autofocus>
+													name="txtCorreo" data-provide="typeahead">
+													<span class="help-inline" id="errCorreo">Please correct the error</span>
+													
 											</div>
 										</div>
-										
+
+
 
 
 										<div class="control-group">
@@ -180,35 +187,6 @@ body {
 										</div>
 
 
-										<div class="control-group">
-											<label class="control-label">Estado:</label>
-
-											<div class="controls">
-
-												<label class="radio"> <input type="radio"
-													name="optionsRadios" id="optionsRadios1" value="option1"
-													checked=""> Activo
-												</label>
-
-												<div style="clear: both"></div>
-
-
-												<label class="radio"> <input type="radio"
-													name="optionsRadios" id="optionsRadios2" value="option2">
-													Inactivo
-												</label>
-
-												<div style="clear: both"></div>
-
-												<label class="radio"> <input type="radio"
-													name="optionsRadios" id="optionsRadios2" value="option2">
-													Cancelado
-												</label>
-
-
-											</div>
-
-										</div>
 
 										<div class="form-actions">
 											 <button type="button" class="btn btn-primary" onclick="javascript:alt_submit()">Agregar</button>
@@ -396,12 +374,22 @@ function validaForm(){
 	var error=false;
 	if(!esValido("Razon Social",form.txtRazonSocial,"RazonSocial",1,1,50)){cadena[i]="Razon Social";i++;}
 	
-	if(!esValido("RUC",form.txtRuc,"Ruc",2,1,11)){cadena[i]="RUC";i++;}
+	if(!esValido("Correo",form.txtCorreo,"Correo",1,0,50)){cadena[i]="Correo";i++;}
+	
+	else{
+		
+		if(!esValido("Correo",form.txtCorreo,"Correo",9,1,1)){cadena[i]="Correo";i++;}
+	
+		}
+	
+	if(!esValido("RUC",form.txtRuc,"Ruc",1,1,11)){cadena[i]="RUC";i++;}
+	
 	else{
 	
-	if(!esValido("RUC",form.txtCosto,"Ruc",6,1,1)){cadena[i]="RUC";i++;}
+		if(!esValido("RUC",form.txtRuc,"Ruc",6,1,11)){cadena[i]="RUC";i++;}
 	
-	}
+		}
+	
 	//if(!esValido("Fecha Fin",form.fFechaFin,"FechaFin",2,1,10)){cadena[i]="Fecha Fin";i++;}
 	//if(!validarFechas("Fecha Final",form.fFechaFin,"FechaFin","Fecha Inicio",form.fFechaInicio)){cadena[i]="Fecha Fin";i++;};
 	//if(!esValido("Socio",form.txtSocio,"Socio",1,1,50)){cadena[i]="Socio";i++;}
@@ -433,6 +421,8 @@ Solo poner el id de los <span> segun corresponda
 */
 	document.getElementById("errRazonSocial").style.display='none';
 	document.getElementById("errRuc").style.display='none';
+	document.getElementById("errCorreo").style.display='none';
+	//document.getElementById("errCorreo").style.display='none';
 	//document.getElementById("errFechaInicio").style.display='none';
 	//document.getElementById("errFechaFin").style.display='none';
 	//document.getElementById("errSocio").style.display='none';
