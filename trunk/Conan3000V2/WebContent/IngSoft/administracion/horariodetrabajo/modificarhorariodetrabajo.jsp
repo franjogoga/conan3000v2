@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
-
+<%@page import="java.util.Vector"%>
+<%@page import="java.text.SimpleDateFormat"%>
 
 
 <%@page import="java.util.Date"%>
@@ -84,7 +85,18 @@
 	   };
 
 	   
-	   
+	   Vector<String> convertir(String[] l){
+		   
+		   Vector<String> x = new  Vector<String>() ;
+		   
+		   for(int i=0; i<l.length; i++)
+		   {
+			   x.add(l[i]);
+		   }
+		   
+		   return x;
+		  
+	   }   
 	   
 %>	
 	
@@ -138,8 +150,7 @@
                           <div class="controls">
                             <input type="text" class="span6 typeahead" id="txtNombre"  data-provide="typeahead" name="txtNombre"   value="<%=((HorariodetrabajoBeanData)horariodetrabajo).getNombre()%> "      >
                           	<span class="help-inline" id="errNombreAmbiente">Please correct the error</span>
-                          </div>
-                        </div>
+                         
                         
                         
 
@@ -174,12 +185,17 @@
 														   <% 
 														   
 														   String[] codigoDia = ((HorariodetrabajoBeanData)horariodetrabajo).getCodDiasemana().split(",");
-														   
-														   
-														   
 														   String[] nombreDia = ((HorariodetrabajoBeanData)horariodetrabajo).getDiaSemana().split(",");
 														   
-														   for(int i=0; i<diassemana.size(); i++) { %>
+														   String[] iniHora = ((HorariodetrabajoBeanData)horariodetrabajo).getHoraInicio().split(",");
+														   
+														    
+														   
+														   
+														   
+														   String[] finHora = ((HorariodetrabajoBeanData)horariodetrabajo).getHoraFin().split(",");
+														   
+														   for(int i=0; i<diassemana.size()-2; i++) { %>
 														   
 															<tr>
 																<td>
@@ -194,9 +210,16 @@
 																<td class="center">
 							 																																													
 														 		<select  style="width: 100px;"  data-rel="chosen" id="cmbHoraInicio<%=i%>"  name="cmbHoraInicio" >
-															        <%for(int k=0;k<horasDelDia.size();k++){ %>
-													<option value="<%=((String)horasDelDia.get(k))%>" <%=  verificarExiste(  ((DiasBeanData)diassemana.get(i)).getCodigo() ,  codigoDia)?"selected":""%>  > <%=    ((String)horasDelDia.get(k))    %>    </option>
+														 		
+													<option value="<%=iniHora[i] %>" selected > <%=    iniHora[i]    %>    </option>	 		
+														 		
+														 		
+															        <%for(int k=0;k<horasDelDia.size();k++){    if( !((String)horasDelDia.get(k)).equalsIgnoreCase(     iniHora[i]     )  )    %>
+													<option value="<%=((String)horasDelDia.get(k))%>"  > <%=    ((String)horasDelDia.get(k))    %>    </option>
 																    <%} %>						
+															    
+															    
+															    
 															    </select>
 							
 																</td>
@@ -204,7 +227,7 @@
 																<td class="center">
 																
 														 		<select style="width: 100px;" data-rel="chosen" id="cmbHoraFin<%=i%>"  name="cmbHoraInicio" >
-					
+													
 															    </select>
 																
 																</td>
@@ -221,10 +244,10 @@
 											</div><!--/span-->
 											
 							
-										</div><!--/row-->
-											          
-					       
-<!-- -------- -->	
+								</div><!--/row-->       
+<!-- -------- -->		
+								 </div><!-- fin controls -->
+							</div> <!--  fin control-group -->
                      
                         
                         
