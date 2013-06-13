@@ -23,6 +23,24 @@ public class AccionModificarHorariodetrabajo extends CoAccion{
 	public void ejecutar(ServletContext sc, HttpServletRequest request,
 			HttpServletResponse response)  throws CoException{
 		
+		
+		Vector<String> horasDelDia = new  Vector<String>() ;
+		for(int i=8;i<23;i++){
+			
+			if(i<10)
+			{   horasDelDia.add("0"+i+":00");
+			    horasDelDia.add("0"+i+":30");
+				
+			}
+			else{
+				    horasDelDia.add( i+":00");
+				    horasDelDia.add( i+":30");
+			}
+		}
+		
+		
+		
+		
 		if(Integer.valueOf(request.getParameter("tipo"))==2){
 		
 			
@@ -38,10 +56,13 @@ public class AccionModificarHorariodetrabajo extends CoAccion{
 		else
 		{
 			HorariodetrabajoBeanFuncion horariodetrabajoFuncion= HorariodetrabajoBeanFuncion.getInstance(); 
-			Vector<HorariodetrabajoBeanData>  horariodetrabajo=horariodetrabajoFuncion.consultarHorariodetrabajo(request.getParameter("codigo"));
+			HorariodetrabajoBeanData  horariodetrabajo=horariodetrabajoFuncion.consultarHorariodetrabajo(request.getParameter("codigo"));
 			
 			Vector<DiasBeanData>  diassemana=horariodetrabajoFuncion.getDias();
 			
+			
+			
+			request.setAttribute("horasDelDia",horasDelDia );
 			request.setAttribute("diassemana",diassemana );
 			request.setAttribute("horariodetrabajo",horariodetrabajo );
 			this.direccionar(sc, request, response, "/IngSoft/administracion/horariodetrabajo/modificarhorariodetrabajo.jsp");	
