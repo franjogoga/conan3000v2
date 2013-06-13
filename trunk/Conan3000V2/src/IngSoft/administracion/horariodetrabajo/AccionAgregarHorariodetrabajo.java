@@ -40,10 +40,14 @@ public class AccionAgregarHorariodetrabajo extends CoAccion{
 			}
 		}
 		
-		
+		System.out.print(  "agregar 0 horario de trabajo" + request.getParameter("tipo"));
 		
 		if(Integer.valueOf(request.getParameter("tipo"))==2){
 		
+			
+			System.out.print(  "agregar 2 horario de trabajo" );
+			System.out.print(  request.getParameter("checkDia") );
+			
 	
 			/*
 		HorariodetrabajoBeanFuncion actividadFuncion= HorariodetrabajoBeanFuncion.getInstance();
@@ -57,7 +61,7 @@ public class AccionAgregarHorariodetrabajo extends CoAccion{
 		}
 		else
 		{
-			
+			System.out.print(  "agregar 1 horario de trabajo" );
 
 			HorariodetrabajoBeanFuncion horariodetrabajoFuncion= HorariodetrabajoBeanFuncion.getInstance(); 
 			
