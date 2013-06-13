@@ -67,15 +67,20 @@
 function selectGrupal()
 {
 	var selObj0 = document.getElementById('cmbHoraInicio0');
-	var selObj1 = document.getElementById('cmbHoraInicio0');
-    var selObj2 = document.getElementById('cmbHoraInicio0');
-	var selObj3 = document.getElementById('cmbHoraInicio0');
-	var selObj4 = document.getElementById('cmbHoraInicio0');
-    var selObj5 = document.getElementById('cmbHoraInicio0');
-    var selObj6 = document.getElementById('selSeaShells3');
+	var selObj1 = document.getElementById('cmbHoraInicio1');
+    var selObj2 = document.getElementById('cmbHoraInicio2');
+	var selObj3 = document.getElementById('cmbHoraInicio3');
+	var selObj4 = document.getElementById('cmbHoraInicio4');
+    var selObj5 = document.getElementById('cmbHoraInicio5');
+    var selObj6 = document.getElementById('cmbHoraInicio6');
 
-        selObj.selectedIndex = selObj3.selectedIndex;
-        selObj2.selectedIndex = selObj3.selectedIndex;
+        selObj0.selectedIndex = selObj0.selectedIndex;
+        selObj1.selectedIndex = selObj0.selectedIndex;
+        selObj2.selectedIndex = selObj0.selectedIndex;
+        selObj3.selectedIndex = selObj0.selectedIndex;
+        selObj4.selectedIndex = selObj0.selectedIndex;
+        selObj5.selectedIndex = selObj0.selectedIndex;
+        selObj6.selectedIndex = selObj0.selectedIndex;
 }
 
 </script>	
@@ -205,8 +210,8 @@ function selectGrupal()
 																</td>
 																
 																<td class="center">
-							 																																													
-														 		<select  style="width: 100px;"  data-rel="chosen" id="cmbHoraInicio<%=i%>"  name="cmbHoraInicio" >
+							 																		 <!-- data-rel="chosen" -->!																											
+														 		<select  style="width: 100px;"                                    id="cmbHoraInicio<%=i%>"  name="cmbHoraInicio"  onChange="selectGrupal();" >
 														 		
 															
 														 		
@@ -223,7 +228,7 @@ function selectGrupal()
 																
 																<td class="center">
 																
-														 		<select style="width: 100px;" data-rel="chosen" id="cmbHoraFin<%=i%>"  name="cmbHoraInicio" >
+														 		<select style="width: 100px;" id="cmbHoraFin<%=i%>"  name="cmbHoraInicio" >
 															        <%for(int k=0;k<horasDelDia.size();k++){      %>
 													<option value="<%=((String)horasDelDia.get(k))%>"  <%= k==0  ?"selected":""%>     > <%=    ((String)horasDelDia.get(k))    %>    </option>
 																    <%} %>						
