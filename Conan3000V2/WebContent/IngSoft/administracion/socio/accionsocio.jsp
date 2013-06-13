@@ -79,7 +79,7 @@
 				<div class="alert alert-block span10">
 					<h4 class="alert-heading">Advertencia!</h4>
 					<p>Necesitas tener <a href="http://es.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript</a> activado para usar este sitio.</p>
-				</div>
+				</div>    
 			</noscript>
 			
 			<div id="content" class="span10">
