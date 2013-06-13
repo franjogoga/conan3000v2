@@ -100,6 +100,7 @@ esnull=false;
 								<%							
 							}
 							hora=addHora(hora,stepI);}
+							reservasV.remove(j);
 							}
 							else{
 								String hora=horaIni;

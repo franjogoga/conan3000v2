@@ -5,6 +5,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Vector;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -14,6 +16,10 @@ import IngSoft.general.bean.Conan3000Constantes;
 
 public class ReservaBeanFuncion {
 	static private ReservaBeanFuncion ReservaFuncion=null;
+	private Lock lAB= new ReentrantLock();
+	private Lock lAC= new ReentrantLock();
+	private Lock lEB= new ReentrantLock();
+	private Lock lEC= new ReentrantLock();
 	
 	 public static ReservaBeanFuncion getInstance(){
 	       if(ReservaFuncion==null) ReservaFuncion= new ReservaBeanFuncion();
@@ -125,12 +131,15 @@ public class ReservaBeanFuncion {
 	   }
 	   
 	   public void agregarReservaBungalow(Vector<String> listareservas, String codSocio){
+		   lAB.lock();
 		   String nextcodigo;
 		   SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		   try{
 			   nextcodigo=sqlsesion.selectOne("Data.servicio.reserva.getNextCodigoB");
 			   nextcodigo=nextcodigo==null?"RSB000000":nextcodigo;
 			   SimpleDateFormat df= new SimpleDateFormat("dd/MM/yyyy");
+			   List<String> temp=sqlsesion.selectList("Data.servicio.reserva.verificarReservBungalow",listareservas);
+			   listareservas.removeAll(new Vector<String>(temp));
 			   int a= listareservas.size();
 			   HashMap<String, Object> map=new HashMap<String, Object>();
 			   map.put("idsocio",codSocio);
@@ -151,11 +160,13 @@ public class ReservaBeanFuncion {
 		   }
 		   finally{			   
 			   sqlsesion.close();
+			   lAB.unlock();
 			   
 		   }
 		   
 	   }
 	   public void agregarReservaCancha(Vector<String> listareservas, String codSocio){
+		   lAC.lock();
 		   String nextcodigo;
 		   SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		   try{
@@ -163,6 +174,8 @@ public class ReservaBeanFuncion {
 			   nextcodigo=nextcodigo==null?"RSC000000":nextcodigo;
 			   SimpleDateFormat df= new SimpleDateFormat("dd/MM/yyyy");
 			   String horaIni=null;
+			   List<String> temp=sqlsesion.selectList("Data.servicio.reserva.verificarReservCancha",listareservas);
+			   listareservas.removeAll(new Vector<String>(temp));
 			   int a= listareservas.size();
 			   HashMap<String, Object> map=new HashMap<String, Object>();
 			   map.put("idsocio",codSocio);
@@ -186,12 +199,15 @@ public class ReservaBeanFuncion {
 		   }
 		   finally{			   
 			   sqlsesion.close();
+			   lAC.unlock();
 			   
 		   }
+		   
 		   
 	   }
 	   
 	   public void eliminarResevaBungalow(Vector<String> listareservas){
+		   lEB.lock();
 		   SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		   try{			   
 			   List<String> temp=sqlsesion.selectList("Data.servicio.reserva.getElimReservBungalowCod",listareservas);			   
@@ -203,11 +219,13 @@ public class ReservaBeanFuncion {
 			   e.printStackTrace();			   
 		   }
 		   finally{			   
-			   sqlsesion.close();			  
+			   sqlsesion.close();
+			   lEB.unlock();
 		   }
 		   
 	   }
 	   public void eliminarResevaCancha(Vector<String> listareservas){
+		   lEC.lock();
 		   SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		   try{			   			   
 			   List<String> temp=sqlsesion.selectList("Data.servicio.reserva.getElimReservCanchaCod",listareservas);			   
@@ -219,7 +237,8 @@ public class ReservaBeanFuncion {
 			   e.printStackTrace();			   
 		   }
 		   finally{			   
-			   sqlsesion.close();			  
+			   sqlsesion.close();	
+			   lEC.unlock();
 		   }
 		   
 	   }
