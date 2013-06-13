@@ -52,8 +52,8 @@ SELECT
 ,inf245g2.HORARIO.Descripcion AS nombre
 ,group_concat(inf245g2.DIA_SEMANA.IdDiaSemana) AS codDiasemana
 ,group_concat(inf245g2.DIA_SEMANA.Nombre) AS diaSemana
-,inf245g2.HORARIOxDIA_SEMANA.HoraInicio AS horaInicio
-,inf245g2.HORARIOxDIA_SEMANA.HoraFin AS horaFin
+,group_concat(inf245g2.HORARIOxDIA_SEMANA.HoraInicio) AS horaInicio
+,group_concat(inf245g2.HORARIOxDIA_SEMANA.HoraFin) AS horaFin
 
 FROM
       inf245g2.HORARIO,  inf245g2.DIA_SEMANA, inf245g2.HORARIOxDIA_SEMANA
