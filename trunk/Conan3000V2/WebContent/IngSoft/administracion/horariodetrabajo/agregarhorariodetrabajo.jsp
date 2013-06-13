@@ -2,36 +2,20 @@
 <%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Vector"%>
-<%@page import="java.text.SimpleDateFormat"%>
 
-
-<%@page import="java.util.Date"%>
-<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="IngSoft.administracion.bean.HorariodetrabajoBeanData"%>
 <%@page import="IngSoft.administracion.bean.DiasBeanData"%>
 
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Modificar Horario de Trabajo</title>
+	<title>Agregar Horario de Trabajo</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
 	<meta name="author" content="Muhammad Usman">
 	
 	<!--The beans  -->
-	<jsp:useBean id="actividad" scope="request"class="IngSoft.administracion.bean.ActividadBeanData"></jsp:useBean>
-	<jsp:useBean id="sedes"           scope="request"class="java.util.Vector"></jsp:useBean>
-	<jsp:useBean id="ambientes"       scope="request"class="java.util.Vector"></jsp:useBean>
-	<jsp:useBean id="tipoactividades"  scope="request"class="java.util.Vector"></jsp:useBean>
-	
-	
-	<jsp:useBean id="departamentos" scope="request"class="java.util.Vector"></jsp:useBean>
-	<jsp:useBean id="provincias" scope="request"class="java.util.Vector"></jsp:useBean>
-	<jsp:useBean id="distritos" scope="request"class="java.util.Vector"></jsp:useBean>
-	<jsp:useBean id="sede" scope="request"class="IngSoft.administracion.bean.SedeBeanData"></jsp:useBean>
-	
-	
-	
+
 	<jsp:useBean id="horasDelDia" scope="request"class="java.util.Vector"></jsp:useBean>	
 	<jsp:useBean id="horariodetrabajo" scope="request"class="IngSoft.administracion.bean.HorariodetrabajoBeanData"></jsp:useBean>
 	<jsp:useBean id="diassemana" scope="request"class="java.util.Vector"></jsp:useBean>	
@@ -72,6 +56,29 @@
 
 	<!-- The fav icon -->
 	<link rel="shortcut icon" href="img/favicon.ico">
+	
+	
+	
+	
+	
+	
+<script>
+
+function selectGrupal()
+{
+	var selObj0 = document.getElementById('cmbHoraInicio0');
+	var selObj1 = document.getElementById('cmbHoraInicio0');
+    var selObj2 = document.getElementById('cmbHoraInicio0');
+	var selObj3 = document.getElementById('cmbHoraInicio0');
+	var selObj4 = document.getElementById('cmbHoraInicio0');
+    var selObj5 = document.getElementById('cmbHoraInicio0');
+    var selObj6 = document.getElementById('selSeaShells3');
+
+        selObj.selectedIndex = selObj3.selectedIndex;
+        selObj2.selectedIndex = selObj3.selectedIndex;
+}
+
+</script>	
 	
 <%!
 
@@ -124,18 +131,18 @@
                 <ul class="breadcrumb">
                   <li> <a href="../../general/index.jsp">Home</a> <span class="divider">/</span> </li>
                   <li> <a href="buscarhorariodetrabajo.jsp">Mantenimiento de Horario de Trabajo</a> <span class="divider">/</span></li>
-                  <li>Modificar Horario de Trabajo</li>
+                  <li>Agregar Horario de Trabajo</li>
                 </ul>
               </div>
               <div class="row-fluid sortable">
                 <div class="box span12">
                   <div class="box-header well" data-original-title>
-                    <h2><i class="icon-edit"></i>MODIFICAR HORARIO DE TRABAJO</h2>
+                    <h2><i class="icon-edit"></i>AGREGAR HORARIO DE TRABAJO</h2>
                   </div>
                   <div class="box-content">
                     <form class="form-horizontal" action="<%= response.encodeURL("SMAHorariodetrabajo")%>" name="frmData" method="post">
-						<input type="hidden" name="codigo" value="<%=((HorariodetrabajoBeanData)horariodetrabajo).getCodigo()%>  "></input>
-						<input type="hidden" name="accion" value="Modificar"></input>
+						<input type="hidden" name="codigo" value="  "></input>
+						<input type="hidden" name="accion" value="Agregar"></input>
 						<input type="hidden" name="tipo" value="2"></input>
 						  
 						  
@@ -175,7 +182,7 @@
 															  <tr>
 																  <th>Dias</th>
 																  <th>Hora Inicio</th>
-																  <th>Hora FIn</th>                                         
+																  <th>Hora Fin</th>                                         
 															  </tr>
 														  </thead>   
 														 
@@ -184,24 +191,14 @@
 														  
 														   <% 
 														   
-														   String[] codigoDia = ((HorariodetrabajoBeanData)horariodetrabajo).getCodDiasemana().split(",");
-														   String[] nombreDia = ((HorariodetrabajoBeanData)horariodetrabajo).getDiaSemana().split(",");
-														   
-														   String[] iniHora = ((HorariodetrabajoBeanData)horariodetrabajo).getHoraInicio().split(",");
-														   
-														    
-														   
-														   
-														   
-														   String[] finHora = ((HorariodetrabajoBeanData)horariodetrabajo).getHoraFin().split(",");
-														   
-														   for(int i=0; i<diassemana.size()-2; i++) { %>
+														 
+														   for(int i=0; i<diassemana.size(); i++) { %>
 														   
 															<tr>
 																<td>
 							
 															  <label class="checkbox inline">
-																<input type="checkbox"  id="inlineCheckbox<%=i%>" name="checkDia"  value="<%= ((DiasBeanData)diassemana.get(i)).getCodigo() %>"  <%=  verificarExiste(  ((DiasBeanData)diassemana.get(i)).getCodigo() ,  codigoDia) ?"checked":""%>       > 
+																<input type="checkbox"  id="inlineCheckbox<%=i%>" name="checkDia"  value="<%= ((DiasBeanData)diassemana.get(i)).getCodigo() %>"  checked       > 
 																<%=  ((DiasBeanData)diassemana.get(i)).getNombre()  %>  
 															  </label>
 															  
@@ -211,11 +208,11 @@
 							 																																													
 														 		<select  style="width: 100px;"  data-rel="chosen" id="cmbHoraInicio<%=i%>"  name="cmbHoraInicio" >
 														 		
-													<option value="<%=iniHora[i] %>" selected > <%=    iniHora[i]    %>    </option>	 		
+															
 														 		
 														 		
-															        <%for(int k=0;k<horasDelDia.size();k++){    if( !((String)horasDelDia.get(k)).equalsIgnoreCase(     iniHora[i]     )  )    %>
-													<option value="<%=((String)horasDelDia.get(k))%>"  > <%=    ((String)horasDelDia.get(k))    %>    </option>
+															        <%for(int k=0;k<horasDelDia.size();k++){      %>
+													<option value="<%=((String)horasDelDia.get(k))%>"  <%= k==0  ?"selected":""%>     > <%=    ((String)horasDelDia.get(k))    %>    </option>
 																    <%} %>						
 															    
 															    
@@ -227,7 +224,10 @@
 																<td class="center">
 																
 														 		<select style="width: 100px;" data-rel="chosen" id="cmbHoraFin<%=i%>"  name="cmbHoraInicio" >
-													
+															        <%for(int k=0;k<horasDelDia.size();k++){      %>
+													<option value="<%=((String)horasDelDia.get(k))%>"  <%= k==0  ?"selected":""%>     > <%=    ((String)horasDelDia.get(k))    %>    </option>
+																    <%} %>						
+															    
 															    </select>
 																
 																</td>
