@@ -178,8 +178,11 @@
 														  <tbody>
 														  
 														   <% 
-														   String[] codigoDia = ((HorariodetrabajoBeanData)horariodetrabajo).getCodDiasemana().split(".");
-														   String[] nombreDia = ((HorariodetrabajoBeanData)horariodetrabajo).getDiaSemana().split(".");
+														   String[] codigoDia = ((HorariodetrabajoBeanData)horariodetrabajo).getCodDiasemana().split(",");
+														   
+														   
+														   
+														   String[] nombreDia = ((HorariodetrabajoBeanData)horariodetrabajo).getDiaSemana().split(",");
 														   
 														   for (int i = 0; i < codigoDia.length; i++) { %>
 														   
