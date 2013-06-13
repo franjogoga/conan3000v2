@@ -10,8 +10,8 @@ public class HorariodetrabajoBeanData implements Serializable{
 	private String nombre;
 	
 	
-	private String[] codDiasemana;
-	private String[] diaSemana;	
+	private String codDiasemana;
+	private String diaSemana;	
 	
 	private String horaInicio;
 	private String horaFin;
@@ -31,16 +31,16 @@ public class HorariodetrabajoBeanData implements Serializable{
 		this.nombre = nombre;
 	}
 
-	public String[] getCodDiasemana() {
+	public String getCodDiasemana() {
 		return codDiasemana;
 	}
-	public void setCodDiasemana(String[] codDiasemana) {
+	public void setCodDiasemana(String codDiasemana) {
 		this.codDiasemana = codDiasemana;
 	}
-	public String[] getDiaSemana() {
+	public String getDiaSemana() {
 		return diaSemana;
 	}
-	public void setDiaSemana(String[] diaSemana) {
+	public void setDiaSemana(String diaSemana) {
 		this.diaSemana = diaSemana;
 	}
 	public String getHoraInicio() {

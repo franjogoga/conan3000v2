@@ -174,7 +174,7 @@ public class HorariodeactividadBeanFuncion {
 		return resultado;
 	}
 
-	/*
+	
 	public HorariodeactividadBeanData consultarHorariodeactividad(String codigo){
 		HorariodeactividadBeanData horariodeactividadData=null;
 		
@@ -189,8 +189,8 @@ public class HorariodeactividadBeanFuncion {
 		return horariodeactividadData;
 	}
 	
-	*/
 	
+	/*
 	public Vector<HorariodeactividadBeanData> consultarHorariodeactividad(String codigo){	
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		Vector<HorariodeactividadBeanData> resultadosV=null;
@@ -203,7 +203,7 @@ public class HorariodeactividadBeanFuncion {
 		return resultadosV;
 	}
 	
-	
+	*/
 	
 	
 	
