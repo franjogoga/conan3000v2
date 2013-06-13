@@ -117,6 +117,27 @@ insert into BUNGALOWxFECHA(IdReservaBungalow,Fecha) values(#{idreservasbungalow}
 insert into CANCHAxFECHA(IdReservaCancha,Fecha,HoraInicio,HoraFin) values(#{idreservascancha},DATE(#{fecha}),#{horaIni},#{horaFin})
 ;
 </insert>
+<select id="verificarReservBungalow" parameterType="java.util.Vector" resultType="java.lang.String">
+select CONCAT(rb.IdBungalow,DATE_FORMAT(bf.fecha,'%d/%m/%Y')) 
+from BUNGALOWxFECHA bf,
+RESERVA_BUNGALOW rb 
+where bf.IdReservaBungalow=rb.IdReservaBungalow
+and CONCAT(rb.IdBungalow,DATE_FORMAT(bf.fecha,'%d/%m/%Y')) in 
+ <foreach item="item" index="i" collection="list" open="(" separator="," close=")">
+ 	#{item}
+ </foreach>
+</select>
+<select id="verificarReservCancha" parameterType="java.util.Vector" resultType="java.lang.String">
+select CONCAT(rc.IdCancha,DATE_FORMAT(cf.fecha,'%d/%m/%Y'),cf.HoraInicio) 
+from CANCHAxFECHA cf,
+RESERVA_CANCHA rc 
+where cf.IdReservaCancha=rc.IdReservaCancha
+and CONCAT(rc.IdCancha,DATE_FORMAT(cf.fecha,'%d/%m/%Y'),cf.HoraInicio) in 
+ <foreach item="item" index="i" collection="list" open="(" separator="," close=")">
+ 	#{item}
+ </foreach>
+</select>
+
 <select id="getElimReservBungalowCod" parameterType="java.util.Vector" resultType="java.lang.String">
 select bf.IdReservaBungalow 
 from BUNGALOWxFECHA bf,
