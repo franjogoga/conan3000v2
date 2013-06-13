@@ -1,17 +1,24 @@
-<%@page import="java.text.SimpleDateFormat"%>
+  <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
 
 <script type="text/javascript" src="js/apprise-1.5.full.js"></script>
 <link rel="stylesheet" href="css/apprise.css" type="text/css" />
 <script>
-function alt_submit(){
-		var form= document.frmPago;
-		if(validaForm()) form.submit();
-			
-}
+	
+	function alt_fecha(obj){
+	obj.value=obj.value.slice(0,5);
+	
+	}
+	
+	function alt_submit(){
+		var form= document.frmDelete;
+		var r=confirm("¿Esta seguro que desea borrar esta membresia?");
+		if(r==true){form.submit();}
+			}	
+
 
 function anhadir(cod, name){
-	var form= document.frmPago;
+	var form= document.frmMembresia;
 	form.txtSocio.value=name;
 	form.idSocio.value=cod;
 	$.fn.colorbox.close();
@@ -19,7 +26,7 @@ function anhadir(cod, name){
 } 
 
 function confFecha(){
-	var form= document.frmPago;
+	var form= document.frmMembresia;
 	if(form.cmbPeriodo.value=="Anual"){
 	document.getElementById("dvFechaFin").style.display='none';
 		fechaI=form.fFechaInicio.value.split("/");
@@ -62,8 +69,8 @@ function confFecha(){
 		return a;
 	}
 	%>
-
-<%
+	
+	<%
 
 SimpleDateFormat dfActual= new SimpleDateFormat("dd/MM/YYYY");
 String fecHoy=dfActual.format(new java.util.Date());
@@ -75,23 +82,24 @@ String fecHoy=dfActual.format(new java.util.Date());
  <!-- content starts -->
 			  <div>
 			    <ul class="breadcrumb">
-			      <li> <a href="index.jsp">Home</a> <span class="divider">/</span></li>
+			     <li> <a href="index.jsp">Home</a> <span class="divider">/</span></li>
 		        <li> <a href="buscarpago.jsp">Mantenimiento de Pagos</a> <span class="divider">/</span></li>
-		        <li> Registrar Pago de Membres&iacute;a </li>
+		        <li> <a href="buscarpagootros.jsp">Pago de Otros Servicios</a> <span class="divider">/</span></li>
+		        <li> Ver Pago de Membres&iacute;a </li>
 		        </ul>
 		      </div>
 			  <div class="row-fluid sortable">
 			    <div class="box span12">
 			      <div class="box-header well" data-original-title>
-			        <h2>REGISTRAR PAGO  DE MEMBRESIA</h2>
+			        <h2>VER PAGO DE MEMBRESIA</h2>
 		          </div>
 			      <div class="box-content">
-			        <form class="form-horizontal"  name="frmPago" method="Post"  action="SMVPago">
-			        <input type="hidden" name="codigo" value="<%=pago.getIdCuota()%>"></input>
-			        <input type="hidden" name="accion" value="Pagar"></input>
+			         <form class="form-horizontal"  name="frmDelete" method="Post"  action="SMVPago">
+					<input type="hidden" name="codigo" value="<%=pago.getIdCuota()%>"></input>
+			        <input type="hidden" name="accion" value="Eliminar"></input>
 					<input type="hidden" name="tipo" value="2"></input>
 			          <fieldset>
-			            <div class="control-group">
+			           <div class="control-group">
 			              <label class="control-label" for="typeahead8">Socio: </label>
 			              <div class="controls">
 			                <input type="text" class="span6 typeahead disabled" id="typeahead8"  data-provide="typeahead" data-items="4"  value="<%=pago.getSocio()%>" disabled="" >
@@ -112,7 +120,7 @@ String fecHoy=dfActual.format(new java.util.Date());
 <div class="control-group">
           <label class="control-label" for="typeahead7">Fecha de Pago: </label>
 			              <div class="controls">
-			                <input type="text" class="input-xlarge datepicker" id="fFechaPago" name="fFechaPago" value="<%=fecHoy%>"  onpaste="return false;" readOnly="true">
+			                <input type="text" class="input-xlarge datepicker" id="fFechaPago" name="fFechaPago" value="<%=fecHoy%>"  onpaste="return false;" disabled="" >
 		                  </div>
 		                </div>
 			            <div class="control-group">
@@ -123,15 +131,12 @@ String fecHoy=dfActual.format(new java.util.Date());
 		                    </div>
 		                  </div>
 			            </div>
-			            
+			           
 			            <div class="form-actions">
-			              <input type="hidden" name="idCuota" value="<%=pago.getIdCuota() %>"/></input>
-			              <button type="button" class="btn btn-primary" onclick="javascript:alt_submit()">Modificar</button>
-			              <button type="button" class="btn" onclick="location.href='buscarpago.jsp'">Cancelar</button>
-		                </div>
+			              <button type="reset" class="btn" onClick="javascript:history.back();">Regresar</button>
 		                </div>
 		              </fieldset>
-		            </form>(*) Datos Obligatorios
+		            </form>
 		          </div>
 		        </div>
 			    <!--/span-->
@@ -150,4 +155,3 @@ String fecHoy=dfActual.format(new java.util.Date());
 		  
        
 					<!-- content ends -->
-			 

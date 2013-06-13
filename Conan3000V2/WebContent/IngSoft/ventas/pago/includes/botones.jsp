@@ -9,16 +9,15 @@
 					<div>ORDENES DE PAGO</div>
 				</a>
 
-				<a data-rel="tooltip" title="Membresias Vencidas" class="well span3 top-block" href="buscarvencido.jsp">
+				<a data-rel="tooltip" title="Egresos" class="well span3 top-block" href="buscaregreso.jsp">
 					<span class="icon32 icon-color icon-date"></span>
-					<div>MEMBRESIAS VENCIDAS</div>
+					<div>EGRESOS</div>
 					<span class="notification yellow">34</span>
 				</a>
 				
-				<a data-rel="tooltip" title="Solicitud de Pagos Modificados o Eliminados" class="well span3 top-block" href="buscarsolicitud.jsp">
+				<a data-rel="tooltip" title="Flujo de Caja" class="well span3 top-block" href="buscarflujocaja.jsp">
 					<span class="icon32 icon-color icon-pin"></span>
-					<div>SOLICITUD PMOE</div>
+					<div>FLUJO DE CAJA</div>
 					<span class="notification blue">4</span>
 				</a>
-				
 			</div>

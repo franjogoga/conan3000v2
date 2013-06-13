@@ -102,51 +102,7 @@ public class PagoBeanFunction {
 	}
 	
 	
-	public boolean agregarOrdenPago(String idConcepto, String idProducto, String idSocio, Double monto, Date fechaEmision, Date fechaVencimiento) throws CoException {
-		
-		boolean resultado=false;
-		PagoBeanData pagoData= new PagoBeanData();
-		
-		l.lock();
-		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
-		
-		try{
-			String codigo= (String)sqlsesion.selectOne("Data.venta.pago.getNextCodigo2");
-			if(codigo!=null){
-			int cod= Integer.parseInt(codigo.substring(3))+1;
-			String defecto= "OPG000000";
-			String temp= defecto.substring(0, defecto.length()-String.valueOf(cod).length()).concat(String.valueOf(cod));
-			
-			pagoData.setIdIngreso(codigo.substring(0,3).concat(temp));}
-			else pagoData.setIdIngreso("OPG000001");
-			
-			pagoData.setIdSocio(idSocio);
-			pagoData.setIdProducto(idProducto);
-			pagoData.setIdConcepto(idConcepto);
-			pagoData.setFechaPago(fechaEmision);
-			pagoData.setMonto(monto);
-			
-			
-			
-			//insertPago esta en pago mapper
-			sqlsesion.insert("insertOrdenPago",pagoData);
-			//sqlsesion.insert("insertPlantillaEventoSedes",eventoData);
-			
-			resultado=true;
-		}
-		catch(Exception a)		
-		{sqlsesion.rollback();
-		a.printStackTrace();
-			//throw CoException.set("Error: Nombre de pago repetido", "SMVPago?accion=Agregar&tipo=1");
-		}
-		
-		finally{
-			sqlsesion.commit();
-			sqlsesion.close();
-			l.unlock();					
-		}
-		return resultado;
-	}
+	
 
 
 	public boolean eliminarPago(String codigo) throws CoException {
@@ -155,7 +111,10 @@ public class PagoBeanFunction {
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
 		
-			sqlsesion.update("Data.venta.pago.deletePago",codigo);
+			OrdenPagoBeanFunction orden=new OrdenPagoBeanFunction();
+			orden.agregarOrdenPagoPrueba();
+			
+			//sqlsesion.update("Data.venta.pago.deletePago",codigo);
 			
 			resultado=true;
 		}
