@@ -27,7 +27,7 @@ public class AccionConsultarHorariodeactividad extends CoAccion{
 		
 		System.out.print("entro aqui   -----x AccionConsultarHorariodeactividad x-------2--- "+ request.getParameter("codigo"));
 		
-		Vector<HorariodeactividadBeanData>  horariodeactividad=horariodeactividadFuncion.consultarHorariodeactividad(request.getParameter("codigo"));
+		HorariodeactividadBeanData  horariodeactividad=horariodeactividadFuncion.consultarHorariodeactividad(request.getParameter("codigo"));
 
 		request.setAttribute("horariodeactividad",horariodeactividad );
 

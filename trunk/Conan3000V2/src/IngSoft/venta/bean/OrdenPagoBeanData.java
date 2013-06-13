@@ -5,7 +5,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 
-public class OrdenBeanPago implements Serializable {
+public class OrdenPagoBeanData implements Serializable {
 	
 	private String idProducto;
 	private Double monto;

@@ -46,7 +46,7 @@ public class AccionEliminarHorariodetrabajo extends CoAccion{
 			
 			
 			
-			Vector<HorariodetrabajoBeanData>  horariodetrabajo=horariodetrabajoFuncion.consultarHorariodetrabajo(request.getParameter("codigo"));
+			HorariodetrabajoBeanData  horariodetrabajo=horariodetrabajoFuncion.consultarHorariodetrabajo(request.getParameter("codigo"));
 
 			request.setAttribute("horariodetrabajo",horariodetrabajo );
 

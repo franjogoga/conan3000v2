@@ -26,7 +26,7 @@ public class AccionAgregarJornada extends CoAccion{
 		if(tipo==2){
 			JornadaBeanFuncion jornadaFuncion= JornadaBeanFuncion.getInstance();
 			JornadaBeanData jornadaData=jornadaFuncion.crearJornada(request, response);
-			jornadaFuncion.agregarJornada(jornadaData);
+			//jornadaFuncion.agregarJornada(jornadaData);
 			this.direccionar(sc, request, response, "/IngSoft/administracion/jornada/buscarjornada.jsp");
 		}
 		JornadaBeanFuncion jornadaFunction= JornadaBeanFuncion.getInstance();
