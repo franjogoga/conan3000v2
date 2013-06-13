@@ -77,57 +77,41 @@ String fecHoy=dfActual.format(new java.util.Date());
 			    <ul class="breadcrumb">
 			      <li> <a href="index.jsp">Home</a> <span class="divider">/</span></li>
 		        <li> <a href="buscarpago.jsp">Mantenimiento de Pagos</a> <span class="divider">/</span></li>
-		        <li> Registrar Pago de Membres&iacute;a </li>
+		        <li> Registrar Egreso </li>
 		        </ul>
 		      </div>
 			  <div class="row-fluid sortable">
 			    <div class="box span12">
 			      <div class="box-header well" data-original-title>
-			        <h2>REGISTRAR PAGO  DE MEMBRESIA</h2>
+			        <h2>REGISTRAR EGRESO</h2>
 		          </div>
 			      <div class="box-content">
 			        <form class="form-horizontal"  name="frmPago" method="Post"  action="SMVPago">
-			        <input type="hidden" name="codigo" value="<%=pago.getIdCuota()%>"></input>
-			        <input type="hidden" name="accion" value="Pagar"></input>
+			        <input type="hidden" name="accion" value="Egreso"></input>
 					<input type="hidden" name="tipo" value="2"></input>
 			          <fieldset>
 			            <div class="control-group">
-			              <label class="control-label" for="typeahead8">Socio: </label>
+			              <label class="control-label" for="typeahead8">Descripci&oacute;n: </label>
 			              <div class="controls">
-			                <input type="text" class="span6 typeahead disabled" id="typeahead8"  data-provide="typeahead" data-items="4"  value="<%=pago.getSocio()%>" disabled="" >
+			                <input type="text" class="span6 typeahead disabled" id="typeahead8" name="txtDescripcion" id="txtDescripcion" data-provide="typeahead" data-items="4">
 			              </div>
 		                </div>
                         <div class="control-group">
-			                <label class="control-label" for="typeahead4">C&oacute;digo de Socio: </label>
-			                <div class="controls">
-			                  <input type="text" class="span6 typeahead disabled" id="typeahead4" value="<%=pago.getIdSocio()%>" data-provide="typeahead" data-items="4" disabled="" >
-		                    </div>
-		                  </div>
-                        <div class="control-group">
-                            <label class="control-label" for="typeahead2">Fecha de Vencimiento: </label>
+                            <label class="control-label" for="typeahead2">Fecha: </label>
                             <div class="controls">
                               <input type="text" class="input-xlarge datepicker disabled" id="date" value="<%=formatear(new Date(pago.getFechaVencimiento().getTime()))%>" disabled="">
                             </div>
                         </div>
-<div class="control-group">
-          <label class="control-label" for="typeahead7">Fecha de Pago: </label>
-			              <div class="controls">
-			                <input type="text" class="input-xlarge datepicker" id="fFechaPago" name="fFechaPago" value="<%=fecHoy%>"  onpaste="return false;" readOnly="true">
-		                  </div>
-		                </div>
-			            <div class="control-group">
-			              <div class="control-group">
-			                <label class="control-label" for="typeahead4">Monto (S/.): </label>
-			                <div class="controls">
-			                  <input type="text" class="input-xlarge disabled" disabled="" id="txtMonto" name="txtMonto"  data-provide="typeahead" data-items="4" value="<%=pago.getMonto()%>" >
-		                    </div>
-		                  </div>
-			            </div>
-			            
+                        <div class="control-group">
+                            <label class="control-label" for="typeahead2">Monto: </label>
+                            <div class="controls">
+                              <input type="text" class="input-xlarge" id="txtMonto" name="txtMonto" value="" >
+                            </div>
+                        </div>
+                        
 			            <div class="form-actions">
-			              <input type="hidden" name="idCuota" value="<%=pago.getIdCuota() %>"/></input>
-			              <button type="button" class="btn btn-primary" onclick="javascript:alt_submit()">Modificar</button>
-			              <button type="button" class="btn" onclick="location.href='buscarpago.jsp'">Cancelar</button>
+			              <button type="button" class="btn btn-primary" onclick="javascript:alt_submit()">Agregar</button>
+			              <button type="button" class="btn" onclick="location.href='buscaregreso.jsp'">Cancelar</button>
 		                </div>
 		                </div>
 		              </fieldset>

@@ -16,23 +16,8 @@ distinct PERSONA.IdPersona idSocio
 ,CUOTA.Estado as estadoCuota
 from CUOTA, DETALLE_CUOTA, MEMBRESIA, PERSONA
 <where>
-	<if test="socio != null ">
-        CUOTA.IdDetalleCuota=DETALLE_CUOTA.IdDetalleCuota and DETALLE_CUOTA.IdMembresia=MEMBRESIA.IdMembresia and MEMBRESIA.IdSocio=PERSONA.IdPersona and (PERSONA.Nombres LIKE #{socio} or PERSONA.ApePaterno LIKE #{socio} or PERSONA.ApeMaterno LIKE #{socio})
-    </if>
-    <if test="fechaEmisionIni != null">
-        AND CUOTA.FechaEmision &gt;= #{fechaEmisionIni}
-    </if>
-    <if test="fechaEmisionFin != null">
-        AND CUOTA.FechaEmision &lt;= #{fechaEmisionFin}
-    </if>
-    
-    <if test="fechaVencimientoIni != null">
-        AND CUOTA.FechaVencimiento &gt;= #{fechaVencimientoIni} 
-    </if>
-    <if test="fechaVencimientoFin != null">
-        AND CUOTA.FechaVencimiento &lt;= #{fechaVencimientoFin}
-    </if>
-    
+	
+  
     <if test="estado != null">
         AND CUOTA.Estado= #{estado}
        
@@ -92,5 +77,116 @@ update CUOTA set Estado='No Cancelado'
 update CUOTA set Estado='Eliminado'
  where IdCuota= #{idCuota}
 </update>
+
+<!-- Egresos-->
+
+<select id="getNextEgresos" resultType="java.lang.String">
+	select max(IdEgreso) from EGRESO
+</select>
+
+<insert id="insertEgresos" parameterType="IngSoft.venta.bean.EgresoBeanData" flushCache="true">
+	insert into EGRESO(IdEgreso,Descripcion,MontoTotal,Cantidad,FechaPago,Estado,IdConcepto)
+	values (#{idEgreso},#{descripcion},#{montoTotal},#{cantidad},#{fechapago},'Activo',#{idConcepto})
+</insert>
+
+
+
+<!-- Ordenes de pago-->
+
+<select id="getNextCodigoOrden" resultType="java.lang.String">
+	select max(IdConcepto) from CONCEPTO
+</select>
+
+<select id="getNextCodigoOtroIngreso" resultType="java.lang.String">
+	select max(IdOtroIngreso) from OTRO_INGRESO
+</select>
+
+<insert id="insertOrdenPagoOtrosIngresos" parameterType="IngSoft.venta.bean.OrdenPagoBeanData" flushCache="true">
+	insert into OTRO_INGRESO(IdOtroIngreso,IdConcepto,Monto,FechaEmision,FechaVencimiento,Estado)
+	values (#{idOtroIngreso},#{idConcepto},#{monto},#{fechaEmision},#{fechaVencimiento},'No Cancelado')
+</insert>
+
+
+
+<insert id="insertOrdenPagoSolicitudProducto" parameterType="IngSoft.venta.bean.OrdenPagoBeanData" flushCache="true">
+	insert into CONCEPTO(IdSolicitudProducto,IdConcepto,IdSocio,Fecha)
+	values (#{idSolicitudProducto},#{idConcepto},#{idSocio},#{fecha})
+</insert>
+
+<insert id="insertOrdenPagoSolicitudServicio" parameterType="IngSoft.venta.bean.OrdenPagoBeanData" flushCache="true">
+	insert into CONCEPTO(IdSolicitudServicio,IdConcepto,IdSocio,Fecha)
+	values (#{idSolicitudServicio},#{idConcepto},#{idSocio},#{fecha})
+</insert>
+
+<insert id="insertOrdenPagoEventoCorp" parameterType="IngSoft.venta.bean.OrdenPagoBeanData" flushCache="true">
+	insert into CONCEPTO(IdEventoCorp,IdConcepto,IdSocio,Fecha)
+	values (#{idEventoCorp},#{idConcepto},#{idSocio},#{fecha})
+</insert>
+
+<insert id="insertOrdenPagoEventoCorporativoxServicioAdicional" parameterType="IngSoft.venta.bean.OrdenPagoBeanData" flushCache="true">
+	insert into CONCEPTO(IdEventoCorp,IdServAdicional,IdConcepto,IdSocio,Fecha)
+	values (#{idEventoCorp},#{idServAdicional},#{idConcepto},#{idSocio},#{fecha})
+</insert>
+
+<insert id="insertOrdenPagoReservaBungalowxServicioAdicional" parameterType="IngSoft.venta.bean.OrdenPagoBeanData" flushCache="true">
+	insert into CONCEPTO(IdReservaBungalow,IdServAdicional,IdConcepto,IdSocio,Fecha)
+	values (#{idReservaBungalow},#{idServAdicional},#{idConcepto},#{idSocio},#{fecha})
+</insert>
+
+<insert id="insertOrdenPagoBungalowxSorteo" parameterType="IngSoft.venta.bean.OrdenPagoBeanData" flushCache="true">
+	insert into CONCEPTO(IdBungalow,IdSorteo,IdConcepto,IdSocio,Fecha)
+	values (#{idBungalow},#{idSorteo},#{idConcepto},#{idSocio},#{fecha})
+</insert>
+
+<insert id="insertOrdenPagoEventoSocio" parameterType="IngSoft.venta.bean.OrdenPagoBeanData" flushCache="true">
+	insert into CONCEPTO(IdEventoSocio,IdConcepto,IdSocio,Fecha)
+	values (#{idEventoSocio},#{idConcepto},#{idSocio},#{fecha})
+</insert>
+
+<insert id="insertOrdenPagoReservaCancha" parameterType="IngSoft.venta.bean.OrdenPagoBeanData" flushCache="true">
+	insert into CONCEPTO(IdReservaCancha,IdConcepto,IdSocio,Fecha)
+	values (#{idReservaCancha},#{idConcepto},#{idSocio},#{fecha})
+</insert>
+
+<insert id="insertOrdenPagoReservaBungalow" parameterType="IngSoft.venta.bean.OrdenPagoBeanData" flushCache="true">
+	insert into CONCEPTO(IdReservaBungalow,IdConcepto,IdSocio,Fecha)
+	values (#{idReservaBungalow},#{idConcepto},#{idSocio},#{fecha})
+</insert>
+
+<insert id="insertOrdenPagoActividadSocio" parameterType="IngSoft.venta.bean.OrdenPagoBeanData" flushCache="true">
+	insert into CONCEPTO(IdActividad,IdConcepto,IdSocio,Fecha)
+	values (#{idActividad},#{idConcepto},#{idSocio},#{fecha})
+</insert>
+
+<insert id="insertOrdenPagoActividadFamiliar" parameterType="IngSoft.venta.bean.OrdenPagoBeanData" flushCache="true">
+	insert into CONCEPTO(IdActividad, IdFamiliar,IdConcepto,IdSocio,Fecha)
+	values (#{idActividad},#{idFamiliar},#{idConcepto},#{idSocio},#{fecha})
+</insert>
+
+<insert id="insertOrdenPagoSuspensionFalta" parameterType="IngSoft.venta.bean.OrdenPagoBeanData" flushCache="true">
+	insert into CONCEPTO(IdSuspensionFalta,IdConcepto,IdSocio,Fecha)
+	values (#{idSuspensionFalta},#{idConcepto},#{idSocio},#{fecha})
+</insert>
+
+<insert id="insertOrdenPagoSocioxEventoSede" parameterType="IngSoft.venta.bean.OrdenPagoBeanData" flushCache="true">
+	insert into CONCEPTO(IdEventoSede,IdConcepto,IdSocio,Fecha)
+	values (#{idEventoSede},#{idConcepto},#{idSocio},#{fecha})
+</insert>
+
+<insert id="insertOrdenPagoInvitadoxSocio" parameterType="IngSoft.venta.bean.OrdenPagoBeanData" flushCache="true">
+	insert into CONCEPTO(IdInvitado,IdConcepto,IdSocio,Fecha)
+	values (#{idInvitado},#{idConcepto},#{idSocio},#{fecha})
+</insert>
+
+<insert id="insertOrdenPagoTrasladoMembresia" parameterType="IngSoft.venta.bean.OrdenPagoBeanData" flushCache="true">
+	insert into CONCEPTO(IdMembresiaAnt,IdMembresiaNue,IdConcepto,IdSocio,Fecha)
+	values (#{idMembresiaAnt},#{idMembresiaNue},#{idConcepto},#{idSocio},#{fecha})
+</insert>
+
+
+
+
+
+
 
 </mapper>

@@ -16,8 +16,37 @@ public class OrdenPagoBeanData implements Serializable {
 	private String idSocio;
 	private String socio;
 	private String idConcepto;
+	private String idOtroIngreso;
 	
 	
+	private String idActividad;
+	private String idFamiliar;
+	private String idReservaBungalow;
+	private String idReservaCancha;
+	private String idServAdicional;
+	private Date fecha;
+	private String idEventoSocio;
+	private String idEventoCorp;
+	private String idBungalow;
+	private String idSorteo;
+	private String idEventoSede;
+	private String idInvitado;
+	private String idMembresiaAnt;
+	private String idMembresiaNue;
+	private String idSuspensionFalta;
+	private String idSolicitudProducto;
+	private String idSolicitudServicio;
+	
+	
+	
+	
+	
+	public String getIdOtroIngreso() {
+		return idOtroIngreso;
+	}
+	public void setIdOtroIngreso(String idOtroIngreso) {
+		this.idOtroIngreso = idOtroIngreso;
+	}
 	public String getIdProducto() {
 		return idProducto;
 	}
@@ -72,6 +101,111 @@ public class OrdenPagoBeanData implements Serializable {
 	public void setIdConcepto(String idConcepto) {
 		this.idConcepto = idConcepto;
 	}
+	public String getIdActividad() {
+		return idActividad;
+	}
+	public void setIdActividad(String idActividad) {
+		this.idActividad = idActividad;
+	}
+	public String getIdFamiliar() {
+		return idFamiliar;
+	}
+	public void setIdFamiliar(String idFamiliar) {
+		this.idFamiliar = idFamiliar;
+	}
+	public String getIdReservaBungalow() {
+		return idReservaBungalow;
+	}
+	public void setIdReservaBungalow(String idReservaBungalow) {
+		this.idReservaBungalow = idReservaBungalow;
+	}
+	public String getIdReservaCancha() {
+		return idReservaCancha;
+	}
+	public void setIdReservaCancha(String idReservaCancha) {
+		this.idReservaCancha = idReservaCancha;
+	}
+	public String getIdServAdicional() {
+		return idServAdicional;
+	}
+	public void setIdServAdicional(String idServAdicional) {
+		this.idServAdicional = idServAdicional;
+	}
+	public Date getFecha() {
+		return fecha;
+	}
+	public void setFecha(Date fecha) {
+		this.fecha = fecha;
+	}
+	public String getIdEventoSocio() {
+		return idEventoSocio;
+	}
+	public void setIdEventoSocio(String idEventoSocio) {
+		this.idEventoSocio = idEventoSocio;
+	}
+	public String getIdEventoCorp() {
+		return idEventoCorp;
+	}
+	public void setIdEventoCorp(String idEventoCorp) {
+		this.idEventoCorp = idEventoCorp;
+	}
+	public String getIdBungalow() {
+		return idBungalow;
+	}
+	public void setIdBungalow(String idBungalow) {
+		this.idBungalow = idBungalow;
+	}
+	public String getIdSorteo() {
+		return idSorteo;
+	}
+	public void setIdSorteo(String idSorteo) {
+		this.idSorteo = idSorteo;
+	}
+	public String getIdEventoSede() {
+		return idEventoSede;
+	}
+	public void setIdEventoSede(String idEventoSede) {
+		this.idEventoSede = idEventoSede;
+	}
+	public String getIdInvitado() {
+		return idInvitado;
+	}
+	public void setIdInvitado(String idInvitado) {
+		this.idInvitado = idInvitado;
+	}
+	public String getIdMembresiaAnt() {
+		return idMembresiaAnt;
+	}
+	public void setIdMembresiaAnt(String idMembresiaAnt) {
+		this.idMembresiaAnt = idMembresiaAnt;
+	}
+	public String getIdMembresiaNue() {
+		return idMembresiaNue;
+	}
+	public void setIdMembresiaNue(String idMembresiaNue) {
+		this.idMembresiaNue = idMembresiaNue;
+	}
+	public String getIdSuspensionFalta() {
+		return idSuspensionFalta;
+	}
+	public void setIdSuspensionFalta(String idSuspensionFalta) {
+		this.idSuspensionFalta = idSuspensionFalta;
+	}
+	public String getIdSolicitudProducto() {
+		return idSolicitudProducto;
+	}
+	public void setIdSolicitudProducto(String idSolicitudProducto) {
+		this.idSolicitudProducto = idSolicitudProducto;
+	}
+	public String getIdSolicitudServicio() {
+		return idSolicitudServicio;
+	}
+	public void setIdSolicitudServicio(String idSolicitudServicio) {
+		this.idSolicitudServicio = idSolicitudServicio;
+	}
+	
+	
+	
 	
 	
 }

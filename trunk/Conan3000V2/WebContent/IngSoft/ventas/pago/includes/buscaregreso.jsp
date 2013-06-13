@@ -1,6 +1,6 @@
  <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Calendar"%>
-<%@page import="IngSoft.venta.bean.ResultadoPagoBeanData"%>
+<%@page import="IngSoft.venta.bean.ResultadoEgresoBeanData"%>
 <%@page import="java.util.Vector"%>
 <%@page import="java.util.GregorianCalendar"%>
 
@@ -94,7 +94,7 @@ String fecHoy=dfActual.format(new java.util.Date());
 		      <ul class="breadcrumb">
 		        <li> <a href="index.jsp">Home</a> <span class="divider">/</span></li>
 		        <li> <a href="buscarpago.jsp">Mantenimiento de Pagos</a> <span class="divider">/</span></li>
-		        <li> Busqueda de Pagos </li>
+		        <li> Busqueda de Egresos </li>
 	          </ul>
 	          <!-- Solo si necesitas colocar una botonera colocar esto, sino no colocar -->
 	          <jsp:include page="botones.jsp" />
@@ -103,31 +103,19 @@ String fecHoy=dfActual.format(new java.util.Date());
 		    <div class="row-fluid sortable">
 		      <div class="box span12">
 		        <div class="box-header well" data-original-title>
-		          <h2><i class="icon-search"></i> BUSCAR PAGOS DE MEMBRESIA</h2></div>
+		          <h2><i class="icon-search"></i> BUSCAR EGRESOS</h2></div>
 		        <div class="box-content">
 		          <form class="form-horizontal" name="frmCriteriosBusqueda" id="frmCriteriosBusqueda"  method="POST" action="<%= response.encodeURL("SMVPago")%>">
 		            <input type="hidden" name="accion" value="Buscar"/></input>
 		            <fieldset>
+		              
 		              <div class="control-group">
-		                <label class="control-label" for="typeahead">C&oacute;digo de socio:</label>
+		                <label class="control-label" for="selectError">Descripci&oacute;n:</label>
 		                <div class="controls">
-		                  <input type="text" class="span6 typeahead" id="txtCodigoSocio">
+		                  <input type="text" class="span6 typeahead" id="txtSocio" name="txtDescripcion">
 	                    </div>
 	                  </div>
-		              <div class="control-group">
-		                <label class="control-label" for="selectError">Socio:</label>
-		                <div class="controls">
-		                  <input type="text" class="span6 typeahead" id="txtSocio" name="txtSocio">
-	                    </div>
-	                  </div>
-		              <div class="control-group" id="fechaEmision">
-		                <label class="control-label" for="typeahead2">Fecha de Vencimiento: </label>
-		                <div class="controls">
-		                  <input type="text" class="input-xlarge datepicker" id="fFechaVencimientoIni" name="fFechaVencimientoIni" value="<%=fecHoy%>" onpaste="return false;" > 
-		                  - <input type="text" class="input-xlarge datepicker" id="fFechaVencimientoFin" name="fFechaVencimientoFin" value="<%=fecHoy%>" onpaste="return false;" >
-	                    </div>
-	                  </div>
-	                  
+		              
 	                  <div class="control-group" id="fechaPago">
 		                <label class="control-label" for="typeahead2">Fecha de Pago: </label>
 		                <div class="controls">
@@ -136,20 +124,6 @@ String fecHoy=dfActual.format(new java.util.Date());
 	                    </div>
 	                  </div>
 	                  
-	                  <div class="control-group">
-		                <label class="control-label" for="selectError2">Estado</label>
-		                <div class="controls">
-		                  <label class="radio">
-									<input type="radio" name="rButton" id="optionsRadios1" value="Cancelado" checked="checked" onChange="verificar()">
-									Cancelado
-								  </label>
-								  <div style="clear:both"></div>
-								  <label class="radio">
-									<input type="radio" name="rButton" id="optionsRadios2" value="No Cancelado" onChange="verificar()">
-									No Cancelado
-							</label>
-	                    </div>
-	                  </div>
 		              <div class="form-actions">
 		                <button type="submit" class="btn btn-primary">Buscar</button>
 	                  </div>
@@ -165,25 +139,24 @@ String fecHoy=dfActual.format(new java.util.Date());
 		     <form id="frmAlternativo" name="frmAlternativo" method="POST" action="<%= response.encodeURL("SMVPago")%>">
 			  <input type="hidden" name="accion" value="Agregar"></input>
 			  <input type="hidden" name="codigo" value=""></input>
-			 <input type="hidden" name="tipo" value="2"></input>
+			 <input type="hidden" name="tipo" value="1"></input>
 			  </form>
 		    
 		    <div class="row-fluid sortable">
 		      <div class="box span12">
 		        <div class="box-header well" data-original-title>
-		          <h2><i class="icon-th-list"></i> RESULTADOS DE BUSQUEDA DE PAGOS DE MEMBRESIA</h2>
+		          <h2><i class="icon-th-list"></i> RESULTADOS DE BUSQUEDA DE EGRESO</h2>
 	            </div>
 		        <div class="box-content">
 		          <table class="table table-striped table-bordered bootstrap-datatable datatable">
 		            <!-- agregar nuevo boton -->
 		            <thead>
 		              <tr>
-		                <th>C&oacute;digo de Socio</th>
-		                <th>Socio</th>
-		                <th>Num. de Cuota</th>
-		                <th>Fecha de Vencimiento</th>
+		                <th>C&oacute;digo</th>
+		                <th>Descripcion</th>
+		                <th>Fecha Pago</th>
+		                <th>Cantidad</th>
 		                 <th>Monto</th>
-		                 <th>Estado</th>
 		                <th>Acci&oacute;n</th>
 	                  </tr>
 	                </thead>
@@ -196,38 +169,21 @@ String fecHoy=dfActual.format(new java.util.Date());
                           			i<resultados.size();i++){
                          %>
 		              <tr>
-		                <td><%=((ResultadoPagoBeanData)resultados.get(i)).getIdSocio()%></td>
-		                <td class="center"><%=((ResultadoPagoBeanData)resultados.get(i)).getSocio()%></td>
-		                <td class="center"><%=((ResultadoPagoBeanData)resultados.get(i)).getNumCuota()%></td>
+		                <td><%=((ResultadoEgresoBeanData)resultados.get(i)).getIdEgreso()%></td>
+		                <td class="center"><%=((ResultadoEgresoBeanData)resultados.get(i)).getDescripcion()%></td>
 		                <td class="center"><%=
-                         df.format(((ResultadoPagoBeanData)resultados.get(i)).getFechaVencimiento())
+                         df.format(((ResultadoEgresoBeanData)resultados.get(i)).getFechaPago())
                           %></td>
 		               
-		                <td class="center"><%=((ResultadoPagoBeanData)resultados.get(i)).getMonto()%></td>
+		                <td class="center"><%=((ResultadoEgresoBeanData)resultados.get(i)).getMontoTotal()%></td>
 		                
 		                
-		                <td class="center"><span class="label label-success">
-		                <%=
-                         ((ResultadoPagoBeanData)resultados.get(i)).getEstadoCuota()
-                        %></span></td>
                         
                          <td class="center">
 		                
 		                <a class="btn btn-success"
-                          					href="javascript:alt_consultar('<%=((ResultadoPagoBeanData)resultados.get(i)).getIdCuota()%>')">
+                          					href="javascript:alt_consultar('<%=((ResultadoEgresoBeanData)resultados.get(i)).getIdEgreso()%>')">
                           					 <i class="icon-zoom-in icon-white"></i> Ver </a> 
-                        <% if(((ResultadoPagoBeanData)resultados.get(i)).getEstadoCuota().equals("Pagado")){ %>
-		                <a class="btn btn-info"
-                          					href="javascript:alt_modificar('<%=((ResultadoPagoBeanData)resultados.get(i)).getIdCuota()%>')">
-                          					<i class="icon-edit icon-white"></i> Modificar </a>
-                        <% }else{ %>
-                        <a class="btn btn-primary"
-                          					href="javascript:alt_Pagar('<%=((ResultadoPagoBeanData)resultados.get(i)).getIdCuota()%>')">
-                          					 <i class="icon-share icon-white"></i> Pagar </a>
-                        <% } %>
-                        <a class="btn btn-danger"
-                          					href="javascript:alt_eliminar('<%=((ResultadoPagoBeanData)resultados.get(i)).getIdCuota()%>')">
-                          					 <i class="icon-trash icon-white"></i> Eliminar </a>
                         
 						</td>
 		                
