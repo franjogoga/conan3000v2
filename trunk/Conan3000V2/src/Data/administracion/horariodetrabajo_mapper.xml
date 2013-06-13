@@ -33,7 +33,7 @@ AND   inf245g2.DIA_SEMANA.IdDiaSemana    = inf245g2.HORARIOxDIA_SEMANA.IdDiaSema
 
 
 
-AND inf245g2.HORARIO.Descripcion  like  #{nombre}
+AND inf245g2.HORARIO.IdHorario  like  #{nombre}
 group by inf245g2.HORARIO.IdHorario
 
 ORDER BY 1 ASC
