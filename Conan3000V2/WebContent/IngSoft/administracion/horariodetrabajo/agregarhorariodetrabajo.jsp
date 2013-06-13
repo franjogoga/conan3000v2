@@ -64,7 +64,7 @@
 	
 <script>
 
-function selectGrupal()
+function selectGrupal1()
 {
 	var selObj0 = document.getElementById('cmbHoraInicio0');
 	var selObj1 = document.getElementById('cmbHoraInicio1');
@@ -73,6 +73,26 @@ function selectGrupal()
 	var selObj4 = document.getElementById('cmbHoraInicio4');
     var selObj5 = document.getElementById('cmbHoraInicio5');
     var selObj6 = document.getElementById('cmbHoraInicio6');
+
+        selObj0.selectedIndex = selObj0.selectedIndex;
+        selObj1.selectedIndex = selObj0.selectedIndex;
+        selObj2.selectedIndex = selObj0.selectedIndex;
+        selObj3.selectedIndex = selObj0.selectedIndex;
+        selObj4.selectedIndex = selObj0.selectedIndex;
+        selObj5.selectedIndex = selObj0.selectedIndex;
+        selObj6.selectedIndex = selObj0.selectedIndex;
+}
+
+
+function selectGrupal2()
+{
+	var selObj0 = document.getElementById('cmbHoraFin0');
+	var selObj1 = document.getElementById('cmbHoraFin1');
+    var selObj2 = document.getElementById('cmbHoraFin2');
+	var selObj3 = document.getElementById('cmbHoraFin3');
+	var selObj4 = document.getElementById('cmbHoraFin4');
+    var selObj5 = document.getElementById('cmbHoraFin5');
+    var selObj6 = document.getElementById('cmbHoraFin6');
 
         selObj0.selectedIndex = selObj0.selectedIndex;
         selObj1.selectedIndex = selObj0.selectedIndex;
@@ -158,9 +178,9 @@ function selectGrupal()
 
                       
                         <div class="control-group" id="dvNombreAmbiente">
-                          <label class="control-label" for="typeahead">Nombre (*):</label>
+                          <label class="control-label" for="typeahead">Nombre de Horario de Trabajo(*):</label>
                           <div class="controls">
-                            <input type="text" class="span6 typeahead" id="txtNombre"  data-provide="typeahead" name="txtNombre"   value="<%=((HorariodetrabajoBeanData)horariodetrabajo).getNombre()%> "      >
+                            <input type="text" class="span6 typeahead" id="txtNombre"  data-provide="typeahead" name="txtNombre"   value=""      >
                           	<span class="help-inline" id="errNombreAmbiente">Please correct the error</span>
                          
                         
@@ -210,14 +230,14 @@ function selectGrupal()
 																</td>
 																
 																<td class="center">
-							 																		 <!-- data-rel="chosen" -->!																											
-														 		<select  style="width: 100px;"                                    id="cmbHoraInicio<%=i%>"  name="cmbHoraInicio"  onChange="selectGrupal();" >
+							 																		 <!-- data-rel="chosen" -->																											
+														 		<select  style="width: 100px;"                                    id="cmbHoraInicio<%=i%>"  name="cmbHoraInicio"  onChange="selectGrupal1();"  <%=i==0?"":"Disabled"%>    >
 														 		
 															
 														 		
 														 		
 															        <%for(int k=0;k<horasDelDia.size();k++){      %>
-													<option value="<%=((String)horasDelDia.get(k))%>"  <%= k==0  ?"selected":""%>     > <%=    ((String)horasDelDia.get(k))    %>    </option>
+													<option value="<%=((String)horasDelDia.get(k))%>"  <%= k==0?"selected":""%>     > <%=    ((String)horasDelDia.get(k))    %>    </option>
 																    <%} %>						
 															    
 															    
@@ -228,7 +248,7 @@ function selectGrupal()
 																
 																<td class="center">
 																
-														 		<select style="width: 100px;" id="cmbHoraFin<%=i%>"  name="cmbHoraInicio" >
+														 		<select style="width: 100px;" id="cmbHoraFin<%=i%>"  name="cmbHoraInicio" onChange="selectGrupal2();"  <%=i==0?"":"Disabled"%>    >
 															        <%for(int k=0;k<horasDelDia.size();k++){      %>
 													<option value="<%=((String)horasDelDia.get(k))%>"  <%= k==0  ?"selected":""%>     > <%=    ((String)horasDelDia.get(k))    %>    </option>
 																    <%} %>						
@@ -257,7 +277,7 @@ function selectGrupal()
                         
                         
                         <div class="form-actions">
-                          <button type="button" class="btn btn-primary" onclick="javascript:alt_submit()">Guardar</button>
+                          <button type="button" class="btn btn-primary" onclick="javascript:alt_submit()">Agregar</button>
                           <button type="button" class="btn" onclick="location.href='buscarhorariodetrabajo.jsp'" >Cancelar</button>
                         </div>
                         
@@ -445,52 +465,7 @@ function selectGrupal()
 	}
 	
 	
-	
-	function alt_provincia(){
-		$.ajax({
-		  type: "POST",
-		  url: "/Conan3000V2/IngSoft/administracion/sede/SMASede",
-		  data: "accion=Buscar"+ "&tipo=3" + "&cmbDepartamento=" + $(cmbDepartamento).val(),
-		  dataType: "html",
-		  beforeSend: function ( xhr ) {
-   		  $("#cmbProvincia").html("");
-			//chosen - improves select
-			$("#cmbProvincia").trigger("liszt:updated");
-  		  },
-		  success: function(msg){
-			$("#cmbProvincia").html(msg);
-			//chosen - improves select
-			$("#cmbProvincia").trigger("liszt:updated");
-		  },
-		  error: function(objeto, quepaso, otroobj){
-			alert("ERROR!! Pasó lo siguiente: "+quepaso);
-		  }
-	
-		});
-	}
-	function alt_distrito(){
-		$.ajax({
-		  type: "POST",
-		  url: "/Conan3000V2/IngSoft/administracion/sede/SMASede",
-		  data: "accion=Buscar"+ "&tipo=4" + "&cmbProvincia=" + $(cmbProvincia).val(),
-		  dataType: "html",
-		  beforeSend: function ( xhr ) {
-   		  $("#cmbDistrito").html("");
-			//chosen - improves select
-			$("#cmbDistrito").trigger("liszt:updated");
-  		  },
-		  success: function(msg){
-			$("#cmbDistrito").html(msg);
-			//chosen - improves select
-			$("#cmbDistrito").trigger("liszt:updated");
-		  },
-		  error: function(objeto, quepaso, otroobj){
-			alert("ERROR!! Pasó lo siguiente: "+quepaso);
-		  }
-	
-		});
-	}		
-		
+
 	
 	
 	
