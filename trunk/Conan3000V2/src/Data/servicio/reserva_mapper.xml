@@ -139,5 +139,25 @@ and  rb.IdReservaBungalow in
  </foreach> 
 </update>
 
+<select id="getElimReservCanchaCod" parameterType="java.util.Vector" resultType="java.lang.String">
+select cf.IdReservaCancha 
+from CANCHAxFECHA cf,
+RESERVA_CANCHA rc 
+where cf.IdReservaCancha=rc.IdReservaCancha
+and CONCAT(rc.IdCancha,DATE_FORMAT(cf.fecha,'%d/%m/%Y'),cf.HoraInicio) in 
+ <foreach item="item" index="i" collection="list" open="(" separator="," close=")">
+ 	#{item}
+ </foreach>
+</select>
+<update id="eliminarReservaCancha" parameterType="java.util.List">
+update RESERVA_CANCHA rc 
+set rc.Estado='ELIMINADO'
+where 
+rc.Estado='ACTIVO' 
+and  rc.IdReservaCancha in 
+<foreach item="item" index="i" collection="list" open="(" separator="," close=")">
+ 	#{item}
+ </foreach> 
+</update>
 
 </mapper>

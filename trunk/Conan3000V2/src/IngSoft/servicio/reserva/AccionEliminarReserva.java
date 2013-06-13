@@ -39,6 +39,7 @@ public class AccionEliminarReserva extends CoAccion {
 			if(listareservas.size()>0){
 				ReservaBeanFuncion reservaFuncion=ReservaBeanFuncion.getInstance();
 				//reservaFuncion.agregarReservaCancha(listareservas,codSocio);
+				reservaFuncion.eliminarResevaCancha(listareservas);
 				sesion.removeAttribute("reservas");
 				sesion.removeAttribute("listareservas");								
 			}

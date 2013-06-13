@@ -208,6 +208,19 @@ public class ReservaBeanFuncion {
 		   
 	   }
 	   public void eliminarResevaCancha(Vector<String> listareservas){
+		   SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+		   try{			   			   
+			   List<String> temp=sqlsesion.selectList("Data.servicio.reserva.getElimReservCanchaCod",listareservas);			   
+			   sqlsesion.update("Data.servicio.reserva.eliminarReservaCancha",temp);			   
+			   sqlsesion.commit();
+		   }
+		   catch(Exception e){
+			   sqlsesion.rollback();
+			   e.printStackTrace();			   
+		   }
+		   finally{			   
+			   sqlsesion.close();			  
+		   }
 		   
 	   }
 	   
