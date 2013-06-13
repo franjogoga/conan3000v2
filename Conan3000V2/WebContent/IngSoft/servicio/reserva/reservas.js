@@ -291,7 +291,7 @@ if(lock4==1){
 		  }
 	
 		});
-} alert("Debe seleccionar un socio")
+} else alert("Debe seleccionar un socio")
 	}
 }
 
