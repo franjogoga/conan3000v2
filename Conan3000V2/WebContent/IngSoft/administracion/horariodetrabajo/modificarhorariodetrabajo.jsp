@@ -7,7 +7,7 @@
 <%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="IngSoft.administracion.bean.HorariodetrabajoBeanData"%>
-
+<%@page import="IngSoft.administracion.bean.DiasBeanData"%>
 
 <html lang="en">
 <head>
@@ -29,8 +29,11 @@
 	<jsp:useBean id="distritos" scope="request"class="java.util.Vector"></jsp:useBean>
 	<jsp:useBean id="sede" scope="request"class="IngSoft.administracion.bean.SedeBeanData"></jsp:useBean>
 	
-	<jsp:useBean id="horariodetrabajo" scope="request" class="java.util.Vector"></jsp:useBean>
 	
+	
+	<jsp:useBean id="horasDelDia" scope="request"class="java.util.Vector"></jsp:useBean>	
+	<jsp:useBean id="horariodetrabajo" scope="request"class="IngSoft.administracion.bean.HorariodetrabajoBeanData"></jsp:useBean>
+	<jsp:useBean id="diassemana" scope="request"class="java.util.Vector"></jsp:useBean>	
 	
 	
 	
@@ -69,7 +72,21 @@
 	<!-- The fav icon -->
 	<link rel="shortcut icon" href="img/favicon.ico">
 	
-	
+<%!
+
+       boolean verificarExiste(String s, String[] l){
+
+	   for(int i=0; i< l.length; i++){
+		   if(l[i].equalsIgnoreCase(s))
+		    return true;
+	   }
+	   return false; 
+	   };
+
+	   
+	   
+	   
+%>	
 	
 </head>
 
@@ -105,7 +122,7 @@
                   </div>
                   <div class="box-content">
                     <form class="form-horizontal" action="<%= response.encodeURL("SMAHorariodetrabajo")%>" name="frmData" method="post">
-						<input type="hidden" name="codigo" value="<%=((HorariodetrabajoBeanData)horariodetrabajo.get(0)).getCodigo()%>  "></input>
+						<input type="hidden" name="codigo" value="<%=((HorariodetrabajoBeanData)horariodetrabajo).getCodigo()%>  "></input>
 						<input type="hidden" name="accion" value="Modificar"></input>
 						<input type="hidden" name="tipo" value="2"></input>
 						  
@@ -119,7 +136,7 @@
                         <div class="control-group" id="dvNombreAmbiente">
                           <label class="control-label" for="typeahead">Nombre (*):</label>
                           <div class="controls">
-                            <input type="text" class="span6 typeahead" id="txtNombre"  data-provide="typeahead" name="txtNombre"   value="<%=((HorariodetrabajoBeanData)horariodetrabajo.get(0)).getNombre()%> "      >
+                            <input type="text" class="span6 typeahead" id="txtNombre"  data-provide="typeahead" name="txtNombre"   value="<%=((HorariodetrabajoBeanData)horariodetrabajo).getNombre()%> "      >
                           	<span class="help-inline" id="errNombreAmbiente">Please correct the error</span>
                           </div>
                         </div>
@@ -154,15 +171,22 @@
 
 														  <tbody>
 														  
-														   <% for(int i=0; i<horariodetrabajo.size(); i++) { %>
+														   <% 
+														   
+														   String[] codigoDia = ((HorariodetrabajoBeanData)horariodetrabajo).getCodDiasemana().split(",");
+														   
+														   
+														   
+														   String[] nombreDia = ((HorariodetrabajoBeanData)horariodetrabajo).getDiaSemana().split(",");
+														   
+														   for(int i=0; i<diassemana.size(); i++) { %>
 														   
 															<tr>
 																<td>
 							
 															  <label class="checkbox inline">
-																<input type="checkbox" checked id="inlineCheckbox<%=i%>" name="checkDia"  value="<%=((HorariodetrabajoBeanData)horariodetrabajo.get(i)).getCodDiasemana()%>  "> <%=((HorariodetrabajoBeanData)horariodetrabajo.get(i)).getDiaSemana()%>  
-															 
-															 
+																<input type="checkbox"  id="inlineCheckbox<%=i%>" name="checkDia"  value="<%= ((DiasBeanData)diassemana.get(i)).getCodigo() %>"  <%=  verificarExiste(  ((DiasBeanData)diassemana.get(i)).getCodigo() ,  codigoDia) ?"checked":""%>       > 
+																<%=  ((DiasBeanData)diassemana.get(i)).getNombre()  %>  
 															  </label>
 															  
 																</td>
@@ -170,8 +194,8 @@
 																<td class="center">
 							 																																													
 														 		<select  style="width: 100px;"  data-rel="chosen" id="cmbHoraInicio<%=i%>"  name="cmbHoraInicio" >
-															        <%for(int k=0;k<horariodetrabajo.size();k++){ %>
-													<option value="<%=((HorariodetrabajoBeanData)horariodetrabajo.get(k)).getCodDiasemana()%>" <%=  i==k ?"selected":""%>  > <%=    ((HorariodetrabajoBeanData)horariodetrabajo.get(i)).getHoraInicio()    %>    </option>
+															        <%for(int k=0;k<horasDelDia.size();k++){ %>
+													<option value="<%=((String)horasDelDia.get(k))%>" <%=  verificarExiste(  ((DiasBeanData)diassemana.get(i)).getCodigo() ,  codigoDia)?"selected":""%>  > <%=    ((String)horasDelDia.get(k))    %>    </option>
 																    <%} %>						
 															    </select>
 							
@@ -180,9 +204,7 @@
 																<td class="center">
 																
 														 		<select style="width: 100px;" data-rel="chosen" id="cmbHoraFin<%=i%>"  name="cmbHoraInicio" >
-															        <%for(int k=0;k<horariodetrabajo.size();k++){ %>
-													<option value="<%=((HorariodetrabajoBeanData)horariodetrabajo.get(k)).getCodDiasemana()%>" <%=  i==k ?"selected":""%>  >   <%=    ((HorariodetrabajoBeanData)horariodetrabajo.get(i)).getHoraFin()   %>     </option>
-																    <%} %>						
+					
 															    </select>
 																
 																</td>
