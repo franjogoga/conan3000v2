@@ -60,7 +60,6 @@ public class AccionAgregarHorariodetrabajo extends CoAccion{
 			
 
 			HorariodetrabajoBeanFuncion horariodetrabajoFuncion= HorariodetrabajoBeanFuncion.getInstance(); 
-			HorariodetrabajoBeanData  horariodetrabajo=horariodetrabajoFuncion.consultarHorariodetrabajo(request.getParameter("codigo"));
 			
 			Vector<DiasBeanData>  diassemana=horariodetrabajoFuncion.getDias();
 			
@@ -68,8 +67,8 @@ public class AccionAgregarHorariodetrabajo extends CoAccion{
 			
 			request.setAttribute("horasDelDia",horasDelDia );
 			request.setAttribute("diassemana",diassemana );
-			request.setAttribute("horariodetrabajo",horariodetrabajo );
-			this.direccionar(sc, request, response, "/IngSoft/administracion/horariodetrabajo/modificarhorariodetrabajo.jsp");		
+			
+			this.direccionar(sc, request, response, "/IngSoft/administracion/horariodetrabajo/agregarhorariodetrabajo.jsp");		
 		
 		
 		}
