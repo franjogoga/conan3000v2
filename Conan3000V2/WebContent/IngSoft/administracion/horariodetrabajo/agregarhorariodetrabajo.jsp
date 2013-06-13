@@ -1,21 +1,19 @@
 <!DOCTYPE html>
 <%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
-<%@page import="IngSoft.administracion.bean.ActividadBeanData"%>
-<%@page import="IngSoft.administracion.bean.SedeBeanData"%>
-<%@page import="IngSoft.administracion.bean.AmbienteBeanData"%>
-<%@page import="IngSoft.administracion.bean.TipoActividadMiniBeanData"%>
+<%@page import="java.util.Vector"%>
+<%@page import="java.text.SimpleDateFormat"%>
 
 
-<%@page import="IngSoft.administracion.bean.DepartamentoBeanData"%>
-<%@page import="IngSoft.administracion.bean.ProvinciaBeanData"%>
-<%@page import="IngSoft.administracion.bean.DistritoBeanData"%>
-
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="IngSoft.administracion.bean.HorariodetrabajoBeanData"%>
+<%@page import="IngSoft.administracion.bean.DiasBeanData"%>
 
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Agregar Sede</title>
+	<title>Modificar Horario de Trabajo</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
 	<meta name="author" content="Muhammad Usman">
@@ -30,6 +28,14 @@
 	<jsp:useBean id="departamentos" scope="request"class="java.util.Vector"></jsp:useBean>
 	<jsp:useBean id="provincias" scope="request"class="java.util.Vector"></jsp:useBean>
 	<jsp:useBean id="distritos" scope="request"class="java.util.Vector"></jsp:useBean>
+	<jsp:useBean id="sede" scope="request"class="IngSoft.administracion.bean.SedeBeanData"></jsp:useBean>
+	
+	
+	
+	<jsp:useBean id="horasDelDia" scope="request"class="java.util.Vector"></jsp:useBean>	
+	<jsp:useBean id="horariodetrabajo" scope="request"class="IngSoft.administracion.bean.HorariodetrabajoBeanData"></jsp:useBean>
+	<jsp:useBean id="diassemana" scope="request"class="java.util.Vector"></jsp:useBean>	
+	
 	
 	
 	<!-- The styles -->
@@ -67,116 +73,33 @@
 	<!-- The fav icon -->
 	<link rel="shortcut icon" href="img/favicon.ico">
 	
-	
-	
-	<script>
-	
-	
-	function anhadir(cod, name,puesto){
-		var form= document.frmData;
-		form.cmbEncargado.value=name;
-		form.cmbEncargadoCodigo.value=cod;
-		form.txtPuesto.value=puesto;
-		$.fn.colorbox.close();
-		
-	} 
-	
-	function alt_fecha(obj){
-		obj.value=obj.value.slice(0,5);
-		
-		}
+<%!
 
-	function verificar_fecha(comparacion,fecha1,fecha2){
-		var fec1=fecha1.value.split("/");
-		var fec2=document.getElementById(fecha2).value.split("/");
-		var resultado=true;
-		if(fec1.length==fec2.length) {
-			var size=fec1.length;
-			for(i=size-1;i>=0;i--){
-				if(comparacion==0){
-					if(fec1[i].indexOf(fec2[i])<0)  resultado= false;
-					}
-				if(comparacion==1){
-					if(parseInt(fec1[i])<parseInt(fec2[i]))  resultado= false;
-					}
-				if(comparacion==-1){
-					if(parseInt(fec1[i])>parseInt(fec2[i]))  resultado= false;
-					}
-				}
-			if(resultado==false){			
-					fecha1.value=document.getElementById(fecha2).value;			
-				}
-				
-			} 
-		else{
-			alert("Error al comparar fechas");
-		}			
-	}
+       boolean verificarExiste(String s, String[] l){
 
-	function alfanumerico(e) 
-	{ 
-	var key = window.event.keyCode || event.keyCode;
-	return ((key >= 48 && key <= 57) ||(key >= 97 && key <= 122) ||(key >= 65 && key <=90) ||(key >= 192 && key <=246)||(key <=13) ||(key ==32));
-	} 	
+	   for(int i=0; i< l.length; i++){
+		   if(l[i].equalsIgnoreCase(s))
+		    return true;
+	   }
+	   return false; 
+	   };
 
+	   
+	   Vector<String> convertir(String[] l){
+		   
+		   Vector<String> x = new  Vector<String>() ;
+		   
+		   for(int i=0; i<l.length; i++)
+		   {
+			   x.add(l[i]);
+		   }
+		   
+		   return x;
+		  
+	   }   
+	   
+%>	
 	
-		
-	function alt_submit(){
-		var form= document.frmData;
-		if(validaForm()) form.submit();
-	}
-	
-	
-	
-	function alt_provincia(){
-		$.ajax({
-		  type: "POST",
-		  url: "/Conan3000V2/IngSoft/administracion/sede/SMASede",
-		  data: "accion=Buscar"+ "&tipo=3" + "&cmbDepartamento=" + $(cmbDepartamento).val(),
-		  dataType: "html",
-		  beforeSend: function ( xhr ) {
-   		  $("#cmbProvincia").html("");
-			//chosen - improves select
-			$("#cmbProvincia").trigger("liszt:updated");
-  		  },
-		  success: function(msg){
-			$("#cmbProvincia").html(msg);
-			//chosen - improves select
-			$("#cmbProvincia").trigger("liszt:updated");
-		  },
-		  error: function(objeto, quepaso, otroobj){
-			alert("ERROR!! Pasó lo siguiente: "+quepaso);
-		  }
-	
-		});
-	}
-	function alt_distrito(){
-		$.ajax({
-		  type: "POST",
-		  url: "/Conan3000V2/IngSoft/administracion/sede/SMASede",
-		  data: "accion=Buscar"+ "&tipo=4" + "&cmbProvincia=" + $(cmbProvincia).val(),
-		  dataType: "html",
-		  beforeSend: function ( xhr ) {
-   		  $("#cmbDistrito").html("");
-			//chosen - improves select
-			$("#cmbDistrito").trigger("liszt:updated");
-  		  },
-		  success: function(msg){
-			$("#cmbDistrito").html(msg);
-			//chosen - improves select
-			$("#cmbDistrito").trigger("liszt:updated");
-		  },
-		  error: function(objeto, quepaso, otroobj){
-			alert("ERROR!! Pasó lo siguiente: "+quepaso);
-		  }
-	
-		});
-	}		
-		
-	
-	
-	
-	</script>		
 </head>
 
 <body>
@@ -200,19 +123,22 @@
               <div>
                 <ul class="breadcrumb">
                   <li> <a href="../../general/index.jsp">Home</a> <span class="divider">/</span> </li>
-                  <li> <a href="buscarambiente.jsp">Mantenimiento de Sede</a> <span class="divider">/</span></li>
-                  <li>Agregar Sede</li>
+                  <li> <a href="buscarhorariodetrabajo.jsp">Mantenimiento de Horario de Trabajo</a> <span class="divider">/</span></li>
+                  <li>Modificar Horario de Trabajo</li>
                 </ul>
               </div>
               <div class="row-fluid sortable">
                 <div class="box span12">
                   <div class="box-header well" data-original-title>
-                    <h2><i class="icon-plus-sign"></i>AGREGAR SEDE</h2>
+                    <h2><i class="icon-edit"></i>MODIFICAR HORARIO DE TRABAJO</h2>
                   </div>
                   <div class="box-content">
-                    <form class="form-horizontal" action="<%= response.encodeURL("SMASede")%>" name="frmData" method="post">
-                    <input type="hidden" name="accion" value="Agregar"></input>
-					<input type="hidden" name="tipo" value="2"></input>
+                    <form class="form-horizontal" action="<%= response.encodeURL("SMAHorariodetrabajo")%>" name="frmData" method="post">
+						<input type="hidden" name="codigo" value="<%=((HorariodetrabajoBeanData)horariodetrabajo).getCodigo()%>  "></input>
+						<input type="hidden" name="accion" value="Modificar"></input>
+						<input type="hidden" name="tipo" value="2"></input>
+						  
+						  
                       <fieldset>
                       
                       
@@ -222,97 +148,112 @@
                         <div class="control-group" id="dvNombreAmbiente">
                           <label class="control-label" for="typeahead">Nombre (*):</label>
                           <div class="controls">
-                            <input type="text" class="span6 typeahead" id="txtNombre"  data-provide="typeahead" name="txtNombre">
+                            <input type="text" class="span6 typeahead" id="txtNombre"  data-provide="typeahead" name="txtNombre"   value="<%=((HorariodetrabajoBeanData)horariodetrabajo).getNombre()%> "      >
                           	<span class="help-inline" id="errNombreAmbiente">Please correct the error</span>
-                          </div>
-                        </div>
+                         
                         
                         
 
-							 <div class="control-group">
-								<label class="control-label" for="selectError">Departamento:</label>
-								<div class="controls">
-					             <!-- cmbDepartamento  variable     -->	
-							 		<select data-rel="chosen" id="cmbDepartamento" name="cmbDepartamento" onchange="alt_provincia()">
-								  <%for(int i=0;i<departamentos.size();i++){ %>
-										<option value="<%= ((DepartamentoBeanData)departamentos.get(i)).getCodigo()%>" <%=i==0?"selected":""%>><%= ((DepartamentoBeanData)departamentos.get(i)).getNombre()%></option>
-									<%} %>						
-								  </select>
-								</div>
-							  </div>
-							  
-							  
-							 <div class="control-group">
-								<label class="control-label" for="selectError">Provincia:</label>
-								<div class="controls">
-																					 <!-- cmbProvincia  variable     -->	
-							 		<select  data-rel="chosen" id="cmbProvincia" name="cmbProvincia" onchange="alt_distrito()">
-								  		<%for(int i=0;i<provincias.size();i++){ %>
-										<option value="<%= ((ProvinciaBeanData)provincias.get(i)).getCodigo()%>" <%=i==0?"selected":""%>><%= ((ProvinciaBeanData)provincias.get(i)).getNombre()%></option>
-									<%} %>						
-								  </select>
-								</div>
-							  </div>
-							  
-							 <div class="control-group">
-								<label class="control-label" for="selectError">Distrito:</label>
-								<div class="controls">
-																					 <!-- cmbDistrito  variable     -->	
-							 		<select data-rel="chosen" id="cmbDistrito" name="cmbDistrito">
-								  		<%for(int i=0;i<distritos.size();i++){ %>
-										<option value="<%= ((DistritoBeanData)distritos.get(i)).getCodigo()%>" <%=i==0?"selected":""%>><%= ((DistritoBeanData)distritos.get(i)).getNombre()%></option>
-									<%} %>						
-								  </select>
-								</div>
-							  </div>
 
-						    <div class="control-group" id="dvDireccion">
-						      <label class="control-label" for="typeahead7">Direccion(*): </label>
-						      <div class="controls">
-						        
-
-	                            <input    type="text" class="span6 typeahead"  data-provide="typeahead" id="txtDireccion"  name="txtDireccion" onkeypress="return alfanumerico(event);">
-	                          	<span class="help-inline" id="errDireccion">Please correct the error</span>
-	                          	
-					          </div>
-					        </div>
+<!---------------  -->
 							
-						    <div class="control-group"  id="dvTelefono">
-						      <label class="control-label" for="typeahead7">Telefono: </label>
-						      <div class="controls">
-						        
+								<!--  	<div class="row-fluid sortable"> -->
+									
+								<div class="control-group">	
+								
+											<div class="box span6">
+												<div class="box-header well" data-original-title>
+													<h2>Horario</h2>
+													<div class="box-icon">
+													    <a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
+														
+													</div>
+												</div>
+												<div class="box-content">
+													<table class="table">
+														  <thead>
+															  <tr>
+																  <th>Dias</th>
+																  <th>Hora Inicio</th>
+																  <th>Hora FIn</th>                                         
+															  </tr>
+														  </thead>   
+														 
 
-	                            <input    type="text" class="span6 typeahead"  data-provide="typeahead" id="txtTelefono"  name="txtTelefono" maxlength="7" onkeypress="return numerico(event);">
-	                          	<span class="help-inline" id="errTelefono">Please correct the error</span>
-	                     
-					          </div>
-					        </div>
-                                
-                                
-
-						    <div class="control-group"  id="dvAreaterreno">
-						      <label class="control-label" for="typeahead7">Area de Terreno: </label>
-						      <div class="controls">
-						        
-
-	                            <input    type="text" class="span6 typeahead"  data-provide="typeahead" id="txtAreaterreno"  name="txtAreaterreno" maxlength="7" onkeypress="return numerico(event);">
-	                          	<span class="help-inline" id="errAreaterreno">Please correct the error</span>
-	                     
-					          </div>
-					        </div>       
-					        
-					         
-
-					        
-
-
-						<input type="hidden" name="optionsRadios" value="Disponible"></input>
+														  <tbody>
+														  
+														   <% 
+														   
+														   String[] codigoDia = ((HorariodetrabajoBeanData)horariodetrabajo).getCodDiasemana().split(",");
+														   String[] nombreDia = ((HorariodetrabajoBeanData)horariodetrabajo).getDiaSemana().split(",");
+														   
+														   String[] iniHora = ((HorariodetrabajoBeanData)horariodetrabajo).getHoraInicio().split(",");
+														   
+														    
+														   
+														   
+														   
+														   String[] finHora = ((HorariodetrabajoBeanData)horariodetrabajo).getHoraFin().split(",");
+														   
+														   for(int i=0; i<diassemana.size()-2; i++) { %>
+														   
+															<tr>
+																<td>
+							
+															  <label class="checkbox inline">
+																<input type="checkbox"  id="inlineCheckbox<%=i%>" name="checkDia"  value="<%= ((DiasBeanData)diassemana.get(i)).getCodigo() %>"  <%=  verificarExiste(  ((DiasBeanData)diassemana.get(i)).getCodigo() ,  codigoDia) ?"checked":""%>       > 
+																<%=  ((DiasBeanData)diassemana.get(i)).getNombre()  %>  
+															  </label>
+															  
+																</td>
+																
+																<td class="center">
+							 																																													
+														 		<select  style="width: 100px;"  data-rel="chosen" id="cmbHoraInicio<%=i%>"  name="cmbHoraInicio" >
+														 		
+													<option value="<%=iniHora[i] %>" selected > <%=    iniHora[i]    %>    </option>	 		
+														 		
+														 		
+															        <%for(int k=0;k<horasDelDia.size();k++){    if( !((String)horasDelDia.get(k)).equalsIgnoreCase(     iniHora[i]     )  )    %>
+													<option value="<%=((String)horasDelDia.get(k))%>"  > <%=    ((String)horasDelDia.get(k))    %>    </option>
+																    <%} %>						
+															    
+															    
+															    
+															    </select>
+							
+																</td>
+																
+																<td class="center">
+																
+														 		<select style="width: 100px;" data-rel="chosen" id="cmbHoraFin<%=i%>"  name="cmbHoraInicio" >
+													
+															    </select>
+																
+																</td>
+							                                      
+															</tr>
+															
+								      						<%}%>
+								      						
+														  </tbody>
+																					 
+													 </table>  
+							    
+												</div>
+											</div><!--/span-->
+											
+							
+								</div><!--/row-->       
+<!-- -------- -->		
+								 </div><!-- fin controls -->
+							</div> <!--  fin control-group -->
                      
                         
                         
                         <div class="form-actions">
-                          <button type="button" class="btn btn-primary" onclick="javascript:alt_submit()">Agregar</button>
-                          <button type="button" class="btn" onclick="location.href='buscarsede.jsp'" >Cancelar</button>
+                          <button type="button" class="btn btn-primary" onclick="javascript:alt_submit()">Guardar</button>
+                          <button type="button" class="btn" onclick="location.href='buscarhorariodetrabajo.jsp'" >Cancelar</button>
                         </div>
                         
                         
@@ -435,6 +376,125 @@
 	
 	
 	
+	
+	
+<!--       ------------------------------------------------------------------------------- -->	
+	
+	
+	
+	<script>
+	
+	
+	function anhadir(cod, name,puesto){
+		var form= document.frmData;
+		form.cmbEncargado.value=name;
+		form.cmbEncargadoCodigo.value=cod;
+		form.txtPuesto.value=puesto;
+		$.fn.colorbox.close();
+		
+	} 
+	
+	function alt_fecha(obj){
+		obj.value=obj.value.slice(0,5);
+		
+		}
+
+	function verificar_fecha(comparacion,fecha1,fecha2){
+		var fec1=fecha1.value.split("/");
+		var fec2=document.getElementById(fecha2).value.split("/");
+		var resultado=true;
+		if(fec1.length==fec2.length) {
+			var size=fec1.length;
+			for(i=size-1;i>=0;i--){
+				if(comparacion==0){
+					if(fec1[i].indexOf(fec2[i])<0)  resultado= false;
+					}
+				if(comparacion==1){
+					if(parseInt(fec1[i])<parseInt(fec2[i]))  resultado= false;
+					}
+				if(comparacion==-1){
+					if(parseInt(fec1[i])>parseInt(fec2[i]))  resultado= false;
+					}
+				}
+			if(resultado==false){			
+					fecha1.value=document.getElementById(fecha2).value;			
+				}
+				
+			} 
+		else{
+			alert("Error al comparar fechas");
+		}			
+	}
+
+	function alfanumerico(e) 
+	{ 
+	var key = window.event.keyCode || event.keyCode;
+	return ((key >= 48 && key <= 57) ||(key >= 97 && key <= 122) ||(key >= 65 && key <=90) ||(key >= 192 && key <=246)||(key <=13) ||(key ==32));
+	} 	
+
+	
+		
+	function alt_submit(){
+		var form= document.frmData;
+		if(validaForm()) form.submit();
+	}
+	
+	
+	
+	function alt_provincia(){
+		$.ajax({
+		  type: "POST",
+		  url: "/Conan3000V2/IngSoft/administracion/sede/SMASede",
+		  data: "accion=Buscar"+ "&tipo=3" + "&cmbDepartamento=" + $(cmbDepartamento).val(),
+		  dataType: "html",
+		  beforeSend: function ( xhr ) {
+   		  $("#cmbProvincia").html("");
+			//chosen - improves select
+			$("#cmbProvincia").trigger("liszt:updated");
+  		  },
+		  success: function(msg){
+			$("#cmbProvincia").html(msg);
+			//chosen - improves select
+			$("#cmbProvincia").trigger("liszt:updated");
+		  },
+		  error: function(objeto, quepaso, otroobj){
+			alert("ERROR!! Pasó lo siguiente: "+quepaso);
+		  }
+	
+		});
+	}
+	function alt_distrito(){
+		$.ajax({
+		  type: "POST",
+		  url: "/Conan3000V2/IngSoft/administracion/sede/SMASede",
+		  data: "accion=Buscar"+ "&tipo=4" + "&cmbProvincia=" + $(cmbProvincia).val(),
+		  dataType: "html",
+		  beforeSend: function ( xhr ) {
+   		  $("#cmbDistrito").html("");
+			//chosen - improves select
+			$("#cmbDistrito").trigger("liszt:updated");
+  		  },
+		  success: function(msg){
+			$("#cmbDistrito").html(msg);
+			//chosen - improves select
+			$("#cmbDistrito").trigger("liszt:updated");
+		  },
+		  error: function(objeto, quepaso, otroobj){
+			alert("ERROR!! Pasó lo siguiente: "+quepaso);
+		  }
+	
+		});
+	}		
+		
+	
+	
+	
+	</script>		
+	
+	
+	
+	
+	
 <!--     ---------------------- Sirve para poner un iframe ------------------------------   -->	
 
 
@@ -495,9 +555,9 @@ function validaForm(){
         var error=false;
         if(!esValido("Nombre",form.txtNombre,"NombreAmbiente",1,1,50)){cadena[i]="Nombre";i++;}
         //if(!esValido("Descripci&oacute;n",form.txtDescripcion,"Descripcion",1,0,100)){cadena[i]="Descripci&oacute;n";i++;}
-        if(!esValido("Direccion",form.txtDireccion,"Direccion",1,1,50)){cadena[i]="Direccion";i++;}
-        if(!esValido("Telefono",form.txtTelefono,"Telefono",1,6,7)){cadena[i]="Telefono";i++;}
-        if(!esValido("Area_de_Terreno",form.txtAreaterreno,"Areaterreno",1,1,7)){cadena[i]="Area";i++;}
+        //if(!esValido("Direccion",form.txtDireccion,"Direccion",1,1,50)){cadena[i]="Direccion";i++;}
+        //if(!esValido("Telefono",form.txtTelefono,"Telefono",1,6,7)){cadena[i]="Telefono";i++;}
+        //if(!esValido("Area_de_Terreno",form.txtAreaterreno,"Areaterreno",1,1,7)){cadena[i]="Area";i++;}
         //if(!esValido("Caracter&iacute;sticas",form.txtCaracteristica,"Caracteristica",1,0,100)){cadena[i]="Caracter&iacute;sticas";i++;}
        
         //No tocar
@@ -512,10 +572,9 @@ function validaForm(){
 function inicializa(){
         document.getElementById("errNombreAmbiente").style.display='none';
         //document.getElementById("errDescripcion").style.display='none'; 
-        document.getElementById("errTelefono").style.display='none';
-        document.getElementById("errDireccion").style.display='none'; 
-        document.getElementById("errAreaterreno").style.display='none';
-        
+        //document.getElementById("errTelefono").style.display='none';
+        //document.getElementById("errDireccion").style.display='none'; 
+        //document.getElementById("errAreaterreno").style.display='none';
         //document.getElementById("errCaracteristica").style.display='none';    
 } 
  

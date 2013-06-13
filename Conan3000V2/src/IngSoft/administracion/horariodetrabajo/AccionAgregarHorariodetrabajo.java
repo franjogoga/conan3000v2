@@ -42,7 +42,7 @@ public class AccionAgregarHorariodetrabajo extends CoAccion{
 			
 
 			HorariodetrabajoBeanFuncion horariodetrabajoFuncion= HorariodetrabajoBeanFuncion.getInstance(); 
-			Vector<HorariodetrabajoBeanData>  horariodetrabajo=horariodetrabajoFuncion.consultarHorariodetrabajo(request.getParameter("codigo"));
+			HorariodetrabajoBeanData  horariodetrabajo=horariodetrabajoFuncion.consultarHorariodetrabajo(request.getParameter("codigo"));
 			
 			Vector<DiasBeanData>  diassemana=horariodetrabajoFuncion.getDias();
 			

@@ -38,7 +38,7 @@ public class AccionModificarHorariodeactividad extends CoAccion{
 		else
 		{
 			HorariodeactividadBeanFuncion horariodeactividadFuncion= HorariodeactividadBeanFuncion.getInstance(); 
-			Vector<HorariodeactividadBeanData>  horariodeactividad=horariodeactividadFuncion.consultarHorariodeactividad(request.getParameter("codigo"));
+			HorariodeactividadBeanData  horariodeactividad=horariodeactividadFuncion.consultarHorariodeactividad(request.getParameter("codigo"));
 			
 			Vector<DiasBeanData>  diassemana=horariodeactividadFuncion.getDias();
 			
