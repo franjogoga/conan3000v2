@@ -158,7 +158,7 @@
                                   
                                   <label class="control-label" for="typeahead7">Raz&oacute;n Social: </label>
                                   <div class="controls">
-                                      <input type="text" class="span6 typeahead"   data-provide="typeahead" id="txtRazonSocial" name="txtRazonSocial" value="<%=Juridica.getRazonSocial()%>" onkeypress="return alfanumerico(event);" autofocus>
+                                      <input type="text" class="span6 typeahead"   data-provide="typeahead" id="txtRazonSocial" name="txtRazonSocial" value="<%=Juridica.getRazonSocial()%>" >
                                           </div>
                               </div>
 							  
@@ -179,42 +179,12 @@
                                   
                                   <label class="control-label" for="typeahead7">Correo: </label>
                                   <div class="controls">
-                                      <input type="text" class="span6 typeahead"   data-provide="typeahead" id="txtCorreo" name="txtCorreo" value="<%=Juridica.getCorreo()%>" onkeypress="return alfanumerico(event);" autofocus>
+                                      <input type="text" class="span6 typeahead"   data-provide="typeahead" id="txtCorreo" name="txtCorreo" value="<%=Juridica.getCorreo()%>" >
                                           </div>
                               </div>
 							  
 							  
-								 
-                                
-                                <div class="control-group">
-								<label class="control-label">Estado:</label>
 								
-								<div class="controls">
-								
-								  <label class="radio">
-									<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="" disabled="">
-									Activo
-								  </label>
-								  
-										 <div style="clear:both"></div> 
-								  
-								  
-								  <label class="radio">
-									<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-									Inactivo
-								  </label>
-								  
-								         <div style="clear:both"></div>  
-								  
-								  <label class="radio">
-									<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-									Cancelado
-								  </label>
-								  
-								  
-								</div>
-								
-							  </div>	
 						    <div class="form-actions" >
 							 <!--  <button type="submit" class="btn btn-primary">Agregar</button> -->
 							  <button type="button" class="btn" onclick="location.href='juridicabuscar.jsp'" >Regresar</button>
