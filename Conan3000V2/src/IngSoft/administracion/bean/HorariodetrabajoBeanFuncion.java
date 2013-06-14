@@ -90,8 +90,8 @@ public class HorariodetrabajoBeanFuncion {
 	
 	
 	
-	public boolean agregarHorariodetrabajo(HorariodetrabajoBeanData horariodetrabajoData) throws CoException {
-		boolean resultado=false;		
+	public String agregarHorariodetrabajo(HorariodetrabajoBeanData horariodetrabajoData) throws CoException {
+		String resultado="";		
 		
 		l.lock();
 		
@@ -115,15 +115,12 @@ public class HorariodetrabajoBeanFuncion {
 			}
 			else horariodetrabajoData.setCodigo("HOR000001");
 			
-			
-			System.out.print(" horariodetrabajoData " + horariodetrabajoData.getNombre());
-			
-
+			resultado = horariodetrabajoData.getCodigo() ;
 			
 			sqlsesion.insert("Data.administracion.horariodetrabajo.insertPlantillahorariodetrabajo",horariodetrabajoData);
 
 			
-			resultado=true;
+			
 		}
 		catch(Exception a)		
 		{sqlsesion.rollback();
