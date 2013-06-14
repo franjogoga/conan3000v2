@@ -1,4 +1,42 @@
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
+			
+				<script>
+	function alt_fecha(obj){
+	obj.value=obj.value.slice(0,5);
+	
+	}
+	
+	function alt_submit(){
+		var form= document.frmDelete;
+		var r=confirm("¿Esta seguro que desea borrar este familiar?");
+		if(r==true){form.submit();}
+	}	
 
+
+	</script>	
+	
+	<%! public boolean  encontrar(String a, String[] b){
+		for(int i=0;i<b.length;i++){			
+			if(b[i].equals(a)) return true;	
+		}
+	return false;
+	}
+	public String formatear(java.util.Date date){
+		SimpleDateFormat DF= new SimpleDateFormat("dd/MM");
+		return DF.format(date);
+	}
+	%>
+	
+	
+			
+	<!--The beans  -->
+	<jsp:useBean id="familiar" scope="request" class="IngSoft.venta.bean.FamiliarBeanData"></jsp:useBean>
+	<jsp:useBean id="persona" scope="request" class="IngSoft.venta.bean.PersonaMiniBeanData"></jsp:useBean>
+	<jsp:useBean id="personaSocio" scope="request" class="IngSoft.venta.bean.PersonaMiniBeanData"></jsp:useBean>
+		
+	<%String nombre=((personaSocio.getNombres()) +" "+ (personaSocio.getApellidoPaterno()) +" "+ (personaSocio.getApellidoMaterno()) ); %>
+			  
 			  <!-- content starts -->
 			  
 		       <div>
@@ -11,43 +49,74 @@
 			  <div class="row-fluid sortable">
 			    <div class="box span12">
 			      <div class="box-header well" data-original-title>
-			        <h2><i class="icon-trash"></i>ELIMINAR FAMILIAR</h2>
+			        <h2>ELIMINAR FAMILIAR</h2>
 		          </div>
 			      <div class="box-content">
-			        <form class="form-horizontal">
+			      
+			        <form class="form-horizontal" name="frmDelete"  action="<%= response.encodeURL("SMVFamiliar")%>" method="post">
+			        <input type="hidden" name="codigo" value="<%=familiar.getCodigoFamiliar()%>" ></input>
+					<input type="hidden" name="accion" value="Eliminar"></input>
+					<input type="hidden" name="tipo" value="2"></input>
+			        
 			          <fieldset>
 			          
 			            <div class="control-group">
-			              <label class="control-label" for="typeahead7">Socio Asociado:</label>
+			              <label class="control-label" for="typeahead7">Nombres Socio Asociado:</label>
 			              <div class="controls">
-			                <input type="text" name="txtSocioasociado" disabled="" class="span6 typeahead" id="typeahead7" value="SOC_00150"  data-provide="typeahead">
+			                <input type="text" name="txtSocioasociado" disabled class="span6 typeahead" id="typeahead7"  data-provide="typeahead" value=<%=personaSocio.getNombres() %>>
 		                  </div>
 		                </div>
+		                
+		                  <div class="control-group">
+			              <label class="control-label" for="typeahead7">Apellido Paterno Socio Asociado :</label>
+			              <div class="controls">
+			                <input type="text" name="txtSocioasociado" disabled class="span6 typeahead" id="typeahead7"  data-provide="typeahead" value=<%=personaSocio.getApellidoPaterno()%>>
+		                  </div>
+		                </div>
+		                
+		                <div class="control-group">
+			              <label class="control-label" for="typeahead7">Apellido Materno Socio Asociado :</label>
+			              <div class="controls">
+			                <input type="text" name="txtSocioasociado" disabled class="span6 typeahead" id="typeahead7"  data-provide="typeahead" value=<%=personaSocio.getApellidoMaterno()%>>
+		                  </div>
+		                </div>
+		                
+		                	 <div class="control-group">
+			                  <label class="control-label" for="selectError">Parentesco:</label>
+			                  <div class="controls">
+			                    <select name="cmbParentesco" id="selectError" data-rel="chosen" disabled>
+			                      <option selected><%=familiar.getParentesco() %></option>
+		                        </select>
+		                      </div>
+		                    </div>
 			        
 			              <div class="control-group">
 			                <label class="control-label" for="typeahead6">Nombres:</label>
 			                <div class="controls">
-			                  <input type="text" name="txtNombres" disabled class="span6 typeahead" id="typeahead6" value="Liz"  data-provide="typeahead" data-items="4" >
+			                  <input type="text" name="txtNombres" disabled class="span6 typeahead" id="typeahead6" value=<%=persona.getNombres() %>  data-provide="typeahead" data-items="4" >
 		                    </div>
 		                  </div>
+		                  
 			              <div class="control-group">
 			                <label class="control-label" for="typeahead4">Apellido Paterno:</label>
 			                <div class="controls">
-			                  <input type="text" name="txtAppaterno" disabled class="span6 typeahead" id="typeahead4" value="Diaz"  data-provide="typeahead" data-items="4" >
+			                  <input type="text" name="txtAppaterno" disabled class="span6 typeahead" id="typeahead4" value=<%=persona.getApellidoPaterno() %>  data-provide="typeahead" data-items="4" >
 		                    </div>
 		                  </div>
+		                  
 			              <div class="control-group">
 			                <label class="control-label" for="typeahead8">Apellido Materno:</label>
 			                <div class="controls">
-			                  <input type="text" name="txtApmaterno" disabled class="span6 typeahead" id="typeahead8" value="Castillo"  data-provide="typeahead" data-items="4" >
+			                  <input type="text" name="txtApmaterno" disabled class="span6 typeahead" id="typeahead8" value=<%=persona.getApellidoMaterno() %>  data-provide="typeahead" data-items="4" >
 		                    </div>
 		                  </div>
+		                  
 			              <div class="control-group">
 			               	<div class="control-group">
 								<label  class="control-label" for="typeahead3">Tipo de Documento(*):</label>
 								<div class="controls">
 								  <label class="radio">
-									<input disabled type="radio" name="rDni" id="optionsRadios1" value="option1" checked="">
+									<input disabled type="radio" name="rDni" id="optionsRadios1" value="option1" checked>
 									DNI
 								  </label>
 								  <div style="clear:both"></div>
@@ -66,38 +135,38 @@
 							    <div class="control-group">
 			                <label class="control-label" for="typeahead8">N&uacute;mero de Doc.(*):</label>
 			                <div class="controls">
-			                  <input type="text" name="txtNumdocumento" disabled class="span6 typeahead" id="typeahead8"  data-provide="typeahead" data-items="4" >
+			                  <input type="text" name="txtNumdocumento" disabled class="span6 typeahead" id="typeahead8"  data-provide="typeahead" data-items="4" value=<%=persona.getNumeroDocumento() %>>
 		                    </div>
 		                  </div>
 			            
-			              <div class="control-group">
-			                <div class="control-group">
-			                  <label class="control-label" for="selectError">Parentesco:</label>
-			                  <div class="controls">
-			                    <select name="cmbParentesco" id="selectError" data-rel="chosen" disabled="">
-			                      <option selected>Hija</option>
-			                      <option>Option 2</option>
-			                      <option>Option 3</option>
-			                      <option>Option 4</option>
-			                      <option>Option 5</option>
-		                        </select>
-		                      </div>
-		                    </div>
-			                <label class="control-label" for="typeahead10">Tel&eacute;fono/Celular </label>
+			              
+		
+		                    
+		                    <div class="control-group">
+			                <label class="control-label" for="typeahead10">Tel&eacute;fono Fijo: </label>
 			                <div class="controls">
-			                  <input type="text" name="txtTelefono" disabled class="span6 typeahead" id="typeahead10" value="986366549"  data-provide="typeahead" data-items="4">
+			                  <input type="text" name="txtTelefono" disabled class="span6 typeahead" id="typeahead10" value=<%=familiar.getTelefonoFijo() %>  data-provide="typeahead" data-items="4">
 		                    </div>
 		                  </div>
+		                    
+		                    <div class="control-group">
+			                <label class="control-label" for="typeahead10">Tel&eacute;fono Celular: </label>
+			                <div class="controls">
+			                  <input type="text" name="txtTelefono" disabled class="span6 typeahead" id="typeahead10" value=<%=familiar.getTelefonoCelular() %>  data-provide="typeahead" data-items="4">
+		                    </div>
+		                  </div>
+		                  
 			              <div class="control-group">
 			                <label class="control-label" for="typeahead2">Correo electr&oacute;nico:</label>
 			                <div class="controls">
-			                  <input type="text" name="txtCorreo" disabled class="span6 typeahead" id="typeahead2" value="liz@pucp.edu.pe"  data-provide="typeahead" data-items="4" >
+			                  <input type="text" name="txtCorreo" disabled class="span6 typeahead" id="typeahead2" value=<%=familiar.getCorreo() %>  data-provide="typeahead" data-items="4" >
 		                    </div>
 		                  </div>
 		                </div>
+		                
 			            <div class="form-actions">
-			                <a  name="btnEliminar" class="btn btn-primary" href="">Eliminar</a>  
-			               <a  name="btnCancelar" class="btn" href="buscarfamiliar.jsp">Cancelar</a>  
+			                <button  type="submit" class="btn btn-primary" onclick="javascript:alt_submit()">Eliminar</button> 
+			               <button type="button"   class="btn" onclick="location.href='buscarfamiliar.jsp'">Cancelar</button> 
 			           
 		                </div>
 		              </fieldset>
