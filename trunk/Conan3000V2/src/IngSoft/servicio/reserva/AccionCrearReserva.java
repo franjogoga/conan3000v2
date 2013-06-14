@@ -40,6 +40,7 @@ public class AccionCrearReserva extends CoAccion {
 				sesion.removeAttribute("reservas");
 				sesion.removeAttribute("listareservas");								
 			}
+			
 		}
 		if(tipo==3){
 			HttpSession sesion= request.getSession(true);
@@ -53,6 +54,13 @@ public class AccionCrearReserva extends CoAccion {
 				sesion.removeAttribute("listareservas");								
 			}
 		}
+		response.setContentType("text/plain");  
+		response.setCharacterEncoding("UTF-8");			    
+		    try {
+				response.getWriter().write("");
+			} catch (IOException e) {				
+				e.printStackTrace();
+			}
 	}
 
 }
