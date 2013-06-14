@@ -148,8 +148,7 @@
 						      <label class="control-label" for="typeahead7">Nombre: </label>
 						      <div class="controls">
 						        <input type="text" class="span6 typeahead" id="txtNombre"  data-provide="typeahead"  name="txtNombre" disabled value="  <%=((HorariodetrabajoBeanData)horariodetrabajo).getNombre()%>     ">
-					          </div>
-					       <!--- </div> -->
+					     
 <!--- ------------  -->
 							
 								<!--  	<div class="row-fluid sortable"> -->
@@ -178,11 +177,10 @@
 														  <tbody>
 														  
 														   <% 
-														   String[] codigoDia = ((HorariodetrabajoBeanData)horariodetrabajo).getCodDiasemana().split(",");
-														   
-														   
-														   
+														   String[] codigoDia = ((HorariodetrabajoBeanData)horariodetrabajo).getCodDiasemana().split(",");  
 														   String[] nombreDia = ((HorariodetrabajoBeanData)horariodetrabajo).getDiaSemana().split(",");
+														   String[] horaIni = ((HorariodetrabajoBeanData)horariodetrabajo).getHoraInicio().split(",");
+														   String[] horaFin = ((HorariodetrabajoBeanData)horariodetrabajo).getHoraFin().split(",");
 														   
 														   for (int i = 0; i < codigoDia.length; i++) { %>
 														   
@@ -201,7 +199,7 @@
 							 																																													
 														 		<select  style="width: 100px;"  data-rel="chosen" id="cmbHoraInicio<%=i%>" disabled name="cmbHoraInicio" >
 															       
-													<option value="<%=((HorariodetrabajoBeanData)horariodetrabajo).getHoraInicio()%>" selected > <%=    ((HorariodetrabajoBeanData)horariodetrabajo).getHoraInicio()    %>    </option>
+													<option value="<%=horaIni[i]%>" selected > <%=    horaIni[i]   %>    </option>
 																   					
 															    </select>
 							
@@ -211,7 +209,7 @@
 																
 														 		<select style="width: 100px;" data-rel="chosen" id="cmbHoraFin<%=i%>"  disabled name="cmbHoraFin" >
 															       
-													<option value="<%=((HorariodetrabajoBeanData)horariodetrabajo).getHoraFin()%>" selected > <%=    ((HorariodetrabajoBeanData)horariodetrabajo).getHoraFin()    %>    </option>
+													<option value="<%= horaFin[i]  %>" selected > <%=   horaFin[i]   %>    </option>
 																   					
 															    </select>
 																
@@ -228,14 +226,10 @@
 												</div>
 											</div><!--/span-->
 											
-							
-										</div><!--/row-->
-										
-										
-									</div> 
-											          
-					       
+								</div><!--/row-->       
 <!-- -------- -->		
+								 </div><!-- fin controls -->
+							</div> <!--  fin control-group -->
 
 
 
