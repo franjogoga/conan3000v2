@@ -5,6 +5,9 @@ import java.text.SimpleDateFormat;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.ibatis.session.SqlSession;
 
 import IngSoft.general.CoException;
@@ -24,6 +27,25 @@ public class OrdenPagoBeanFunction {
 	   
 	   public OrdenPagoBeanFunction() {}
 	   
+	   
+	   public OrdenPagoBeanData crearOrdenPago(HttpServletRequest request, HttpServletResponse response){
+		   OrdenPagoBeanData ordenPagoData= new OrdenPagoBeanData();
+			try{		
+		
+				ordenPagoData.setIdSocio(request.getParameter("idSocio"));
+			//ordenPagoData.setIdConcepto(request.getParameter("cmbConcepto"));
+			ordenPagoData.setFechaPago(new Date(DF.parse(request.getParameter("fFechaPago")).getTime()));
+			
+					
+			
+	         	
+			}
+			catch(Exception e){
+				e.printStackTrace();
+				
+			}
+			return ordenPagoData;		
+		}
 
 public boolean agregarOrdenPago(String concepto, String id, String id2, String idSocio, Double monto, Date fechaEmision, Date fechaVencimiento) throws CoException {
 	
@@ -169,6 +191,55 @@ public boolean agregarOrdenPago(String concepto, String id, String id2, String i
 }
 	
 
+public boolean pagarOrdenPago(OrdenPagoBeanData ordenPagoData) throws CoException {
+	
+	boolean resultado=false;		
+	l.lock();
+	SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+	
+	try{
+		String codigo= (String)sqlsesion.selectOne("Data.venta.pago.getNextCodigo2");
+		if(codigo!=null){
+		int cod= Integer.parseInt(codigo.substring(3))+1;
+		String defecto= "000000";
+		String temp= defecto.substring(0, defecto.length()-String.valueOf(cod).length()).concat(String.valueOf(cod));
+		
+		ordenPagoData.setIdIngreso(codigo.substring(0,3).concat(temp));}
+		else ordenPagoData.setIdIngreso("ING000001");
+		//insertPago esta en pago mapper
+		
+		sqlsesion.update("Data.venta.pago.pagarOrdenPago",ordenPagoData);
+		sqlsesion.insert("insertIngreso",ordenPagoData);
+		//sqlsesion.insert("insertPlantillaEventoSedes",eventoData);
+		
+		resultado=true;
+	}
+	catch(Exception a)		
+	{sqlsesion.rollback();
+	a.printStackTrace();
+		//throw CoException.set("Error: Nombre de pago repetido", "SMVPago?accion=Agregar&tipo=1");
+	}
+	
+	finally{
+		sqlsesion.commit();
+		sqlsesion.close();
+		l.unlock();					
+	}
+	return resultado;
+}
+
+
+public OrdenPagoBeanData consultarOrdenPago(String codigo){
+	OrdenPagoBeanData ordenPagoData=null;
+	SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+	try{
+		ordenPagoData= sqlsesion.selectOne("Data.venta.pago.getOrdenPago",codigo);
+	}
+	finally{
+		sqlsesion.close();
+	}
+	return ordenPagoData;
+}
 
 
 

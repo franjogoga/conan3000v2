@@ -32,9 +32,9 @@ public class EgresoBeanFunction {
 		
 		egresoData.setDescripcion(request.getParameter("txtDescripcion"));
 		egresoData.setMontoTotal(Double.parseDouble(request.getParameter("txtMonto")));
-		egresoData.setCantidad(Integer.parseInt(request.getParameter("txtCantidad")));
+		//egresoData.setCantidad(Integer.parseInt(request.getParameter("txtCantidad")));
 		egresoData.setFechaPago(new Date(DF.parse(request.getParameter("fFechaPago")).getTime()));
-		egresoData.setIdConcepto(request.getParameter("idConcepto"));//probablemente no se use
+		egresoData.setIdConcepto("EGRESO");//probablemente no se use
 		
 		
          	
@@ -53,16 +53,16 @@ public class EgresoBeanFunction {
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		
 		try{
-			String codigo= (String)sqlsesion.selectOne("Data.venta.pago.getNextCodigo2");
+			String codigo= (String)sqlsesion.selectOne("Data.venta.pago.getNextEgresos");
 			if(codigo!=null){
 			int cod= Integer.parseInt(codigo.substring(3))+1;
 			String defecto= "000000";
 			String temp= defecto.substring(0, defecto.length()-String.valueOf(cod).length()).concat(String.valueOf(cod));
 			
 			egresoData.setIdEgreso(codigo.substring(0,3).concat(temp));}
-			else egresoData.setIdEgreso("MO000001");
+			else egresoData.setIdEgreso("EGR000001");
 			//insertEgreso esta en egreso mapper
-			sqlsesion.insert("Data.venta.pago.insertEgreso",egresoData);
+			sqlsesion.insert("Data.venta.pago.insertEgresos",egresoData);
 			
 						
 			
@@ -90,7 +90,7 @@ public class EgresoBeanFunction {
 		EgresoBeanData egresoData=null;
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
-			egresoData= sqlsesion.selectOne("Data.venta.egreso.getEgreso",codigo);
+			egresoData= sqlsesion.selectOne("Data.venta.pago.getEgreso",codigo);
 		}
 		finally{
 			sqlsesion.close();

@@ -72,7 +72,7 @@ String fecAnoFin=dfActual.format(c1.getTime()); %>
                             <label class="control-label" for="selectError">Periodo (*):</label>
                             <div class="controls">
                               <select  id="cmbPeriodo" data-rel="chosen" name="cmbPeriodo" class='' onChange="javascript:confFecha();">
-								<option value="Indeterminado">Indeterminado</option>
+								
 								<option value="Anual">Anual</option>
                                 <option value="Semestral">Semestral</option>
                               </select>
@@ -148,6 +148,6 @@ String fecAnoFin=dfActual.format(c1.getTime()); %>
 			  <!--/row-->
 			 
 
-		  
+		<script>confFecha();</script>  
        
 					<!-- content ends -->

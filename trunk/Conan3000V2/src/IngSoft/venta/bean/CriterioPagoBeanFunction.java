@@ -21,9 +21,16 @@ public class CriterioPagoBeanFunction {
 		CriterioPagoBeanData criterioPagoData= new CriterioPagoBeanData();
 		
 		//criterioPagoData.setTipo(Integer.parseInt(request.getParameter("cmbTipoEvento")==null?"0":request.getParameter("cmbTipoEvento")));
-		criterioPagoData.setSocio(request.getParameter("txtSocio")+"%");
-		criterioPagoData.setIdSocio(request.getParameter("txtCodigoSocio")+"%");
-		try {		
+		criterioPagoData.setSocio("%"+request.getParameter("txtSocio")+"%");
+		
+		try {
+			if(request.getParameter("txtCodigoSocio")!=null)
+				if(request.getParameter("txtCodigoSocio")=="")
+					criterioPagoData.setIdSocio(null);
+				else
+				criterioPagoData.setIdSocio(request.getParameter("txtCodigoSocio"));
+			else
+				criterioPagoData.setIdSocio(null);
 			
 			if(request.getParameter("fFechaVencimientoIni")!=null && request.getParameter("fFechaVencimientoFin")!=null){
 			criterioPagoData.setFechaVencimientoIni(new Date(DF.parse(request.getParameter("fFechaVencimientoIni")).getTime()));
@@ -33,12 +40,12 @@ public class CriterioPagoBeanFunction {
 				criterioPagoData.setFechaVencimientoFin(null);
 			}
 			
-			if(request.getParameter("fFechaEmisionIni")!=null && request.getParameter("fFechaEmisionFin")!=null){
-				criterioPagoData.setFechaEmisionIni(new Date(DF.parse(request.getParameter("fFechaEmisionIni")).getTime()));
-				criterioPagoData.setFechaEmisionFin(new Date(DF.parse(request.getParameter("fFechaEmisionFin")).getTime()));
+			if(request.getParameter("fFechaPagoIni")!=null && request.getParameter("fFechaPagoFin")!=null){
+				criterioPagoData.setFechaPagoIni(new Date(DF.parse(request.getParameter("fFechaPagoIni")).getTime()));
+				criterioPagoData.setFechaPagoFin(new Date(DF.parse(request.getParameter("fFechaPagoFin")).getTime()));
 				}else{
-					criterioPagoData.setFechaEmisionIni(null);
-					criterioPagoData.setFechaEmisionFin(null);
+					criterioPagoData.setFechaPagoIni(null);
+					criterioPagoData.setFechaPagoFin(null);
 				}
 			
 			if (request.getParameter("rButton")!=null){
@@ -58,8 +65,12 @@ public class CriterioPagoBeanFunction {
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		Vector<ResultadoPagoBeanData> resultadosV=null;
 		try{		
-		List<ResultadoPagoBeanData> resultados=sqlsesion.selectList("searchPago",criterioPagoData);
-						
+			List<ResultadoPagoBeanData> resultados=null;
+			if(criterioPagoData.getEstado().equals("Cancelado")){
+				resultados=sqlsesion.selectList("searchPagado",criterioPagoData);
+			}else{
+				resultados=sqlsesion.selectList("searchPago",criterioPagoData);
+			}				
 		resultadosV= new Vector<>(resultados);
 		}
 		finally{

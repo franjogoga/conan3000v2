@@ -11,34 +11,17 @@
 	}
 	function alt_agregar(){
 		var form=document.getElementById("frmAlternativo");
-		form.accion.value="Agregar";
+		form.accion.value="AgregarEgreso";
 		form.submit();
 	}
 	
 	function alt_consultar(cod){
 		var form=document.getElementById("frmAlternativo");
-		form.accion.value="Consultar";
+		form.accion.value="ConsultarEgreso";
 		form.codigo.value=cod;
 		form.submit();
 	}
-	function alt_modificar(cod){
-		var form=document.getElementById("frmAlternativo");
-		form.accion.value="Modificar";
-		form.codigo.value=cod;
-		form.submit();
-	}
-	function alt_eliminar(cod){
-		var form=document.getElementById("frmAlternativo");
-		form.accion.value="Eliminar";
-		form.codigo.value=cod;
-		form.submit();
-	}
-	function alt_Pagar(cod){
-		var form=document.getElementById("frmAlternativo");
-		form.accion.value="Pagar";
-		form.codigo.value=cod;
-		form.submit();
-	}
+	
 	
 	function ocultar(id){
 		document.getElementById(id).style.display='none';
@@ -106,13 +89,13 @@ String fecHoy=dfActual.format(new java.util.Date());
 		          <h2><i class="icon-search"></i> BUSCAR EGRESOS</h2></div>
 		        <div class="box-content">
 		          <form class="form-horizontal" name="frmCriteriosBusqueda" id="frmCriteriosBusqueda"  method="POST" action="<%= response.encodeURL("SMVPago")%>">
-		            <input type="hidden" name="accion" value="Buscar"/></input>
+		            <input type="hidden" name="accion" value="BuscarEgreso"/></input>
 		            <fieldset>
 		              
 		              <div class="control-group">
 		                <label class="control-label" for="selectError">Descripci&oacute;n:</label>
 		                <div class="controls">
-		                  <input type="text" class="span6 typeahead" id="txtSocio" name="txtDescripcion">
+		                  <input type="text" class="span6 typeahead" id="txtDescripcion" name="txtDescripcion">
 	                    </div>
 	                  </div>
 		              
@@ -150,12 +133,12 @@ String fecHoy=dfActual.format(new java.util.Date());
 		        <div class="box-content">
 		          <table class="table table-striped table-bordered bootstrap-datatable datatable">
 		            <!-- agregar nuevo boton -->
+		           <div align="right"><a class="btn btn-primary" href="javascript:alt_agregar()"> <i class="icon icon-add icon-white"></i> Agregar </a></div> 
 		            <thead>
 		              <tr>
 		                <th>C&oacute;digo</th>
 		                <th>Descripcion</th>
-		                <th>Fecha Pago</th>
-		                <th>Cantidad</th>
+		                <th>Fecha</th>
 		                 <th>Monto</th>
 		                <th>Acci&oacute;n</th>
 	                  </tr>

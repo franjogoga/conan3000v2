@@ -69,9 +69,8 @@ SimpleDateFormat dfActual= new SimpleDateFormat("dd/MM/YYYY");
 String fecHoy=dfActual.format(new java.util.Date());
 
  %>
-
-<!--The beans  -->
-	<jsp:useBean id="pago" scope="request"class="IngSoft.venta.bean.PagoBeanData"></jsp:useBean>	
+<script src="../servicio/evento/evento.js"></script>
+	
  <!-- content starts -->
 			  <div>
 			    <ul class="breadcrumb">
@@ -87,25 +86,29 @@ String fecHoy=dfActual.format(new java.util.Date());
 		          </div>
 			      <div class="box-content">
 			        <form class="form-horizontal"  name="frmPago" method="Post"  action="SMVPago">
-			        <input type="hidden" name="accion" value="Egreso"></input>
+			        <input type="hidden" name="accion" value="AgregarEgreso"></input>
+			        <input type="hidden" name="fFechaPago" value="<%=fecHoy%>"></input>
 					<input type="hidden" name="tipo" value="2"></input>
 			          <fieldset>
-			            <div class="control-group">
-			              <label class="control-label" for="typeahead8">Descripci&oacute;n: </label>
+			            <div class="control-group"  id="dvDescripcion">
+			              <label class="control-label" for="typeahead8">Descripci&oacute;n: (*)</label>
 			              <div class="controls">
-			                <input type="text" class="span6 typeahead disabled" id="typeahead8" name="txtDescripcion" id="txtDescripcion" data-provide="typeahead" data-items="4">
+			                <input type="text" class="span6 typeahead disabled" id="typeahead8" name="txtDescripcion" id="txtDescripcion" data-provide="typeahead" data-items="4" onkeypress="return alfanumerico(event);" autofocus maxlength="100">
+			                <span class="help-inline" id="errDescripcion">Please correct the error</span>
 			              </div>
 		                </div>
-                        <div class="control-group">
+                        <div class="control-group" >
                             <label class="control-label" for="typeahead2">Fecha: </label>
                             <div class="controls">
-                              <input type="text" class="input-xlarge datepicker disabled" id="date" value="<%=formatear(new Date(pago.getFechaVencimiento().getTime()))%>" disabled="">
+                              <input type="text" class="input-xlarge datepicker disabled" id="date" value="<%=fecHoy%>" disabled="">
+                             
                             </div>
                         </div>
-                        <div class="control-group">
-                            <label class="control-label" for="typeahead2">Monto: </label>
+                        <div class="control-group" id="dvMonto">
+                            <label class="control-label" for="typeahead2">Monto: (*)</label>
                             <div class="controls">
                               <input type="text" class="input-xlarge" id="txtMonto" name="txtMonto" value="" >
+                            <span class="help-inline" id="errMonto">Please correct the error</span>
                             </div>
                         </div>
                         
