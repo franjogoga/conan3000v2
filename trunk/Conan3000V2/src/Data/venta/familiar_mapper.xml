@@ -41,23 +41,17 @@ from FAMILIAR,PERSONA
 	values (#{codigo},'PER000010',#{direccion},#{correoElectronico},#{telefonoFijo},'SOL000001',#{idDistrito},#{telefonoCelular})
 </insert>
 
-<insert id="insertPersona" parameterType="IngSoft.venta.bean.PersonaMiniBeanData" flushCache="true">
-	insert into PERSONA(IdPersona,Nombres,ApePaterno,ApeMaterno,NumeroDocumento,TipoDocumento,FechaNac)
-	values (#{codigo},#{nombres},#{apellidoPaterno},#{apellidoMaterno},#{numeroDocumento},#{tipoDocumento},#{fechaNacimiento})
+<insert id="insertFamiliar" parameterType="IngSoft.venta.bean.FamiliarBeanData" flushCache="true">
+	insert into FAMILIAR(IdFamiliar,IdSocio,Parentesco,TelefonoFijo,Correo,TelefonoCelular,Estado)
+	values (#{codigoFamiliar},#{codigoSocio},#{parentesco},#{telefonoFijo},#{correo},#{telefonoCelular},'Activo')
 </insert>
 
  <!-- Fin agregar  -->
  
-<select id="getNextCodigo3" resultType="java.lang.String">
-	select max(IdSocio) from SOCIO
+<select id="getNextCodigo" resultType="java.lang.String">
+	select max(IdFamiliar) from FAMILIAR
 </select>
 
-<select id="searchDistritoMini" resultType="IngSoft.venta.bean.DistritoMiniBeanData">
-	select IdDistrito as idDistrito
-	,Nombre as nombreDistrito
-	from 
-	DISTRITO
-</select>
 
 <select id="getPlantillaFamiliar" parameterType="java.lang.String"  resultType="IngSoft.venta.bean.FamiliarBeanData">
 select 
