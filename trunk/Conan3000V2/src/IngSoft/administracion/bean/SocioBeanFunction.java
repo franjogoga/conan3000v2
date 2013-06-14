@@ -18,8 +18,7 @@ import IngSoft.general.MyBatisSesion;
 public class SocioBeanFunction {
 
 	static private SocioBeanFunction FuncionSocio=null;
-	private Lock l = new ReentrantLock();
-	SimpleDateFormat DF = new SimpleDateFormat("dd/MM/yyyy");
+	private Lock l = new ReentrantLock();	
 	
 	public static SocioBeanFunction getInstance() {
 		if (FuncionSocio==null) FuncionSocio = new SocioBeanFunction();
@@ -60,7 +59,7 @@ public class SocioBeanFunction {
 		return resultado;
 	}
 	
-	public SocioBeanData consultarSocio (String codigo) {
+	public SocioBeanData consultarSocio (String codigo) throws CoException{
 		SocioBeanData datos = null;
 		SqlSession sesion = MyBatisSesion.metodo().openSession();
 		try {
@@ -71,5 +70,43 @@ public class SocioBeanFunction {
 		return datos;
 	}
 	
+	public boolean suspenderSocio(String codigo) throws CoException{	
+		l.lock();
+		boolean resultado = false;		
+		SqlSession sesion = MyBatisSesion.metodo().openSession();
+		SocioBeanData datos = null;
+		try {
+			datos = sesion.selectOne("Data.administracion.socio.getSocio", codigo);					
+			SuspensionBeanData datosSuspension = new SuspensionBeanData();			
+			String codigoSuspension = (String)sesion.selectOne("Data.administracion.socio.getNextCodigoSuspension");			
+			if (codigoSuspension != null) {
+				int cod = Integer.parseInt(codigoSuspension.substring(3)) + 1;
+				String defecto = "000000";
+				
+				String temp = defecto.substring(0, defecto.length() - String.valueOf(cod).length()).concat(String.valueOf(cod));
+				datosSuspension.setIdSuspensionPago(codigoSuspension.substring(0,3).concat(temp));
+			}
+			else datosSuspension.setIdSuspensionPago("SUS000001");
+			System.out.println("esto es  : "+ datosSuspension.getIdSuspensionPago());
+			datosSuspension.setIdMembresia(datos.getCodigo().toString());
+			Calendar c = Calendar.getInstance();												
+			int dia = c.get(Calendar.DATE);		
+			int mes = 1+ c.get(Calendar.MONTH);
+			int annio = c.get(Calendar.YEAR);
+			String fechaRegistro = Integer.toString(annio) + "-" + Integer.toString(mes) + "-"+ Integer.toString(dia);			
+			datosSuspension.setFechaRegistro(fechaRegistro);
+			sesion.insert("Data.administracion.socio.insertSuspension", datosSuspension);	
+			sesion.update("Data.administracion.socio.updateSuspendidoSocio", codigo);
+		} catch (Exception e3){
+			sesion.rollback();
+			e3.printStackTrace();
+			throw CoException.set("Error: No se pudo suspender el socio", "SMASocio?accion=Buscar&tipo=1");
+		} finally {
+			sesion.commit();
+			sesion.close();
+			l.unlock();
+		}		
+		return resultado;
+	}
 	
 }
