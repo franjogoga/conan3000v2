@@ -19,7 +19,7 @@
 SELECT 
  inf245g2.HORARIO.IdHorario AS codigo
 ,inf245g2.HORARIO.Descripcion AS nombre
-,group_concat(inf245g2.DIA_SEMANA.IdDiaSemana) AS codDiasemana
+,group_concat(inf245g2.DIA_SEMANA.IdDiaSemana ORDER BY 1 ASC  ) AS codDiasemana
 ,group_concat(inf245g2.DIA_SEMANA.Nombre) AS diaSemana
 ,inf245g2.HORARIOxDIA_SEMANA.HoraInicio AS horaInicio
 ,inf245g2.HORARIOxDIA_SEMANA.HoraFin AS horaFin
@@ -50,7 +50,7 @@ ORDER BY 1 ASC
 SELECT 
  inf245g2.HORARIO.IdHorario AS codigo
 ,inf245g2.HORARIO.Descripcion AS nombre
-,group_concat(inf245g2.DIA_SEMANA.IdDiaSemana) AS codDiasemana
+,group_concat(inf245g2.DIA_SEMANA.IdDiaSemana ORDER BY 1 ASC  ) AS codDiasemana
 ,group_concat(inf245g2.DIA_SEMANA.Nombre) AS diaSemana
 ,group_concat(inf245g2.HORARIOxDIA_SEMANA.HoraInicio) AS horaInicio
 ,group_concat(inf245g2.HORARIOxDIA_SEMANA.HoraFin) AS horaFin
@@ -73,6 +73,19 @@ ORDER BY 1 ASC
 
 </select>
 
+<!-- Agregar plantilla Horario -->
+
+<insert id="insertPlantillaHorariodetrabajo" parameterType="IngSoft.administracion.bean.HorariodetrabajoBeanData" flushCache="true">
+	insert into HORARIO (IdHorario,Descripcion,Estado)
+	values (#{codigo},#{nombre},#{estado})
+</insert>
+
+<!-- Agregar plantilla Horarioxdiasemana -->
+
+<insert id="insertPlantillaHorarioDiaSemana" parameterType="IngSoft.administracion.bean.HorarioDiaSemanaBeanData" flushCache="true">
+	insert into HORARIOXDIA_SEMANA (IdDiaSemana,IdHorario,HoraInicio,HoraFin)
+	values (#{codigoDia},#{codigoHorario},#{horaInicio},#{horaFin})
+</insert>
 
 
 <!--Eliminar  -->
@@ -84,7 +97,7 @@ update inf245g2.HORARIO set Estado ='No Activado' where IdActividad = #{codigo}
 
 
 
-<!--Eliminar dias -->
+<!--obtener los dias de la semana -->
 <select id="getDias" parameterType="java.lang.String" resultType="IngSoft.administracion.bean.DiasBeanData">
 select 
   inf245g2.DIA_SEMANA.IdDiaSemana as codigo
