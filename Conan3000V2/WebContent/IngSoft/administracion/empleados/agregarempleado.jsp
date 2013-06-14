@@ -185,14 +185,14 @@
 																										
 							
 							 <div class="control-group" id="dvHorarios" >
-								<label class="control-label" for="cmbHorarios">Horario de Trabajo:</label>
+								<label class="control-label" for="cmbHorarios">Horario de Trabajo(*):</label>
 								<div class="controls">
 								  <select  multiple data-rel="chosen" id="cmbHorarios" name="cmbHorarios" >
 									<%for(int i=0;i<horarios.size();i++){ %>
 										<option value="<%= ((HorarioEmpleados)horarios.get(i)).getCodigo()%>"><%= ((HorarioEmpleados)horarios.get(i)).getDescripcion()%></option>
 									<%} %>																									
 								  </select>
-								  <span class="help-inline" id="errSedes" style="display:none;">Este campo no puede estar vacio</span>
+								  <span class="help-inline" id="errHorarios" style="display:none;">Este campo no puede estar vacio</span>
 								</div>
 							  </div>
 							
@@ -211,13 +211,13 @@
 								<div class="controls">
 								  <select name="cmbPuesto" id="cmbPuesto" data-rel="chosen">
 									<option>Gerente</option>
-									<option>Adminitrador</option>
+									<option>Administrador</option>
 									<option>Operador</option>
 									 </select>
 								</div>
 							</div>							
-							  <div class="control-group" id="dvHorarios">
-								<label class="control-label" for="cmbSedes">Sedes de Trabajo:</label>
+							  <div class="control-group" id="dvSedes">
+								<label class="control-label" for="cmbSedes">Sedes de Trabajo(*):</label>
 								<div class="controls">
 								  <select  multiple data-rel="chosen" id="cmbSedes" name="cmbSedes" >
 									<%for(int i=0;i<sedes.size();i++){ %>
@@ -413,11 +413,11 @@
 			
  				//alert(tipoDocumento);
  				
- 				if(!esValido("Numero de Documento",form.txtNumeroDocumento,"NumeroDocumento",1,7,7)){cadena[i]="Numero de Documento";i++;}
+ 				if(!esValido("Numero de Documento",form.txtNumeroDocumento,"NumeroDocumento",1,8,8)){cadena[i]="Numero de Documento";i++;}
 			
  					else{
 				
- 				if(!esValido("Numero de Documento",form.txtNumeroDocumento,"NumeroDocumento",6,7,7)){cadena[i]="Numero de Documento";i++;}
+ 				if(!esValido("Numero de Documento",form.txtNumeroDocumento,"NumeroDocumento",6,8,8)){cadena[i]="Numero de Documento";i++;}
 			
  				}
 			
@@ -439,8 +439,6 @@
  			}
 			
 			
-				
-			
 			if(!esValido("Fecha Nacimiento",form.txtFechaNacimiento,"FechaNacimiento",2,1,10)){cadena[i]="Fecha de Nacimiento";i++;}
 			
 			if(!esValido("Fecha de Contrato",form.txtFechaContrato,"FechaContrato",2,1,10)){cadena[i]="Fecha de Contrato";i++;}
@@ -450,6 +448,10 @@
 				cadena[i]="Fecha de Contrato";i++;
 				}
 			}
+			
+			if(!esValido("Horario de Trabajo",form.cmbHorarios,"Horarios",1,1,50)){cadena[i]="Horario de Trabajo";i++;}
+			
+			if(!esValido("Sedes de Trabajo",form.cmbSedes,"Sedes",1,1,50)){cadena[i]="Sedes de Trabajo";i++;}
 			
 			
 // 			if(!esValido("Fecha Fin",form.fFecFin,"FechaFin",2,1,10)){
@@ -501,6 +503,8 @@
 			document.getElementById("errNumeroDocumento").style.display='none';
 			document.getElementById("errFechaNacimiento").style.display='none';
 			document.getElementById("errFechaContrato").style.display='none';
+			document.getElementById("errHorarios").style.display='none';
+			document.getElementById("errSedes").style.display='none';
 		}
 
 
