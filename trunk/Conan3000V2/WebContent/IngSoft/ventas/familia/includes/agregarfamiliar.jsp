@@ -154,7 +154,7 @@ String fecAnoFin=dfActual.format(c1.getTime()); %>
 			              <div class="control-group" id="dvCorreo">
 			                <label class="control-label" for="typeahead2">Correo electr&oacute;nico(*):</label>
 			                <div class="controls">
-			                  <input type="text"  class="span6 typeahead" name="txtCorreo" id="txtCorreo"  data-provide="typeahead" data-items="4" onKeyUp="limita(this,50);" onKeyDown="limita(this,50);" onpaste="return false;">
+			                  <input type="text"  class="span6 typeahead" name="txtCorreo" id="txtCorreo"  data-provide="typeahead" data-items="4" onKeyUp="limita(this,100);" onKeyDown="limita(this,100);" onpaste="return false;">
 		                      <span class="help-inline" id="errCorreo">Please correct the error</span>
 		                    </div>
 		                  </div>
