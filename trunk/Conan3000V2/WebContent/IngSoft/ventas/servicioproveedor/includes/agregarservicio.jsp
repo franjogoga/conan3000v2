@@ -45,7 +45,7 @@
 						    <div class="control-group" id="dvNombreServ">
 						      <label class="control-label" for="typeahead1">Nombre Servicio(*): </label>
 						      <div class="controls">
-						        <input type="text" class="span6 typeahead" id="txtNombreServ" name="txtNombreServ"  data-provide="typeahead" >
+						        <input type="text" class="span6 typeahead" id="txtNombreServ" name="txtNombreServ"  data-provide="typeahead" onKeyUp="limita(this,50);" onKeyDown="limita(this,50);" onpaste="return false;">
 					            <span class="help-inline" id="errNombreServ">Please correct the error</span>
 					          </div>
 					        </div>
@@ -53,9 +53,9 @@
 						
 							  
 						   <div class="control-group" id="dvDescripcion">
-			                <label class="control-label" for="textarea2">Descripci&oacute;n:</label>
+			                <label class="control-label" for="textarea2">Descripci&oacute;n(*):</label>
 			                <div class="controls">
-			                  <textarea name="txtDescripcion" class="" id="txtDescripcion" rows="3" style="resize:none"></textarea>
+			                  <textarea name="txtDescripcion" class="" id="txtDescripcion" rows="3" style="resize:none" onKeyUp="limita(this,100);" onKeyDown="limita(this,100);" onpaste="return false;"></textarea>
 		                       <span class="help-inline" id="errDescripcion">Please correct the error</span>
 		                    </div>
 		                  </div>
@@ -71,7 +71,7 @@
 							  <div class="control-group" id="dvNombreProv">
 							  <label class="control-label" for="typeahead3">Nombre Proveedor(*): </label>
 							  <div class="controls">
-								<input type="text" class="span6 typeahead" id="txtNombreProv" name="txtNombreProv" data-provide="typeahead" data-items="4"><br>
+								<input type="text" class="span6 typeahead"  id="txtNombreProv" name="txtNombreProv" data-provide="typeahead" data-items="4"><br>
 								 <div  align="left"> <a class="btn btn-primary iframe" href="../proveedor/seleccionarproveedor.jsp"> <i class="icon icon-search icon-white"></i> Buscar Proveedor</a> </div>
 							     <span class="help-inline" id="errNombreProv">Please correct the error</span>
 							  </div>
@@ -85,7 +85,7 @@
 							</div>
 						  </fieldset>
 					  </form>   
-					(*) Datos Obligatorios
+					(*) Campos Obligatorios
 				  
 				</div><!--/span-->
 
