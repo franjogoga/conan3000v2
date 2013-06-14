@@ -166,7 +166,7 @@ ORDER BY 1 ASC
 
 
 <!-- complemto para buscar empleado   -->
-<select id="searchPlantillaEmpleado2" parameterType="IngSoft.administracion.bean.CriterioEmpleadoBeanData" resultType="IngSoft.administracion.bean.ResultadoEmpleadoBeanData">
+<select id="searchPlantillaEmpleadoAndres" parameterType="IngSoft.administracion.bean.CriterioEmpleadoBeanData" resultType="IngSoft.administracion.bean.ResultadoEmpleadoBeanData">
 
 
 
