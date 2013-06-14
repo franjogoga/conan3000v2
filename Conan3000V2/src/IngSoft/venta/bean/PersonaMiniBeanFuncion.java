@@ -113,5 +113,17 @@ public class PersonaMiniBeanFuncion {
 		}
 		return personaData;
 	}
+	
+	public PersonaMiniBeanData consultarPersonaSocio(String codigo){
+		PersonaMiniBeanData personaData=null;
+		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+		try{
+			personaData= sqlsesion.selectOne("Data.venta.socio.getPlantillaPersonaSocio",codigo);
+		}
+		finally{
+			sqlsesion.close();
+		}
+		return personaData;
+	}
 		
 }
