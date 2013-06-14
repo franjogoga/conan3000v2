@@ -53,9 +53,9 @@ function alt_submit(){
 						  <fieldset>
 						  
 						   <div class="control-group" id="dvNombreServ">
-						      <label class="control-label" for="typeahead1">Nombre Servicio(*): </label>
+						      <label class="control-label" for="typeahead1">Nombre Servicio: </label>
 						      <div class="controls">
-						        <input type="text" class="span6 typeahead" id="txtNombreServ" name="txtNombreServ" data-provide="typeahead" value=<%=servicio.getNombreServicio() %>>
+						        <input type="text" class="span6 typeahead" id="txtNombreServ" name="txtNombreServ" data-provide="typeahead" value=<%=servicio.getNombreServicio() %> onKeyUp="limita(this,50);" onKeyDown="limita(this,50);" onpaste="return false;">
 					             <span class="help-inline" id="errNombreServ">Please correct the error</span>
 					          </div>
 					       </div>
@@ -63,20 +63,20 @@ function alt_submit(){
 						   <div class="control-group" id="dvDescripcion">
 			                <label class="control-label" for="textarea2">Descripci&oacute;n:</label>
 			                <div class="controls">
-			                  <textarea id="txtDescripcion" name="txtDescripcion" style="resize:none" rows="3" ><%=servicio.getDescripcion() %></textarea>
+			                  <textarea id="txtDescripcion" name="txtDescripcion" style="resize:none" rows="3" onKeyUp="limita(this,100);" onKeyDown="limita(this,100);" onpaste="return false;"><%=servicio.getDescripcion() %></textarea>
 		                      <span class="help-inline" id="errDescripcion">Please correct the error</span>
 		                    </div>
 		                   </div>
  
 							<div class="control-group" >
-							    <label class="control-label" for="typeahead3">Precio(S/.) (*): </label>
+							    <label class="control-label" for="typeahead3">Precio(S/.): </label>
 							    <div class="controls">
 							      <input type="text" class="span6 typeahead" id="txtPrecio" name="txtPrecio" data-provide="typeahead" data-items="4" value=<%=servicio.getPrecio() %>>
 						        </div>
 						    </div>
 						      
 							<div class="control-group" id="dvNombreProv">
-							  <label class="control-label" for="typeahead4">Nombre Proveedor(*): </label>
+							  <label class="control-label" for="typeahead4">Nombre Proveedor: </label>
 							  <div class="controls">
 								<input type="text" class="span6 typeahead" id="txtNombreProv" name="txtNombreProv"  data-provide="typeahead" data-items="4" value=<%=proveedor.getRazonSocial()%>>
 							    <span class="help-inline" id="errNombreProv">Please correct the error</span>
@@ -90,7 +90,7 @@ function alt_submit(){
 							</div>
 						  </fieldset>
 					  </form>
-                      (*) Datos Obligatorios 
+                      (*) Campos Obligatorios 
 				  </div>
 				</div><!--/span-->
 
