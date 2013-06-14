@@ -47,7 +47,6 @@ public class HorariodeactividadBeanFuncion {
 
 			
 
-			System.out.print(  request.getParameter("checkDia1") );
 
 
 		horariodeactividadData.setNombre(    		request.getParameter("txtNombre") );
