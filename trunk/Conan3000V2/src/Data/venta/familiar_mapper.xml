@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Data.venta.familiar">
+
+  <cache />
+
+ <select id="searchPlantillaFamiliar" parameterType="IngSoft.venta.bean.CriterioFamiliarBeanData" resultType="IngSoft.venta.bean.ResultadoFamiliarBeanData">
+select 
+FAMILIAR.IdFamiliar as codigo
+,FAMILIAR.Parentesco as parentesco
+,PERSONA.Nombres as nombres
+,PERSONA.ApePaterno as apellidoPaterno
+,PERSONA.ApeMaterno as apellidoMaterno
+,PERSONA.TipoDocumento as tipoDocumento
+,PERSONA.NumeroDocumento as dni
+from FAMILIAR,PERSONA
+<where>
+	<if test="nombres != null ">
+        FAMILIAR.IdFamiliar=PERSONA.IdPersona and (PERSONA.nombres  like  #{nombres})
+    </if>
+    <if test="apellidoPaterno != null ">
+        AND (PERSONA.ApePaterno  like  #{apellidoPaterno})
+    </if>
+    <if test="apellidoMaterno != null ">
+        AND (PERSONA.ApePaterno  like  #{apellidoPaterno})
+    </if>
+     <if test="tipoDocumento != null">
+        AND PERSONA.TipoDocumento like #{tipoDocumento}
+    </if>
+   AND FAMILIAR.Estado='Activo'
+    
+</where>
+</select>
+
+  
+<!-- Agregar plantilla socio -->
+<insert id="insertSocio" parameterType="IngSoft.venta.bean.SocioBeanData" flushCache="true">
+	insert into SOCIO(IdSocio,IdPerfil,Direccion,Correo,TelefonoFijo,IdSolicitudIngreso,IdDistrito,TelefonoCelular)
+	values (#{codigo},'PER000010',#{direccion},#{correoElectronico},#{telefonoFijo},'SOL000001',#{idDistrito},#{telefonoCelular})
+</insert>
+
+<insert id="insertPersona" parameterType="IngSoft.venta.bean.PersonaMiniBeanData" flushCache="true">
+	insert into PERSONA(IdPersona,Nombres,ApePaterno,ApeMaterno,NumeroDocumento,TipoDocumento,FechaNac)
+	values (#{codigo},#{nombres},#{apellidoPaterno},#{apellidoMaterno},#{numeroDocumento},#{tipoDocumento},#{fechaNacimiento})
+</insert>
+
+ <!-- Fin agregar  -->
+ 
+<select id="getNextCodigo3" resultType="java.lang.String">
+	select max(IdSocio) from SOCIO
+</select>
+
+<select id="searchDistritoMini" resultType="IngSoft.venta.bean.DistritoMiniBeanData">
+	select IdDistrito as idDistrito
+	,Nombre as nombreDistrito
+	from 
+	DISTRITO
+</select>
+
+<select id="getPlantillaFamiliar" parameterType="java.lang.String"  resultType="IngSoft.venta.bean.FamiliarBeanData">
+select 
+FAMILIAR.IdFamiliar as codigoFamiliar
+,FAMILIAR.IdSocio as codigoSocio
+,FAMILIAR.Parentesco as parentesco
+,FAMILIAR.TelefonoFijo as telefonoFijo
+,FAMILIAR.TelefonoCelular as telefonoCelular
+,FAMILIAR.Correo as correo
+from FAMILIAR  where FAMILIAR.IdFamiliar=#{codigo}; 
+</select>
+
+<select id="getPlantillaPersona" parameterType="java.lang.String"  resultType="IngSoft.venta.bean.PersonaMiniBeanData">
+select 
+PERSONA.IdPersona as codigo
+,PERSONA.Nombres as nombres
+,PERSONA.ApePaterno as apellidoPaterno
+,PERSONA.ApeMaterno as apellidoMaterno
+,PERSONA.TipoDocumento as tipoDocumento
+,PERSONA.FechaNac as fechaNacimiento
+,PERSONA.NumeroDocumento as numeroDocumento
+from PERSONA  where PERSONA.IdPersona=#{codigo}; 
+</select>
+
+<!--Eliminar socio -->
+<update id="deleteFamiliar" parameterType="java.lang.String" >
+update FAMILIAR set FAMILIAR.Estado='Eliminado' where FAMILIAR.IdFamiliar=#{codigo}
+</update>
+<!-- Fin eliminar -->
+
+
+ <!-- Modificar socio -->
+<update id="updateSocio" parameterType="IngSoft.venta.bean.SocioBeanData">
+update SOCIO set Direccion=#{direccion}
+ ,SOCIO.Correo=#{correoElectronico}
+ ,SOCIO.TelefonoFijo=#{telefonoFijo}
+ ,SOCIO.TelefonoCelular=#{telefonoCelular}
+ where SOCIO.IdSocio= #{codigo}
+</update>
+
+<update id="updatePersona" parameterType="IngSoft.venta.bean.PersonaMiniBeanData">
+update PERSONA set PERSONA.ApeMaterno=#{apellidoMaterno}
+,PERSONA.Nombres=#{nombres}
+,PERSONA.ApePaterno=#{apellidoPaterno} 
+,PERSONA.FechaNac=#{fechaNacimiento}
+,PERSONA.NumeroDocumento=#{numeroDocumento}
+,PERSONA.TipoDocumento=#{tipoDocumento}
+ where PERSONA.IdPersona= #{codigo}
+</update>
+
+<!-- Fin modificar  
+
+ -->
+
+</mapper>
+ 
