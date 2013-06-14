@@ -158,7 +158,7 @@
 						
 			            <div class="form-actions">
 							  
-							  <button type="button" class="btn" onclick="location.href='buscarempleado.jsp'" >Cancelar</button>
+							  <button type="button" class="btn" onclick="location.href='buscarempleado.jsp'" >Regresar</button>
 							</div>
 		              </fieldset>
 		            </form>
