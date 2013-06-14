@@ -149,11 +149,11 @@ body {
 										<div class="control-group" id="dvRuc">
 
 
-											<label class="control-label" for="typeahead7">RUC(*):
+											<label class="control-label" for="txtRuc">RUC(*):
 											</label>
 											<div class="controls">
 												<input type="text" class="span6 typeahead" id="txtRuc"
-													name="txtRuc" data-provide="typeahead">
+													name="txtRuc"  data-provide="typeahead">
 													<span class="help-inline" id="errRuc">Please correct the error</span>
 											</div>
 										</div>
@@ -177,12 +177,11 @@ body {
 
 
 										<div class="control-group" id="dvTelefono">
-											<label class="control-label" for="typeahead7">Telefono:
+											<label class="control-label" for="txtTelefono">Telefono:
 											</label>
 											<div class="controls">
 												<input type="text" class="span6 typeahead" id="txtTelefono"
-													name="txtTelefono" data-provide="typeahead"
-													onkeypress="return alfanumerico(event);" autofocus>
+													name="txtTelefono" data-provide="typeahead">
 													<span class="help-inline" id="errTelefono">Please correct the error</span>
 											</div>
 										</div>
