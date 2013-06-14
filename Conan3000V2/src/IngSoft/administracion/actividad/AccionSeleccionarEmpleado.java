@@ -38,7 +38,7 @@ public class AccionSeleccionarEmpleado extends CoAccion{
 		Vector<ResultadoEmpleadoBeanData> resultados=null;
 		try{
 			
-		List<ResultadoEmpleadoBeanData> resultadosEmp=sqlsesion.selectList("searchPlantillaEmpleado2",criterioEmpleadoData);
+		List<ResultadoEmpleadoBeanData> resultadosEmp=sqlsesion.selectList("searchPlantillaEmpleadoAndres",criterioEmpleadoData);
 	
 		resultados= new Vector<>(resultadosEmp);
 		
