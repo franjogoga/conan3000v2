@@ -30,7 +30,7 @@ inf245g2.PERSONA.ApePaterno as apaterno,
 inf245g2.JORNADA.HoraEntrada AS horaEntrada,
 inf245g2.JORNADA.HoraSalida AS horaSalida,
 inf245g2.JORNADA.Fecha AS fecha,
-inf245g2.JORNADA.HoraMarca AS horaMarca,
+inf245g2.JORNADA.HoraMarcado AS horaMarca,
 inf245g2.JORNADA.Flag AS flag
 
 FROM inf245g2.JORNADA , inf245g2.EMPLEADO , inf245g2.PERSONA
@@ -52,7 +52,7 @@ ORDER BY 1 DESC
 <!-- Agregar plantilla JORNADA -->
 
 <insert id="insertPlantillaJornada" parameterType="IngSoft.administracion.bean.JornadaBeanData" flushCache="true">
-	insert into JORNADA (IdJornada,IdEmpleado,HoraEntrada,HoraSalida,Fecha,HoraMarca,Flag)
+	insert into JORNADA (IdJornada,IdEmpleado,HoraEntrada,HoraSalida,Fecha,HoraMarcado,Flag)
 	values (#{idJornada},#{idEmpleado},#{horaInicio},#{horaInicio},#{fecha},#{horaMarca},#{flag} )
 </insert>
 
@@ -60,11 +60,11 @@ ORDER BY 1 DESC
 <!--actualizar flag del empleado  -->
 
 <update id="updateFlagEmpleadoJornada" parameterType="java.lang.String" >
-         update inf245g2.empleado
+         update inf245g2.EMPLEADO
          set 
-           inf245g2.empleado.Flag =   IF( inf245g2.empleado.Flag >0,0,1)
+           inf245g2.EMPLEADO.Flag =   IF( inf245g2.EMPLEADO.Flag >0,0,1)
          where 
-         inf245g2.empleado.IdEmpleado =   #{codigo}
+         inf245g2.EMPLEADO.IdEmpleado =   #{codigo}
 </update>
 
 
