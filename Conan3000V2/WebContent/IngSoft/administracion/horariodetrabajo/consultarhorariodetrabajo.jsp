@@ -147,7 +147,7 @@
 						    <div class="control-group">
 						      <label class="control-label" for="typeahead7">Nombre: </label>
 						      <div class="controls">
-						        <input type="text" class="span6 typeahead" id="txtNombre"  data-provide="typeahead"  name="txtNombre" disabled value="  <%=((HorariodetrabajoBeanData)horariodetrabajo).getNombre()%>     ">
+						        <input type="text" class="span6 typeahead" id="txtNombre"  data-provide="typeahead"  name="txtNombre" disabled value="  <%=((HorariodetrabajoBeanData)horariodetrabajo).getNombre()%>">        
 					     
 <!--- ------------  -->
 							
