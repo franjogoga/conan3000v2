@@ -52,6 +52,7 @@
 int j=0;
 int k=0;
 int indIni=0;
+Vector <String> nombres=new Vector<String>();
 //int a= reservas.size();
 String Cancha=null;
 boolean esnull=false;
@@ -60,6 +61,7 @@ while(j<reservasV.size()){
 String codActual= ((ReservaCanchaMiniBeanData)reservasV.get(j)).getCodigoCancha();
 if(Cancha==null|| !Cancha.equals(codActual)){
 Cancha=codActual;
+nombres.add(reservasV.get(j).getDescCancha());
 indIni=j;
 k++;
 esnull=false;
@@ -176,11 +178,11 @@ esnull=false;
 %>
 <div id="temptabs">
 <p class="btn-group">
-<%if(k==1){%>
- <button class="btn tabsSel" data-tabs="tabs-1" onclick="cambiar($(this))" disabled="disabled">cancha 1</button>
+<%if(nombres.size()==1){%>
+ <button class="btn tabsSel" data-tabs="tabs-1" onclick="cambiar($(this))" disabled="disabled"><%=nombres.get(0)%></button>
  <%} else
- for(int i=1;i<=k;i++){ %>
-  <button class="btn tabsSel" data-tabs="tabs-<%=i%>" onclick="cambiar($(this))" <%=i==1?"disabled='disabled'":""%>>cancha <%=i%></button>  
+ for(int i=0;i<nombres.size();i++){ %>
+  <button class="btn tabsSel" data-tabs="tabs-<%=i%>" onclick="cambiar($(this))" <%=i==0?"disabled='disabled'":""%>><%=nombres.get(i)%></button>  
   <%} %>
   </p>    
 </div>
