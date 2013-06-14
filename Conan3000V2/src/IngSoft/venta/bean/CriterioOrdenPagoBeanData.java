@@ -1,16 +1,16 @@
-
 package IngSoft.venta.bean;
 
 import java.io.Serializable;
 import java.util.Date;
 
 
-public class CriterioPagoBeanData implements Serializable {
+public class CriterioOrdenPagoBeanData implements Serializable {
 	
 	private String idIngreso;
 	private String idSocio;
 	private String socio;
 	private String idConcepto;
+	private String concepto;
 	private Date fechaVencimientoIni;
 	private Date fechaVencimientoFin;
 	
@@ -25,6 +25,12 @@ public class CriterioPagoBeanData implements Serializable {
 	
 	
 
+	public String getConcepto() {
+		return concepto;
+	}
+	public void setConcepto(String concepto) {
+		this.concepto = concepto;
+	}
 	public Date getFechaPagoIni() {
 		return fechaPagoIni;
 	}

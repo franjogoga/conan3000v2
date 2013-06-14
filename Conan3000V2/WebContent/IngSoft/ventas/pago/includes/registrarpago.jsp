@@ -112,7 +112,7 @@ String fecHoy=dfActual.format(new java.util.Date());
 <div class="control-group">
           <label class="control-label" for="typeahead7">Fecha de Pago: </label>
 			              <div class="controls">
-			                <input type="text" class="input-xlarge datepicker" id="fFechaPago" name="fFechaPago" value="<%=fecHoy%>"  onpaste="return false;" readOnly="true">
+			                <input type="text" class="input-xlarge" id="fFechaPago" name="fFechaPago" value="<%=fecHoy%>"  onpaste="return false;" readOnly="true">
 		                  </div>
 		                </div>
 			            <div class="control-group">
@@ -126,7 +126,7 @@ String fecHoy=dfActual.format(new java.util.Date());
 			            
 			            <div class="form-actions">
 			              <input type="hidden" name="idCuota" value="<%=pago.getIdCuota() %>"/></input>
-			              <button type="button" class="btn btn-primary" onclick="javascript:alt_submit()">Modificar</button>
+			              <button type="button" class="btn btn-primary" onclick="javascript:alt_submit()">Pagar</button>
 			              <button type="button" class="btn" onclick="location.href='buscarpago.jsp'">Cancelar</button>
 		                </div>
 		                </div>

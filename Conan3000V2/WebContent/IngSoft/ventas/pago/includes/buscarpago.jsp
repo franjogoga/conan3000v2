@@ -77,7 +77,19 @@
 	
 	
 	
+	function igualarIni(tipo){
+		if(tipo==2)
+		document.frmCriteriosBusqueda.fFechaPagoIni.value=document.frmCriteriosBusqueda.fFechaVencimientoIni.value;
+		else
+		document.frmCriteriosBusqueda.fFechaVencimientoIni.value=document.frmCriteriosBusqueda.fFechaPagoIni.value;
+	}
 	
+	function igualarFin(tipo){
+		if(tipo==2)
+		document.frmCriteriosBusqueda.fFechaPagoFin.value=document.frmCriteriosBusqueda.fFechaVencimientoFin.value;
+		else
+		document.frmCriteriosBusqueda.fFechaVencimientoFin.value=document.frmCriteriosBusqueda.fFechaPagoFin.value;
+	}
 	
 	</script>	
 <%
@@ -111,7 +123,7 @@ String fecHoy=dfActual.format(new java.util.Date());
 		              <div class="control-group">
 		                <label class="control-label" for="typeahead">C&oacute;digo de socio:</label>
 		                <div class="controls">
-		                  <input type="text" class="span6 typeahead" id="txtCodigoSocio">
+		                  <input type="text" class="span6 typeahead" id="txtCodigoSocio" name="txtCodigoSocio">
 	                    </div>
 	                  </div>
 		              <div class="control-group">
@@ -123,16 +135,16 @@ String fecHoy=dfActual.format(new java.util.Date());
 		              <div class="control-group" id="fechaEmision">
 		                <label class="control-label" for="typeahead2">Fecha de Vencimiento: </label>
 		                <div class="controls">
-		                  <input type="text" class="input-xlarge datepicker" id="fFechaVencimientoIni" name="fFechaVencimientoIni" value="<%=fecHoy%>" onpaste="return false;" > 
-		                  - <input type="text" class="input-xlarge datepicker" id="fFechaVencimientoFin" name="fFechaVencimientoFin" value="<%=fecHoy%>" onpaste="return false;" >
+		                  <input type="text" class="input-xlarge datepicker" id="fFechaVencimientoIni" name="fFechaVencimientoIni" value="<%=fecHoy%>" onChange="javascript:igualarIni(2)" onpaste="return false;" > 
+		                  - <input type="text" class="input-xlarge datepicker" id="fFechaVencimientoFin" name="fFechaVencimientoFin" value="<%=fecHoy%>" onChange="javascript:igualarFin(2)" onpaste="return false;" >
 	                    </div>
 	                  </div>
 	                  
 	                  <div class="control-group" id="fechaPago">
 		                <label class="control-label" for="typeahead2">Fecha de Pago: </label>
 		                <div class="controls">
-		                  <input type="text" class="input-xlarge datepicker"  id="fFechaPagoIni" name="fFechaPagoIni" value="<%=fecHoy%>"  onpaste="return false;" >
-		                   - <input type="text" class="input-xlarge datepicker"  id="fFechaPagoFin" name="fFechaPagoFin" value="<%=fecHoy%>" onpaste="return false;" >
+		                  <input type="text" class="input-xlarge datepicker"  id="fFechaPagoIni" name="fFechaPagoIni" value="<%=fecHoy%>" onChange="javascript:igualarIni(1)"  onpaste="return false;" >
+		                   - <input type="text" class="input-xlarge datepicker"  id="fFechaPagoFin" name="fFechaPagoFin" value="<%=fecHoy%>" onChange="javascript:igualarFin(1)" onpaste="return false;" >
 	                    </div>
 	                  </div>
 	                  
@@ -165,7 +177,7 @@ String fecHoy=dfActual.format(new java.util.Date());
 		     <form id="frmAlternativo" name="frmAlternativo" method="POST" action="<%= response.encodeURL("SMVPago")%>">
 			  <input type="hidden" name="accion" value="Agregar"></input>
 			  <input type="hidden" name="codigo" value=""></input>
-			 <input type="hidden" name="tipo" value="2"></input>
+			 <input type="hidden" name="tipo" value="1"></input>
 			  </form>
 		    
 		    <div class="row-fluid sortable">
@@ -216,19 +228,13 @@ String fecHoy=dfActual.format(new java.util.Date());
 		                <a class="btn btn-success"
                           					href="javascript:alt_consultar('<%=((ResultadoPagoBeanData)resultados.get(i)).getIdCuota()%>')">
                           					 <i class="icon-zoom-in icon-white"></i> Ver </a> 
-                        <% if(((ResultadoPagoBeanData)resultados.get(i)).getEstadoCuota().equals("Pagado")){ %>
-		                <a class="btn btn-info"
-                          					href="javascript:alt_modificar('<%=((ResultadoPagoBeanData)resultados.get(i)).getIdCuota()%>')">
-                          					<i class="icon-edit icon-white"></i> Modificar </a>
+                        <% if(((ResultadoPagoBeanData)resultados.get(i)).getEstadoCuota().equals("Cancelado")){ %>
+		                
                         <% }else{ %>
                         <a class="btn btn-primary"
                           					href="javascript:alt_Pagar('<%=((ResultadoPagoBeanData)resultados.get(i)).getIdCuota()%>')">
                           					 <i class="icon-share icon-white"></i> Pagar </a>
                         <% } %>
-                        <a class="btn btn-danger"
-                          					href="javascript:alt_eliminar('<%=((ResultadoPagoBeanData)resultados.get(i)).getIdCuota()%>')">
-                          					 <i class="icon-trash icon-white"></i> Eliminar </a>
-                        
 						</td>
 		                
 	                  </tr>

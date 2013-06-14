@@ -16,7 +16,25 @@ distinct PERSONA.IdPersona idSocio
 ,CUOTA.Estado as estadoCuota
 from CUOTA, DETALLE_CUOTA, MEMBRESIA, PERSONA
 <where>
+	<if test="socio != null">
 	
+	CUOTA.IdDetalleCuota=DETALLE_CUOTA.IdDetalleCuota and DETALLE_CUOTA.IdMembresia=MEMBRESIA.IdMembresia and MEMBRESIA.idSocio=PERSONA.IdPersona and (PERSONA.Nombres like #{socio} or PERSONA.ApePaterno like #{socio} or PERSONA.ApeMaterno like #{socio}) 
+  </if>
+  
+  <if test="idSocio != null">
+        AND PERSONA.IdPersona = #{idSocio}
+    </if>
+  
+  <if test="fechaVencimientoIni != null">
+        AND CUOTA.FechaVencimiento &gt;= #{fechaVencimientoIni}
+    </if>
+  
+  <if test="fechaVencimientoIni != null">
+        AND CUOTA.FechaVencimiento &gt;= #{fechaVencimientoIni}
+    </if>
+    <if test="fechaVencimientoFin != null">
+        AND CUOTA.FechaVencimiento &lt;= #{fechaVencimientoFin}
+    </if>
   
     <if test="estado != null">
         AND CUOTA.Estado= #{estado}
@@ -27,6 +45,43 @@ from CUOTA, DETALLE_CUOTA, MEMBRESIA, PERSONA
 </where>
 </select>
 
+
+<select id="searchPagado" parameterType="IngSoft.venta.bean.CriterioPagoBeanData" resultType="IngSoft.venta.bean.ResultadoPagoBeanData">
+select 
+distinct PERSONA.IdPersona idSocio 
+,CUOTA.NumCuota as numCuota
+,CUOTA.IdCuota as idCuota
+,CUOTA.Monto as monto
+,CUOTA.Cantidad as cantidad
+,CONCAT(PERSONA.Nombres,' ',PERSONA.ApePaterno,' ',PERSONA.ApeMaterno) as socio
+,CUOTA.FechaEmision as fechaEmision
+,CUOTA.FechaVencimiento as fechaVencimiento
+,CUOTA.Estado as estadoCuota
+from CUOTA, DETALLE_CUOTA, MEMBRESIA, PERSONA, INGRESO
+<where>
+	<if test="socio != null">
+	CUOTA.IdDetalleCuota=DETALLE_CUOTA.IdDetalleCuota and DETALLE_CUOTA.IdMembresia=MEMBRESIA.IdMembresia and MEMBRESIA.idSocio=PERSONA.IdPersona and (PERSONA.Nombres like #{socio} or PERSONA.ApePaterno like #{socio} or PERSONA.ApeMaterno like #{socio})
+  </if>
+  
+  <if test="idSocio != null">
+        AND PERSONA.IdPersona = #{idSocio}
+    </if>
+  
+  <if test="fechaPagoIni != null">
+        AND INGRESO.FechaPago &gt;= #{fechaPagoIni}
+    </if>
+    <if test="fechaPagoFin != null">
+        AND INGRESO.FechaPago &lt;= #{fechaPagoFin}
+    </if>
+  
+    <if test="estado != null">
+        AND CUOTA.Estado= #{estado}
+       
+    </if>
+   ORDER BY CUOTA.fechaVencimiento ASC
+      
+</where>
+</select>
 
 <select id="getPagoMembresia" parameterType="java.lang.String"  resultType="IngSoft.venta.bean.PagoBeanData">
 select 
@@ -85,13 +140,140 @@ update CUOTA set Estado='Eliminado'
 </select>
 
 <insert id="insertEgresos" parameterType="IngSoft.venta.bean.EgresoBeanData" flushCache="true">
-	insert into EGRESO(IdEgreso,Descripcion,MontoTotal,Cantidad,FechaPago,Estado,IdConcepto)
-	values (#{idEgreso},#{descripcion},#{montoTotal},#{cantidad},#{fechapago},'Activo',#{idConcepto})
+	insert into EGRESO(IdEgreso,Descripcion,MontoTotal,FechaPago,Estado,IdConcepto)
+	values (#{idEgreso},#{descripcion},#{montoTotal},#{fechaPago},'Activo',#{idConcepto})
 </insert>
 
 
+<select id="getEgreso" parameterType="java.lang.String"  resultType="IngSoft.venta.bean.EgresoBeanData">
+select 
+EGRESO.IdEgreso as idEgreso
+,EGRESO.Descripcion as descripcion
+,EGRESO.FechaPago as fechaPago
+,EGRESO.MontoTotal as montoTotal
+from EGRESO WHERE EGRESO.IdEgreso=#{codigo}
+</select>
+
+
+<select id="searchEgreso" parameterType="IngSoft.venta.bean.CriterioEgresoBeanData" resultType="IngSoft.venta.bean.ResultadoEgresoBeanData">
+select 
+EGRESO.IdEgreso as idEgreso
+,EGRESO.Descripcion as descripcion
+,EGRESO.FechaPago as fechaPago
+,EGRESO.MontoTotal as montoTotal
+from EGRESO
+<where>
+	<if test="descripcion != null">
+	EGRESO.Descripcion like #{descripcion} 
+  </if>
+  
+  
+  <if test="fechaPagoIni != null">
+        AND EGRESO.FechaPago &gt;= #{fechaPagoIni}
+    </if>
+    <if test="fechaPagoFin != null">
+        AND EGRESO.FechaPago &lt;= #{fechaPagoFin}
+    </if>
+  
+   
+   ORDER BY EGRESO.fechaPago ASC
+      
+</where>
+</select>
 
 <!-- Ordenes de pago-->
+
+
+<select id="searchOrdenPago" parameterType="IngSoft.venta.bean.CriterioOrdenPagoBeanData" resultType="IngSoft.venta.bean.ResultadoOrdenPagoBeanData">
+select 
+distinct PERSONA.IdPersona idSocio 
+,OTRO_INGRESO.Descripcion as descripcion
+,OTRO_INGRESO.IdOtroIngreso as idOtroIngreso
+,OTRO_INGRESO.Monto as monto
+,CONCAT(PERSONA.Nombres,' ',PERSONA.ApePaterno,' ',PERSONA.ApeMaterno) as socio
+,OTRO_INGRESO.FechaEmision as fechaEmision
+,OTRO_INGRESO.FechaVencimiento as fechaVencimiento
+,OTRO_INGRESO.Estado as estado
+,OTRO_INGRESO.IdConcepto as idConcepto
+from OTRO_INGRESO, CONCEPTO, PERSONA, INGRESO
+<where>
+	<if test="socio != null">
+	OTRO_INGRESO.IdConcepto=CONCEPTO.IdConcepto and CONCEPTO.IdSocio=PERSONA.IdPersona and  (PERSONA.Nombres like #{socio} or PERSONA.ApePaterno like #{socio} or PERSONA.ApeMaterno like #{socio})
+  </if>
+  
+  <if test="idSocio != null">
+        AND PERSONA.IdPersona = #{idSocio}
+    </if>
+  
+  <if test="fechaEmisionIni != null">
+        AND OTRO_INGRESO.FechaEmision &gt;= #{fechaEmisionIni}
+    </if>
+    <if test="fechaEmisionFin != null">
+        AND OTRO_INGRESO.FechaEmision &lt;= #{fechaEmisionFin}
+    </if>
+  
+    <if test="estado != null">
+        AND INGRESO.Estado= #{estado}
+       
+    </if>
+   ORDER BY OTRO_INGRESO.fechaVencimiento ASC
+      
+</where>
+</select>
+
+
+<select id="searchOrdenPagada" parameterType="IngSoft.venta.bean.CriterioOrdenPagoBeanData" resultType="IngSoft.venta.bean.ResultadoOrdenPagoBeanData">
+select 
+distinct PERSONA.IdPersona idSocio 
+,OTRO_INGRESO.Descripcion as descripcion
+,OTRO_INGRESO.IdOtroIngreso as idOtroIngreso
+,OTRO_INGRESO.Monto as monto
+,CONCAT(PERSONA.Nombres,' ',PERSONA.ApePaterno,' ',PERSONA.ApeMaterno) as socio
+,OTRO_INGRESO.FechaEmision as fechaEmision
+,OTRO_INGRESO.FechaVencimiento as fechaVencimiento
+,OTRO_INGRESO.Estado as estado
+,OTRO_INGRESO.IdConcepto as idConcepto
+from OTRO_INGRESO, CONCEPTO, PERSONA, INGRESO
+<where>
+	<if test="socio != null">
+	OTRO_INGRESO.IdConcepto=CONCEPTO.IdConcepto and CONCEPTO.IdSocio=PERSONA.IdPersona and INGRESO.idOtroIngreso=OTRO_INGRESO.IdOtroIngreso and (PERSONA.Nombres like #{socio} or PERSONA.ApePaterno like #{socio} or PERSONA.ApeMaterno like #{socio})
+  </if>
+  
+  <if test="idSocio != null">
+        AND PERSONA.IdPersona = #{idSocio}
+    </if>
+  
+  <if test="fechaPagoIni != null">
+        AND INGRESO.FechaPago &gt;= #{fechaPagoIni}
+    </if>
+    <if test="fechaPagoFin != null">
+        AND INGRESO.FechaPago &lt;= #{fechaPagoFin}
+    </if>
+  
+    <if test="estado != null">
+        AND INGRESO.Estado= #{estado}
+       
+    </if>
+   ORDER BY OTRO_INGRESO.fechaVencimiento ASC
+      
+</where>
+</select>
+
+
+<select id="getOrdenPagoIngreso" parameterType="java.lang.String"  resultType="IngSoft.venta.bean.OrdenPagoBeanData">
+Select
+distinct PERSONA.IdPersona idSocio 
+,OTRO_INGRESO.Descripcion as descripcion
+,OTRO_INGRESO.IdOtroIngreso as idOtroIngreso
+,OTRO_INGRESO.Monto as monto
+,CONCAT(PERSONA.Nombres,' ',PERSONA.ApePaterno,' ',PERSONA.ApeMaterno) as socio
+,OTRO_INGRESO.FechaEmision as fechaEmision
+,OTRO_INGRESO.FechaVencimiento as fechaVencimiento
+,OTRO_INGRESO.Estado as estado
+,OTRO_INGRESO.IdConcepto as idConcepto
+from OTRO_INGRESO, CONCEPTO, PERSONA, INGRESO
+OTRO_INGRESO.IdConcepto=CONCEPTO.IdConcepto and CONCEPTO.IdSocio=PERSONA.IdPersona and INGRESO.idOtroIngreso=OTRO_INGRESO.IdOtroIngreso and OTRO_INGRESO.IdOtroIngreso=#{codigo}
+</select>
 
 <select id="getNextCodigoOrden" resultType="java.lang.String">
 	select max(IdConcepto) from CONCEPTO
@@ -102,8 +284,8 @@ update CUOTA set Estado='Eliminado'
 </select>
 
 <insert id="insertOrdenPagoOtrosIngresos" parameterType="IngSoft.venta.bean.OrdenPagoBeanData" flushCache="true">
-	insert into OTRO_INGRESO(IdOtroIngreso,IdConcepto,Monto,FechaEmision,FechaVencimiento,Estado)
-	values (#{idOtroIngreso},#{idConcepto},#{monto},#{fechaEmision},#{fechaVencimiento},'No Cancelado')
+	insert into OTRO_INGRESO(IdOtroIngreso,IdConcepto,Monto,FechaEmision,FechaVencimiento,Estado,Descripcion)
+	values (#{idOtroIngreso},#{idConcepto},#{monto},#{fechaEmision},#{fechaVencimiento},'No Cancelado',#{descripcion})
 </insert>
 
 

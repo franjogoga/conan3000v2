@@ -17,7 +17,8 @@ public class OrdenPagoBeanData implements Serializable {
 	private String socio;
 	private String idConcepto;
 	private String idOtroIngreso;
-	
+	private String idIngreso;
+	private Date fechaPago;
 	
 	private String idActividad;
 	private String idFamiliar;
@@ -41,6 +42,19 @@ public class OrdenPagoBeanData implements Serializable {
 	
 	
 	
+	
+	public String getIdIngreso() {
+		return idIngreso;
+	}
+	public void setIdIngreso(String idIngreso) {
+		this.idIngreso = idIngreso;
+	}
+	public Date getFechaPago() {
+		return fechaPago;
+	}
+	public void setFechaPago(Date fechaPago) {
+		this.fechaPago = fechaPago;
+	}
 	public String getIdOtroIngreso() {
 		return idOtroIngreso;
 	}

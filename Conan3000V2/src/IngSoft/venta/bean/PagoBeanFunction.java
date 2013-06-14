@@ -74,7 +74,7 @@ public class PagoBeanFunction {
 			String codigo= (String)sqlsesion.selectOne("Data.venta.pago.getNextCodigo2");
 			if(codigo!=null){
 			int cod= Integer.parseInt(codigo.substring(3))+1;
-			String defecto= "ING000000";
+			String defecto= "000000";
 			String temp= defecto.substring(0, defecto.length()-String.valueOf(cod).length()).concat(String.valueOf(cod));
 			
 			pagoData.setIdIngreso(codigo.substring(0,3).concat(temp));}

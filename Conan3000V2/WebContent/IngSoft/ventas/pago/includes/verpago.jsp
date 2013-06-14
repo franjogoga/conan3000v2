@@ -118,9 +118,9 @@ String fecHoy=dfActual.format(new java.util.Date());
                             </div>
                         </div>
 <div class="control-group">
-          <label class="control-label" for="typeahead7">Fecha de Pago: </label>
+          <label class="control-label" for="typeahead7">Fecha de Emision: </label>
 			              <div class="controls">
-			                <input type="text" class="input-xlarge datepicker" id="fFechaPago" name="fFechaPago" value="<%=fecHoy%>"  onpaste="return false;" disabled="" >
+			                <input type="text" class="input-xlarge datepicker" id="fFechaPago" name="fFechaPago" value="<%=formatear(new Date(pago.getFechaEmision().getTime()))%>"  onpaste="return false;" disabled="" >
 		                  </div>
 		                </div>
 			            <div class="control-group">

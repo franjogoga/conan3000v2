@@ -12,9 +12,16 @@ public class CriterioEgresoBeanData implements Serializable{
 	private Date fechaPagoFin;
 	private String estado;
 	private String descripcion;
+	private Double montoTotal;
 	
 	
 	
+	public Double getMontoTotal() {
+		return montoTotal;
+	}
+	public void setMontoTotal(Double montoTotal) {
+		this.montoTotal = montoTotal;
+	}
 	public String getDescripcion() {
 		return descripcion;
 	}

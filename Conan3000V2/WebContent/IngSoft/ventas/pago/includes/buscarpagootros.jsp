@@ -11,13 +11,13 @@
 	}
 	function alt_agregar(){
 		var form=document.getElementById("frmAlternativo");
-		form.accion.value="Agregar";
+		form.accion.value="AgregarOrdenPago";
 		form.submit();
 	}
 	
 	function alt_consultar(cod){
 		var form=document.getElementById("frmAlternativo");
-		form.accion.value="Consultar";
+		form.accion.value="ConsultarOrdenPago";
 		form.codigo.value=cod;
 		form.submit();
 	}
@@ -35,7 +35,7 @@
 	}
 	function alt_Pagar(cod){
 		var form=document.getElementById("frmAlternativo");
-		form.accion.value="Pagar";
+		form.accion.value="PagarOrdenPago";
 		form.codigo.value=cod;
 		form.submit();
 	}
@@ -107,7 +107,8 @@ String fecHoy=dfActual.format(new java.util.Date());
 		        <div class="box-header well" data-original-title>
 		          <h2><i class="icon-search"></i> BUSCAR ORDENES DE PAGO</h2></div>
 		        <div class="box-content">
-		          <form class="form-horizontal" ame="frmCriteriosBusqueda" id="frmCriteriosBusqueda"  method="POST" action="<%= response.encodeURL("SMVPago")%>">
+		          <form class="form-horizontal" name="frmCriteriosBusqueda" id="frmCriteriosBusqueda"  method="POST" action="<%= response.encodeURL("SMVPago")%>">
+		            <input type="hidden" name="accion" value="BuscarOrdenPago"/></input>
 		            <fieldset>
 		              <div class="control-group">
 		                <label class="control-label" for="typeahead">C&oacute;digo de socio:</label>
@@ -174,6 +175,13 @@ String fecHoy=dfActual.format(new java.util.Date());
 		      <!--/span-->
 	        </div>
 		    <!--/row-->
+		    
+		    <form id="frmAlternativo" name="frmAlternativo" method="POST" action="<%= response.encodeURL("SMVPago")%>">
+			  <input type="hidden" name="accion" value="Agregar"></input>
+			  <input type="hidden" name="codigo" value=""></input>
+			 <input type="hidden" name="tipo" value="1"></input>
+			  </form>
+			  
 		    <div class="row-fluid sortable">
 		      <div class="box span12">
 		        <div class="box-header well" data-original-title>

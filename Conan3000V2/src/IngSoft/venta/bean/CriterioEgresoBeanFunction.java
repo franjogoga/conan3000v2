@@ -21,21 +21,26 @@ public class CriterioEgresoBeanFunction {
 		CriterioEgresoBeanData criterioEgresoData= new CriterioEgresoBeanData();
 		
 		//criterioEgresoData.setTipo(Integer.parseInt(request.getParameter("cmbTipoEvento")==null?"0":request.getParameter("cmbTipoEvento")));
-		criterioEgresoData.setDescripcion(request.getParameterValues("descripcion")+"%");
+		if(request.getParameter("txtDescripcion")!=null){
+			if(request.getParameter("txtDescripcion")==""){
+				criterioEgresoData.setDescripcion(null);
+			}else{
+				criterioEgresoData.setDescripcion("%"+request.getParameter("txtDescripcion")+"%");
+			}
+		}else{
+			criterioEgresoData.setDescripcion(null);
+		}
 		try {		
 			
-			if(request.getParameter("fFechaPagoInicio")!=null)
-			criterioEgresoData.setFechaPagoIni(new Date(DF.parse(request.getParameter("fFechaPagoInicio")).getTime()));
+			if(request.getParameter("fFechaPagoIni")!=null)
+			criterioEgresoData.setFechaPagoIni(new Date(DF.parse(request.getParameter("fFechaPagoIni")).getTime()));
 			else
 				criterioEgresoData.setFechaPagoIni(null);
 			if(request.getParameter("fFechaPagoFin")!=null)
 			criterioEgresoData.setFechaPagoFin(new Date(DF.parse(request.getParameter("fFechaPagoFin")).getTime()));
 			else
 				criterioEgresoData.setFechaPagoFin(null);
-			if (request.getParameter("rButton")!=null){
-			String est;
-			est=request.getParameter("rButton");
-			criterioEgresoData.setEstado(est);}
+		
 			
 			
 			
