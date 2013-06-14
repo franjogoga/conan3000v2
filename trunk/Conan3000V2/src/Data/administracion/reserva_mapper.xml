@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Data.administracion.invitado">
+
+  <cache />
+  
+  
+<select id="getNextCodigo" resultType="java.lang.String">
+	select max(IdInvitado) from INVITADO	
+</select>
+
+
+<select id="searchPlantillaInvitado" parameterType="IngSoft.administracion.bean.CriterioInvitadoBeanData" resultType="IngSoft.administracion.bean.ResultadoInvitadoBeanData">
+SELECT 
+inf245g2.INVITADO.IdInvitado AS codigo,
+inf245g2.PERSONA.nombres AS nombre,
+inf245g2.INVITADO.estado AS estado
+FROM inf245g2.PERSONA , inf245g2.INVITADO
+WHERE  inf245g2.PERSONA.IdPersona = inf245g2.INVITADO.IdInvitado
+AND inf245g2.PERSONA.nombres like  #{nombre}
+order by 1 asc  
+
+
+</select>
+
+
+
+
+<select id="getPLantillaInvitado" parameterType="java.lang.String"  resultType="IngSoft.administracion.bean.InvitadoBeanData">
+SELECT 
+inf245g2.INVITADO.IdInvitado  AS codigo,
+inf245g2.PERSONA.Nombres  AS nombres,
+inf245g2.PERSONA.ApePaterno  AS aparterno,
+inf245g2.PERSONA.ApeMaterno  AS amaterno,
+inf245g2.PERSONA.TipoDocumento  AS tipodocumento,
+inf245g2.PERSONA.NumeroDocumento  AS numerodoc,
+inf245g2.PERSONA.FechaNac  AS fechanacimiento,
+
+inf245g2.INVITADO.FechaRegistro AS fecharegistro,
+inf245g2.INVITADO.Correo AS correo,
+inf245g2.INVITADO.TelefonoFijo AS telefonofijo,
+inf245g2.INVITADO.TelefonoCelular AS telefonomovil,
+
+inf245g2.INVITADO.Estado AS estado
+
+FROM inf245g2.INVITADO, inf245g2.PERSONA
+WHERE
+
+    inf245g2.INVITADO.IdInvitado   =  #{codigo} 
+AND inf245g2.INVITADO.IdInvitado   = inf245g2.PERSONA.IdPersona
+ORDER BY 1 ASC
+</select>
+
+
+
+<!-- Agregar plantilla ACTIVIDAD -->
+
+<insert id="insertPlantillaPersona" parameterType="IngSoft.administracion.bean.InvitadoBeanData" flushCache="true">
+	insert into inf245g2.PERSONA (IdPersona ,Nombres ,ApePaterno  ,ApeMaterno  ,TipoDocumento  ,NumeroDocumento  ,FechaNac )
+	values (#{codigo},#{nombres},#{aparterno},#{amaterno},#{tipodocumento},#{numerodoc},#{fechanacimiento})
+</insert>
+
+<insert id="insertPlantillaInvitado" parameterType="IngSoft.administracion.bean.InvitadoBeanData" flushCache="true">
+	insert into inf245g2.INVITADO (IdInvitado,FechaRegistro,Correo,TelefonoFijo,TelefonoCelular,Estado)
+	values (#{codigo},#{fecharegistro},#{correo},#{telefonofijo},#{telefonomovil},'Activo')
+</insert>
+
+
+
+<!--Modificar invitado -->
+
+<update id="modificarPlantillaInvitado" parameterType="IngSoft.administracion.bean.InvitadoBeanData" >
+
+
+UPDATE
+
+inf245g2.INVITADO,inf245g2.PERSONA 
+
+SET
+inf245g2.PERSONA.Nombres     =	#{nombres} ,
+inf245g2.PERSONA.ApePaterno  =	#{aparterno} ,
+inf245g2.PERSONA.ApeMaterno  =	#{ amaterno} ,
+inf245g2.PERSONA.TipoDocumento    =	#{ tipodocumento} ,
+inf245g2.PERSONA.NumeroDocumento  =	#{ numerodoc} ,
+inf245g2.PERSONA.FechaNac     =	#{ fechanacimiento} ,
+
+inf245g2.INVITADO.FechaRegistro   =	#{ fecharegistro} ,
+inf245g2.INVITADO.Correo          =	#{ correo} ,
+inf245g2.INVITADO.TelefonoFijo    =	#{ telefonofijo} ,
+inf245g2.INVITADO.TelefonoCelular =	#{ telefonomovil} ,
+
+inf245g2.INVITADO.Estado =	#{estado} 
+
+WHERE inf245g2.INVITADO.IdInvitado = #{codigo}
+AND   inf245g2.PERSONA.IdPersona   = #{codigo}
+;
+
+
+</update>
+
+
+
+
+<!-- Fin  Modificar -->
+
+<!--Eliminar invitado -->
+
+<update id="deletePLantillaInvitado" parameterType="java.lang.String" >
+update INVITADO set Estado ='Inactivo' where IdInvitado = #{codigo}
+</update>
+<!-- Fin eliminar -->
+
+
+
+</mapper>
