@@ -91,7 +91,7 @@
 
 				
 						<button  type="submit" class="btn btn-primary"  onclick="javascript:alt_submit()">Eliminar</button>  
-			               <button type="submit" class="btn" href="buscarservicio.jsp">Cancelar</button> 
+			               <button type="button" class="btn" onclick="location.href='../servicioproveedor/buscarservicio.jsp'">Cancelar</button> 
 							
 						  </fieldset>
 					  </form>   
