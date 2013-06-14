@@ -124,6 +124,11 @@
         <servlet-name>SMCSorteo</servlet-name>
 	<servlet-class>Club.servicio.sorteo.SMCSorteo</servlet-class>				   
 </servlet>
+<servlet id="Servlet_0029">
+        <servlet-name>SMVFamiliar</servlet-name>
+	<servlet-class>IngSoft.venta.familiar.SMVFamiliar</servlet-class>
+				   
+</servlet>
 
 
 
@@ -244,7 +249,10 @@
         <servlet-name>SMCSorteo</servlet-name>
 <url-pattern>/Club/servicio/sorteo/SMCSorteo</url-pattern>
 </servlet-mapping>
-
+<servlet-mapping id="ServletMapping_0029">
+        <servlet-name>SMVFamiliar</servlet-name>
+<url-pattern>/IngSoft/ventas/familia/SMVFamiliar</url-pattern>
+</servlet-mapping>
 <error-page>
 <error-code>404</error-code>
 <location>/IngSoft/general/404.jsp</location>

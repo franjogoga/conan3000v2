@@ -1,8 +1,6 @@
 function cambiarClase(elemento){
-	if(atipo==1) cAgregar(elemento);
-	else if(atipo==2)cEliminar(elemento);
-
-	
+	if (atipo == 1) cAgregar(elemento);
+	else if(atipo == 2)cEliminar(elemento);	
 }
 
 function cAgregar(elemento){
@@ -275,6 +273,18 @@ if(lock4==1){
 		  dataType: "text",		  
 		  success: function(msg){
 		  	lock4=1;
+		  	if(msg.length>0){
+		  		var rechazados=msg.split('@');		  		
+		  		var r= rechazados.length;
+		  		var mensaje='Las siguientes reservas no han podido ser realizadas:</br><table><tr><th>Bungalow</th><th>Fecha</th></tr>'
+		  		for(i=0;i<r;i++){
+		  			var temp='#'+rechazados[i].substr(0,9);
+		  			var linea='<tr><td>'$(temp).html()+'</td><td>'+rechazados[i].substr(9,10)'</td></tr>';
+		  			mensaje= mensaje+linea;
+		  		}		  		
+		  		mensaje=mensaje+'</table>'
+		  		alert(mensaje);
+		  	}		  			  
 		  	$("#resultadoBusqueda").html("");
 			alert("Operacion realizada sin problemas");},
 		  error: function(objeto, quepaso, otroobj){
