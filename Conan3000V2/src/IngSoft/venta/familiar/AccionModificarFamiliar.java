@@ -10,6 +10,8 @@ import IngSoft.venta.bean.FamiliarBeanData;
 import IngSoft.venta.bean.FamiliarBeanFuncion;
 import IngSoft.venta.bean.PersonaMiniBeanData;
 import IngSoft.venta.bean.PersonaMiniBeanFuncion;
+import IngSoft.venta.bean.SocioBeanData;
+import IngSoft.venta.bean.SocioBeanFuncion;
 
 public class AccionModificarFamiliar extends CoAccion{
 
@@ -19,6 +21,7 @@ public class AccionModificarFamiliar extends CoAccion{
 		// TODO Auto-generated method stub
 		FamiliarBeanFuncion FamiliarFuncion= FamiliarBeanFuncion.getInstance();
 		PersonaMiniBeanFuncion PersonaFuncion=PersonaMiniBeanFuncion.getInstanceP();
+		SocioBeanFuncion SocioFuncion=SocioBeanFuncion.getInstanceS();
 		String codigo=request.getParameter("codigo");
 				
 		if(Integer.valueOf(request.getParameter("tipo"))==2){
@@ -33,14 +36,18 @@ public class AccionModificarFamiliar extends CoAccion{
 			PersonaFuncion.modificarPersona(PersonaData);
 			
 			this.direccionar(sc, request, response, "/IngSoft/ventas/familia/buscarfamiliar.jsp");
-		}	
+		}
+		if(Integer.valueOf(request.getParameter("tipo"))==1){
 		
 		FamiliarBeanData FamiliarData=FamiliarFuncion.consultarFamiliar(codigo);
 		PersonaMiniBeanData PersonaData=PersonaFuncion.consultarPersona(codigo);  
+		SocioBeanData SocioData=SocioFuncion.consultarSocio(FamiliarData.getCodigoSocio());
 		
-		request.setAttribute("socio", FamiliarData);
+		request.setAttribute("socio", SocioData);
+		request.setAttribute("familiar", FamiliarData);
 		request.setAttribute("persona", PersonaData);
 		this.direccionar(sc, request, response, "/IngSoft/ventas/familia/modificarfamiliar.jsp");
+		}
 	}
 	
 }
