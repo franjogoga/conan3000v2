@@ -50,7 +50,7 @@
 
 	<!-- The fav icon -->
 	<link rel="shortcut icon" href="img/favicon.ico">
-	
+	<script src="cancha.js"></script>
 	<script>
 	function alt_agregar(){
 		var form=document.getElementById("frmAlternativo");
@@ -122,7 +122,7 @@
                         <div class="control-group">
                           <label class="control-label" for="typeahead">Nombre:</label>
                           <div class="controls">
-                            <input type="text" class="span6 typeahead" id="txtNombre" name="txtNombre" data-provide="typeahead" >
+                            <input type="text" class="span6 typeahead" id="txtNombre" name="txtNombre" data-provide="typeahead" onkeypress="return alfanumerico(event);">
                           </div>
                         </div>
                         <div class="control-group">
