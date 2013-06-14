@@ -1,4 +1,48 @@
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<script type="text/javascript" src="js/apprise-1.5.full.js"></script>
+<link rel="stylesheet" href="css/apprise.css" type="text/css" />
 
+
+<script>
+		function procesar(form,indice){
+			
+		
+		
+		}
+	
+	function alt_fecha(obj){
+	obj.value=obj.value.slice(0,5);
+	
+	}
+	
+	function alt_submit(){
+		
+			
+			}
+		
+		
+		
+			//document.fmrData.submit();
+
+	</script>	
+	<%! public boolean  encontrar(String a, String[] b){
+		for(int i=0;i<b.length;i++){			
+			if(b[i].equals(a)) return true;	
+		}
+	return false;
+	}
+	public String formatear(java.util.Date date){
+		SimpleDateFormat DF= new SimpleDateFormat("dd/MM");
+		return DF.format(date);
+	}
+	%>
+	
+	<!--The beans  -->
+	<jsp:useBean id="familiar" scope="request" class="IngSoft.venta.bean.FamiliarBeanData"></jsp:useBean>
+	<jsp:useBean id="persona" scope="request" class="IngSoft.venta.bean.PersonaMiniBeanData"></jsp:useBean>
+	<jsp:useBean id="personaSocio" scope="request" class="IngSoft.venta.bean.PersonaMiniBeanData"></jsp:useBean>
+	
 			  <!-- content starts -->
 			   
 		       <div>
@@ -11,43 +55,49 @@
 			  <div class="row-fluid sortable">
 			    <div class="box span12">
 			      <div class="box-header well" data-original-title>
-			        <h2><i class="icon-trash"></i>VER FAMILIAR</h2>
+			        <h2>VER FAMILIAR</h2>
 		          </div>
 			      <div class="box-content">
-			        <form class="form-horizontal">
+			        <form class="form-horizontal" action="<%= response.encodeURL("SMVFamiliar")%>" name="frmData" method="POST">
+						<input type="hidden" name="accion" value="Consultar"></input>
+						<input type="hidden" name="tipo" value="2"></input>
+					
 			          <fieldset>
 			         
 			            <div class="control-group">
 			              <label class="control-label" for="typeahead7">Socio Asociado:</label>
 			              <div class="controls">
-			                <input type="text" disabled class="span6 typeahead" id="typeahead7" value="SOC_00150"  data-provide="typeahead">
+			                <input type="text" disabled class="span6 typeahead" id="typeahead7"  data-provide="typeahead" value=<%=personaSocio.getNombres()%>>
 		                  </div>
 		                </div>
-			            <div class="control-group">
+
 			              <div class="control-group">
 			                <label class="control-label" for="typeahead6">Nombres:</label>
 			                <div class="controls">
-			                  <input type="text" disabled class="span6 typeahead" id="typeahead6" value="Liz"  data-provide="typeahead" data-items="4" >
+			                  <input type="text" disabled class="span6 typeahead" id="typeahead6"  data-provide="typeahead" data-items="4" value=<%=persona.getNombres() %> >
 		                    </div>
 		                  </div>
+		                  
 			              <div class="control-group">
 			                <label class="control-label" for="typeahead4">Apellido Paterno:</label>
 			                <div class="controls">
-			                  <input type="text" disabled class="span6 typeahead" id="typeahead4" value="Diaz"  data-provide="typeahead" data-items="4" >
+			                  <input type="text" disabled class="span6 typeahead" id="typeahead4"  data-provide="typeahead" data-items="4" value=<%=persona.getApellidoPaterno() %>>
 		                    </div>
 		                  </div>
+		                  
 			              <div class="control-group">
 			                <label class="control-label" for="typeahead8">Apellido Materno:</label>
 			                <div class="controls">
-			                  <input type="text" disabled class="span6 typeahead" id="typeahead8" value="Castillo"  data-provide="typeahead" data-items="4" >
+			                  <input type="text" disabled class="span6 typeahead" id="typeahead8"   data-provide="typeahead" data-items="4" value=<%=persona.getApellidoMaterno() %>>
 		                    </div>
 		                  </div>
-			              <div class="control-group">
+		                  
+			         
 			               	<div class="control-group">
 								<label  class="control-label" for="typeahead3">Tipo de Documento(*):</label>
 								<div class="controls">
 								  <label class="radio">
-									<input disabled type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
+									<input disabled type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
 									DNI
 								  </label>
 								  <div style="clear:both"></div>
@@ -61,20 +111,21 @@
 									Pasaporte
 								  </label>
 								</div>
-							  </div>
+							</div>	
 							  
-							    <div class="control-group">
+							  
+						 <div class="control-group">
 			                <label class="control-label" for="typeahead8">N&uacute;mero de Doc.(*):</label>
 			                <div class="controls">
-			                  <input type="text" disabled class="span6 typeahead" id="typeahead8"  data-provide="typeahead" data-items="4" >
+			                  <input type="text" disabled class="span6 typeahead" id="typeahead8"  data-provide="typeahead" data-items="4" value=<%=persona.getNumeroDocumento() %>>
 		                    </div>
 		                  </div>
 			            
-			              <div class="control-group">
-			                <div class="control-group">
+			              
+			               <!--  <div class="control-group">
 			                  <label class="control-label" for="selectError">Parentesco:</label>
 			                  <div class="controls">
-			                    <select name="selectError" id="selectError" data-rel="chosen" disabled="">
+			                    <select name="selectError" id="selectError" data-rel="chosen" disabled>
 			                      <option selected>Hija</option>
 			                      <option>Option 2</option>
 			                      <option>Option 3</option>
@@ -82,21 +133,31 @@
 			                      <option>Option 5</option>
 		                        </select>
 		                      </div>
-		                    </div>
-			                <label class="control-label" for="typeahead10">Tel&eacute;fono/Celular </label>
+		                      </div> -->
+		                   
+		                  <div class="control-group">
+			                <label class="control-label" for="typeahead10">Tel&eacute;fono Fijo: </label>
 			                <div class="controls">
-			                  <input type="text" disabled class="span6 typeahead" id="typeahead10" value="986366549"  data-provide="typeahead" data-items="4">
+			                  <input type="text" disabled class="span6 typeahead" id="typeahead10"   data-provide="typeahead" data-items="4" value=<%=familiar.getTelefonoFijo() %>>
 		                    </div>
 		                  </div>
+		                  
+		                   <div class="control-group">
+			                <label class="control-label" for="typeahead10">Tel&eacute;fono Celular: </label>
+			                <div class="controls">
+			                  <input type="text" disabled class="span6 typeahead" id="typeahead10"   data-provide="typeahead" data-items="4" value=<%=familiar.getTelefonoCelular() %>>
+		                    </div>
+		                  </div>
+		                  
 			              <div class="control-group">
 			                <label class="control-label" for="typeahead2">Correo electr&oacute;nico:</label>
 			                <div class="controls">
-			                  <input type="text" disabled class="span6 typeahead" id="typeahead2" value="liz@pucp.edu.pe"  data-provide="typeahead" data-items="4" >
+			                  <input type="text" disabled class="span6 typeahead" id="typeahead2" data-provide="typeahead" data-items="4" value=<%=familiar.getCorreo() %>>
 		                    </div>
 		                  </div>
-		                </div>
+		                
 			            <div class="form-actions">
-			               <a  name="btnRegresar" class="btn btn-primary" href="buscarfamiliar.jsp">Regresar</a>  
+			               <button type="button"  class="btn" onclick="location.href='../buscarfamiliar.jsp'">Regresar</button>  
 		                </div>
 		              </fieldset>
 		            </form>
