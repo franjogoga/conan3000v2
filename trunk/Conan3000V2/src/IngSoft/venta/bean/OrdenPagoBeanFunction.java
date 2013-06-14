@@ -57,6 +57,7 @@ public boolean agregarOrdenPago(String concepto, String id, String id2, String i
 		ordenData.setFechaEmision(fechaEmision);
 		ordenData.setFechaVencimiento(fechaVencimiento);
 		ordenData.setMonto(monto);
+		ordenData.setDescripcion(concepto);
 		
 		switch(concepto){
 		
