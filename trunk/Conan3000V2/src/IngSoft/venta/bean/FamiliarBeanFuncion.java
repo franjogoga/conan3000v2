@@ -147,17 +147,16 @@ public class FamiliarBeanFuncion {
 		return familiarData;
 	}
 
-	public void modificarMembresia(MembresiaBeanData membresia) throws CoException {
+	public void modificarFamiliar(FamiliarBeanData familiar) throws CoException {
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
 					
-		//	System.out.println("Ambs="+mods.size());
-			sqlsesion.update("Data.venta.membresia.updateMembresia",membresia);
+			sqlsesion.update("Data.venta.familiar.updateFamiliar",familiar);
 		}
 		catch(Exception a)		
 		{sqlsesion.rollback();
 		a.printStackTrace();
-			throw CoException.set("Error: No se pudo modificar la membresia, intente de nuevo", "SMVMembresia?accion=Modificar&tipo=1");
+			//throw CoException.set("Error: No se pudo modificar el familiar, intente de nuevo", "SMVFamiliar?accion=Modificar&tipo=1");
 			
 		}
 		
