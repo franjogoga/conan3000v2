@@ -183,6 +183,7 @@
 										<th>Numero Documento</th>
 										<th>Fecha de Inicio</th>
 										<th>Vitalicio</th>
+										<th>Estado</th>
 										<th>Acci&oacute;n</th>
 							  		</tr>
 						  		</thead>
@@ -197,12 +198,13 @@
 										<td><%=((ResultadoSocioBeanData)resultados.get(i)).getTipoDocumento()%></td>
 										<td><%=((ResultadoSocioBeanData)resultados.get(i)).getNumeroDocumento()%></td>
 										<td><%=((ResultadoSocioBeanData)resultados.get(i)).getFechaInicio()%></td>
-										<td><%=((ResultadoSocioBeanData)resultados.get(i)).getVitalicio()%></td>										
+										<td><%=((ResultadoSocioBeanData)resultados.get(i)).getVitalicio()%></td>
+										<td><%=((ResultadoSocioBeanData)resultados.get(i)).getEstado()%></td>										
 										<td class="center">
 											<a class="btn btn-success" href="javascript:alt_vitalizar('<%=((ResultadoSocioBeanData)resultados.get(i)).getIdSocio()%>')">
 												<i class="icon-zoom-in icon-white"></i> Vitalizar 
 											</a>											
-											<a class="btn btn-danger" href="#">
+											<a class="btn btn-danger" href="javascript:alt_suspender('<%=((ResultadoSocioBeanData)resultados.get(i)).getIdSocio()%>')">
 												<i class="icon-trash icon-white"></i> Suspender
 											</a>
 										</td>
