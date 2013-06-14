@@ -15,6 +15,8 @@ import IngSoft.administracion.bean.HorariodetrabajoBeanFuncion;
 
 
 import IngSoft.administracion.bean.DiasBeanData;
+import IngSoft.administracion.bean.HorarioDiaSemanaBeanData;
+import IngSoft.administracion.bean.HorarioDiaSemanaBeanFunction;
 import IngSoft.administracion.bean.HorariodetrabajoBeanData;
 
 
@@ -28,47 +30,39 @@ public class AccionAgregarHorariodetrabajo extends CoAccion{
 		
 
 		
-		System.out.print(  "agregar 0 horario de trabajo tipo " + request.getParameter("tipo"));
-		System.out.print(  "agregar 0 horario de trabajo accion " + request.getParameter("accion"));
-
-		
-		
-		
-		
+		System.out.print(  "agregar 0 horario de trabajo  " + request.getParameter("tipo"));
 		
 		if(Integer.valueOf(request.getParameter("tipo"))==2){
 		
 			
 			System.out.print(  "agregar 2 horario de trabajo" );
-			System.out.print(  "agregar 0 horario de trabajo txtNombre " + request.getParameter("txtNombre"));
-
-			
-			
-			for(int i=0; i<7;i++)
-			{
-				if( request.getParameter("checkDia"+i)!=null){
-	System.out.print(  "checkDia " + request.getParameter("checkDia"+i) +" HoraInicio " + request.getParameter("cmbHoraInicio"+i));
-				}
-			   
-			}
-			
-			
-			
+			System.out.print(  request.getParameter("checkDia") );
 			
 	
-			
-		HorariodetrabajoBeanFuncion actividadFuncion= HorariodetrabajoBeanFuncion.getInstance();
-		HorariodetrabajoBeanData horariodetrabajoData=actividadFuncion.crearHorariodetrabajo(request, response);
-		actividadFuncion.agregarHorariodetrabajo(horariodetrabajoData);
-		  
+		//agregamos	a la tabla Horario
+		HorariodetrabajoBeanFuncion horariodetrabajoFuncion= HorariodetrabajoBeanFuncion.getInstance();
+		HorariodetrabajoBeanData horariodetrabajoData=horariodetrabajoFuncion.crearHorariodetrabajo(request, response);
+		String codigo  =   horariodetrabajoFuncion.agregarHorariodetrabajo(horariodetrabajoData);
+		 
 		
+		//agregamos a la tabla horarioxdia_semana
+		
+		for(int i=0; i<7;i++)
+		{
+		if( request.getParameter("checkDia"+i)!=null){
+			HorarioDiaSemanaBeanFunction horarioDiaSemanaFunction = HorarioDiaSemanaBeanFunction.getInstance();
+			HorarioDiaSemanaBeanData     horarioDiaSemanaData = horarioDiaSemanaFunction.crearHorarioDiaSemana(   request.getParameter("checkDia"+i)  , codigo, request.getParameter("cmbHoraInicio"+i), request.getParameter("cmbHoraFin"+i) );
+			horarioDiaSemanaFunction.agregarHorarioDiaSemana(horarioDiaSemanaData);
+		}
+		
+		}
 		
 		this.direccionar(sc, request, response, "/IngSoft/administracion/horariodetrabajo/buscarhorariodetrabajo.jsp");
 		
 		}
 		else
 		{
-			System.out.print(  "llena hora " );
+			
 			Vector<String> horasDelDia = new  Vector<String>() ;
 			for(int i=8;i<23;i++){
 				
