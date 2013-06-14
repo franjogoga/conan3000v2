@@ -93,30 +93,15 @@
                              <div class="control-group">
 								<label class="control-label" for="selectError">Seleccione Reporte</label>
 								<div class="controls">
-								  <select id="selectError" data-rel="chosen" ONCHANGE="location = this.options[this.selectedIndex].value;">
-									<option value="/Conan3000/IngSoft/servicio/reporte/reporteeventointerno.jsp"><a HREF="/Conan3000/IngSoft/servicio/reporte/reporteeventointerno.jsp">Eventos Internos</a></option>
-									<option value="/Conan3000/IngSoft/servicio/reporte/reporteeventoexterno.jsp"><a HREF="/Conan3000/IngSoft/servicio/reporte/reporteeventoexterno.jsp">Eventos Externos</a></option>
-                                    <option>Reporte3</option>
-                                    <option>Reporte4</option>
-                                    <option>Reporte5</option>
+								  <select name="selectError" id="selectError" data-rel="chosen" >
+									<option value="reporteReservaBungalow.jsp">Reserva de Bungalows</option>
 								  </select>
 								</div>
 							  </div>
-                          	<div class="control-group">
-							  <label class="control-label" for="date01">Fecha Inicial</label>
-							  <div class="controls">
-								<input type="text" class="input-xlarge datepicker" id="date01" value="02/16/12">
-							  </div>
-                             </div>
-                             <div class="control-group">
-                              <label class="control-label" for="date01">Fecha Final</label>
-							  <div class="controls">
-								<input type="text" class="input-xlarge datepicker" id="date01" value="02/16/12">
-							  </div>
-							</div>
+                          	
                             <div class="control-group">
 							  <div class="controls">
-								<button type="submit" class="btn btn-primary">Generar</button>
+								<button type="button" class="btn btn-primary" onClick="location = selectError.options[selectError.selectedIndex].value;">Generar</button>
                                 <button class="btn">Cancelar</button>
 							  </div>
 							</div>
