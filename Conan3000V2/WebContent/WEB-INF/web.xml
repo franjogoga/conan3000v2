@@ -133,7 +133,10 @@
 	<servlet-class>IngSoft.administracion.reserva.SMAReserva</servlet-class>				   
 </servlet>
 
-
+<servlet id="Servlet_0031">
+<servlet-name>SMSReporte</servlet-name>
+<servlet-class>IngSoft.servicio.reporte.SMSReporte</servlet-class>	
+</servlet>
 
 <servlet-mapping id="ServletMapping_0001">
         <servlet-name>SMSEvento</servlet-name>
@@ -260,10 +263,18 @@
         <servlet-name>SMAReserva</servlet-name>
 <url-pattern>/IngSoft/administracion/reserva/SMAReserva</url-pattern>
 </servlet-mapping>
+
+<servlet-mapping id="ServletMapping_0031">
+<servlet-name>SMSReporte</servlet-name>
+<url-pattern>/IngSoft/servicio/reporte/SMSReporte</url-pattern>
+</servlet-mapping>
+
 <error-page>
 <error-code>404</error-code>
 <location>/IngSoft/general/404.jsp</location>
 </error-page>
+
+
 
 </web-app>
 
