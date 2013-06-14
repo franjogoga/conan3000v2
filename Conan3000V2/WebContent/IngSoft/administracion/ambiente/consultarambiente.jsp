@@ -86,7 +86,7 @@
               <div>
                 <ul class="breadcrumb">
                   <li> <a href="../../general/index.jsp">Home</a> <span class="divider">/</span> </li>
-                  <li> <a href="buscarambiente.jsp">Mantenimiento de Ambientes</a> <span class="divider">/</span></li>
+                  <li> <a href="SMAAmbiente?accion=Buscar&tipo=1">Mantenimiento de Ambientes</a> <span class="divider">/</span></li>
                   <li>Consultar Ambiente</li>
                 </ul>
               </div>
