@@ -8,8 +8,8 @@ public class SMVFamiliar extends CoServlet{
 	protected void initAcciones() {
 		acciones.put("Buscar", new AccionBuscarFamiliar());
 		acciones.put("Consultar", new AccionConsultarFamiliar());
-		//acciones.put("Agregar", new AccionAgregarFamiliar());
-		//acciones.put("Modificar", new AccionModificarFamiliar());
+		acciones.put("Agregar", new AccionAgregarFamiliar());
+		acciones.put("Modificar", new AccionModificarFamiliar());
 		acciones.put("Eliminar", new AccionEliminarFamiliar());
 		//acciones.put("Seleccionar", new AccionSeleccionarFamiliar());
 	}
