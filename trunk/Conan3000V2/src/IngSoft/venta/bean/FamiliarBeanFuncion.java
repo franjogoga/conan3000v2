@@ -26,48 +26,42 @@ public class FamiliarBeanFuncion {
 	   
 	   private FamiliarBeanFuncion() {}
 	
-	public FamiliarBeanData crearMembresia(HttpServletRequest request, HttpServletResponse response){
+	public FamiliarBeanData crearFamiliar(HttpServletRequest request, HttpServletResponse response){
 		FamiliarBeanData familiarData= new FamiliarBeanData();
-		try{		
-	
-		//familiarData.setCodigoSocio(request.getParameter("idSocio"));
-		//familiarData.setFechaInicio(new Date(DF.parse(request.getParameter("fFechaInicio")).getTime()));
-		//familiarData.setFechafin(new Date(DF.parse(request.getParameter("fFechaFin")).getTime()));
-		//familiarData.setCosto(Double.parseDouble(request.getParameter("txtCosto")));
-		 	
-		}
-		catch(Exception e){
-			e.printStackTrace();
-			
-		}
+		
+		familiarData.setCodigoSocio(request.getParameter("txtSocio"));
+		familiarData.setParentesco(request.getParameter("cmbParentesco"));
+		familiarData.setTelefonoFijo(Long.parseLong(request.getParameter("txtTelefonoF")));
+		familiarData.setTelefonoCelular(Long.parseLong(request.getParameter("txtTelefonoC")));
+		familiarData.setCorreo(request.getParameter("txtCorreo"));
+
 		return familiarData;		
 	} 
 	
-	public boolean agregarMembresia(MembresiaBeanData membresiaData) throws CoException {
+	public boolean agregarFamiliar(FamiliarBeanData familiarData) throws CoException {
 		
 		boolean resultado=false;		
 		l.lock();
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		
 		try{
-			String codigo= (String)sqlsesion.selectOne("Data.venta.membresia.getNextCodigo2");
+			String codigo= (String)sqlsesion.selectOne("Data.venta.familiar.getNextCodigo");
 			if(codigo!=null){
 			int cod= Integer.parseInt(codigo.substring(3))+1;
 			String defecto= "000000";
 			String temp= defecto.substring(0, defecto.length()-String.valueOf(cod).length()).concat(String.valueOf(cod));
 			
-			membresiaData.setCodigo(codigo.substring(0,3).concat(temp));}
-			else membresiaData.setCodigo("MO000001");
-			//insertMembresia esta en membresia mapper
-			sqlsesion.insert("insertMembresia",membresiaData);
-			//sqlsesion.insert("insertPlantillaEventoSedes",eventoData);
+			familiarData.setCodigoFamiliar(codigo.substring(0,3).concat(temp));}
+			else familiarData.setCodigoFamiliar("FAM000001");
+
+			sqlsesion.insert("Data.venta.familiar.insertFamiliar",familiarData);
 			
 			resultado=true;
 		}
 		catch(Exception a)		
 		{sqlsesion.rollback();
 		a.printStackTrace();
-			//throw CoException.set("Error: Nombre de membresia repetido", "SMVMembresia?accion=Agregar&tipo=1");
+			//throw CoException.set("Error: Nombre de familiar repetido", "SMVFamiliar?accion=Agregar&tipo=1");
 		}
 		
 		finally{
@@ -75,6 +69,42 @@ public class FamiliarBeanFuncion {
 			sqlsesion.close();
 			l.unlock();					
 		}
+		return resultado;
+	}
+	
+	public boolean agregarPersona(PersonaMiniBeanData personaData) throws CoException {
+		boolean resultado=false;		
+		l.lock();
+		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+		try{
+			String codigo= (String)sqlsesion.selectOne("Data.venta.familiar.getNextCodigo");
+			
+			int cod= Integer.parseInt(codigo.substring(3))+1;
+			String defecto= "000000";
+			String temp= defecto.substring(0, defecto.length()-String.valueOf(cod).length()).concat(String.valueOf(cod));
+			codigo=(codigo.substring(0,3).concat(temp));
+			if(codigo!=null){
+			
+			personaData.setCodigo(codigo);}
+			else personaData.setCodigo("FAM000001");
+			
+			sqlsesion.insert("Data.venta.socio.insertPersona",personaData);
+			
+			resultado=true;
+		}
+		catch(Exception a)		
+		{sqlsesion.rollback();
+		a.printStackTrace();
+			//throw CoException.set("Error: Nombre de evento repetido", "SMSEvento?accion=Agregar&tipo=1");
+			
+		}
+		
+		finally{
+			sqlsesion.commit();
+			sqlsesion.close();
+			l.unlock();					
+		}
+			
 		return resultado;
 	}
 	
