@@ -43,17 +43,10 @@ public class HorariodetrabajoBeanFuncion {
 	public HorariodetrabajoBeanData crearHorariodetrabajo(HttpServletRequest request, HttpServletResponse response){
 		HorariodetrabajoBeanData horariodetrabajoData= new HorariodetrabajoBeanData();
 		try{		
-			
-
-			
-
-        
-
 
 		horariodetrabajoData.setNombre(    		request.getParameter("txtNombre") );
-
+		horariodetrabajoData.setEstado(         "Activo"                          );
 		
-
 		}catch(Exception e){
 			e.printStackTrace();
 			
@@ -117,7 +110,7 @@ public class HorariodetrabajoBeanFuncion {
 			
 			resultado = horariodetrabajoData.getCodigo() ;
 			
-			sqlsesion.insert("Data.administracion.horariodetrabajo.insertPlantillahorariodetrabajo",horariodetrabajoData);
+			sqlsesion.insert("Data.administracion.horariodetrabajo.insertPlantillaHorariodetrabajo",horariodetrabajoData);
 
 			
 			
