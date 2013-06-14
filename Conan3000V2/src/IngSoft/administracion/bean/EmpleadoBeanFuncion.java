@@ -73,6 +73,7 @@ public class EmpleadoBeanFuncion {
 		//String numDoc=request.getParameter("txtNumeroDocumento");
 		empleadoData.setNumeroDocumento(Integer.parseInt(request.getParameter("txtNumeroDocumento")));
 		
+		//System.out.println(empleadoData.getNumeroDocumento());
 	
 		
 		 horariosData.setIdHorarios((request.getParameter("cmbHorarios").split("/"))  );
@@ -249,6 +250,9 @@ public class EmpleadoBeanFuncion {
 		boolean resultado=false;		
 		l.lock();
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+		int doc = empleadoData.getNumeroDocumento();
+		System.out.println(Long.toString(doc));
+		
 		try{
 			String codigo= (String)sqlsesion.selectOne("Data.administracion.empleado.getNextCodigo");
 			
