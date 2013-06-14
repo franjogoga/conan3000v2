@@ -166,7 +166,7 @@ function selectGrupal2()
                   </div>
                   <div class="box-content">
                     <form class="form-horizontal" action="<%= response.encodeURL("SMAHorariodetrabajo")%>" name="frmData" method="post">
-						<input type="hidden" name="codigo" value="  "></input>
+						
 						<input type="hidden" name="accion" value="Agregar"></input>
 						<input type="hidden" name="tipo" value="2"></input>
 						  
@@ -223,7 +223,7 @@ function selectGrupal2()
 																<td>
 							
 															  <label class="checkbox inline">
-																<input type="checkbox"  id="inlineCheckbox<%=i%>" name="checkDia"  value="<%= ((DiasBeanData)diassemana.get(i)).getCodigo() %>"  checked       > 
+																<input type="checkbox"  id="inlineCheckbox<%=i%>" name="checkDia<%=i%>"  value="<%= ((DiasBeanData)diassemana.get(i)).getCodigo() %>"  checked       > 
 																<%=  ((DiasBeanData)diassemana.get(i)).getNombre()  %>  
 															  </label>
 															  
@@ -231,7 +231,7 @@ function selectGrupal2()
 																
 																<td class="center">
 							 																		 <!-- data-rel="chosen" -->																											
-														 		<select  style="width: 100px;"                                    id="cmbHoraInicio<%=i%>"  name="cmbHoraInicio"  onChange="selectGrupal1();"  <%=i==0?"":"Disabled"%>    >
+														 		<select  style="width: 70px;"                                    id="cmbHoraInicio<%=i%>"  name="cmbHoraInicio<%=i%>"  onChange="selectGrupal1();"  <%=i==0?"":"Disabled"%>    >
 														 		
 															
 														 		
@@ -248,7 +248,7 @@ function selectGrupal2()
 																
 																<td class="center">
 																
-														 		<select style="width: 100px;" id="cmbHoraFin<%=i%>"  name="cmbHoraInicio" onChange="selectGrupal2();"  <%=i==0?"":"Disabled"%>    >
+														 		<select style="width: 70px;" id="cmbHoraFin<%=i%>"  name="cmbHoraFin<%=i%>"  onChange="selectGrupal2();"  <%=i==0?"":"Disabled"%>    >
 															        <%for(int k=0;k<horasDelDia.size();k++){      %>
 													<option value="<%=((String)horasDelDia.get(k))%>"  <%= k==0  ?"selected":""%>     > <%=    ((String)horasDelDia.get(k))    %>    </option>
 																    <%} %>						
