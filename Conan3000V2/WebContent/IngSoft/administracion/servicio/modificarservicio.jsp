@@ -47,7 +47,7 @@
 
 	<!-- The fav icon -->
 	<link rel="shortcut icon" href="img/favicon.ico">
-	
+	<script src="servicio.js"></script>
 	<script>
 	function alt_submit(){
 		var form= document.frmUpdate;
@@ -114,7 +114,7 @@
                         <div class="control-group" id="dvNombre">
                           <label class="control-label" for="typeahead">Nombre (*):</label>
                           <div class="controls">
-                            <input type="text" class="span6 typeahead" id="txtNombre" name="txtNombre" data-provide="typeahead" value="<%=servicio.getNombre()%>">
+                            <input type="text" class="span6 typeahead" id="txtNombre" name="txtNombre" data-provide="typeahead" value="<%=servicio.getNombre()%>" onkeypress="return alfanumerico(event);">
                           	<span class="help-inline" id="errNombre">Please correct the error</span>
                           </div>
                         </div>

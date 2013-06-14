@@ -47,6 +47,7 @@
 
 	<!-- The fav icon -->
 	<link rel="shortcut icon" href="img/favicon.ico">
+	<script src="ambiente.js"></script>
 	<script>	
 	function alt_submit(){
 		var form= document.frmData;
@@ -94,7 +95,7 @@
                         <div class="control-group" id="dvNombreAmbiente">
                           <label class="control-label" for="typeahead">Nombre (*):</label>
                           <div class="controls">
-                            <input type="text" class="span6 typeahead" id="txtNombreAmbiente"  data-provide="typeahead" name="txtNombreAmbiente">
+                            <input type="text" class="span6 typeahead" id="txtNombreAmbiente"  data-provide="typeahead" name="txtNombreAmbiente" onkeypress="return alfanumerico(event);">
                           	<span class="help-inline" id="errNombreAmbiente">Please correct the error</span>
                           </div>
                         </div>

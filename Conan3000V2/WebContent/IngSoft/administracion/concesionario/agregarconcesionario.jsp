@@ -41,7 +41,7 @@
 
 	<!-- The fav icon -->
 	<link rel="shortcut icon" href="img/favicon.ico">
-		
+	
 	<script>
 	function alt_submit(){
 		var form= document.frmData;
