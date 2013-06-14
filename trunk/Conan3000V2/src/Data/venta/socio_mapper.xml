@@ -84,6 +84,18 @@ PERSONA.IdPersona as codigo
 from PERSONA  where PERSONA.IdPersona=#{codigo}; 
 </select>
 
+<select id="getPlantillaPersonaSocio" parameterType="java.lang.String"  resultType="IngSoft.venta.bean.PersonaMiniBeanData">
+select 
+PERSONA.IdPersona as codigo
+,PERSONA.Nombres as nombres
+,PERSONA.ApePaterno as apellidoPaterno
+,PERSONA.ApeMaterno as apellidoMaterno
+,PERSONA.TipoDocumento as tipoDocumento
+,PERSONA.FechaNac as fechaNacimiento
+,PERSONA.NumeroDocumento as numeroDocumento
+from PERSONA  where PERSONA.IdPersona=#{codigoSocio}; 
+</select>
+
 <!--Eliminar socio -->
 <update id="deleteSocio" parameterType="java.lang.String" >
 update MEMBRESIA set MEMBRESIA.Estado='Eliminado' where MEMBRESIA.IdSocio=#{codigo}
