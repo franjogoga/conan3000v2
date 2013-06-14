@@ -10,7 +10,7 @@
 		select SOCIO.IdSocio as idSocio, SOCIO.Direccion as direccion, PERSONA.Nombres as nombres, 
 			PERSONA.ApePaterno as apellidoPaterno, PERSONA.ApeMaterno as apellidoMaterno, 
 			PERSONA.TipoDocumento as tipoDocumento, PERSONA.NumeroDocumento as numeroDocumento, 
-			MEMBRESIA.FechaInicio as fechaInicio, MEMBRESIA.Vitalicio as vitalicio
+			MEMBRESIA.FechaInicio as fechaInicio, MEMBRESIA.Vitalicio as vitalicio, MEMBRESIA.Estado as estado
 		from SOCIO, PERSONA, MEMBRESIA
 		<where>
 			<if test="nombres != null ">
@@ -28,9 +28,13 @@
 		    <if test="tipoDocumento != null">
 		        AND PERSONA.TipoDocumento like #{tipoDocumento}
 		    </if>
-		    	AND MEMBRESIA.IdSocio=SOCIO.IdSocio and MEMBRESIA.Estado='Activo'
+		    	AND MEMBRESIA.IdSocio=SOCIO.IdSocio and not MEMBRESIA.Estado = 'Eliminado'
 		</where>
 	</select>		
+	
+	<select id="getNextCodigoSuspension" resultType="java.lang.String">
+		select max(IdSuspensionPago) from SUSPENSION_PAGO	
+	</select>
 	
 	<select id="getSocio" parameterType="java.lang.String"  resultType="IngSoft.administracion.bean.SocioBeanData">
 		select MEMBRESIA.IdSocio as codigo, MEMBRESIA.IdMembresia as membresia, MEMBRESIA.FechaInicio as fechaInicio, 
@@ -44,5 +48,17 @@
 		set MEMBRESIA.Vitalicio = 'Si'
 		where MEMBRESIA.IdSocio like #{codigo}		
 	</update>
+	
+	<insert id="insertSuspension" parameterType="IngSoft.administracion.bean.SuspensionBeanData" flushCache="true">
+		insert INTO SUSPENSION_PAGO(IdSuspensionPago, FechaRegistro, IdMembresia)		
+		values (#{idSuspensionPago}, #{fechaRegistro}, #{idMembresia})
+	</insert>
+	
+	<update id="updateSuspendidoSocio" parameterType="java.lang.String">
+		update MEMBRESIA
+		set Estado = 'Suspendido'
+		where IdSocio = #{codigo}
+	</update>
+	
 	
 </mapper>
