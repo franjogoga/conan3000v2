@@ -126,8 +126,11 @@
 </servlet>
 <servlet id="Servlet_0029">
         <servlet-name>SMVFamiliar</servlet-name>
-	<servlet-class>IngSoft.venta.familiar.SMVFamiliar</servlet-class>
-				   
+	<servlet-class>IngSoft.venta.familiar.SMVFamiliar</servlet-class>				   
+</servlet>
+<servlet id="Servlet_0030">
+        <servlet-name>SMAReserva</servlet-name>
+	<servlet-class>IngSoft.administracion.reserva.SMAReserva</servlet-class>				   
 </servlet>
 
 
@@ -252,6 +255,10 @@
 <servlet-mapping id="ServletMapping_0029">
         <servlet-name>SMVFamiliar</servlet-name>
 <url-pattern>/IngSoft/ventas/familia/SMVFamiliar</url-pattern>
+</servlet-mapping>
+<servlet-mapping id="ServletMapping_0030">
+        <servlet-name>SMAReserva</servlet-name>
+<url-pattern>/IngSoft/administracion/reserva/SMAReserva</url-pattern>
 </servlet-mapping>
 <error-page>
 <error-code>404</error-code>

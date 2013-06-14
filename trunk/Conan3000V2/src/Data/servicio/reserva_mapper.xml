@@ -48,7 +48,7 @@ select r1.codigoCancha
 ,r2.horaFin 
 from
 (select c.IdCancha as codigoCancha
-,c.Descripcion as descCancha
+,c.Nombre as descCancha
 ,a.IdSede as codigoSede
 ,tc.Nombre as tipo
 from 
