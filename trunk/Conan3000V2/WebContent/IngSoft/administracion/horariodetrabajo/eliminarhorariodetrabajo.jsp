@@ -21,7 +21,7 @@
 	<meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
 	<meta name="author" content="Muhammad Usman">
 	<!--The beans  -->
-	<jsp:useBean id="horariodetrabajo" scope="request" class="java.util.Vector"></jsp:useBean>
+	<jsp:useBean id="horariodetrabajo" scope="request"class="IngSoft.administracion.bean.HorariodetrabajoBeanData"></jsp:useBean>
 	
 	<!-- The styles -->
 	<link id="bs-css" href="css/bootstrap-cerulean.css" rel="stylesheet">
@@ -138,7 +138,7 @@
 					<div class="box-content">
 						
 						<form class="form-horizontal" name="frmDelete" action="<%= response.encodeURL("SMAHorariodetrabajo")%>" name="frmData" method="post">
-						<input type="hidden" name="codigo" value="<%=((HorariodetrabajoBeanData)horariodetrabajo.get(0)).getCodigo()%>  "></input>
+						<input type="hidden" name="codigo" value="<%=((HorariodetrabajoBeanData)horariodetrabajo).getCodigo()%>  "></input>
 						<input type="hidden" name="accion" value="Eliminar"></input>
 						<input type="hidden" name="tipo" value="2"></input>
 						  <fieldset>
@@ -150,10 +150,9 @@
 						    <div class="control-group">
 						      <label class="control-label" for="typeahead7">Nombre: </label>
 						      <div class="controls">
-						        <input type="text" class="span6 typeahead" id="txtNombre"  data-provide="typeahead"  name="txtNombre" disabled value="  <%=((HorariodetrabajoBeanData)horariodetrabajo.get(0)).getNombre()%>     ">
-					          </div>
-					        </div>
-<!---------------  -->
+						        <input type="text" class="span6 typeahead" id="txtNombre"  data-provide="typeahead"  name="txtNombre"  disabled value="  <%=((HorariodetrabajoBeanData)horariodetrabajo).getNombre()%>">         
+					     
+<!--- ------------  -->
 							
 								<!--  	<div class="row-fluid sortable"> -->
 									
@@ -161,7 +160,7 @@
 								
 											<div class="box span6">
 												<div class="box-header well" data-original-title>
-													<h2>Horario</h2>
+													<h2>Horario </h2>
 													<div class="box-icon">
 													    <a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
 														
@@ -180,13 +179,19 @@
 
 														  <tbody>
 														  
-														   <% for(int i=0; i<horariodetrabajo.size(); i++) { %>
+														   <% 
+														   String[] codigoDia = ((HorariodetrabajoBeanData)horariodetrabajo).getCodDiasemana().split(",");  
+														   String[] nombreDia = ((HorariodetrabajoBeanData)horariodetrabajo).getDiaSemana().split(",");
+														   String[] horaIni = ((HorariodetrabajoBeanData)horariodetrabajo).getHoraInicio().split(",");
+														   String[] horaFin = ((HorariodetrabajoBeanData)horariodetrabajo).getHoraFin().split(",");
+														   
+														   for (int i = 0; i < codigoDia.length; i++) { %>
 														   
 															<tr>
 																<td>
 							
 															  <label class="checkbox inline">
-																<input type="checkbox" checked id="inlineCheckbox<%=i%>" name="checkDia"  disabled value="<%=((HorariodetrabajoBeanData)horariodetrabajo.get(i)).getCodDiasemana()%>  "> <%=((HorariodetrabajoBeanData)horariodetrabajo.get(i)).getDiaSemana()%>  
+																<input type="checkbox" checked id="inlineCheckbox<%=i%>" name="checkDia"  disabled value="<%= codigoDia[i]   %>  "> <%= nombreDia[i] %>  
 															 
 															 
 															  </label>
@@ -196,19 +201,19 @@
 																<td class="center">
 							 																																													
 														 		<select  style="width: 100px;"  data-rel="chosen" id="cmbHoraInicio<%=i%>" disabled name="cmbHoraInicio" >
-															        <%for(int k=0;k<horariodetrabajo.size();k++){ %>
-													<option value="<%=((HorariodetrabajoBeanData)horariodetrabajo.get(k)).getCodDiasemana()%>" <%=  i==k ?"selected":""%>  > <%=    ((HorariodetrabajoBeanData)horariodetrabajo.get(i)).getHoraInicio()    %>    </option>
-																    <%} %>						
+															       
+													<option value="<%=horaIni[i]%>" selected > <%=    horaIni[i]   %>    </option>
+																   					
 															    </select>
 							
 																</td>
 																
 																<td class="center">
 																
-														 		<select style="width: 100px;" data-rel="chosen" id="cmbHoraFin<%=i%>"  disabled name="cmbHoraInicio" >
-															        <%for(int k=0;k<horariodetrabajo.size();k++){ %>
-													<option value="<%=((HorariodetrabajoBeanData)horariodetrabajo.get(k)).getCodDiasemana()%>" <%=  i==k ?"selected":""%>  >   <%=    ((HorariodetrabajoBeanData)horariodetrabajo.get(i)).getHoraFin()   %>     </option>
-																    <%} %>						
+														 		<select style="width: 100px;" data-rel="chosen" id="cmbHoraFin<%=i%>"  disabled name="cmbHoraFin" >
+															       
+													<option value="<%= horaFin[i]  %>" selected > <%=   horaFin[i]   %>    </option>
+																   					
 															    </select>
 																
 																</td>
@@ -224,11 +229,10 @@
 												</div>
 											</div><!--/span-->
 											
-							
-										</div><!--/row-->
-											          
-					       
+								</div><!--/row-->       
 <!-- -------- -->		
+								 </div><!-- fin controls -->
+							</div> <!--  fin control-group -->
 
 
 
