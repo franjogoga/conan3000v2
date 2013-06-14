@@ -108,6 +108,7 @@ select IdDepartamento as codigo
 , Nombre as nombre
 from 
 DEPARTAMENTO
+ORDER BY 2 ASC
 
 ; 
 
@@ -120,7 +121,7 @@ select IdProvincia as codigo
 from 
 PROVINCIA
 where
-idDepartamento like  #{codigo}  
+idDepartamento like  #{codigo}
 </select>
 
 <select id="getDistritos" parameterType="java.lang.String" resultType="IngSoft.administracion.bean.DistritoBeanData">
