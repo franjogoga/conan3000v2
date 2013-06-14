@@ -61,15 +61,15 @@ String fecAnoFin=dfActual.format(c1.getTime()); %>
 		                </div>
 		                
 		                 
-			                <div class="control-group">
-			                  <label class="control-label" for="selectError">Parentesco(*):</label>
+			               <div class="control-group">
+			                  <label class="control-label" for="selectError">Parentesco:</label>
 			                  <div class="controls">
-			                    <select name="cmbParentesco" id="cmbParentesco" data-rel="chosen">
-			                      <option selected>Padre</option>
+			                    <select name="cmbParentesco" id="selectError" data-rel="chosen" >
+			                      <option selected>Hija(o)</option>
+			                      <option>Padre</option>
 			                      <option>Madre</option>
-			                      <option>Hijo</option>
-			                      <option>Hija</option>
-			                    
+			                      <option>Hermano(a)</option>
+			                       <option>Nieto(a)</option>
 		                        </select>
 		                      </div>
 		                    </div>
