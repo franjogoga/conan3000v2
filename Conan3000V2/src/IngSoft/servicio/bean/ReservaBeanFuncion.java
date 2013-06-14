@@ -13,6 +13,7 @@ import org.apache.ibatis.session.SqlSession;
 import IngSoft.general.CoException;
 import IngSoft.general.MyBatisSesion;
 import IngSoft.general.bean.Conan3000Constantes;
+import IngSoft.venta.bean.OrdenPagoBeanFunction;
 
 public class ReservaBeanFuncion {
 	static private ReservaBeanFuncion ReservaFuncion=null;
@@ -138,6 +139,7 @@ public class ReservaBeanFuncion {
 			   nextcodigo=sqlsesion.selectOne("Data.servicio.reserva.getNextCodigoB");
 			   nextcodigo=nextcodigo==null?"RSB000000":nextcodigo;
 			   SimpleDateFormat df= new SimpleDateFormat("dd/MM/yyyy");
+			   OrdenPagoBeanFunction orden=OrdenPagoBeanFunction.getInstance();
 			   List<String> temp=sqlsesion.selectList("Data.servicio.reserva.verificarReservBungalow",listareservas);
 			   listareservas.removeAll(new Vector<String>(temp));
 			   int a= listareservas.size();
@@ -147,10 +149,11 @@ public class ReservaBeanFuncion {
 				   nextcodigo=this.generaSiguienteCodigo(nextcodigo);				   
 				   map.put("idbungalow", listareservas.get(i).substring(0, 9)); 
 				   map.put("idreservasbungalow", nextcodigo);
+				   map.put("monto",Conan3000Constantes.costoBungalowxDia);
 				   map.put("fecha",df.parseObject(listareservas.get(i).substring(9)));
 				   sqlsesion.insert("Data.servicio.reserva.insertBungalowReserva",map);
 				   sqlsesion.insert("Data.servicio.reserva.insertBungalowReservaFecha",map);
-				   
+				   orden.agregarOrdenPago("RESERVABUNGALOW", nextcodigo, "", codSocio, Conan3000Constantes.costoBungalowxDia,new java.sql.Date(new java.util.Date().getTime()), new java.sql.Date(new java.util.Date().getTime()));
 			   }
 			   sqlsesion.commit();
 			   
@@ -174,6 +177,7 @@ public class ReservaBeanFuncion {
 			   nextcodigo=nextcodigo==null?"RSC000000":nextcodigo;
 			   SimpleDateFormat df= new SimpleDateFormat("dd/MM/yyyy");
 			   String horaIni=null;
+			   OrdenPagoBeanFunction orden=OrdenPagoBeanFunction.getInstance();
 			   List<String> temp=sqlsesion.selectList("Data.servicio.reserva.verificarReservCancha",listareservas);
 			   listareservas.removeAll(new Vector<String>(temp));
 			   int a= listareservas.size();
@@ -186,10 +190,12 @@ public class ReservaBeanFuncion {
 				   map.put("idreservascancha", nextcodigo);
 				   map.put("fecha",df.parseObject(listareservas.get(i).substring(9,19)));
 				   map.put("horaIni",horaIni);
+				   map.put("monto",Conan3000Constantes.costoCanchaxHora);
 				   map.put("horaFin",Utils.addHora(horaIni, Conan3000Constantes.step.intValue()));
 				   sqlsesion.insert("Data.servicio.reserva.insertCanchaReserva",map);
 				   sqlsesion.insert("Data.servicio.reserva.insertCanchaReservaFecha",map);
 				   
+				   orden.agregarOrdenPago("RESERVACANCHA", nextcodigo, "", codSocio, Conan3000Constantes.costoCanchaxHora,new java.sql.Date(new java.util.Date().getTime()), new java.sql.Date(new java.util.Date().getTime()));
 			   }
 			   sqlsesion.commit();
 			   

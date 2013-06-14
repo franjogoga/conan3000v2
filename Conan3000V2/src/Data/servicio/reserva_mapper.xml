@@ -100,21 +100,21 @@ and p.NumeroDocumento=#{codigo};
 	select max(IdReservaCancha) from RESERVA_CANCHA;	
 </select>
 <insert id="insertBungalowReserva" parameterType="hashmap">
-insert into RESERVA_BUNGALOW(Estado,IdSocio,IdBungalow,IdReservaBungalow)
-values('ACTIVO',#{idsocio},#{idbungalow},#{idreservasbungalow})
+insert into RESERVA_BUNGALOW(Estado,IdSocio,IdBungalow,IdReservaBungalow,MontoTotal)
+values('ACTIVO',#{idsocio},#{idbungalow},#{idreservasbungalow},#{monto})
 ;
 </insert>
 <insert id="insertCanchaReserva" parameterType="hashmap">
-insert into RESERVA_CANCHA(Estado,IdSocio,IdCancha,IdReservaCancha)
-values('ACTIVO',#{idsocio},#{idcancha},#{idreservascancha})
+insert into RESERVA_CANCHA(Estado,IdSocio,IdCancha,IdReservaCancha,MontoTotal)
+values('ACTIVO',#{idsocio},#{idcancha},#{idreservascancha},#{monto})
 ;
 </insert>
 <insert id="insertBungalowReservaFecha" parameterType="hashmap">
-insert into BUNGALOWxFECHA(IdReservaBungalow,Fecha) values(#{idreservasbungalow},DATE(#{fecha}))
+insert into BUNGALOWxFECHA(IdReservaBungalow,Fecha,Monto) values(#{idreservasbungalow},DATE(#{fecha}),#{monto})
 ;
 </insert>
 <insert id="insertCanchaReservaFecha" parameterType="hashmap">
-insert into CANCHAxFECHA(IdReservaCancha,Fecha,HoraInicio,HoraFin) values(#{idreservascancha},DATE(#{fecha}),#{horaIni},#{horaFin})
+insert into CANCHAxFECHA(IdReservaCancha,Fecha,HoraInicio,HoraFin,Monto) values(#{idreservascancha},DATE(#{fecha}),#{horaIni},#{horaFin},#{monto})
 ;
 </insert>
 <select id="verificarReservBungalow" parameterType="java.util.Vector" resultType="java.lang.String">

@@ -19,7 +19,8 @@
 												3</a></li>
 										<li class="item-121"><a href="columns-4.html">Columns
 												4</a></li>
-									</ul></li>
-								<li class="item-122"><a href="testimonials.html">Socios</a></li>
+									</ul>
+									</li>
+								<li class="item-122"><a href="/Conan3000V2/IngSoft/servicio/reporte/generarreportes.jsp">Sorteos</a></li>
 								<li class="item-114"><a href="contacts.html">Contacts</a></li>
 								<div class="clear"></div>
