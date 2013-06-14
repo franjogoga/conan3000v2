@@ -38,8 +38,19 @@ public class JuridicaBeanFuncion {
 			JuridicaData.setDireccion(request.getParameter("txtDireccion"));
 			//JuridicaData.setEstado(request.getParameter("txtEstado"));
 			JuridicaData.setRazonSocial(request.getParameter("txtRazonSocial"));
-			JuridicaData.setRuc(Integer.parseInt(request.getParameter("txtRuc")));
+			JuridicaData.setRuc(Long.parseLong(request.getParameter("txtRuc")));
 			JuridicaData.setTelefono(Integer.parseInt(request.getParameter("txtTelefono")));
+			
+			//int ruc=JuridicaData.getRuc();
+			//System.out.println(Integer.toString(ruc));
+			
+			
+			
+			//int ruc=JuridicaData.getRuc();
+			//System.out.println(Integer.toString(ruc));
+			
+			//System.out.println(JuridicaData.getRuc());
+			
 			
 			
 		}catch(Exception e){
@@ -53,7 +64,13 @@ public class JuridicaBeanFuncion {
 			l.lock();
 			SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 			try{
+				
+				
 				String Id= (String)sqlsesion.selectOne("Data.servicio.juridica.getNextCodigo");
+				//int ruc=JuridicaData.getRuc();
+				//System.out.println(Integer.toString(ruc));
+				
+				
 				if(Id!=null){
 				int cod= Integer.parseInt(Id.substring(3))+1;
 				String defecto= "000000";
@@ -157,6 +174,7 @@ public class JuridicaBeanFuncion {
 			try{
 				JuridicaData.setRazonSocial(JuridicaData.getRazonSocial()+ "%");
 				//sqlsesion.selectList("Data.servicio.juridica.searchJuridica",JuridicaData);
+				
 				List<PersonaJuridicaBeanData> Temp =  sqlsesion.selectList("Data.servicio.juridica.searchJuridica",JuridicaData);
 				Res = new Vector<>(Temp);
 			}
