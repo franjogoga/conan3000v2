@@ -102,6 +102,14 @@ update PERSONA set PERSONA.ApeMaterno=#{apellidoMaterno}
  where PERSONA.IdPersona= #{codigo}
 </update>
 
+<update id="updateFamiliar" parameterType="IngSoft.venta.bean.FamiliarBeanData">
+update FAMILIAR set FAMILIAR.Parentesco=#{parentesco}
+,FAMILIAR.TelefonoFijo=#{telefonoFijo}
+,FAMILIAR.TelefonoCelular=#{telefonoCelular} 
+,FAMILIAR.Correo=#{correo}
+ where FAMILIAR.IdFamiliar= #{codigoFamiliar}
+</update>
+
 <!-- Fin modificar  
 
  -->
