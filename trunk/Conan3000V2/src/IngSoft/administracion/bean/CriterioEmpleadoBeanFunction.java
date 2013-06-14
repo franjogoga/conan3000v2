@@ -39,9 +39,23 @@ public class CriterioEmpleadoBeanFunction {
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		Vector<ResultadoEmpleadoBeanData> resultadosV=null;
 		try{		
-		List<ResultadoEmpleadoBeanData> resultados=sqlsesion.selectList("Data.administracion.empleado.searchPlantillaEmpleado",criterioEmpleadoData);
-	
+		
+			String area = criterioEmpleadoData.getArea();
+			//String todos = "TODOS";
+		List<ResultadoEmpleadoBeanData> resultados;
+		
+		
+		System.out.println("antes");
+		if ( criterioEmpleadoData.getArea().equals("TODOS")) 
+		
+			{resultados=sqlsesion.selectList("Data.administracion.empleado.searchPlantillaEmpleado2",criterioEmpleadoData);}
+		
+		
+		else 
+			resultados=sqlsesion.selectList("Data.administracion.empleado.searchPlantillaEmpleado",criterioEmpleadoData);
+			
 		resultadosV= new Vector<>(resultados);
+		
 		}
 		finally{
 		sqlsesion.close();}
