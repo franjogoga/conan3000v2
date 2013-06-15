@@ -63,6 +63,13 @@ public class HorarioDiaSemanaBeanFunction {
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		
 		try{
+			
+			System.out.print("CODIGO DIA -->"+horarioDiaSemanaBeanData.getCodigoDia()+" Horario --> "+horarioDiaSemanaBeanData.getCodigoHorario());
+			System.out.print("Hora Inicio -->"+horarioDiaSemanaBeanData.getHoraInicio()+" hora fin --> "+ horarioDiaSemanaBeanData.getHoraInicio());
+			
+			
+			
+			
 			sqlsesion.insert("Data.administracion.horariodetrabajo.insertPlantillaHorarioDiaSemana",horarioDiaSemanaBeanData);
 
 			resultado=true;
