@@ -84,7 +84,14 @@
 	   return false; 
 	   };
 
-  
+       int obtenerInice(String s, String[] l){
+
+	   for(int i=0; i< l.length; i++){
+		   if(l[i].equalsIgnoreCase(s))
+		    return i;
+	   }
+	   return -1; 
+	   };
          
 	   
 %>	
@@ -197,32 +204,21 @@
 															  </label>
 															  
 																</td>
+															<!-- hora inicio -->	
+																<% 
 																
-																<% if( verificarExiste(  ((DiasBeanData)diassemana.get(i)).getCodigo() ,  codigoDia)  ){ 
+																if( verificarExiste(  ((DiasBeanData)diassemana.get(i)).getCodigo() ,  codigoDia)  ){ 
 																	
-																	 int indice=-1;
-																	for(x=0;  x<  iniHora.length   ;x++){
-													            		
-													            		for(int n=0;n<horasDelDia.size();n++){
-													            			if( iniHora[x].equalsIgnoreCase(  ((String)horasDelDia.get(n)) )){
-													            				indice=x;
-													            				break;
+																	x = obtenerInice(   ((DiasBeanData)diassemana.get(i)).getCodigo() ,  codigoDia   );
+													            				//out.print(" indice ---> "+   x    +" hora inicio "+ iniHora[x]);
 													            				
-													            			}
-													            			
-													            		}
-													            		
-													            		if(indice!=-1) break;
-													            		
-													            	}
-																	
-																	out.print(indice);
+													          
 													            %>
 																<td class="center">
 							 																																													
-														 		<select  style="width: 100px;"  data-rel="chosen" id="cmbHoraInicio<%=i%>"  name="cmbHoraInicio" >
+														 		<select  style="width: 70px;"  data-rel="chosen" id="cmbHoraInicio<%=i%>"  name="cmbHoraInicio" >
 															        <%for(int k=0;k<horasDelDia.size();k++){     %>
-													<option value="<%=    ((String)horasDelDia.get(k))   %>"    <%= ((String)horasDelDia.get(k)).equalsIgnoreCase(   iniHora[indice]     )?"selected":"" %> > <% out.print(iniHora[indice]);   %> <%=       ((String)horasDelDia.get(k))    %>    </option>
+													<option value="<%=    ((String)horasDelDia.get(k))   %>"    <%= ((String)horasDelDia.get(k)).equalsIgnoreCase(   iniHora[x]     )?"selected":"" %> >  <%=       ((String)horasDelDia.get(k))    %>    </option>
 																    <%} %>						
 															    </select>
 							
@@ -232,7 +228,7 @@
 																
 																<td class="center">
 							 																																													
-														 		<select  style="width: 100px;"  data-rel="chosen" id="cmbHoraInicio<%=i%>"  name="cmbHoraInicio" >
+														 		<select  style="width: 70px;"  data-rel="chosen" id="cmbHoraInicio<%=i%>"  name="cmbHoraInicio" >
 															        <%for(int k=0;k<horasDelDia.size();k++){     %>
 													<option value="<%=    ((String)horasDelDia.get(k))   %>"    <%= k==0?"selected":"" %>  > <%=    ((String)horasDelDia.get(k))    %>    </option>
 																    <%} %>						
@@ -242,17 +238,47 @@
 																
 																<%} %>
 																
+																<!-- fin hora inicio -->
 																
 																
+																
+																
+	<% 
+																
+																if( verificarExiste(  ((DiasBeanData)diassemana.get(i)).getCodigo() ,  codigoDia)  ){ 
+																	
+																	x = obtenerInice(   ((DiasBeanData)diassemana.get(i)).getCodigo() ,  codigoDia   );
+													            				//out.print(" indice ---> "+   x    +" hora inicio "+ iniHora[x]);
+													            				
+													          
+													            %>
+																<td class="center">
+							 																																													
+														 		<select  style="width: 70px;"  data-rel="chosen" id="cmbHoraFin<%=i%>"  name="cmbHoraFin<%=i%>" >
+															        <%for(int k=0;k<horasDelDia.size();k++){     %>
+													<option value="<%=    ((String)horasDelDia.get(k))   %>"    <%= ((String)horasDelDia.get(k)).equalsIgnoreCase(   finHora[x]     )?"selected":"" %> >  <%=       ((String)horasDelDia.get(k))    %>    </option>
+																    <%} %>						
+															    </select>
+							
+																</td>
+																<%}else{ %>
 																
 																
 																<td class="center">
-																
-														 		<select style="width: 100px;" data-rel="chosen" id="cmbHoraFin<%=i%>"  name="cmbHoraInicio" >
-													
+							 																																													
+														 		<select  style="width: 70px;"  data-rel="chosen" id="cmbHoraFin<%=i%>"  name="cmbHoraFin<%=i%>" >
+															        <%for(int k=0;k<horasDelDia.size();k++){     %>
+													<option value="<%=    ((String)horasDelDia.get(k))   %>"    <%= k==0?"selected":"" %>  > <%=    ((String)horasDelDia.get(k))    %>    </option>
+																    <%} %>						
 															    </select>
-																
+							
 																</td>
+																
+																<%} %>
+																
+																<!-- fin hora fin -->
+																
+																
 																
 																
 																
