@@ -84,19 +84,8 @@
 	   return false; 
 	   };
 
-	   
-	   Vector<String> convertir(String[] l){
-		   
-		   Vector<String> x = new  Vector<String>() ;
-		   
-		   for(int i=0; i<l.length; i++)
-		   {
-			   x.add(l[i]);
-		   }
-		   
-		   return x;
-		  
-	   }   
+  
+         
 	   
 %>	
 	
@@ -195,34 +184,67 @@
 														   
 														   String[] finHora = ((HorariodetrabajoBeanData)horariodetrabajo).getHoraFin().split(",");
 														   
-														   for(int i=0; i<diassemana.size()-2; i++) { %>
+														   int x;
+														   
+														   for(int i=0; i<diassemana.size(); i++) { %>
 														   
 															<tr>
 																<td>
 							
 															  <label class="checkbox inline">
-																<input type="checkbox"  id="inlineCheckbox<%=i%>" name="checkDia"  value="<%= ((DiasBeanData)diassemana.get(i)).getCodigo() %>"  <%=  verificarExiste(  ((DiasBeanData)diassemana.get(i)).getCodigo() ,  codigoDia) ?"checked":""%>       > 
+																<input type="checkbox"  id="inlineCheckbox<%=i%>" name="checkDia<%=i%>"  value="<%= ((DiasBeanData)diassemana.get(i)).getCodigo() %>"  <%=  verificarExiste(  ((DiasBeanData)diassemana.get(i)).getCodigo() ,  codigoDia) ?"checked":""%>       > 
 																<%=  ((DiasBeanData)diassemana.get(i)).getNombre()  %>  
 															  </label>
 															  
 																</td>
 																
+																<% if( verificarExiste(  ((DiasBeanData)diassemana.get(i)).getCodigo() ,  codigoDia)  ){ 
+																	
+																	 int indice=-1;
+																	for(x=0;  x<  iniHora.length   ;x++){
+													            		
+													            		for(int n=0;n<horasDelDia.size();n++){
+													            			if( iniHora[x].equalsIgnoreCase(  ((String)horasDelDia.get(n)) )){
+													            				indice=x;
+													            				break;
+													            				
+													            			}
+													            			
+													            		}
+													            		
+													            		if(indice!=-1) break;
+													            		
+													            	}
+																	
+																	out.print(indice);
+													            %>
 																<td class="center">
 							 																																													
 														 		<select  style="width: 100px;"  data-rel="chosen" id="cmbHoraInicio<%=i%>"  name="cmbHoraInicio" >
-														 		
-													<option value="<%=iniHora[i] %>" selected > <%=    iniHora[i]    %>    </option>	 		
-														 		
-														 		
-															        <%for(int k=0;k<horasDelDia.size();k++){    if( !((String)horasDelDia.get(k)).equalsIgnoreCase(     iniHora[i]     )  )    %>
-													<option value="<%=((String)horasDelDia.get(k))%>"  > <%=    ((String)horasDelDia.get(k))    %>    </option>
+															        <%for(int k=0;k<horasDelDia.size();k++){     %>
+													<option value="<%=    ((String)horasDelDia.get(k))   %>"    <%= ((String)horasDelDia.get(k)).equalsIgnoreCase(   iniHora[indice]     )?"selected":"" %> > <% out.print(iniHora[indice]);   %> <%=       ((String)horasDelDia.get(k))    %>    </option>
 																    <%} %>						
-															    
-															    
-															    
 															    </select>
 							
 																</td>
+																<%}else{ %>
+																
+																
+																<td class="center">
+							 																																													
+														 		<select  style="width: 100px;"  data-rel="chosen" id="cmbHoraInicio<%=i%>"  name="cmbHoraInicio" >
+															        <%for(int k=0;k<horasDelDia.size();k++){     %>
+													<option value="<%=    ((String)horasDelDia.get(k))   %>"    <%= k==0?"selected":"" %>  > <%=    ((String)horasDelDia.get(k))    %>    </option>
+																    <%} %>						
+															    </select>
+							
+																</td>
+																
+																<%} %>
+																
+																
+																
+																
 																
 																<td class="center">
 																
@@ -231,6 +253,12 @@
 															    </select>
 																
 																</td>
+																
+																
+																
+																
+																
+																
 							                                      
 															</tr>
 															
