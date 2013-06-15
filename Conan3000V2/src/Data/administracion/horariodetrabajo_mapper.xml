@@ -83,7 +83,7 @@ ORDER BY 1 ASC
 <!-- Agregar plantilla Horarioxdiasemana -->
 
 <insert id="insertPlantillaHorarioDiaSemana" parameterType="IngSoft.administracion.bean.HorarioDiaSemanaBeanData" flushCache="true">
-	insert into HORARIOXDIA_SEMANA (IdDiaSemana,IdHorario,HoraInicio,HoraFin)
+	insert into HORARIOxDIA_SEMANA (IdDiaSemana,IdHorario,HoraInicio,HoraFin)
 	values (#{codigoDia},#{codigoHorario},#{horaInicio},#{horaFin})
 </insert>
 
