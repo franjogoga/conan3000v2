@@ -54,7 +54,9 @@ IdProveedor=#{idProveedor}
  ,Nombre=#{nombre}
  ,Descripcion=#{descripcion}
  ,PrecioUnitario=#{precioU}
+ ,Presentacion=#{presentacion}
  ,Estado=#{estado}
+
  where IdProductoProv= #{idProdProveedor}
 </update>
 
