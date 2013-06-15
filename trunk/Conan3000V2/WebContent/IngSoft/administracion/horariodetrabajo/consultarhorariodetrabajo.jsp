@@ -197,7 +197,7 @@
 																
 																<td class="center">
 							 																																													
-														 		<select  style="width: 100px;"  data-rel="chosen" id="cmbHoraInicio<%=i%>" disabled name="cmbHoraInicio" >
+														 		<select  style="width: 70px;"  data-rel="chosen" id="cmbHoraInicio<%=i%>" disabled name="cmbHoraInicio" >
 															       
 													<option value="<%=horaIni[i]%>" selected > <%=    horaIni[i]   %>    </option>
 																   					
@@ -207,7 +207,7 @@
 																
 																<td class="center">
 																
-														 		<select style="width: 100px;" data-rel="chosen" id="cmbHoraFin<%=i%>"  disabled name="cmbHoraFin" >
+														 		<select style="width: 70px;" data-rel="chosen" id="cmbHoraFin<%=i%>"  disabled name="cmbHoraFin" >
 															       
 													<option value="<%= horaFin[i]  %>" selected > <%=   horaFin[i]   %>    </option>
 																   					
