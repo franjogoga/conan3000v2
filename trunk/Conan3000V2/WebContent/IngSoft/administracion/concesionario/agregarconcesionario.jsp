@@ -71,7 +71,7 @@
               <div>
                 <ul class="breadcrumb">
                   <li> <a href="../../general/index.jsp">Home</a> <span class="divider">/</span> </li>
-                  <li> <a href="buscarconcesionario.jsp">Mantenimiento de Concesionarios</a> <span class="divider">/</span></li>
+                  <li> <a href="SMAConcesionario?accion=Buscar&tipo=1">Mantenimiento de Concesionarios</a> <span class="divider">/</span></li>
                   <li>Agregar Concesionario</li>
                 </ul>
               </div>
