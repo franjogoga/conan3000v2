@@ -45,7 +45,8 @@ public class HorarioDiaSemanaBeanFunction {
 			horarioDiaSemanaBeanData.setCodigoDia(     codDia   );
 			horarioDiaSemanaBeanData.setCodigoHorario( codHor   );
 			horarioDiaSemanaBeanData.setHoraInicio(    horIn    );
-			horarioDiaSemanaBeanData.setHoraFin(       horFin   ); 		
+			horarioDiaSemanaBeanData.setHoraFin(       horFin   );
+			horarioDiaSemanaBeanData.setEstado(       "Activo"   );
 
 		}catch(Exception e){
 			e.printStackTrace();
@@ -63,10 +64,12 @@ public class HorarioDiaSemanaBeanFunction {
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		
 		try{
-			
-			System.out.print("CODIGO DIA -->"+horarioDiaSemanaBeanData.getCodigoDia()+" Codigo Horario --> "+horarioDiaSemanaBeanData.getCodigoHorario());
-			System.out.print("Hora Inicio -->"+horarioDiaSemanaBeanData.getHoraInicio()+" hora fin --> "+ horarioDiaSemanaBeanData.getHoraInicio());
-			
+			System.out.print("Agregar Horario dia Semana ");
+			System.out.print("CODIGO DIA -->"+horarioDiaSemanaBeanData.getCodigoDia());
+		    System.out.print("Codigo Horario --> "+horarioDiaSemanaBeanData.getCodigoHorario());
+			System.out.print("Hora Inicio -->"+horarioDiaSemanaBeanData.getHoraInicio());
+			System.out.print("hora fin --> "+ horarioDiaSemanaBeanData.getHoraInicio());
+			System.out.print("Estado --> "+ horarioDiaSemanaBeanData.getEstado());
 			
 			
 			
@@ -126,9 +129,25 @@ public class HorarioDiaSemanaBeanFunction {
 			System.out.print(horarioDiaSemanaBeanData.getHoraInicio()   +" --> ");
 			System.out.print(horarioDiaSemanaBeanData.getHoraFin()  +" --> "); 	
 			
+			
+			
+			// podemos verificar si existen los codigos
+			String codigos = (String)sqlsesion.selectOne("Data.administracion.horariodetrabajo.getVerificaciondeCodigos",horarioDiaSemanaBeanData);
+			
+			if(codigos!=null) //existen los codigos
+			{
+			
+				
+				sqlsesion.insert("Data.administracion.horariodetrabajo.modificarPlantillaHorarioDiaSemana",horarioDiaSemanaBeanData);
+			}
+			else {
+				
+				sqlsesion.insert("Data.administracion.horariodetrabajo.insertPlantillaHorarioDiaSemana",horarioDiaSemanaBeanData);
+				
+			};
 
 			
-			sqlsesion.insert("Data.administracion.horariodetrabajo.modificarPlantillaHorarioDiaSemana",horarioDiaSemanaBeanData);
+			
 
 			
 			resultado=true;
