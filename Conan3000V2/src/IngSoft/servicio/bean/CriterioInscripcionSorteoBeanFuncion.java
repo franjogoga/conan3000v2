@@ -23,7 +23,6 @@ public class CriterioInscripcionSorteoBeanFuncion {
 			criterioSorteoData.setFechaIni(fecha);*/
 			criterioInscripcionSorteoData.setFechaIni(new Date(DF.parse(request.getParameter("date01")).getTime()));
 			criterioInscripcionSorteoData.setFechaFin(new Date(DF.parse(request.getParameter("date02")).getTime()));
-			criterioInscripcionSorteoData.setFechaSorteo(new Date(DF.parse(request.getParameter("date03")).getTime()));
 			
 		} catch (ParseException e) {
 			e.printStackTrace();
