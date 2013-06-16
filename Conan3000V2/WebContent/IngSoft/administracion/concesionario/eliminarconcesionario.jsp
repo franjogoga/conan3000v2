@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Vector"%>
+<%@page import="IngSoft.administracion.bean.ConcesionarioSedeBeanData"%>
 <html lang="en">
 <head>
 	<meta charset="utf-8">
@@ -9,6 +12,7 @@
 
 	<!--The beans  -->
 	<jsp:useBean id="concesionario" scope="request" class="IngSoft.administracion.bean.ConcesionarioBeanData"></jsp:useBean>
+	<jsp:useBean id="concesionarioSede" scope="request" class="java.util.Vector"></jsp:useBean>
 	
 	<!-- The styles -->
 	<link id="bs-css" href="css/bootstrap-cerulean.css" rel="stylesheet">
@@ -75,6 +79,9 @@
 		}
 	%>
 	
+	<%SimpleDateFormat df= new SimpleDateFormat("dd/MM/YYYY");%>
+    
+	
 </head>
 
 <body>
@@ -105,7 +112,7 @@
               <div class="row-fluid sortable">
                 <div class="box span12">
                   <div class="box-header well" data-original-title>
-                    <h2></i>ELIMINAR CONCESIONARIO</h2>
+                    <h2>ELIMINAR CONCESIONARIO</h2>
                   </div>
                   <div class="box-content">
                     <form class="form-horizontal" name="frmDelete" action="<%= response.encodeURL("SMAConcesionario")%>" method="post">
@@ -155,20 +162,61 @@
                 </div>
                 <!--/span-->
               </div>
+              
+<!--/INICIO TABLA SEDES-->
+            <div class="row-fluid sortable">
+          		<div class="row-fluid sortable">
+						<div class="box span12">
+                      <div class="box-header well" data-original-title>
+                        <h2><i class="icon-th-list"></i>CONTRATOS CON SEDES</h2>
+                      </div>
+                      <div class="box-content">
+                        <table class="table table-striped table-bordered bootstrap-datatable datatable">
+                          <thead>
+                            <tr>
+                              <th>Sede</th>
+                              <th>Fecha Inicio</th>
+                              <th>Fecha Fin</th>
+                              <th>Estado</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                          	<%for(int i=0; i<concesionarioSede.size(); i++) { %>
+                            <tr>
+                              <td class="center"><%=((ConcesionarioSedeBeanData)concesionarioSede.get(i)).getNombre()%></td>
+                              <td class="center"><%=df.format(((ConcesionarioSedeBeanData)concesionarioSede.get(i)).getFechaInicio())%></td>
+                              <td class="center"><%=df.format(((ConcesionarioSedeBeanData)concesionarioSede.get(i)).getFechaFin())%></td>
+                              <td class="center"><%if(((ConcesionarioSedeBeanData)concesionarioSede.get(i)).getEstado().equalsIgnoreCase("Activo")){    
+								 						out.print("<span class='label label-success'>"+((ConcesionarioSedeBeanData)concesionarioSede.get(i)).getEstado()+"</span>");
+												   }
+												   else{
+								 						out.print("<span class='label label-warning'>"+((ConcesionarioSedeBeanData)concesionarioSede.get(i)).getEstado()+"</span>");
+												   }%></td>
+                            </tr>
+                            <%}%> 
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                  <!--/span-->
+                </div>
+                <!--/span-->
+<!--/FIN TABLA SEDES-->
+              
+              
               <!--/row-->
               <div class="row-fluid sortable">
                 
                 <!--/span-->
-              </div>
-              <!--/row-->
-              <div class="row-fluid sortable">
-                
-                <!--/span-->
+              </div><!--/row-->
+              <div class="row-fluid sortable">  
+              <!--/span-->
               </div>
               <!--/row-->
               <!-- content ends -->
             </div>
-          <!--/#content.span10-->
+            <!--/#content.span10-->
 				</div><!--/fluid-row-->
 				
 		<hr>
