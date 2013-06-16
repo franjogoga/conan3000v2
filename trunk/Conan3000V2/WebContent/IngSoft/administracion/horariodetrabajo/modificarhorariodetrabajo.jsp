@@ -191,6 +191,11 @@
 														   
 														   String[] finHora = ((HorariodetrabajoBeanData)horariodetrabajo).getHoraFin().split(",");
 														   
+														  // String[] estadoDias = ((HorariodetrabajoBeanData)horariodetrabajo).getEstadosDias().split(",");
+														   
+														   
+														   
+														   
 														   int x;
 														   
 														   for(int i=0; i<diassemana.size(); i++) { %>
@@ -243,8 +248,7 @@
 																
 																
 																
-	<% 
-																
+	                                                            <% 	
 																if( verificarExiste(  ((DiasBeanData)diassemana.get(i)).getCodigo() ,  codigoDia)  ){ 
 																	
 																	x = obtenerInice(   ((DiasBeanData)diassemana.get(i)).getCodigo() ,  codigoDia   );
