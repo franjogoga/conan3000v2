@@ -212,11 +212,13 @@
 			
 			</div><!--/row-->
 			
-			<div class="row-fluid sortable"><!--/span-->
-			</div><!--/row-->
-    
-					<!-- content ends -->
-			</div><!--/#content.span10-->
+			<div class="row-fluid sortable">
+			<!--/span-->
+			</div>
+			<!--/row-->
+    		<!-- content ends -->
+			</div>
+			<!--/#content.span10-->
 				</div><!--/fluid-row-->
 		<hr>
 
