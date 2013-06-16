@@ -143,7 +143,7 @@ AND	  IdHorario   = #{codigoHorario}
 <!--Eliminar  -->
 
 <update id="deletePLantillaActividad" parameterType="java.lang.String" >
-update inf245g2.HORARIO set Estado ='No Activado' where IdActividad = #{codigo}
+update inf245g2.HORARIO set Estado ='Inactivo' where IdActividad = #{codigo}
 </update>
 <!-- Fin eliminar -->
 
