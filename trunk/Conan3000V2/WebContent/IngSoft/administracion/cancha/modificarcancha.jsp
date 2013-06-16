@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <%@page import="IngSoft.administracion.bean.TipoCanchaMiniBeanData"%>
 <%@page import="IngSoft.administracion.bean.AmbienteMiniBeanData"%>
+<%@page import="IngSoft.administracion.bean.SedeMiniBeanData"%>
 <html lang="en">
 <head>
 	<meta charset="utf-8">
@@ -13,6 +14,7 @@
 	<jsp:useBean id="ambientes" scope="request" class="java.util.Vector"></jsp:useBean>
 	<jsp:useBean id="tiposCancha" scope="request" class="java.util.Vector"></jsp:useBean>
 	<jsp:useBean id="cancha" scope="request" class="IngSoft.administracion.bean.CanchaBeanData"></jsp:useBean>
+    <jsp:useBean id="sedes" scope="request" class="java.util.Vector"></jsp:useBean>
 
 	<!-- The styles -->
 	<link id="bs-css" href="css/bootstrap-cerulean.css" rel="stylesheet">
@@ -54,6 +56,29 @@
 	function alt_submit(){
 		var form= document.frmUpdate;
 		if(validaForm()) form.submit();
+	}
+	
+	function alt_ambiente(){
+		$.ajax({
+		  type: "POST",
+		  url: "/Conan3000V2/IngSoft/administracion/cancha/SMACancha",
+		  data: "accion=Buscar"+ "&tipo=3" + "&cmbSede=" + $(cmbSede).val(),
+		  dataType: "html",
+		  beforeSend: function ( xhr ) {
+   		  $("#cmbAmbiente").html("");
+			//chosen - improves select
+			$("#cmbAmbiente").trigger("liszt:updated");
+  		  },
+		  success: function(msg){
+			$("#cmbAmbiente").html(msg);
+			//chosen - improves select
+			$("#cmbAmbiente").trigger("liszt:updated");
+		  },
+		  error: function(objeto, quepaso, otroobj){
+			alert("ERROR!! Pasó lo siguiente: "+quepaso);
+		  }
+	
+		});
 	}
 	</script>
 	<%! public boolean  encontrar(String a, String b){		
@@ -98,7 +123,7 @@
               <div>
                 <ul class="breadcrumb">
                   <li> <a href="../../general/index.jsp">Home</a> <span class="divider">/</span> </li>
-                  <li> <a href="buscarcancha.jsp">Mantenimiento de Canchas</a> <span class="divider">/</span></li>
+                  <li> <a href="SMACancha?accion=Buscar&tipo=1">Mantenimiento de Canchas</a> <span class="divider">/</span></li>
                   <li>Modificar Cancha</li>
                 </ul>
               </div>
@@ -131,12 +156,22 @@
                           </div>
                         </div>
                         <div class="control-group">
+                          <label class="control-label" for="selectError">Sede (*):</label>
+                          <div class="controls">
+                            <select id="cmbSede" data-rel="chosen" name="cmbSede"  onchange="alt_ambiente()">
+     				    		<%for(int i=0;i<sedes.size();i++){ %>
+									<option value="<%= ((SedeMiniBeanData)sedes.get(i)).getCodigo()%>"<%=encontrar(((SedeMiniBeanData)sedes.get(i)).getCodigo(),cancha.getIdSede())?"selected":""%>><%= ((SedeMiniBeanData)sedes.get(i)).getNombre()%></option>
+								<%} %>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="control-group">
                           <label class="control-label" for="selectError">Ambiente (*):</label>
                           <div class="controls">
                             <select name="cmbAmbiente" id="cmbAmbiente" data-rel="chosen">
-                              <%for(int i=0;i<ambientes.size();i++){ %>
-									<option value="<%=((AmbienteMiniBeanData)ambientes.get(i)).getCodigo()%>" <%=encontrar(((AmbienteMiniBeanData)ambientes.get(i)).getCodigo(),cancha.getIdAmbiente())?"selected":""%>><%= ((AmbienteMiniBeanData)ambientes.get(i)).getNombre()%></option>
-								<%} %>
+                               <%for(int i=0;i<ambientes.size();i++){ %>
+										<option value="<%=((AmbienteMiniBeanData)ambientes.get(i)).getCodigo()%>"<%=encontrar(((AmbienteMiniBeanData)ambientes.get(i)).getCodigo(),cancha.getIdAmbiente())?"selected":""%>><%= ((AmbienteMiniBeanData)ambientes.get(i)).getNombre()%></option>
+								<%}%> 
                             </select>
                           </div>
                         </div>

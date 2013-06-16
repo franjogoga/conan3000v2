@@ -11,6 +11,7 @@ import IngSoft.general.CoException;
 import IngSoft.administracion.bean.CanchaBeanData;
 import IngSoft.administracion.bean.CanchaBeanFunction;
 import IngSoft.administracion.bean.AmbienteMiniBeanData;
+import IngSoft.administracion.bean.SedeMiniBeanData;
 import IngSoft.administracion.bean.TipoCanchaMiniBeanData;
 
 public class AccionAgregarCancha extends CoAccion {
@@ -25,8 +26,10 @@ public class AccionAgregarCancha extends CoAccion {
 			this.direccionar(sc, request, response, "/IngSoft/administracion/cancha/buscarcancha.jsp");
 		}
 		CanchaBeanFunction canchaFunction= CanchaBeanFunction.getInstance();
-		Vector<AmbienteMiniBeanData> ambienteMiniData=canchaFunction.getAmbientes();
+		Vector<SedeMiniBeanData> sedes =canchaFunction.getSedes();
+		Vector<AmbienteMiniBeanData> ambienteMiniData=canchaFunction.getAmbientes(sedes.get(0).getCodigo());
 		Vector<TipoCanchaMiniBeanData> tipoCanchaMiniData=canchaFunction.getTipoCancha();
+		request.setAttribute("sedes",sedes);
 		request.setAttribute("ambientes",ambienteMiniData);
 		request.setAttribute("tiposCancha",tipoCanchaMiniData);
 		this.direccionar(sc, request, response, "/IngSoft/administracion/cancha/agregarcancha.jsp");

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <%@page import="IngSoft.administracion.bean.TipoCanchaMiniBeanData"%>
 <%@page import="IngSoft.administracion.bean.AmbienteMiniBeanData"%>
+<%@page import="IngSoft.administracion.bean.SedeMiniBeanData"%>
 <html lang="en">
 <head>
 
@@ -14,6 +15,7 @@
 	<jsp:useBean id="ambientes" scope="request" class="java.util.Vector"></jsp:useBean>
 	<jsp:useBean id="tiposCancha" scope="request" class="java.util.Vector"></jsp:useBean>
 	<jsp:useBean id="cancha" scope="request" class="IngSoft.administracion.bean.CanchaBeanData"></jsp:useBean>
+	<jsp:useBean id="sedes" scope="request" class="java.util.Vector"></jsp:useBean>
 
 	<!-- The styles -->
 	<link id="bs-css" href="css/bootstrap-cerulean.css" rel="stylesheet">
@@ -102,7 +104,7 @@
               <div>
                 <ul class="breadcrumb">
                   <li> <a href="../../general/index.jsp">Home</a> <span class="divider">/</span> </li>
-                  <li> <a href="buscarcancha.jsp">Mantenimiento de Canchas</a> <span class="divider">/</span></li>
+                  <li> <a href="SMACancha?accion=Buscar&tipo=1">Mantenimiento de Canchas</a> <span class="divider">/</span></li>
                   <li>Eliminar Cancha</li>
                 </ul>
               </div>
@@ -129,6 +131,16 @@
                             <select name="cmbTipoCancha" id="cmbTipoCancha" data-rel="chosen" disabled="">
                               <%for(int i=0;i<tiposCancha.size();i++){ %>
 										<option value="<%=((TipoCanchaMiniBeanData)tiposCancha.get(i)).getCodigo()%>" <%=encontrar(((TipoCanchaMiniBeanData)tiposCancha.get(i)).getCodigo(), cancha.getIdTipoCancha())?"selected":""%>><%= ((TipoCanchaMiniBeanData)tiposCancha.get(i)).getNombre()%></option>
+								<%} %>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="control-group">
+                          <label class="control-label" for="selectError">Sede (*):</label>
+                          <div class="controls">
+                            <select id="cmbSede" data-rel="chosen" name="cmbSede"  disabled>
+     				    		<%for(int i=0;i<sedes.size();i++){ %>
+									<option value="<%= ((SedeMiniBeanData)sedes.get(i)).getCodigo()%>"<%=encontrar(((SedeMiniBeanData)sedes.get(i)).getCodigo(),cancha.getIdSede())?"selected":""%>><%= ((SedeMiniBeanData)sedes.get(i)).getNombre()%></option>
 								<%} %>
                             </select>
                           </div>

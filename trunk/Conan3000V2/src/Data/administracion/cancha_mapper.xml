@@ -18,8 +18,12 @@
     	<if test="idAmbiente != null">
        		AND c.IdAmbiente = #{idAmbiente}
     	</if>
+    	<if test="idSede != null">
+        	AND a.IdSede = #{idSede}
+    	</if>
     		AND c.IdTipoCancha = tc.IdTipoCancha AND c.IdAmbiente=a.IdAmbiente AND a.IdSede=s.IdSede AND (c.Estado='Activo' OR c.Estado='Inactivo')
 		</where>
+		ORDER BY 5,4,2;
 	</select>
 
 	<insert id="insertCancha" parameterType="IngSoft.administracion.bean.CanchaBeanData" flushCache="true">
@@ -32,10 +36,10 @@
 	</select>
 
 	<select id="getCancha" parameterType="java.lang.String"  resultType="IngSoft.administracion.bean.CanchaBeanData">
-		SELECT IdCancha as codigo, Descripcion as descripcion, Estado as estado, IdAmbiente as idAmbiente,
-			   Nombre as nombre, IdTipoCancha as idTipoCancha
-		FROM CANCHA
-		WHERE (Estado = 'Activo' OR Estado = 'Inactivo') AND  IdCancha = #{codigo}; 
+		SELECT c.IdCancha as codigo, c.Descripcion as descripcion, c.Estado as estado, c.IdAmbiente as idAmbiente,
+			   c.Nombre as nombre, c.IdTipoCancha as idTipoCancha, s.IdSede as idSede
+		FROM CANCHA c, AMBIENTE a,SEDE s
+		WHERE c.IdAmbiente=a.IdAmbiente AND a.IdSede=s.IdSede AND (c.Estado = 'Activo' OR c.Estado = 'Inactivo') AND  c.IdCancha = #{codigo}; 
 	</select>
 
 	<update id="updateCancha" parameterType="IngSoft.administracion.bean.CanchaBeanData">
@@ -52,14 +56,31 @@
 		UPDATE CANCHA SET Estado='Eliminado' WHERE IdCancha = #{codigo}
 	</update>
 	
-	<select id="searchAmbienteMini" resultType="IngSoft.administracion.bean.AmbienteMiniBeanData">
-		SELECT a.IdAmbiente as codigo, a.Nombre as nombre, s.Nombre as nombreSede
-		FROM AMBIENTE a, SEDE s
-		WHERE a.IdSede=s.IdSede
+	<select id="searchAmbienteMini" parameterType="java.lang.String" resultType="IngSoft.administracion.bean.AmbienteMiniBeanData">
+		SELECT IdAmbiente as codigo, Nombre as nombre, IdSede as codigoSede
+		FROM AMBIENTE
+		WHERE IdSede like #{codigo}
+		Order by 2 asc;
 	</select>
 	
+	<select id="searchSedeMini" resultType="IngSoft.administracion.bean.SedeMiniBeanData">
+		select s.IdSede as codigo, s.Nombre as nombre
+		from SEDE s, AMBIENTE a
+		where s.IdSede=a.IdSede
+		group by (s.IdSede)
+		Order by 2 asc;
+	</select>
+	
+	<select id="searchIdSede" parameterType="java.lang.String" resultType="IngSoft.administracion.bean.SedeMiniBeanData">
+		select s.IdSede as codigo,s.Nombre as nombre
+		from CANCHA c, SEDE s, AMBIENTE a
+		where c.IdAmbiente=a.IdAmbiente AND a.IdSede=s.IdSede AND c.IdCancha = #{codigo}
+		group by (s.IdSede);
+	</select>
+
 	<select id="searchTipoCanchaMini" resultType="IngSoft.administracion.bean.TipoCanchaMiniBeanData">
 		SELECT tc.IdTipoCancha as codigo, tc.Nombre as nombre
 		FROM TIPO_CANCHA tc
+		ORDER BY 2 asc;
 	</select>
 </mapper>
