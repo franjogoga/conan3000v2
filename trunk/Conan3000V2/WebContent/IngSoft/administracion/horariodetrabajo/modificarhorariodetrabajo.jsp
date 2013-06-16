@@ -295,9 +295,9 @@ function cambiar6()
 																<td>
 							
 															  <label class="checkbox inline">
-																<input type="checkbox"  id="inlineCheckbox<%=i%>" name="checkDia<%=i%>"  value="<%= ((DiasBeanData)diassemana.get(i)).getCodigo() %>"  <%=  verificarExiste(  ((DiasBeanData)diassemana.get(i)).getCodigo() ,  codigoDia) ?"checked":""%>       > 
+																<input type="checkbox"  id="inlineCheckbox<%=i%>" name="checkDia<%=i%>"  value="<%= ((DiasBeanData)diassemana.get(i)).getCodigo() %>"  <%=  verificarExiste(  ((DiasBeanData)diassemana.get(i)).getCodigo() ,  codigoDia) ?"checked":""%>    onclick="cambiar<%=i%>();"   > 
 																<%=  ((DiasBeanData)diassemana.get(i)).getNombre()  %>  
-																<input type="text" name="estadoDia<%=i%>"  value="<%=  verificarExiste(  ((DiasBeanData)diassemana.get(i)).getCodigo() ,  codigoDia) ?"Activo":"Inactivo"%>"></input>
+																<input type="text" id="estadoDia<%=i%>" name="estadoDia<%=i%>"  value="<%=  verificarExiste(  ((DiasBeanData)diassemana.get(i)).getCodigo() ,  codigoDia) ?"Activo":"Inactivo"%>"></input>
 																
 																
 															  </label>
