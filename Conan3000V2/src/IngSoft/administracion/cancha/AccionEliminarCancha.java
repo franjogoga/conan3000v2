@@ -11,6 +11,7 @@ import IngSoft.general.CoException;
 import IngSoft.administracion.bean.CanchaBeanFunction;
 import IngSoft.administracion.bean.CanchaBeanData;
 import IngSoft.administracion.bean.AmbienteMiniBeanData;
+import IngSoft.administracion.bean.SedeMiniBeanData;
 import IngSoft.administracion.bean.TipoCanchaMiniBeanData;
 
 public class AccionEliminarCancha extends CoAccion {
@@ -26,8 +27,11 @@ public class AccionEliminarCancha extends CoAccion {
 		if(Integer.valueOf(request.getParameter("tipo"))==1){
 			CanchaBeanFunction canchaFunction= CanchaBeanFunction.getInstance();
 			CanchaBeanData canchaData=canchaFunction.consultarCancha(request.getParameter("codigo"));
-			Vector<AmbienteMiniBeanData> ambienteMiniData=canchaFunction.getAmbientes();
 			Vector<TipoCanchaMiniBeanData> tipoCanchaMiniData=canchaFunction.getTipoCancha();
+			SedeMiniBeanData sede = canchaFunction.consultarCodigoSede(request.getParameter("codigo"));
+			Vector<SedeMiniBeanData> sedes =canchaFunction.getSedes();
+			Vector<AmbienteMiniBeanData> ambienteMiniData=canchaFunction.getAmbientes(sede.getCodigo());
+			request.setAttribute("sedes",sedes);
 			request.setAttribute("ambientes",ambienteMiniData);
 			request.setAttribute("tiposCancha",tipoCanchaMiniData);
 			request.setAttribute("cancha",canchaData);
