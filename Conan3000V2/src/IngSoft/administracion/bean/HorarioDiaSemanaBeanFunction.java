@@ -64,7 +64,7 @@ public class HorarioDiaSemanaBeanFunction {
 		
 		try{
 			
-			System.out.print("CODIGO DIA -->"+horarioDiaSemanaBeanData.getCodigoDia()+" Horario --> "+horarioDiaSemanaBeanData.getCodigoHorario());
+			System.out.print("CODIGO DIA -->"+horarioDiaSemanaBeanData.getCodigoDia()+" Codigo Horario --> "+horarioDiaSemanaBeanData.getCodigoHorario());
 			System.out.print("Hora Inicio -->"+horarioDiaSemanaBeanData.getHoraInicio()+" hora fin --> "+ horarioDiaSemanaBeanData.getHoraInicio());
 			
 			
@@ -89,5 +89,67 @@ public class HorarioDiaSemanaBeanFunction {
 			
 		return resultado;
 	}
+	
+	
+	public HorarioDiaSemanaBeanData crearHorarioDiaSemanaMoficado(String codDia,String codHor,String horIn,String horFin  ){
+		   HorarioDiaSemanaBeanData horarioDiaSemanaBeanData= new HorarioDiaSemanaBeanData();
+		try{		
+
+			
+			
+			System.out.print("Codigo Dia -->"+ codDia +" Codigo Horario --> "+codHor  +"Hora inicio-->"+ horIn +" Hora Fin --> "+ horFin);	
+			
+			horarioDiaSemanaBeanData.setCodigoDia(     codDia   );
+			horarioDiaSemanaBeanData.setCodigoHorario( codHor   );
+			horarioDiaSemanaBeanData.setHoraInicio(    horIn    );
+			horarioDiaSemanaBeanData.setHoraFin(       horFin   ); 		
+
+		}catch(Exception e){
+			e.printStackTrace();
+			
+		}
+		return horarioDiaSemanaBeanData;		
+	}
+	
+	public boolean modificarHorarioDiaSemanaBeanData(HorarioDiaSemanaBeanData horarioDiaSemanaBeanData) throws CoException {
+		boolean resultado=false;		
+		
+		l.lock();
+		
+		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+		
+		try{
+			
+			
+			System.out.print(horarioDiaSemanaBeanData.getCodigoDia()  +" --> ");
+			System.out.print(horarioDiaSemanaBeanData.getCodigoHorario() +" --> ");
+			System.out.print(horarioDiaSemanaBeanData.getHoraInicio()   +" --> ");
+			System.out.print(horarioDiaSemanaBeanData.getHoraFin()  +" --> "); 	
+			
+
+			
+			sqlsesion.insert("Data.administracion.horariodetrabajo.modificarPlantillaHorarioDiaSemana",horarioDiaSemanaBeanData);
+
+			
+			resultado=true;
+		}
+		catch(Exception a)		
+		{sqlsesion.rollback();
+		a.printStackTrace();
+			throw CoException.set("Error: No se pudo modificar las horas por dia de la semana ", "SMAHorariodetrabajo?accion=Agregar&tipo=1");
+			
+		}
+		
+		finally{
+			sqlsesion.commit();
+			sqlsesion.close();
+			l.unlock();				
+		}
+			
+		return resultado;
+	}
+
+	
+	
 	
 }
