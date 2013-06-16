@@ -224,7 +224,12 @@
                               <td class="center"><%=((ResultadoCanchaBeanData)resultados.get(i)).getTipoCancha()%></td>
                               <td class="center"><%=((ResultadoCanchaBeanData)resultados.get(i)).getSede()%></td>
                               <td class="center"><%=((ResultadoCanchaBeanData)resultados.get(i)).getAmbiente()%></td>
-                              <td class="center"><%=((ResultadoCanchaBeanData)resultados.get(i)).getEstado()%></td>
+                              <td class="center"><%if(((ResultadoCanchaBeanData)resultados.get(i)).getEstado().equalsIgnoreCase("Activo")){    
+								 						out.print("<span class='label label-success'>"+((ResultadoCanchaBeanData)resultados.get(i)).getEstado()+"</span>");
+												   }
+												   else{
+								 						out.print("<span class='label label-warning'> "+((ResultadoCanchaBeanData)resultados.get(i)).getEstado()+"</span>");
+												   }%></td>
                               <td class="center">
                               				<a class="btn btn-success" href="javascript:alt_consultar('<%=((ResultadoCanchaBeanData)resultados.get(i)).getCodigo()%>')">
 												<i class="icon-zoom-in icon-white"></i> Ver 

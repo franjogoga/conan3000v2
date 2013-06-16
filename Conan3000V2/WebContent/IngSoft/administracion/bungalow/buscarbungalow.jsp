@@ -235,7 +235,12 @@
                               <td class="center"><%=((ResultadoBungalowBeanData)resultados.get(i)).getAreaBungalow()%></td>
                               <td class="center"><%=((ResultadoBungalowBeanData)resultados.get(i)).getSede()%></td>
                               <td class="center"><%=((ResultadoBungalowBeanData)resultados.get(i)).getAmbiente()%></td>
-                              <td class="center"><%=((ResultadoBungalowBeanData)resultados.get(i)).getEstado()%></td>
+                              <td class="center"><%if(((ResultadoBungalowBeanData)resultados.get(i)).getEstado().equalsIgnoreCase("Activo")){    
+								 						out.print("<span class='label label-success'>"+((ResultadoBungalowBeanData)resultados.get(i)).getEstado()+"</span>");
+												   }
+												   else{
+								 						out.print("<span class='label label-warning'> "+((ResultadoBungalowBeanData)resultados.get(i)).getEstado()+"</span>");
+												   }%></td>
                               <td class="center">
                               				<a class="btn btn-success" href="javascript:alt_consultar('<%=((ResultadoBungalowBeanData)resultados.get(i)).getCodigo()%>')">
 												<i class="icon-zoom-in icon-white"></i> Ver 
