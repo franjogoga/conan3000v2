@@ -8,7 +8,7 @@ public class HorarioDiaSemanaBeanData implements Serializable{
 	private String codigoHorario;
 	private String horaInicio;
 	private String horaFin;
-	
+	private String estado;
 	
 	public String getCodigoDia() {
 		return codigoDia;
@@ -33,6 +33,12 @@ public class HorarioDiaSemanaBeanData implements Serializable{
 	}
 	public void setHoraFin(String horaFin) {
 		this.horaFin = horaFin;
+	}
+	public String getEstado() {
+		return estado;
+	}
+	public void setEstado(String estado) {
+		this.estado = estado;
 	}
 	
 
