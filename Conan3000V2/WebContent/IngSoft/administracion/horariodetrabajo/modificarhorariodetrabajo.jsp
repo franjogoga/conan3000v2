@@ -72,7 +72,98 @@
 
 	<!-- The fav icon -->
 	<link rel="shortcut icon" href="img/favicon.ico">
+
+
+<script>
+
+
+function cambiar0()
+{
+	var opcion = document.getElementById('estadoDia0');
 	
+      if( opcion.value=="Activo" )
+      {      opcion.value = "Inactivo";
+      }
+     else
+      {    opcion.value = "Activo";
+      }
+       
+}
+function cambiar1()
+{
+	var opcion = document.getElementById('estadoDia1');
+	
+      if( opcion.value=="Activo" )
+      {      opcion.value = "Inactivo";
+      }
+     else
+      {    opcion.value = "Activo";
+      }
+       
+}
+function cambiar2()
+{
+	var opcion = document.getElementById('estadoDia2');
+	
+      if( opcion.value=="Activo" )
+      {      opcion.value = "Inactivo";
+      }
+     else
+      {    opcion.value = "Activo";
+      }
+       
+}
+function cambiar3()
+{
+	var opcion = document.getElementById('estadoDia3');
+	
+      if( opcion.value=="Activo" )
+      {      opcion.value = "Inactivo";
+      }
+     else
+      {    opcion.value = "Activo";
+      }
+       
+}
+function cambiar4()
+{
+	var opcion = document.getElementById('estadoDia4');
+	
+      if( opcion.value=="Activo" )
+      {      opcion.value = "Inactivo";
+      }
+     else
+      {    opcion.value = "Activo";
+      }
+       
+}
+function cambiar5()
+{
+	var opcion = document.getElementById('estadoDia5');
+	
+      if( opcion.value=="Activo" )
+      {      opcion.value = "Inactivo";
+      }
+     else
+      {    opcion.value = "Activo";
+      }
+       
+}
+function cambiar6()
+{
+	var opcion = document.getElementById('estadoDia6');
+	
+      if( opcion.value=="Activo" )
+      {      opcion.value = "Inactivo";
+      }
+     else
+      {    opcion.value = "Activo";
+      }
+       
+}
+
+</script>
+
 <%!
 
        boolean verificarExiste(String s, String[] l){
@@ -191,7 +282,7 @@
 														   
 														   String[] finHora = ((HorariodetrabajoBeanData)horariodetrabajo).getHoraFin().split(",");
 														   
-														    String[] estDias = ((HorariodetrabajoBeanData)horariodetrabajo).getEstadosDias().split(",");
+														   //String[] estDias = ((HorariodetrabajoBeanData)horariodetrabajo).getEstadosDias().split(",");
 														   
 														   
 														   
@@ -206,6 +297,9 @@
 															  <label class="checkbox inline">
 																<input type="checkbox"  id="inlineCheckbox<%=i%>" name="checkDia<%=i%>"  value="<%= ((DiasBeanData)diassemana.get(i)).getCodigo() %>"  <%=  verificarExiste(  ((DiasBeanData)diassemana.get(i)).getCodigo() ,  codigoDia) ?"checked":""%>       > 
 																<%=  ((DiasBeanData)diassemana.get(i)).getNombre()  %>  
+																<input type="text" name="estadoDia<%=i%>"  value="<%=  verificarExiste(  ((DiasBeanData)diassemana.get(i)).getCodigo() ,  codigoDia) ?"Activo":"Inactivo"%>"></input>
+																
+																
 															  </label>
 															  
 																</td>
@@ -284,9 +378,7 @@
 																
 																
 																
-																
-																
-																
+     
 																
 																
 							                                      
@@ -304,7 +396,49 @@
 							
 								</div><!--/row-->       
 <!-- -------- -->		
+
 								 </div><!-- fin controls -->
+								 
+								 
+
+														        <div class="control-group">
+																<label class="control-label">Estado </label>
+																<div class="controls">
+																  <label class="radio">
+																  <%
+																 
+																  if( ((HorariodetrabajoBeanData)horariodetrabajo).getEstado().equalsIgnoreCase("Activo") ){
+																  out.print(" <input   type='radio' name='optionsRadios' id='optionsRadios1' value='Activo' checked=''  >");
+																  }
+																  else
+																  {  out.print(" <input   type='radio' name='optionsRadios' id='optionsRadios1' value='Activo'  >");
+																  }
+																 
+																   
+																  %>
+																Activo
+																  </label>
+																 
+																    <div style="clear:both"></div>   
+																 
+																 
+																  <label class="radio">
+																 
+																  <%
+																  if( ((HorariodetrabajoBeanData)horariodetrabajo).getEstado().equalsIgnoreCase("Inactivo") ){
+																  out.print(" <input   type='radio' name='optionsRadios' id='optionsRadios2' value='Inactivo' checked=''  >");
+																  }
+																  else
+																  {  out.print(" <input   type='radio' name='optionsRadios' id='optionsRadios2' value='Inactivo'  >");
+																  }
+																  %>
+																Inactivo
+																  </label>
+																</div>
+																</div>		 
+								 
+								 
+								 
 							</div> <!--  fin control-group -->
                      
                         
