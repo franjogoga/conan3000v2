@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import IngSoft.general.CoAccion;
 import IngSoft.general.CoException;
+import IngSoft.administracion.bean.SedeMiniBeanData;
 import IngSoft.administracion.bean.ServicioBeanData;
 import IngSoft.administracion.bean.ServicioBeanFunction;
 import IngSoft.administracion.bean.AmbienteMiniBeanData;
@@ -24,7 +25,9 @@ public class AccionAgregarServicio extends CoAccion {
 			this.direccionar(sc, request, response, "/IngSoft/administracion/servicio/buscarservicio.jsp");
 		}
 		ServicioBeanFunction servicioFunction= ServicioBeanFunction.getInstance();
-		Vector<AmbienteMiniBeanData> ambienteMiniData=servicioFunction.getAmbientes();
+		Vector<SedeMiniBeanData> sedes =servicioFunction.getSedes();
+		Vector<AmbienteMiniBeanData> ambienteMiniData=servicioFunction.getAmbientes(sedes.get(0).getCodigo());
+		request.setAttribute("sedes",sedes);
 		request.setAttribute("ambientes",ambienteMiniData);
 		this.direccionar(sc, request, response, "/IngSoft/administracion/servicio/agregarservicio.jsp");
 	}

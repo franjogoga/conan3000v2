@@ -15,8 +15,12 @@
     	<if test="idAmbiente != null ">
        		AND a.IdAmbiente = #{idAmbiente}
     	</if>
+    	<if test="idSede != null">
+        	AND a.IdSede = #{idSede}
+    	</if>
     		AND se.IdAmbiente=a.IdAmbiente AND a.IdSede=s.IdSede AND (se.Estado='Activo' OR se.Estado='Inactivo')
 		</where>
+		ORDER BY 5,3,2;
 	</select>
 
 	<insert id="insertServicio" parameterType="IngSoft.administracion.bean.ServicioBeanData" flushCache="true">
@@ -29,9 +33,9 @@
 	</select>
 
 	<select id="getServicio" parameterType="java.lang.String"  resultType="IngSoft.administracion.bean.ServicioBeanData">
-		SELECT IdServicio as codigo, Nombre as nombre, Descripcion as descripcion, IdAmbiente as idAmbiente, Estado as estado
-		FROM SERVICIO
-		WHERE (Estado = 'Activo' OR Estado = 'Inactivo') AND  IdServicio = #{codigo}; 
+		SELECT se.IdServicio as codigo, se.Nombre as nombre, se.Descripcion as descripcion, se.IdAmbiente as idAmbiente, se.Estado as estado, s.IdSede as idSede
+		FROM SERVICIO se,AMBIENTE a,SEDE s
+		WHERE se.IdAmbiente=a.IdAmbiente AND a.IdSede=s.IdSede AND (se.Estado = 'Activo' OR se.Estado = 'Inactivo') AND  se.IdServicio = #{codigo}; 
 	</select>
 
 	<update id="updateServicio" parameterType="IngSoft.administracion.bean.ServicioBeanData">
@@ -46,4 +50,26 @@
 	<update id="deleteServicio" parameterType="java.lang.String" >
 		UPDATE SERVICIO SET Estado='Eliminado' WHERE IdServicio = #{codigo}
 	</update>
+	
+	<select id="searchAmbienteMini" parameterType="java.lang.String" resultType="IngSoft.administracion.bean.AmbienteMiniBeanData">
+		SELECT IdAmbiente as codigo, Nombre as nombre, IdSede as codigoSede
+		FROM AMBIENTE
+		WHERE IdSede like #{codigo}
+		Order by 2 asc;
+	</select>
+	
+	<select id="searchSedeMini" resultType="IngSoft.administracion.bean.SedeMiniBeanData">
+		select s.IdSede as codigo, s.Nombre as nombre
+		from SEDE s, AMBIENTE a
+		where s.IdSede=a.IdSede
+		group by (s.IdSede)
+		Order by 2 asc;
+	</select>
+	
+	<select id="searchIdSede" parameterType="java.lang.String" resultType="IngSoft.administracion.bean.SedeMiniBeanData">
+		select s.IdSede as codigo,s.Nombre as nombre
+		from SERVICIO c, SEDE s, AMBIENTE a
+		where c.IdAmbiente=a.IdAmbiente AND a.IdSede=s.IdSede AND c.IdServicio = #{codigo}
+		group by (s.IdSede);
+	</select>
 </mapper>
