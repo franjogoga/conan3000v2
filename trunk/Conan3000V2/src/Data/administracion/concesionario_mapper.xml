@@ -43,7 +43,15 @@
 	 	where IdConcesionario = #{codigo}
 	</update>
 
-	<update id="deleteConcesionario" parameterType="java.lang.String" >
+	<update id="deleteConcesionario" parameterType="java.lang.String">
 		UPDATE CONCESIONARIO SET Estado='Eliminado' WHERE IdConcesionario = #{codigo}
 	</update>
+	
+	<select id="searchConcesionarioSede" parameterType="java.lang.String" resultType="IngSoft.administracion.bean.ConcesionarioSedeBeanData">
+		SELECT s.IdSede as codigo,s.Nombre as nombre,cs.FechaInicio as fechaInicio,cs.FechaFin as fechaFin,cs.Estado as estado
+		FROM CONCESIONARIOxSEDE cs,SEDE s
+		WHERE cs.IdSede=s.IdSede AND
+			  (cs.Estado='Activo' OR cs.Estado='Inactivo') AND
+			  cs.IdConcesionario = #{codigo};
+	</select>
 </mapper>
