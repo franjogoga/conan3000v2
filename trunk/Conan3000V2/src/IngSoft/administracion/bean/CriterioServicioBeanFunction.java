@@ -16,6 +16,7 @@ public class CriterioServicioBeanFunction {
 		CriterioServicioBeanData criterioServicioData = new CriterioServicioBeanData();
 		criterioServicioData.setNombre(request.getParameter("txtNombre")==""?null:"%"+request.getParameter("txtNombre")+"%");
 		criterioServicioData.setIdAmbiente("0".equals(request.getParameter("cmbAmbiente"))?null:request.getParameter("cmbAmbiente"));
+		criterioServicioData.setIdSede("0".equals(request.getParameter("cmbSede"))?null:request.getParameter("cmbSede"));
 		return criterioServicioData;				
 	}
 	public Vector<ResultadoServicioBeanData> buscarServicio(CriterioServicioBeanData criterioServicioData){		

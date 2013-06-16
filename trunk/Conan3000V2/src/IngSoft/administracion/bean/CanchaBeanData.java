@@ -10,6 +10,7 @@ public class CanchaBeanData implements Serializable{
 	private String estado;
 	private String idTipoCancha;
 	private String descripcion;
+	private String idSede;
 	
 	public String getCodigo() {
 		return codigo;
@@ -46,5 +47,11 @@ public class CanchaBeanData implements Serializable{
 	}
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
+	}
+	public String getIdSede() {
+		return idSede;
+	}
+	public void setIdSede(String idSede) {
+		this.idSede = idSede;
 	}
 }

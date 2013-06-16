@@ -7,6 +7,7 @@ public class CriterioBungalowBeanData implements Serializable{
 	private Integer numeroDivisiones;
 	private Double areaBungalow;
 	private String idAmbiente;
+	private String idSede;
 	
 	public Integer getNumero() {
 		return numero;
@@ -29,7 +30,13 @@ public class CriterioBungalowBeanData implements Serializable{
 	public String getIdAmbiente() {
 		return idAmbiente;
 	}
-	public void setIdAmbiente(String idAmbiente) {
-		this.idAmbiente = idAmbiente;
+	public void setIdAmbiente(String idSede) {
+		this.idAmbiente = idSede;
+	}
+	public String getIdSede() {
+		return idSede;
+	}
+	public void setIdSede(String idSede) {
+		this.idSede = idSede;
 	}
 }

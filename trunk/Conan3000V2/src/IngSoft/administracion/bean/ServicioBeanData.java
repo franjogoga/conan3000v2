@@ -9,6 +9,7 @@ public class ServicioBeanData implements Serializable{
 	private String idAmbiente;
 	private String descripcion;
 	private String estado;
+	private String idSede;
 	
 	public String getCodigo() {
 		return codigo;
@@ -39,5 +40,11 @@ public class ServicioBeanData implements Serializable{
 	}
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
+	}
+	public String getIdSede() {
+		return idSede;
+	}
+	public void setIdSede(String idSede) {
+		this.idSede = idSede;
 	}
 }

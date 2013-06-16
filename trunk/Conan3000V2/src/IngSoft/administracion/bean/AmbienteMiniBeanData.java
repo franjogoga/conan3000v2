@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class AmbienteMiniBeanData implements Serializable{
 	private String codigo; 
 	private String nombre;
-	private String nombreSede;
+	private String codigoSede;
 	
 	public String getCodigo() {
 		return codigo;
@@ -19,10 +19,10 @@ public class AmbienteMiniBeanData implements Serializable{
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public String getNombreSede() {
-		return nombreSede;
+	public String getCodigoSede() {
+		return codigoSede;
 	}
-	public void setNombreSede(String nombreSede) {
-		this.nombreSede = nombreSede;
+	public void setCodigoSede(String codigoSede) {
+		this.codigoSede = codigoSede;
 	}
 }

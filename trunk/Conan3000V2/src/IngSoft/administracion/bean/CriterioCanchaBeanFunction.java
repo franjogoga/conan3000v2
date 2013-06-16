@@ -17,6 +17,7 @@ public class CriterioCanchaBeanFunction {
 		criterioCanchaData.setNombre(request.getParameter("txtNombre")==""?null:"%"+request.getParameter("txtNombre")+"%");
 		criterioCanchaData.setIdTipoCancha("0".equals(request.getParameter("cmbTipoCancha"))?null:request.getParameter("cmbTipoCancha"));
 		criterioCanchaData.setIdAmbiente("0".equals(request.getParameter("cmbAmbiente"))?null:request.getParameter("cmbAmbiente"));
+		criterioCanchaData.setIdSede("0".equals(request.getParameter("cmbSede"))?null:request.getParameter("cmbSede"));
 		return criterioCanchaData;				
 	}
 	public Vector<ResultadoCanchaBeanData> buscarCancha(CriterioCanchaBeanData criterioCanchaData){		

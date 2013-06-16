@@ -52,7 +52,6 @@ public class CanchaBeanFunction {
 		return canchaData;
 	} 
 	
-	
 	public boolean agregarCancha(CanchaBeanData canchaData) throws CoException {
 		boolean resultado=false;		
 		l.lock();
@@ -135,9 +134,24 @@ public class CanchaBeanFunction {
 		return canchaData;
 	}
 	
-	public Vector<AmbienteMiniBeanData> getAmbientes(){
+	public Vector<SedeMiniBeanData> getSedes(){
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
-		List<AmbienteMiniBeanData> resultados=sqlsesion.selectList("Data.administracion.cancha.searchAmbienteMini");
+		List<SedeMiniBeanData> resultados=sqlsesion.selectList("Data.administracion.cancha.searchSedeMini");
+		sqlsesion.close();
+		return new Vector<>(resultados);
+	}
+		
+	public SedeMiniBeanData consultarCodigoSede (String codigo){
+		SedeMiniBeanData sede=null;
+		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+		sede=sqlsesion.selectOne("Data.administracion.cancha.searchIdSede",codigo);
+		sqlsesion.close();
+		return sede;		
+	}
+	
+	public Vector<AmbienteMiniBeanData> getAmbientes(String codigoSede){
+		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+		List<AmbienteMiniBeanData> resultados=sqlsesion.selectList("Data.administracion.cancha.searchAmbienteMini",codigoSede);
 		sqlsesion.close();
 		return new Vector<>(resultados);
 	}
