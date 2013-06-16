@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%@page import="IngSoft.administracion.bean.SedeMiniBeanData"%>
 <%@page import="IngSoft.administracion.bean.AmbienteMiniBeanData"%>
 <%@page import="IngSoft.administracion.bean.ResultadoBungalowBeanData"%>
 <%@page import="java.util.Vector"%>
@@ -11,6 +12,7 @@
 	<meta name="author" content="Muhammad Usman">
 
 	<!--The beans  -->
+	<jsp:useBean id="sedes" scope="request" class="java.util.Vector"></jsp:useBean>
 	<jsp:useBean id="ambientes" scope="request" class="java.util.Vector"></jsp:useBean>
 	<jsp:useBean id="resultados" scope="request"class="java.util.Vector"></jsp:useBean>
 
@@ -50,7 +52,29 @@
 	<link rel="shortcut icon" href="img/favicon.ico">
 		
 	<script>
+	function alt_ambiente(){
+		$.ajax({
+		  type: "POST",
+		  url: "/Conan3000V2/IngSoft/administracion/bungalow/SMABungalow",
+		  data: "accion=Buscar"+ "&tipo=4" + "&cmbSede=" + $(cmbSede).val(),
+		  dataType: "html",
+		  beforeSend: function ( xhr ) {
+   		  $("#cmbAmbiente").html("");
+			//chosen - improves select
+			$("#cmbAmbiente").trigger("liszt:updated");
+  		  },
+		  success: function(msg){
+			$("#cmbAmbiente").html(msg);
+			//chosen - improves select
+			$("#cmbAmbiente").trigger("liszt:updated");
+		  },
+		  error: function(objeto, quepaso, otroobj){
+			alert("ERROR!! Pasó lo siguiente: "+quepaso);
+		  }
 	
+		});
+	}
+		
 	function alt_submit(){
 		var form= document.frmCriteriosBusqueda;
 		if(validaForm()) form.submit();
@@ -146,12 +170,23 @@
                           </div>
                         </div>
                         <div class="control-group">
+                          <label class="control-label" for="selectError">Sede:</label>
+                          <div class="controls">
+                            <select id="cmbSede" data-rel="chosen" name="cmbSede"  onchange="alt_ambiente()">
+     				    		<option selected value="0">Todos</option>
+     				    		<%for(int i=0;i<sedes.size();i++){ %>
+									<option value="<%= ((SedeMiniBeanData)sedes.get(i)).getCodigo()%>"><%= ((SedeMiniBeanData)sedes.get(i)).getNombre()%></option>
+								<%} %>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="control-group">
                           <label class="control-label" for="selectError">Ambiente:</label>
                           <div class="controls">
-                            <select name="cmbAmbiente" id="cmdAmbiente" data-rel="chosen" style="width: 440px" >
+                            <select name="cmbAmbiente" id="cmbAmbiente" data-rel="chosen">
                               <option selected value="0">Todos</option>
                               <%for(int i=0;i<ambientes.size();i++){ %>
-							  	<option value="<%=((AmbienteMiniBeanData)ambientes.get(i)).getCodigo()%>"><%= ((AmbienteMiniBeanData)ambientes.get(i)).getNombre()+" / "+((AmbienteMiniBeanData)ambientes.get(i)).getNombreSede()%></option>
+							  	<option value="<%=((AmbienteMiniBeanData)ambientes.get(i)).getCodigo()%>"><%= ((AmbienteMiniBeanData)ambientes.get(i)).getNombre()%></option>
 							  <%}%>
                             </select>
                           </div>
@@ -186,7 +221,8 @@
                               <th>N&uacute;mero</th>
                               <th>N&uacute;m. de Divisiones</th>
                               <th>&Aacute;rea del Bungalow (m2)</th>
-                              <th>Ambiente / Sede</th>
+                              <th>Sede</th>
+                              <th>Ambiente</th>
                               <th>Estado</th>
                               <th>Acci&oacute;n</th>
                             </tr>
@@ -197,7 +233,8 @@
                               <td class="center"><%=((ResultadoBungalowBeanData)resultados.get(i)).getNumero()%></td>
                               <td class="center"><%=((ResultadoBungalowBeanData)resultados.get(i)).getNumeroDivisiones()%></td>
                               <td class="center"><%=((ResultadoBungalowBeanData)resultados.get(i)).getAreaBungalow()%></td>
-                              <td class="center"><%=((ResultadoBungalowBeanData)resultados.get(i)).getAmbiente()+" / "+((ResultadoBungalowBeanData)resultados.get(i)).getSede()%></td>
+                              <td class="center"><%=((ResultadoBungalowBeanData)resultados.get(i)).getSede()%></td>
+                              <td class="center"><%=((ResultadoBungalowBeanData)resultados.get(i)).getAmbiente()%></td>
                               <td class="center"><%=((ResultadoBungalowBeanData)resultados.get(i)).getEstado()%></td>
                               <td class="center">
                               				<a class="btn btn-success" href="javascript:alt_consultar('<%=((ResultadoBungalowBeanData)resultados.get(i)).getCodigo()%>')">
