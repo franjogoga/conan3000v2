@@ -10,11 +10,14 @@ public class HorariodetrabajoBeanData implements Serializable{
 	private String nombre;
 	
 	
-	private String codDiasemana;
-	private String diaSemana;	
+	private String codDiasemana;// Un string con todos los codigos separados por comas
+	private String diaSemana;// Un string con todos los dias separados por comas	
 	
 	private String horaInicio;
 	private String horaFin;
+	
+	private String estadosDias;
+	
 	
 	private String estado;
 	
@@ -60,6 +63,12 @@ public class HorariodetrabajoBeanData implements Serializable{
 	}
 	public void setEstado(String estado) {
 		this.estado = estado;
+	}
+	public String getEstadosDias() {
+		return estadosDias;
+	}
+	public void setEstadosDias(String estadosDias) {
+		this.estadosDias = estadosDias;
 	}
 	
 
