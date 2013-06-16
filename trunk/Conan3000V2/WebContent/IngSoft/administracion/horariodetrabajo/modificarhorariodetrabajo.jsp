@@ -216,7 +216,7 @@
 													            %>
 																<td class="center">
 							 																																													
-														 		<select  style="width: 70px;"  data-rel="chosen" id="cmbHoraInicio<%=i%>"  name="cmbHoraInicio" >
+														 		<select  style="width: 70px;"  data-rel="chosen" id="cmbHoraInicio<%=i%>"  name="cmbHoraInicio<%=i%>" >
 															        <%for(int k=0;k<horasDelDia.size();k++){     %>
 													<option value="<%=    ((String)horasDelDia.get(k))   %>"    <%= ((String)horasDelDia.get(k)).equalsIgnoreCase(   iniHora[x]     )?"selected":"" %> >  <%=       ((String)horasDelDia.get(k))    %>    </option>
 																    <%} %>						
@@ -228,7 +228,7 @@
 																
 																<td class="center">
 							 																																													
-														 		<select  style="width: 70px;"  data-rel="chosen" id="cmbHoraInicio<%=i%>"  name="cmbHoraInicio" >
+														 		<select  style="width: 70px;"  data-rel="chosen" id="cmbHoraInicio<%=i%>"  name="cmbHoraInicio<%=i%>" >
 															        <%for(int k=0;k<horasDelDia.size();k++){     %>
 													<option value="<%=    ((String)horasDelDia.get(k))   %>"    <%= k==0?"selected":"" %>  > <%=    ((String)horasDelDia.get(k))    %>    </option>
 																    <%} %>						

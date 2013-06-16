@@ -12,6 +12,8 @@ import IngSoft.general.CoException;
 
 
 import IngSoft.administracion.bean.DiasBeanData;
+import IngSoft.administracion.bean.HorarioDiaSemanaBeanData;
+import IngSoft.administracion.bean.HorarioDiaSemanaBeanFunction;
 import IngSoft.administracion.bean.HorariodetrabajoBeanData;
 import IngSoft.administracion.bean.HorariodetrabajoBeanFuncion;
 
@@ -24,37 +26,62 @@ public class AccionModificarHorariodetrabajo extends CoAccion{
 			HttpServletResponse response)  throws CoException{
 		
 		
-		Vector<String> horasDelDia = new  Vector<String>() ;
-		for(int i=8;i<23;i++){
-			
-			if(i<10)
-			{   horasDelDia.add("0"+i+":00");
-			    horasDelDia.add("0"+i+":30");
-				
-			}
-			else{
-				    horasDelDia.add( i+":00");
-				    horasDelDia.add( i+":30");
-			}
-		}
+
 		
 		
 		
 		
 		if(Integer.valueOf(request.getParameter("tipo"))==2){
 		
+			System.out.print(  "modificar 2 horario de trabajo" );
+			System.out.print(  request.getParameter("checkDia") );
 			
-			/*
+	
+		//modificamos	a la tabla Horario
 		HorariodetrabajoBeanFuncion horariodetrabajoFuncion= HorariodetrabajoBeanFuncion.getInstance();
 		HorariodetrabajoBeanData horariodetrabajoData=horariodetrabajoFuncion.crearHorariodetrabajoModificada(request, response);
 		horariodetrabajoFuncion.modificarHorariodetrabajo(horariodetrabajoData);
-		    */
+		 
+		
+		//modificamos a la tabla horarioxdia_semana
+		
+		for(int i=0; i<7;i++)
+		{
+		if( request.getParameter("checkDia"+i)!=null){
+			
+			
+			System.out.print("Antes de entrar Codigo Dia -->"+ request.getParameter("checkDia"+i) +" Codigo Horario --> "+  request.getParameter("codigo")  +"Hora inicio-->"+ request.getParameter("cmbHoraInicio"+i) +" Hora Fin --> "+ request.getParameter("cmbHoraFin"+i));	
+			
+			
+			HorarioDiaSemanaBeanFunction horarioDiaSemanaFunction = HorarioDiaSemanaBeanFunction.getInstance();
+			HorarioDiaSemanaBeanData     horarioDiaSemanaData = horarioDiaSemanaFunction.crearHorarioDiaSemanaMoficado(  request.getParameter("checkDia"+i)  ,  request.getParameter("codigo")  , request.getParameter("cmbHoraInicio"+i), request.getParameter("cmbHoraFin"+i) );
+			horarioDiaSemanaFunction.modificarHorarioDiaSemanaBeanData(horarioDiaSemanaData);
+		}
+		
+		}
+		
 			
 		this.direccionar(sc, request, response, "/IngSoft/administracion/horariodetrabajo/buscarhorariodetrabajo.jsp");
 		
 		}
 		else
 		{
+			
+			Vector<String> horasDelDia = new  Vector<String>() ;
+			for(int i=8;i<23;i++){
+				
+				if(i<10)
+				{   horasDelDia.add("0"+i+":00");
+				    horasDelDia.add("0"+i+":30");
+					
+				}
+				else{
+					    horasDelDia.add( i+":00");
+					    horasDelDia.add( i+":30");
+				}
+			}
+			
+			
 			HorariodetrabajoBeanFuncion horariodetrabajoFuncion= HorariodetrabajoBeanFuncion.getInstance(); 
 			HorariodetrabajoBeanData  horariodetrabajo=horariodetrabajoFuncion.consultarHorariodetrabajo(request.getParameter("codigo"));
 			
