@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%@page import="IngSoft.administracion.bean.SedeMiniBeanData"%>
 <%@page import="IngSoft.administracion.bean.AmbienteMiniBeanData"%>
 <html lang="en">
 <head>
@@ -12,6 +13,7 @@
 	<!--The beans  -->
 	<jsp:useBean id="ambientes" scope="request" class="java.util.Vector"></jsp:useBean>
 	<jsp:useBean id="servicio" scope="request" class="IngSoft.administracion.bean.ServicioBeanData"></jsp:useBean>
+	<jsp:useBean id="sedes" scope="request" class="java.util.Vector"></jsp:useBean>
 
 	<!-- The styles -->
 	<link id="bs-css" href="css/bootstrap-cerulean.css" rel="stylesheet">
@@ -52,6 +54,29 @@
 	function alt_submit(){
 		var form= document.frmUpdate;
 		if(validaForm()) form.submit();
+	}
+	
+	function alt_ambiente(){
+		$.ajax({
+		  type: "POST",
+		  url: "/Conan3000V2/IngSoft/administracion/servicio/SMAServicio",
+		  data: "accion=Buscar"+ "&tipo=3" + "&cmbSede=" + $(cmbSede).val(),
+		  dataType: "html",
+		  beforeSend: function ( xhr ) {
+   		  $("#cmbAmbiente").html("");
+			//chosen - improves select
+			$("#cmbAmbiente").trigger("liszt:updated");
+  		  },
+		  success: function(msg){
+			$("#cmbAmbiente").html(msg);
+			//chosen - improves select
+			$("#cmbAmbiente").trigger("liszt:updated");
+		  },
+		  error: function(objeto, quepaso, otroobj){
+			alert("ERROR!! Pasó lo siguiente: "+quepaso);
+		  }
+	
+		});
 	}
 	</script>
 	<%! public boolean  encontrar(String a, String b){		
@@ -96,7 +121,7 @@
               <div>
                 <ul class="breadcrumb">
                   <li> <a href="../../general/index.jsp">Home</a> <span class="divider">/</span> </li>
-                  <li> <a href="buscarservicio.jsp">Mantenimiento de Servicios</a> <span class="divider">/</span></li>
+                  <li> <a href="SMAServicio?accion=Buscar&tipo=1">Mantenimiento de Servicios</a> <span class="divider">/</span></li>
                   <li>Modificar Servicio</li>
                 </ul>
               </div>
@@ -116,6 +141,16 @@
                           <div class="controls">
                             <input type="text" class="span6 typeahead" id="txtNombre" name="txtNombre" data-provide="typeahead" value="<%=servicio.getNombre()%>" onkeypress="return alfanumerico(event);">
                           	<span class="help-inline" id="errNombre">Please correct the error</span>
+                          </div>
+                        </div>
+                        <div class="control-group">
+                          <label class="control-label" for="selectError">Sede (*):</label>
+                          <div class="controls">
+                            <select id="cmbSede" data-rel="chosen" name="cmbSede"  onchange="alt_ambiente()">
+     				    		<%for(int i=0;i<sedes.size();i++){ %>
+									<option value="<%= ((SedeMiniBeanData)sedes.get(i)).getCodigo()%>"<%=encontrar(((SedeMiniBeanData)sedes.get(i)).getCodigo(),servicio.getIdSede())?"selected":""%>><%= ((SedeMiniBeanData)sedes.get(i)).getNombre()%></option>
+								<%} %>
+                            </select>
                           </div>
                         </div>
                         <div class="control-group">

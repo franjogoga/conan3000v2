@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <%@page import="IngSoft.administracion.bean.AmbienteMiniBeanData"%>
+<%@page import="IngSoft.administracion.bean.SedeMiniBeanData"%>
 <html lang="en">
 <head>
 	<meta charset="utf-8">
@@ -10,6 +11,7 @@
 
 	<!--The beans  -->
 	<jsp:useBean id="ambientes" scope="request" class="java.util.Vector"></jsp:useBean>
+	<jsp:useBean id="sedes" scope="request" class="java.util.Vector"></jsp:useBean>
 
 	<!-- The styles -->
 	<link id="bs-css" href="css/bootstrap-cerulean.css" rel="stylesheet">
@@ -51,6 +53,28 @@
 		var form= document.frmData;
 		if(validaForm()) form.submit();
 	}
+	function alt_ambiente(){
+		$.ajax({
+		  type: "POST",
+		  url: "/Conan3000V2/IngSoft/administracion/servicio/SMAServicio",
+		  data: "accion=Buscar"+ "&tipo=3" + "&cmbSede=" + $(cmbSede).val(),
+		  dataType: "html",
+		  beforeSend: function ( xhr ) {
+   		  $("#cmbAmbiente").html("");
+			//chosen - improves select
+			$("#cmbAmbiente").trigger("liszt:updated");
+  		  },
+		  success: function(msg){
+			$("#cmbAmbiente").html(msg);
+			//chosen - improves select
+			$("#cmbAmbiente").trigger("liszt:updated");
+		  },
+		  error: function(objeto, quepaso, otroobj){
+			alert("ERROR!! Pasó lo siguiente: "+quepaso);
+		  }
+	
+		});
+	}
 	</script>	
 </head>
 
@@ -75,7 +99,7 @@
               <div>
                 <ul class="breadcrumb">
                   <li> <a href="../../general/index.jsp">Home</a> <span class="divider">/</span> </li>
-                  <li> <a href="buscarservicio.jsp">Mantenimiento de Servicios</a> <span class="divider">/</span></li>
+                  <li> <a href="SMAServicio?accion=Buscar&tipo=1">Mantenimiento de Servicios</a> <span class="divider">/</span></li>
                   <li>Agregar Servicio</li>
                 </ul>
               </div>
@@ -97,12 +121,22 @@
                           </div>
                         </div>
                         <div class="control-group">
+                          <label class="control-label" for="selectError">Sede (*):</label>
+                          <div class="controls">
+                            <select id="cmbSede" data-rel="chosen" name="cmbSede"  onchange="alt_ambiente()">
+     				    		<%for(int i=0;i<sedes.size();i++){ %>
+									<option value="<%= ((SedeMiniBeanData)sedes.get(i)).getCodigo()%>" <%=i==0?"selected":""%>><%= ((SedeMiniBeanData)sedes.get(i)).getNombre()%></option>
+								<%} %>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="control-group">
                           <label class="control-label" for="selectError">Ambiente (*):</label>
                           <div class="controls">
-                            <select name="cmbAmbiente" id="cmbAmbiente" data-rel="chosen" style="width: 440px">
-                              	<%for(int i=0;i<ambientes.size();i++){ %>
-									<option value="<%= ((AmbienteMiniBeanData)ambientes.get(i)).getCodigo()%>" <%=i==0?"selected":""%>><%= ((AmbienteMiniBeanData)ambientes.get(i)).getNombre()+" - "+((AmbienteMiniBeanData)ambientes.get(i)).getNombreSede()%></option>
-								<%}%>
+                            <select id="cmbAmbiente" data-rel="chosen" name="cmbAmbiente">
+     				    		<%for(int i=0;i<ambientes.size();i++){ %>
+									<option value="<%= ((AmbienteMiniBeanData)ambientes.get(i)).getCodigo()%>" <%=i==0?"selected":""%>><%= ((AmbienteMiniBeanData)ambientes.get(i)).getNombre()%></option>
+								<%} %>
                             </select>
                           </div>
                         </div>

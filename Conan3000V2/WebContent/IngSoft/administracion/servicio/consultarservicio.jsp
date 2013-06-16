@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <%@page import="IngSoft.administracion.bean.AmbienteMiniBeanData"%>
+<%@page import="IngSoft.administracion.bean.SedeMiniBeanData"%>
 <html lang="en">
 <head>
 	<meta charset="utf-8">
@@ -11,6 +12,7 @@
 	<!--The beans  -->
 	<jsp:useBean id="ambientes" scope="request" class="java.util.Vector"></jsp:useBean>
 	<jsp:useBean id="servicio" scope="request" class="IngSoft.administracion.bean.ServicioBeanData"></jsp:useBean>
+	<jsp:useBean id="sedes" scope="request" class="java.util.Vector"></jsp:useBean>
 	
 	<!-- The styles -->
 	<link id="bs-css" href="css/bootstrap-cerulean.css" rel="stylesheet">
@@ -88,7 +90,7 @@
               <div>
                 <ul class="breadcrumb">
                   <li> <a href="../../general/index.jsp">Home</a> <span class="divider">/</span> </li>
-                  <li> <a href="buscarservicio.jsp">Mantenimiento de Servicios</a> <span class="divider">/</span></li>
+                  <li> <a href="SMAServicio?accion=Buscar&tipo=1">Mantenimiento de Servicios</a> <span class="divider">/</span></li>
                   <li>Consultar Servicio</li>
                 </ul>
               </div>
@@ -107,6 +109,16 @@
                           <label class="control-label" for="disabledInput">Nombre:</label>
                           <div class="controls">
                             <input class="input-xlarge disabled" id="txtNombre" type="text" name="txtNombre" value="<%=servicio.getNombre()%>" disabled="">
+                          </div>
+                        </div>
+                        <div class="control-group">
+                          <label class="control-label" for="selectError">Sede (*):</label>
+                          <div class="controls">
+                            <select id="cmbSede" data-rel="chosen" name="cmbSede"  disabled>
+     				    		<%for(int i=0;i<sedes.size();i++){ %>
+									<option value="<%= ((SedeMiniBeanData)sedes.get(i)).getCodigo()%>"<%=encontrar(((SedeMiniBeanData)sedes.get(i)).getCodigo(),servicio.getIdSede())?"selected":""%>><%= ((SedeMiniBeanData)sedes.get(i)).getNombre()%></option>
+								<%} %>
+                            </select>
                           </div>
                         </div>
                         <div class="control-group">

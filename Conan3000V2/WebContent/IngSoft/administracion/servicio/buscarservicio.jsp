@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%@page import="IngSoft.administracion.bean.SedeMiniBeanData"%>
 <%@page import="IngSoft.administracion.bean.AmbienteMiniBeanData"%>
 <%@page import="IngSoft.administracion.bean.ResultadoServicioBeanData"%>
 <%@page import="java.util.Vector"%>
@@ -11,6 +12,7 @@
 	<meta name="author" content="Muhammad Usman">
 
 	<!--The beans  -->
+	<jsp:useBean id="sedes" scope="request" class="java.util.Vector"></jsp:useBean>
 	<jsp:useBean id="ambientes" scope="request" class="java.util.Vector"></jsp:useBean>
 	<jsp:useBean id="resultados" scope="request"class="java.util.Vector"></jsp:useBean>
 
@@ -50,6 +52,29 @@
 	<link rel="shortcut icon" href="img/favicon.ico">
 	<script src="servicio.js"></script>
 	<script>
+	
+	function alt_ambiente(){
+		$.ajax({
+		  type: "POST",
+		  url: "/Conan3000V2/IngSoft/administracion/servicio/SMAServicio",
+		  data: "accion=Buscar"+ "&tipo=4" + "&cmbSede=" + $(cmbSede).val(),
+		  dataType: "html",
+		  beforeSend: function ( xhr ) {
+   		  $("#cmbAmbiente").html("");
+			//chosen - improves select
+			$("#cmbAmbiente").trigger("liszt:updated");
+  		  },
+		  success: function(msg){
+			$("#cmbAmbiente").html(msg);
+			//chosen - improves select
+			$("#cmbAmbiente").trigger("liszt:updated");
+		  },
+		  error: function(objeto, quepaso, otroobj){
+			alert("ERROR!! Pasó lo siguiente: "+quepaso);
+		  }
+	
+		});
+	}
 	function alt_agregar(){
 		var form=document.getElementById("frmAlternativo");
 		form.accion.value="Agregar";
@@ -124,12 +149,23 @@
                           </div>
                         </div>
                         <div class="control-group">
+                          <label class="control-label" for="selectError">Sede:</label>
+                          <div class="controls">
+                            <select id="cmbSede" data-rel="chosen" name="cmbSede"  onchange="alt_ambiente()">
+     				    		<option selected value="0">Todos</option>
+     				    		<%for(int i=0;i<sedes.size();i++){ %>
+									<option value="<%= ((SedeMiniBeanData)sedes.get(i)).getCodigo()%>"><%= ((SedeMiniBeanData)sedes.get(i)).getNombre()%></option>
+								<%} %>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="control-group">
                           <label class="control-label" for="selectError">Ambiente:</label>
                           <div class="controls">
-                            <select name="cmbAmbiente" id="cmbAmbiente" data-rel="chosen" style="width: 440px">
+                            <select name="cmbAmbiente" id="cmbAmbiente" data-rel="chosen">
                               <option selected value="0">Todos</option>
                               <%for(int i=0;i<ambientes.size();i++){ %>
-							  	<option value="<%=((AmbienteMiniBeanData)ambientes.get(i)).getCodigo()%>"><%= ((AmbienteMiniBeanData)ambientes.get(i)).getNombre()+" - "+((AmbienteMiniBeanData)ambientes.get(i)).getNombreSede()%></option>
+							  	<option value="<%=((AmbienteMiniBeanData)ambientes.get(i)).getCodigo()%>"><%= ((AmbienteMiniBeanData)ambientes.get(i)).getNombre()%></option>
 							  <%}%>
                       	     </select>
                           </div>
@@ -162,7 +198,8 @@
                           <thead>
                             <tr>
                               <th>Nombre</th>
-                              <th>Ambiente / Sede</th>
+                              <th>Sede</th>
+                              <th>Ambiente</th>
                               <th>Estado</th>
                               <th>Acci&oacute;n</th>
                             </tr>
@@ -171,7 +208,8 @@
                           	<% for(int i=0; i<resultados.size(); i++) { %>
                             <tr>
                               <td class="center"><%=((ResultadoServicioBeanData)resultados.get(i)).getNombre()%></td>
-                              <td class="center"><%=((ResultadoServicioBeanData)resultados.get(i)).getAmbiente()+" / "+((ResultadoServicioBeanData)resultados.get(i)).getSede()%></td>
+                              <td class="center"><%=((ResultadoServicioBeanData)resultados.get(i)).getSede()%></td>
+                              <td class="center"><%=((ResultadoServicioBeanData)resultados.get(i)).getAmbiente()%></td>
                               <td class="center"><%=((ResultadoServicioBeanData)resultados.get(i)).getEstado()%></td>
                               <td class="center">
                               				<a class="btn btn-success" href="javascript:alt_consultar('<%=((ResultadoServicioBeanData)resultados.get(i)).getCodigo()%>')">
