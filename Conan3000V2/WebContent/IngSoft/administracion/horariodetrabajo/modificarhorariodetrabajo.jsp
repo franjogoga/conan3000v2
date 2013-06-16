@@ -191,7 +191,7 @@
 														   
 														   String[] finHora = ((HorariodetrabajoBeanData)horariodetrabajo).getHoraFin().split(",");
 														   
-														  // String[] estadoDias = ((HorariodetrabajoBeanData)horariodetrabajo).getEstadosDias().split(",");
+														    String[] estDias = ((HorariodetrabajoBeanData)horariodetrabajo).getEstadosDias().split(",");
 														   
 														   
 														   
