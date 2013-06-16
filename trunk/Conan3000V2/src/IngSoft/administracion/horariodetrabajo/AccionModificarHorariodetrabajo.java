@@ -47,16 +47,41 @@ public class AccionModificarHorariodetrabajo extends CoAccion{
 		
 		for(int i=0; i<7;i++)
 		{
-		if( request.getParameter("checkDia"+i)!=null){
+		
+			if( request.getParameter("checkDia"+i)!=null){
+			//if(    request.getParameter("estadoDia"+i).equalsIgnoreCase("Activo") ||  request.getParameter("estadoDia"+i).equalsIgnoreCase("Inactivo")   )   {
 			
-			
-			System.out.print("Antes de entrar Codigo Dia -->"+ request.getParameter("checkDia"+i) +" Codigo Horario --> "+  request.getParameter("codigo")  +"Hora inicio-->"+ request.getParameter("cmbHoraInicio"+i) +" Hora Fin --> "+ request.getParameter("cmbHoraFin"+i));	
-			
-			
+			System.out.print("Antes de entrar Codigo Dia -->"+ request.getParameter("checkDia"+i) );
+			System.out.print(" Codigo Horario --> "+  request.getParameter("codigo")  );
+			System.out.print("Hora inicio-->"+ request.getParameter("cmbHoraInicio"+i) );
+			System.out.print("Hora Fin --> "+ request.getParameter("cmbHoraFin"+i));
+			System.out.print("Estado --> "+ request.getParameter("estadoDia"+i));
+
 			HorarioDiaSemanaBeanFunction horarioDiaSemanaFunction = HorarioDiaSemanaBeanFunction.getInstance();
-			HorarioDiaSemanaBeanData     horarioDiaSemanaData = horarioDiaSemanaFunction.crearHorarioDiaSemanaMoficado(  request.getParameter("checkDia"+i)  ,  request.getParameter("codigo")  , request.getParameter("cmbHoraInicio"+i), request.getParameter("cmbHoraFin"+i) );
+			
+			
+			
+			
+			HorarioDiaSemanaBeanData     horarioDiaSemanaData = horarioDiaSemanaFunction.crearHorarioDiaSemanaMoficado(  
+					request.getParameter("checkDia"+i)  , 
+					request.getParameter("codigo")  , 
+					request.getParameter("cmbHoraInicio"+i), 
+					request.getParameter("cmbHoraFin"+i) , 
+					request.getParameter("estadoDia"+i)
+					);
+			
+			System.out.print("Saliendo  del seteo ------------------------------------------");
+			
+			
+			System.out.print(horarioDiaSemanaData.getCodigoDia()  +" --> ");
+			System.out.print(horarioDiaSemanaData.getCodigoHorario() +" --> ");
+			System.out.print(horarioDiaSemanaData.getHoraInicio()   +" --> ");
+			System.out.print(horarioDiaSemanaData.getHoraFin()  +" --> "); 	
+			System.out.print(horarioDiaSemanaData.getEstado()  +" --> "); 
+			
 			horarioDiaSemanaFunction.modificarHorarioDiaSemanaBeanData(horarioDiaSemanaData);
-		}
+			
+		    }
 		
 		}
 		
