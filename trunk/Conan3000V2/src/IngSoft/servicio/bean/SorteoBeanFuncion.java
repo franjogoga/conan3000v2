@@ -132,14 +132,17 @@ public class SorteoBeanFuncion {
 			int indiceRandom;
 			SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 			List<BungalowxSorteData> lista = sqlsesion.selectList("Data.servicio.sorteo.searchListaSorteo",idSorteo);
-			for (int i=0; i<n; i++){				
+			int flag = n;
+			if (n > listaInscritos.size()) flag=listaInscritos.size();
+			for (int i=0; i<flag; i++){				
 				indiceRandom=generator.nextInt(listaInscritos.size());
 				listaInscritos.get(indiceRandom).setIdBungalow(lista.get(i).getIdBungalow());
 				String nombre = sqlsesion.selectOne("Data.servicio.sorteo.selectGanador",listaInscritos.get(indiceRandom).getIdSocio());
 				Ramdomsocios.add(nombre);
-				sqlsesion.update("Data.servicio.sorteo.updateGanadores", listaInscritos.get(indiceRandom));
+				sqlsesion.update("Data.servicio.sorteo.updateGanadores", listaInscritos.get(indiceRandom));			
 				listaInscritos.remove(indiceRandom);
 			}
+			sqlsesion.update("Data.servicio.sorteo.updateFlagGanadores", idSorteo);
 			Ramdomsocios.trimToSize();
 			sqlsesion.close();
 			return new Vector<>(Ramdomsocios);
