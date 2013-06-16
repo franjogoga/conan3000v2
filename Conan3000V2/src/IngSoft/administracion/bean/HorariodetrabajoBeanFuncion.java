@@ -63,10 +63,11 @@ public class HorariodetrabajoBeanFuncion {
 	        
 
 	
-        horariodetrabajoData.setCodigo(            request.getParameter("codigo"));	
+        horariodetrabajoData.setCodigo(            request.getParameter("codigo") );	
 	
 		horariodetrabajoData.setNombre(    		request.getParameter("txtNombre") );
 
+		horariodetrabajoData.setEstado(   		request.getParameter("optionsRadios") );
 		
 	
 

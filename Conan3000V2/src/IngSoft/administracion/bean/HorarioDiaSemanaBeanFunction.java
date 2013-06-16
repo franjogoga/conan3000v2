@@ -94,18 +94,35 @@ public class HorarioDiaSemanaBeanFunction {
 	}
 	
 	
-	public HorarioDiaSemanaBeanData crearHorarioDiaSemanaMoficado(String codDia,String codHor,String horIn,String horFin  ){
+	public HorarioDiaSemanaBeanData crearHorarioDiaSemanaMoficado(String codDia,String codHor,String horIn,String horFin,String estadoDia  ){
 		   HorarioDiaSemanaBeanData horarioDiaSemanaBeanData= new HorarioDiaSemanaBeanData();
 		try{		
 
 			
+			System.out.print("Entra ------------------------------------------");
+			System.out.print("crearHorarioDiaSemanaMoficado"); 
+			System.out.print("Codigo Dia -->"+ codDia);
+			System.out.print(" Codigo Horario --> "+codHor);
+			System.out.print("Hora inicio-->"+ horIn);
+			System.out.print(" Hora Fin --> "+ horFin);	
+			System.out.print(" estado--> "+ estadoDia);	
 			
-			System.out.print("Codigo Dia -->"+ codDia +" Codigo Horario --> "+codHor  +"Hora inicio-->"+ horIn +" Hora Fin --> "+ horFin);	
 			
-			horarioDiaSemanaBeanData.setCodigoDia(     codDia   );
-			horarioDiaSemanaBeanData.setCodigoHorario( codHor   );
-			horarioDiaSemanaBeanData.setHoraInicio(    horIn    );
-			horarioDiaSemanaBeanData.setHoraFin(       horFin   ); 		
+			horarioDiaSemanaBeanData.setCodigoDia(     codDia   	);
+			horarioDiaSemanaBeanData.setCodigoHorario( codHor   	);
+			horarioDiaSemanaBeanData.setHoraInicio(    horIn    	);
+			horarioDiaSemanaBeanData.setHoraFin(       horFin   	);
+			horarioDiaSemanaBeanData.setEstado(       estadoDia    ); 
+			
+			
+			System.out.print("verificacion de seteo ------------------------------------------");
+			System.out.print("crearHorarioDiaSemanaMoficado"); 
+			
+			System.out.print(horarioDiaSemanaBeanData.getCodigoDia()  +" --> ");
+			System.out.print(horarioDiaSemanaBeanData.getCodigoHorario() +" --> ");
+			System.out.print(horarioDiaSemanaBeanData.getHoraInicio()   +" --> ");
+			System.out.print(horarioDiaSemanaBeanData.getHoraFin()  +" --> "); 	
+			System.out.print(horarioDiaSemanaBeanData.getEstado()  +" --> "); 
 
 		}catch(Exception e){
 			e.printStackTrace();
@@ -124,11 +141,14 @@ public class HorarioDiaSemanaBeanFunction {
 		try{
 			
 			
+			System.out.print("Entra ------------------------------------------");
+			System.out.print("modificarHorarioDiaSemanaBeanData"); 
+			
 			System.out.print(horarioDiaSemanaBeanData.getCodigoDia()  +" --> ");
 			System.out.print(horarioDiaSemanaBeanData.getCodigoHorario() +" --> ");
 			System.out.print(horarioDiaSemanaBeanData.getHoraInicio()   +" --> ");
 			System.out.print(horarioDiaSemanaBeanData.getHoraFin()  +" --> "); 	
-			
+			System.out.print(horarioDiaSemanaBeanData.getEstado()  +" --> "); 
 			
 			
 			// podemos verificar si existen los codigos
