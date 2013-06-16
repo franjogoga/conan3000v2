@@ -6,6 +6,7 @@ public class CriterioCanchaBeanData implements Serializable{
 	private String nombre;
 	private String idTipoCancha;
 	private String idAmbiente;
+	private String idSede;
 	
 	public String getNombre() {
 		return nombre;
@@ -24,5 +25,11 @@ public class CriterioCanchaBeanData implements Serializable{
 	}
 	public void setIdAmbiente(String idAmbiente) {
 		this.idAmbiente = idAmbiente;
+	}
+	public String getIdSede() {
+		return idSede;
+	}
+	public void setIdSede(String idSede) {
+		this.idSede = idSede;
 	}
 }

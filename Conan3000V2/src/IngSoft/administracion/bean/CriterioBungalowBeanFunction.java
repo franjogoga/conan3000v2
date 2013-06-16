@@ -18,6 +18,7 @@ public class CriterioBungalowBeanFunction {
 		criterioBungalowData.setNumeroDivisiones(request.getParameter("txtNumeroDivisiones")==""?0:Integer.parseInt(request.getParameter("txtNumeroDivisiones")));
 		criterioBungalowData.setAreaBungalow(request.getParameter("txtAreaBungalow")==""?0:Double.parseDouble(request.getParameter("txtAreaBungalow")));
 		criterioBungalowData.setIdAmbiente("0".equals(request.getParameter("cmbAmbiente"))?null:request.getParameter("cmbAmbiente"));
+		criterioBungalowData.setIdSede("0".equals(request.getParameter("cmbSede"))?null:request.getParameter("cmbSede"));
 		return criterioBungalowData;				
 	}
 	public Vector<ResultadoBungalowBeanData> buscarBungalow(CriterioBungalowBeanData criterioBungalowData){		

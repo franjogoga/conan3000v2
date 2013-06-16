@@ -131,10 +131,25 @@ public class ServicioBeanFunction {
 		}
 		return servicioData;
 	}
-	
-	public Vector<AmbienteMiniBeanData> getAmbientes(){
+
+	public Vector<SedeMiniBeanData> getSedes(){
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
-		List<AmbienteMiniBeanData> resultados=sqlsesion.selectList("Data.administracion.cancha.searchAmbienteMini");
+		List<SedeMiniBeanData> resultados=sqlsesion.selectList("Data.administracion.servicio.searchSedeMini");
+		sqlsesion.close();
+		return new Vector<>(resultados);
+	}
+		
+	public SedeMiniBeanData consultarCodigoSede (String codigo){
+		SedeMiniBeanData sede=null;
+		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+		sede=sqlsesion.selectOne("Data.administracion.servicio.searchIdSede",codigo);
+		sqlsesion.close();
+		return sede;		
+	}
+
+	public Vector<AmbienteMiniBeanData> getAmbientes(String codigoSede){
+		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+		List<AmbienteMiniBeanData> resultados=sqlsesion.selectList("Data.administracion.servicio.searchAmbienteMini",codigoSede);
 		sqlsesion.close();
 		return new Vector<>(resultados);
 	}
