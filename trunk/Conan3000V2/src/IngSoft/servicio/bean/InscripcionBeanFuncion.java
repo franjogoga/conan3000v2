@@ -39,7 +39,7 @@ public class InscripcionBeanFuncion {
 		try {
 			/*sorteoData.setIdSocio((String) request.getSession().getAttribute(
 					"idSocio"));*/
-			sorteoData.setIdSocio("PRUEBA");
+			sorteoData.setIdSocio("SOC000001");
 			sorteoData.setIdSorteo(request.getParameter("txtCodigoSorteo"));
 			sorteoData.setFecha(new Date());
 			String codParticipante = (String) sqlsesion
