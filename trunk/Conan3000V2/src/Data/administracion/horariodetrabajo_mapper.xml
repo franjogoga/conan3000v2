@@ -38,7 +38,7 @@ SELECT
 ,group_concat(inf245g2.DIA_SEMANA.Nombre) AS diaSemana
 ,inf245g2.HORARIOxDIA_SEMANA.HoraInicio AS horaInicio
 ,inf245g2.HORARIOxDIA_SEMANA.HoraFin AS horaFin
-
+,inf245g2.HORARIO.Estado AS estado
 FROM
       inf245g2.HORARIO,  inf245g2.DIA_SEMANA, inf245g2.HORARIOxDIA_SEMANA
 WHERE
@@ -69,6 +69,8 @@ SELECT
 ,group_concat(inf245g2.DIA_SEMANA.Nombre) AS diaSemana
 ,group_concat(inf245g2.HORARIOxDIA_SEMANA.HoraInicio) AS horaInicio
 ,group_concat(inf245g2.HORARIOxDIA_SEMANA.HoraFin) AS horaFin
+,group_concat(inf245g2.HORARIOxDIA_SEMANA.Estado) AS estadosDias
+,inf245g2.HORARIO.Estado AS estado
 
 FROM
       inf245g2.HORARIO,  inf245g2.DIA_SEMANA, inf245g2.HORARIOxDIA_SEMANA
