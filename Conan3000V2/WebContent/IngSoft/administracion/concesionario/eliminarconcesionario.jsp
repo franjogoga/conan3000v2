@@ -98,7 +98,7 @@
               <div>
                 <ul class="breadcrumb">
                   <li> <a href="../../general/index.jsp">Home</a> <span class="divider">/</span> </li>
-                  <li> <a href="buscarconcesionario.jsp">Mantenimiento de Concesionarios</a> <span class="divider">/</span></li>
+                  <li> <a href="SMAConcesionario?accion=Buscar&tipo=1">Mantenimiento de Concesionarios</a> <span class="divider">/</span></li>
                   <li>Eliminar Concesionario</li>
                 </ul>
               </div>
@@ -140,7 +140,7 @@
 								  </label>
 								  <div style="clear:both"></div>
 								  <label class="radio">
-									<input type="radio" disabled="disabled" name="optionsRadios" id="optionsRadios2" value="option2" <%=Estado_Activo(concesionario.getEstado())?"checked":""%>>
+									<input type="radio" disabled="disabled" name="optionsRadios" id="optionsRadios2" value="option2" <%=Estado_Inactivo(concesionario.getEstado())?"checked":""%>>
 									Inactivo
 								  </label>
 								</div>
