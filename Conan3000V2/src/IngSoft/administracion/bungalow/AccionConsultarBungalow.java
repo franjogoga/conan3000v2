@@ -11,6 +11,7 @@ import IngSoft.general.CoException;
 import IngSoft.administracion.bean.BungalowBeanData;
 import IngSoft.administracion.bean.BungalowBeanFunction;
 import IngSoft.administracion.bean.AmbienteMiniBeanData;
+import IngSoft.administracion.bean.SedeMiniBeanData;
 
 public class AccionConsultarBungalow extends CoAccion {
 
@@ -19,7 +20,10 @@ public class AccionConsultarBungalow extends CoAccion {
 			HttpServletResponse response)  throws CoException{
 		BungalowBeanFunction bungalowFunction = BungalowBeanFunction.getInstance();
 		BungalowBeanData bungalowData = bungalowFunction.consultarBungalow(request.getParameter("codigo"));
-		Vector<AmbienteMiniBeanData> ambienteMiniData=bungalowFunction.getAmbientes();
+		SedeMiniBeanData sede = bungalowFunction.consultarCodigoSede(request.getParameter("codigo"));
+		Vector<SedeMiniBeanData> sedes =bungalowFunction.getSedes();
+		Vector<AmbienteMiniBeanData> ambienteMiniData=bungalowFunction.getAmbientes(sede.getCodigo());
+		request.setAttribute("sedes",sedes);
 		request.setAttribute("ambientes",ambienteMiniData);
 		request.setAttribute("bungalow",bungalowData);
 		this.direccionar(sc, request, response, "/IngSoft/administracion/bungalow/consultarbungalow.jsp");

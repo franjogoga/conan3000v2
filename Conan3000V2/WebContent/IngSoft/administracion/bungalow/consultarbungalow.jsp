@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <%@page import="IngSoft.administracion.bean.AmbienteMiniBeanData"%>
+<%@page import="IngSoft.administracion.bean.SedeMiniBeanData"%>
 <html lang="en">
 <head>
 
@@ -12,6 +13,7 @@
 	<!--The beans  -->
 	<jsp:useBean id="ambientes" scope="request" class="java.util.Vector"></jsp:useBean>
 	<jsp:useBean id="bungalow" scope="request" class="IngSoft.administracion.bean.BungalowBeanData"></jsp:useBean>
+	<jsp:useBean id="sedes" scope="request" class="java.util.Vector"></jsp:useBean>
 	
 	<!-- The styles -->
 	<link id="bs-css" href="css/bootstrap-cerulean.css" rel="stylesheet">
@@ -90,7 +92,7 @@
               <div>
                 <ul class="breadcrumb">
                   <li> <a href="../../general/index.jsp">Home</a> <span class="divider">/</span> </li>
-                  <li> <a href="buscarbungalow.jsp">Mantenimiento de Bungalows</a> <span class="divider">/</span></li>
+                  <li> <a href="SMABungalow?accion=Buscar&tipo=1">Mantenimiento de Bungalows</a> <span class="divider">/</span></li>
                   <li>Consultar Bungalow</li>
                 </ul>
               </div>
@@ -125,11 +127,21 @@
                           </div>
                         </div>
                         <div class="control-group">
+                          <label class="control-label" for="selectError">Sede (*):</label>
+                          <div class="controls">
+                            <select id="cmbSede" data-rel="chosen" name="cmbSede"  disabled>
+     				    		<%for(int i=0;i<sedes.size();i++){ %>
+									<option value="<%= ((SedeMiniBeanData)sedes.get(i)).getCodigo()%>"<%=encontrar(((SedeMiniBeanData)sedes.get(i)).getCodigo(),bungalow.getIdSede())?"selected":""%>><%= ((SedeMiniBeanData)sedes.get(i)).getNombre()%></option>
+								<%} %>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="control-group">
                           <label class="control-label" for="selectError">Ambiente:</label>
                           <div class="controls">
                             <select name="cmbAmbiente" id="cmbAmbiente" data-rel="chosen" disabled style="width: 280px">
                                <%for(int i=0;i<ambientes.size();i++){ %>
-										<option value="<%=((AmbienteMiniBeanData)ambientes.get(i)).getCodigo()%>"<%=encontrar(((AmbienteMiniBeanData)ambientes.get(i)).getCodigo(),bungalow.getIdAmbiente())?"selected":""%>><%= ((AmbienteMiniBeanData)ambientes.get(i)).getNombre()+" - "+((AmbienteMiniBeanData)ambientes.get(i)).getNombre()%></option>
+										<option value="<%=((AmbienteMiniBeanData)ambientes.get(i)).getCodigo()%>"<%=encontrar(((AmbienteMiniBeanData)ambientes.get(i)).getCodigo(),bungalow.getIdAmbiente())?"selected":""%>><%= ((AmbienteMiniBeanData)ambientes.get(i)).getNombre()%></option>
 								<%} %> 
                             </select>
                           </div>

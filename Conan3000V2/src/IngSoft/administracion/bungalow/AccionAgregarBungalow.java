@@ -11,13 +11,12 @@ import IngSoft.general.CoException;
 import IngSoft.administracion.bean.BungalowBeanData;
 import IngSoft.administracion.bean.BungalowBeanFunction;
 import IngSoft.administracion.bean.AmbienteMiniBeanData;
+import IngSoft.administracion.bean.SedeMiniBeanData;
 
 public class AccionAgregarBungalow extends CoAccion {
 
 	@Override
-	public void ejecutar(ServletContext sc, HttpServletRequest request,
-			HttpServletResponse response) throws CoException {
-		// TODO Auto-generated method stub
+	public void ejecutar(ServletContext sc, HttpServletRequest request,HttpServletResponse response) throws CoException {
 		int tipo=Integer.parseInt(request.getParameter("tipo"));
 		if(tipo==2){
 			BungalowBeanFunction bungalowFunction= BungalowBeanFunction.getInstance();
@@ -26,7 +25,9 @@ public class AccionAgregarBungalow extends CoAccion {
 			this.direccionar(sc, request, response, "/IngSoft/administracion/bungalow/buscarbungalow.jsp");
 		}
 		BungalowBeanFunction bungalowFunction= BungalowBeanFunction.getInstance();
-		Vector<AmbienteMiniBeanData> ambienteMiniData=bungalowFunction.getAmbientes();
+		Vector<SedeMiniBeanData> sedes =bungalowFunction.getSedes();
+		Vector<AmbienteMiniBeanData> ambienteMiniData=bungalowFunction.getAmbientes(sedes.get(0).getCodigo());
+		request.setAttribute("sedes",sedes);
 		request.setAttribute("ambientes",ambienteMiniData);
 		this.direccionar(sc, request, response, "/IngSoft/administracion/bungalow/agregarbungalow.jsp");
 	}

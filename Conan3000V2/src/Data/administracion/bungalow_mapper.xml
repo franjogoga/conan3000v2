@@ -21,16 +21,36 @@
     	<if test="idAmbiente != null">
         	AND a.IdAmbiente = #{idAmbiente}
     	</if>
+    	<if test="idSede != null">
+        	AND a.IdSede = #{idSede}
+    	</if>
     		AND b.IdAmbiente=a.IdAmbiente AND a.IdSede=s.IdSede AND (b.Estado='Activo' OR b.Estado='Inactivo')
 		</where>
+		ORDER BY 7 asc,6 asc,2 asc;
 	</select>
 	
-	<select id="searchAmbienteMini" resultType="IngSoft.administracion.bean.AmbienteMiniBeanData">
-		SELECT a.IdAmbiente as codigo, a.Nombre as nombre, s.Nombre as nombreSede
-		FROM AMBIENTE a, SEDE s
-		WHERE a.IdSede=s.IdSede
+	<select id="searchAmbienteMini" parameterType="java.lang.String" resultType="IngSoft.administracion.bean.AmbienteMiniBeanData">
+		SELECT IdAmbiente as codigo, Nombre as nombre, IdSede as codigoSede
+		FROM AMBIENTE
+		WHERE IdSede like #{codigo}
+		Order by 2 asc;
 	</select>
 
+	<select id="searchSedeMini" resultType="IngSoft.administracion.bean.SedeMiniBeanData">
+		select s.IdSede as codigo, s.Nombre as nombre
+		from SEDE s, AMBIENTE a
+		where s.IdSede=a.IdSede
+		group by (s.IdSede)
+		Order by 2 asc;
+	</select>
+	
+	<select id="searchIdSede" parameterType="java.lang.String" resultType="IngSoft.administracion.bean.SedeMiniBeanData">
+		select s.IdSede as codigo,s.Nombre as nombre
+		from BUNGALOW b, SEDE s, AMBIENTE a
+		where b.IdAmbiente=a.IdAmbiente AND a.IdSede=s.IdSede AND b.IdBungalow = #{codigo}
+		group by (s.IdSede);
+	</select>
+	
 	<insert id="insertBungalow" parameterType="IngSoft.administracion.bean.BungalowBeanData" flushCache="true">
 		insert into BUNGALOW(IdBungalow,IdAmbiente,Numero,Estado,NumeroDivisiones,AreaBungalow,Descripcion)
 		values (#{codigo},#{idAmbiente},#{numero},'Activo',#{numeroDivisiones},#{areaBungalow},#{descripcion})
@@ -41,10 +61,10 @@
 	</select>
 
 	<select id="getBungalow" parameterType="java.lang.String"  resultType="IngSoft.administracion.bean.BungalowBeanData">
-		SELECT IdBungalow as codigo, IdAmbiente as idAmbiente, Numero as numero, Estado as estado,
-			   NumeroDivisiones as numeroDivisiones, AreaBungalow as areaBungalow, Descripcion as descripcion
-		FROM BUNGALOW
-		WHERE (Estado = 'Activo' OR Estado = 'Inactivo') AND  IdBungalow = #{codigo}; 
+		SELECT b.IdBungalow as codigo, b.IdAmbiente as idAmbiente, b.Numero as numero, b.Estado as estado,
+			   b.NumeroDivisiones as numeroDivisiones, b.AreaBungalow as areaBungalow, b.Descripcion as descripcion,s.IdSede as idSede
+		FROM BUNGALOW b, AMBIENTE a,SEDE s
+		WHERE b.IdAmbiente=a.IdAmbiente AND a.IdSede=s.IdSede AND (b.Estado = 'Activo' OR b.Estado = 'Inactivo') AND  b.IdBungalow = #{codigo}; 
 	</select>
 
 	<update id="updateBungalow" parameterType="IngSoft.administracion.bean.BungalowBeanData">
