@@ -132,4 +132,12 @@ public class ConcesionarioBeanFunction {
 		}
 		return concesionarioData;
 	}
+	
+
+	public Vector<ConcesionarioSedeBeanData> getConcesionarioSede(String codigo){
+		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+		List<ConcesionarioSedeBeanData> resultados=sqlsesion.selectList("Data.administracion.concesionario.searchConcesionarioSede",codigo);
+		sqlsesion.close();
+		return new Vector<>(resultados);
+	}
 }
