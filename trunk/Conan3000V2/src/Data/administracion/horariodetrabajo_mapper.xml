@@ -11,6 +11,21 @@
 	select max(IdHorario) from HORARIO	
 </select>
   
+
+ 
+ <select id="getVerificaciondeCodigos"   parameterType="IngSoft.administracion.bean.HorarioDiaSemanaBeanData"   resultType="java.lang.String"   >
+SELECT 
+inf245g2.HORARIOxDIA_SEMANA.IdDiaSemana ,
+    inf245g2.HORARIOxDIA_SEMANA.IdHorario
+    FROM inf245g2.HORARIOxDIA_SEMANA
+    WHERE
+        inf245g2.HORARIOxDIA_SEMANA.IdDiaSemana=#{codigoDia}
+    AND inf245g2.HORARIOxDIA_SEMANA.IdHorario=#{codigoHorario}
+
+</select>
+
+  
+  
 <select id="searchPlantillaHorariodetrabajo" parameterType="IngSoft.administracion.bean.CriterioHorariodetrabajoBeanData" resultType="IngSoft.administracion.bean.ResultadoHorariodetrabajoBeanData">
 
 
@@ -99,8 +114,8 @@ where IdHorario= #{codigo}
 <!-- Agregar plantilla Horarioxdiasemana -->
 
 <insert id="insertPlantillaHorarioDiaSemana" parameterType="IngSoft.administracion.bean.HorarioDiaSemanaBeanData" flushCache="true">
-	insert into HORARIOxDIA_SEMANA (IdDiaSemana,IdHorario,HoraInicio,HoraFin)
-	values (#{codigoDia},#{codigoHorario},#{horaInicio},#{horaFin})
+	insert into HORARIOxDIA_SEMANA (IdDiaSemana,IdHorario,HoraInicio,HoraFin,Estado)
+	values (#{codigoDia},#{codigoHorario},#{horaInicio},#{horaFin},#{estado})
 </insert>
 
 
@@ -112,7 +127,8 @@ set
 IdDiaSemana	=	#{codigoDia} ,
 IdHorario	=	#{codigoHorario} ,
 HoraInicio	=	#{horaInicio},
-HoraFin	=	#{horaFin}
+HoraFin	=	#{horaFin},
+Estado =   #{estado}
 
 where IdDiaSemana = #{codigoDia}
 AND	  IdHorario   = #{codigoHorario}
