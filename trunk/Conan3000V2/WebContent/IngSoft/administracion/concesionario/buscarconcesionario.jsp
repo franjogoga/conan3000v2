@@ -173,7 +173,12 @@
                             <tr>
                               <td class="center"><%=((ResultadoConcesionarioBeanData)resultados.get(i)).getRazonSocial()%></td>
                               <td class="center"><%=((ResultadoConcesionarioBeanData)resultados.get(i)).getRuc()%></td>
-                              <td class="center"><%=((ResultadoConcesionarioBeanData)resultados.get(i)).getEstado()%></td>
+                              <td class="center"><%if(((ResultadoConcesionarioBeanData)resultados.get(i)).getEstado().equalsIgnoreCase("Activo")){    
+								 						out.print("<span class='label label-success'>"+((ResultadoConcesionarioBeanData)resultados.get(i)).getEstado()+"</span>");
+												   }
+												   else{
+								 						out.print("<span class='label label-warning'> "+((ResultadoConcesionarioBeanData)resultados.get(i)).getEstado()+"</span>");
+												   }%></td>
                               <td class="center">
                               				<a class="btn btn-success" href="javascript:alt_consultar('<%=((ResultadoConcesionarioBeanData)resultados.get(i)).getCodigo()%>')">
 												<i class="icon-zoom-in icon-white"></i> Ver 

@@ -210,7 +210,12 @@
                               <td class="center"><%=((ResultadoServicioBeanData)resultados.get(i)).getNombre()%></td>
                               <td class="center"><%=((ResultadoServicioBeanData)resultados.get(i)).getSede()%></td>
                               <td class="center"><%=((ResultadoServicioBeanData)resultados.get(i)).getAmbiente()%></td>
-                              <td class="center"><%=((ResultadoServicioBeanData)resultados.get(i)).getEstado()%></td>
+                              <td class="center"><%if(((ResultadoServicioBeanData)resultados.get(i)).getEstado().equalsIgnoreCase("Activo")){    
+								 						out.print("<span class='label label-success'>"+((ResultadoServicioBeanData)resultados.get(i)).getEstado()+"</span>");
+												   }
+												   else{
+								 						out.print("<span class='label label-warning'> "+((ResultadoServicioBeanData)resultados.get(i)).getEstado()+"</span>");
+												   }%></td>
                               <td class="center">
                               				<a class="btn btn-success" href="javascript:alt_consultar('<%=((ResultadoServicioBeanData)resultados.get(i)).getCodigo()%>')">
 												<i class="icon-zoom-in icon-white"></i> Ver 

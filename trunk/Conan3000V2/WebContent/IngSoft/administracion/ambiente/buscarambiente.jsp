@@ -183,7 +183,12 @@
                               <td class="center"><%=((ResultadoAmbienteBeanData)resultados.get(i)).getNombre()%></td>
                               <td class="center"><%=((ResultadoAmbienteBeanData)resultados.get(i)).getNombreTipoAmbiente()%></td>
                               <td class="center"><%=((ResultadoAmbienteBeanData)resultados.get(i)).getNombreSede()%></td>
-                              <td class="center"><%=((ResultadoAmbienteBeanData)resultados.get(i)).getEstado()%></td>
+                              <td class="center"><%if(((ResultadoAmbienteBeanData)resultados.get(i)).getEstado().equalsIgnoreCase("Activo")){    
+								 						out.print("<span class='label label-success'>"+((ResultadoAmbienteBeanData)resultados.get(i)).getEstado()+"</span>");
+												   }
+												   else{
+								 						out.print("<span class='label label-warning'> "+((ResultadoAmbienteBeanData)resultados.get(i)).getEstado()+"</span>");
+												   }%></td>
                               <td class="center">
                               				<a class="btn btn-success" href="javascript:alt_consultar('<%=((ResultadoAmbienteBeanData)resultados.get(i)).getCodigo()%>')">
 												<i class="icon-zoom-in icon-white"></i> Ver 
