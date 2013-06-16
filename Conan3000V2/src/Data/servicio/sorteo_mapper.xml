@@ -109,6 +109,10 @@ update SORTEO set Estado="DESACTIVADO" where IdSorteo=#{codigo}
 update BUNGALOWxSORTEO set IdSocio=#{idSocio} where IdSorteo=#{idSorteo} and IdBungalow=#{idBungalow};
 </update>
 
+
+<update id="updateFlagGanadores" parameterType="String">
+update SORTEO set Flag=1 where IdSorteo=#{idSorteo};
+</update>
 <select id="searchInscritos" parameterType="String" resultType="IngSoft.servicio.bean.SocioInscritoBeanData">
 	select 	IdSocio as idSocio,
 			IdSorteo as idSorteo,
