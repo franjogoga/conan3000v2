@@ -34,7 +34,7 @@ inf245g2.HORARIOxDIA_SEMANA.IdDiaSemana ,
 SELECT 
  inf245g2.HORARIO.IdHorario AS codigo
 ,inf245g2.HORARIO.Descripcion AS nombre
-,group_concat(inf245g2.DIA_SEMANA.IdDiaSemana ORDER BY 1 ASC  ) AS codDiasemana
+,group_concat(inf245g2.DIA_SEMANA.IdDiaSemana) AS codDiasemana
 ,group_concat(inf245g2.DIA_SEMANA.Nombre) AS diaSemana
 ,inf245g2.HORARIOxDIA_SEMANA.HoraInicio AS horaInicio
 ,inf245g2.HORARIOxDIA_SEMANA.HoraFin AS horaFin
@@ -65,7 +65,7 @@ ORDER BY 1 ASC
 SELECT 
  inf245g2.HORARIO.IdHorario AS codigo
 ,inf245g2.HORARIO.Descripcion AS nombre
-,group_concat(inf245g2.DIA_SEMANA.IdDiaSemana ORDER BY 1 ASC  ) AS codDiasemana
+,group_concat(inf245g2.DIA_SEMANA.IdDiaSemana) AS codDiasemana
 ,group_concat(inf245g2.DIA_SEMANA.Nombre) AS diaSemana
 ,group_concat(inf245g2.HORARIOxDIA_SEMANA.HoraInicio) AS horaInicio
 ,group_concat(inf245g2.HORARIOxDIA_SEMANA.HoraFin) AS horaFin
