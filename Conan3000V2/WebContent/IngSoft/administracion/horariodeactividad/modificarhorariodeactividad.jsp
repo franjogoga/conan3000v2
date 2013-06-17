@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
-
+<%@page import="java.util.Vector"%>
+<%@page import="java.text.SimpleDateFormat"%>
 
 
 <%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
-<%@page import="IngSoft.administracion.bean.HorariodeactividadBeanData"%>
 
+<%@page import="IngSoft.administracion.bean.ResultadoActividadBeanData"%>
+<%@page import="IngSoft.administracion.bean.HorariodeactividadBeanData"%>
+<%@page import="IngSoft.administracion.bean.DiasBeanData"%>
 
 <html lang="en">
 <head>
@@ -18,20 +21,13 @@
 	<meta name="author" content="Muhammad Usman">
 	
 	<!--The beans  -->
-	<jsp:useBean id="actividad" scope="request"class="IngSoft.administracion.bean.ActividadBeanData"></jsp:useBean>
-	<jsp:useBean id="sedes"           scope="request"class="java.util.Vector"></jsp:useBean>
-	<jsp:useBean id="ambientes"       scope="request"class="java.util.Vector"></jsp:useBean>
-	<jsp:useBean id="tipoactividades"  scope="request"class="java.util.Vector"></jsp:useBean>
+
 	
 	
-	<jsp:useBean id="departamentos" scope="request"class="java.util.Vector"></jsp:useBean>
-	<jsp:useBean id="provincias" scope="request"class="java.util.Vector"></jsp:useBean>
-	<jsp:useBean id="distritos" scope="request"class="java.util.Vector"></jsp:useBean>
-	<jsp:useBean id="sede" scope="request"class="IngSoft.administracion.bean.SedeBeanData"></jsp:useBean>
-	
-	<jsp:useBean id="horariodeactividad" scope="request" class="java.util.Vector"></jsp:useBean>
-	
-	
+	<jsp:useBean id="horariodeactividad" scope="request"class="IngSoft.administracion.bean.HorariodeactividadBeanData"></jsp:useBean>
+	<jsp:useBean id="diassemana" scope="request"class="java.util.Vector"></jsp:useBean>	
+	<jsp:useBean id="actividades" scope="request"class="java.util.Vector"></jsp:useBean>
+	<jsp:useBean id="horasDelDia" scope="request"class="java.util.Vector"></jsp:useBean>	
 	
 	
 	<!-- The styles -->
@@ -67,9 +63,121 @@
 	<![endif]-->
 
 	<!-- The fav icon -->
-	<link rel="shortcut icon" href="img/favicon.ico">
+	<link rel="shortcut icon" href="img/conan_logo.png">
+
+
+<script>
+
+
+function cambiar0()
+{
+	var opcion = document.getElementById('estadoDia0');
 	
+      if( opcion.value=="Activo" )
+      {      opcion.value = "Inactivo";
+      }
+     else
+      {    opcion.value = "Activo";
+      }
+       
+}
+function cambiar1()
+{
+	var opcion = document.getElementById('estadoDia1');
 	
+      if( opcion.value=="Activo" )
+      {      opcion.value = "Inactivo";
+      }
+     else
+      {    opcion.value = "Activo";
+      }
+       
+}
+function cambiar2()
+{
+	var opcion = document.getElementById('estadoDia2');
+	
+      if( opcion.value=="Activo" )
+      {      opcion.value = "Inactivo";
+      }
+     else
+      {    opcion.value = "Activo";
+      }
+       
+}
+function cambiar3()
+{
+	var opcion = document.getElementById('estadoDia3');
+	
+      if( opcion.value=="Activo" )
+      {      opcion.value = "Inactivo";
+      }
+     else
+      {    opcion.value = "Activo";
+      }
+       
+}
+function cambiar4()
+{
+	var opcion = document.getElementById('estadoDia4');
+	
+      if( opcion.value=="Activo" )
+      {      opcion.value = "Inactivo";
+      }
+     else
+      {    opcion.value = "Activo";
+      }
+       
+}
+function cambiar5()
+{
+	var opcion = document.getElementById('estadoDia5');
+	
+      if( opcion.value=="Activo" )
+      {      opcion.value = "Inactivo";
+      }
+     else
+      {    opcion.value = "Activo";
+      }
+       
+}
+function cambiar6()
+{
+	var opcion = document.getElementById('estadoDia6');
+	
+      if( opcion.value=="Activo" )
+      {      opcion.value = "Inactivo";
+      }
+     else
+      {    opcion.value = "Activo";
+      }
+       
+}
+
+</script>
+
+<%!
+
+       boolean verificarExiste(String s, String[] l){
+
+	   for(int i=0; i< l.length; i++){
+		   if(l[i].equalsIgnoreCase(s))
+		    return true;
+	   }
+	   return false; 
+	   };
+
+       int obtenerInice(String s, String[] l){
+
+	   for(int i=0; i< l.length; i++){
+		   if(l[i].equalsIgnoreCase(s))
+		    return i;
+	   }
+	   return -1; 
+	   };
+         
+	   
+%>	
 	
 </head>
 
@@ -101,11 +209,11 @@
               <div class="row-fluid sortable">
                 <div class="box span12">
                   <div class="box-header well" data-original-title>
-                    <h2><i class="icon-edit"></i>MODIFICAR HORARIO DE ACTIVIDAD</h2>
+                    <h2><i class="icon-edit"></i>MODIFICAR HORARIO DE Actividad</h2>
                   </div>
                   <div class="box-content">
                     <form class="form-horizontal" action="<%= response.encodeURL("SMAHorariodeactividad")%>" name="frmData" method="post">
-						<input type="hidden" name="codigo" value="<%=((HorariodeactividadBeanData)horariodeactividad.get(0)).getCodigo()%>  "></input>
+						<input type="hidden" name="codigo" value="<%=  ((HorariodeactividadBeanData)horariodeactividad).getCodigo()   %>   "></input>
 						<input type="hidden" name="accion" value="Modificar"></input>
 						<input type="hidden" name="tipo" value="2"></input>
 						  
@@ -119,14 +227,29 @@
                         <div class="control-group" id="dvNombreAmbiente">
                           <label class="control-label" for="typeahead">Nombre (*):</label>
                           <div class="controls">
-                            <input type="text" class="span6 typeahead" id="txtNombre"  data-provide="typeahead" name="txtNombre"   value="<%=((HorariodeactividadBeanData)horariodeactividad.get(0)).getNombre()%> "      >
-                          	<span class="help-inline" id="errNombreAmbiente">Please correct the error</span>
-                        
+                           
+							  
+								
+								
+								  <select style="width: 404px;"  id="codActividad" data-rel="chosen"  name="codActividad"    >
+									<%for(int k=0;k<actividades.size();k++){      %>
+			                        <option disabled value="<%=((ResultadoActividadBeanData)actividades.get(k)).getCodigo() %>"  <%= ((HorariodeactividadBeanData)horariodeactividad).getCodigo().equalsIgnoreCase(  ((ResultadoActividadBeanData)actividades.get(k)).getCodigo()      )?"selected":""%>     > 
+			                             <%=    ((ResultadoActividadBeanData)actividades.get(k)).getNombre()    %>    
+				                    </option>
+									<%} %>	
+								  </select>
+								
+							  
+							  
+						  <span class="help-inline" id="errNombreAmbiente">Please correct the error</span>
+                         
                         
                         
 
 
 <!---------------  -->
+							
+								<!--  	<div class="row-fluid sortable"> -->
 									
 								<div class="control-group">	
 								
@@ -151,38 +274,133 @@
 
 														  <tbody>
 														  
-														   <% for(int i=0; i<horariodeactividad.size(); i++) { %>
+														   <% 
+														   
+														   String[] codigoDia = ((HorariodeactividadBeanData)horariodeactividad).getCodDiasemana().split(",");
+														   String[] nombreDia = ((HorariodeactividadBeanData)horariodeactividad).getDiaSemana().split(",");
+														   
+														   String[] iniHora = ((HorariodeactividadBeanData)horariodeactividad).getHoraInicio().split(",");
+														   
+														    
+														   
+														   
+														   
+														   String[] finHora = ((HorariodeactividadBeanData)horariodeactividad).getHoraFin().split(",");
+														   
+														   String[] estDias = ((HorariodeactividadBeanData)horariodeactividad).getEstadosDias().split(",");
+														   
+														   
+														   
+														   
+														   int x;
+														   
+														   for(int i=0; i<diassemana.size(); i++) { %>
 														   
 															<tr>
 																<td>
 							
 															  <label class="checkbox inline">
-																<input type="checkbox" checked id="inlineCheckbox<%=i%>" name="checkDia"  value="<%=((HorariodeactividadBeanData)horariodeactividad.get(i)).getCodDiasemana()%>  "> <%=((HorariodeactividadBeanData)horariodeactividad.get(i)).getDiaSemana()%>  
-															 
-															 
+															   
+															    <% if(    verificarExiste(  ((DiasBeanData)diassemana.get(i)).getCodigo() ,  codigoDia)    ){
+															    	x = obtenerInice(   ((DiasBeanData)diassemana.get(i)).getCodigo() ,  codigoDia   );
+															    	// out.print(  ((DiasBeanData)diassemana.get(i)).getCodigo() +" "+ codigoDia[x]    +" " +" dia > "+   nombreDia[x]    +" "+ x +" "+ iniHora[x] +" "+ finHora[x] +" ------| " );
+															    %>
+															    
+																<input type="checkbox"  id="inlineCheckbox<%=i%>"    <%= estDias[x].equalsIgnoreCase("Activo")?"checked":""  %>   onclick="cambiar<%=i%>();"   > 
+																<%=  nombreDia[x]  %> 
+																<input type="hidden" id="checkDia<%=i%>" name="checkDia<%=i%>"  value="<%= codigoDia[x] %>" ></input> 
+																<input type="hidden" id="estadoDia<%=i%>" name="estadoDia<%=i%>"  value="<%=estDias[x]%>"></input>
+																
+																<%}else{ %>
+															    
+																<input type="checkbox"  id="inlineCheckbox<%=i%>"              onclick="cambiar<%=i%>();"   > 
+																<%=  ((DiasBeanData)diassemana.get(i)).getNombre()  %> 
+																<input type="hidden" id="checkDia<%=i%>" name="checkDia<%=i%>"  value="<%= ((DiasBeanData)diassemana.get(i)).getCodigo() %>"  ></input>  
+																<input type="hidden" id="estadoDia<%=i%>" name="estadoDia<%=i%>"  value="-------"></input>
+																	
+																<%} %>
+																
 															  </label>
 															  
 																</td>
+															<!-- hora inicio -->	
+																<% 
+																
+																if( verificarExiste(  ((DiasBeanData)diassemana.get(i)).getCodigo() ,  codigoDia)  ){ 
+																	
+																	x = obtenerInice(   ((DiasBeanData)diassemana.get(i)).getCodigo() ,  codigoDia   );
+													            		  // out.print(   " dia > "+   nombreDia[x]    +" "+ x +" "+ iniHora[x] +" "+ finHora[x] +" ------| " );
+													            				
+													          
+													            %>
+																<td class="center">
+							 																																													
+														 		<select  style="width: 70px;"  data-rel="chosen" id="cmbHoraInicio<%=i%>"  name="cmbHoraInicio<%=i%>" >
+															        <%for(int k=0;k<horasDelDia.size();k++){     %>
+													<option value="<%=    ((String)horasDelDia.get(k))   %>"    <%= ((String)horasDelDia.get(k)).equalsIgnoreCase(   iniHora[x]     )?"selected":"" %> >  <%=       ((String)horasDelDia.get(k))    %>    </option>
+																    <%} %>						
+															    </select>
+							
+																</td>
+																<%}else{ %>
+																
 																
 																<td class="center">
 							 																																													
-														 		<select  style="width: 100px;"  data-rel="chosen" id="cmbHoraInicio<%=i%>"  name="cmbHoraInicio" >
-															        <%for(int k=0;k<horariodeactividad.size();k++){ %>
-													<option value="<%=((HorariodeactividadBeanData)horariodeactividad.get(k)).getCodDiasemana()%>" <%=  i==k ?"selected":""%>  > <%=    ((HorariodeactividadBeanData)horariodeactividad.get(i)).getHoraInicio()    %>    </option>
+														 		<select  style="width: 70px;"  data-rel="chosen" id="cmbHoraInicio<%=i%>"  name="cmbHoraInicio<%=i%>" >
+															        <%for(int k=0;k<horasDelDia.size();k++){     %>
+													<option value="<%=    ((String)horasDelDia.get(k))   %>"    <%= k==0?"selected":"" %>  > <%=    ((String)horasDelDia.get(k))    %>    </option>
 																    <%} %>						
 															    </select>
 							
 																</td>
 																
-																<td class="center">
+																<%} %>
 																
-														 		<select style="width: 100px;" data-rel="chosen" id="cmbHoraFin<%=i%>"  name="cmbHoraInicio" >
-															        <%for(int k=0;k<horariodeactividad.size();k++){ %>
-													<option value="<%=((HorariodeactividadBeanData)horariodeactividad.get(k)).getCodDiasemana()%>" <%=  i==k ?"selected":""%>  >   <%=    ((HorariodeactividadBeanData)horariodeactividad.get(i)).getHoraFin()   %>     </option>
+																<!-- fin hora inicio -->
+																
+																
+																
+																
+	                                                            <% 	
+																if( verificarExiste(  ((DiasBeanData)diassemana.get(i)).getCodigo() ,  codigoDia)  ){ 
+																	
+																	x = obtenerInice(   ((DiasBeanData)diassemana.get(i)).getCodigo() ,  codigoDia   );
+													            				//out.print(" indice ---> "+   x    +" hora inicio "+ iniHora[x]);
+													            				
+													          
+													            %>
+																<td class="center">
+							 																																													
+														 		<select  style="width: 70px;"  data-rel="chosen" id="cmbHoraFin<%=i%>"  name="cmbHoraFin<%=i%>" >
+															        <%for(int k=0;k<horasDelDia.size();k++){     %>
+													<option value="<%=    ((String)horasDelDia.get(k))   %>"    <%= ((String)horasDelDia.get(k)).equalsIgnoreCase(   finHora[x]     )?"selected":"" %> >  <%=       ((String)horasDelDia.get(k))    %>    </option>
 																    <%} %>						
 															    </select>
-																
+							
 																</td>
+																<%}else{ %>
+																
+																
+																<td class="center">
+							 																																													
+														 		<select  style="width: 70px;"  data-rel="chosen" id="cmbHoraFin<%=i%>"  name="cmbHoraFin<%=i%>" >
+															        <%for(int k=0;k<horasDelDia.size();k++){     %>
+													<option value="<%=    ((String)horasDelDia.get(k))   %>"    <%= k==0?"selected":"" %>  > <%=    ((String)horasDelDia.get(k))    %>    </option>
+																    <%} %>						
+															    </select>
+							
+																</td>
+																
+																<%} %>
+																
+																<!-- fin hora fin -->
+																
+																
+																
+     
+																
+																
 							                                      
 															</tr>
 															
@@ -198,7 +416,54 @@
 							
 								</div><!--/row-->       
 <!-- -------- -->		
+
 								 </div><!-- fin controls -->
+								 
+								 
+								 
+								 
+
+														        <div class="control-group">
+																<label class="control-label">Estado </label>
+																<div class="controls">
+																  <label class="radio">
+																  <%
+																 
+																  if( ((HorariodeactividadBeanData)horariodeactividad).getEstado().equalsIgnoreCase("Disponible") ){
+																  out.print(" <input   type='radio'  name='optionsRadios' id='optionsRadios1' value='Disponible' checked=''  >");
+																  }
+																  else
+																  {  out.print(" <input   type='radio'  name='optionsRadios' id='optionsRadios1' value='Disponible'  >");
+																  }
+																 
+																   
+																  %>
+																Disponible
+																  </label>
+																 
+																    <div style="clear:both"></div>   
+																 
+																 
+																  <label class="radio">
+																 
+																  <%
+																  if( ((HorariodeactividadBeanData)horariodeactividad).getEstado().equalsIgnoreCase("No Disponible") ){
+																  out.print(" <input   type='radio'  name='optionsRadios' id='optionsRadios2' value='No Disponible' checked=''  >");
+																  }
+																  else
+																  {  out.print(" <input   type='radio'  name='optionsRadios' id='optionsRadios2' value='No Disponible'  >");
+																  }
+																  %>
+																No Disponible
+																  </label>
+																</div>
+																</div>		 
+								 
+								 	 
+								 	 
+								 
+								 
+								 
 							</div> <!--  fin control-group -->
                      
                         
@@ -392,52 +657,8 @@
 	}
 	
 	
-	
-	function alt_provincia(){
-		$.ajax({
-		  type: "POST",
-		  url: "/Conan3000V2/IngSoft/administracion/sede/SMASede",
-		  data: "accion=Buscar"+ "&tipo=3" + "&cmbDepartamento=" + $(cmbDepartamento).val(),
-		  dataType: "html",
-		  beforeSend: function ( xhr ) {
-   		  $("#cmbProvincia").html("");
-			//chosen - improves select
-			$("#cmbProvincia").trigger("liszt:updated");
-  		  },
-		  success: function(msg){
-			$("#cmbProvincia").html(msg);
-			//chosen - improves select
-			$("#cmbProvincia").trigger("liszt:updated");
-		  },
-		  error: function(objeto, quepaso, otroobj){
-			alert("ERROR!! Pasó lo siguiente: "+quepaso);
-		  }
-	
-		});
-	}
-	function alt_distrito(){
-		$.ajax({
-		  type: "POST",
-		  url: "/Conan3000V2/IngSoft/administracion/sede/SMASede",
-		  data: "accion=Buscar"+ "&tipo=4" + "&cmbProvincia=" + $(cmbProvincia).val(),
-		  dataType: "html",
-		  beforeSend: function ( xhr ) {
-   		  $("#cmbDistrito").html("");
-			//chosen - improves select
-			$("#cmbDistrito").trigger("liszt:updated");
-  		  },
-		  success: function(msg){
-			$("#cmbDistrito").html(msg);
-			//chosen - improves select
-			$("#cmbDistrito").trigger("liszt:updated");
-		  },
-		  error: function(objeto, quepaso, otroobj){
-			alert("ERROR!! Pasó lo siguiente: "+quepaso);
-		  }
-	
-		});
-	}		
-		
+
+
 	
 	
 	
@@ -505,7 +726,7 @@ function validaForm(){
         var cadena= new Array();
         var i=0;
         var error=false;
-        if(!esValido("Nombre",form.txtNombre,"NombreAmbiente",1,1,50)){cadena[i]="Nombre";i++;}
+        if(!esValido("Nombre",form.codActividad,"NombreAmbiente",1,1,50)){cadena[i]="Nombre";i++;}
         //if(!esValido("Descripci&oacute;n",form.txtDescripcion,"Descripcion",1,0,100)){cadena[i]="Descripci&oacute;n";i++;}
         //if(!esValido("Direccion",form.txtDireccion,"Direccion",1,1,50)){cadena[i]="Direccion";i++;}
         //if(!esValido("Telefono",form.txtTelefono,"Telefono",1,6,7)){cadena[i]="Telefono";i++;}
