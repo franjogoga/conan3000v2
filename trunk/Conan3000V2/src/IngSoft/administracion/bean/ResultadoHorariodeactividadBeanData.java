@@ -4,15 +4,14 @@ import java.io.Serializable;
 import java.sql.Date;
 
 public class ResultadoHorariodeactividadBeanData implements Serializable{
-	private String codigo;
-	private String nombre; 
-
-	
+	private String codigo; 
+	private String nombre;
 	private String codDiasemana;
+	private String diaSemana;
 	private String horaInicio;
-	private String horaFin;
-	
+	private String horaFin;	
 	private String estado;
+
 	
 	public String getCodigo() {
 		return codigo;
