@@ -41,6 +41,52 @@ public class HorariodeactividadBeanFuncion {
 	
 
 
+	public HorariodeactividadBeanData crearHorariodeactividadModificada(HttpServletRequest request, HttpServletResponse response){
+		HorariodeactividadBeanData horariodeactividadData= new HorariodeactividadBeanData();
+		try{		
+
+        horariodeactividadData.setCodigo(            request.getParameter("codigo") );	
+		horariodeactividadData.setEstado(   		request.getParameter("optionsRadios") );
+		}catch(Exception e){
+			e.printStackTrace();
+			
+		}
+		return horariodeactividadData;		
+	}
+	
+	public boolean modificarHorariodeactividad(HorariodeactividadBeanData horariodeactividadData) throws CoException {
+		boolean resultado=false;		
+		
+		l.lock();
+		
+		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+		
+		try{
+
+			
+			sqlsesion.insert("Data.administracion.horariodeactividad.modificarPlantillaHorariodeactividad",horariodeactividadData);
+
+			
+			resultado=true;
+		}
+		catch(Exception a)		
+		{sqlsesion.rollback();
+		a.printStackTrace();
+			throw CoException.set("Error: No se pudo modificar la horariodeactividad ", "SMAHorariodeactividad?accion=Agregar&tipo=1");
+			
+		}
+		
+		finally{
+			sqlsesion.commit();
+			sqlsesion.close();
+			l.unlock();				
+		}
+			
+		return resultado;
+	}
+	
+	
+	
 
 	
 	public HorariodeactividadBeanData consultarHorariodeactividad(String codigo){
@@ -72,7 +118,7 @@ public class HorariodeactividadBeanFuncion {
 		catch(Exception a)		
 		{sqlsesion.rollback();
 		a.printStackTrace();
-			throw CoException.set("Error: No se pudo eliminar la Horariodetrabajo intente de nuevo", "SMAHorariodeactividad?accion=Agregar&tipo=1");
+			throw CoException.set("Error: No se pudo eliminar la Horariodeactividad intente de nuevo", "SMAHorariodeactividad?accion=Agregar&tipo=1");
 			
 		}
 		
