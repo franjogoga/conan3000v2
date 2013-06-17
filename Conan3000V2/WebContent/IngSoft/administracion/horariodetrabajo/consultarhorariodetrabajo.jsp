@@ -181,8 +181,13 @@
 														   String[] nombreDia = ((HorariodetrabajoBeanData)horariodetrabajo).getDiaSemana().split(",");
 														   String[] horaIni = ((HorariodetrabajoBeanData)horariodetrabajo).getHoraInicio().split(",");
 														   String[] horaFin = ((HorariodetrabajoBeanData)horariodetrabajo).getHoraFin().split(",");
+														   String[] estDias = ((HorariodetrabajoBeanData)horariodetrabajo).getEstadosDias().split(",");
 														   
-														   for (int i = 0; i < codigoDia.length; i++) { %>
+														   
+														   for (int i = 0; i < codigoDia.length; i++) { 
+														   if(estDias[i].equalsIgnoreCase("Activo")){
+														   
+														   %>
 														   
 															<tr>
 																<td>
@@ -217,7 +222,10 @@
 							                                      
 															</tr>
 															
-								      						<%}%>
+								      						<%}
+								      						
+														   
+														   }%>
 								      						
 														  </tbody>
 																					 
