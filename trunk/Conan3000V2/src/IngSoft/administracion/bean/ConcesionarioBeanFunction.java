@@ -140,4 +140,11 @@ public class ConcesionarioBeanFunction {
 		sqlsesion.close();
 		return new Vector<>(resultados);
 	}
+	
+	public Vector<SedeMiniBeanData> getSedes(){
+		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+		List<SedeMiniBeanData> resultados=sqlsesion.selectList("Data.administracion.ambiente.searchSedeMini");
+		sqlsesion.close();
+		return new Vector<>(resultados);
+	}
 }
