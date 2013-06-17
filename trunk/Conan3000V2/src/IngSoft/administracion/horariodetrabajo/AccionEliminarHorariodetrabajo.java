@@ -30,11 +30,11 @@ public class AccionEliminarHorariodetrabajo extends CoAccion{
 		
 		if(Integer.valueOf(request.getParameter("tipo"))==2){
 			
-			/*
+			
 			HorariodetrabajoBeanFuncion horariodetrabajoFuncion= HorariodetrabajoBeanFuncion.getInstance();
 			horariodetrabajoFuncion.eliminarHorariodetrabajo(request.getParameter("codigo"));
 			
-			*/
+			
 			this.direccionar(sc, request, response, "/IngSoft/administracion/horariodetrabajo/buscarhorariodetrabajo.jsp");
 			
 		}
