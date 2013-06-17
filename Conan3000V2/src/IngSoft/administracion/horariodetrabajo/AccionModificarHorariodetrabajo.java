@@ -48,10 +48,11 @@ public class AccionModificarHorariodetrabajo extends CoAccion{
 		for(int i=0; i<7;i++)
 		{
 		
-			if( request.getParameter("checkDia"+i)!=null){
-			//if(    request.getParameter("estadoDia"+i).equalsIgnoreCase("Activo") ||  request.getParameter("estadoDia"+i).equalsIgnoreCase("Inactivo")   )   {
+			//if( request.getParameter("checkDia"+i)!=null){
+			if(    request.getParameter("estadoDia"+i).equalsIgnoreCase("Activo") ||  request.getParameter("estadoDia"+i).equalsIgnoreCase("Inactivo")   )   {
 			
-			System.out.print("Antes de entrar Codigo Dia -->"+ request.getParameter("checkDia"+i) );
+			System.out.print("Antes de entrar " );
+			System.out.print("Codigo Dia -->"+ request.getParameter("checkDia"+i) );
 			System.out.print(" Codigo Horario --> "+  request.getParameter("codigo")  );
 			System.out.print("Hora inicio-->"+ request.getParameter("cmbHoraInicio"+i) );
 			System.out.print("Hora Fin --> "+ request.getParameter("cmbHoraFin"+i));
