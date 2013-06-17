@@ -30,24 +30,31 @@ public class AccionEliminarHorariodeactividad extends CoAccion{
 		
 		if(Integer.valueOf(request.getParameter("tipo"))==2){
 			
-			/*
+			
 			HorariodeactividadBeanFuncion horariodeactividadFuncion= HorariodeactividadBeanFuncion.getInstance();
 			horariodeactividadFuncion.eliminarHorariodeactividad(request.getParameter("codigo"));
 			
-			*/
+			
 			this.direccionar(sc, request, response, "/IngSoft/administracion/horariodeactividad/buscarhorariodeactividad.jsp");
 			
 		}
 		else
 		{
-			System.out.print("entro aqui   -----x AccionConsultarHorariodeactividad x-------1--- ");
+			
 			
 			HorariodeactividadBeanFuncion horariodeactividadFuncion= HorariodeactividadBeanFuncion.getInstance(); 
-			
-			System.out.print("entro aqui   -----x AccionConsultarHorariodeactividad x-------2--- "+ request.getParameter("codigo"));
-			
 			HorariodeactividadBeanData  horariodeactividad=horariodeactividadFuncion.consultarHorariodeactividad(request.getParameter("codigo"));
 
+			System.out.print(  horariodeactividad.getCodigo()             );
+			System.out.print(  horariodeactividad.getNombre()            );
+			System.out.print(  horariodeactividad.getCodDiasemana()       );
+			System.out.print(  horariodeactividad.getDiaSemana()            );
+			System.out.print(  horariodeactividad.getEstadosDias()             );
+			System.out.print(  horariodeactividad.getHoraFin()             );
+			System.out.print(  horariodeactividad.getHoraInicio()            );
+			System.out.print(  horariodeactividad.getEstado()             );
+			
+			
 			request.setAttribute("horariodeactividad",horariodeactividad );
 
 			

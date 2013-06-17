@@ -15,7 +15,12 @@ import IngSoft.administracion.bean.HorariodeactividadBeanFuncion;
 
 
 import IngSoft.administracion.bean.DiasBeanData;
+import IngSoft.administracion.bean.ActividadDiaSemanaBeanData;
+import IngSoft.administracion.bean.ActividadDiaSemanaBeanFunction;
 import IngSoft.administracion.bean.HorariodeactividadBeanData;
+import IngSoft.administracion.bean.HorariodetrabajoBeanData;
+import IngSoft.administracion.bean.HorariodetrabajoBeanFuncion;
+import IngSoft.administracion.bean.ResultadoActividadBeanData;
 
 
 public class AccionAgregarHorariodeactividad extends CoAccion{
@@ -27,11 +32,19 @@ public class AccionAgregarHorariodeactividad extends CoAccion{
 		if(Integer.valueOf(request.getParameter("tipo"))==2){
 		
 	
-			/*
-		HorariodeactividadBeanFuncion actividadFuncion= HorariodeactividadBeanFuncion.getInstance();
-		HorariodeactividadBeanData horariodeactividadData=actividadFuncion.crearHorariodeactividad(request, response);
-		actividadFuncion.agregarHorariodeactividad(horariodeactividadData);
-		   */
+		
+			
+			System.out.print(  "codActividad ---> "+request.getParameter("codActividad") );
+			
+		for(int i=0; i<7;i++)
+		{
+		if( request.getParameter("checkDia"+i)!=null){
+			ActividadDiaSemanaBeanFunction actividadDiaSemanaFunction = ActividadDiaSemanaBeanFunction.getInstance();
+			ActividadDiaSemanaBeanData     horarioDiaSemanaData = actividadDiaSemanaFunction.crearHorarioDiaSemana(   request.getParameter("checkDia"+i)  , request.getParameter("codActividad"), request.getParameter("cmbHoraInicio"+i), request.getParameter("cmbHoraFin"+i) );
+			actividadDiaSemanaFunction.agregarHorarioDiaSemana(horarioDiaSemanaData);
+		}
+		
+		}
 		
 		
 		this.direccionar(sc, request, response, "/IngSoft/administracion/horariodeactividad/buscarhorariodeactividad.jsp");
@@ -40,14 +53,34 @@ public class AccionAgregarHorariodeactividad extends CoAccion{
 		else
 		{
 			
+			
+			Vector<String> horasDelDia = new  Vector<String>() ;
+			for(int i=8;i<23;i++){
+				
+				if(i<10)
+				{   horasDelDia.add("0"+i+":00");
+				    horasDelDia.add("0"+i+":30");
+					
+				}
+				else{
+					    horasDelDia.add( i+":00");
+					    horasDelDia.add( i+":30");
+				}
+			}
+			
+			
 
 			HorariodeactividadBeanFuncion horariodeactividadFuncion= HorariodeactividadBeanFuncion.getInstance(); 
-			HorariodeactividadBeanData  horariodeactividad=horariodeactividadFuncion.consultarHorariodeactividad(request.getParameter("codigo"));
+			
+			Vector<ResultadoActividadBeanData>       actividades = horariodeactividadFuncion.getActividades();
 			
 			Vector<DiasBeanData>  diassemana=horariodeactividadFuncion.getDias();
 			
+			
+			request.setAttribute("actividades",actividades );
+			request.setAttribute("horasDelDia",horasDelDia );
 			request.setAttribute("diassemana",diassemana );
-			request.setAttribute("horariodeactividad",horariodeactividad );
+			
 			this.direccionar(sc, request, response, "/IngSoft/administracion/horariodeactividad/agregarhorariodeactividad.jsp");	
 		
 		
