@@ -46,7 +46,7 @@
 	<![endif]-->
 
 	<!-- The fav icon -->
-	<link rel="shortcut icon" href="img/favicon.ico">
+	<link rel="shortcut icon" href="img/conan_logo.png">
 	<script src="servicio.js"></script>
 	<script>
 	function alt_submit(){
@@ -106,7 +106,7 @@
               <div class="row-fluid sortable">
                 <div class="box span12">
                   <div class="box-header well" data-original-title>
-                    <h2></i>AGREGAR SERVICIO</h2>
+                    <h2>AGREGAR SERVICIO</h2>
                   </div>
                   <div class="box-content">
                     <form class="form-horizontal" action="<%= response.encodeURL("SMAServicio")%>" name="frmData" method="post">
