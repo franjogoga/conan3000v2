@@ -298,7 +298,7 @@ function cambiar6()
 															   
 															    <% if(    verificarExiste(  ((DiasBeanData)diassemana.get(i)).getCodigo() ,  codigoDia)    ){
 															    	x = obtenerInice(   ((DiasBeanData)diassemana.get(i)).getCodigo() ,  codigoDia   );
-															    	 out.print(  ((DiasBeanData)diassemana.get(i)).getCodigo() +" "+ codigoDia[x]    +" " +" dia > "+   nombreDia[x]    +" "+ x +" "+ iniHora[x] +" "+ finHora[x] +" ------| " );
+															    	// out.print(  ((DiasBeanData)diassemana.get(i)).getCodigo() +" "+ codigoDia[x]    +" " +" dia > "+   nombreDia[x]    +" "+ x +" "+ iniHora[x] +" "+ finHora[x] +" ------| " );
 															    %>
 															    
 																<input type="checkbox"  id="inlineCheckbox<%=i%>" name="checkDia<%=i%>"  value="<%= codigoDia[x] %>"  checked   onclick="cambiar<%=i%>();"   > 
