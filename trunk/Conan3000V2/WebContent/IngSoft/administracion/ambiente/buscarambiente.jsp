@@ -44,7 +44,7 @@
 	<link href='css/uploadify.css' rel='stylesheet'>
 
 	<!-- The fav icon -->
-	<link rel="shortcut icon" href="img/favicon.ico">
+	<link rel="shortcut icon" href="img/conan_logo.png">
 	<script src="ambiente.js"></script>
 	<script>
 	function alt_agregar(){
