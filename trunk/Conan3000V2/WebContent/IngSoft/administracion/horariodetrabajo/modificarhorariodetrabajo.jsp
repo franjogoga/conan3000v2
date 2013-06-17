@@ -71,7 +71,7 @@
 	<![endif]-->
 
 	<!-- The fav icon -->
-	<link rel="shortcut icon" href="img/favicon.ico">
+	<link rel="shortcut icon" href="img/conan_logo.png">
 
 
 <script>
@@ -303,15 +303,15 @@ function cambiar6()
 															    
 																<input type="checkbox"  id="inlineCheckbox<%=i%>"    <%= estDias[x].equalsIgnoreCase("Activo")?"checked":""  %>   onclick="cambiar<%=i%>();"   > 
 																<%=  nombreDia[x]  %> 
-																<input type="text" id="checkDia<%=i%>" name="checkDia<%=i%>"  value="<%= codigoDia[x] %>" ></input> 
-																<input type="text" id="estadoDia<%=i%>" name="estadoDia<%=i%>"  value="<%=estDias[x]%>"></input>
+																<input type="hidden" id="checkDia<%=i%>" name="checkDia<%=i%>"  value="<%= codigoDia[x] %>" ></input> 
+																<input type="hidden" id="estadoDia<%=i%>" name="estadoDia<%=i%>"  value="<%=estDias[x]%>"></input>
 																
 																<%}else{ %>
 															    
 																<input type="checkbox"  id="inlineCheckbox<%=i%>"              onclick="cambiar<%=i%>();"   > 
 																<%=  ((DiasBeanData)diassemana.get(i)).getNombre()  %> 
-																<input type="text" id="checkDia<%=i%>" name="checkDia<%=i%>"  value="<%= ((DiasBeanData)diassemana.get(i)).getCodigo() %>"  ></input>  
-																<input type="text" id="estadoDia<%=i%>" name="estadoDia<%=i%>"  value="-------"></input>
+																<input type="hidden" id="checkDia<%=i%>" name="checkDia<%=i%>"  value="<%= ((DiasBeanData)diassemana.get(i)).getCodigo() %>"  ></input>  
+																<input type="hidden" id="estadoDia<%=i%>" name="estadoDia<%=i%>"  value="-------"></input>
 																	
 																<%} %>
 																
