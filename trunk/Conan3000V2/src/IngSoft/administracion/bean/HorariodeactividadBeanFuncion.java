@@ -39,139 +39,8 @@ public class HorariodeactividadBeanFuncion {
 		
 	}
 	
-	
-	public HorariodeactividadBeanData crearHorariodeactividad(HttpServletRequest request, HttpServletResponse response){
-		HorariodeactividadBeanData horariodeactividadData= new HorariodeactividadBeanData();
-		try{		
-			
-
-			
 
 
-
-		horariodeactividadData.setNombre(    		request.getParameter("txtNombre") );
-
-		
-
-		}catch(Exception e){
-			e.printStackTrace();
-			
-		}
-		return horariodeactividadData;		
-	}
-	
-	public HorariodeactividadBeanData crearHorariodeactividadModificada(HttpServletRequest request, HttpServletResponse response){
-		HorariodeactividadBeanData horariodeactividadData= new HorariodeactividadBeanData();
-		try{		
-			
-			
-
-	        
-
-	
-        horariodeactividadData.setCodigo(            request.getParameter("codigo"));	
-	
-		horariodeactividadData.setNombre(    		request.getParameter("txtNombre") );
-
-		
-	
-
-
-		}catch(Exception e){
-			e.printStackTrace();
-			
-		}
-		return horariodeactividadData;		
-	}
-	
-	
-	
-	
-	
-	
-	public boolean agregarHorariodeactividad(HorariodeactividadBeanData horariodeactividadData) throws CoException {
-		boolean resultado=false;		
-		
-		l.lock();
-		
-		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
-		
-		try{
-			
-			// conesta sentencia podemos tener el codigo
-			String codigo = (String)sqlsesion.selectOne("Data.administracion.horariodeactividad.getNextCodigo");
-
-			System.out.print(" horariodeactividadData ----> "+ codigo);
-			
-			
-			if(codigo!=null)
-			{
-			int cod= Integer.parseInt(codigo.substring(3))+1;
-			String defecto= "000000";
-			String temp= defecto.substring(0, defecto.length()-String.valueOf(cod).length()).concat(String.valueOf(cod));
-			
-			horariodeactividadData.setCodigo(codigo.substring(0,3).concat(temp));
-			}
-			else horariodeactividadData.setCodigo("HOR000001");
-			
-			
-			System.out.print(" horariodeactividadData " + horariodeactividadData.getNombre());
-			
-
-			
-			sqlsesion.insert("Data.administracion.horariodeactividad.insertPlantillahorariodeactividad",horariodeactividadData);
-
-			
-			resultado=true;
-		}
-		catch(Exception a)		
-		{sqlsesion.rollback();
-		a.printStackTrace();
-			throw CoException.set("Error en ingreso de datos: No se puede agregar la horariodeactividad ", "SMAHorariodeactividad?accion=Agregar&tipo=1");
-			
-		}
-		
-		finally{
-			sqlsesion.commit();
-			sqlsesion.close();
-			l.unlock();				
-		}
-			
-		return resultado;
-	}
-	
-
-	
-	public boolean modificarHorariodeactividad(HorariodeactividadBeanData horariodeactividadData) throws CoException {
-		boolean resultado=false;		
-		
-		l.lock();
-		
-		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
-		
-		try{
-
-			
-			sqlsesion.insert("Data.administracion.horariodeactividad.modificarPlantillaHorariodeactividad",horariodeactividadData);
-
-			
-			resultado=true;
-		}
-		catch(Exception a)		
-		{sqlsesion.rollback();
-		a.printStackTrace();
-			throw CoException.set("Error: No se pudo modificar la horariodeactividad ", "SMAHorariodeactividad?accion=Agregar&tipo=1");
-			
-		}
-		
-		finally{
-			sqlsesion.commit();
-			sqlsesion.close();
-			l.unlock();				
-		}
-			
-		return resultado;
-	}
 
 	
 	public HorariodeactividadBeanData consultarHorariodeactividad(String codigo){
@@ -189,23 +58,7 @@ public class HorariodeactividadBeanFuncion {
 	}
 	
 	
-	/*
-	public Vector<HorariodeactividadBeanData> consultarHorariodeactividad(String codigo){	
-		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
-		Vector<HorariodeactividadBeanData> resultadosV=null;
-		try{		
-		List<HorariodeactividadBeanData> resultados=sqlsesion.selectList("Data.administracion.horariodeactividad.getPLantillaHorariodeactividad",codigo);
-		resultadosV= new Vector<>(resultados);
-		}
-		finally{
-		sqlsesion.close();}
-		return resultadosV;
-	}
-	
-	*/
-	
-	
-	
+
 	public boolean eliminarHorariodeactividad(String codigo) throws CoException {
 		boolean resultado=false;		
 		
@@ -219,7 +72,7 @@ public class HorariodeactividadBeanFuncion {
 		catch(Exception a)		
 		{sqlsesion.rollback();
 		a.printStackTrace();
-			throw CoException.set("Error: No se pudo eliminar la Horariodeactividad intente de nuevo", "SMAHorariodeactividad?accion=Agregar&tipo=1");
+			throw CoException.set("Error: No se pudo eliminar la Horariodetrabajo intente de nuevo", "SMAHorariodeactividad?accion=Agregar&tipo=1");
 			
 		}
 		
@@ -230,7 +83,7 @@ public class HorariodeactividadBeanFuncion {
 			
 		return resultado;
 	}
-	
+
 	
 	//  funcion de apoyo para sacar los dias de la semana
 	
@@ -256,7 +109,7 @@ public class HorariodeactividadBeanFuncion {
 		Vector<ResultadoActividadBeanData> actividades= null;
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
-			List<ResultadoActividadBeanData> temp=sqlsesion.selectList("Data.administracion.horariodeactividad.getActividadesX" );			
+			List<ResultadoActividadBeanData> temp=sqlsesion.selectList("Data.administracion.horariodeactividad.getAllActividades" );			
 			actividades= new Vector<ResultadoActividadBeanData>(temp);
 		}
 		catch(Exception e){

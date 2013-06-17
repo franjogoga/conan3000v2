@@ -15,8 +15,9 @@ public class HorariodeactividadBeanData implements Serializable{
 	
 	private String horaInicio;
 	private String horaFin;
-	
+	private String estadosDias;
 	private String estado;
+	
 	
 	public String getCodigo() {
 		return codigo;
@@ -54,6 +55,12 @@ public class HorariodeactividadBeanData implements Serializable{
 	public void setHoraFin(String horaFin) {
 		this.horaFin = horaFin;
 	}
+	public String getEstadosDias() {
+		return estadosDias;
+	}
+	public void setEstadosDias(String estadosDias) {
+		this.estadosDias = estadosDias;
+	}
 	public String getEstado() {
 		return estado;
 	}
@@ -61,6 +68,9 @@ public class HorariodeactividadBeanData implements Serializable{
 		this.estado = estado;
 	}
 	
+	
+
+
 
 	
 

@@ -4,14 +4,21 @@ import java.io.Serializable;
 import java.sql.Date;
 
 public class CriterioHorariodeactividadBeanData implements Serializable{
-	private String nombre; 
-	
-
-	
+	private String codigo; 
+	private String nombre;
 	private String codDiasemana;
+	private String diaSemana;
 	private String horaInicio;
-	private String horaFin;
+	private String horaFin;	
+	private String estado;
 	
+	
+	public String getCodigo() {
+		return codigo;
+	}
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
+	}
 	public String getNombre() {
 		return nombre;
 	}
@@ -23,6 +30,12 @@ public class CriterioHorariodeactividadBeanData implements Serializable{
 	}
 	public void setCodDiasemana(String codDiasemana) {
 		this.codDiasemana = codDiasemana;
+	}
+	public String getDiaSemana() {
+		return diaSemana;
+	}
+	public void setDiaSemana(String diaSemana) {
+		this.diaSemana = diaSemana;
 	}
 	public String getHoraInicio() {
 		return horaInicio;
@@ -36,6 +49,15 @@ public class CriterioHorariodeactividadBeanData implements Serializable{
 	public void setHoraFin(String horaFin) {
 		this.horaFin = horaFin;
 	}
+	public String getEstado() {
+		return estado;
+	}
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}	
+	
+	
+	
 
 	
 	
