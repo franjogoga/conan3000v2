@@ -131,7 +131,7 @@
 			<div class="row-fluid sortable">
 				<div class="box span12">
 					<div class="box-header well" data-original-title>
-					  <h2><i class="icon-plus-sign"></i>ELIMINAR HORARIO DE TRABAJO</h2>
+					  <h2><i class="icon-trash"></i>ELIMINAR HORARIO DE TRABAJO</h2>
 				  </div>
 					<div class="box-content">
 						
