@@ -40,7 +40,13 @@ public class AccionAgregarHorariodeactividad extends CoAccion{
 		{
 		if( request.getParameter("checkDia"+i)!=null){
 			ActividadDiaSemanaBeanFunction actividadDiaSemanaFunction = ActividadDiaSemanaBeanFunction.getInstance();
-			ActividadDiaSemanaBeanData     horarioDiaSemanaData = actividadDiaSemanaFunction.crearHorarioDiaSemana(   request.getParameter("checkDia"+i)  , request.getParameter("codActividad"), request.getParameter("cmbHoraInicio"+i), request.getParameter("cmbHoraFin"+i) );
+			ActividadDiaSemanaBeanData     horarioDiaSemanaData = actividadDiaSemanaFunction.crearHorarioDiaSemana(
+					request.getParameter("checkDia"+i)  ,
+					request.getParameter("codActividad"),
+					request.getParameter("cmbHoraInicio"+i), 
+					request.getParameter("cmbHoraFin"+i)
+					);
+			
 			actividadDiaSemanaFunction.agregarHorarioDiaSemana(horarioDiaSemanaData);
 		}
 		
