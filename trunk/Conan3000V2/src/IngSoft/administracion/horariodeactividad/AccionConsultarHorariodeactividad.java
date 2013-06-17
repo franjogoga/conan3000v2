@@ -21,17 +21,21 @@ public class AccionConsultarHorariodeactividad extends CoAccion{
 	public void ejecutar(ServletContext sc, HttpServletRequest request,
 			HttpServletResponse response)  throws CoException{
 		
-		System.out.print("entro aqui   -----x AccionConsultarHorariodeactividad x-------1--- ");
 		
 		HorariodeactividadBeanFuncion horariodeactividadFuncion= HorariodeactividadBeanFuncion.getInstance(); 
-		
-		System.out.print("entro aqui   -----x AccionConsultarHorariodeactividad x-------2--- "+ request.getParameter("codigo"));
-		
 		HorariodeactividadBeanData  horariodeactividad=horariodeactividadFuncion.consultarHorariodeactividad(request.getParameter("codigo"));
 
-		request.setAttribute("horariodeactividad",horariodeactividad );
-
+		System.out.print(  horariodeactividad.getCodigo()             );
+		System.out.print(  horariodeactividad.getNombre()            );
+		System.out.print(  horariodeactividad.getCodDiasemana()       );
+		System.out.print(  horariodeactividad.getDiaSemana()            );
+		System.out.print(  horariodeactividad.getEstadosDias()             );
+		System.out.print(  horariodeactividad.getHoraFin()             );
+		System.out.print(  horariodeactividad.getHoraInicio()            );
+		System.out.print(  horariodeactividad.getEstado()             );
 		
+		
+		request.setAttribute("horariodeactividad",horariodeactividad );
 		this.direccionar(sc, request, response, "/IngSoft/administracion/horariodeactividad/consultarhorariodeactividad.jsp");	
 		
 
