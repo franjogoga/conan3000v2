@@ -104,7 +104,7 @@ public class ActividadDiaSemanaBeanFunction {
 			System.out.print("Entra ------------------------------------------");
 			System.out.print("crearHorarioDiaSemanaMoficado"); 
 			System.out.print("Codigo Dia      -->"+ codDia);
-			System.out.print(" Codigo Horario -->"+ codAct);
+			System.out.print("Codigo Actividad -->"+ codAct);
 			System.out.print("Hora inicio     -->"+ horIn);
 			System.out.print(" Hora Fin       -->"+ horFin);	
 			System.out.print(" estado         -->"+ estadoDia);	

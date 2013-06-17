@@ -83,6 +83,16 @@ ORDER BY 1 ASC
 
 </select>
 
+<!--Modificar  -->
+
+<update id="modificarPlantillaHorariodeactividad" parameterType="IngSoft.administracion.bean.HorariodeactividadBeanData" >
+update ACTIVIDAD 
+set
+estado	=	#{estado}
+where IdActividad= #{codigo}
+</update>
+<!-- Fin  -->
+
 <!--Eliminar  -->
 
 <update id="deletePLantillaHorariodeactividad" parameterType="java.lang.String" >
