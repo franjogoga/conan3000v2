@@ -43,7 +43,7 @@
 	<link href='css/uploadify.css' rel='stylesheet'>
 
 	<!-- The fav icon -->
-	<link rel="shortcut icon" href="img/favicon.ico">
+	<link rel="shortcut icon" href="img/conan_logo.png">
 	<script src="cancha.js"></script>
 	<script>
 	function alt_submit(){
