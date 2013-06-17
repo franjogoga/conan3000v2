@@ -301,14 +301,16 @@ function cambiar6()
 															    	// out.print(  ((DiasBeanData)diassemana.get(i)).getCodigo() +" "+ codigoDia[x]    +" " +" dia > "+   nombreDia[x]    +" "+ x +" "+ iniHora[x] +" "+ finHora[x] +" ------| " );
 															    %>
 															    
-																<input type="checkbox"  id="inlineCheckbox<%=i%>" name="checkDia<%=i%>"  value="<%= codigoDia[x] %>"  checked   onclick="cambiar<%=i%>();"   > 
-																<%=  nombreDia[x]  %>  
+																<input type="checkbox"  id="inlineCheckbox<%=i%>"    <%= estDias[x].equalsIgnoreCase("Activo")?"checked":""  %>   onclick="cambiar<%=i%>();"   > 
+																<%=  nombreDia[x]  %> 
+																<input type="text" id="checkDia<%=i%>" name="checkDia<%=i%>"  value="<%= codigoDia[x] %>" ></input> 
 																<input type="text" id="estadoDia<%=i%>" name="estadoDia<%=i%>"  value="<%=estDias[x]%>"></input>
 																
 																<%}else{ %>
 															    
-																<input type="checkbox"  id="inlineCheckbox<%=i%>" name="checkDia<%=i%>"  value="<%= ((DiasBeanData)diassemana.get(i)).getCodigo() %>"   onclick="cambiar<%=i%>();"   > 
-																<%=  ((DiasBeanData)diassemana.get(i)).getNombre()  %>  
+																<input type="checkbox"  id="inlineCheckbox<%=i%>"              onclick="cambiar<%=i%>();"   > 
+																<%=  ((DiasBeanData)diassemana.get(i)).getNombre()  %> 
+																<input type="text" id="checkDia<%=i%>" name="checkDia<%=i%>"  value="<%= ((DiasBeanData)diassemana.get(i)).getCodigo() %>"  ></input>  
 																<input type="text" id="estadoDia<%=i%>" name="estadoDia<%=i%>"  value="-------"></input>
 																	
 																<%} %>
