@@ -1,25 +1,28 @@
 <!DOCTYPE html>
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Vector"%>
+
+<%@page import="IngSoft.administracion.bean.ResultadoActividadBeanData"%>
+<%@page import="IngSoft.administracion.bean.DiasBeanData"%>
+
 <html lang="en">
 <head>
-	<!--
-		Charisma v1.0.0
-
-		Copyright 2012 Muhammad Usman
-		Licensed under the Apache License v2.0
-		http://www.apache.org/licenses/LICENSE-2.0
-
-		http://usman.it
-		http://twitter.com/halalit_usman
-	-->
 	<meta charset="utf-8">
-	<title>Conan3000</title>
+	<title>Agregar Horario de Actividad</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
 	<meta name="author" content="Muhammad Usman">
-
+	
+	<!--The beans  -->
+	<jsp:useBean id="actividades" scope="request"class="java.util.Vector"></jsp:useBean>	
+	<jsp:useBean id="horasDelDia" scope="request"class="java.util.Vector"></jsp:useBean>	
+	<jsp:useBean id="diassemana" scope="request"class="java.util.Vector"></jsp:useBean>	
+	
+	
+	
 	<!-- The styles -->
 	<link id="bs-css" href="css/bootstrap-cerulean.css" rel="stylesheet">
-    
 	<style type="text/css">
 	  body {
 		padding-bottom: 40px;
@@ -51,8 +54,83 @@
 	<![endif]-->
 
 	<!-- The fav icon -->
-	<link rel="shortcut icon" href="img/favicon.ico">
-		
+	<link rel="shortcut icon" href="img/conan_logo.png">
+	
+	
+	
+	
+	
+	
+<script>
+
+function selectGrupal1()
+{
+	var selObj0 = document.getElementById('cmbHoraInicio0');
+	var selObj1 = document.getElementById('cmbHoraInicio1');
+    var selObj2 = document.getElementById('cmbHoraInicio2');
+	var selObj3 = document.getElementById('cmbHoraInicio3');
+	var selObj4 = document.getElementById('cmbHoraInicio4');
+    var selObj5 = document.getElementById('cmbHoraInicio5');
+    var selObj6 = document.getElementById('cmbHoraInicio6');
+
+        selObj0.selectedIndex = selObj0.selectedIndex;
+        selObj1.selectedIndex = selObj0.selectedIndex;
+        selObj2.selectedIndex = selObj0.selectedIndex;
+        selObj3.selectedIndex = selObj0.selectedIndex;
+        selObj4.selectedIndex = selObj0.selectedIndex;
+        selObj5.selectedIndex = selObj0.selectedIndex;
+        selObj6.selectedIndex = selObj0.selectedIndex;
+}
+
+
+function selectGrupal2()
+{
+	var selObj0 = document.getElementById('cmbHoraFin0');
+	var selObj1 = document.getElementById('cmbHoraFin1');
+    var selObj2 = document.getElementById('cmbHoraFin2');
+	var selObj3 = document.getElementById('cmbHoraFin3');
+	var selObj4 = document.getElementById('cmbHoraFin4');
+    var selObj5 = document.getElementById('cmbHoraFin5');
+    var selObj6 = document.getElementById('cmbHoraFin6');
+
+        selObj0.selectedIndex = selObj0.selectedIndex;
+        selObj1.selectedIndex = selObj0.selectedIndex;
+        selObj2.selectedIndex = selObj0.selectedIndex;
+        selObj3.selectedIndex = selObj0.selectedIndex;
+        selObj4.selectedIndex = selObj0.selectedIndex;
+        selObj5.selectedIndex = selObj0.selectedIndex;
+        selObj6.selectedIndex = selObj0.selectedIndex;
+}
+
+</script>	
+	
+<%!
+
+       boolean verificarExiste(String s, String[] l){
+
+	   for(int i=0; i< l.length; i++){
+		   if(l[i].equalsIgnoreCase(s))
+		    return true;
+	   }
+	   return false; 
+	   };
+
+	   
+	   Vector<String> convertir(String[] l){
+		   
+		   Vector<String> x = new  Vector<String>() ;
+		   
+		   for(int i=0; i<l.length; i++)
+		   {
+			   x.add(l[i]);
+		   }
+		   
+		   return x;
+		  
+	   }   
+	   
+%>	
+	
 </head>
 
 <body>
@@ -63,154 +141,186 @@
 			<!-- left menu starts -->
 			<jsp:include page="/IngSoft/general/leftmenu.jsp" />
 						<!-- left menu ends -->
-            
-            
-           
 			
-		  <noscript>
+		<noscript>
 				<div class="alert alert-block span10">
 					<h4 class="alert-heading">Warning!</h4>
 					<p>You need to have <a href="http://en.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript</a> enabled to use this site.</p>
 				</div>
 			</noscript>
 			
-			<div id="content" class="span10">
-			  <!-- content starts -->
-			  <div>
-			    <ul class="breadcrumb">
-			      <li> <a href="#">Home</a> / <a href="#">Mantenimiento de Horario Actividad</a> / Agregar Horario Actividad</li>
-		        </ul>
-		      </div>
-			  <div class="row-fluid sortable">
-			    <div class="box span12">
-			      <div class="box-header well" data-original-title>
-			        <h2>AGREGAR HORARIO ACTIVIDAD</h2>
-		          </div>
-			      <div class="box-content">
-			        <form class="form-horizontal">
-			          <fieldset>
-					  
-					  <!--    ----------------------------------------------------------------------------------------------    -->
-							  <div class="control-group">
-                                  <label class="control-label" for="selectError">Actividad(*): </label>
-                                  <div class="controls">
-                                      <select name="selectError" id="selectError1" data-rel="chosen">
-                                          <option> Actividad 1 </option>
-										  <option> Actividad 2 </option>
-                                          <option> Actividad 3 </option>
-                                          <option> Actividad 4 </option>
-                                          <option> Actividad 5 </option>
-                                      </select>
-                                  </div>
-						      </div>
-
-
-
-
-							  <div class="control-group">
-                                  <label class="control-label" for="selectError">Dia(*): </label>
-                                  <div class="controls">
-                                      <select name="selectError" id="selectError2" data-rel="chosen">
-                                          <option> Lunes </option>
-										  <option> Martes </option>
-                                          <option> Miercoles </option>
-                                          <option> Jueves </option>
-                                          <option> Viernes </option>
-                                      </select>
-                                  </div>
-						      </div>
-                                
-                                
-                          <div class="control-group">
-                                    <label class="control-label" for="typeahead">Hora Inicio(*):</label>
-                                <div class="controls">
-                                        <input type="text" class="span6 typeahead" id="typeahead"  data-provide="typeahead" data-items="4" data-source='["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Dakota","North Carolina","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"]'>
-                                            <!--
-                                             <p class="help-block">Start typing to activate auto complete!</p>
-                                             
-                                             -->
-							    </div>
-                          </div>
-                                
-                                
-                          <div class="control-group">
-                                    <label class="control-label" for="typeahead">Hora Fin(*):</label>
-                                <div class="controls">
-                                        <input type="text" class="span6 typeahead" id="typeahead"  data-provide="typeahead" data-items="4" data-source='["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Dakota","North Carolina","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"]'>
-                                            <!--
-                                             <p class="help-block">Start typing to activate auto complete!</p>
-                                             
-                                             -->
-							    </div>
-                          </div>
+            <div id="content" class="span10">
+              <!-- content starts -->
+              <div>
+                <ul class="breadcrumb">
+                  <li> <a href="../../general/index.jsp">Home</a> <span class="divider">/</span> </li>
+                  <li> <a href="buscarhorariodeactividad.jsp">Mantenimiento de Horario de Actividad</a> <span class="divider">/</span></li>
+                  <li>Agregar Horario de Actividad</li>
+                </ul>
+              </div>
+              <div class="row-fluid sortable">
+                <div class="box span12">
+                  <div class="box-header well" data-original-title>
+                    <h2><i class="icon-plus-sign"></i>AGREGAR HORARIO DE ACTIVIDAD</h2>
+                  </div>
+                  <div class="box-content">
+                    <form class="form-horizontal" action="<%= response.encodeURL("SMAHorariodeactividad")%>" name="frmData" method="post">
 						
+						<input type="hidden" name="accion" value="Agregar"></input>
+						<input type="hidden" name="tipo" value="2"></input>
+						  
+						  
+                      <fieldset>
+                      
+                      
+
+
+                      
+                        <div class="control-group" id="dvNombreAmbiente">
+                          <label class="control-label" for="typeahead">Nombre de Horario de Actividad(*):</label>
+                          <div class="controls">
+                            
 							  
-	
-						
-						
-						
-							  <div class="control-group">
-								<label class="control-label">Estado</label>
 								
-								<div class="controls">
 								
-								  <label class="radio">
-									<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
-									Disponible
-								  </label>
-								  
-								    <div style="clear:both"></div>   
-								  
-								  
-								  <label class="radio">
-									<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-									No Disponible
-								  </label>
-								  
+								  <select style="width: 404px;"  id="codActividad" data-rel="chosen"  name="codActividad"    >
+									<%for(int k=0;k<actividades.size();k++){      %>
+			<option value="<%=((ResultadoActividadBeanData)actividades.get(k)).getCodigo() %>"  <%= k==0?"selected":""%>     > <%=    ((ResultadoActividadBeanData)actividades.get(k)).getNombre()    %>    </option>
+									<%} %>	
+								  </select>
+								
+							  
+							  
+                          	<span class="help-inline" id="errNombreAmbiente">Please correct the error</span>
+                         
+                        
+                        
 
-								  
-								</div>
-								
-							  </div>	
-				
-						
-						
-						<!--    ----------------------------------------------------------------------------------------------    -->
-						
-						
-			            <div class="form-actions">
-			              <button type="submit" class="btn btn-primary">Agregar</button>
-			              <button type="reset" class="btn">Cancelar</button>
-		                </div>
-						(*)Campos Obligatorios
-		              </fieldset>
-		            </form>
-		          </div>
-		        </div>
-			    <!--/span-->
-		      </div>
-			  <!--/row-->
-			  <div class="row-fluid sortable">
-			    <!--/span-->
-		      </div>
-			  <!--/row-->
-			  <div class="row-fluid sortable">
-			    <!--/span-->
-		      </div>
-			  <!--/row-->
-			 
 
-		  
-       
-					<!-- content ends -->
-		  </div><!--/#content.span10-->
+<!---------------  -->
+							
+								<!--  	<div class="row-fluid sortable"> -->
+									
+								<div class="control-group">	
+								
+											<div class="box span6">
+												<div class="box-header well" data-original-title>
+													<h2>Horario</h2>
+													<div class="box-icon">
+													    <a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
+														
+													</div>
+												</div>
+												<div class="box-content">
+													<table class="table">
+														  <thead>
+															  <tr>
+																  <th>Dias</th>
+																  <th>Hora Inicio</th>
+																  <th>Hora Fin</th>                                         
+															  </tr>
+														  </thead>   
+														 
+
+														  <tbody>
+														  
+														   <% 
+														   
+														 
+														   for(int i=0; i<diassemana.size(); i++) { %>
+														   
+															<tr>
+																<td>
+							
+															  <label class="checkbox inline">
+																<input type="checkbox"  id="inlineCheckbox<%=i%>" name="checkDia<%=i%>"  value="<%= ((DiasBeanData)diassemana.get(i)).getCodigo() %>"  checked       > 
+																<%=  ((DiasBeanData)diassemana.get(i)).getNombre()  %>  
+															  </label>
+															  
+																</td>
+																
+																<td class="center">
+							 																		 <!-- data-rel="chosen" -->																											
+														 		<select  style="width: 70px;"                                    id="cmbHoraInicio<%=i%>"  name="cmbHoraInicio<%=i%>"   <%=i==0?"onChange=selectGrupal1();":""%>    >
+														 		
+															
+														 		
+														 		
+															        <%for(int k=0;k<horasDelDia.size();k++){      %>
+													<option value="<%=((String)horasDelDia.get(k))%>"  <%= k==0?"selected":""%>     > <%=    ((String)horasDelDia.get(k))    %>    </option>
+																    <%} %>						
+															    
+															    
+															    
+															    </select>
+							
+																</td>
+																
+																<td class="center">
+																
+														 		<select style="width: 70px;" id="cmbHoraFin<%=i%>"  name="cmbHoraFin<%=i%>"     <%=i==0?"onChange=selectGrupal1();":""%>    >
+															        <%for(int k=0;k<horasDelDia.size();k++){      %>
+													<option value="<%=((String)horasDelDia.get(k))%>"  <%= k==0  ?"selected":""%>     > <%=    ((String)horasDelDia.get(k))    %>    </option>
+																    <%} %>						
+															    
+															    </select>
+																
+																</td>
+							                                      
+															</tr>
+															
+								      						<%}%>
+								      						
+														  </tbody>
+																					 
+													 </table>  
+							    
+												</div>
+											</div><!--/span-->
+											
+							
+								</div><!--/row-->       
+<!-- -------- -->		
+								 </div><!-- fin controls -->
+							</div> <!--  fin control-group -->
+                     
+                        
+                        
+                        <div class="form-actions">
+                          <button type="button" class="btn btn-primary" onclick="javascript:alt_submit()">Agregar</button>
+                          <button type="button" class="btn" onclick="location.href='buscarhorariodeactividad.jsp'" >Cancelar</button>
+                        </div>
+                        
+                        
+                        
+                      </fieldset>
+                    </form>
+					<span style="font-size:70%">(*)Campos Obligatorios</span>
+                  </div>
+                </div>
+                <!--/span-->
+              </div>
+              <!--/row-->
+              <div class="row-fluid sortable">
+                
+                <!--/span-->
+              </div>
+              <!--/row-->
+              <div class="row-fluid sortable">
+                
+                <!--/span-->
+              </div>
+              <!--/row-->
+              <!-- content ends -->
+            </div>
+          <!--/#content.span10-->
 				</div><!--/fluid-row-->
 				
 		<hr>
 
 		<div class="modal hide fade" id="myModal">
 			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal">×</button>
+				<button type="button" class="close" data-dismiss="modal">Ã—</button>
 				<h3>Settings</h3>
 			</div>
 			<div class="modal-body">
@@ -221,10 +331,7 @@
 				<a href="#" class="btn btn-primary">Save changes</a>
 			</div>
 		</div>
-
-		<footer>
-		 Conan 3000 © 2013 <p class="pull-right">Powered by: <a href="http://usman.it/free-responsive-admin-template">Las dos virgenes</a></p>
-		</footer>
+		<jsp:include page="/IngSoft/general/inferior.jsp" />
 		
 	</div><!--/.fluid-container-->
 
@@ -300,15 +407,169 @@
 	<!-- history.js for cross-browser state change on ajax -->
 	<script src="js/jquery.history.js"></script>
 	<!-- application script for Charisma demo -->
-	<script src="js/charisma.js"></script>
+	<script src="js/charisma.js"></script>		
+	
+	
+	
+	
+	
+<!--       ------------------------------------------------------------------------------- -->	
+	
+	
+	
 	<script>
-	function loadContent() 
-{ 
-   $("#includedContent").load("menu.html"); 
+	
+	
+	function anhadir(cod, name,puesto){
+		var form= document.frmData;
+		form.cmbEncargado.value=name;
+		form.cmbEncargadoCodigo.value=cod;
+		form.txtPuesto.value=puesto;
+		$.fn.colorbox.close();
+		
+	} 
+	
+	function alt_fecha(obj){
+		obj.value=obj.value.slice(0,5);
+		
+		}
+
+	function verificar_fecha(comparacion,fecha1,fecha2){
+		var fec1=fecha1.value.split("/");
+		var fec2=document.getElementById(fecha2).value.split("/");
+		var resultado=true;
+		if(fec1.length==fec2.length) {
+			var size=fec1.length;
+			for(i=size-1;i>=0;i--){
+				if(comparacion==0){
+					if(fec1[i].indexOf(fec2[i])<0)  resultado= false;
+					}
+				if(comparacion==1){
+					if(parseInt(fec1[i])<parseInt(fec2[i]))  resultado= false;
+					}
+				if(comparacion==-1){
+					if(parseInt(fec1[i])>parseInt(fec2[i]))  resultado= false;
+					}
+				}
+			if(resultado==false){			
+					fecha1.value=document.getElementById(fecha2).value;			
+				}
+				
+			} 
+		else{
+			alert("Error al comparar fechas");
+		}			
+	}
+
+	function alfanumerico(e) 
+	{ 
+	var key = window.event.keyCode || event.keyCode;
+	return ((key >= 48 && key <= 57) ||(key >= 97 && key <= 122) ||(key >= 65 && key <=90) ||(key >= 192 && key <=246)||(key <=13) ||(key ==32));
+	} 	
+
+	
+		
+	function alt_submit(){
+		var form= document.frmData;
+		if(validaForm()) form.submit();
+	}
+	
+	
+
+	
+	
+	
+	</script>		
+	
+	
+	
+	
+	
+<!--     ---------------------- Sirve para poner un iframe ------------------------------   -->	
+
+
+<!--     -----------------------------------------------------   -->			
+	
+		<script>
+			$(document).ready(function(){
+				//Examples of how to assign the Colorbox event to elements
+				
+				$(".iframe").colorbox({iframe:true, width:"60%", height:"80%"});
+				
+				//Example of preserving a JavaScript event for inline calls.
+				$("#click").click(function(){ 
+					$('#click').css({"background-color":"#f00", "color":"#fff", "cursor":"inherit"}).text("Open this window again and this message will still be here.");
+					return false;
+				});
+			});
+		</script>
+	
+<!--     -----------------------------------------------------   -->	
+	
+	<script type="text/javascript" src="js/apprise-1.5.full.js"></script>
+	<link rel="stylesheet" href="css/apprise.css" type="text/css" />
+	<script type="text/javascript" src="js/script.js"></script>
+    <script>
+ 
+ 
+function validaForm(){
+                /*
+        esValido(nombre, casilla, id, tipoValidacion, minimo,maximo)
+        nombre: es el nombre de la casilla: ejemplo -> Nombre, Apellido, Fecha de Nacimiento, etc
+        casilla: corresponde a la casilla en si, para esto colocamos por ejemplo form.txtNombre, donde form ya fue definido
+        id: identificador de los divs para efectuar las validaciones
+        tipoValidacion: es un valor numerico el cual permite identificar el tipo de validacion que se efectuara
+        1: Validacion con cantidad de caracteres Minimo y maximo
+        2: Validación de cantidad de caracteres de fecha
+        3: validacion de llenado de radio button
+        4: Validacion de alfanumerico
+        5: validacion de valores Float
+        6: Validacion de enteros
+        7: Validacion de fechas
+        minimo: valor numerico que indica la menor cantidad de caracteres que como minimo debe ser llenado (Solo para tipoValidacion 1 y 2, en el resto poner 1)
+        maximo: valor numerico que indica la maxima cantidad de caracteres que como maximo debe ser llenado (Solo para tipoValidacion 1 y 2, en el resto poner 1)
+       
+        El valor que va en cadena[i] es el nombre del campo
+       
+        #############################ADICIONAL#########################
+        Para validar una fecha Inicial y fecha Final usar la siguiente funcion
+        validarFechas(nombre[Fecha Final], casilla[Fecha Final], id[Fecha Final],nombre[Fecha Inicial],casilla[Fecha Inicial])
+        OJO: no va como parametro el id de la fecha Inicial
+        ###############################################################
+        */
+       
+        var form=document.frmData;
+ 
+        var cadena= new Array();
+        var i=0;
+        var error=false;
+        if(!esValido("Nombre",form.codActividad,"NombreAmbiente",1,1,50)){cadena[i]="Nombre";i++;}
+        //if(!esValido("Descripci&oacute;n",form.txtDescripcion,"Descripcion",1,0,100)){cadena[i]="Descripci&oacute;n";i++;}
+        //if(!esValido("Direccion",form.txtDireccion,"Direccion",1,1,50)){cadena[i]="Direccion";i++;}
+        //if(!esValido("Telefono",form.txtTelefono,"Telefono",1,6,7)){cadena[i]="Telefono";i++;}
+        //if(!esValido("Area_de_Terreno",form.txtAreaterreno,"Areaterreno",1,1,7)){cadena[i]="Area";i++;}
+        //if(!esValido("Caracter&iacute;sticas",form.txtCaracteristica,"Caracteristica",1,0,100)){cadena[i]="Caracter&iacute;sticas";i++;}
+       
+        //No tocar
+        if(i>0){
+        crearAlert(cadena);
+        return false;
+        }else{
+                return true;      
+        }
 } 
-
-
-	</script>
-		<script>loadContent()</script> 
+ 
+function inicializa(){
+        document.getElementById("errNombreAmbiente").style.display='none';
+        //document.getElementById("errDescripcion").style.display='none'; 
+        //document.getElementById("errTelefono").style.display='none';
+        //document.getElementById("errDireccion").style.display='none'; 
+        //document.getElementById("errAreaterreno").style.display='none';
+        //document.getElementById("errCaracteristica").style.display='none';    
+} 
+ 
+inicializa();
+ 
+</script>
 </body>
 </html>

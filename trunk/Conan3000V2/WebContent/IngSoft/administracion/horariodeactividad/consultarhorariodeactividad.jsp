@@ -21,7 +21,7 @@
 	<meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
 	<meta name="author" content="Muhammad Usman">
 	<!--The beans  -->
-	<jsp:useBean id="horariodeactividad" scope="request" class="java.util.Vector"></jsp:useBean>
+	<jsp:useBean id="horariodeactividad" scope="request"class="IngSoft.administracion.bean.HorariodeactividadBeanData"></jsp:useBean>
 	
 	<!-- The styles -->
 	<link id="bs-css" href="css/bootstrap-cerulean.css" rel="stylesheet">
@@ -147,10 +147,12 @@
 						    <div class="control-group">
 						      <label class="control-label" for="typeahead7">Nombre: </label>
 						      <div class="controls">
-						        <input type="text" class="span6 typeahead" id="txtNombre"  data-provide="typeahead"  name="txtNombre" disabled value="  <%=((HorariodeactividadBeanData)horariodeactividad.get(0)).getNombre()%>     ">
-					         
-					        
-<!--- ------------  -->			
+						        <input type="text" class="span6 typeahead" id="txtNombre"  data-provide="typeahead"  name="txtNombre" disabled value="  <%=((HorariodeactividadBeanData)horariodeactividad).getNombre()%>">        
+					     
+<!--- ------------  -->
+							
+								<!--  	<div class="row-fluid sortable"> -->
+									
 								<div class="control-group">	
 								
 											<div class="box span6">
@@ -174,13 +176,24 @@
 
 														  <tbody>
 														  
-														   <% for(int i=0; i<horariodeactividad.size(); i++) { %>
+														   <% 
+														   String[] codigoDia = ((HorariodeactividadBeanData)horariodeactividad).getCodDiasemana().split(",");  
+														   String[] nombreDia = ((HorariodeactividadBeanData)horariodeactividad).getDiaSemana().split(",");
+														   String[] horaIni = ((HorariodeactividadBeanData)horariodeactividad).getHoraInicio().split(",");
+														   String[] horaFin = ((HorariodeactividadBeanData)horariodeactividad).getHoraFin().split(",");
+														   String[] estDias = ((HorariodeactividadBeanData)horariodeactividad).getEstadosDias().split(",");
+														   
+														   
+														   for (int i = 0; i < codigoDia.length; i++) { 
+														   if(estDias[i].equalsIgnoreCase("Activo")){
+														   
+														   %>
 														   
 															<tr>
 																<td>
 							
 															  <label class="checkbox inline">
-																<input type="checkbox" checked id="inlineCheckbox<%=i%>" name="checkDia"  disabled value="<%=((HorariodeactividadBeanData)horariodeactividad.get(i)).getCodDiasemana()%>  "> <%=((HorariodeactividadBeanData)horariodeactividad.get(i)).getDiaSemana()%>  
+																<input type="checkbox" checked id="inlineCheckbox<%=i%>" name="checkDia"  disabled value="<%= codigoDia[i]   %>  "> <%= nombreDia[i] %>  
 															 
 															 
 															  </label>
@@ -189,27 +202,30 @@
 																
 																<td class="center">
 							 																																													
-														 		<select  style="width: 100px;"  data-rel="chosen" id="cmbHoraInicio<%=i%>" disabled name="cmbHoraInicio" >
-															        <%for(int k=0;k<horariodeactividad.size();k++){ %>
-													<option value="<%=((HorariodeactividadBeanData)horariodeactividad.get(k)).getCodDiasemana()%>" <%=  i==k ?"selected":""%>  > <%=    ((HorariodeactividadBeanData)horariodeactividad.get(i)).getHoraInicio()    %>    </option>
-																    <%} %>						
+														 		<select  style="width: 70px;"  data-rel="chosen" id="cmbHoraInicio<%=i%>" disabled name="cmbHoraInicio" >
+															       
+													<option value="<%=horaIni[i]%>" selected > <%=    horaIni[i]   %>    </option>
+																   					
 															    </select>
 							
 																</td>
 																
 																<td class="center">
 																
-														 		<select style="width: 100px;" data-rel="chosen" id="cmbHoraFin<%=i%>"  disabled name="cmbHoraInicio" >
-															        <%for(int k=0;k<horariodeactividad.size();k++){ %>
-													<option value="<%=((HorariodeactividadBeanData)horariodeactividad.get(k)).getCodDiasemana()%>" <%=  i==k ?"selected":""%>  >   <%=    ((HorariodeactividadBeanData)horariodeactividad.get(i)).getHoraFin()   %>     </option>
-																    <%} %>						
+														 		<select style="width: 70px;" data-rel="chosen" id="cmbHoraFin<%=i%>"  disabled name="cmbHoraFin" >
+															       
+													<option value="<%= horaFin[i]  %>" selected > <%=   horaFin[i]   %>    </option>
+																   					
 															    </select>
 																
 																</td>
 							                                      
 															</tr>
 															
-								      						<%}%>
+								      						<%}
+								      						
+														   
+														   }%>
 								      						
 														  </tbody>
 																					 
@@ -218,11 +234,56 @@
 												</div>
 											</div><!--/span-->
 											
-							
 								</div><!--/row-->       
 <!-- -------- -->		
 								 </div><!-- fin controls -->
+								 
+								 
+								 
+								 
+								 
+
+														        <div class="control-group">
+																<label class="control-label">Estado </label>
+																<div class="controls">
+																  <label class="radio">
+																  <%
+																 
+																  if( ((HorariodeactividadBeanData)horariodeactividad).getEstado().equalsIgnoreCase("Disponible") ){
+																  out.print(" <input   type='radio' disabled name='optionsRadios' id='optionsRadios1' value='Disponible' checked=''  >");
+																  }
+																  else
+																  {  out.print(" <input   type='radio' disabled name='optionsRadios' id='optionsRadios1' value='Disponible'  >");
+																  }
+																 
+																   
+																  %>
+																Disponible
+																  </label>
+																 
+																    <div style="clear:both"></div>   
+																 
+																 
+																  <label class="radio">
+																 
+																  <%
+																  if( ((HorariodeactividadBeanData)horariodeactividad).getEstado().equalsIgnoreCase("No Disponible") ){
+																  out.print(" <input   type='radio' disabled name='optionsRadios' id='optionsRadios2' value='No Disponible' checked=''  >");
+																  }
+																  else
+																  {  out.print(" <input   type='radio' disabled name='optionsRadios' id='optionsRadios2' value='No Disponible'  >");
+																  }
+																  %>
+																No Disponible
+																  </label>
+																</div>
+																</div>		 
+								 
+								 	 
+								 
+								 
 							</div> <!--  fin control-group -->
+
 
 
 		         
