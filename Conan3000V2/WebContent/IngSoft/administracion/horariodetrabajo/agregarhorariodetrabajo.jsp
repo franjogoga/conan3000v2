@@ -162,7 +162,7 @@ function selectGrupal2()
               <div class="row-fluid sortable">
                 <div class="box span12">
                   <div class="box-header well" data-original-title>
-                    <h2><i class="icon-edit"></i>AGREGAR HORARIO DE TRABAJO</h2>
+                    <h2><i class="icon-plus-sign"></i>AGREGAR HORARIO DE TRABAJO</h2>
                   </div>
                   <div class="box-content">
                     <form class="form-horizontal" action="<%= response.encodeURL("SMAHorariodetrabajo")%>" name="frmData" method="post">
