@@ -16,7 +16,7 @@
 		http://twitter.com/halalit_usman
 	-->
 	<meta charset="utf-8">
-	<title> Eliminar Horario de Trabajo</title>
+	<title>Eliminar Horario de Trabajo</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
 	<meta name="author" content="Muhammad Usman">
@@ -70,11 +70,9 @@
 	}
 	
 	function alt_submit(){
-		
 		var form= document.frmDelete;
 		var r=confirm("¿Esta seguro que desea eliminar esta Actividad ?");
-		if(r==true){form.submit();}		
-			
+		if(r==true){form.submit();}
 			}
 		
 		
@@ -125,7 +123,7 @@
 						<a href="buscarhorariodetrabajo.jsp">Mantenimiento de Horario de Trabajo </a> <span class="divider">/</span>
 					</li>
 					<li>
-						Eliminar Horario de Trabajo
+						Eliminar de Horario de Trabajo
 					</li>
 				</ul>
 			</div>
@@ -137,9 +135,9 @@
 				  </div>
 					<div class="box-content">
 						
-						<form class="form-horizontal" name="frmDelete" action="<%= response.encodeURL("SMAHorariodetrabajo")%>" name="frmData" method="post">
-						<input type="hidden" name="codigo" value="<%=((HorariodetrabajoBeanData)horariodetrabajo).getCodigo()%>  "></input>
+						<form class="form-horizontal" name="frmDelete"  action="<%= response.encodeURL("SMAHorariodetrabajo")%>" name="frmData" method="post">
 						<input type="hidden" name="accion" value="Eliminar"></input>
+						<input type="hidden" name="codigo" value="<%= ((HorariodetrabajoBeanData)horariodetrabajo).getCodigo()%>"></input>
 						<input type="hidden" name="tipo" value="2"></input>
 						  <fieldset>
 				
@@ -150,7 +148,7 @@
 						    <div class="control-group">
 						      <label class="control-label" for="typeahead7">Nombre: </label>
 						      <div class="controls">
-						        <input type="text" class="span6 typeahead" id="txtNombre"  data-provide="typeahead"  name="txtNombre"  disabled value="  <%=((HorariodetrabajoBeanData)horariodetrabajo).getNombre()%>">         
+						        <input type="text" class="span6 typeahead" id="txtNombre"  data-provide="typeahead"  name="txtNombre" disabled value="  <%=((HorariodetrabajoBeanData)horariodetrabajo).getNombre()%>">        
 					     
 <!--- ------------  -->
 							
@@ -184,8 +182,13 @@
 														   String[] nombreDia = ((HorariodetrabajoBeanData)horariodetrabajo).getDiaSemana().split(",");
 														   String[] horaIni = ((HorariodetrabajoBeanData)horariodetrabajo).getHoraInicio().split(",");
 														   String[] horaFin = ((HorariodetrabajoBeanData)horariodetrabajo).getHoraFin().split(",");
+														   String[] estDias = ((HorariodetrabajoBeanData)horariodetrabajo).getEstadosDias().split(",");
 														   
-														   for (int i = 0; i < codigoDia.length; i++) { %>
+														   
+														   for (int i = 0; i < codigoDia.length; i++) { 
+														   if(estDias[i].equalsIgnoreCase("Activo")){
+														   
+														   %>
 														   
 															<tr>
 																<td>
@@ -200,7 +203,7 @@
 																
 																<td class="center">
 							 																																													
-														 		<select  style="width: 100px;"  data-rel="chosen" id="cmbHoraInicio<%=i%>" disabled name="cmbHoraInicio" >
+														 		<select  style="width: 70px;"  data-rel="chosen" id="cmbHoraInicio<%=i%>" disabled name="cmbHoraInicio" >
 															       
 													<option value="<%=horaIni[i]%>" selected > <%=    horaIni[i]   %>    </option>
 																   					
@@ -210,7 +213,7 @@
 																
 																<td class="center">
 																
-														 		<select style="width: 100px;" data-rel="chosen" id="cmbHoraFin<%=i%>"  disabled name="cmbHoraFin" >
+														 		<select style="width: 70px;" data-rel="chosen" id="cmbHoraFin<%=i%>"  disabled name="cmbHoraFin" >
 															       
 													<option value="<%= horaFin[i]  %>" selected > <%=   horaFin[i]   %>    </option>
 																   					
@@ -220,7 +223,10 @@
 							                                      
 															</tr>
 															
-								      						<%}%>
+								      						<%}
+								      						
+														   
+														   }%>
 								      						
 														  </tbody>
 																					 
@@ -232,15 +238,56 @@
 								</div><!--/row-->       
 <!-- -------- -->		
 								 </div><!-- fin controls -->
+								 
+								 
+								 
+
+														        <div class="control-group">
+																<label class="control-label">Estado </label>
+																<div class="controls">
+																  <label class="radio">
+																  <%
+																 
+																  if( ((HorariodetrabajoBeanData)horariodetrabajo).getEstado().equalsIgnoreCase("Activo") ){
+																  out.print(" <input   type='radio' disabled name='optionsRadios' id='optionsRadios1' value='Activo' checked=''  >");
+																  }
+																  else
+																  {  out.print(" <input   type='radio' disabled name='optionsRadios' id='optionsRadios1' value='Activo'  >");
+																  }
+																 
+																   
+																  %>
+																Activo
+																  </label>
+																 
+																    <div style="clear:both"></div>   
+																 
+																 
+																  <label class="radio">
+																 
+																  <%
+																  if( ((HorariodetrabajoBeanData)horariodetrabajo).getEstado().equalsIgnoreCase("Inactivo") ){
+																  out.print(" <input   type='radio' disabled name='optionsRadios' id='optionsRadios2' value='Inactivo' checked=''  >");
+																  }
+																  else
+																  {  out.print(" <input   type='radio' disabled name='optionsRadios' id='optionsRadios2' value='Inactivo'  >");
+																  }
+																  %>
+																Inactivo
+																  </label>
+																</div>
+																</div>		 
+								 
+								 
 							</div> <!--  fin control-group -->
 
 
 
 		         
 						    <div class="form-actions">
-							  <button type="button" class="btn btn-primary" onclick="javascript:alt_submit()">Eliminar</button>
-							  <button type="button" class="btn" onclick="location.href='buscarhorariodetrabajo.jsp'" >Cancelar</button>
-							</div>
+                         		 <button type="button" class="btn btn-primary" onclick="javascript:alt_submit()">Eliminar</button>
+                         		 <button type="button" class="btn" onclick="location.href='buscarhorariodetrabajo.jsp'" >Cancelar</button>
+                        	</div>
 				
 						  
 						  

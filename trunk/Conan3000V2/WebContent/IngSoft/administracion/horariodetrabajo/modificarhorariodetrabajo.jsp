@@ -647,52 +647,8 @@ function cambiar6()
 	}
 	
 	
-	
-	function alt_provincia(){
-		$.ajax({
-		  type: "POST",
-		  url: "/Conan3000V2/IngSoft/administracion/sede/SMASede",
-		  data: "accion=Buscar"+ "&tipo=3" + "&cmbDepartamento=" + $(cmbDepartamento).val(),
-		  dataType: "html",
-		  beforeSend: function ( xhr ) {
-   		  $("#cmbProvincia").html("");
-			//chosen - improves select
-			$("#cmbProvincia").trigger("liszt:updated");
-  		  },
-		  success: function(msg){
-			$("#cmbProvincia").html(msg);
-			//chosen - improves select
-			$("#cmbProvincia").trigger("liszt:updated");
-		  },
-		  error: function(objeto, quepaso, otroobj){
-			alert("ERROR!! Pasó lo siguiente: "+quepaso);
-		  }
-	
-		});
-	}
-	function alt_distrito(){
-		$.ajax({
-		  type: "POST",
-		  url: "/Conan3000V2/IngSoft/administracion/sede/SMASede",
-		  data: "accion=Buscar"+ "&tipo=4" + "&cmbProvincia=" + $(cmbProvincia).val(),
-		  dataType: "html",
-		  beforeSend: function ( xhr ) {
-   		  $("#cmbDistrito").html("");
-			//chosen - improves select
-			$("#cmbDistrito").trigger("liszt:updated");
-  		  },
-		  success: function(msg){
-			$("#cmbDistrito").html(msg);
-			//chosen - improves select
-			$("#cmbDistrito").trigger("liszt:updated");
-		  },
-		  error: function(objeto, quepaso, otroobj){
-			alert("ERROR!! Pasó lo siguiente: "+quepaso);
-		  }
-	
-		});
-	}		
-		
+
+
 	
 	
 	

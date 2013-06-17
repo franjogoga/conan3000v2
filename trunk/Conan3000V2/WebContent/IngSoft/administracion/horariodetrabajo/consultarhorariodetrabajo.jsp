@@ -237,6 +237,51 @@
 								</div><!--/row-->       
 <!-- -------- -->		
 								 </div><!-- fin controls -->
+								 
+								 
+								 
+								 
+								 
+
+														        <div class="control-group">
+																<label class="control-label">Estado </label>
+																<div class="controls">
+																  <label class="radio">
+																  <%
+																 
+																  if( ((HorariodetrabajoBeanData)horariodetrabajo).getEstado().equalsIgnoreCase("Activo") ){
+																  out.print(" <input   type='radio' disabled name='optionsRadios' id='optionsRadios1' value='Activo' checked=''  >");
+																  }
+																  else
+																  {  out.print(" <input   type='radio' disabled name='optionsRadios' id='optionsRadios1' value='Activo'  >");
+																  }
+																 
+																   
+																  %>
+																Activo
+																  </label>
+																 
+																    <div style="clear:both"></div>   
+																 
+																 
+																  <label class="radio">
+																 
+																  <%
+																  if( ((HorariodetrabajoBeanData)horariodetrabajo).getEstado().equalsIgnoreCase("Inactivo") ){
+																  out.print(" <input   type='radio' disabled name='optionsRadios' id='optionsRadios2' value='Inactivo' checked=''  >");
+																  }
+																  else
+																  {  out.print(" <input   type='radio' disabled name='optionsRadios' id='optionsRadios2' value='Inactivo'  >");
+																  }
+																  %>
+																Inactivo
+																  </label>
+																</div>
+																</div>		 
+								 
+								 	 
+								 
+								 
 							</div> <!--  fin control-group -->
 
 
