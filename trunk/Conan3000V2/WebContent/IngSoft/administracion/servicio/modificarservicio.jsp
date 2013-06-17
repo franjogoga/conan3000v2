@@ -48,7 +48,7 @@
 	<![endif]-->
 
 	<!-- The fav icon -->
-	<link rel="shortcut icon" href="img/favicon.ico">
+	<link rel="shortcut icon" href="img/conan_logo.png">
 	<script src="servicio.js"></script>
 	<script>
 	function alt_submit(){
