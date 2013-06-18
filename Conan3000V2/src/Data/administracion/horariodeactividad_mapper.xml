@@ -105,7 +105,7 @@ update inf245g2.ACTIVIDAD set Estado ='No Disponible' where  inf245g2.ACTIVIDAD.
 <!-- Agregar plantilla ACTIVIDADxDIA_SEMANA -->
 
 <insert id="insertPlantillaActividadDiaSemana" parameterType="IngSoft.administracion.bean.ActividadDiaSemanaBeanData" flushCache="true">
-	insert into ACTIVIDADxDIA_SEMANA (IdDiaSemana,IdActividad,HoraInicio,HoraFin,Duracion,Estado)
+	insert into inf245g2.ACTIVIDADxDIA_SEMANA (IdDiaSemana,IdActividad,HoraInicio,HoraFin,Duracion,Estado)
 	values (#{codigoDia},#{codigoActividad},#{horaInicio},#{horaFin},#{duracion},#{estado})
 </insert>
 
