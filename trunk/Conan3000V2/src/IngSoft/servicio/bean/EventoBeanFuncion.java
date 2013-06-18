@@ -1,19 +1,14 @@
 package IngSoft.servicio.bean;
 
-import java.sql.Date;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Vector;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.apache.ibatis.session.SqlSession;
 
-import IngSoft.general.CoException;
 import IngSoft.general.MyBatisSesion;
 
 public class EventoBeanFuncion {	
@@ -30,7 +25,34 @@ public class EventoBeanFuncion {
 	   
 	   private EventoBeanFuncion() {}
 	
-	public EventoBeanData crearEvento(HttpServletRequest request, HttpServletResponse response){
+	   
+	   public Vector<SedeMiniBeanData> getSedes(){
+			SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+			List<SedeMiniBeanData> resultados=sqlsesion.selectList("Data.servicio.evento.searchSedeMini");
+			
+			return new Vector<>(resultados);
+		}
+	   
+	   public Vector<ConcesionarioMiniBeanData> consultarConcesionariosxSede(String idSede, java.util.Date fecha){
+		   Vector<ConcesionarioMiniBeanData> resultados= null;
+		   SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+		   try{			   
+				   HashMap<String, Object> hashMap = new HashMap<String, Object>(); 
+				   hashMap.put("idsede",idSede); 
+				   hashMap.put("fecha", fecha);				   				   
+				   List<ConcesionarioMiniBeanData> temp= sqlsesion.selectList("Data.servicio.evento.getConcecionarioxSede",hashMap);
+				   resultados= new Vector<ConcesionarioMiniBeanData>(temp); 
+		   }
+		   catch(Exception e){
+			   e.printStackTrace();			   
+		   }
+		   finally{
+			   sqlsesion.close();			   
+		   }
+		   return resultados;
+	   }
+	   
+	/*public EventoBeanData crearEvento(HttpServletRequest request, HttpServletResponse response){
 		EventoBeanData eventoData= new EventoBeanData();
 		try{		
 		eventoData.setIdAmbientes(request.getParameter("cmbAmbientes").split("/"));
@@ -214,12 +236,7 @@ public class EventoBeanFuncion {
 		return eventoData;
 	}
 	
-	public Vector<SedeMiniBeanData> getSedes(){
-		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
-		List<SedeMiniBeanData> resultados=sqlsesion.selectList("Data.servicio.evento.searchSedeMini");
-		sqlsesion.close();
-		return new Vector<>(resultados);
-	}
+	
 	
 	public Vector<AmbienteMiniBeanData> getAmbientes(){
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
@@ -233,5 +250,5 @@ public class EventoBeanFuncion {
 		List<TipoEventoMiniBeanData> resultados=sqlsesion.selectList("Data.servicio.evento.searchTipoEventoMini");
 		sqlsesion.close();
 		return new Vector<>(resultados);
-	}
+	}*/
 }

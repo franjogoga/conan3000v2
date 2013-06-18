@@ -53,7 +53,19 @@ order by 1 asc
 	TIPO_EVENTO
 	order by 1
 </select>
-
+<select id="getConcecionarioxSede" parameterType="hashmap" resultType="IngSoft.servicio.bean.ConcesionarioMiniBeanData">
+select c.IdConcesionario as codigo
+,c.RazonSocial as razonSocial
+,c.Descripcion as descripcion
+from
+CONCESIONARIO c
+,CONCESIONARIOxSEDE cs 
+where 
+c.IdConcesionario= cs.IdConcesionario
+and cs.IdSede like #{idsede}
+and DATE(cs.FechaFin)&gt;=DATE(#{fecha})
+and DATE(cs.FechaInicio)&lt;=DATE(#{fecha})
+</select>
 <!-- Agregar plantilla evento -->
 <insert id="insertPlantillaEvento" parameterType="IngSoft.servicio.bean.EventoBeanData" flushCache="true">
 	insert into PLANTILLA_EVENTO(IdPlantillaEvento,Nombre,FechaInicio,FechaFin,IdTipoEvento,Estado)
