@@ -44,9 +44,9 @@ public class ActividadDiaSemanaBeanFunction {
 			
 			actividadDiaSemanaBeanData.setCodigoDia(         codDia   );
 			actividadDiaSemanaBeanData.setCodigoActividad(   codAct   );
-			actividadDiaSemanaBeanData.setHoraInicio(        horIn    );
-			actividadDiaSemanaBeanData.setHoraFin(           horFin   );
-			//actividadDiaSemanaBeanData.setDuracion(           0.0  );
+			actividadDiaSemanaBeanData.setHoraInicio(        horIn+":00"    );
+			actividadDiaSemanaBeanData.setHoraFin(           horFin+":00"   );
+			actividadDiaSemanaBeanData.setDuracion(           0.0  );
 			actividadDiaSemanaBeanData.setEstado(           "Activo"   );
 
 		}catch(Exception e){
@@ -65,13 +65,13 @@ public class ActividadDiaSemanaBeanFunction {
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		
 		try{
-			System.out.print("Agregar Horario dia Semana ");
+			System.out.print("Agregar Horario dia Semana Actividad");
 			System.out.print("CODIGO DIA       -->"+actividadDiaSemanaBeanData.getCodigoDia());
-		    System.out.print("Codigo Actividad --> "+actividadDiaSemanaBeanData.getCodigoActividad());
+		    System.out.print("Codigo Actividad -->"+actividadDiaSemanaBeanData.getCodigoActividad());
 			System.out.print("Hora Inicio      -->"+actividadDiaSemanaBeanData.getHoraInicio());
-			System.out.print("hora fin         --> "+ actividadDiaSemanaBeanData.getHoraInicio());
-			System.out.print("duracionn        --> "+ actividadDiaSemanaBeanData.getDuracion());
-			System.out.print("Estado           --> "+ actividadDiaSemanaBeanData.getEstado());
+			System.out.print("hora fin         -->"+actividadDiaSemanaBeanData.getHoraInicio());
+			System.out.print("duracionn        -->"+actividadDiaSemanaBeanData.getDuracion());
+			System.out.print("Estado           -->"+actividadDiaSemanaBeanData.getEstado());
 			
 			
 			
@@ -82,7 +82,7 @@ public class ActividadDiaSemanaBeanFunction {
 		catch(Exception a)		
 		{sqlsesion.rollback();
 		a.printStackTrace();
-			throw CoException.set("Error en ingreso de datos: No se puede agregar el horario de la actividad ", "SMAHorariodeactividad?accion=Agregar&tipo=1");
+			throw CoException.set("Error en ingreso de datos: No se puede agregar el horario de la actividad xxxxx", "SMAHorariodeactividad?accion=Agregar&tipo=1");
 			
 		}
 		
@@ -105,8 +105,8 @@ public class ActividadDiaSemanaBeanFunction {
 			System.out.print("crearHorarioDiaSemanaMoficado"); 
 			System.out.print("Codigo Dia      -->"+ codDia);
 			System.out.print("Codigo Actividad -->"+ codAct);
-			System.out.print("Hora inicio     -->"+ horIn);
-			System.out.print(" Hora Fin       -->"+ horFin);	
+			System.out.print("Hora inicio     -->"+ horIn+":00");
+			System.out.print(" Hora Fin       -->"+ horFin+":00");	
 			System.out.print(" estado         -->"+ estadoDia);	
 			
 			
