@@ -337,7 +337,7 @@ function cambiar6()
 							 																																													
 														 		<select  style="width: 70px;"  data-rel="chosen" id="cmbHoraInicio<%=i%>"  name="cmbHoraInicio<%=i%>" >
 															        <%for(int k=0;k<horasDelDia.size();k++){     %>
-													<option value="<%=    ((String)horasDelDia.get(k))   %>"    <%= ((String)horasDelDia.get(k)).equalsIgnoreCase(   iniHora[x]     )?"selected":"" %> >  <%=       ((String)horasDelDia.get(k))    %>    </option>
+													<option value="<%=    ((String)horasDelDia.get(k))   %>"    <%= ((String)horasDelDia.get(k)).equalsIgnoreCase(   iniHora[x].substring(0, 5)     )?"selected":"" %> >  <%=       ((String)horasDelDia.get(k))    %>    </option>
 																    <%} %>						
 															    </select>
 							
@@ -374,7 +374,7 @@ function cambiar6()
 							 																																													
 														 		<select  style="width: 70px;"  data-rel="chosen" id="cmbHoraFin<%=i%>"  name="cmbHoraFin<%=i%>" >
 															        <%for(int k=0;k<horasDelDia.size();k++){     %>
-													<option value="<%=    ((String)horasDelDia.get(k))   %>"    <%= ((String)horasDelDia.get(k)).equalsIgnoreCase(   finHora[x]     )?"selected":"" %> >  <%=       ((String)horasDelDia.get(k))    %>    </option>
+													<option value="<%=    ((String)horasDelDia.get(k))   %>"    <%= ((String)horasDelDia.get(k)).equalsIgnoreCase(   finHora[x].substring(0, 5)     )?"selected":"" %> >  <%=       ((String)horasDelDia.get(k))    %>    </option>
 																    <%} %>						
 															    </select>
 							

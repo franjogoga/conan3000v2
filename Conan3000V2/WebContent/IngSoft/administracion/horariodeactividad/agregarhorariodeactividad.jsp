@@ -240,8 +240,8 @@ function selectGrupal2()
 																</td>
 																
 																<td class="center">
-							 																		 <!-- data-rel="chosen" -->																											
-														 		<select  style="width: 70px;"                                    id="cmbHoraInicio<%=i%>"  name="cmbHoraInicio<%=i%>"   <%=i==0?"onChange=selectGrupal1();":""%>    >
+							 																		 																											
+														 		<select  style="width: 70px;"    data-rel="chosen"       id="cmbHoraInicio<%=i%>"  name="cmbHoraInicio<%=i%>"   <%=i==0?"onChange=selectGrupal1();":""%>    >
 														 		
 															
 														 		
@@ -258,7 +258,7 @@ function selectGrupal2()
 																
 																<td class="center">
 																
-														 		<select style="width: 70px;" id="cmbHoraFin<%=i%>"  name="cmbHoraFin<%=i%>"     <%=i==0?"onChange=selectGrupal1();":""%>    >
+														 		<select style="width: 70px;" data-rel="chosen"     id="cmbHoraFin<%=i%>"  name="cmbHoraFin<%=i%>"     <%=i==0?"onChange=selectGrupal1();":""%>    >
 															        <%for(int k=0;k<horasDelDia.size();k++){      %>
 													<option value="<%=((String)horasDelDia.get(k))%>"  <%= k==0  ?"selected":""%>     > <%=    ((String)horasDelDia.get(k))    %>    </option>
 																    <%} %>						
