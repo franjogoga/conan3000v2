@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="Data.administracion.invitado">
+<mapper namespace="Data.administracion.reserva">
 
   <cache />
   
@@ -12,14 +12,16 @@
 </select>
 
 
-<select id="searchPlantillaInvitado" parameterType="IngSoft.administracion.bean.CriterioInvitadoBeanData" resultType="IngSoft.administracion.bean.ResultadoInvitadoBeanData">
+<select id="serchPlantillaReserva" parameterType="IngSoft.administracion.bean.CriterioReservaBeanData" resultType="IngSoft.administracion.bean.ResultadoReservaBeanData">
 SELECT 
-inf245g2.INVITADO.IdInvitado AS codigo,
-inf245g2.PERSONA.nombres AS nombre,
-inf245g2.INVITADO.estado AS estado
-FROM inf245g2.PERSONA , inf245g2.INVITADO
-WHERE  inf245g2.PERSONA.IdPersona = inf245g2.INVITADO.IdInvitado
-AND inf245g2.PERSONA.nombres like  #{nombre}
+
+inf245g2.INVITADOXSOCIO.IdSocio AS codigosocio,
+inf245g2.INVITADOXSOCIO.IdInvitado AS codigoinvitado,
+inf245g2.INVITADOXSOCIO.FechaIngreso AS fechainvitacion,
+inf245g2.INVITADOXSOCIO.Monto AS monto,
+inf245g2.INVITADOXSOCIO.Estado AS estado
+FROM INVITADOXSOCIO
+WHERE  inf245g2.INVITADOXSOCIO.IdInvitado like  #{codigoinvitado}
 order by 1 asc  
 
 
@@ -28,7 +30,7 @@ order by 1 asc
 
 
 
-<select id="getPLantillaInvitado" parameterType="java.lang.String"  resultType="IngSoft.administracion.bean.InvitadoBeanData">
+<select id="getPLantillaReserva" parameterType="java.lang.String"  resultType="IngSoft.administracion.bean.ReservaBeanData">
 SELECT 
 inf245g2.INVITADO.IdInvitado  AS codigo,
 inf245g2.PERSONA.Nombres  AS nombres,
@@ -57,12 +59,12 @@ ORDER BY 1 ASC
 
 <!-- Agregar plantilla ACTIVIDAD -->
 
-<insert id="insertPlantillaPersona" parameterType="IngSoft.administracion.bean.InvitadoBeanData" flushCache="true">
+<insert id="insertPlantillaPersona" parameterType="IngSoft.administracion.bean.ReservaBeanData" flushCache="true">
 	insert into inf245g2.PERSONA (IdPersona ,Nombres ,ApePaterno  ,ApeMaterno  ,TipoDocumento  ,NumeroDocumento  ,FechaNac )
 	values (#{codigo},#{nombres},#{aparterno},#{amaterno},#{tipodocumento},#{numerodoc},#{fechanacimiento})
 </insert>
 
-<insert id="insertPlantillaInvitado" parameterType="IngSoft.administracion.bean.InvitadoBeanData" flushCache="true">
+<insert id="insertPlantillaInvitado" parameterType="IngSoft.administracion.bean.ReservaBeanData" flushCache="true">
 	insert into inf245g2.INVITADO (IdInvitado,FechaRegistro,Correo,TelefonoFijo,TelefonoCelular,Estado)
 	values (#{codigo},#{fecharegistro},#{correo},#{telefonofijo},#{telefonomovil},'Activo')
 </insert>
@@ -71,7 +73,7 @@ ORDER BY 1 ASC
 
 <!--Modificar invitado -->
 
-<update id="modificarPlantillaInvitado" parameterType="IngSoft.administracion.bean.InvitadoBeanData" >
+<update id="modificarPlantillaReserva" parameterType="IngSoft.administracion.bean.ReservaBeanData" >
 
 
 UPDATE
@@ -107,7 +109,7 @@ AND   inf245g2.PERSONA.IdPersona   = #{codigo}
 
 <!--Eliminar invitado -->
 
-<update id="deletePLantillaInvitado" parameterType="java.lang.String" >
+<update id="deletePLantillaReserva" parameterType="java.lang.String" >
 update INVITADO set Estado ='Inactivo' where IdInvitado = #{codigo}
 </update>
 <!-- Fin eliminar -->
