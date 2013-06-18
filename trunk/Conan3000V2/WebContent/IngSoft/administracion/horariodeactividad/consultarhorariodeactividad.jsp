@@ -204,7 +204,7 @@
 							 																																													
 														 		<select  style="width: 70px;"  data-rel="chosen" id="cmbHoraInicio<%=i%>" disabled name="cmbHoraInicio" >
 															       
-													<option value="<%=horaIni[i]%>" selected > <%=    horaIni[i]   %>    </option>
+													<option value="<%=horaIni[i].substring(0, 5)%>" selected > <%=    horaIni[i].substring(0, 5)   %>    </option>
 																   					
 															    </select>
 							
@@ -214,7 +214,7 @@
 																
 														 		<select style="width: 70px;" data-rel="chosen" id="cmbHoraFin<%=i%>"  disabled name="cmbHoraFin" >
 															       
-													<option value="<%= horaFin[i]  %>" selected > <%=   horaFin[i]   %>    </option>
+													<option value="<%= horaFin[i].substring(0, 5)  %>" selected > <%=   horaFin[i].substring(0, 5)   %>    </option>
 																   					
 															    </select>
 																
