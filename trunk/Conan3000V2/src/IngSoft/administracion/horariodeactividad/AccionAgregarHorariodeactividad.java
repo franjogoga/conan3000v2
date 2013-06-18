@@ -38,7 +38,9 @@ public class AccionAgregarHorariodeactividad extends CoAccion{
 			
 		for(int i=0; i<7;i++)
 		{
+			
 		if( request.getParameter("checkDia"+i)!=null){
+			System.out.print(  " creando ---> "+ i);
 			ActividadDiaSemanaBeanFunction actividadDiaSemanaFunction = ActividadDiaSemanaBeanFunction.getInstance();
 			ActividadDiaSemanaBeanData     horarioDiaSemanaData = actividadDiaSemanaFunction.crearHorarioDiaSemana(
 					request.getParameter("checkDia"+i)  ,
