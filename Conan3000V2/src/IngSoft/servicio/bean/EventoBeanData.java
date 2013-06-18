@@ -6,55 +6,74 @@ import java.util.Date;
 public class EventoBeanData implements Serializable{
 	
 	private String codigo;
-	private String nombre;
-	private String idTipo;
-	private String[] idSede;
-	private String[] idAmbientes;
-	private Date limiteInicio;
-	private Date limiteFin;
-	
+	//private String nombre;
+	//private String idTipo;
+	private int entradasTotal;
+	private int limiteEntradas;
+	private int precioEntrada;
+	private String idSede;
+	private String idAmbientes;
+	private String idPlantilla;
+	private Date fecha;
+	private double monto;
 	public String getCodigo() {
 		return codigo;
 	}
 	public void setCodigo(String codigo) {
 		this.codigo = codigo;
 	}
-	public String getNombre() {
-		return nombre;
+	public int getEntradasTotal() {
+		return entradasTotal;
 	}
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setEntradasTotal(int entradasTotal) {
+		this.entradasTotal = entradasTotal;
 	}
-	public String getIdTipo() {
-		return idTipo;
+	public int getLimiteEntradas() {
+		return limiteEntradas;
 	}
-	public void setIdTipo(String idTipo) {
-		this.idTipo = idTipo;
+	public void setLimiteEntradas(int limiteEntradas) {
+		this.limiteEntradas = limiteEntradas;
 	}
-	public String[] getIdSede() {
+	public int getPrecioEntrada() {
+		return precioEntrada;
+	}
+	public void setPrecioEntrada(int precioEntrada) {
+		this.precioEntrada = precioEntrada;
+	}
+	public String getIdSede() {
 		return idSede;
 	}
-	public void setIdSede(String[] idSede) {
+	public void setIdSede(String idSede) {
 		this.idSede = idSede;
 	}
-	public String[] getIdAmbientes() {
+	public String getIdAmbientes() {
 		return idAmbientes;
 	}
-	public void setIdAmbientes(String[] idAmbientes) {
+	public void setIdAmbientes(String idAmbientes) {
 		this.idAmbientes = idAmbientes;
 	}
-	public Date getLimiteInicio() {
-		return limiteInicio;
+	public String getIdPlantilla() {
+		return idPlantilla;
 	}
-	public void setLimiteInicio(Date limiteInicio) {
-		this.limiteInicio = limiteInicio;
+	public void setIdPlantilla(String idPlantilla) {
+		this.idPlantilla = idPlantilla;
 	}
-	public Date getLimiteFin() {
-		return limiteFin;
+	public Date getFecha() {
+		return fecha;
 	}
-	public void setLimiteFin(Date limiteFin) {
-		this.limiteFin = limiteFin;
+	public void setFecha(Date fecha) {
+		this.fecha = fecha;
 	}
+	public double getMonto() {
+		return monto;
+	}
+	public void setMonto(double monto) {
+		this.monto = monto;
+	}
+	
+	
+	
+	
 	
 	
 	

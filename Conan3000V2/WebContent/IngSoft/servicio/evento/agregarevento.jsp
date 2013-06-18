@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="IngSoft.servicio.bean.Utils"%>
 <%@page import="IngSoft.servicio.bean.TipoEventoMiniBeanData"%>
 <%@page import="IngSoft.servicio.bean.AmbienteMiniBeanData"%>
 <%@page import="IngSoft.servicio.bean.SedeMiniBeanData"%>
@@ -15,7 +18,7 @@
 		http://twitter.com/halalit_usman
 	-->
 	<meta charset="utf-8">
-	<title>Agregar Plantilla de Evento</title>
+	<title>Agregar Solicitud de Evento</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
 	<meta name="author" content="Muhammad Usman">
@@ -167,7 +170,30 @@
 			});		
 	}
 	
-	
+	function getConcecionarios(){
+		$.ajax({
+			  type: "POST",
+			  url: "/Conan3000V2/IngSoft/servicio/evento/SMSEvento",
+			  data: "accion=" + $(accion).val() + "&tipo=3" + "&cmbSedes=" + $(cmbSedes).val() + "&fFecha=" + $(fFecha).val() ,
+			  dataType: "html",
+			  success: function(msg){				  
+				  $("#concesionarioResultados").html(msg);
+				  updatetable();				  
+				  $("#bModal").trigger("click");
+				  				  								
+			  },
+			  error: function(objeto, quepaso, otroobj){
+				$("#linkAceptar").css("display","inline");
+				$("#linkCerrar").css("display","none");
+				$("#modalTitulo").html("ERROR");
+				$("#modalContenido").html("Hubo un error, no se pudo conseguir la lista de concesionarios");
+				$("#bModal").trigger("click");
+				
+			  }
+		
+			});		
+		
+	}
 			
 			
 	</script>	
@@ -203,7 +229,7 @@
 						<a href="buscarevento.jsp">Mantenimiento de Eventos</a> <span class="divider">/</span>
 					</li>
 					<li>
-						Agregar Plantilla de Eventos
+						Agregar Solicitud de Eventos Internos
 					</li>
 				</ul>
 			</div>
@@ -217,6 +243,7 @@
 						<form class="form-horizontal" action="<%= response.encodeURL("SMSEvento")%>" onsubmit="alt_submit(); return false;"name="frmData" method="post">
 						<input type="hidden" name="accion" id="accion" value="Agregar"></input>
 						<input type="hidden" name="tipo" id="tipo" value="2"></input>
+						<input type="hidden" name="fFechaActual" id="fFechaActual" value="<%=new SimpleDateFormat("dd/MM/yyyy").format(new Date())%>"></input>
 						  <fieldset>
 						    <div class="control-group">
 						      <label class="control-label" for="typeahead7">Nombre de evento(*): </label>
@@ -225,52 +252,35 @@
 								<span class="help-inline" id="errNombreEvento" style="display:none;">Este campo no puede estar vacio</span>						        													       
 					          </div>
 					        </div>
-						    
-							<div class="control-group">
-								<label class="control-label" for="cmbTipo">Tipo de Evento(*):</label>
-								<div class="controls">
-								  <select data-rel="chosen" id="cmbTipo" name="cmbTipo">
-									<%for(int i=0;i<tiposEvento.size();i++){ %>
-										<option value="<%= ((TipoEventoMiniBeanData)tiposEvento.get(i)).getCodigo()%>" <%=i==0?"selected":""%>><%= ((TipoEventoMiniBeanData)tiposEvento.get(i)).getNombre()%></option>
-									<%} %>										
-								  </select>
-								</div>
-							  </div>
+					        <div class="control-group">
+						      <label class="control-label" for="txtNumEntradas">Limite Maximo Entradas(*): </label>
+						      <div class="controls">
+						        <input type="text" class="input typeahead" id="txtNumEntradas"  data-provide="typeahead"  name="txtNumEntradas" onkeypress="return numerico(event);" autofocus maxlength="11"/>
+								<span class="help-inline" id="errNumEntradas" style="display:none;">Este campo no puede estar vacio</span>						        													       
+					          </div>
+					        </div>						   
 							  <div class="control-group">
 								<label class="control-label" for="cmbSedes">Sedes relacionadas(*):</label>
 								<div class="controls">
-								  <select  multiple data-rel="chosen" id="cmbSedes" name="cmbSedes" >
+								  <select  data-rel="chosen" id="cmbSedes" name="cmbSedes" >
+								  	<option value="0" selected>--Seleccione una Sede--</option>
 									<%for(int i=0;i<sedes.size();i++){ %>
 										<option value="<%= ((SedeMiniBeanData)sedes.get(i)).getCodigo()%>"><%= ((SedeMiniBeanData)sedes.get(i)).getNombre()%></option>
 									<%} %>																									
 								  </select>
 								  <span class="help-inline" id="errSedes" style="display:none;">Este campo no puede estar vacio</span>
 								</div>
-							  </div>
-							   <div class="control-group">
-								<label class="control-label" for="cmbAmbientes">Ambientes relacionados(*):</label>
-								<div class="controls">
-								  <select  multiple data-rel="chosen" id="cmbAmbientes" name="cmbAmbientes">
-									<%for(int i=0;i<ambientes.size();i++){ %>
-										<option value="<%= ((AmbienteMiniBeanData)ambientes.get(i)).getCodigo()%>"><%= ((AmbienteMiniBeanData)ambientes.get(i)).getNombre()%></option>
-									<%} %>																			
-								  </select>
-								  <span class="help-inline" id="errAmbientes" style="display:none;">Este campo no puede estar vacio, por favor haga una seleccion</span>
-								</div>
-							  </div>
+							  </div>							   
 							  <div class="control-group">
-							  <label class="control-label" for="date01">Limite Inicio(*):</label>
+							  <label class="control-label" for="fFecha">Fecha(*):</label>
 							  <div class="controls">
-								<input type="text" class="input-xlarge datepicker" id="fFecIncio" readonly="true" value="01/01"  name="fFecIncio" onchange="alt_fecha(this);verificar_fecha(-1,this,'fFecFin');">
+								<input type="text" class="input datepicker" id="fFecha" readonly="true" value="<%=new SimpleDateFormat("dd/MM/yyyy").format(new Date())%>"  name="fFecha" onchange="verificar_fecha(-1,this,'fFechaActual');">
 							  </div>
 							</div>
-							
-							<div class="control-group">
-							  <label class="control-label" for="date02">Limite Fin(*):</label>
-							  <div class="controls">
-								<input type="text" class="input-xlarge datepicker" id="fFecFin" readonly="true" value="31/12"  name="fFecFin" onchange="alt_fecha(this);verificar_fecha(1,this,'fFecIncio');">
-							  </div>
-							</div>
+							<div class="form-actions">
+							  <button type="button" class="btn btn-primary" onclick="getConcecionarios()">Concesionarios</button>
+							 
+							</div>							
 						    <div class="form-actions">
 							  <button type="submit" class="btn btn-primary" >Agregar</button>
 							  <button type="button" class="btn" onclick="location.href='buscarevento.jsp'" >Cancelar</button>
@@ -296,11 +306,12 @@
 				</div><!--/fluid-row-->
 				
 		<hr>
-		<but>
+		
 		<div style="display: none;">
 			<button class="btn btn-primary btn-setting" id="bModal"/>
 		</div>
 		<div class="modal hide fade" id="myModal">
+		   <div id="MensajeExito" style="display: none;">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal">X</button>
 				<h3 id="modalTitulo">EXITO</h3>
@@ -308,10 +319,23 @@
 			<div class="modal-body">
 				<p id="modalContenido">La plantilla de evento ha sido agregada exitosamente</p>
 			</div>
+			
 			<div class="modal-footer">
 				<button type="button" class="btn" id="linkAceptar" style="display: none">Aceptar</a>
 				<a href="#" class="btn" id="linkCerrar"  data-dismiss="modal" style="display: none">Cerrar</a>
 								
+			</div>
+			</div>
+			<div id="listaConcecionarios">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">X</button>
+				<h3 id="modalTitulo">Lista de concesionarios</h3>
+			</div>
+			<div class="box-content" id="concesionarioResultados"  >
+			
+			</div>
+			
+			
 			</div>
 		</div>
 		<br/>
