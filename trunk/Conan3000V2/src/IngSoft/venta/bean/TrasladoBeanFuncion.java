@@ -36,7 +36,7 @@ public class TrasladoBeanFuncion {
 		try{			
 		
 			
-			trasladoData.setCodigo(request.getParameter("txtIdNuevoSocio"));
+		trasladoData.setCodigo(request.getParameter("txtIdNuevoSocio"));
 		//trasladoData.setIdMembresiaNuevo("MEM000032");
 		trasladoData.setFecha(new Date(DF.parse(request.getParameter("fFechaInicio")).getTime()));
 		trasladoData.setFechafin(new Date(DF.parse(request.getParameter("fFechaFin")).getTime()));
@@ -70,9 +70,10 @@ public class TrasladoBeanFuncion {
 			trasladoData.setIdmembresianuevo(codigoNuevo);
 			}
 			//else trasladoData.setIdMembresiaNuevo("MEM000020");
-
+			
 			String codigo=trasladoData.getIdmembresiantiguo();
-			//trasladoData.setIdmembresianuevo(codigoNuevo);
+			//Busco la membresia anterior y saco la modalidad de periodo
+			MembresiaBeanData membresiaAntData=sqlsesion.selectOne("Data.venta.traslado.getPlantillaMembresia",codigo);
 			
 			//membresiaData.setIdMembresia(idMembresia);
 			membresiaData.setIdMembresia(codigoNuevo);
@@ -82,17 +83,18 @@ public class TrasladoBeanFuncion {
 			membresiaData.setCodigoSocio(trasladoData.getCodigo());
 			membresiaData.setFechaInicio(trasladoData.getFecha());
 			membresiaData.setFechafin(trasladoData.getFechafin());
+			membresiaData.setPeriodo(membresiaAntData.getPeriodo());
 			
 			sqlsesion.insert("Data.venta.traslado.insertNuevaMembresia",membresiaData);
 			sqlsesion.update("Data.venta.traslado.updateCodigo", codigo);
 			sqlsesion.insert("Data.venta.traslado.insertTraslado",trasladoData);
-
+			
 			resultado=true;
 		}
 		catch(Exception a)		
 		{sqlsesion.rollback();
 		a.printStackTrace();
-			//throw CoException.set("Error: Nombre de traslado repetido", "SMVPromocion?accion=Agregar&tipo=1");
+			//throw CoException.set("Error: Nombre de traslado repetido", "SMVTraslado?accion=Agregar&tipo=1");
 		}
 		
 		finally{
@@ -114,10 +116,4 @@ public class TrasladoBeanFuncion {
 		//}
 		//return TrasladoData;
 	//}
-
-	
-	
-	
-	
-	
 }			  
