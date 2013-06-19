@@ -22,11 +22,7 @@
 	
 	<!--The beans  -->
 	<jsp:useBean id="socio" scope="request" class="IngSoft.venta.bean.SocioBeanData"></jsp:useBean>
-	
-	<!--The beans  -->
 	<jsp:useBean id="persona" scope="request" class="IngSoft.venta.bean.PersonaMiniBeanData"></jsp:useBean>
-
-
 
 	<!-- The styles -->
 	<link id="bs-css" href="css/bootstrap-cerulean.css" rel="stylesheet">
@@ -73,15 +69,6 @@
 	obj.value=obj.value.slice(0,5);
 	
 	}
-	
-	function alt_submit(){
-		
-			
-			}
-		
-		
-		
-			//document.fmrData.submit();
 
 	</script>	
 	<%! public boolean  encontrar(String a, String[] b){
@@ -164,17 +151,13 @@
 					          </div>
 					        </div>
 
-
-		
 							  <div class="control-group">
 							  <label class="control-label" for="date01">Fecha Nacimiento(*):</label>
 							  <div class="controls">
 								<input type="text" class="input-xlarge datepicker" id="fFechaNacimiento" name="fFechaNacimiento" value="<%=formatear(new Date(persona.getFechaNacimiento().getTime())) %>"   disabled>
 							  </div>
 							</div>
-							
-									
-									
+
 							<div class="control-group" >
 								<label class="control-label" for="typeahead13">Tipo de Documento:</label>
 								<div class="controls">
