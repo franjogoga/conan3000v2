@@ -72,15 +72,6 @@
 	obj.value=obj.value.slice(0,5);
 	
 	}
-	
-	function alt_submit(){
-		
-			
-			}
-		
-		
-		
-			//document.fmrData.submit();
 
 	</script>	
 	<%! public boolean  encontrar(String a, String[] b){
@@ -193,39 +184,34 @@
 			                  <input type="text" disabled class="span6 typeahead" id="typeahead8"   data-provide="typeahead" data-items="4" value=<%=persona.getApellidoMaterno() %>>
 		                    </div>
 		                  </div>
-		                  
-			         
+		             
 			               	<div class="control-group">
-								<label  class="control-label" for="typeahead3">Tipo de Documento(*):</label>
+								<label class="control-label" for="typeahead6">Tipo de Documento:</label>
 								<div class="controls">
 								  <label class="radio">
-									<input disabled type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+									<input type="radio" name="rButton"  value="DNI" disabled <% if(persona.getTipoDocumento().toUpperCase().equals("DNI")){ %> checked <%}%>>
 									DNI
 								  </label>
 								  <div style="clear:both"></div>
 								  <label class="radio">
-									<input disabled type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+									<input type="radio" name="rButton"  value="Carnet de Extranjeria" disabled <% if(persona.getTipoDocumento().toUpperCase().equals("CARNET DE EXTRANJERIA")){ %> checked <%}%>>
 									Carnet de Extranjeria
 								  </label>
 								   <div style="clear:both"></div>
 								  <label class="radio">
-									<input  disabled type="radio" name="optionsRadios" id="optionsRadios3" value="option3">
+									<input type="radio" name="rButton" value="Pasaporte" disabled<% if(persona.getTipoDocumento().toUpperCase().equals("PASAPORTE")){ %> checked <%}%>>
 									Pasaporte
 								  </label>
 								</div>
 							</div>	
-							  
-							  
+						
 						 <div class="control-group">
 			                <label class="control-label" for="typeahead8">N&uacute;mero de Doc.(*):</label>
 			                <div class="controls">
 			                  <input type="text" disabled class="span6 typeahead" id="typeahead8"  data-provide="typeahead" data-items="4" value=<%=persona.getNumeroDocumento() %>>
 		                    </div>
 		                  </div>
-			            
-			              
-			                
-		                   
+			               
 		                  <div class="control-group">
 			                <label class="control-label" for="typeahead10">Tel&eacute;fono Fijo: </label>
 			                <div class="controls">
@@ -249,8 +235,7 @@
 							
 							
 						    <div class="form-actions" >
-					
-							  <button type="button" class="btn" onclick="location.href='buscarfamiliar.jsp'" >Regresar</button>
+							 <button type="button" class="btn" onclick="location.href='buscarfamiliar.jsp'" >Regresar</button>
 							</div>
 						  </fieldset>
 					  </form>   
