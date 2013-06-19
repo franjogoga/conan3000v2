@@ -198,13 +198,20 @@
 	function agregarConcesionario(elem){
 		var nombre=elem.parent().parent().children()[0].innerText;
 		var id=elem.prop("id");
+		elem.attr('disabled', 'disabled');
 		var temp="&lt;div class='input-append'&gt;&lt;input id='appendedInputButton' size='16' type='text' readonly='true' value='Salon Principal'&gt;&lt;button class='btn' disabled='disabled' type='button'&gt;X&lt;/button&gt;&lt;/div&gt;";
-		var temp2="<br/><div class='input-append' id='"+id+"'><input id='appendedInputButton' size='16' type='text' readonly='true' value='"+nombre+"'><button class='btn' type='button'>X</button></div>";
+		var temp2="<div class='input-append'><input id='appendedInputButton' size='16' type='text' readonly='true' value='"+nombre+"'><button class='btn' type='button' onclick='retirarConcesionario($(this),'"+id+"')'>X</button></div><br/>";
 		$("#listaServicios").html($("#listaServicios").html()+temp2);
 		updatetable();
+		$('#mytable_length').css("display","none");  
 	}	
 	
-	function retirarConcesionario(elem){
+	function retirarConcesionario(elem,idboton){
+		var temp=elem.parent().parent();
+		var idboton='#'+id;
+		elem.parent().remove();
+		$(idboton).attr('disabled', '');
+		temp.html(temp.html().replace('<br><br>','<br>'));
 		
 	}
 			
@@ -294,8 +301,7 @@
 							  <div class="controls" id="listaServicios">
 								<div class="input-append">
 									<input id="appendedInputButton" size="16" type="text" readonly="true" value="Salon Principal"><button class="btn" disabled="disabled" type="button">X</button>
-								  </div>								  							
-							  </div>
+								  </div><br/></div>
 							</div>
 							<div class="form-actions">
 							  <button type="button" class="btn btn-primary" onclick="getConcecionarios()">Concesionarios</button>							 
