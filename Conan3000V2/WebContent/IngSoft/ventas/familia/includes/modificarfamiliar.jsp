@@ -77,8 +77,6 @@
 			                      <option selected>Hija(o)</option>
 			                      <option>Padre</option>
 			                      <option>Madre</option>
-			                      <option>Hermano(a)</option>
-			                       <option>Nieto(a)</option>
 		                        </select>
 		                      </div>
 		                    </div>
@@ -119,17 +117,17 @@
 								<label class="control-label" for="typeahead6">Tipo de Documento:</label>
 								<div class="controls">
 								  <label class="radio">
-									<input type="radio" name="rButton"  value="DNI">
+									<input type="radio" name="rButton"  value="DNI" <% if(persona.getTipoDocumento().toUpperCase().equals("DNI")){ %> checked <%}%>>
 									DNI
 								  </label>
 								  <div style="clear:both"></div>
 								  <label class="radio">
-									<input type="radio" name="rButton"  value="Carnet de Extranjeria">
+									<input type="radio" name="rButton"  value="Carnet de Extranjeria" <% if(persona.getTipoDocumento().toUpperCase().equals("CARNET DE EXTRANJERIA")){ %> checked <%}%>>
 									Carnet de Extranjeria
 								  </label>
 								   <div style="clear:both"></div>
 								  <label class="radio">
-									<input type="radio" name="rButton" value="Pasaporte">
+									<input type="radio" name="rButton" value="Pasaporte" <% if(persona.getTipoDocumento().toUpperCase().equals("PASAPORTE")){ %> checked <%}%>>
 									Pasaporte
 								  </label>
 								   <span class="help-inline" id="errTipo">Please correct the error</span>
