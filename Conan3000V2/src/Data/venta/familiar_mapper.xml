@@ -24,7 +24,7 @@ from FAMILIAR,PERSONA
         AND (PERSONA.ApePaterno  like  #{apellidoPaterno})
     </if>
     <if test="apellidoMaterno != null ">
-        AND (PERSONA.ApePaterno  like  #{apellidoPaterno})
+        AND (PERSONA.ApeMaterno  like  #{apellidoMaterno})
     </if>
      <if test="tipoDocumento != null">
         AND PERSONA.TipoDocumento like #{tipoDocumento}
