@@ -15,8 +15,8 @@
 
 
 <insert id="insertNuevaMembresia" parameterType="IngSoft.venta.bean.MembresiaBeanData" flushCache="true">
-	insert into MEMBRESIA(IdMembresia,IdSocio,Costo,FechaInicio,FechaFin,Estado,Vitalicio)
-	values (#{idMembresia},#{codigoSocio},#{costo},#{fechaInicio},#{fechaFin},'Activo','No')
+	insert into MEMBRESIA(IdMembresia,IdSocio,Costo,FechaInicio,FechaFin,Estado,Vitalicio,Periodo)
+	values (#{idMembresia},#{codigoSocio},#{costo},#{fechaInicio},#{fechaFin},'Activo','No',#{periodo})
 </insert>
 
 <select id="getNextCodigoT" resultType="java.lang.String">
@@ -27,9 +27,10 @@
 <select id="getPlantillaMembresia" parameterType="java.lang.String"  resultType="IngSoft.venta.bean.MembresiaBeanData">
 select 
 MEMBRESIA.IdMembresia as codigo
-,MEMBRESIA.FechaInicio as limInicio
-,MEMBRESIA.FechaFin as limFin
+,MEMBRESIA.FechaInicio as fechaInicio
+,MEMBRESIA.FechaFin as fechaFin
 ,MEMBRESIA.Estado as estado
+,MEMBRESIA.Periodo as periodo
 from MEMBRESIA  where IdMembresia=#{codigo}; 
 </select>
 
