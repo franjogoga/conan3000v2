@@ -24,7 +24,7 @@ from SOCIO,PERSONA,MEMBRESIA
         AND (PERSONA.ApePaterno  like  #{apellidoPaterno})
     </if>
     <if test="apellidoMaterno != null ">
-        AND (PERSONA.ApePaterno  like  #{apellidoPaterno})
+        AND (PERSONA.ApeMaterno  like  #{apellidoMaterno})
     </if>
     <if test="direccion != null">
         AND SOCIO.Direccion like #{direccion}
