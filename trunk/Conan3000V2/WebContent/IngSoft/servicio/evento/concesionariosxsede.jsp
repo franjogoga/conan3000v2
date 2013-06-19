@@ -37,11 +37,11 @@ Esta sede no posee concecionarios DISPONIBLES en la fecha selecionada
                           			</td>
 
                           			<td class="center">
-                          				<a class="btn btn-success"
-                          					href="javascript:alt_consultar('<%=((ConcesionarioMiniBeanData)resultados.get(i)).getCodigo()%>')">
+                          				<button class="btn btn-success" id="<%=((ConcesionarioMiniBeanData)resultados.get(i)).getCodigo()%>"
+                          					onclick="javascript:agregarConcesionario($(this))">
                           					<i class="icon-zoom-in icon-white">
                           					</i>Agregar
-                          				</a>                          				
+                          				</button>                          				
                           			</td>
                           		</tr>
 
