@@ -51,12 +51,13 @@ String fecAnoFin=dfActual.format(c1.getTime()); %>
 			        
 			          <fieldset>
 
-			            <div class="control-group">
+			            <div class="control-group" id="dvCodigo">
 			              <label class="control-label" for="typeahead7">Socio Asociado:</label>
 			              <div class="controls">
 			                <input type="text"   class="span6 typeahead" id="txtSocio"  name="txtSocio" data-provide="typeahead">
 			                <br>
 		                     <div  align="left"> <a class="btn btn-primary iframe" href="../socio/seleccionarsocio.jsp"> <i class="icon icon-search icon-white"></i> Buscar Socio</a> </div>
+		                     <span class="help-inline" id="errCodigo">Please correct the error</span>
 		                  </div>
 		                </div>
 		                
@@ -68,8 +69,6 @@ String fecAnoFin=dfActual.format(c1.getTime()); %>
 			                      <option selected>Hija(o)</option>
 			                      <option>Padre</option>
 			                      <option>Madre</option>
-			                      <option>Hermano(a)</option>
-			                       <option>Nieto(a)</option>
 		                        </select>
 		                      </div>
 		                    </div>
@@ -81,6 +80,7 @@ String fecAnoFin=dfActual.format(c1.getTime()); %>
 		                      <span class="help-inline" id="errNombres">Please correct the error</span>
 		                    </div>
 		                  </div>
+		                  
 			              <div class="control-group" id="dvApellidoP">
 			                <label class="control-label" for="typeahead4">Apellido Paterno(*):</label>
 			                <div class="controls">
