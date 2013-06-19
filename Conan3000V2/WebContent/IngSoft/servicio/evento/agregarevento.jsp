@@ -178,7 +178,8 @@
 			  dataType: "html",
 			  success: function(msg){				  
 				  $("#concesionarioResultados").html(msg);
-				  updatetable();				  
+				  updatetable();				
+				  $('#mytable_length').css("display","none");  
 				  $("#bModal").trigger("click");
 				  				  								
 			  },
@@ -194,7 +195,18 @@
 			});		
 		
 	}
-			
+	function agregarConcesionario(elem){
+		var nombre=elem.parent().parent().children()[0].innerText;
+		var id=elem.prop("id");
+		var temp="&lt;div class='input-append'&gt;&lt;input id='appendedInputButton' size='16' type='text' readonly='true' value='Salon Principal'&gt;&lt;button class='btn' disabled='disabled' type='button'&gt;X&lt;/button&gt;&lt;/div&gt;";
+		var temp2="<br/><div class='input-append' id='"+id+"'><input id='appendedInputButton' size='16' type='text' readonly='true' value='"+nombre+"'><button class='btn' type='button'>X</button></div>";
+		$("#listaServicios").html($("#listaServicios").html()+temp2);
+		updatetable();
+	}	
+	
+	function retirarConcesionario(elem){
+		
+	}
 			
 	</script>	
 </head>
@@ -277,10 +289,17 @@
 								<input type="text" class="input datepicker" id="fFecha" readonly="true" value="<%=new SimpleDateFormat("dd/MM/yyyy").format(new Date())%>"  name="fFecha" onchange="verificar_fecha(-1,this,'fFechaActual');">
 							  </div>
 							</div>
+							 <div class="control-group">
+							  <label class="control-label" for="fFecha">Servicios Seleccionados:</label>
+							  <div class="controls" id="listaServicios">
+								<div class="input-append">
+									<input id="appendedInputButton" size="16" type="text" readonly="true" value="Salon Principal"><button class="btn" disabled="disabled" type="button">X</button>
+								  </div>								  							
+							  </div>
+							</div>
 							<div class="form-actions">
-							  <button type="button" class="btn btn-primary" onclick="getConcecionarios()">Concesionarios</button>
-							 
-							</div>							
+							  <button type="button" class="btn btn-primary" onclick="getConcecionarios()">Concesionarios</button>							 
+							</div>														
 						    <div class="form-actions">
 							  <button type="submit" class="btn btn-primary" >Agregar</button>
 							  <button type="button" class="btn" onclick="location.href='buscarevento.jsp'" >Cancelar</button>
