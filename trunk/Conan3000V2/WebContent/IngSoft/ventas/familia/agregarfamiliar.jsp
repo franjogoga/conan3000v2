@@ -73,6 +73,7 @@ function validaForm(){
 	var i=0;
 	var error=false;
 	
+	if(!esValido("Codigo Socio",form.txtSocio,"Codigo",1,1,9)){cadena[i]="Codigo Socio";i++;}
 	if(!esValido("Nombres",form.txtNombres,"Nombres",1,1,50)){cadena[i]="Nombres";i++;}
 	if(!esValido("Apellido Paterno",form.txtApellidoPaterno,"ApellidoP",1,1,50)){cadena[i]="Apellido Paterno";i++;}
 	if(!esValido("Apellido Materno",form.txtApellidoMaterno,"ApellidoM",1,1,50)){cadena[i]="Apellido Materno";i++;}
@@ -106,6 +107,8 @@ function inicializa(){
 /*Esto se debe llenar siempre deacuerdo a las etiuquetas <span> del formulario, esto sirve para ocultar inicialmente los avisos
 Solo poner el id de los <span> segun corresponda
 */
+	
+	document.getElementById("errCodigo").style.display='none';
 	document.getElementById("errNombres").style.display='none';
 	document.getElementById("errApellidoP").style.display='none';
 	document.getElementById("errApellidoM").style.display='none';
