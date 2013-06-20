@@ -156,17 +156,11 @@ public String consultarSolicitudProductoMax() throws CoException {
 
 public Vector<SedeMiniBeanData> getSedes(){
 	SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
-	List<SedeMiniBeanData> resultados=sqlsesion.selectList("Data.venta.solicitudproducto.searchSedeMini");
+	List<SedeMiniBeanData> resultados1=sqlsesion.selectList("Data.venta.solicitudproducto.searchSedeMini");
 	sqlsesion.close();
-	return new Vector<>(resultados);
+	return new Vector<>(resultados1);
 }
-	
-public Vector<EmpleadoMiniBeanData> getEmpleados(){
-	SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
-	List<EmpleadoMiniBeanData> resultados=sqlsesion.selectList("Data.venta.solicitudproducto.searchEmpleadoMini");
-	sqlsesion.close();
-	return new Vector<>(resultados);
-}
+
 	
 	
 }

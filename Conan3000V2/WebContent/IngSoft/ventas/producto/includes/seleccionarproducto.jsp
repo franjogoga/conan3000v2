@@ -108,7 +108,7 @@
 						    <div class="form-actions">
 							 
 			                <button type="submit" class="btn btn-primary">Buscar</button>
-			              <button type="submit" class="btn"><a href="buscarproducto.jsp">Cancelar</a></button>
+			            
 			           
 			           
 							
