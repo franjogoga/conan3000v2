@@ -14,7 +14,7 @@ public class SMCSorteo extends CoServlet{
 		acciones.put("Buscar", new AccionBuscarInscripcionSorteo());
 		acciones.put("Inscripcion", new AccionInscripcionSorteo());
 		acciones.put("Consultar", new AccionGenerarSorteo());
-		//acciones.put("Modificar", new AccionModificarSorteo());
+		acciones.put("Pagar", new AccionPagarSorteo());
 		//acciones.put("Eliminar", new AccionEliminarSorteo());
 	}
 	
