@@ -34,7 +34,7 @@ public class AccionPagarSorteo extends CoAccion {
 		
 		SorteoBeanFuncion sorteoFuncion= SorteoBeanFuncion.getInstance();
 		BungalowxSorteo bungalowSorteo = new BungalowxSorteo();
-		String idSocio="SOC000001";
+		String idSocio = (String)request.getSession().getAttribute("idSocio");
 		bungalowSorteo = sorteoFuncion.getBungalowSorteo(idSocio);
 		OrdenPagoBeanFunction orden=new OrdenPagoBeanFunction();
 		
