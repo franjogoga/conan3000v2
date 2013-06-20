@@ -209,41 +209,7 @@
                                           </div>
                               </div>
 							  
-							  
-								 
-                                
-                                <div class="control-group">
-								<label class="control-label">Estado:</label>
-								
-								<div class="controls">
-								
-								  <label class="radio">
-									<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="" disabled="">
-									Activo
-								  </label>
-								  
-										 <div style="clear:both"></div> 
-								  
-								  
-								  <label class="radio">
-									<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-									Inactivo
-								  </label>
-								  
-								         <div style="clear:both"></div>  
-								  
-								  <label class="radio">
-									<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-									Cancelado
-								  </label>
-								  
-								  
-								</div>
-								
-							  </div>	
-                                                            
-                             
-		          
+					
 			            <div class="form-actions">
 							  <button type="button" class="btn btn-primary" onclick="javascript:alt_submit()">Guardar</button>
 							  <button type="button" class="btn" onclick="location.href='juridicabuscar.jsp'" >Cancelar</button>
