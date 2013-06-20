@@ -43,4 +43,21 @@ order by 1 asc
 	values (#{idSocio},#{idSorteo},#{fecha},#{codParticipante})
 </insert>
 
+<select id="getBungalowxSorteo" parameterType="String" resultType="IngSoft.servicio.bean.BungalowxSorteo">
+	select 
+	IdBungalow as idBungalow,
+	IdSorteo as idSorteo 
+	from 
+	BUNGALOWxSORTEO
+	where IdSocio=#{idSocio};
+</select>
+
+<select id="getAreaBungalow" parameterType="java.lang.String" resultType="double">
+	select 
+	AreaBungalow
+	from 
+	BUNGALOW
+	where IdBungalow=#{idBungalow};
+</select>
+
 </mapper>
