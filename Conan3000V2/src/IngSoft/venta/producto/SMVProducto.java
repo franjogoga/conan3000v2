@@ -16,6 +16,7 @@ public class SMVProducto extends CoServlet{
 		acciones.put("Agregar", new AccionAgregarProducto());
 		acciones.put("Modificar", new AccionModificarProducto());
 		acciones.put("Eliminar", new AccionEliminarProducto());
+		acciones.put("Seleccionar", new AccionSeleccionarProducto());
 		
 	}
 }

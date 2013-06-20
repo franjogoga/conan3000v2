@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Data.venta.solicitud">
+
+  <cache />
+
+<select id="searchPlantillaSolicitudProducto" parameterType="IngSoft.venta.bean.CriterioSolicitudProductoBeanData" resultType="IngSoft.venta.bean.ResultadoSolicitudProductoBeanData">
+select 
+PRODUCTO_PROV.IdSolicitudProducto as idSolicitudProducto
+,PRODUCTO_PROV.IdEmpleado as idEmpleado
+,PRODUCTO_PROV.Estado as estado
+,PRODUCTO_PROV.MontoTotal as montoTotal
+,PRODUCTO_PROV.Fecha as fecha
+,PRODUCTO_PROV.IdSede as idSede
+,LINEA_PRODUCTO.Cantidad as cantidad
+
+from SOLICITUD_PRODUCTO,LINEA_PRODUCTO
+<where>
+	
+    <if test="descripcion != null">
+       SOLICITUD_PRODUCTO.Descripcion like #{descripcion}
+    </if>
+    <if test="nombre != null">
+        AND SOLICITUD_PRODUCTO.Nombre like #{nombre}
+    </if>
+   
+     <if test="estado != null">
+        AND SOLICITUD_PRODUCTO.Estado like #{estado}
+    </if>  
+      
+</where>
+</select>
+  
+  <select id="searchSedeMini" resultType="IngSoft.administracion.bean.SedeMiniBeanData">
+		select IdSede as codigo, Nombre as nombre 
+		from SEDE
+	</select>
+	
+	  <select id="searchEmpleadoMini" resultType="IngSoft.venta.bean.EmpleadoMiniBeanData">
+		select EMPLEADO.IdEmpleado as codigo,
+		,CONCAT(PERSONA.Nombres,' ',PERSONA.ApePaterno,' ',PERSONA.ApeMaterno) as nombre
+		from EMPLEADO,PERSONA where  IdPersona= #{codigo};
+	</select>
+	
+  
+  
+<!-- Agregar plantilla membresia -->
+<insert id="insertSolicitudProducto" parameterType="IngSoft.venta.bean.SolicitudProductoBeanData" flushCache="true">
+	insert into SOLICITUD_PRODUCTO(IdSolicitudProducto,IdEmpleado,Estado,MontoTotal,Fecha,IdSede)
+	values (#{idSolicitudProducto},#{idEmpleado},#{estado},#{montoTotal},#{fecha},#{idSede})
+</insert>
+
+<select id="getNextCodigoS" resultType="java.lang.String">
+	select max(IdSolicitudProducto) from SOLICITUD_PRODUCTO
+</select>
+
+
+ <!-- Fin agregar  -->
+ 
+
+
+<!--Eliminar membresia -->
+<update id="deleteSolicitudProducto" parameterType="java.lang.String" >
+update SOLICITUD_PRODUCTO set Estado='Eliminado' where IdSolicitudProducto= #{IdSolicitudProducto}
+</update>
+<!-- Fin eliminar -->
+
+<select id="getPlantillaSolicitudProducto" parameterType="java.lang.String"  resultType="IngSoft.venta.bean.SolicitudProductoBeanData">
+select 
+PRODUCTO_PROV.IdSolicitudProducto as idSolicitudProducto
+,PRODUCTO_PROV.IdEmpleado as idEmpleado
+,PRODUCTO_PROV.Estado as estado
+,PRODUCTO_PROV.MontoTotal as montoTotal
+,PRODUCTO_PROV.Fecha as fecha
+,PRODUCTO_PROV.IdSede as idSede
+
+from PRODUCTO_PROV  where IdSolicitudProducto=#{idSolicitudProducto} 
+
+
+</select>
+
+
+
+
+</mapper>
