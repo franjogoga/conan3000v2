@@ -71,6 +71,9 @@ function anhadir(cod,name){
 	form.txtProveedor.value=name;
 	$.fn.colorbox.close();
 }
+
+
+
 </script>	
 			
 			<!-- content starts -->
