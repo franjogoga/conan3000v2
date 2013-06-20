@@ -54,4 +54,17 @@ public class Utils {
 		 	catch(Exception e){
 		 	return null;} 
 	   }
+	   
+	   public static String generaSiguienteCodigo(String actual){
+		   String next=null;
+		   if(Integer.parseInt(actual.substring(3))>0){
+				int cod= Integer.parseInt(actual.substring(3))+1;
+				String defecto= "000000";
+				String temp= defecto.substring(0, defecto.length()-String.valueOf(cod).length()).concat(String.valueOf(cod));
+				
+				next= actual.substring(0,3).concat(temp);
+				}
+				else next=actual.substring(0, 3).concat("000001");
+		   return next;		   
+	   }
 }

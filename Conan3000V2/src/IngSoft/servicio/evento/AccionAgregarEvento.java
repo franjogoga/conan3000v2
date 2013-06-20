@@ -1,5 +1,6 @@
 package IngSoft.servicio.evento;
 
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -13,6 +14,7 @@ import IngSoft.administracion.bean.ConcesionarioBeanData;
 import IngSoft.general.CoAccion;
 import IngSoft.general.CoException;
 import IngSoft.servicio.bean.ConcesionarioMiniBeanData;
+import IngSoft.servicio.bean.EventoBeanData;
 import IngSoft.servicio.bean.EventoBeanFuncion;
 import IngSoft.servicio.bean.SedeMiniBeanData;
 
@@ -24,7 +26,7 @@ public class AccionAgregarEvento extends CoAccion {
 		// TODO Auto-generated method stub
 		int tipo=Integer.parseInt(request.getParameter("tipo"));
 		EventoBeanFuncion eventoFunction= EventoBeanFuncion.getInstance();
-		/*if(tipo==2){
+		if(tipo==2){
 			EventoBeanFuncion eventoFuncion= EventoBeanFuncion.getInstance();
 			EventoBeanData eventoData=eventoFuncion.crearEvento(request, response);
 			eventoFuncion.agregarEvento(eventoData);
@@ -36,7 +38,7 @@ public class AccionAgregarEvento extends CoAccion {
 				e.printStackTrace();
 			}
 			//this.direccionar(sc, request, response, "/IngSoft/servicio/evento/SMSEvento?accion=Buscar&tipo=1");
-		}*/
+		}
 		if(tipo==1){		
 		Vector<SedeMiniBeanData> sedeMiniData=eventoFunction.getSedes();
 		//Vector<TipoEventoMiniBeanData> tipoEventoMiniData=eventoFunction.getTipoEvento();
