@@ -15,12 +15,14 @@ public class AccionAgregarPerfil extends CoAccion {
 	@Override
 	public void ejecutar(ServletContext sc, HttpServletRequest request, HttpServletResponse response) throws CoException {
 		int tipo = Integer.parseInt(request.getParameter("tipo"));		
-		if (tipo == 2) {			
+		if (tipo == 2) { //desde el agregar da click a agregar
 			 PerfilBeanFunction funcionPerfil = PerfilBeanFunction.getInstance();
 			 PerfilBeanData dataPerfil = funcionPerfil.crearPerfil(request, response);
 			 funcionPerfil.agregarPerfil(dataPerfil);
 			 this.direccionar(sc, request, response, "/IngSoft/administracion/perfiles/buscarperfil.jsp");
 		}
-		this.direccionar(sc, request, response, "/IngSoft/administracion/perfiles/agregarperfil.jsp");
+		if (tipo == 1) { //desde la ventana buscar da click a agregar
+			this.direccionar(sc, request, response, "/IngSoft/administracion/perfiles/agregarperfil.jsp");
+		}
 	}
 }
