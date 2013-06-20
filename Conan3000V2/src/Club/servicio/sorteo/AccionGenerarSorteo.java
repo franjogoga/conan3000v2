@@ -6,6 +6,7 @@ import java.util.Vector;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import IngSoft.general.CoAccion;
 import IngSoft.general.CoException;
@@ -23,14 +24,17 @@ public class AccionGenerarSorteo extends CoAccion {
 	public void ejecutar(ServletContext sc, HttpServletRequest request,
 			HttpServletResponse response)  throws CoException{
 		SorteoBeanFuncion sorteoFuncion= SorteoBeanFuncion.getInstance();
+		String nombre = (String)request.getSession().getAttribute("nombre");
+		String idSocio = (String)request.getSession().getAttribute("idSocio");
 		SorteoBeanData sorteoData=sorteoFuncion.consultarSorteo(request.getParameter("codigo"));
 		int cant_ganadores = sorteoFuncion.getCantidad(sorteoData.getIdSorteo());
 		int flag=0;
 		if (sorteoFuncion.haySorteo(sorteoData.getIdSorteo())){
 			Vector<SocioInscritoBeanData> listaInscritos=sorteoFuncion.getInscritos(sorteoData.getIdSorteo());
+			
 			for (int i=0; i<listaInscritos.size(); i++)
 			{
-				if ((listaInscritos).get(i).getIdSocio().equals("SOC000001")){flag=1; break;}
+				if ((listaInscritos).get(i).getIdSocio().equals(idSocio)){flag=1; break;}
 			}	
 			
 			Vector<String> listaGanadores=sorteoFuncion.getGanadores(listaInscritos,cant_ganadores,sorteoData.getIdSorteo());
