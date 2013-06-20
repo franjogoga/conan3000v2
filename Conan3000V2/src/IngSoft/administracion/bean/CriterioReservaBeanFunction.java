@@ -10,23 +10,23 @@ import org.apache.ibatis.session.SqlSession;
 
 import IngSoft.general.MyBatisSesion;
 
-public class CriterioInvitadoBeanFunction {
+public class CriterioReservaBeanFunction {
 	
-	public CriterioInvitadoBeanData crearCriterio(HttpServletRequest request, HttpServletResponse response) {
-		CriterioInvitadoBeanData criterioInvitadoData = new CriterioInvitadoBeanData();		
+	public CriterioReservaBeanData crearCriterio(HttpServletRequest request, HttpServletResponse response) {
+		CriterioReservaBeanData criterioReservaData = new CriterioReservaBeanData();		
 		
 		
-		criterioInvitadoData.setNombre("%"+request.getParameter("txtNombre")+"%");
+		criterioReservaData.setCodigoinvitado("%"+request.getParameter("txtCodigoInvitado")+"%");
 
-		return criterioInvitadoData;
+		return criterioReservaData;
 	}
 	
-	public  Vector<ResultadoInvitadoBeanData> buscarPlantillaInvitado(CriterioInvitadoBeanData criterioInvitadoData){		
+	public  Vector<ResultadoReservaBeanData> buscarPlantillaReserva(CriterioReservaBeanData criterioReservaData){		
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
-		Vector<ResultadoInvitadoBeanData> resultadosV=null;
+		Vector<ResultadoReservaBeanData> resultadosV=null;
 		try{
 			
-		List<ResultadoInvitadoBeanData> resultados=sqlsesion.selectList("searchPlantillaInvitado",criterioInvitadoData);
+		List<ResultadoReservaBeanData> resultados=sqlsesion.selectList("searchPlantillaReserva",criterioReservaData);
 	
 		resultadosV= new Vector<>(resultados);
 		
@@ -37,11 +37,11 @@ public class CriterioInvitadoBeanFunction {
 		return resultadosV;
 		
 	}
-	public Vector<ResultadoInvitadoBeanData> buscarInvitado(CriterioPerfilBeanData criterio) {
+	public Vector<ResultadoReservaBeanData> buscarReserva(CriterioReservaBeanData criterio) {
 		SqlSession sesion = MyBatisSesion.metodo().openSession();
-		Vector<ResultadoInvitadoBeanData> resultadosV = null;
+		Vector<ResultadoReservaBeanData> resultadosV = null;
 		try {
-			List<ResultadoInvitadoBeanData> resultados = sesion.selectList("searchPlantillaInvitado", criterio);
+			List<ResultadoReservaBeanData> resultados = sesion.selectList("searchPlantillaReserva", criterio);
 			resultadosV = new Vector<>(resultados);
 		} finally {
 			sesion.close();
