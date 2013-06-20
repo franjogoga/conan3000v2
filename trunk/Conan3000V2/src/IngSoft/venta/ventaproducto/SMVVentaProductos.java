@@ -11,7 +11,7 @@ public class SMVVentaProductos extends CoServlet{
 	protected void initAcciones() {
 		//acciones.put("Buscar", new AccionBuscarSocio());
 		//acciones.put("Consultar", new AccionConsultarSocio());
-		acciones.put("Agregar", new AccionAgregarSocio()); //este es para agregar venta
+		acciones.put("Registrar", new AccionRegistrarVentaProductos()); //este es para agregar venta
 		//acciones.put("Modificar", new AccionModificarSocio());
 		//acciones.put("Eliminar", new AccionEliminarSocio());
 		
