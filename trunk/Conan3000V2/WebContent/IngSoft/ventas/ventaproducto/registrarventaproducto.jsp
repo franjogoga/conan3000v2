@@ -11,13 +11,14 @@
 				<jsp:include page="/IngSoft/general/noscript.jsp" />
 				<div id="content" class="span10">
 				    <!-- content starts -->
-				   <jsp:include page="includes/registrarventaproducto.jsp" />
+				   <jsp:include page="includes/registrarrventaproducto.jsp" />
 				    <!-- content ends -->
 				</div>
 			 </div>
-		<hr>
+		
 			<jsp:include page="includes/modal.jsp" />
 			<jsp:include page="/IngSoft/general/footer.jsp" />
+			
 		</div>
 		<jsp:include page="/IngSoft/general/jsexternal.jsp" />
 </body>
