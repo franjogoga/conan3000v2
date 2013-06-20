@@ -1,3 +1,46 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Vector"%>
+
+<script>
+	function alt_fecha(obj){
+	obj.value=obj.value.slice(0,5);
+	
+	}
+	function alt_agregar(){
+		var form=document.getElementById("frmAlternativo");
+		form.accion.value="Registrar";
+		form.submit();
+	}
+	
+	function alt_consultar(cod){
+		var form=document.getElementById("frmAlternativo");
+		form.accion.value="Consultar";
+		form.codigo.value=cod;
+		form.submit();
+	}
+	function alt_modificar(cod){
+		var form=document.getElementById("frmAlternativo");
+		form.accion.value="Modificar";
+		form.codigo.value=cod;
+		form.submit();
+	}
+	function alt_eliminar(cod){
+		var form=document.getElementById("frmAlternativo");
+		form.accion.value="Eliminar";
+		form.codigo.value=cod;
+		form.submit();
+	}
+	</script>	
+	
+<!--The beans  -->
+<jsp:useBean id="resultados" scope="request"class="java.util.Vector"></jsp:useBean>
+	
+			<!-- content starts -->
+
+<div class="row-fluid sortable">
+
+
+
 <!-- content starts -->
 		    <div>
 		      <ul class="breadcrumb">
@@ -13,7 +56,11 @@
 		        <div class="box-header well" data-original-title>
 		          <h2><i class="icon-search"></i> BUSCAR VENTA DE PRODUCTOS</h2></div>
 		        <div class="box-content">
-		          <form class="form-horizontal">
+		           <form id="frmAlternativo" name="frmAlternativo" method="post" action="<%= response.encodeURL("SMVVentaProductos")%>">
+					<input type="hidden" name="accion" value="Agregar"></input>
+					<input type="hidden" name="codigo" value=""></input>
+					<input type="hidden" name="tipo" value="1"></input>
+			
 		            <fieldset>
 		              <div class="control-group">
 		                <label class="control-label" for="typeahead">C&oacute;digo de Vendedor:</label>
@@ -57,6 +104,17 @@
 		        <div class="box-content">
 		          <table class="table table-striped table-bordered bootstrap-datatable datatable">
 		            <!-- agregar nuevo boton -->
+		            
+		             <div align="right">
+                            
+                               <a class="btn btn-primary" href="javascript:alt_agregar()">
+                                    <i class="icon icon-add icon-white"></i>
+                                    Registrar
+                                </a>
+                              
+                             </div> 
+		            
+		            
 		            <thead>
 		              <tr>
 		                <th>C&oacute;digo de Vendedor</th>
