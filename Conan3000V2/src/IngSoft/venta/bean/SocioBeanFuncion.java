@@ -69,6 +69,7 @@ public class SocioBeanFuncion {
 			//aca validar si el get te da null y hacer otro insert !!!!!!
 			sqlsesion.insert("Data.venta.socio.insertSocio",socioData);
 			
+			
 			resultado=true;
 		}
 		catch(Exception a)		
