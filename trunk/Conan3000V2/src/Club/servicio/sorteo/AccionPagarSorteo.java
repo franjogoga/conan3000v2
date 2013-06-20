@@ -2,7 +2,7 @@ package Club.servicio.sorteo;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 import java.util.Vector;
 
@@ -38,8 +38,8 @@ public class AccionPagarSorteo extends CoAccion {
 		bungalowSorteo = sorteoFuncion.getBungalowSorteo(idSocio);
 		OrdenPagoBeanFunction orden=new OrdenPagoBeanFunction();
 		
-		
-		orden.agregarOrdenPago("BUNGALOWXSORTEO", bungalowSorteo.getIdBungalow(), bungalowSorteo.getIdSorteo(), idSocio, bungalowSorteo.getMontoBungalow() , new Date(), new Date());		
+		java.util.Date valor = new java.util.Date();
+		orden.agregarOrdenPago("BUNGALOWXSORTEO", bungalowSorteo.getIdBungalow(), bungalowSorteo.getIdSorteo(), idSocio, bungalowSorteo.getMontoBungalow() , new Date(valor.getTime()), new Date(valor.getTime()));		
 		
 		
 		this.direccionar(sc, request, response, "/Club/servicio/sorteo/pagoRealizado.jsp");
