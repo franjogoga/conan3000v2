@@ -1,16 +1,16 @@
-package IngSoft.administracion.invitado;
+package IngSoft.administracion.reserva;
 
 import IngSoft.general.CoServlet;
 
-public class SMAInvitado extends CoServlet{
+public class SMAReserva extends CoServlet{
 	@Override
 	protected void initAcciones() {		
-		acciones.put("Buscar", new AccionBuscarInvitado());
-		acciones.put("Consultar", new AccionConsultarInvitado());
-		acciones.put("Eliminar", new AccionEliminarInvitado());		
-		acciones.put("Modificar", new AccionModificarInvitado());
+		acciones.put("Buscar", new AccionBuscarReserva());
+		//acciones.put("Consultar", new AccionConsultarReserva());
+		//acciones.put("Eliminar", new AccionEliminarReserva());		
+		//acciones.put("Modificar", new AccionModificarReserva());
 		
-		acciones.put("Agregar", new AccionAgregarInvitado()); 
+		//acciones.put("Agregar", new AccionAgregarReserva()); 
    
 	}
 }

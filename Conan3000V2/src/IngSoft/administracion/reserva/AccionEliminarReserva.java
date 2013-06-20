@@ -1,16 +1,15 @@
-package IngSoft.administracion.invitado;
+package IngSoft.administracion.reserva;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import IngSoft.administracion.bean.InvitadoBeanFunction;
-import IngSoft.administracion.bean.InvitadoBeanData;
-import IngSoft.administracion.bean.InvitadoBeanFunction;
+import IngSoft.administracion.bean.ReservaBeanFunction;
+import IngSoft.administracion.bean.ReservaBeanData;
 import IngSoft.general.CoAccion;
 import IngSoft.general.CoException;
 
-public class AccionEliminarInvitado extends CoAccion {
+public class AccionEliminarReserva extends CoAccion {
 
 	@Override
 	public void ejecutar(ServletContext sc, HttpServletRequest request,
@@ -19,23 +18,23 @@ public class AccionEliminarInvitado extends CoAccion {
 		if(Integer.valueOf(request.getParameter("tipo"))==2){
 			
 			
-			InvitadoBeanFunction invitadoFuncion= InvitadoBeanFunction.getInstance();
-			invitadoFuncion.eliminarInvitado(request.getParameter("codigo"));
+			ReservaBeanFunction reservaFuncion= ReservaBeanFunction.getInstance();
+			reservaFuncion.eliminarReserva(request.getParameter("codigo"));
 			
-			System.out.print(" AccionEliminarInvitado " +  request.getParameter("codigo") );
+			System.out.print(" AccionEliminarReserva " +  request.getParameter("codigo") );
 			
-			this.direccionar(sc, request, response, "/IngSoft/administracion/invitado/buscarinvitado.jsp");
+			this.direccionar(sc, request, response, "/IngSoft/administracion/reserva/buscarreserva.jsp");
 			
 		}
 		else
 		{	
-		InvitadoBeanFunction invitadoFuncion= InvitadoBeanFunction.getInstance(); 
-		InvitadoBeanData invitadoData=invitadoFuncion.consultarInvitado(request.getParameter("codigo"));
+		ReservaBeanFunction reservaFuncion= ReservaBeanFunction.getInstance(); 
+		ReservaBeanData reservaData=reservaFuncion.consultarReserva(request.getParameter("codigo"));
 		
       
 		
-		request.setAttribute("invitado",invitadoData );
-		this.direccionar(sc, request, response, "/IngSoft/administracion/invitado/eliminarinvitado.jsp");
+		request.setAttribute("reserva",reservaData );
+		this.direccionar(sc, request, response, "/IngSoft/administracion/reserva/eliminarreserva.jsp");
 		}
 
 	}
