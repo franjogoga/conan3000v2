@@ -40,7 +40,21 @@ public class SorteoBeanFuncion {
 			}
 			return sorteoData;		
 		} 
-		
+	
+	public double getCostoM2(){
+		return 15;
+	}
+	public BungalowxSorteo getBungalowSorteo(String idSocio){
+		BungalowxSorteo BS = new BungalowxSorteo();
+		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+		BS = sqlsesion.selectOne("Data.club.inscripcionSorteo.getBungalowxSorteo",idSocio);
+		BS.setIdSocio(idSocio);
+		double costoM2 = getCostoM2(); 
+		BS.setAreaBungalow((double)sqlsesion.selectOne("Data.club.inscripcionSorteo.getAreaBungalow",BS.getIdBungalow()));
+		BS.setMontoBungalow(costoM2*BS.getAreaBungalow());
+		return BS;
+	}
+	
 		public boolean agregarSorteo(SorteoBeanData sorteoData) throws CoException {
 			boolean resultado=false;		
 			l.lock();
