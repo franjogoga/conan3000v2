@@ -1,14 +1,19 @@
 package IngSoft.servicio.bean;
 
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Vector;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.ibatis.session.SqlSession;
 
+import IngSoft.general.CoException;
 import IngSoft.general.MyBatisSesion;
 
 public class EventoBeanFuncion {	
@@ -52,48 +57,54 @@ public class EventoBeanFuncion {
 		   return resultados;
 	   }
 	   
-	/*public EventoBeanData crearEvento(HttpServletRequest request, HttpServletResponse response){
-		EventoBeanData eventoData= new EventoBeanData();
-		try{		
-		eventoData.setIdAmbientes(request.getParameter("cmbAmbientes").split("/"));
-		eventoData.setIdSede(request.getParameter("cmbSedes").split("/"));
-		eventoData.setIdTipo(request.getParameter("cmbTipo"));
-		eventoData.setNombre(request.getParameter("txtNombreEvento").trim());
-		eventoData.setLimiteInicio(new Date(DF.parse(request.getParameter("fFecIncio")+"/0000").getTime()));
-		eventoData.setLimiteFin(new Date(DF.parse(request.getParameter("fFecFin")+"/0000").getTime()));
-		}catch(Exception e){
-			e.printStackTrace();
-			
+	   public Vector<AmbienteMiniBeanData> getAmbientes(){
+			SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+			List<AmbienteMiniBeanData> resultados=sqlsesion.selectList("Data.servicio.evento.searchAmbienteMini");
+			sqlsesion.close();
+			return new Vector<>(resultados);
 		}
-		return eventoData;		
-	} 
+		
+		public Vector<TipoEventoMiniBeanData> getTipoEvento(){
+			SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+			List<TipoEventoMiniBeanData> resultados=sqlsesion.selectList("Data.servicio.evento.searchTipoEventoMini");
+			sqlsesion.close();
+			return new Vector<>(resultados);
+		}
+		public EventoBeanData crearEvento(HttpServletRequest request, HttpServletResponse response){
+			EventoBeanData eventoData= new EventoBeanData();
+			try{					
+			eventoData.setIdSede(request.getParameter("cmbSedes"));			
+			eventoData.setNombre(request.getParameter("txtNombreEvento").trim());			
+			eventoData.setFecha(new java.sql.Date(DF.parse(request.getParameter("fFecha")).getTime()));
+			eventoData.setLimiteEntradas(Integer.parseInt(request.getParameter("txtNumEntradas")));
+			eventoData.setPrecioEntrada(Double.parseDouble(request.getParameter("precioentrada")));
+			}catch(Exception e){
+				e.printStackTrace();
+				
+			}
+			return eventoData;		
+		} 
+		
+	   
+	
 	
 	public boolean agregarEvento(EventoBeanData eventoData) throws CoException {
 		boolean resultado=false;		
 		l.lock();
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
-			String codigo= (String)sqlsesion.selectOne("Data.servicio.evento.getNextCodigo");
-			if(codigo!=null){
-			int cod= Integer.parseInt(codigo.substring(3))+1;
-			String defecto= "000000";
-			String temp= defecto.substring(0, defecto.length()-String.valueOf(cod).length()).concat(String.valueOf(cod));
-			
-			eventoData.setCodigo(codigo.substring(0,3).concat(temp));}
-			else eventoData.setCodigo("PEV000001");
-			sqlsesion.insert("Data.servicio.evento.insertPlantillaEvento",eventoData);
-			sqlsesion.insert("Data.servicio.evento.insertPlantillaEventoSedes",eventoData);
-			sqlsesion.insert("Data.servicio.evento.insertPlantillaEventoAmbiente",eventoData);
+			String codigo= (String)sqlsesion.selectOne("Data.servicio.evento.getNextCodigoSdE");
+			codigo=codigo==null?"ESD000000":codigo;
+			codigo=Utils.generaSiguienteCodigo(codigo);
+			eventoData.setCodigo(codigo);
 			
 			resultado=true;
 		}
 		catch(Exception a)		
 		{sqlsesion.rollback();
 		a.printStackTrace();
-			throw CoException.set("Error: Nombre de evento repetido", "SMSEvento?accion=Agregar&tipo=1");
-			
-		}
-		
+			throw CoException.set("Error: Nombre de evento repetido", "SMSEvento?accion=Agregar&tipo=1");			
+		}		
 		finally{
 			sqlsesion.commit();
 			sqlsesion.close();
@@ -102,7 +113,7 @@ public class EventoBeanFuncion {
 			
 		return resultado;
 	}
-	
+	/*
 	public boolean eliminarEvento(String codigo) throws CoException {
 		boolean resultado=false;		
 		
@@ -238,17 +249,5 @@ public class EventoBeanFuncion {
 	
 	
 	
-	public Vector<AmbienteMiniBeanData> getAmbientes(){
-		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
-		List<AmbienteMiniBeanData> resultados=sqlsesion.selectList("Data.servicio.evento.searchAmbienteMini");
-		sqlsesion.close();
-		return new Vector<>(resultados);
-	}
-	
-	public Vector<TipoEventoMiniBeanData> getTipoEvento(){
-		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
-		List<TipoEventoMiniBeanData> resultados=sqlsesion.selectList("Data.servicio.evento.searchTipoEventoMini");
-		sqlsesion.close();
-		return new Vector<>(resultados);
-	}*/
+	*/
 }

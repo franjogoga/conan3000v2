@@ -6,11 +6,11 @@ import java.util.Date;
 public class EventoBeanData implements Serializable{
 	
 	private String codigo;
-	//private String nombre;
+	private String nombre;
 	//private String idTipo;
 	private int entradasTotal;
 	private int limiteEntradas;
-	private int precioEntrada;
+	private double precioEntrada;
 	private String idSede;
 	private String idAmbientes;
 	private String idPlantilla;
@@ -34,10 +34,10 @@ public class EventoBeanData implements Serializable{
 	public void setLimiteEntradas(int limiteEntradas) {
 		this.limiteEntradas = limiteEntradas;
 	}
-	public int getPrecioEntrada() {
+	public double getPrecioEntrada() {
 		return precioEntrada;
 	}
-	public void setPrecioEntrada(int precioEntrada) {
+	public void setPrecioEntrada(double precioEntrada) {
 		this.precioEntrada = precioEntrada;
 	}
 	public String getIdSede() {
@@ -69,6 +69,12 @@ public class EventoBeanData implements Serializable{
 	}
 	public void setMonto(double monto) {
 		this.monto = monto;
+	}
+	public String getNombre() {
+		return nombre;
+	}
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 	
 	

@@ -62,52 +62,18 @@
 	<!-- The fav icon -->
 	<link rel="shortcut icon" href="img/conan_logo.png">
 	<script src="evento.js"></script>
+	
+	<!-- jQuery -->
+	<script src="js/jquery-1.7.2.min.js"></script>
 	<script>
+	var codSedeActual="none";
+	var fechaActual="<%=new SimpleDateFormat("dd/MM/yyyy").format(new Date())%>";
+	var boton='#btnConcecionarios';
+	
 		function validar(){
-			var test=true;
-			$('#cmbTipo').parent().parent().addClass("success");
-			$('#fFecIncio').parent().parent().addClass("success");
-			$('#fFecFin').parent().parent().addClass("success");
-			if($('#cmbAmbientes').val()==null|| $('#cmbAmbientes').val().length<=0){
-				$('#cmbAmbientes').bind("change",function(){
-				var temp= $('#cmbAmbientes');
-				if(temp.val()!=null && temp.val().length>0) {
-				temp.parent().parent().removeClass("error");
-				temp.parent().parent().addClass("success");
-				$('#errAmbientes').slideUp(1000);
-				}
-				else {
-				temp.parent().parent().removeClass("success");
-				temp.parent().parent().addClass("error");
-				$('#errAmbientes').slideDown(1000);
-				}
-				
-				})
-				$('#errAmbientes').slideDown(1000);
-				test=false;
-				$('#errAmbientes').parent().parent().toggleClass("error");
-				
-			};						
-			if($('#cmbSedes').val()==null||$('#cmbSedes').val().length<=0){
-				$('#cmbSedes').bind("change",function(){
-				var temp= $('#cmbSedes');
-				if(temp.val()!=null && temp.val().length>0) {
-				temp.parent().parent().removeClass("error");
-				temp.parent().parent().addClass("success");
-				$('#errSedes').slideUp(1000);
-				}
-				else {
-				temp.parent().parent().removeClass("success");
-				temp.parent().parent().addClass("error");
-				$('#errSedes').slideDown(1000);
-				}
-				
-				})
-				$('#errSedes').slideDown(1000);
-				test=false;
-				$('#cmbSedes').parent().parent().toggleClass("error");
-			};
-			
+			var test=true;			
+			$('#fFecha').parent().parent().addClass("success");
+			$('#listaServicios').parent().addClass("success");										
 			if($('#txtNombreEvento').val()==null || $('#txtNombreEvento').val().length<=0){
 				$('#txtNombreEvento').bind("change",function(){
 				var temp= $('#txtNombreEvento');
@@ -126,7 +92,51 @@
 				$('#errNombreEvento').slideDown(1000);
 				test=false;
 				$('#txtNombreEvento').parent().parent().toggleClass("error");
-			};
+			}
+			else $('#txtNombreEvento').parent().parent().addClass("success");
+			
+			if($('#cmbSedes').val()==null||$('#cmbSedes').val().length<=0||$('#cmbSedes').val().indexOf('none')==0){
+				$('#cmbSedes').bind("change",function(){
+				var temp= $('#cmbSedes');
+				if(temp.val()!=null && temp.val().length>0 && $('#cmbSedes').val().indexOf('none')<0) {
+				temp.parent().parent().removeClass("error");
+				temp.parent().parent().addClass("success");
+				$('#errSedes').slideUp(1000);
+				}
+				else {
+				temp.parent().parent().removeClass("success");
+				temp.parent().parent().addClass("error");
+				$('#errSedes').slideDown(1000);
+				}
+				
+				})
+				$('#errSedes').slideDown(1000);
+				test=false;
+				$('#cmbSedes').parent().parent().toggleClass("error");
+			}
+			else $('#cmbSedes').parent().parent().addClass("success");
+			
+			if($('#txtNumEntradas').val()==null || $('#txtNumEntradas').val().length<=0){
+				$('#txtNumEntradas').bind("change",function(){
+				var temp= $('#txtNumEntradas');
+				if(temp.val()!=null && temp.val().length>0) {
+				temp.parent().parent().removeClass("error");
+				temp.parent().parent().addClass("success");
+				$('#errNumEntradas').slideUp(1000);
+				}
+				else {
+				temp.parent().parent().removeClass("success");
+				temp.parent().parent().addClass("error");
+				$('#errNumEntradas').slideDown(1000);
+				}
+				
+				})
+				$('#errNumEntradas').slideDown(1000);
+				test=false;
+				$('#txtNumEntradas').parent().parent().toggleClass("error");
+			}
+			else $('#txtNumEntradas').parent().parent().addClass("success");
+			
 	return test;
 		
 		
@@ -139,12 +149,16 @@
 		else alert("Uno o mas campos estan vacios");			
 			}
 	function alt_submit2(){
-		
+		var listaconcecionarios=$(".btn-success [disabled='disabled']");
+		var concesionario="";
+		for(i=0;i<listaconcecionarios.length;i++){
+			concesionario=concesionario+listaconcecionario[i].attr('id')+'@';		
+		}
 		$.ajax({
 			  type: "POST",
 			  url: "/Conan3000V2/IngSoft/servicio/evento/SMSEvento",
-			  data: "accion=" + $(accion).val() + "&tipo=" + $(tipo).val() + "&txtNombreEvento=" + $(txtNombreEvento).val() + "&cmbTipo=" + $(cmbTipo).val()  
-			  + "&cmbAmbientes=" + $(cmbAmbientes).val().join('/')+ "&cmbSedes=" + $(cmbSedes).val().join('/')  + "&fFecIncio=" + $(fFecIncio).val()+ "&fFecFin=" + $(fFecFin).val(),
+			  data: "accion=" + $(accion).val() + "&tipo=" + $(tipo).val() + "&txtNombreEvento=" + $(txtNombreEvento).val() + "&txtNumEntradas=" + $(txtNumEntradas).val()  
+			  +  "&cmbSedes=" + $(cmbSedes).val() + "&fFecha=" + $(fFecha).val()+"&concecionarios="+concesionario+"&precioentrada=78.00",
 			  dataType: "text",
 			  success: function(msg){
 				  var url="<%=request.getContextPath()%>"+msg;
@@ -170,7 +184,11 @@
 			});		
 	}
 	
+	function resetConcesionarios(){	 
+	 $('#listaServicios').html("<div class='input-append'><input id='appendedInputButton' size='16' type='text' readonly='true' value='Salon Principal'><button class='btn' disabled='disabled' type='button'>X</button></div><br/>");	 
+	}
 	function getConcecionarios(){
+	$(this).attr('disabled','disabled');
 		$.ajax({
 			  type: "POST",
 			  url: "/Conan3000V2/IngSoft/servicio/evento/SMSEvento",
@@ -181,7 +199,9 @@
 				  updatetable();				
 				  $('#mytable_length').css("display","none");  
 				  $("#bModal").trigger("click");
-				  				  								
+				  $(this).removeAttr('disabled','');
+				  $(boton).unbind('click');
+				  $(boton).bind('click', function(){$("#bModal").trigger("click");});				  				  								
 			  },
 			  error: function(objeto, quepaso, otroobj){
 				$("#linkAceptar").css("display","inline");
@@ -189,30 +209,34 @@
 				$("#modalTitulo").html("ERROR");
 				$("#modalContenido").html("Hubo un error, no se pudo conseguir la lista de concesionarios");
 				$("#bModal").trigger("click");
+				$(this).removeAttr('disabled','');
 				
 			  }
 		
 			});		
 		
 	}
-	function agregarConcesionario(elem){
-		var nombre=elem.parent().parent().children()[0].innerText;
-		var id=elem.prop("id");
-		elem.attr('disabled', 'disabled');
-		var temp="&lt;div class='input-append'&gt;&lt;input id='appendedInputButton' size='16' type='text' readonly='true' value='Salon Principal'&gt;&lt;button class='btn' disabled='disabled' type='button'&gt;X&lt;/button&gt;&lt;/div&gt;";
-		var temp2="<div class='input-append'><input id='appendedInputButton' size='16' type='text' readonly='true' value='"+nombre+"'><button class='btn' type='button' onclick='retirarConcesionario($(this),'"+id+"')'>X</button></div><br/>";
-		$("#listaServicios").html($("#listaServicios").html()+temp2);
-		updatetable();
-		$('#mytable_length').css("display","none");  
-	}	
 	
-	function retirarConcesionario(elem,idboton){
-		var temp=elem.parent().parent();
-		var idboton='#'+id;
-		elem.parent().remove();
-		$(idboton).attr('disabled', '');
-		temp.html(temp.html().replace('<br><br>','<br>'));
-		
+	
+	function confirmarcambio(elem){
+		var contenido=elem.val();
+		$('.btn-success').removeAttr('disabled')
+		resetConcesionarios();
+		//if(temp.length>0) temp.removeAtrr('disabled');
+		if($('#cmbSedes').val().indexOf('0')==0){
+			$(boton).attr('disabled','disabled');
+		}
+		else $(boton).removeAttr('disabled');
+		if(elem.attr('id').indexOf("fFecha")>=0){
+			$(boton).unbind('click');
+			if((contenido.indexOf(fechaActual)>=0)) $(boton).bind('click', function(){$("#bModal").trigger("click");});
+			else $(boton).bind('click',function(){getConcecionarios();})
+		}
+		else{
+			$(boton).unbind('click');
+			if((contenido.indexOf(codSedeActual)>=0)) $(boton).bind('click', function(){$("#bModal").trigger("click");});
+			else $(boton).bind('click',function(){getConcecionarios();})		
+		}
 	}
 			
 	</script>	
@@ -274,26 +298,26 @@
 					        <div class="control-group">
 						      <label class="control-label" for="txtNumEntradas">Limite Maximo Entradas(*): </label>
 						      <div class="controls">
-						        <input type="text" class="input typeahead" id="txtNumEntradas"  data-provide="typeahead"  name="txtNumEntradas" onkeypress="return numerico(event);" autofocus maxlength="11"/>
+						        <input type="text" class="input typeahead" id="txtNumEntradas"  data-provide="typeahead"  name="txtNumEntradas" onkeypress="return numerico(event);" autofocus maxlength="11"/><br/>
 								<span class="help-inline" id="errNumEntradas" style="display:none;">Este campo no puede estar vacio</span>						        													       
 					          </div>
 					        </div>						   
 							  <div class="control-group">
-								<label class="control-label" for="cmbSedes">Sedes relacionadas(*):</label>
+								<label class="control-label" for="cmbSedes">Sede relacionada(*):</label>
 								<div class="controls">
-								  <select  data-rel="chosen" id="cmbSedes" name="cmbSedes" >
-								  	<option value="0" selected>--Seleccione una Sede--</option>
+								  <select  data-rel="chosen" id="cmbSedes" name="cmbSedes" onchange="confirmarcambio($(this))">
+								  	<option value="none" selected>--Seleccione una Sede--</option>
 									<%for(int i=0;i<sedes.size();i++){ %>
 										<option value="<%= ((SedeMiniBeanData)sedes.get(i)).getCodigo()%>"><%= ((SedeMiniBeanData)sedes.get(i)).getNombre()%></option>
 									<%} %>																									
-								  </select>
-								  <span class="help-inline" id="errSedes" style="display:none;">Este campo no puede estar vacio</span>
+								  </select><br/>
+								  <span class="help-inline" id="errSedes" style="display:none;">Debe seleccionar una sede</span>
 								</div>
 							  </div>							   
 							  <div class="control-group">
 							  <label class="control-label" for="fFecha">Fecha(*):</label>
 							  <div class="controls">
-								<input type="text" class="input datepicker" id="fFecha" readonly="true" value="<%=new SimpleDateFormat("dd/MM/yyyy").format(new Date())%>"  name="fFecha" onchange="verificar_fecha(-1,this,'fFechaActual');">
+								<input type="text" class="input datepicker" id="fFecha" readonly="true" value="<%=new SimpleDateFormat("dd/MM/yyyy").format(new Date())%>"  name="fFecha" onchange="confirmarcambio($(this))">
 							  </div>
 							</div>
 							 <div class="control-group">
@@ -304,10 +328,10 @@
 								  </div><br/></div>
 							</div>
 							<div class="form-actions">
-							  <button type="button" class="btn btn-primary" onclick="getConcecionarios()">Concesionarios</button>							 
+							  <button type="button" id="btnConcecionarios" class="btn btn-primary" disabled="disabled" >Concesionarios</button>							 
 							</div>														
 						    <div class="form-actions">
-							  <button type="submit" class="btn btn-primary" >Agregar</button>
+							  <button type="submit" id="btnAgregar" class="btn btn-primary" >Agregar</button>
 							  <button type="button" class="btn" onclick="location.href='buscarevento.jsp'" >Cancelar</button>
 							</div>
 						  </fieldset>
@@ -372,8 +396,6 @@
 	================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->
 
-	<!-- jQuery -->
-	<script src="js/jquery-1.7.2.min.js"></script>
 	<!-- jQuery UI -->
 	<script src="js/jquery-ui-1.8.21.custom.min.js"></script>
 	<!-- transition / effect library -->
@@ -445,6 +467,9 @@
 	<script>
 		$('#txtNombreEvento').bind('paste',function(){		
 			setTimeout(function(){filtrar('abcdefghijklmnopqrstuwxyzABCDEFGHIJKLMNOPQRSTUWXYZÒ—·¡È…ÌÕÛ”˙⁄1234567890',$('#txtNombreEvento'),50)}, 0);
+		})
+		$('#txtNumEntradas').bind('paste',function(){		
+			setTimeout(function(){filtrar('1234567890',$('#txtNumEntradas'),50)}, 0);
 		})
 	</script>
 	

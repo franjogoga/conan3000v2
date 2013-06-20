@@ -52,3 +52,23 @@ $('.datatable').dataTable({
 	"bDestroy": true
 } );
 }
+
+	function agregarConcesionario(elem){
+		var nombre=elem.parent().parent().children()[0].innerText;
+		var id=elem.prop("id");
+		elem.attr('disabled', 'disabled');
+		var temp="&lt;div class='input-append'&gt;&lt;input id='appendedInputButton' size='16' type='text' readonly='true' value='Salon Principal'&gt;&lt;button class='btn' disabled='disabled' type='button'&gt;X&lt;/button&gt;&lt;/div&gt;";
+		var temp2="<div class='input-append'><input id='appendedInputButton' size='16' type='text' readonly='true' value='"+nombre+"'><button class='btn' type='button' onclick='retirarConcesionario($(this),&#39;"+id+"&#39;)'>X</button></div><br/>";
+		$("#listaServicios").html($("#listaServicios").html()+temp2);
+		updatetable();
+		$('#mytable_length').css("display","none");  
+	}	
+	
+	function retirarConcesionario(elem,idboton){
+		var temp=elem.parent().parent();
+		var idboton='#'+idboton;
+		elem.parent().remove();
+		$(idboton).removeAttr('disabled');
+		temp.html(temp.html().replace('<br><br>','<br>'));
+		
+	}
