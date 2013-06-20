@@ -141,17 +141,19 @@
 		            <fieldset>		              			 
 		            
 		           						
-						<div class="control-group">
+						<div class="control-group" id=dvNombreEmpleado>
 							  <label class="control-label" for="nombres">Nombres (*):</label>							  
 							  <div class="controls">
 								<input type="text" class="span6 typeahead" data-provide="typeahead"  id="txtNombreEmpleado" name="txtNombreEmpleado" onkeypress="return alfanumerico(event);" autofocus maxlength="50"/>								
+							   <span class="help-inline" id="errNombreEmpleado">Please correct the error</span>
 							  </div>
 							</div>
 							
-							<div class="control-group">
+							<div class="control-group" id=dvApellidoPaterno>
 							  <label class="control-label" for="paterno">Apellido Paterno (*):</label>							  
 							  <div class="controls">
 								<input type="text" class="span6 typeahead" data-provide="typeahead"  id="txtApellidoPaterno" name="txtApellidoPaterno" onkeypress="return alfanumerico(event);" autofocus maxlength="50"/>								
+							  <span class="help-inline" id="errApellidoPaterno">Please correct the error</span>
 							  </div>
 							</div>
 							
@@ -322,7 +324,7 @@ Ver
 		</div>
 
 		<footer>
-		  <p class="pull-left"><a href="http://usman.it/free-responsive-admin-template">Conan 3000</a> &copy;  2013</p>
+		  <p class="pull-left"><a href="http://usman.it/free-responsive-admin-template">Buscar Empleado</a> &copy;  2013</p>
           <p class="pull-right">Powered by: <a href="http://usman.it/free-responsive-admin-template">Dos V&iacute;rgenes</a></p>
 		</footer>
 		
@@ -465,6 +467,25 @@ function validaForm(){
 	
 	
 
+	//if(!esValido("Nombres",form.txtNombreEmpleado,"NombreEmpleado",1,1,50)){cadena[i]="Nombres";i++;}
+	
+	if(!esValido("Nombres",form.txtNombreEmpleado,"NombreEmpleado",1,1,50)){cadena[i]="Nombres";i++;}
+	
+	else{
+    	
+		if(!esValido("Nombres",form.txtNombreEmpleado,"NombreEmpleado",4,1,50)){cadena[i]="Nombres";i++;}
+		
+	}
+	
+	if(!esValido("Apellido Paterno",form.txtApellidoPaterno,"ApellidoPaterno",1,1,50)){cadena[i]="Apellido Paterno";i++;}
+    
+	
+	else{
+    	
+		if(!esValido("Apellido Paterno",form.txtApellidoPaterno,"ApellidoPaterno",4,1,50)){cadena[i]="Apellido Paterno";i++;}
+		
+	}
+	
 	
 	if(!esValido("Numero de Documento",form.txtNumeroDocumento,"NumeroDocumento",1,0,11)){cadena[i]="Numero de Documento";i++;}
 	
@@ -505,9 +526,9 @@ function inicializa(){
 /*Esto se debe llenar siempre deacuerdo a las etiuquetas <span> del formulario, esto sirve para ocultar inicialmente los avisos
 Solo poner el id de los <span> segun corresponda
 */
-	//document.getElementById("errRazonSocial").style.display='none';
+	document.getElementById("errNombreEmpleado").style.display='none';
 	document.getElementById("errNumeroDocumento").style.display='none';
-	//document.getElementById("errCorreo").style.display='none';
+	document.getElementById("errApellidoPaterno").style.display='none';
 	//document.getElementById("errTelefono").style.display='none';
 	//document.getElementById("errCorreo").style.display='none';
 	//document.getElementById("errFechaInicio").style.display='none';
