@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%@page import="IngSoft.servicio.bean.SocioInscritoBeanData"%>
 <%@page import="IngSoft.servicio.bean.SocioBeanData"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
@@ -23,7 +24,7 @@
 	<meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
 	<meta name="author" content="Muhammad Usman">
 	<!--The beans  -->
-	<jsp:useBean id="ganadores" scope="request"class="java.util.Vector"></jsp:useBean>
+	<jsp:useBean id="flag" scope="request"class="java.lang.Integer"></jsp:useBean>
 	<jsp:useBean id="lista" scope="request"class="java.util.Vector"></jsp:useBean>
 	
 	<!-- The styles -->
@@ -73,18 +74,11 @@
 	}
 	
 	function alt_submit(){
+		if (flag==0) {alert("Usted no ha ganado el sorteo");}
+		else {form.submit();}
+	}
 		
-			
-			}
-		
-		
-		
-			//document.fmrData.submit();
-		function alt_submit(){
-		var form= document.frmDelete;
-		var r=confirm("¿Esta seguro que desea borrar este sorteo?");
-		if(r==true){form.submit();}
-			}
+
 	</script>	
 	<%! public boolean  encontrar(String a, String[] b){
 		for(int i=0;i<b.length;i++){			
@@ -140,9 +134,8 @@
 					  <h2><i class="icon-plus-sign"></i>CONSULTAR SORTEO</h2>
 				  </div>
 					<div class="box-content">
-						<form class="form-horizontal" action="<%= response.encodeURL("SMSSorteo")%>" name="frmData" method="post">
-						<input type="hidden" name="accion" value="Generar"></input>
-						<input type="hidden" name="tipo" value="2"></input>
+						<form class="form-horizontal" action="<%= response.encodeURL("SMCSorteo")%>" name="frmData" method="post">
+						<input type="hidden" name="accion" value="Pagar"></input>
 						  <fieldset>
 						   
 							<div class="control-group">
@@ -159,6 +152,7 @@
 							
 						    <div class="form-actions" >
 							 <!--  <button type="submit" class="btn btn-primary">Agregar</button> -->
+							  <button type="submit" class="btn btn-primary" onclick="javascript:alt_submit()">Pagar</button>							 
 							  <button type="button" class="btn" onclick="location.href='buscarInscripcionSorteo.jsp'" >Regresar</button>
 							</div>
 						  </fieldset>
