@@ -48,10 +48,20 @@ from SOCIO,PERSONA,MEMBRESIA
 	values (#{codigo},#{nombres},#{apellidoPaterno},#{apellidoMaterno},#{numeroDocumento},#{tipoDocumento},#{fechaNacimiento})
 </insert>
 
+<insert id="insertUsuario" parameterType="IngSoft.venta.bean.UsuarioBeanData" flushCache="true">
+	insert into USUARIO(IdPerfil,IdUsuario,Descripcion,Estado,NombreUsuario,Password,IdSocio)
+	values ('PER010000',#{codUsuario},'Socio','Activo',#{nombUsuario},#{contraseña},#{codSocio})
+</insert>
+
+
  <!-- Fin agregar  -->
  
 <select id="getNextCodigo3" resultType="java.lang.String">
 	select max(IdSocio) from SOCIO
+</select>
+
+<select id="getNextCodigoU" resultType="java.lang.String">
+	select max(IdUsuario) from USUARIO
 </select>
 
 <select id="searchDistritoMini" resultType="IngSoft.venta.bean.DistritoMiniBeanData">
