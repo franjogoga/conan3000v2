@@ -2,6 +2,7 @@ package IngSoft.general.login;
 
 import java.io.IOException;
 
+import javax.faces.bean.SessionScoped;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import IngSoft.general.CoAccion;
 import IngSoft.general.CoException;
 
+@SessionScoped
 public class AccionLogin extends CoAccion {
 
 	@Override
