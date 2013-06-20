@@ -188,6 +188,21 @@ body {
 
 
 
+	
+										<div class="control-group" id="dvDireccion">
+											<label class="control-label" for="txtDireccion">Direccion:
+											</label>
+											<div class="controls">
+												<input type="text" class="span6 typeahead" id="txtDireccion"
+													name="txtDireccion" data-provide="typeahead">
+													
+											</div>
+										</div>
+
+
+
+
+
 										<div class="form-actions">
 											 <button type="button" class="btn btn-primary" onclick="javascript:alt_submit()">Agregar</button>
 							  <button type="button" class="btn" onclick="location.href='juridicabuscar.jsp'" >Cancelar</button>
