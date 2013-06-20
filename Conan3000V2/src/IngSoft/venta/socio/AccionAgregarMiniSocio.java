@@ -35,7 +35,7 @@ public class AccionAgregarMiniSocio extends CoAccion{
 					personaFuncion.agregarPersona(personaData);
 
 					request.setAttribute("socio", socioData);
-
+					
 					this.direccionar(sc, request, response, "/IngSoft/ventas/socio/buscarsocio.jsp");
 				
 				}
