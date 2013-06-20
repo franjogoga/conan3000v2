@@ -199,19 +199,12 @@
                         
 						
 					</div>           
-<div class="box-content">
+<div class="box-content" >
                         <table class="table table-striped table-bordered bootstrap-datatable datatable">
                             <!-- agregar nuevo boton -->
                             
                             
-                            <div align="right">
-                            
-                                <a class="btn btn-primary" href="javascript:alt_agregar()">
-                                    <i class="icon icon-add icon-white"></i>
-                                    Agregar
-                                </a>
-                              
-                             </div>          
+                                    
                           <thead>
 							  <tr>
 								  <th>Codigo</th>
