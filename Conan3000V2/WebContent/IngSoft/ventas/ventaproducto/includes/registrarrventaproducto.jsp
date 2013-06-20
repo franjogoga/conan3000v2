@@ -1,66 +1,123 @@
- <!-- content starts -->
+ <%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Calendar"%>
+<%@page import="java.util.GregorianCalendar"%>
+<script type="text/javascript" src="js/apprise-1.5.full.js"></script>
+<link rel="stylesheet" href="css/apprise.css" type="text/css" />
+<script>
+function alt_submit(){
+		var form= document.frmMembresia;
+		if(validaForm()) form.submit();
+			
+}
+
+function anhadir(cod, name){
+	var form= document.frmMembresia;
+	form.txtSocio.value=name;
+	form.idSocio.value=cod;
+	$.fn.colorbox.close();
+	
+} 
+
+function confFecha(){
+	var form= document.frmMembresia;
+	if(form.cmbPeriodo.value=="Anual"){
+	document.getElementById("dvFechaFin").style.display='none';
+		fechaI=form.fFechaInicio.value.split("/");
+		fechaI[2]=parseInt(fechaI[2])+1;
+		form.fFechaFin.value=fechaI[0]+'/'+fechaI[1]+'/'+fechaI[2];
+	}
+	if(form.cmbPeriodo.value=="Semestral"){
+	document.getElementById("dvFechaFin").style.display='none';
+		fechaI=form.fFechaInicio.value.split("/");
+		fechaI[1]=parseInt(fechaI[1])+6;
+		if(fechaI[1]>12){
+			fechaI[2]=parseInt(fechaI[2])+1;
+			fechaI[1]=parseInt(fechaI[1])-12;
+		}
+		form.fFechaFin.value=fechaI[0]+'/'+fechaI[1]+'/'+fechaI[2];
+	}
+	if(form.cmbPeriodo.value=="Indefinido"){
+	document.getElementById("dvFechaFin").style.display='block';
+	}
+	
+}
+</script>
+
+<%
+Calendar c1 = GregorianCalendar.getInstance();
+c1.add(Calendar.YEAR, 1);
+SimpleDateFormat dfActual= new SimpleDateFormat("dd/MM/YYYY");
+String fecAnoIni=dfActual.format(new java.util.Date());
+
+String fecAnoFin=dfActual.format(c1.getTime()); %>
+<!-- content starts -->
 			  <div>
-			    <ul class="breadcrumb">
-			      <li> <a href="index.jsp">Home</a> <span class="divider">/</span></li>
-		        <li> <a href="buscarventaproducto.jsp">Mantenimiento de Venta de Productos</a> <span class="divider">/</span></li>
-		        <li> Registrar Venta de Producto </li>
-		        </ul>
+			   <ul class="breadcrumb">
+		        <li> <a href="index.jsp">Home</a> <span class="divider">/</span></li>
+		        <li> <a href="buscarventaproducto.jsp">Mantenimiento de venta de Productos</a> <span class="divider">/</span></li>
+		        <li> Registrar Venta de Productos</li>
+	          </ul>
 		      </div>
 			  <div class="row-fluid sortable">
 			    <div class="box span12">
 			      <div class="box-header well" data-original-title>
-			        <h2>REGISTRAR VENTA DE PRODUCTO</h2>
+			        <h2>REGISTRAR VENTA DE PRODUCTOS </h2>
 		          </div>
 			      <div class="box-content">
-			        
-			        
-			          <form class="form-horizontal" id="frmVentaProducto" name="frmVentaProducto" method="POST" action="<%= response.encodeURL("SMVVentaProductos")%>">
-			                 <input type="hidden" name="accion" value="Registrar"></input>
-							<input type="hidden" name="tipo" value="2"></input>
+			        <form class="form-horizontal"  name="frmVentaProductos" method="Post"  action="SMVVentaProductos">
+					<input type="hidden" name="accion" value="Registrar"></input>
+					<input type="hidden" name="tipo" value="2"></input>
 			          <fieldset>
-			            <div class="control-group">
-			              <label class="control-label" for="typeahead8">Vendedor (*): </label>
-			              <div class="controls">
-			                <input type="text" class="span6 typeahead" id="typeahead8"  data-provide="typeahead" data-items="4" >
-			                
-		                  </div>
-		                </div>
-                        <div class="control-group">
+			          
+			          <div class="control-group" id="dvVendedor">
+			                <label class="control-label" for="typeahead4">Vendedor (*): </label>
+			                <div class="controls">
+			                  <input type="text" class="input-xlarge" id="txtVendedor" name="txtVendedor"  data-provide="typeahead">
+			                  
+			                </div>
+		                 </div>
+			            
+			              <div class="control-group" id="dvCliente">
 			                <label class="control-label" for="typeahead4">Cliente (*): </label>
 			                <div class="controls">
-			                  <input type="text" class="span6 typeahead" id="typeahead"  data-provide="typeahead" data-items="4" >
+			                  <input type="text" class="input-xlarge" id="txtCliente" name="txtCliente"  data-provide="typeahead">
+			                  
 			                </div>
-		                  </div>
-			           
-			           <div class="control-group">
-			              		<label class="control-label" for="typeahead4">Fecha Venta(*): </label>
-			              		<div class="controls">
-			               		 <input type="text" class="input-xlarge datepicker" id="txtFechaVenta" name="txtFechaVenta" value="" readonly="readonly">
-			             		</div>
-		                		</div>
-		                
-		                </div>
-			            <div class="control-group">
-			              <label class="control-label" for="typeahead2">Producto (*): </label>
+		                 </div>
+			            
+			            
+			            <div class="control-group" id="dvFechaVenta">
+			              <label class="control-label" for="typeahead7" name="fFechaInicio">Fecha Venta (*): </label>
 			              <div class="controls">
-			               <select id="selectError1" multiple data-rel="chosen">
-									
-								  </select> &nbsp;&nbsp; <a href="#" class="btn-setting"><i class="icon-search"></i></a>
-
-		                  </div>
+			                <input type="text" class="input-xlarge datepicker"  id="txtFechaVenta" name="txtFechaVenta" value="<%=fecAnoIni%>" readonly="readonly">
+			              
+			              </div>
 		                </div>
-                        
-
-          <div class="control-group">
-			                <label class="control-label" for="typeahead4">Monto (S/.) (*): </label>
+			           
+			              
+			              <div class="control-group" id="dvProducto">
+			                <label class="control-label" for="typeahead8">Producto (*): </label>
 			                <div class="controls">
-			                  <input type="text" class="input-xlarge" id="typeahead4"  data-provide="typeahead" data-items="4" >
+			                  <input type="text" class="span6 typeahead" id="typeahead8"  data-provide="typeahead" name="txtProducto" readonly="readonly">
+			                  <br>
+			                  <div  align="left"> <a class="btn btn-primary iframe" href="../producto/buscarproducto.jsp"> <i class="icon icon-search icon-white"></i> </a> </div>
+			            
 			                </div>
 		                  </div>
-			        
+                          
+                          <div class="control-group" id="dvMonto">
+			                <label class="control-label" for="typeahead4">Monto (S/.): </label>
+			                <div class="controls">
+			                  <input type="text" class="input-xlarge" id="txtMonto" name="txtMonto"  data-provide="typeahead" >
+			                  
+			                </div>
+		                  </div>
+                 
+			            </div>
 			            <div class="form-actions">
-			              <button type="submit" class="btn btn-primary">Guardar</button>
-			              <button type="reset" class="btn">Cancelar</button>
+			            <input type="hidden" name="idSocio" value=""/></input>
+			              <button type="button" class="btn btn-primary" onclick="javascript:alt_submit()">Agregar</button>
+			              <button type="button" class="btn" onclick="location.href='buscarmembresia.jsp'">Cancelar</button>
 		                </div>
 		              </fieldset>
 		            </form>
@@ -79,6 +136,6 @@
 			  <!--/row-->
 			 
 
-		  
+		<script>confFecha();</script>  
        
 					<!-- content ends -->
