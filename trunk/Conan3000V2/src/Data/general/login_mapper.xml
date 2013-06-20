@@ -18,5 +18,7 @@ select Password from USUARIO where Password = #{pass};
 select IdPerfil from USUARIO where Password = #{pass};
 </select>
 
-
+<select id="getIdSocio" parameterType="IngSoft.general.bean.UsuarioBeanData" resultType="java.lang.String">
+select IdSocio from USUARIO where Password = #{password} and NombreUsuario=#{nombUsuario};
+</select>
 </mapper>
