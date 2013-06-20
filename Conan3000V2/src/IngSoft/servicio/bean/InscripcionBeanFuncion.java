@@ -10,6 +10,7 @@ import java.util.Vector;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
+import javax.faces.bean.SessionScoped;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -20,6 +21,7 @@ import IngSoft.servicio.bean.SorteoBeanData;
 import IngSoft.general.CoException;
 import IngSoft.general.MyBatisSesion;
 
+@SessionScoped
 public class InscripcionBeanFuncion {
 	static private InscripcionBeanFuncion SorteoFuncion = null;
 	private Lock l = new ReentrantLock();
@@ -34,12 +36,14 @@ public class InscripcionBeanFuncion {
 	public InscripcionBeanData crearInscripcion(HttpServletRequest request,
 			HttpServletResponse response) throws CoException {
 		InscripcionBeanData sorteoData = new InscripcionBeanData();
+		String idSocio = (String)request.getSession().getAttribute("idSocio");
+
 		l.lock();
 		SqlSession sqlsesion = MyBatisSesion.metodo().openSession();
 		try {
 			/*sorteoData.setIdSocio((String) request.getSession().getAttribute(
 					"idSocio"));*/
-			sorteoData.setIdSocio("SOC000001");
+			sorteoData.setIdSocio(idSocio);
 			sorteoData.setIdSorteo(request.getParameter("txtCodigoSorteo"));
 			sorteoData.setFecha(new Date());
 			String codParticipante = (String) sqlsesion
