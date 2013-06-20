@@ -25,15 +25,20 @@ public class AccionGenerarSorteo extends CoAccion {
 		SorteoBeanFuncion sorteoFuncion= SorteoBeanFuncion.getInstance();
 		SorteoBeanData sorteoData=sorteoFuncion.consultarSorteo(request.getParameter("codigo"));
 		int cant_ganadores = sorteoFuncion.getCantidad(sorteoData.getIdSorteo());
+		int flag=0;
 		if (sorteoFuncion.haySorteo(sorteoData.getIdSorteo())){
 			Vector<SocioInscritoBeanData> listaInscritos=sorteoFuncion.getInscritos(sorteoData.getIdSorteo());
+			for (int i=0; i<listaInscritos.size(); i++)
+			{
+				if ((listaInscritos).get(i).getIdSocio().equals("SOC000001")){flag=1; break;}
+			}	
 			
 			Vector<String> listaGanadores=sorteoFuncion.getGanadores(listaInscritos,cant_ganadores,sorteoData.getIdSorteo());
 			/*Vector<SocioBeanData> nombreGanadores=sorteoFuncion.getNombGanadores(listaGanadores);
 			Vector<TipoEventoMiniBeanData> tipoEventoMiniData=eventoFuncion.getTipoEvento();
 			Vector<AmbienteMiniBeanData> AmbienteMiniData=eventoFuncion.getAmbientes();*/
 			
-			/*request.setAttribute("ganadores", nombreGanadores);*/
+			request.setAttribute("flag", flag);
 			request.setAttribute("lista", listaGanadores);
 			this.direccionar(sc, request, response, "/Club/servicio/sorteo/generarsorteo.jsp");
 			
@@ -41,7 +46,7 @@ public class AccionGenerarSorteo extends CoAccion {
 		
 		Vector<String> listaGanadores=sorteoFuncion.consultaGanadores(sorteoData.getIdSorteo(),cant_ganadores);
 		request.setAttribute("lista", listaGanadores);
-		this.direccionar(sc, request, response, "/Club/servicio/sorteo/generarsorteoHecho.jsp");
+		this.direccionar(sc, request, response, "/Club/servicio/sorteo/generarsorteo.jsp");
 		
 	}
 
