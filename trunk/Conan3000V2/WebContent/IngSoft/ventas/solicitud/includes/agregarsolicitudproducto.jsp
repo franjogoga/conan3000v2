@@ -1,5 +1,6 @@
 <%@page import="IngSoft.servicio.bean.SedeMiniBeanData"%>
 <%@page import="IngSoft.venta.bean.EmpleadoMiniBeanData"%>
+<%@page import="IngSoft.administracion.bean.EmpleadoBeanData"%>
 
 	<meta charset="utf-8">
 	<title>Agregar Solicitud Producto</title>
@@ -8,7 +9,9 @@
 	<meta name="author" content="Muhammad Usman">
 	
 	<jsp:useBean id="sedes" scope="request" class="java.util.Vector"></jsp:useBean>
-	<jsp:useBean id="empleados" scope="request" class="java.util.Vector"></jsp:useBean>
+	<jsp:useBean id="empleados" scope="request" class="IngSoft.administracion.bean.EmpleadoBeanData"></jsp:useBean>
+	<jsp:useBean id="resultados" scope="request"class="java.util.Vector"></jsp:useBean>
+		
 <script type="text/javascript" src="js/apprise-1.5.full.js"></script>
 
 <link rel="stylesheet" href="css/apprise.css" type="text/css" />	</style>
@@ -37,9 +40,16 @@
 	$.fn.colorbox.close();
 	
 } 
+   
+   function anhadirprod(cod, name){
+		var form= document.frmEmpleado;
+		form.txtEmpleado.value=name;
+		form.idEmpleado.value=cod;
+		$.fn.colorbox.close();
+		
+	} 
 </script>	
-			 
-			 
+					 
 			  <!-- content starts -->
 			 
 		       <div>
@@ -59,9 +69,9 @@
 			        <form class="form-horizontal" name="frmProducto"  method="Post"  action="SMVProducto" onsubmit="alt_submit();return false;" >
 						<input type="hidden" name="accion" id="accion" value="Agregar" ></input>
 						<input type="hidden" name="tipo" id="tipo" value="2" ></input>
-			          <fieldset>
-			          
-			         <div class="control-group" id="dvProductor">
+						
+						    
+			         <div class="control-group" id="dvProducto">
 			                <label class="control-label" for="typeahead8">Producto (*): </label>
 			                <div class="controls">
 			                  <input type="text" class="span6 typeahead" id="txtProducto"  data-provide="typeahead" name="txtProducto" data-items="4" readonly="readonly">
@@ -71,6 +81,34 @@
 			                </div>
 		                  </div>
 		                  
+						
+			          </form>
+			         <div class="box-content">
+			         <form  id="frmEmpleado" name="frmEmpleado" method="POST" action="SMSEmpleado" onsubmit="alt_submit();return false;"  >
+			        	    <input type="hidden" name="accion" value="Agregar"></input>
+   		 				<input type="hidden" name="tipo" value="2"></input>
+   		 				
+   		 				 	 
+		                 <div class="control-group" id="dvEmpleado">
+			                <label class="control-label" for="typeahead8">Empleado (*): </label>
+			                <div class="controls">
+			                  <input type="text" class="span6 typeahead" id="txtEmpleado"  data-provide="typeahead" name="txtEmpleado" data-items="4" readonly="readonly">
+			                  <br>
+			                  <div  align="left"> <a class="btn btn-primary iframe" href="/Conan3000V2/IngSoft/administracion/empleados/seleccionarempleado.jsp"> <i class="icon icon-search icon-white"></i> Buscar Empleado</a> </div>
+			                  <span class="help-inline" id="errEmpleado">Please correct the error</span>
+			                </div>
+		                  </div>	 
+			         </form>
+			        
+			                <form class="form-horizontal" name="frmSolicitud" id="frmSolicitud"method="POST" action="SMVSolicitudProducto" onsubmit="alt_submit();return false;">
+			          <input type="hidden" name="accion" value="Agregar"></input>
+			          <input type="hidden" name="tipo" value="2"></input>
+			             <input type="hidden" name="fFecha" value="20/05/2014"></input>
+			          
+			          <fieldset>
+			          
+			          
+			      
 		                  			         			         
 			            <div class="control-group">
 			                <label class="control-label" for="typeahead4">Cantidad(*):</label>
@@ -91,26 +129,18 @@
                           </div>
                         </div>
 		               		      
-		               		      
-		               	 
-		                   <div class="control-group">
-                          <label class="control-label" for="selectError">Empleado (*):</label>
-                          <div class="controls">
-                            <select id="cmbEmpleado" data-rel="chosen" name="cmbEmpleado">
-								<%for(int i=0;i<empleados.size();i++){ %>
-										<option value="<%= ((EmpleadoMiniBeanData)empleados.get(i)).getCodigo()%>"><%= ((EmpleadoMiniBeanData)empleados.get(i)).getNombre()%></option>
-								<%} %>
-                            </select>
-                          </div>
-                        </div>	      
+		               	      
+		                    
 		               		      
 		               		              			          
 			            <div class="form-actions">
 			          <input type="hidden" name="idProductoProv" value=""/></input>
+			           <input type="hidden" name="idEmpleado" value=""/></input>
 			           <button type="submit" class="btn btn-primary" >Agregar</button>
 			              <button type="button" class="btn" onclick="location.href='agregarsolicitudproducto.jsp'">Cancelar</button>
 		                </div>
 		              </fieldset>
+		                 </form>
 		               (*) Campos Obligatorios</div>
 		            </form>
 		          </div>
