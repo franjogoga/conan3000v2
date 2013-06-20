@@ -15,28 +15,7 @@
 			
 			}
 	
-	function validaForm(){
-		var form=document.frmCriteriosBusqueda;
-		var cadena= new Array();
-		var i=0;
-				
-		if(!esCorrecto(form.fFechInicio.value,1,10)){
-			cadena[i]="Fecha Inicio";
-			i++;
-		}
-		if(!esCorrecto(form.fFechaFin.value,1,10)){
-			cadena[i]="Fecha Fin";
-			i++;
-		}
-	
-		if(i>0){
-			crearAlert(cadena);
-			return false;
-			}else{
-				return true;
-		
-			}
-	}
+
 	
 	function alt_agregar(){
 		var form=document.getElementById("frmAlternativo");
