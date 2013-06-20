@@ -16,6 +16,7 @@ public class SMSEmpleado extends CoServlet{
 		acciones.put("Agregar", new AccionAgregarEmpleado());
 		acciones.put("Modificar", new AccionModificarEmpleado());
 		acciones.put("Eliminar", new AccionEliminarEmpleado());
+		acciones.put("Seleccionar", new AccionSeleccionarEmpleado());
 	}
 	
 }
