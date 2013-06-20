@@ -14,13 +14,13 @@
 
 <select id="serchPlantillaReserva" parameterType="IngSoft.administracion.bean.CriterioReservaBeanData" resultType="IngSoft.administracion.bean.ResultadoReservaBeanData">
 SELECT 
-
+inf245g2.INVITADOXSOCIO.IdInvitadoSocio AS codigo,
 inf245g2.INVITADOXSOCIO.IdSocio AS codigosocio,
 inf245g2.INVITADOXSOCIO.IdInvitado AS codigoinvitado,
 inf245g2.INVITADOXSOCIO.FechaIngreso AS fechainvitacion,
 inf245g2.INVITADOXSOCIO.Monto AS monto,
 inf245g2.INVITADOXSOCIO.Estado AS estado
-FROM INVITADOXSOCIO
+FROM inf245g2.INVITADOXSOCIO
 WHERE  inf245g2.INVITADOXSOCIO.IdInvitado like  #{codigoinvitado}
 order by 1 asc  
 
