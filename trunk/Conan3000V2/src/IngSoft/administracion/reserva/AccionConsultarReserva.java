@@ -1,4 +1,4 @@
-package IngSoft.administracion.invitado;
+package IngSoft.administracion.reserva;
 
 import java.util.Vector;
 
@@ -6,26 +6,26 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import IngSoft.administracion.bean.InvitadoBeanData;
-import IngSoft.administracion.bean.InvitadoBeanFunction;
+import IngSoft.administracion.bean.ReservaBeanData;
+import IngSoft.administracion.bean.ReservaBeanFunction;
 
 import IngSoft.general.CoAccion;
 import IngSoft.general.CoException;
 
-public class AccionConsultarInvitado extends CoAccion {
+public class AccionConsultarReserva extends CoAccion {
 
 	@Override
 	public void ejecutar(ServletContext sc, HttpServletRequest request,
 			HttpServletResponse response)  throws CoException{
 		
 		
-		InvitadoBeanFunction invitadoFuncion= InvitadoBeanFunction.getInstance(); 
-		InvitadoBeanData invitadoData=invitadoFuncion.consultarInvitado(request.getParameter("codigo"));
+		ReservaBeanFunction reservaFuncion= ReservaBeanFunction.getInstance(); 
+		ReservaBeanData reservaData=reservaFuncion.consultarReserva(request.getParameter("codigo"));
 		
         System.out.print(" codigo ---> "  + request.getParameter("codigo"));
 		
-		request.setAttribute("invitado",invitadoData );
-		this.direccionar(sc, request, response, "/IngSoft/administracion/invitado/consultarinvitado.jsp");
+		request.setAttribute("reserva",reservaData );
+		this.direccionar(sc, request, response, "/IngSoft/administracion/reserva/consultarreserva.jsp");
 		
 
 	}
