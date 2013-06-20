@@ -32,7 +32,7 @@
 <script type="text/javascript" src="js/script.js"></script>
 		<script>
 
-
+	
 function validaForm(){
 		/*
 	esValido(nombre, casilla, id, tipoValidacion, minimo,maximo)
@@ -65,17 +65,8 @@ function validaForm(){
 	var i=0;
 	var error=false;
 	if(!esValido("Nombre",form.txtNombrePromocion,"NombrePromocion",1,1,50)){cadena[i]="Nombre";i++;}
-	if(!esValido("Fecha Inicio",form.fFechInicio,"FechaInicio",2,1,10)){cadena[i]="Fecha Inicio";i++;}
-	if(!esValido("Fecha Fin",form.fFechFin,"FechaFin",2,1,10)){
-		cadena[i]="Fecha Fin";i++;
-	}else{
-		if(!validarFechas("Fecha Final",form.fFechFin,"FechaFin","Fecha Inicio",form.fFechInicio)){
-		cadena[i]="Fecha Fin";i++;
-		}
-	}
 	if(!esValido("Descripcion",form.txtDescripcion,"Descripcion",1,1,100)){cadena[i]="Descripcion";i++;}
-	
-	
+		
 	//No tocar
 	if(i>0){
 	crearAlert(cadena);

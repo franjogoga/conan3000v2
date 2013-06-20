@@ -98,7 +98,7 @@
 			                    <input type="text" class="span6 typeahead" id="txtRazon"  name="txtRazon" data-provide="typeahead" >
 		                      </div>
 		                    </div>
-		                     
+		                    		                     
 			              <div class="control-group">
 			                  <label class="control-label" for="typeahead2">Ruc:</label>
 			                  <div class="controls">
@@ -133,7 +133,7 @@
 		          </div>
 		          
 			      <div class="box-content">
-			      <table class="table table-striped table-bordered bootstrap-datatable datatable" >
+			      <table width="99%" class="table table-striped table-bordered bootstrap-datatable datatable" >
 					    <!-- agregar nuevo boton -->
 					   
 					    <thead>
