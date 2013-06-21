@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <%@page import="IngSoft.administracion.bean.SedeMiniBeanData"%>
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <html lang="en">
 <head>
 	<jsp:include page="/IngSoft/general/header.jsp" />
@@ -50,6 +52,13 @@
 	}
 	</script>
 	
+	<%! 	
+		public String getFechaActual(){
+			SimpleDateFormat DF= new SimpleDateFormat("dd/MM/YYYY");
+			Date fecha= new Date();
+		return (DF.format(fecha));
+	}	
+	%>
 	
 </head>
 
@@ -81,18 +90,16 @@
                             </select>
                           </div>
                         </div>
-			           <div class="control-group" id="dvFechaInicio">
+			           <div class="control-group">
 			              <label class="control-label" for="date01" >Fecha Inicial (*):</label>
 			                <div class="controls">
-			                  <input type="text" name="fechaInicio" class="datepicker" id="fechaInicio" value="" readonly width=44px>
-			                  <span class="help-inline" id="errFechaInicio">Please correct the error</span>
+			                  <input type="text" name="fechaInicio" class="datepicker" id="fechaInicio" value="<%=getFechaActual()%>" readonly width=44px onchange="verificar_fecha(-1,this,'fechaFin');">
 		                    </div>
 		                  </div>
-			              <div class="control-group" id="dvFechaFin">
+			              <div class="control-group">
 			                <label class="control-label" for="date02">Fecha Final (*):</label>
 			                <div class="controls">
-			                  <input type="text" name="fechaFin" class="datepicker" id="fechaFin" value="" readonly width=44px>
-			                  <span class="help-inline" id="errFechaFin">Please correct the error</span>
+			                  <input type="text" name="fechaFin" class="datepicker" id="fechaFin" value="<%=getFechaActual()%>" readonly width=44px onchange="verificar_fecha(1,this,'fechaInicio');">
 		                    </div>
 		                  </div>
                         <div class="form-actions">
@@ -187,44 +194,6 @@
 	<script src="js/jquery.history.js"></script>
 	<!-- application script for Charisma demo -->
 	<script src="js/charisma.js"></script>
-
-		
-	<script type="text/javascript" src="js/apprise-1.5.full.js"></script>
-	<link rel="stylesheet" href="css/apprise.css" type="text/css" />
-	<script type="text/javascript" src="js/script.js"></script>
-    <script>
- 
- 
-function validaForm(){
-       
-        var form=document.frmData;
- 
-        var cadena= new Array();
-        var i=0;
-        var error=false;
-        
-        
-        if(!esValido("Fecha Inicial",form.fechaInicio,"FechaInicio",7,1,100)){cadena[i]="Fecha Inicial";i++;}
-        if(!esValido("Fecha Final",form.fechaFin,"FechaFin",7,1,100)){cadena[i]="Fecha Final";i++;}
-                
-        //No tocar
-        if(i>0){
-        crearAlert(cadena);
-        return false;
-        }else{
-                return true;               
-        }
-}
- 
- 
-function inicializa(){
-        document.getElementById("errFechaInicio").style.display='none';
-        document.getElementById("errFechaFin").style.display='none'; 
-}
- 
-inicializa();
- 
-</script>
 	
 </body>
 </html>
