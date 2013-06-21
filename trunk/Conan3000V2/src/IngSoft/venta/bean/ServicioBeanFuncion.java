@@ -80,6 +80,48 @@ static private ServicioBeanFuncion ServicioFuncion=null;
 		return resultado;
 	}
 	
+	public boolean agregarLinea(LineaServicioBeanData lineaData) throws CoException {
+		boolean resultado=false;		
+		l.lock();
+		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+		try{
+			
+			sqlsesion.insert("Data.venta.servicio.insertLinea",lineaData);
+
+			resultado=true;
+		}
+		catch(Exception a)		
+		{sqlsesion.rollback();
+		a.printStackTrace();
+			//throw CoException.set("Error: Nombre de linea servicio repetido", "SMVServicio?accion=Agregar&tipo=1");
+			
+		}
+		
+		finally{
+			sqlsesion.commit();
+			sqlsesion.close();
+			l.unlock();					
+		}
+			
+		return resultado;
+	}
+	
+	public String consultarSolicitudServicio() throws CoException {	
+
+		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+		String codS=null;
+		try{
+			codS= (String)sqlsesion.selectOne("Data.venta.servicio.getUltimoCodigo");
+			//saco el ultimo codigo
+		}
+		
+		finally{
+			sqlsesion.close();				
+		}
+			
+		return codS;
+	}
+	
 	
 	public ServicioBeanData consultarServicio(String codigo){
 	ServicioBeanData servicioData=null;
@@ -131,16 +173,16 @@ static private ServicioBeanFuncion ServicioFuncion=null;
 		return resultado;
 	}
 	
-	public ProveedorBeanData consultarProveedor(String codigo){
-		ProveedorBeanData proveedorData=null;
+	public String consultarLineaServicio(){
+		String lineaData=null;
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
-			proveedorData= sqlsesion.selectOne("Data.venta.servicio.getPlantillaProveedor",codigo);
+			lineaData= sqlsesion.selectOne("Data.venta.servicio.getCodigoLinea");
 		}
 		finally{
 			sqlsesion.close();
 		}
-		return proveedorData;
+		return lineaData;
 	}
 	
 	public void modificarServicio(ServicioBeanData servicio) throws CoException {
