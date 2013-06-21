@@ -142,7 +142,7 @@
 </servlet>
 <servlet id="Servlet_0033">
         <servlet-name>SMVSolicitudProducto</servlet-name>
-	<servlet-class>IngSoft.venta.solicitud.SMVSolicitudProducto</servlet-class>				   
+	<servlet-class>IngSoft.venta.solicitudproducto.SMVSolicitudProducto</servlet-class>				   
 </servlet>
 <servlet id="Servlet_0034">
         <servlet-name>SMVSolicitud</servlet-name>
@@ -286,7 +286,7 @@
 </servlet-mapping>
 <servlet-mapping id="ServletMapping_0033">
         <servlet-name>SMVSolicitudProducto</servlet-name>
-<url-pattern>/IngSoft/ventas/solicitud/SMVSolicitudProducto</url-pattern>
+<url-pattern>/IngSoft/ventas/solicitudproducto/SMVSolicitudProducto</url-pattern>
 </servlet-mapping>
 <servlet-mapping id="ServletMapping_0034">
         <servlet-name>SMVSolicitud</servlet-name>
