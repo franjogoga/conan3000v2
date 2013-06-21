@@ -11,5 +11,6 @@ public class SMVServicio extends CoServlet{
 		acciones.put("Agregar", new AccionAgregarServicio());
 		acciones.put("Modificar", new AccionModificarServicio());
 		acciones.put("Eliminar", new AccionEliminarServicio());
+		acciones.put("Seleccionar", new AccionSeleccionarServicio());
 	}
 }
