@@ -60,11 +60,11 @@
 		                    </div>
 		                  </div>
 							  
-							  <div class="control-group">
+							  <div class="control-group" id="dvPrecio">
 							    <label class="control-label" for="typeahead2">Precio (S/.) (*): </label>
 							    <div class="controls">
-							      <input type="text" class="span6 typeahead" id="txtPrecio"  name="txtPrecio" data-provide="txtPrecio" data-items="4" >
-						         
+							      <input type="text" class="span6 typeahead" id="txtPrecio"  name="txtPrecio" data-provide="txtPrecio" data-items="4" onpaste="return false;" >
+						          <span class="help-inline" id="errPrecio">Please correct the error</span>
 						        </div>
 						      </div>
 						      
