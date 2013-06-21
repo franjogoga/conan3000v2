@@ -146,7 +146,7 @@
 						    </div>
 						    <div class="form-actions">
 						    <button type="submit" class="btn btn-primary">Buscar</button>
-			              <button type="submit" class="btn" onclick="location.href='../solicitud/buscarsolicitudsocio.jsp'">Cancelar</button>
+			              <button type="button" class="btn" onclick="location.href='../solicitud/buscarsolicitudsocio.jsp'">Cancelar</button>
 						    
 							</div>
 						  </fieldset>
