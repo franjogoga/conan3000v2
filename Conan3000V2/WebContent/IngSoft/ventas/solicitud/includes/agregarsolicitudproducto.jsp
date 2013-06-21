@@ -41,10 +41,10 @@
 	
 } 
    
-   function anhadirprod(cod, name){
+   function anhadiremp(cod, name){
 		var form= document.frmEmpleado;
 		form.txtEmpleado.value=name;
-		form.idEmpleado.value=cod;
+		form.codigo.value=cod;
 		$.fn.colorbox.close();
 		
 	} 
@@ -135,7 +135,7 @@
 		               		              			          
 			            <div class="form-actions">
 			          <input type="hidden" name="idProductoProv" value=""/></input>
-			           <input type="hidden" name="idEmpleado" value=""/></input>
+			           <input type="hidden" name="codigo" value=""/></input>
 			           <button type="submit" class="btn btn-primary" >Agregar</button>
 			              <button type="button" class="btn" onclick="location.href='agregarsolicitudproducto.jsp'">Cancelar</button>
 		                </div>
