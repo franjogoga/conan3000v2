@@ -121,6 +121,21 @@ public class EventoBeanFuncion {
 			
 		return resultado;
 	}
+	
+	public Vector<EventoBeanData> buscarSolicitudesEvento(HashMap<String, Object> map){		
+		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+		Vector<EventoBeanData> resultadosV=null;
+		try{
+		
+		List<EventoBeanData> resultados=sqlsesion.selectList("Data.servicio.evento.searchEventoSedeMini",map);
+	
+		resultadosV= new Vector<>(resultados);
+		}
+		finally{
+		sqlsesion.close();}
+		return resultadosV;
+		
+	}
 	/*
 	public boolean eliminarEvento(String codigo) throws CoException {
 		boolean resultado=false;		
@@ -236,26 +251,44 @@ public class EventoBeanFuncion {
 			
 		return ;
 	}
+	
+	
+	
+	
+	*/
+	
 	public EventoBeanData consultarEvento(String codigo){
 		EventoBeanData eventoData=null;
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
-			eventoData= sqlsesion.selectOne("Data.servicio.evento.getPLantillaEvento",codigo);
-			//eventoData.setCodigo(Integer.parseInt((String)sqlsesion.selectOne("getNextCodigo")));
-			//sqlsesion.insert("insertPlantillaEvento",eventoData);
-			List<String> temp = null;
-			temp=sqlsesion.selectList("Data.servicio.evento.getSedesId",codigo);
-			eventoData.setIdSede(temp.toArray(new String[temp.size()]));
-			temp=sqlsesion.selectList("Data.servicio.evento.getAmbientesId",codigo);
-			eventoData.setIdAmbientes(temp.toArray(new String[temp.size()]));			
+			eventoData= sqlsesion.selectOne("Data.servicio.evento.searchEventoSede",codigo);
 		}
 		finally{
 			sqlsesion.close();
 		}
 		return eventoData;
 	}
-	
-	
-	
-	*/
+
+	public HashMap<String, Object> crearCriterio(HttpServletRequest request,
+			HttpServletResponse response) {
+		SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+		HashMap<String, Object> map=new HashMap<String, Object>();
+		String temp=request.getParameter("cmbEstados").toString();
+		map.put("estado",temp.equals("all")?"%":temp);
+		map.put("nombre","%"+request.getParameter("txtNombre").toString()+"%");
+		try{
+		map.put("FI", df.parseObject(request.getParameter("date01")));
+		map.put("FF",  df.parseObject(request.getParameter("date02")));
+		}
+		catch(Exception e){
+		map.put("FI", new java.util.Date());
+		map.put("FF", new java.util.Date());
+			
+		}
+		temp=request.getParameter("cmbSedes");
+		map.put("sede", temp.equals("all")?"%":temp);
+		
+		
+		return map;
+	}
 }

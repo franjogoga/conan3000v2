@@ -4,7 +4,7 @@
 					<div class="control-group">
 							  <label class="control-label" for="txtDNISocio">DNI del socio</label>
 							  <div class="controls">
-								<input type="text" class="span6 typeahead" id="txtDNISocio" name="txtDNISocio" data-provide="typeahead" onblur="javascript:ajax_confirmaSocio($(this),$('#txtNombreSocio'),$('#imagenCargaModal'));">
+								<input type="text" class="span6 typeahead" id="txtDNISocio" name="txtDNISocio" data-provide="typeahead" onblur="javascript:ajax_confirmaSocio($(this),$('#txtNombreSocio'),$('#imagenCargaModal'),$('#txtIdSocio'));">
 								<img src="img/ajax-loaders/ajax-loader-3.gif" style="display: none" id="imagenCargaModal"></img>
 							  </div>
 							  <label class="control-label" for="txtNombreSocio">Nombre del socio</label>

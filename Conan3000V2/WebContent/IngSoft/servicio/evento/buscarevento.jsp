@@ -102,7 +102,8 @@
 		$.ajax({
 		  type: "POST",
 		  url: "/Conan3000V2/IngSoft/servicio/evento/SMSEvento",
-		  data: "accion=" + $(accion).val() + "&tipo=" + $(tipo).val() + "&txtNombre=" + $(txtNombre).val() + "&cmbEstados=" + $(cmbEstados).val() + "&date01=" + $(date01).val()+ "&date02=" + $(date02).val(),
+		  data: "accion=" + $(accion).val() + "&tipo=" + $(tipo).val() + "&txtNombre=" + $(txtNombre).val() + "&cmbEstados=" + $(cmbEstados).val() + "&date01=" 
+		  + $(date01).val()+ "&date02=" + $(date02).val()+"&cmbSedes="+$(cmbSedes).val(),
 		  dataType: "html",
 		  success: function(msg){
 			$("#resultadoBusqueda").html(msg);
@@ -177,7 +178,7 @@
 								<label class="control-label" for="cmbSedes">Sede relacionada:</label>
 								<div class="controls">
 								  <select  data-rel="chosen" id="cmbSedes" name="cmbSedes" onchange="confirmarcambio($(this))">
-								  	<option value="none" selected>Todas</option>
+								  	<option value="all" selected>Todas</option>
 									<%for(int i=0;i<sedes.size();i++){ %>
 										<option value="<%= ((SedeMiniBeanData)sedes.get(i)).getCodigo()%>"><%= ((SedeMiniBeanData)sedes.get(i)).getNombre()%></option>
 									<%} %>																									
@@ -188,10 +189,10 @@
 								<label class="control-label" for="cmbEstados">Estado:</label>
 								<div class="controls">
 								  <select  data-rel="chosen" id="cmbEstados" name="cmbEstados">
-								  	<option value="0" selected>Todos</option>
-								  	<option value="1" >Registrado</option>
-								  	<option value="2" >Anulado</option>
-								  	<option value="3" >Cancelado</option>								  																																
+								  	<option value="all" selected>Todos</option>
+								  	<option value="REGISTRADO" >Registrado</option>
+								  	<option value="ANULADO" >Anulado</option>
+								  	<option value="CANCELADO" >Cancelado</option>								  																																
 								  </select><br/>								  
 								</div>
 							  </div>	
