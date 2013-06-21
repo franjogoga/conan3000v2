@@ -47,7 +47,7 @@ String fecAnoFin=dfActual.format(new java.util.Date()); %>
 			                    <div class="control-group" id="dvNombres">
 			                      <label class="control-label" for="typeahead7">Nombres(*): </label>
 			                      <div class="controls">
-			                        <input type="text" class="span6 typeahead" id="txtNombres" name="txtNombres" data-provide="typeahead" >
+			                        <input type="text" class="span6 typeahead" id="txtNombres" name="txtNombres" data-provide="typeahead" onpaste="return false;">
 		                             <span class="help-inline" id="errNombres">Please correct the error</span>
 		                          </div>
 		                        </div>
@@ -55,7 +55,7 @@ String fecAnoFin=dfActual.format(new java.util.Date()); %>
 			                      <div class="control-group" id="dvApellidoP">
 			                        <label class="control-label" for="typeahead6">Apellido Paterno(*): </label>
 			                        <div class="controls">
-			                          <input type="text" class="span6 typeahead" id="txtApellidoP" name="txtApellidoP" data-provide="typeahead" data-items="4" >
+			                          <input type="text" class="span6 typeahead" id="txtApellidoP" name="txtApellidoP" data-provide="typeahead" data-items="4" onpaste="return false;" >
 		                               <span class="help-inline" id="errApellidoP">Please correct the error</span>
 		                            </div>
 		                          </div>
@@ -63,7 +63,7 @@ String fecAnoFin=dfActual.format(new java.util.Date()); %>
 			                      <div class="control-group" id="dvApellidoM">
 			                        <label class="control-label" for="typeahead10">Apellido Materno(*): </label>
 			                        <div class="controls">
-			                          <input type="text" class="span6 typeahead" id="txtApellidoM" name="txtApellidoM" data-provide="typeahead" data-items="4" >
+			                          <input type="text" class="span6 typeahead" id="txtApellidoM" name="txtApellidoM" data-provide="typeahead" data-items="4" onpaste="return false;" >
 		                               <span class="help-inline" id="errApellidoM">Please correct the error</span>
 		                            </div>
 		                          </div>
@@ -99,7 +99,7 @@ String fecAnoFin=dfActual.format(new java.util.Date()); %>
 		                		 <div class="control-group" id="dvDireccion">
 			                        <label class="control-label" for="typeahead10">Direccion(*): </label>
 			                        <div class="controls">
-			                          <input type="text" class="span6 typeahead" id="txtDireccion" name="txtDireccion" data-provide="typeahead" data-items="4" >
+			                          <input type="text" class="span6 typeahead" id="txtDireccion" name="txtDireccion" data-provide="typeahead" data-items="4" onpaste="return false;">
 		                              <span class="help-inline" id="errDireccion">Please correct the error</span>
 		                            </div>
 		                          </div>
@@ -107,7 +107,7 @@ String fecAnoFin=dfActual.format(new java.util.Date()); %>
 		                             <div class="control-group" id="dvObservaciones">
 			                		<label class="control-label" for="textarea2">Observaciones:</label>
 			                		<div class="controls">
-			                  		<textarea name="txtObservaciones" rows="3" class="" id="txtObservaciones"  style="resize:none"></textarea>
+			                  		<textarea name="txtObservaciones" rows="3" class="" id="txtObservaciones"  style="resize:none" onpaste="return false;"></textarea>
 		                    		 <span class="help-inline" id="errObservaciones">Please correct the error</span>
 		                    		</div>
 		                  			</div>
