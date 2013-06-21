@@ -48,6 +48,12 @@
 		$.fn.colorbox.close();
 		
 	} 
+   
+   function alt_submit(){
+		var form= document.frmSolicitud;
+		if(validaForm()) form.submit();
+			
+}
 </script>	
 					 
 			  <!-- content starts -->
@@ -98,7 +104,7 @@
 			                  <span class="help-inline" id="errEmpleado">Please correct the error</span>
 			                </div>
 		                  </div>
-		                   <input type="hidden" name="idEmpleado" value=""/></input>
+		                   <input type="hidden" name=idEmpleado value=""/></input>
 		                  	 
 			         </form>
 			        
