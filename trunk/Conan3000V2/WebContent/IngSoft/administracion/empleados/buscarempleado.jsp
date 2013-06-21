@@ -471,20 +471,20 @@ function validaForm(){
 	
 	if(!esValido("Nombres",form.txtNombreEmpleado,"NombreEmpleado",1,0,50)){cadena[i]="Nombres";i++;}
 	
-	else{
+	//else{
     	
-		if(!esValido("Nombres",form.txtNombreEmpleado,"NombreEmpleado",4,1,50)){cadena[i]="Nombres";i++;}
+		//if(!esValido("Nombres",form.txtNombreEmpleado,"NombreEmpleado",4,0,50)){cadena[i]="Nombres";i++;}
 		
-	}
+//	}
 	
 	if(!esValido("Apellido Paterno",form.txtApellidoPaterno,"ApellidoPaterno",1,0,50)){cadena[i]="Apellido Paterno";i++;}
     
 	
-	else{
+	//else{
     	
-		if(!esValido("Apellido Paterno",form.txtApellidoPaterno,"ApellidoPaterno",4,1,50)){cadena[i]="Apellido Paterno";i++;}
+		//if(!esValido("Apellido Paterno",form.txtApellidoPaterno,"ApellidoPaterno",4,1,50)){cadena[i]="Apellido Paterno";i++;}
 		
-	}
+	//}
 	
 	
 	if(!esValido("Numero de Documento",form.txtNumeroDocumento,"NumeroDocumento",1,0,11)){cadena[i]="Numero de Documento";i++;}
