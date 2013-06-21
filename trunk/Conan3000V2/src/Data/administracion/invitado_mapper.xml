@@ -26,8 +26,6 @@ order by 1 asc
 </select>
 
 
-
-
 <select id="getPLantillaInvitado" parameterType="java.lang.String"  resultType="IngSoft.administracion.bean.InvitadoBeanData">
 SELECT 
 inf245g2.INVITADO.IdInvitado  AS codigo,
