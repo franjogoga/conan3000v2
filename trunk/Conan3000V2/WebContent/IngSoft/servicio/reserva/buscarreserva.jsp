@@ -128,7 +128,7 @@ var atipo=3;
 					<div class="control-group" id="alt_socioDoc">
 						      <label class="control-label" for="typeahead7">Documento de socio(*): </label>
 						      <div class="controls">
-						        <input type="text" class="span3 typeahead"  data-provide="typeahead"  id="txtDocSocio" name="txtDocSocio" onblur="javascript:ajax_confirmaSocio($(this),$('#txtNomSocio'),$('#imagenCargaTxt'));" autofocus maxlength="50"/>
+						        <input type="text" class="span3 typeahead"  data-provide="typeahead"  id="txtDocSocio" name="txtDocSocio" onblur="javascript:ajax_confirmaSocio($(this),$('#txtNomSocio'),$('#imagenCargaTxt'),$('#txtIdSocioAlt'));" autofocus maxlength="50"/>
 								<span class="help-inline" id="errDocumentoSocio" style="display:none;">Este campo no puede estar vacio</span>
 								<img src="img/ajax-loaders/ajax-loader-3.gif" style="display: none" id="imagenCargaTxt"></img>
 																						        													      

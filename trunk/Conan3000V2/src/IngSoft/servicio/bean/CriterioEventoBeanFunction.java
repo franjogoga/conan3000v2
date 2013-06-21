@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Vector;
 
@@ -33,12 +34,11 @@ public class CriterioEventoBeanFunction {
 		return criterioEventoData;				
 	}
 	
-	public Vector<ResultadoEventoBeanData> buscarPlantillaEvento(CriterioEventoBeanData criterioEventoData){		
+	public Vector<EventoBeanData> buscarPlantillaEvento(HashMap<String, Object> map){		
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
-		Vector<ResultadoEventoBeanData> resultadosV=null;
+		Vector<EventoBeanData> resultadosV=null;
 		try{		
-		List<ResultadoEventoBeanData> resultados=sqlsesion.selectList("Data.servicio.evento.searchPlantillaEvento",criterioEventoData);
-	
+		List<EventoBeanData> resultados=sqlsesion.selectList("Data.servicio.evento.searchPlantillaEvento",map);
 		resultadosV= new Vector<>(resultados);
 		}
 		finally{

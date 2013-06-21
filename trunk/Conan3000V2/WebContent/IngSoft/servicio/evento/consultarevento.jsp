@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
+<%@page import="IngSoft.servicio.bean.Utils"%>
 <%@page import="IngSoft.servicio.bean.TipoEventoMiniBeanData"%>
 <%@page import="IngSoft.servicio.bean.AmbienteMiniBeanData"%>
 <%@page import="IngSoft.servicio.bean.SedeMiniBeanData"%>
@@ -17,15 +18,12 @@
 		http://twitter.com/halalit_usman
 	-->
 	<meta charset="utf-8">
-	<title>Consultar Plantilla de Evento</title>
+	<title>Consultar Solicitud de Evento</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
 	<meta name="author" content="Muhammad Usman">
 	<!--The beans  -->
-	<jsp:useBean id="evento" scope="request"class="IngSoft.servicio.bean.EventoBeanData"></jsp:useBean>
 	<jsp:useBean id="sedes" scope="request"class="java.util.Vector"></jsp:useBean>
-	<jsp:useBean id="ambientes" scope="request"class="java.util.Vector"></jsp:useBean>
-	<jsp:useBean id="tiposEvento" scope="request"class="java.util.Vector"></jsp:useBean>
 	
 	<!-- The styles -->
 	<link id="bs-css" href="css/bootstrap-cerulean.css" rel="stylesheet">
@@ -61,39 +59,186 @@
 
 	<!-- The fav icon -->
 	<link rel="shortcut icon" href="img/conan_logo.png">
+	<script src="evento.js"></script>
+	
+	<!-- jQuery -->
+	<script src="js/jquery-1.7.2.min.js"></script>
 	<script>
-		function procesar(form,indice){
+	var codSedeActual="none";
+	var fechaActual="<%=new SimpleDateFormat("dd/MM/yyyy").format(new Date())%>";
+	var boton='#btnConcecionarios';
+	var concesionario='';
+		function validar(){
+			var test=true;			
+			$('#fFecha').parent().parent().addClass("success");
+			$('#listaServicios').parent().addClass("success");										
+			if($('#txtNombreEvento').val()==null || $('#txtNombreEvento').val().length<=0){
+				$('#txtNombreEvento').bind("change",function(){
+				var temp= $('#txtNombreEvento');
+				if(temp.val()!=null && temp.val().length>0) {
+				temp.parent().parent().removeClass("error");
+				temp.parent().parent().addClass("success");
+				$('#errNombreEvento').slideUp(1000);
+				}
+				else {
+				temp.parent().parent().removeClass("success");
+				temp.parent().parent().addClass("error");
+				$('#errNombreEvento').slideDown(1000);
+				}
+				
+				})
+				$('#errNombreEvento').slideDown(1000);
+				test=false;
+				$('#txtNombreEvento').parent().parent().toggleClass("error");
+			}
+			else $('#txtNombreEvento').parent().parent().addClass("success");
 			
+			if($('#cmbSedes').val()==null||$('#cmbSedes').val().length<=0||$('#cmbSedes').val().indexOf('none')==0){
+				$('#cmbSedes').bind("change",function(){
+				var temp= $('#cmbSedes');
+				if(temp.val()!=null && temp.val().length>0 && $('#cmbSedes').val().indexOf('none')<0) {
+				temp.parent().parent().removeClass("error");
+				temp.parent().parent().addClass("success");
+				$('#errSedes').slideUp(1000);
+				}
+				else {
+				temp.parent().parent().removeClass("success");
+				temp.parent().parent().addClass("error");
+				$('#errSedes').slideDown(1000);
+				}
+				
+				})
+				$('#errSedes').slideDown(1000);
+				test=false;
+				$('#cmbSedes').parent().parent().toggleClass("error");
+			}
+			else $('#cmbSedes').parent().parent().addClass("success");
+			
+			if($('#txtNumEntradas').val()==null || $('#txtNumEntradas').val().length<=0){
+				$('#txtNumEntradas').bind("change",function(){
+				var temp= $('#txtNumEntradas');
+				if(temp.val()!=null && temp.val().length>0) {
+				temp.parent().parent().removeClass("error");
+				temp.parent().parent().addClass("success");
+				$('#errNumEntradas').slideUp(1000);
+				}
+				else {
+				temp.parent().parent().removeClass("success");
+				temp.parent().parent().addClass("error");
+				$('#errNumEntradas').slideDown(1000);
+				}
+				
+				})
+				$('#errNumEntradas').slideDown(1000);
+				test=false;
+				$('#txtNumEntradas').parent().parent().toggleClass("error");
+			}
+			else $('#txtNumEntradas').parent().parent().addClass("success");
+			
+	return test;
 		
 		
 		}
 	
-	function alt_fecha(obj){
-	obj.value=obj.value.slice(0,5);
-	
-	}
 	
 	function alt_submit(){
-		
-			
+		var form= document.frmData;
+		if(validar()) alt_submit2();
+		else alert("Uno o mas campos estan vacios");			
 			}
+	function alt_submit2(){
+		var listaconcecionarios=$(".btn-success [disabled='disabled']");
 		
-		
-		
-			//document.fmrData.submit();
-
-	</script>	
-	<%! public boolean  encontrar(String a, String[] b){
-		for(int i=0;i<b.length;i++){			
-			if(b[i].equals(a)) return true;	
+		for(i=0;i<listaconcecionarios.length;i++){
+			concesionario=concesionario+listaconcecionario[i].attr('id')+'@';		
 		}
-	return false;
+		$.ajax({
+			  type: "POST",
+			  url: "/Conan3000V2/IngSoft/servicio/evento/SMSEvento",
+			  data: "accion=" + $(accion).val() + "&tipo=" + $(tipo).val() + "&txtNombreEvento=" + $(txtNombreEvento).val() + "&txtNumEntradas=" + $(txtNumEntradas).val()  
+			  +  "&cmbSedes=" + $(cmbSedes).val() + "&fFecha=" + $(fFecha).val()+"&concesionario="+concesionario+"&precioentrada=78.00",
+			  dataType: "text",
+			  success: function(msg){
+				  var url="<%=request.getContextPath()%>"+msg;
+				  $("#linkAceptar").css("display","inline");
+				  $("#linkCerrar").css("display","none");
+				  $("#modalTitulo").html("EXITO");				  
+				  $("#modalContenido").html("La plantilla de evento ha sido agregada exitosamente");
+				  $("#linkAceptar").bind("click",function(){
+					  location.href=url;					  
+				  });
+				  $("#bModal").trigger("click");
+				  				  								
+			  },
+			  error: function(objeto, quepaso, otroobj){
+				$("#linkAceptar").css("display","inline");
+				$("#linkCerrar").css("display","none");
+				$("#modalTitulo").html("ERROR");
+				$("#modalContenido").html("No se pudo agregar su plantilla de evento, intentelo mas tarde");
+				$("#bModal").trigger("click");
+				alert("ERROR!!");			
+			  }
+		
+			});		
 	}
-	public String formatear(java.util.Date date){
-		SimpleDateFormat DF= new SimpleDateFormat("dd/MM");
-		return DF.format(date);
+	
+	function resetConcesionarios(){	 
+	 $('#listaServicios').html("<div class='input-append'><input id='appendedInputButton' size='16' type='text' readonly='true' value='Salon Principal'><button class='btn' disabled='disabled' type='button'>X</button></div><br/>");
+	 concesionario='';
 	}
-	%>
+	function getConcecionarios(){
+	$(this).attr('disabled','disabled');
+		$.ajax({
+			  type: "POST",
+			  url: "/Conan3000V2/IngSoft/servicio/evento/SMSEvento",
+			  data: "accion=" + $(accion).val() + "&tipo=3" + "&cmbSedes=" + $(cmbSedes).val() + "&fFecha=" + $(fFecha).val() ,
+			  dataType: "html",
+			  success: function(msg){				  
+				  $("#concesionarioResultados").html(msg);
+				  updatetable();				
+				  $('#mytable_length').css("display","none");  
+				  $("#bModal").trigger("click");
+				  $(this).removeAttr('disabled','');
+				  $(boton).unbind('click');
+				  $(boton).bind('click', function(){$("#bModal").trigger("click");});				  				  								
+			  },
+			  error: function(objeto, quepaso, otroobj){
+				$("#linkAceptar").css("display","inline");
+				$("#linkCerrar").css("display","none");
+				$("#modalTitulo").html("ERROR");
+				$("#modalContenido").html("Hubo un error, no se pudo conseguir la lista de concesionarios");
+				$("#bModal").trigger("click");
+				$(this).removeAttr('disabled','');
+				
+			  }
+		
+			});		
+		
+	}
+	
+	
+	function confirmarcambio(elem){
+		var contenido=elem.val();
+		$('.btn-success').removeAttr('disabled')
+		resetConcesionarios();
+		//if(temp.length>0) temp.removeAtrr('disabled');
+		if($('#cmbSedes').val().indexOf('0')==0){
+			$(boton).attr('disabled','disabled');
+		}
+		else $(boton).removeAttr('disabled');
+		if(elem.attr('id').indexOf("fFecha")>=0){
+			$(boton).unbind('click');
+			if((contenido.indexOf(fechaActual)>=0)) $(boton).bind('click', function(){$("#bModal").trigger("click");});
+			else $(boton).bind('click',function(){getConcecionarios();})
+		}
+		else{
+			$(boton).unbind('click');
+			if((contenido.indexOf(codSedeActual)>=0)) $(boton).bind('click', function(){$("#bModal").trigger("click");});
+			else $(boton).bind('click',function(){getConcecionarios();})		
+		}
+	}
+			
+	</script>	
 </head>
 
 <body>
@@ -126,7 +271,7 @@
 						<a href="buscarevento.jsp">Mantenimiento de Eventos</a> <span class="divider">/</span>
 					</li>
 					<li>
-						Consultar Plantilla de Evento
+						Agregar Solicitud de Eventos Internos
 					</li>
 				</ul>
 			</div>
@@ -134,69 +279,63 @@
 			<div class="row-fluid sortable">
 				<div class="box span12">
 					<div class="box-header well" data-original-title>
-					  <h2><i class="icon-plus-sign"></i>CONSULTAR EVENTO</h2>
+					  <h2><i class="icon-plus-sign"></i>AGREGAR EVENTO</h2>
 				  </div>
 					<div class="box-content">
-						<form class="form-horizontal" action="<%= response.encodeURL("SMSEvento")%>" name="frmData" method="post">
-						<input type="hidden" name="accion" value="Consultar"></input>
-						<input type="hidden" name="tipo" value="2"></input>
+						<form class="form-horizontal" action="<%= response.encodeURL("SMSEvento")%>" onsubmit="alt_submit(); return false;"name="frmData" method="post">
+						<input type="hidden" name="accion" id="accion" value="Agregar"></input>
+						<input type="hidden" name="tipo" id="tipo" value="2"></input>
+						<input type="hidden" name="fFechaActual" id="fFechaActual" value="<%=new SimpleDateFormat("dd/MM/yyyy").format(new Date())%>"></input>
 						  <fieldset>
 						    <div class="control-group">
 						      <label class="control-label" for="typeahead7">Nombre de evento(*): </label>
 						      <div class="controls">
-						        <input type="text" class="span6 typeahead" id="txtNombreEvento"  data-provide="typeahead"  name="txtNombreEvento" disabled value="<%=evento.getNombre()%>">
+						        <input type="text" class="span6 typeahead" id="txtNombreEvento"  data-provide="typeahead"  id="txtNombreEvento" name="txtNombreEvento" onkeypress="return alfanumerico(event);" autofocus maxlength="50"/>
+								<span class="help-inline" id="errNombreEvento" style="display:none;">Este campo no puede estar vacio</span>						        													       
 					          </div>
 					        </div>
-							<div class="control-group">
-								<label class="control-label" for="selectS1">Tipo de Evento(*):</label>
-								<div class="controls">
-								  <select id="selectS1" data-rel="chosen" name="cmbTipo" disabled>
-									<%for(int i=0;i<tiposEvento.size();i++){ %>
-										<option value="<%= ((TipoEventoMiniBeanData)tiposEvento.get(i)).getCodigo()%>"  <%=evento.getIdTipo().equalsIgnoreCase(((TipoEventoMiniBeanData)tiposEvento.get(i)).getCodigo()) ?"selected":"" %>><%= ((TipoEventoMiniBeanData)tiposEvento.get(i)).getNombre()%></option>
-									<%} %>										
-								  </select>
-								</div>
-							  </div>
+					        <div class="control-group">
+						      <label class="control-label" for="txtNumEntradas">Limite Maximo Entradas(*): </label>
+						      <div class="controls">
+						        <input type="text" class="input typeahead" id="txtNumEntradas"  data-provide="typeahead"  name="txtNumEntradas" onkeypress="return numerico(event);" autofocus maxlength="11"/><br/>
+								<span class="help-inline" id="errNumEntradas" style="display:none;">Este campo no puede estar vacio</span>						        													       
+					          </div>
+					        </div>						   
 							  <div class="control-group">
-								<label class="control-label" for="selectM1">Sedes relacionadas(*):</label>
+								<label class="control-label" for="cmbSedes">Sede relacionada(*):</label>
 								<div class="controls">
-								  <select id="selectM1" multiple data-rel="chosen" name="cmbSedes" disabled>
+								  <select  data-rel="chosen" id="cmbSedes" name="cmbSedes" onchange="confirmarcambio($(this))">
+								  	<option value="none" selected>--Seleccione una Sede--</option>
 									<%for(int i=0;i<sedes.size();i++){ %>
-										<option value="<%= ((SedeMiniBeanData)sedes.get(i)).getCodigo()%>" <%=encontrar(((SedeMiniBeanData)sedes.get(i)).getCodigo(), evento.getIdSede())?"selected":""%>><%= ((SedeMiniBeanData)sedes.get(i)).getNombre()%></option>
-									<%} %>																
-								  </select>
+										<option value="<%= ((SedeMiniBeanData)sedes.get(i)).getCodigo()%>"><%= ((SedeMiniBeanData)sedes.get(i)).getNombre()%></option>
+									<%} %>																									
+								  </select><br/>
+								  <span class="help-inline" id="errSedes" style="display:none;">Debe seleccionar una sede</span>
 								</div>
-							  </div>
-							   <div class="control-group">
-								<label class="control-label" for="selectM2">Ambientes relacionados(*):</label>
-								<div class="controls">
-								  <select id="selectM2" multiple data-rel="chosen" name="cmbAmbientes" disabled>
-									<%for(int i=0;i<ambientes.size();i++){ %>
-										<option value="<%= ((AmbienteMiniBeanData)ambientes.get(i)).getCodigo()%>" <%=encontrar(((AmbienteMiniBeanData)ambientes.get(i)).getCodigo(), evento.getIdAmbientes())?"selected":""%>><%= ((AmbienteMiniBeanData)ambientes.get(i)).getNombre()%></option>
-									<%} %>										
-								  </select>
-								</div>
-							  </div>
+							  </div>							   
 							  <div class="control-group">
-							  <label class="control-label" for="date01">Limite Inicio(*):</label>
+							  <label class="control-label" for="fFecha">Fecha(*):</label>
 							  <div class="controls">
-								<input type="text" class="input-xlarge datepicker" id="date01" value="<%=formatear(new Date(evento.getLimiteInicio().getTime())) %>"  name="fFecIncio" onchange="alt_fecha(this)" disabled>
+								<input type="text" class="input datepicker" id="fFecha" readonly="true" value="<%=new SimpleDateFormat("dd/MM/yyyy").format(Utils.fechaMas( new Date(), 1))%>"  name="fFecha" onchange="confirmarcambio($(this))">
 							  </div>
 							</div>
-							
-							<div class="control-group">
-							  <label class="control-label" for="date02">Limite Fin(*):</label>
-							  <div class="controls">
-								<input type="text" class="input-xlarge datepicker" id="date02" value="<%=formatear(new Date(evento.getLimiteFin().getTime())) %>" name="fFecFin" onchange="alt_fecha(this)" disabled>
-							  </div>
+							 <div class="control-group">
+							  <label class="control-label" for="fFecha">Servicios Seleccionados:</label>
+							  <div class="controls" id="listaServicios">
+								<div class="input-append">
+									<input id="appendedInputButton" size="16" type="text" readonly="true" value="Salon Principal"><button class="btn" disabled="disabled" type="button">X</button>
+								  </div><br/></div>
 							</div>
-						    <div class="form-actions" >
-							 <!--  <button type="submit" class="btn btn-primary">Agregar</button> -->
-							  <button type="button" class="btn" onclick="location.href='buscarevento.jsp'" >Regresar</button>
+							<div class="form-actions">
+							  <button type="button" id="btnConcecionarios" class="btn btn-primary" disabled="disabled" >Concesionarios</button>							 
+							</div>														
+						    <div class="form-actions">
+							  <button type="submit" id="btnAgregar" class="btn btn-primary" >Agregar</button>
+							  <button type="button" class="btn" onclick="location.href='buscarevento.jsp'" >Cancelar</button>
 							</div>
 						  </fieldset>
 					  </form>   
-					
+					<span style="font-size:70%">(*)Campos Obligatorios</span>
 				  </div>
 				</div><!--/span-->
 
@@ -215,18 +354,36 @@
 				</div><!--/fluid-row-->
 				
 		<hr>
-
+		
+		<div style="display: none;">
+			<button class="btn btn-primary btn-setting" id="bModal"/>
+		</div>
 		<div class="modal hide fade" id="myModal">
+		   <div id="MensajeExito" style="display: none;">
 			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal">√ó</button>
-				<h3>Settings</h3>
+				<button type="button" class="close" data-dismiss="modal">X</button>
+				<h3 id="modalTitulo">EXITO</h3>
 			</div>
 			<div class="modal-body">
-				<p>Here settings can be configured...</p>
+				<p id="modalContenido">La plantilla de evento ha sido agregada exitosamente</p>
 			</div>
-			<div class="modal-footer" >
-				<a href="#" class="btn" data-dismiss="modal">Close</a>
-				<a href="#" class="btn btn-primary">Save changes</a>
+			
+			<div class="modal-footer">
+				<button type="button" class="btn" id="linkAceptar" style="display: none">Aceptar</a>
+				<a href="#" class="btn" id="linkCerrar"  data-dismiss="modal" style="display: none">Cerrar</a>
+								
+			</div>
+			</div>
+			<div id="listaConcecionarios">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">X</button>
+				<h3 id="modalTitulo">Lista de concesionarios</h3>
+			</div>
+			<div class="box-content" id="concesionarioResultados"  >
+			
+			</div>
+			
+			
 			</div>
 		</div>
 		<br/>
@@ -238,8 +395,6 @@
 	================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->
 
-	<!-- jQuery -->
-	<script src="js/jquery-1.7.2.min.js"></script>
 	<!-- jQuery UI -->
 	<script src="js/jquery-ui-1.8.21.custom.min.js"></script>
 	<!-- transition / effect library -->
@@ -307,6 +462,15 @@
 	<script src="js/jquery.history.js"></script>
 	<!-- application script for Charisma demo -->
 	<script src="js/charisma.js"></script>
+	<script src="js/conan3000.js"></script>
+	<script>
+		$('#txtNombreEvento').bind('paste',function(){		
+			setTimeout(function(){filtrar('abcdefghijklmnopqrstuwxyzABCDEFGHIJKLMNOPQRSTUWXYZÒ—·¡È…ÌÕÛ”˙⁄1234567890',$('#txtNombreEvento'),50)}, 0);
+		})
+		$('#txtNumEntradas').bind('paste',function(){		
+			setTimeout(function(){filtrar('1234567890',$('#txtNumEntradas'),50)}, 0);
+		})
+	</script>
 	
 		
 </body>

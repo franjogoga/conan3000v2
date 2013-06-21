@@ -1,5 +1,6 @@
 package IngSoft.servicio.evento;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Vector;
 
@@ -12,6 +13,7 @@ import IngSoft.general.CoAccion;
 import IngSoft.general.CoException;
 import IngSoft.servicio.bean.CriterioEventoBeanData;
 import IngSoft.servicio.bean.CriterioEventoBeanFunction;
+import IngSoft.servicio.bean.EventoBeanData;
 import IngSoft.servicio.bean.EventoBeanFuncion;
 import IngSoft.servicio.bean.ResultadoEventoBeanData;
 import IngSoft.servicio.bean.SedeMiniBeanData;
@@ -26,11 +28,9 @@ public class AccionBuscarEvento extends CoAccion{
 		//HttpSession sesion= request.getSession(true);
 		int tipo=Integer.parseInt(request.getParameter("tipo"));
 		if(tipo==2){
-		CriterioEventoBeanData criterioEventoData =new CriterioEventoBeanFunction().crearCriterio(request,response);
-		Vector<ResultadoEventoBeanData> resultados=new CriterioEventoBeanFunction().buscarPlantillaEvento(criterioEventoData);
-		EventoBeanFuncion eventoFuncion= EventoBeanFuncion.getInstance();
-		Vector<TipoEventoMiniBeanData> tipoEventoMiniData=eventoFuncion.getTipoEvento();
-		request.setAttribute("tiposEvento",tipoEventoMiniData);
+			EventoBeanFuncion eventoFuncion= EventoBeanFuncion.getInstance();
+			HashMap<String, Object> map =eventoFuncion.crearCriterio(request,response);
+		Vector<EventoBeanData> resultados=eventoFuncion.buscarSolicitudesEvento(map);	
 		request.setAttribute("resultados", resultados);
 		this.direccionar(sc, request, response, "/IngSoft/servicio/evento/resultados.jsp");
 		}

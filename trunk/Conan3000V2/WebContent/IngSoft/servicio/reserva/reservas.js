@@ -215,7 +215,7 @@ function actualizar_pendientes(){
 
 }
 
-function ajax_confirmaSocio(origen,salida,img){
+function ajax_confirmaSocio(origen,salida,img,idelem){
 	//alert("accion=Buscar"+"&tipo=" + tipo + "&fecIni=" + $(fecIni).val()+"&cmbServicios"+$('#cmbServicios').val());
 	if(lock3==1){
 	lock3=0;
@@ -226,14 +226,14 @@ function ajax_confirmaSocio(origen,salida,img){
 		  data: "accion=Buscar"+"&tipo=5" +"&txtDNISocio="+origen.val(),
 		  dataType: "text",	
 		   beforeSend: function ( xhr ) {
-   		  $('#txtIdSocio').val("");
+   		 	idelem.val("");
 			salida.val("");
 			img.css('display','inline');
   		  },	  
 		  success: function(msg){
 			var temp;
 			temp=msg.split('/');
-			$('#txtIdSocio').val(temp[0]);
+			idelem.val(temp[0]);
 			salida.val(temp[1]);
 			img.css('display','none');
 			lock3=1;						
@@ -247,9 +247,8 @@ function ajax_confirmaSocio(origen,salida,img){
 		});
 		
 	}else{
-		$('#txtNomSocio').val('');
-		$('#txtIdSocio').val('');
-		$('#txtNombreSocio').val('');
+		salida.val('');
+		idelem.val('');		
 		lock3=1;}
 	}
 }

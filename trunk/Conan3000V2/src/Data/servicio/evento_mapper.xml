@@ -32,6 +32,44 @@ left JOIN TIPO_EVENTO on TIPO_EVENTO.IdTipoEvento=PLANTILLA_EVENTO.IdTipoEvento
 </where>
 order by 1 asc
 </select>
+<select id="searchEventoSedeMini" parameterType="hashmap" resultType="IngSoft.servicio.bean.EventoBeanData">
+select 
+es.IdEventoSede as codigo
+,es.Nombre as nombre
+,es.Fecha as fecha
+,s.Nombre as idSede
+,es.Estado as estado
+from 
+EVENTO_SEDE es
+, SEDE s 
+where 
+es.IdSede= s.IdSede
+and es.Estado like #{estado}
+and es.IdSede like #{sede}
+and DATE(es.Fecha) &lt;= DATE(#{FI})
+and DATE(es.Fecha) &gt;= DATE(#{FF})
+and es.Nombre like #{nombre}
+</select>
+
+<select id="searchEventoSede" parameterType="java.lang.String" resultType="IngSoft.servicio.bean.EventoBeanData">
+select 
+es.IdEventoSede as codigo
+,es.Nombre as nombre
+,es.Fecha as fecha
+,es.IdSede as idSede
+,es.Estado as estado
+,es.IdConcesionario as idConcesionario
+,es.LimiteEntradas as limiteEntradas
+,es.Precio as monto
+,es.EntradasTotal as entradasTotal
+from 
+EVENTO_SEDE es
+where 
+es.IdEventoSede like #{codigo}
+
+</select>
+
+
 <select id="searchSedeMini" resultType="IngSoft.servicio.bean.SedeMiniBeanData">
 	select IdSede as codigo
 	,Nombre 
