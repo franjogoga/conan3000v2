@@ -177,13 +177,13 @@
 								 						out.print("<span class='label label-success'>"+((ResultadoConcesionarioBeanData)resultados.get(i)).getEstado()+"</span>");
 												   }
 												   else{
-								 						out.print("<span class='label label-warning'> "+((ResultadoConcesionarioBeanData)resultados.get(i)).getEstado()+"</span>");
+								 						out.print("<span class='label label-danger'> "+((ResultadoConcesionarioBeanData)resultados.get(i)).getEstado()+"</span>");
 												   }%></td>
                               <td class="center">
                               				<a class="btn btn-success" href="javascript:alt_consultar('<%=((ResultadoConcesionarioBeanData)resultados.get(i)).getCodigo()%>')">
 												<i class="icon-zoom-in icon-white"></i> Ver 
 											</a>
-											<a class="btn btn-info" href="javascript:alt_modificar('<%=((ResultadoConcesionarioBeanData)resultados.get(i)).getCodigo()%>')">
+											<a class="btn btn-warning" href="javascript:alt_modificar('<%=((ResultadoConcesionarioBeanData)resultados.get(i)).getCodigo()%>')">
 												<i class="icon-edit icon-white"></i> Actualizar
 											</a>
 											<a class="btn btn-danger" href="javascript:alt_eliminar('<%=((ResultadoConcesionarioBeanData)resultados.get(i)).getCodigo()%>')">

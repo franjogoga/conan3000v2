@@ -228,7 +228,7 @@
 								 						out.print("<span class='label label-success'>"+((ResultadoCanchaBeanData)resultados.get(i)).getEstado()+"</span>");
 												   }
 												   else{
-								 						out.print("<span class='label label-warning'> "+((ResultadoCanchaBeanData)resultados.get(i)).getEstado()+"</span>");
+								 						out.print("<span class='label label-danger'> "+((ResultadoCanchaBeanData)resultados.get(i)).getEstado()+"</span>");
 												   }%></td>
                               <td class="center">
                               				<a class="btn btn-success" href="javascript:alt_consultar('<%=((ResultadoCanchaBeanData)resultados.get(i)).getCodigo()%>')">
