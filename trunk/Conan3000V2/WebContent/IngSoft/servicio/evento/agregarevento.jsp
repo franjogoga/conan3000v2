@@ -24,8 +24,6 @@
 	<meta name="author" content="Muhammad Usman">
 	<!--The beans  -->
 	<jsp:useBean id="sedes" scope="request"class="java.util.Vector"></jsp:useBean>
-	<jsp:useBean id="ambientes" scope="request"class="java.util.Vector"></jsp:useBean>
-	<jsp:useBean id="tiposEvento" scope="request"class="java.util.Vector"></jsp:useBean>
 	
 	<!-- The styles -->
 	<link id="bs-css" href="css/bootstrap-cerulean.css" rel="stylesheet">
@@ -69,7 +67,7 @@
 	var codSedeActual="none";
 	var fechaActual="<%=new SimpleDateFormat("dd/MM/yyyy").format(new Date())%>";
 	var boton='#btnConcecionarios';
-	
+	var concesionario='';
 		function validar(){
 			var test=true;			
 			$('#fFecha').parent().parent().addClass("success");
@@ -150,7 +148,7 @@
 			}
 	function alt_submit2(){
 		var listaconcecionarios=$(".btn-success [disabled='disabled']");
-		var concesionario="";
+		
 		for(i=0;i<listaconcecionarios.length;i++){
 			concesionario=concesionario+listaconcecionario[i].attr('id')+'@';		
 		}
@@ -158,7 +156,7 @@
 			  type: "POST",
 			  url: "/Conan3000V2/IngSoft/servicio/evento/SMSEvento",
 			  data: "accion=" + $(accion).val() + "&tipo=" + $(tipo).val() + "&txtNombreEvento=" + $(txtNombreEvento).val() + "&txtNumEntradas=" + $(txtNumEntradas).val()  
-			  +  "&cmbSedes=" + $(cmbSedes).val() + "&fFecha=" + $(fFecha).val()+"&concecionarios="+concesionario+"&precioentrada=78.00",
+			  +  "&cmbSedes=" + $(cmbSedes).val() + "&fFecha=" + $(fFecha).val()+"&concesionario="+concesionario+"&precioentrada=78.00",
 			  dataType: "text",
 			  success: function(msg){
 				  var url="<%=request.getContextPath()%>"+msg;
@@ -185,7 +183,8 @@
 	}
 	
 	function resetConcesionarios(){	 
-	 $('#listaServicios').html("<div class='input-append'><input id='appendedInputButton' size='16' type='text' readonly='true' value='Salon Principal'><button class='btn' disabled='disabled' type='button'>X</button></div><br/>");	 
+	 $('#listaServicios').html("<div class='input-append'><input id='appendedInputButton' size='16' type='text' readonly='true' value='Salon Principal'><button class='btn' disabled='disabled' type='button'>X</button></div><br/>");
+	 concesionario='';
 	}
 	function getConcecionarios(){
 	$(this).attr('disabled','disabled');
@@ -317,7 +316,7 @@
 							  <div class="control-group">
 							  <label class="control-label" for="fFecha">Fecha(*):</label>
 							  <div class="controls">
-								<input type="text" class="input datepicker" id="fFecha" readonly="true" value="<%=new SimpleDateFormat("dd/MM/yyyy").format(new Date())%>"  name="fFecha" onchange="confirmarcambio($(this))">
+								<input type="text" class="input datepicker" id="fFecha" readonly="true" value="<%=new SimpleDateFormat("dd/MM/yyyy").format(Utils.fechaMas( new Date(), 1))%>"  name="fFecha" onchange="confirmarcambio($(this))">
 							  </div>
 							</div>
 							 <div class="control-group">

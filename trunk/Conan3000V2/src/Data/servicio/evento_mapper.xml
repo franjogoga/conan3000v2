@@ -86,6 +86,12 @@ and DATE(cs.FechaInicio)&lt;=DATE(#{fecha})
  	#{idAmbientes}
  </foreach>
 </insert>
+<insert id="insertEventoxSede" parameterType="hashmap">
+insert into 
+EVENTO_SEDE(IdEventoSede,Nombre,LimiteEntradas,Precio,IdSede,IdConcesionario)
+values
+(#{codigo},#{nombre},#{limiteE},#{precio},#{sede},#{concesionario})
+</insert>
  <!-- Fin agregar  -->
  
 <select id="getAmbientesId" parameterType="java.lang.String"  resultType="java.lang.String">

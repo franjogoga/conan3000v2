@@ -78,6 +78,7 @@ public class EventoBeanFuncion {
 			eventoData.setFecha(new java.sql.Date(DF.parse(request.getParameter("fFecha")).getTime()));
 			eventoData.setLimiteEntradas(Integer.parseInt(request.getParameter("txtNumEntradas")));
 			eventoData.setPrecioEntrada(Double.parseDouble(request.getParameter("precioentrada")));
+			eventoData.setIdConcesionario(request.getParameter("concesionario"));
 			}catch(Exception e){
 				e.printStackTrace();
 				
@@ -97,16 +98,23 @@ public class EventoBeanFuncion {
 			codigo=codigo==null?"ESD000000":codigo;
 			codigo=Utils.generaSiguienteCodigo(codigo);
 			eventoData.setCodigo(codigo);
-			
+			HashMap<String, Object> map=new HashMap<String, Object>();
+			map.put("codigo", eventoData.getCodigo());
+			map.put("nombre", eventoData.getNombre());
+			map.put("limiteE", eventoData.getLimiteEntradas());
+			map.put("precio", eventoData.getPrecioEntrada());
+			map.put("sede", eventoData.getIdSede());
+			map.put("concesionario", eventoData.getIdConcesionario());
+			sqlsesion.insert("Data.servicio.evento.insertEventoxSede",map);
+			sqlsesion.commit();
 			resultado=true;
 		}
 		catch(Exception a)		
 		{sqlsesion.rollback();
 		a.printStackTrace();
-			throw CoException.set("Error: Nombre de evento repetido", "SMSEvento?accion=Agregar&tipo=1");			
+			//throw CoException.set("Error: Nombre de evento repetido", "SMSEvento?accion=Agregar&tipo=1");			
 		}		
-		finally{
-			sqlsesion.commit();
+		finally{			
 			sqlsesion.close();
 			l.unlock();					
 		}

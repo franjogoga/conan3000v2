@@ -14,6 +14,7 @@ import IngSoft.servicio.bean.CriterioEventoBeanData;
 import IngSoft.servicio.bean.CriterioEventoBeanFunction;
 import IngSoft.servicio.bean.EventoBeanFuncion;
 import IngSoft.servicio.bean.ResultadoEventoBeanData;
+import IngSoft.servicio.bean.SedeMiniBeanData;
 import IngSoft.servicio.bean.TipoEventoMiniBeanData;
 
 public class AccionBuscarEvento extends CoAccion{
@@ -36,8 +37,8 @@ public class AccionBuscarEvento extends CoAccion{
 		if(tipo==1){
 			//sesion.removeAttribute("resultados");
 			EventoBeanFuncion eventoFuncion= EventoBeanFuncion.getInstance();
-			Vector<TipoEventoMiniBeanData> tipoEventoMiniData=eventoFuncion.getTipoEvento();
-			request.setAttribute("tiposEvento",tipoEventoMiniData);
+			Vector<SedeMiniBeanData> sedeMiniData=eventoFuncion.getSedes();
+			request.setAttribute("sedes",sedeMiniData );			
 			this.direccionar(sc, request, response, "/IngSoft/servicio/evento/buscarevento.jsp");
 			} 
 		
