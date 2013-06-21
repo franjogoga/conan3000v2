@@ -44,7 +44,7 @@
    function anhadiremp(cod, name){
 		var form= document.frmEmpleado;
 		form.txtEmpleado.value=name;
-		form.codigo.value=cod;
+		form.idEmpleado.value=cod;
 		$.fn.colorbox.close();
 		
 	} 
@@ -81,9 +81,9 @@
 			                </div>
 		                  </div>
 		                  
-						
-			          </form>
-			         <div class="box-content">
+						<input type="hidden" name="idProductoProv" value=""/></input>
+			         </form>
+			        
 			         <form  id="frmEmpleado" name="frmEmpleado" method="POST" action="SMSEmpleado" onsubmit="alt_submit();return false;"  >
 			        	    <input type="hidden" name="accion" value="Agregar"></input>
    		 				<input type="hidden" name="tipo" value="2"></input>
@@ -97,27 +97,25 @@
 			                  <div  align="left"> <a class="btn btn-primary iframe" href="/Conan3000V2/IngSoft/administracion/empleados/seleccionarempleado.jsp"> <i class="icon icon-search icon-white"></i> Buscar Empleado</a> </div>
 			                  <span class="help-inline" id="errEmpleado">Please correct the error</span>
 			                </div>
-		                  </div>	 
+		                  </div>
+		                   <input type="hidden" name="idEmpleado" value=""/></input>
+		                  	 
 			         </form>
 			        
 			                <form class="form-horizontal" name="frmSolicitud" id="frmSolicitud"method="POST" action="SMVSolicitudProducto" onsubmit="alt_submit();return false;">
 			          <input type="hidden" name="accion" value="Agregar"></input>
 			          <input type="hidden" name="tipo" value="2"></input>
-			             <input type="hidden" name="fFecha" value="20/05/2014"></input>
+			             <input type="hidden" name="fFecha" value=<%= new java.util.Date()%>></input>
 			          
 			          <fieldset>
-			          
-			          
-			      
-		                  			         			         
+	         			         
 			            <div class="control-group">
 			                <label class="control-label" for="typeahead4">Cantidad(*):</label>
 			                <div class="controls">
 			                  <input type="text" name="txtCantidad" class="span6 typeahead" id="typeahead4"  data-provide="typeahead" data-items="4" >
 		                    </div>
 		                  </div>
-		                  
-		                  
+
 		                   <div class="control-group">
                           <label class="control-label" for="selectError">Sede (*):</label>
                           <div class="controls">
@@ -130,25 +128,26 @@
                         </div>
 		               		      
 		               	      
-		                    
+		                   
 		               		      
 		               		              			          
 			            <div class="form-actions">
-			          <input type="hidden" name="idProductoProv" value=""/></input>
-			           <input type="hidden" name="codigo" value=""/></input>
+			          
+			           
 			           <button type="submit" class="btn btn-primary" >Agregar</button>
 			              <button type="button" class="btn" onclick="location.href='agregarsolicitudproducto.jsp'">Cancelar</button>
 		                </div>
 		              </fieldset>
-		                 </form>
-		               (*) Campos Obligatorios</div>
-		            </form>
+		                
+		               (*) Campos Obligatorios
+		                </form>
+
 		          </div>
 		        </div>
 			    <!--/span-->
 		      </div>
 			  <!--/row-->
-			  <div class="row-fluid sortable">
+
 			    <!--/span-->
                 <div class="box span12">
 			      <div class="box-header well" data-original-title>
