@@ -92,7 +92,7 @@
 			<div>
 				<ul class="breadcrumb">
 					
-					<li><a href="/Conan3000V2/IngSoft/general/index.jsp">Home / </a><a href="/Conan3000V2/IngSoft/ventas/socio/buscarsocio.jsp">Mantenimiento de Solicitud Socio / </a>Busqueda Solicitud Socio
+					<li><a href="/Conan3000V2/IngSoft/general/index.jsp">Home / </a><a href="/Conan3000V2/IngSoft/ventas/solicitud/buscarsolicitudsocio.jsp">Mantenimiento de Solicitud Socio / </a>Busqueda Solicitud Socio
 			           
 			              </li>
 				</ul>
