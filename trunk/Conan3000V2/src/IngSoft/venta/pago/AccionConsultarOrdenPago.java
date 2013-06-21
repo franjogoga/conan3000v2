@@ -19,9 +19,9 @@ public class AccionConsultarOrdenPago extends CoAccion{
 		OrdenPagoBeanFunction ordenPagoFuncion= OrdenPagoBeanFunction.getInstance();
 		OrdenPagoBeanData ordenPagoData=ordenPagoFuncion.consultarOrdenPago(request.getParameter("codigo"));
 
-		request.setAttribute("pago", ordenPagoData);
+		request.setAttribute("ordenPago", ordenPagoData);
 
-		this.direccionar(sc, request, response, "/IngSoft/ventas/pago/verordenpago.jsp");
+		this.direccionar(sc, request, response, "/IngSoft/ventas/pago/verpagootros.jsp");
 	}
 	
 }

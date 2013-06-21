@@ -33,12 +33,40 @@ public class OrdenPagoBeanFunction {
 			try{		
 		
 				ordenPagoData.setIdSocio(request.getParameter("idSocio"));
-			//ordenPagoData.setIdConcepto(request.getParameter("cmbConcepto"));
+				ordenPagoData.setIdOtroIngreso(request.getParameter("idOtroIngreso"));
+				//ordenPagoData.setSocio(request.getParameter("txtSocio"));
+			//ordenPagoData.setConcepto(request.getParameter("cmbConcepto"));
 			ordenPagoData.setFechaPago(new Date(DF.parse(request.getParameter("fFechaPago")).getTime()));
 			
 					
 			
 	         	
+			}
+			catch(Exception e){
+				e.printStackTrace();
+				
+			}
+			return ordenPagoData;		
+		}
+	   
+	   
+	   
+	   public OrdenPagoBeanData crearCuotaExtra(HttpServletRequest request, HttpServletResponse response){
+		   OrdenPagoBeanData ordenPagoData= new OrdenPagoBeanData();
+			try{		
+		
+				ordenPagoData.setIdSocio(request.getParameter("idSocio"));
+				//ordenPagoData.setDescripcionCuota(request.getParameter("txtDescripcion"));
+				ordenPagoData.setDescripcion("CUOTAEXTRAORDINARIA");
+				ordenPagoData.setMonto(Double.parseDouble(request.getParameter("txtMonto")));
+				ordenPagoData.setFechaPago(new Date(DF.parse(request.getParameter("fFechaPago")).getTime()));
+				ordenPagoData.setFechaEmision(new Date(DF.parse(request.getParameter("fFechaPago")).getTime()));
+				ordenPagoData.setFechaVencimiento(new Date(DF.parse(request.getParameter("fFechaPago")).getTime()));
+				
+	         	
+				
+				
+				
 			}
 			catch(Exception e){
 				e.printStackTrace();
@@ -198,6 +226,8 @@ public boolean pagarOrdenPago(OrdenPagoBeanData ordenPagoData) throws CoExceptio
 	SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 	
 	try{
+			
+		
 		String codigo= (String)sqlsesion.selectOne("Data.venta.pago.getNextCodigo2");
 		if(codigo!=null){
 		int cod= Integer.parseInt(codigo.substring(3))+1;
@@ -209,7 +239,7 @@ public boolean pagarOrdenPago(OrdenPagoBeanData ordenPagoData) throws CoExceptio
 		//insertPago esta en pago mapper
 		
 		sqlsesion.update("Data.venta.pago.pagarOrdenPago",ordenPagoData);
-		sqlsesion.insert("insertIngreso",ordenPagoData);
+		sqlsesion.insert("insertOtroIngreso",ordenPagoData);
 		//sqlsesion.insert("insertPlantillaEventoSedes",eventoData);
 		
 		resultado=true;
@@ -228,12 +258,74 @@ public boolean pagarOrdenPago(OrdenPagoBeanData ordenPagoData) throws CoExceptio
 	return resultado;
 }
 
+public boolean agregarCuotaExtra(OrdenPagoBeanData ordenPagoData) throws CoException {
+	
+	boolean resultado=false;		
+	l.lock();
+	SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+	
+	try{
+		
+		String codigoConcepto= (String)sqlsesion.selectOne("Data.venta.pago.getNextCodigoOrden");
+		if(codigoConcepto!=null){
+		int cod= Integer.parseInt(codigoConcepto.substring(3))+1;
+		String defecto= "000000";
+		String temp= defecto.substring(0, defecto.length()-String.valueOf(cod).length()).concat(String.valueOf(cod));
+		
+		ordenPagoData.setIdConcepto(codigoConcepto.substring(0,3).concat(temp));}
+		else ordenPagoData.setIdConcepto("OPG000001");
+		
+		
+		String codigoOtros= (String)sqlsesion.selectOne("Data.venta.pago.getNextCodigoOtroIngreso");
+		if(codigoOtros!=null){
+		int cod2= Integer.parseInt(codigoOtros.substring(3))+1;
+		String defecto2= "000000";
+		String temp2= defecto2.substring(0, defecto2.length()-String.valueOf(cod2).length()).concat(String.valueOf(cod2));
+		
+		ordenPagoData.setIdOtroIngreso(codigoOtros.substring(0,3).concat(temp2));}
+		else ordenPagoData.setIdOtroIngreso("OIN000001");
+		
+		String codigo= (String)sqlsesion.selectOne("Data.venta.pago.getNextCodigo2");
+		if(codigo!=null){
+		int cod= Integer.parseInt(codigo.substring(3))+1;
+		String defecto= "000000";
+		String temp= defecto.substring(0, defecto.length()-String.valueOf(cod).length()).concat(String.valueOf(cod));
+		
+		ordenPagoData.setIdIngreso(codigo.substring(0,3).concat(temp));}
+		else ordenPagoData.setIdIngreso("ING000001");
+		//insertPago esta en pago mapper
+		
+		
+		sqlsesion.insert("insertOrdenPagoCuotaExtra",ordenPagoData);
+		sqlsesion.insert("insertOrdenPagoOtrosIngresos",ordenPagoData);
+		sqlsesion.update("Data.venta.pago.pagarOrdenPago",ordenPagoData);
+		sqlsesion.insert("insertOtroIngreso",ordenPagoData);
+		
+		resultado=true;
+	}
+	catch(Exception a)		
+	{sqlsesion.rollback();
+	a.printStackTrace();
+		//throw CoException.set("Error: Nombre de pago repetido", "SMVPago?accion=Agregar&tipo=1");
+	}
+	
+	finally{
+		sqlsesion.commit();
+		sqlsesion.close();
+		l.unlock();					
+	}
+	return resultado;
+}
+
+
+
+
 
 public OrdenPagoBeanData consultarOrdenPago(String codigo){
 	OrdenPagoBeanData ordenPagoData=null;
 	SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 	try{
-		ordenPagoData= sqlsesion.selectOne("Data.venta.pago.getOrdenPago",codigo);
+		ordenPagoData= sqlsesion.selectOne("Data.venta.pago.getOrdenPagoIngreso",codigo);
 	}
 	finally{
 		sqlsesion.close();

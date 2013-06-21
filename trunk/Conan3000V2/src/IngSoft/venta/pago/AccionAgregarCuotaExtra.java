@@ -7,10 +7,12 @@ import javax.servlet.http.HttpServletResponse;
 import IngSoft.general.CoAccion;
 import IngSoft.general.CoException;
 
+import IngSoft.venta.bean.EgresoBeanData;
+import IngSoft.venta.bean.EgresoBeanFunction;
 import IngSoft.venta.bean.OrdenPagoBeanData;
 import IngSoft.venta.bean.OrdenPagoBeanFunction;
 
-public class AccionAgregarOrdenPago extends CoAccion {
+public class AccionAgregarCuotaExtra extends CoAccion {
 
 	@Override
 	public void ejecutar(ServletContext sc, HttpServletRequest request,
@@ -21,15 +23,15 @@ public class AccionAgregarOrdenPago extends CoAccion {
 				OrdenPagoBeanFunction OrdenPagoFunction= OrdenPagoBeanFunction.getInstance();
 				if(tipo==2){
 					
-					OrdenPagoBeanData ordenPagoData=OrdenPagoFunction.crearOrdenPago(request, response);
+					OrdenPagoBeanData ordenPagoData=OrdenPagoFunction.crearCuotaExtra(request, response);
 					
-					OrdenPagoFunction.pagarOrdenPago(ordenPagoData);
+					
+					
+					OrdenPagoFunction.agregarCuotaExtra(ordenPagoData);
 					this.direccionar(sc, request, response, "/IngSoft/ventas/pago/buscarpagootros.jsp");
 				}
-				OrdenPagoBeanData ordenPagoData=OrdenPagoFunction.consultarOrdenPago(request.getParameter("codigo"));
-
-				request.setAttribute("ordenPago", ordenPagoData);
-				this.direccionar(sc, request, response, "/IngSoft/ventas/pago/registrarpagootros.jsp");
+				
+				this.direccionar(sc, request, response, "/IngSoft/ventas/pago/registrarcuotaextra.jsp");
 					
 				//EventoBeanFuncion eventoFunction= EventoBeanFuncion.getInstance();
 				//Vector<SedeMiniBeanData> sedeMiniData=eventoFunction.getSedes();

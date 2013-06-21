@@ -32,6 +32,10 @@ public class CriterioOrdenPagoBeanFunction {
 			else
 				criterioOrdenPagoData.setIdSocio(null);
 			
+			criterioOrdenPagoData.setConcepto(request.getParameter("cmbConcepto"));
+			if(criterioOrdenPagoData.getConcepto().equals("ALL"))
+				criterioOrdenPagoData.setConcepto(request.getParameter(null));
+			
 			if(request.getParameter("fFechaVencimientoIni")!=null && request.getParameter("fFechaVencimientoFin")!=null){
 			criterioOrdenPagoData.setFechaVencimientoIni(new Date(DF.parse(request.getParameter("fFechaVencimientoIni")).getTime()));
 			criterioOrdenPagoData.setFechaVencimientoFin(new Date(DF.parse(request.getParameter("fFechaVencimientoFin")).getTime()));
@@ -67,7 +71,7 @@ public class CriterioOrdenPagoBeanFunction {
 		try{		
 			List<ResultadoOrdenPagoBeanData> resultados=null;
 			if(criterioOrdenPagoData.getEstado().equals("Cancelado")){
-				resultados=sqlsesion.selectList("searchPagado",criterioOrdenPagoData);
+				resultados=sqlsesion.selectList("searchOrdenPagada",criterioOrdenPagoData);
 			}else{
 				resultados=sqlsesion.selectList("searchOrdenPago",criterioOrdenPagoData);
 			}				
