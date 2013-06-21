@@ -1,4 +1,4 @@
-package IngSoft.venta.solicitud;
+package IngSoft.venta.solicitudproducto;
 
 import java.io.IOException;
 import java.util.Vector;
@@ -29,7 +29,7 @@ public class AccionAgregarSolicitudProducto extends CoAccion {
 					response.setContentType("text/plain");  
 				    response.setCharacterEncoding("UTF-8");
 				    try {
-						response.getWriter().write( "/IngSoft/ventas/solicitud/SMVSolicitudProducto?accion=Buscar&tipo=1");
+						response.getWriter().write( "/IngSoft/ventas/solicitudproducto/SMVSolicitudProducto?accion=Buscar&tipo=1");
 					} catch (IOException e) {				
 						e.printStackTrace();
 					}
