@@ -1,3 +1,19 @@
+			 
+<script>	
+function alt_submit(){
+		var form= document.frmFamiliar;
+		if(1) form.submit();
+			
+}
+		 
+function anhadir(cod,name){
+	var form=document.frmServicio;
+	form.idServicio.value=cod;
+	form.txtServicio.value=name;
+	$.fn.colorbox.close();
+}
+</script>			 
+			 
 			  <!-- content starts -->
 			    <div>
 			    <ul class="breadcrumb">
@@ -12,14 +28,19 @@
 			        <h2>SOLICITUD DE SERVICIO</h2>
 		          </div>
 			      <div class="box-content">
-			        <form class="form-horizontal">
+			        <form class="form-horizontal" name="frmServicio"  method="Post"  action="SMVProducto">
+			        <input type="hidden" name="accion" value="Agregar"></input>
+			 		<input type="hidden" name="codigo" value=""></input>
+			 		<input type="hidden" name="tipo" value="1"></input>
+			        
+			        
 			          <fieldset>
 			          
 			           <div class="control-group">
-			                <label class="control-label" for="typeahead9">Nombre(*): </label>
+			                <label class="control-label" for="typeahead9">Servicio(*): </label>
 			                <div class="controls">
-			                  <input type="text" class="span6 typeahead" id="typeahead9"  data-provide="typeahead" data-items="4" >
-			                  <p class="help-block">Escriba sobre la casilla un nombre de servicio para ser autocompletado</p>
+			                  <input type="text" class="span6 typeahead" id="txtServicio"  name="txtServicio" data-provide="typeahead" data-items="4" >
+			                  <div  align="left"> <a class="btn btn-primary iframe" href="../servicioproveedor/seleccionarservicio.jsp"> <i class="icon icon-search icon-white"></i> Buscar Servicio</a> </div>
 		                    </div>
 		                  </div>
 			         			         
@@ -32,7 +53,8 @@
 		                  
 		                          			          
 			            <div class="form-actions">
-			              <button type="submit" class="btn btn-primary">Agregar</button>
+			              <input type="hidden" name="idServicio" value=""/></input>
+			              <button type="submit" class="btn btn-primary" onclick="javascript:alt_submit()">Agregar</button>
 			             <a href="solicitud.jsp"> <button type="reset" class="btn">Cancelar</button></a>
 		                </div>
 		              </fieldset>
