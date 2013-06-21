@@ -148,6 +148,10 @@
         <servlet-name>SMVSolicitud</servlet-name>
 	<servlet-class>IngSoft.venta.solicitud.SMVSolicitud</servlet-class>				   
 </servlet>
+<servlet id="Servlet_0035">
+        <servlet-name>SMVSolicitudSocio</servlet-name>
+	<servlet-class>IngSoft.venta.solicitudsocio.SMVSolicitudSocio</servlet-class>				   
+</servlet>
 
 
 <servlet-mapping id="ServletMapping_0001">
@@ -291,6 +295,10 @@
 <servlet-mapping id="ServletMapping_0034">
         <servlet-name>SMVSolicitud</servlet-name>
 <url-pattern>/IngSoft/ventas/solicitud/SMVSolicitud</url-pattern>
+</servlet-mapping>
+<servlet-mapping id="ServletMapping_0035">
+        <servlet-name>SMVSolicitudSocio</servlet-name>
+<url-pattern>/IngSoft/ventas/solicitud/SMVSolicitudSocio</url-pattern>
 </servlet-mapping>
 
 <error-page>
