@@ -9,10 +9,9 @@ import javax.servlet.http.HttpServletResponse;
 import IngSoft.general.CoAccion;
 import IngSoft.general.CoException;
 import IngSoft.venta.bean.DistritoMiniBeanData;
-import IngSoft.venta.bean.PersonaMiniBeanData;
-import IngSoft.venta.bean.PersonaMiniBeanFuncion;
-import IngSoft.venta.bean.SocioBeanData;
 import IngSoft.venta.bean.SocioBeanFuncion;
+import IngSoft.venta.bean.SolicitudSocioBeanFuncion;
+import IngSoft.venta.bean.SolicitudsocioBeanData;
 
 public class AccionAgregarSolicitudSocio extends CoAccion{
 	
@@ -24,26 +23,25 @@ public class AccionAgregarSolicitudSocio extends CoAccion{
 				int tipo=Integer.parseInt(request.getParameter("tipo"));
 				if(tipo==2){
 					
-					SocioBeanFuncion socioFuncion= SocioBeanFuncion.getInstanceS();
-					SocioBeanData socioData=socioFuncion.crearSocio(request, response);
+					SolicitudSocioBeanFuncion SolicitudSocioFuncion= SolicitudSocioBeanFuncion.getInstanceS();
+					SolicitudsocioBeanData SolicitudSocioData=SolicitudSocioFuncion.crearSolicitudSocio(request, response);
 
-					socioFuncion.agregarSocio(socioData);
-					
-					PersonaMiniBeanFuncion personaFuncion=PersonaMiniBeanFuncion.getInstanceP();
-					PersonaMiniBeanData personaData=personaFuncion.crearPersona(request, response);
-					personaFuncion.agregarPersona(personaData);
+					SolicitudSocioFuncion.agregarSolicitudSocio(SolicitudSocioData);
 
-					request.setAttribute("socio", socioData);
+					request.setAttribute("solicitudSocio", SolicitudSocioData);
 					
-					this.direccionar(sc, request, response, "/IngSoft/ventas/socio/buscarsocio.jsp");
+					this.direccionar(sc, request, response, "/IngSoft/ventas/solicitud/buscarsolicitudsocio.jsp");
 				
 				}
-				SocioBeanFuncion socioFunction= SocioBeanFuncion.getInstanceS();
-				Vector<DistritoMiniBeanData> distritoMiniData=socioFunction.getDistritos();			
+				if(tipo==1){
+					SocioBeanFuncion socioFunction= SocioBeanFuncion.getInstanceS();
+					Vector<DistritoMiniBeanData> distritoMiniData=socioFunction.getDistritos();			
+					
+					request.setAttribute("tiposDistrito",distritoMiniData);	
+					
 				
-				request.setAttribute("tiposDistrito",distritoMiniData);
-				
-				this.direccionar(sc, request, response, "/IngSoft/ventas/socio/agregarminisocio.jsp");
+				this.direccionar(sc, request, response, "/IngSoft/ventas/solicitud/agregarsolicitudsocio.jsp");
 				}
+	}
 
 }
