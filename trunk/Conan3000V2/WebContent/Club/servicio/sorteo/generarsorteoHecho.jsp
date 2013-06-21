@@ -140,7 +140,7 @@
 					  <h2><i class="icon-plus-sign"></i>ESTE SORTEO YA FUE REALIZADO</h2>
 				  </div>
 					<div class="box-content">
-						<form class="form-horizontal" action="<%= response.encodeURL("SMSSorteo")%>" name="frmData" method="post">
+						<form class="form-horizontal" action="<%= response.encodeURL("SMCSorteo")%>" name="frmData" method="post">
 						<input type="hidden" name="accion" value="Generar"></input>
 						<input type="hidden" name="tipo" value="2"></input>
 						  <fieldset>
