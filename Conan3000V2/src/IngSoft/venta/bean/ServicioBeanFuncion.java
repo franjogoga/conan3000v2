@@ -135,6 +135,18 @@ static private ServicioBeanFuncion ServicioFuncion=null;
 	return servicioData;
 	}
 	
+	public ProveedorBeanData consultarProveedor(String codigo){
+	ProveedorBeanData proveedorData=null;
+	SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+	try{
+		proveedorData= sqlsesion.selectOne("Data.venta.servicio.getPlantillaProveedor",codigo);
+	}
+	finally{
+		sqlsesion.close();
+	}
+	return proveedorData;
+	}
+	
 
 	public ProveedorBeanData BuscarProveedor(String nombre){
 	ProveedorBeanData proveedorData=null;
