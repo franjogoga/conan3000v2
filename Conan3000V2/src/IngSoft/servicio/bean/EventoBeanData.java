@@ -7,20 +7,25 @@ public class EventoBeanData implements Serializable{
 	
 	private String codigo;
 	private String nombre;
-	//private String idTipo;
 	private int entradasTotal;
 	private int limiteEntradas;
 	private double precioEntrada;
 	private String idSede;
-	private String idAmbientes;
-	private String idPlantilla;
+	private String idConcesionario;
 	private Date fecha;
 	private double monto;
+	private String estado;
 	public String getCodigo() {
 		return codigo;
 	}
 	public void setCodigo(String codigo) {
 		this.codigo = codigo;
+	}
+	public String getNombre() {
+		return nombre;
+	}
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 	public int getEntradasTotal() {
 		return entradasTotal;
@@ -46,17 +51,11 @@ public class EventoBeanData implements Serializable{
 	public void setIdSede(String idSede) {
 		this.idSede = idSede;
 	}
-	public String getIdAmbientes() {
-		return idAmbientes;
+	public String getIdConcesionario() {
+		return idConcesionario;
 	}
-	public void setIdAmbientes(String idAmbientes) {
-		this.idAmbientes = idAmbientes;
-	}
-	public String getIdPlantilla() {
-		return idPlantilla;
-	}
-	public void setIdPlantilla(String idPlantilla) {
-		this.idPlantilla = idPlantilla;
+	public void setIdConcesionario(String idConcesionario) {
+		this.idConcesionario = idConcesionario;
 	}
 	public Date getFecha() {
 		return fecha;
@@ -70,17 +69,12 @@ public class EventoBeanData implements Serializable{
 	public void setMonto(double monto) {
 		this.monto = monto;
 	}
-	public String getNombre() {
-		return nombre;
+	public String getEstado() {
+		return estado;
 	}
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setEstado(String estado) {
+		this.estado = estado;
 	}
-	
-	
-	
-	
-	
 	
 	
 }

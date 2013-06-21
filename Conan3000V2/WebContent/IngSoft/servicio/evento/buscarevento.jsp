@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<%@page import="java.util.Date"%>
+<%@page import="IngSoft.servicio.bean.SedeMiniBeanData"%>
 <%@page import="IngSoft.servicio.bean.TipoEventoMiniBeanData"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Calendar"%>
@@ -22,9 +24,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
 	<meta name="author" content="Muhammad Usman">
-	<!--The beans  -->
-	<jsp:useBean id="resultados" scope="request"class="java.util.Vector"></jsp:useBean>
-		<jsp:useBean id="tiposEvento" scope="request"class="java.util.Vector"></jsp:useBean>
+	<!--The beans  -->	
+	<jsp:useBean id="sedes" scope="request"class="java.util.Vector"></jsp:useBean>
 
 	<!-- The styles -->
 	<link id="bs-css" href="css/bootstrap-cerulean.css" rel="stylesheet">
@@ -101,7 +102,7 @@
 		$.ajax({
 		  type: "POST",
 		  url: "/Conan3000V2/IngSoft/servicio/evento/SMSEvento",
-		  data: "accion=" + $(accion).val() + "&tipo=" + $(tipo).val() + "&txtNombre=" + $(txtNombre).val() + "&cmbTipoEvento=" + $(cmbTipoEvento).val() + "&date01=" + $(date01).val()+ "&date02=" + $(date02).val(),
+		  data: "accion=" + $(accion).val() + "&tipo=" + $(tipo).val() + "&txtNombre=" + $(txtNombre).val() + "&cmbEstados=" + $(cmbEstados).val() + "&date01=" + $(date01).val()+ "&date02=" + $(date02).val(),
 		  dataType: "html",
 		  success: function(msg){
 			$("#resultadoBusqueda").html(msg);
@@ -143,7 +144,7 @@
 						<a href="/Conan3000V2/IngSoft/general/index.jsp">Home</a> <span class="divider">/</span>
 					</li>
 					<li>
-						Mantenimiento de Plantilla Eventos 
+						Mantenimiento de Solicitud de Eventos 
 					</li>
 					
 				</ul>
@@ -173,31 +174,36 @@
 							  </div>
 							</div>
 							 <div class="control-group">
-								<label class="control-label" for="selectError">Tipo de Evento</label>
+								<label class="control-label" for="cmbSedes">Sede relacionada:</label>
 								<div class="controls">
-								  <select id="cmbTipoEvento" data-rel="chosen" name="cmbTipoEvento">
-								  	<option selected value="0">Todos</option>
-									<%for(int i=0;i<tiposEvento.size();i++){ %>
-										<option value="<%= ((TipoEventoMiniBeanData)tiposEvento.get(i)).getCodigo()%>"><%= ((TipoEventoMiniBeanData)tiposEvento.get(i)).getNombre()%></option>
-									<%} %>											
-								  </select>
+								  <select  data-rel="chosen" id="cmbSedes" name="cmbSedes" onchange="confirmarcambio($(this))">
+								  	<option value="none" selected>Todas</option>
+									<%for(int i=0;i<sedes.size();i++){ %>
+										<option value="<%= ((SedeMiniBeanData)sedes.get(i)).getCodigo()%>"><%= ((SedeMiniBeanData)sedes.get(i)).getNombre()%></option>
+									<%} %>																									
+								  </select><br/>								  
 								</div>
 							  </div>
+							  <div class="control-group">
+								<label class="control-label" for="cmbEstados">Estado:</label>
+								<div class="controls">
+								  <select  data-rel="chosen" id="cmbEstados" name="cmbEstados">
+								  	<option value="0" selected>Todos</option>
+								  	<option value="1" >Registrado</option>
+								  	<option value="2" >Anulado</option>
+								  	<option value="3" >Cancelado</option>								  																																
+								  </select><br/>								  
+								</div>
+							  </div>	
 							<div class="control-group">
-							  <label class="control-label" for="date01">Fecha Inicio</label>
+							  <label class="control-label" for="date01">Rango de Fecha</label>
 							  <div class="controls">
-								<input type="text" class="input-xlarge datepicker" id="date01" name="date01" readonly="readonly" value="01/01" onchange="alt_fecha(this);verificar_fecha(-1,this,'date02');">
+								<input type="text" class="datepickerB" id="date01" name="date01" readonly="readonly" value="<%=new SimpleDateFormat("dd/MM/yyyy").format(new Date())%>" onchange="verificar_fecha(1,this,'date02');">
+								&nbsp;a&nbsp;
+								<input type="text" class="datepickerB" id="date02" readonly="readonly" name="date02" value="<%=new SimpleDateFormat("dd/MM/yyyy").format(new Date())%>" onchange="verificar_fecha(-1,this,'date01');">
 							  </div>
-							</div>
-							
-							<div class="control-group">
-							  <label class="control-label" for="date02">Fecha Fin</label>
-							  <div class="controls">
-								<input type="text" class="input-xlarge datepicker" id="date02" readonly="readonly" name="date02" value="31/12" onchange="alt_fecha(this);verificar_fecha(1,this,'date01');">
-							  </div>
-							</div>
-		
-							
+							</div>														
+									
 							<div class="form-actions">
 							  <button type="button" class="btn btn-primary" onclick="alt_submit2();">Buscar</button>
 							  <button type="reset" id="boton"class="btn">Limpiar</button>
@@ -222,7 +228,7 @@
                         
 						
 					</div>           
-					<div class="box-content" id="resultadoBusqueda" onchange="updatetable();">
+					<div class="box-content" id="resultadoBusqueda" >
                              
 <table id="mytable" class="table table-striped table-bordered bootstrap-datatable datatable">
                             <!-- agregar nuevo boton -->
@@ -238,69 +244,16 @@
                              </div>          
                           <thead>
 							  <tr>
-								  <th>Tipo Evento</th>
+								<th>Tipo Solicitud</th>
 							        <th>Nombre Evento</th>
-							        <th>Limite de incio (d&iacutea/mes)</th>
-							        <th>Limite de fin (d&iacutea/mes)</th>
-												        							      							        
+							        <th>Fecha</th>
+							        <th>Sede</th>
+							        <th>Estado</th>												        							      							       
 							        <th>Acción</th>
-							
 							  </tr>
 						  </thead>
                           <element>
                           	<tbody >
-<% SimpleDateFormat df= new SimpleDateFormat("dd/MM"); 
-                          			for(int i=0;
-                          			i<resultados.size();i++){
-                          		%>
-                          		<tr>
-                          			<td>
-                          				<%=
-                          					((ResultadoEventoBeanData)resultados.get(i)).getTipo()
-                          				%>
-                          			</td>
-                          			<td class="center">
-                          				<%=
-                          					((ResultadoEventoBeanData)resultados.get(i)).getNombre()
-                          				%>
-                          			</td>
-                          			<td class="center">
-                          				<%=
-                          					df.format(((ResultadoEventoBeanData)resultados.get(i)).getLimInicio())
-                          				%>
-                          			</td>
-                          			<td class="center">
-                          				<%=
-                          					df.format(((ResultadoEventoBeanData)resultados.get(i)).getLimFin())                  
-                          				%>
-                          			</td>
-
-                          			<td class="center">
-                          				<a class="btn btn-success"
-                          					href="javascript:alt_consultar('<%=((ResultadoEventoBeanData)resultados.get(i)).getCodigo()%>')">
-                          					<i
-                          						class="icon-zoom-in icon-white">
-                          					</i>
-Ver
-                          				</a>
-                          				<a class="btn btn-info"
-                          					href="javascript:alt_modificar('<%=((ResultadoEventoBeanData)resultados.get(i)).getCodigo()%>')">
-                          					<i
-                          						class="icon-edit icon-white">
-                          					</i>
- Modificar
-                          				</a>
-                          				<a class="btn btn-danger"
-                          					href="javascript:alt_eliminar('<%=((ResultadoEventoBeanData)resultados.get(i)).getCodigo()%>')">
-                          					<i class="icon-trash icon-white">
-                          					</i>
-		Eliminar
-                          				</a>
-                          			</td>
-                          		</tr>
-
-
-                          		<%}%>
                           		 	</tbody>
                           </element>
                         </table> 
@@ -411,7 +364,16 @@ Ver
 	<script src="js/charisma.js"></script>
 	
 	<script src="js/ajaxsbmt.js"></script>
-	
+	<script>
+		$(function() {
+    	$( ".datepickerB" ).datepicker({
+    		 changeMonth: true,
+    	      changeYear: true,
+    	      showButtonPanel: true
+    });
+  });
+	</script>
+		
 	
 </body>
 </html>

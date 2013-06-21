@@ -1,6 +1,6 @@
+<%@page import="IngSoft.servicio.bean.EventoBeanData"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Calendar"%>
-<%@page import="IngSoft.servicio.bean.ResultadoEventoBeanData"%>
 <%@page import="java.util.Vector"%>
 
 <!--The beans  -->
@@ -20,60 +20,65 @@
                              </div>          
                           <thead>
 							  <tr>
-								  <th>Tipo Evento</th>
+								  <th>Tipo Solicitud</th>
 							        <th>Nombre Evento</th>
-							        <th>Limite de incio (d&iacutea/mes)</th>
-							        <th>Limite de fin (d&iacutea/mes)</th>
-												        							      							        
+							        <th>Fecha</th>
+							        <th>Sede</th>
+							        <th>Estado</th>												        							      							       
 							        <th>Acción</th>
 							
 							  </tr>
 						  </thead>
                           <element>
                           	<tbody >
-<% SimpleDateFormat df= new SimpleDateFormat("dd/MM"); 
+<% SimpleDateFormat df= new SimpleDateFormat("dd/MM/yyyy"); 
                           			for(int i=0;
                           			i<resultados.size();i++){
                           		%>
                           		<tr>
                           			<td>
                           				<%=
-                          					((ResultadoEventoBeanData)resultados.get(i)).getTipo()
+                          					((EventoBeanData)resultados.get(i)).getCodigo()
                           				%>
                           			</td>
                           			<td class="center">
                           				<%=
-                          					((ResultadoEventoBeanData)resultados.get(i)).getNombre()
+                          					((EventoBeanData)resultados.get(i)).getNombre()
                           				%>
                           			</td>
                           			<td class="center">
                           				<%=
-                          					df.format(((ResultadoEventoBeanData)resultados.get(i)).getLimInicio())
+                          					df.format(((EventoBeanData)resultados.get(i)).getFecha())
                           				%>
                           			</td>
                           			<td class="center">
                           				<%=
-                          					df.format(((ResultadoEventoBeanData)resultados.get(i)).getLimFin())                  
+                          					((EventoBeanData)resultados.get(i)).getIdSede() //guarda nombre de sede                 
+                          				%>
+                          			</td>
+                          			<td class="center">
+                          				<%=
+                          					((EventoBeanData)resultados.get(i)).getEstado()                  
                           				%>
                           			</td>
 
                           			<td class="center">
                           				<a class="btn btn-success"
-                          					href="javascript:alt_consultar('<%=((ResultadoEventoBeanData)resultados.get(i)).getCodigo()%>')">
+                          					href="javascript:alt_consultar('<%=((EventoBeanData)resultados.get(i)).getCodigo()%>')">
                           					<i
                           						class="icon-zoom-in icon-white">
                           					</i>
 Ver
                           				</a>
                           				<a class="btn btn-info"
-                          					href="javascript:alt_modificar('<%=((ResultadoEventoBeanData)resultados.get(i)).getCodigo()%>')">
+                          					href="javascript:alt_modificar('<%=((EventoBeanData)resultados.get(i)).getCodigo()%>')">
                           					<i
                           						class="icon-edit icon-white">
                           					</i>
  Modificar
                           				</a>
                           				<a class="btn btn-danger"
-                          					href="javascript:alt_eliminar('<%=((ResultadoEventoBeanData)resultados.get(i)).getCodigo()%>')">
+                          					href="javascript:alt_eliminar('<%=((EventoBeanData)resultados.get(i)).getCodigo()%>')">
                           					<i class="icon-trash icon-white">
                           					</i>
 		Eliminar
