@@ -23,6 +23,34 @@
 		parent.actualizar();
 	}
 	
+	
+	function verificar_fecha(comparacion,fecha1,fecha2){
+		var fec1=fecha1.value.split("/");
+		var fec2=document.getElementById(fecha2).value.split("/");
+		var resultado=true;
+		if(fec1.length==fec2.length) {
+			var size=fec1.length;
+			for(i=size-1;i>=0;i--){
+				if(comparacion==0){
+					if(fec1[i].indexOf(fec2[i])<0)  resultado= false;
+					}
+				if(comparacion==1){
+					if(parseInt(fec1[i])<parseInt(fec2[i]))  resultado= false;
+					}
+				if(comparacion==-1){
+					if(parseInt(fec1[i])>parseInt(fec2[i]))  resultado= false;
+					}
+				}
+			if(resultado==false){			
+					fecha1.value=document.getElementById(fecha2).value;			
+				}
+				
+			} 
+		else{
+			alert("Error al comparar fechas");
+		}			
+	}
+
 	<%! public boolean  encontrar(String a, String b){		
 			if(b.equals(a)) return true;
 			return false;
@@ -80,18 +108,16 @@
                             </select>
                           </div>
                         </div>
-			           <div class="control-group" id="dvFechaInicio">
+			           <div class="control-group">
 			              <label class="control-label" for="date01" >Fecha Inicial (*):</label>
 			                <div class="controls">
-			                  <input type="text" name="fechaInicio" class="datepicker" id="fechaInicio" value="<%=formatear(new Date(concesionarioSede.getFechaInicio().getTime()))%>" readonly width=44px>
-			                  <span class="help-inline" id="errFechaInicio">Please correct the error</span>
+			                  <input type="text" name="fechaInicio" class="datepicker" id="fechaInicio" value="<%=formatear(new Date(concesionarioSede.getFechaInicio().getTime()))%>" readonly width=44px onchange="verificar_fecha(-1,this,'fechaFin');">
 		                    </div>
 		                  </div>
-			              <div class="control-group" id="dvFechaFin">
+			              <div class="control-group">
 			                <label class="control-label" for="date02">Fecha Final (*):</label>
 			                <div class="controls">
-			                  <input type="text" name="fechaFin" class="datepicker" id="fechaFin" value="<%=formatear(new Date(concesionarioSede.getFechaFin().getTime()))%>" readonly width=44px>
-			                  <span class="help-inline" id="errFechaFin">Please correct the error</span>
+			                  <input type="text" name="fechaFin" class="datepicker" id="fechaFin" value="<%=formatear(new Date(concesionarioSede.getFechaFin().getTime()))%>" readonly width=44px onchange="verificar_fecha(1,this,'fechaInicio');">
 		                    </div>
 		                  </div>
                         <div class="control-group">
@@ -200,44 +226,6 @@
 	<script src="js/jquery.history.js"></script>
 	<!-- application script for Charisma demo -->
 	<script src="js/charisma.js"></script>
-
-		
-	<script type="text/javascript" src="js/apprise-1.5.full.js"></script>
-	<link rel="stylesheet" href="css/apprise.css" type="text/css" />
-	<script type="text/javascript" src="js/script.js"></script>
-    <script>
- 
- 
-function validaForm(){
-       
-        var form=document.frmData;
- 
-        var cadena= new Array();
-        var i=0;
-        var error=false;
-        
-        
-        if(!esValido("Fecha Inicial",form.fechaInicio,"FechaInicio",7,1,100)){cadena[i]="Fecha Inicial";i++;}
-        if(!esValido("Fecha Final",form.fechaFin,"FechaFin",7,1,100)){cadena[i]="Fecha Final";i++;}
-                
-        //No tocar
-        if(i>0){
-        crearAlert(cadena);
-        return false;
-        }else{
-                return true;               
-        }
-}
- 
- 
-function inicializa(){
-        document.getElementById("errFechaInicio").style.display='none';
-        document.getElementById("errFechaFin").style.display='none'; 
-}
- 
-inicializa();
- 
-</script>
 	
 </body>
 </html>
