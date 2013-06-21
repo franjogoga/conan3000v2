@@ -51,10 +51,13 @@
 
 		    <!-- content starts -->
 		    <div>
-				<ul class="breadcrumb">
-<li> <a href="#">Home / Mantenimiento de Productos / </a>Busqueda de Producto</li>
-<li></li>
-				</ul>
+
+		    <ul class="breadcrumb">
+		        <li> <a href="../../general/index.jsp">Home</a> <span class="divider">/</span></li>
+		        <li><a href="../producto/buscarproducto.jsp">Mantenimiento de Productos</a> </li>
+		        <li>/ Busqueda de Producto</li>
+	          </ul>
+
 			</div>
 		    <div class="row-fluid sortable">
 		      <div class="box span12">
@@ -106,7 +109,7 @@
 						    <div class="form-actions">
 							 
 			                <button type="submit" class="btn btn-primary">Buscar</button>
-			              <button type="submit" class="btn"><a href="buscarproducto.jsp">Cancelar</a></button>
+			              <button type="button" class="btn" onclick="location.href='../producto/buscarproducto.jsp'">Cancelar</a></button>
 			           
 			           
 							
