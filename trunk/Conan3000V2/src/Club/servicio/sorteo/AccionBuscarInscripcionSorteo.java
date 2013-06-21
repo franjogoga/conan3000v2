@@ -2,6 +2,7 @@ package Club.servicio.sorteo;
 
 import java.util.Vector;
 
+import javax.faces.bean.SessionScoped;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,6 +13,7 @@ import IngSoft.servicio.bean.ResultadoInscripcionSorteoBeanData;
 import IngSoft.general.CoAccion;
 import IngSoft.general.CoException;
 
+@SessionScoped
 public class AccionBuscarInscripcionSorteo extends CoAccion {
 
 	@Override

@@ -3,6 +3,7 @@ package Club.servicio.sorteo;
 import java.util.List;
 import java.util.Vector;
 
+import javax.faces.bean.SessionScoped;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,13 +19,13 @@ import IngSoft.servicio.bean.SorteoBeanData;
 import IngSoft.servicio.bean.SorteoBeanFuncion;
 import IngSoft.servicio.bean.TipoEventoMiniBeanData;
 
+@SessionScoped
 public class AccionGenerarSorteo extends CoAccion {
 
 	@Override
 	public void ejecutar(ServletContext sc, HttpServletRequest request,
 			HttpServletResponse response)  throws CoException{
 		SorteoBeanFuncion sorteoFuncion= SorteoBeanFuncion.getInstance();
-		String nombre = (String)request.getSession().getAttribute("nombre");
 		String idSocio = (String)request.getSession().getAttribute("idSocio");
 		SorteoBeanData sorteoData=sorteoFuncion.consultarSorteo(request.getParameter("codigo"));
 		int cant_ganadores = sorteoFuncion.getCantidad(sorteoData.getIdSorteo());
@@ -50,7 +51,7 @@ public class AccionGenerarSorteo extends CoAccion {
 		
 		Vector<String> listaGanadores=sorteoFuncion.consultaGanadores(sorteoData.getIdSorteo(),cant_ganadores);
 		request.setAttribute("lista", listaGanadores);
-		this.direccionar(sc, request, response, "/Club/servicio/sorteo/generarsorteo.jsp");
+		this.direccionar(sc, request, response, "/Club/servicio/sorteo/generarsorteoHecho.jsp");
 		
 	}
 
