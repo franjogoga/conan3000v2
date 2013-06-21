@@ -42,8 +42,8 @@
 		       <div>
 			    <ul class="breadcrumb">
 		        <li> <a href="../../general/index.jsp">Home</a> <span class="divider">/</span></li>
-		        <li>Mantenimiento de Familiares  </li>
-		       
+		        <li><a href="../familia/buscarfamiliar.jsp">Mantenimiento de Familiares</a> </li>
+		        <li>/ Busqueda familiares</li>
 	          </ul>
 		      </div>
 			  <div class="row-fluid sortable">
@@ -89,7 +89,7 @@
 							  
 			                <div class="form-actions">
 			               <button type="submit" class="btn btn-primary" >Buscar</button>
-			               <button type="submit"  class="btn" onclick="location.href='../familia/buscarfamiliar.jsp'">Cancelar</button>  
+			               <button type="button"  class="btn" onclick="location.href='../familia/buscarfamiliar.jsp'">Cancelar</button>  
 			           
 		                </div>
 		              
