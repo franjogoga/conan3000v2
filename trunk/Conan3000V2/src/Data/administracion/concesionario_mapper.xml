@@ -46,7 +46,7 @@
 	<update id="deleteConcesionario" parameterType="java.lang.String">
 		UPDATE CONCESIONARIO SET Estado='Eliminado' WHERE IdConcesionario = #{codigo}
 	</update>
-	
+
 	<select id="searchConcesionarioSede" parameterType="java.lang.String" resultType="IngSoft.administracion.bean.ConcesionarioSedeBeanData">
 		SELECT s.IdSede as codigo,s.Nombre as nombre,cs.FechaInicio as fechaInicio,cs.FechaFin as fechaFin,cs.Estado as estado
 		FROM CONCESIONARIOxSEDE cs,SEDE s
@@ -54,4 +54,55 @@
 			  (cs.Estado='Activo' OR cs.Estado='Inactivo') AND
 			  cs.IdConcesionario = #{codigo};
 	</select>
+	
+	<insert id="insertConcesionarioSede" parameterType="IngSoft.administracion.bean.ConcesionarioSedeBeanData" flushCache="true">
+		insert into CONCESIONARIOxSEDE (IdConcesionario,IdSede,FechaInicio,FechaFin,Estado)
+		values (#{codigoCon},#{codigo},#{fechaInicio},#{fechaFin},'Activo')
+	</insert>
+	
+	<select id="searchSedeMini" parameterType="java.lang.String" resultType="IngSoft.administracion.bean.SedeMiniBeanData">
+		SELECT s.IdSede as codigo,s.Nombre as nombre
+		FROM SEDE s
+		WHERE s.IdSede not in
+			  (SELECT cs.IdSede
+ 			   FROM CONCESIONARIOxSEDE cs
+			   WHERE cs.IdConcesionario=#{codigo} AND (cs.Estado='Activo' OR cs.Estado='Inactivo'));
+	</select>
+	
+	<update id="deleteConcesionarioSede" parameterType="IngSoft.administracion.bean.ConSedeBeanData">
+		UPDATE CONCESIONARIOxSEDE
+		SET Estado='Eliminado'
+		WHERE IdConcesionario = #{codigoCon} AND IdSede=#{codigoSede} AND (Estado='Activo' OR Estado='Inactivo');
+	</update>
+	
+	<select id="getConcesionarioSede" parameterType="IngSoft.administracion.bean.ConSedeBeanData"  resultType="IngSoft.administracion.bean.ConcesionarioSedeBeanData">
+		SELECT cs.IdConcesionario as codigoCon, s.IdSede as codigo,s.Nombre as nombre,cs.FechaInicio as fechaInicio,cs.FechaFin as fechaFin,cs.Estado as estado
+		FROM CONCESIONARIOxSEDE cs,SEDE s
+		WHERE cs.IdSede=s.IdSede AND
+			  (cs.Estado='Activo' OR cs.Estado='Inactivo') AND
+			  cs.IdConcesionario = #{codigoCon} AND
+			  cs.IdSede = #{codigoSede};
+	</select>
+	
+	<select id="searchSedeMini2" parameterType="java.lang.String" resultType="IngSoft.administracion.bean.SedeMiniBeanData">
+		SELECT s.IdSede as codigo,s.Nombre as nombre
+		FROM SEDE s
+		WHERE (s.IdSede not in
+			  (SELECT cs.IdSede
+ 			   FROM CONCESIONARIOxSEDE cs
+			   WHERE cs.IdConcesionario=#{codigoCon} AND (cs.Estado='Activo' OR cs.Estado='Inactivo')))
+			   OR s.IdSede=#{codigoSede};
+	</select>
+	
+	<update id="updateConcesionarioSede" parameterType="IngSoft.administracion.bean.ConcesionarioSedeBeanData">
+		UPDATE CONCESIONARIOxSEDE SET
+			IdSede = #{codigo},
+			FechaInicio = #{fechaInicio},
+			FechaFin = #{fechaFin},
+			Estado = #{estado}
+	 	WHERE IdConcesionario = #{codigoCon} AND
+	 		  IdSede = #{nombre} AND
+	 		  Estado not like 'Eliminado';
+	</update>
+	
 </mapper>

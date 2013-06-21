@@ -4,12 +4,19 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class ConcesionarioSedeBeanData implements Serializable{
+	private String codigoCon;
 	private String codigo;
 	private String nombre;
 	private Date fechaInicio;
 	private Date fechaFin;
 	private String estado;
 	
+	public String getCodigoCon() {
+		return codigoCon;
+	}
+	public void setCodigoCon(String codigoCon) {
+		this.codigoCon = codigoCon;
+	}
 	public String getCodigo() {
 		return codigo;
 	}

@@ -1,14 +1,19 @@
 <!DOCTYPE html>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Vector"%>
+<%@page import="IngSoft.administracion.bean.ConcesionarioSedeBeanData"%>
+<%@page import="IngSoft.administracion.bean.ConcesionarioBeanData"%>
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Modificar Concesionario</title>
+	<title>Actualizar Concesionario</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
 	<meta name="author" content="Muhammad Usman">
 
 	<!--The beans  -->
 	<jsp:useBean id="concesionario" scope="request" class="IngSoft.administracion.bean.ConcesionarioBeanData"></jsp:useBean>
+	<jsp:useBean id="concesionarioSede" scope="request" class="java.util.Vector"></jsp:useBean>
 	
 	<!-- The styles -->
 	<link id="bs-css" href="css/bootstrap-cerulean.css" rel="stylesheet">
@@ -43,14 +48,21 @@
 	<![endif]-->
 
 	<!-- The fav icon -->
-	<link rel="shortcut icon" href="img/favicon.ico">
+	<link rel="shortcut icon" href="img/conan_logo.png">
 	
 	<script>
-	
+
 	function alt_submit(){
 		var form= document.frmUpdate;
 		if(validaForm()) form.submit();
 	}
+
+	function actualizar(){
+		var form= document.frmActualizado;
+		form.submit();
+		$.fn.colorbox.close();
+	} 
+	
 	</script>
 	<%! public boolean  encontrar(String a, String b){		
 			if(b.equals(a)) return true;
@@ -71,6 +83,8 @@
 				return false;
 		}
 	%>	
+	
+	<%SimpleDateFormat df= new SimpleDateFormat("dd/MM/YYYY");%>
 </head>
 
 <body>
@@ -95,13 +109,13 @@
                 <ul class="breadcrumb">
                   <li> <a href="../../general/index.jsp">Home</a> <span class="divider">/</span> </li>
                   <li> <a href="SMAConcesionario?accion=Buscar&tipo=1">Mantenimiento de Concesionarios</a> <span class="divider">/</span></li>
-                  <li>Modificar Concesionario</li>
+                  <li>Actualizar Concesionario</li>
                 </ul>
               </div>
               <div class="row-fluid sortable">
                 <div class="box span12">
                   <div class="box-header well" data-original-title>
-                    <h2>MODIFICAR CONCESIONARIO</h2>
+                    <h2>ACTUALIZAR CONCESIONARIO</h2>
                   </div>
                   <div class="box-content">
                     <form class="form-horizontal" action="<%= response.encodeURL("SMAConcesionario")%>" name="frmUpdate" method="post">
@@ -124,7 +138,7 @@
                           </div>
                         </div>
                         <div class="control-group" id="dvDescripcion">
-                  		  <label class="control-label" for="textarea2">Descripci&oacute;n:</label>
+                  		  <label class="control-label" for="textarea2">Descripci&oacute;n (*):</label>
                           <div class="controls">
                             <textarea name="txtDescripcion" rows="3" id="txtDescripcion" style="resize:none"><%=concesionario.getDescripcion()%></textarea>
                           	<span class="help-inline" id="errDescripcion">Please correct the error</span>
@@ -155,6 +169,64 @@
                 </div>
                 <!--/span-->
               </div>
+              
+<!--/INICIO TABLA SEDES-->
+            <form id="frmAlternativo" name="frmAlternativo" method="post" action="<%=response.encodeURL("SMAConcesionario")%>">
+			<input type="hidden" name="accion" value="Seleccionar"></input>
+			<input type="hidden" name="codigo" value="<%=concesionario.getCodigo()%>"></input>
+			<input type="hidden" name="tipo" value="1"></input>
+			</form>
+            <div class="row-fluid sortable">
+          		<div class="row-fluid sortable">
+						<div class="box span12">
+                      <div class="box-header well" data-original-title>
+                        <h2><i class="icon-th-list"></i>CONTRATOS CON SEDES</h2>
+                      </div>
+                      <div class="box-content">
+                        <table class="table table-striped table-bordered bootstrap-datatable datatable">
+                          <!-- agregar nuevo boton -->
+                          <div align="right"> <a class="btn btn-primary iframe" href="SMAConcesionario?accion=Seleccionar&codigo=<%=concesionario.getCodigo()%>&tipo=1"><i class="icon icon-add icon-white"></i> Agregar</a></div>
+                          <thead>
+                            <tr>
+                              <th>Sede</th>
+                              <th>Fecha Inicio</th>
+                              <th>Fecha Fin</th>
+                              <th>Estado</th>
+                              <th>Acci&oacute;n</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                          	<%for(int i=0; i<concesionarioSede.size(); i++) { %>
+                            <tr>
+                              <td class="center"><%=((ConcesionarioSedeBeanData)concesionarioSede.get(i)).getNombre()%></td>
+                              <td class="center"><%=df.format(((ConcesionarioSedeBeanData)concesionarioSede.get(i)).getFechaInicio())%></td>
+                              <td class="center"><%=df.format(((ConcesionarioSedeBeanData)concesionarioSede.get(i)).getFechaFin())%></td>
+                              <td class="center"><%if(((ConcesionarioSedeBeanData)concesionarioSede.get(i)).getEstado().equalsIgnoreCase("Activo")){    
+								 						out.print("<span class='label label-success'>"+((ConcesionarioSedeBeanData)concesionarioSede.get(i)).getEstado()+"</span>");
+												   }
+												   else{
+								 						out.print("<span class='label label-warning'>"+((ConcesionarioSedeBeanData)concesionarioSede.get(i)).getEstado()+"</span>");
+												   }%></td>
+							  <td class="center">
+											<a class="btn btn-info iframe" href="SMAConcesionario?accion=ModificarSede&codigo=<%=concesionario.getCodigo()%>&codigoSede=<%=((ConcesionarioSedeBeanData)concesionarioSede.get(i)).getCodigo()%>&tipo=1">
+												<i class="icon-edit icon-white"></i> Modificar
+											</a>
+											<a class="btn btn-danger iframe" href="SMAConcesionario?accion=EliminarSede&codigo=<%=concesionario.getCodigo()%>&codigoSede=<%=((ConcesionarioSedeBeanData)concesionarioSede.get(i)).getCodigo()%>&tipo=1">
+												<i class="icon-trash icon-white"></i> Eliminar
+											</a>
+							  </td>
+                            </tr>
+                            <%}%> 
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                  <!--/span-->
+                </div>
+                <!--/span-->
+<!--/FIN TABLA SEDES-->
+              
               <!--/row-->
               <div class="row-fluid sortable">
                 
@@ -190,6 +262,11 @@
 		 		
 	</div><!--/.fluid-container-->
 
+			<form id="frmActualizado" name="frmActualizado" method="post" action="<%=response.encodeURL("SMAConcesionario")%>">
+			<input type="hidden" name="accion" value="Modificar"></input>
+			<input type="hidden" name="codigo" value="<%=concesionario.getCodigo()%>"></input>
+			<input type="hidden" name="tipo" value="1"></input>
+			</form>
 	<!-- external javascript
 	================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->
@@ -264,6 +341,27 @@
 	<!-- application script for Charisma demo -->
 	<script src="js/charisma.js"></script>
 	
+<!--     ---------------------- Sirve para poner un iframe ------------------------------   -->	
+
+
+<!--     -----------------------------------------------------   -->			
+	
+		<script>
+			$(document).ready(function(){
+				//Examples of how to assign the Colorbox event to elements
+				
+				$(".iframe").colorbox({iframe:true, width:"60%", height:"65%"});
+				
+				//Example of preserving a JavaScript event for inline calls.
+				$("#click").click(function(){ 
+					$('#click').css({"background-color":"#f00", "color":"#fff", "cursor":"inherit"}).text("Open this window again and this message will still be here.");
+					return false;
+				});
+			});
+		</script>
+	
+<!--     -----------------------------------------------------   -->
+	
 	<script type="text/javascript" src="js/apprise-1.5.full.js"></script>
 <link rel="stylesheet" href="css/apprise.css" type="text/css" />
 <script type="text/javascript" src="js/script.js"></script>
@@ -309,7 +407,7 @@ function validaForm(){
 			if(!esValido("RUC",form.txtRuc,"Ruc",6,11,11)){cadena[i]="RUC";i++;}
 		}
 
-        if(!esValido("Descripci&oacute;n",form.txtDescripcion,"Descripcion",1,0,100)){cadena[i]="Descripci&oacute;n";i++;}
+        if(!esValido("Descripci&oacute;n",form.txtDescripcion,"Descripcion",1,1,100)){cadena[i]="Descripci&oacute;n";i++;}
         
         //No tocar
         if(i>0){
