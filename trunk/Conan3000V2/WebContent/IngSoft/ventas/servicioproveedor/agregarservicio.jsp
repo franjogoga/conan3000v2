@@ -82,7 +82,12 @@ function validaForm(){
 	if(!esValido("Nombre Servicio",form.txtNombreServ,"NombreServ",1,1,50)){cadena[i]="Nombre Servicio";i++;}
 	if(!esValido("Nombre Proveedor",form.txtNombreProv,"NombreProv",1,1,50)){cadena[i]="Nombre Proveedor";i++;}
 	if(!esValido("Descripcion",form.txtDescripcion,"Descripcion",1,1,100)){cadena[i]="Descripcion";i++;}
-	//if(!esValido("Descripcion",form.txtDescripcion,"Descripcion",1,1,100)){cadena[i]="Descripcion";i++;}
+	if(!esValido("Precio",form.txtPrecio,"Precio",1,1,50)){
+				cadena[i]="Precio";i++;
+	}else{
+				//valida si es float o entero
+				if(!esValido("Precio",form.txtPrecio,"Precio",5,1,1)){cadena[i]="Precio";i++;}
+	}
 	
 	//No tocar
 	if(i>0){
@@ -99,7 +104,7 @@ function inicializa(){
 	document.getElementById("errNombreServ").style.display='none';
 	document.getElementById("errNombreProv").style.display='none';
 	document.getElementById("errDescripcion").style.display='none';
-	//document.getElementById("errPrecio").style.display='none';
+	document.getElementById("errPrecio").style.display='none';
 	
 }
 
