@@ -1,7 +1,5 @@
 package IngSoft.venta.bean;
 
-import java.sql.Date;
-import java.text.ParseException;
 import java.util.List;
 import java.util.Vector;
 
@@ -34,7 +32,7 @@ public CriterioServicioBeanData crearCriterio(HttpServletRequest request, HttpSe
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		Vector<ResultadoServicioBeanData> resultadosV=null;
 		try{		
-		List<ResultadoServicioBeanData> resultados=sqlsesion.selectList("searchPlantillaServicio",criterioServicioData);
+		List<ResultadoServicioBeanData> resultados=sqlsesion.selectList("Data.venta.servicio.searchPlantillaServicio",criterioServicioData);
 						
 		resultadosV= new Vector<>(resultados);
 		}
