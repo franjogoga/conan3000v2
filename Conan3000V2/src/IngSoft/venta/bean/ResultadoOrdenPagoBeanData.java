@@ -19,10 +19,17 @@ public class ResultadoOrdenPagoBeanData implements Serializable {
 	private Integer numCuota;
 	private Integer cantidad;
 	private String estadoCuota;
+	private String idOtroIngreso;
 	
 	
 	
 	
+	public String getIdOtroIngreso() {
+		return idOtroIngreso;
+	}
+	public void setIdOtroIngreso(String idOtroIngreso) {
+		this.idOtroIngreso = idOtroIngreso;
+	}
 	public String getIdCuota() {
 		return idCuota;
 	}

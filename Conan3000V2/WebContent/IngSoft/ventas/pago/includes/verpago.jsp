@@ -11,7 +11,7 @@
 	}
 	
 	function alt_submit(){
-		var form= document.frmDelete;
+		var form= document.frmPago;
 		var r=confirm("¿Esta seguro que desea borrar esta membresia?");
 		if(r==true){form.submit();}
 			}	
@@ -94,9 +94,9 @@ String fecHoy=dfActual.format(new java.util.Date());
 			        <h2>VER PAGO DE MEMBRESIA</h2>
 		          </div>
 			      <div class="box-content">
-			         <form class="form-horizontal"  name="frmDelete" method="Post"  action="SMVPago">
+			         <form class="form-horizontal"  name="frmPago" method="Post"  action="SMVPago">
 					<input type="hidden" name="codigo" value="<%=pago.getIdCuota()%>"></input>
-			        <input type="hidden" name="accion" value="Eliminar"></input>
+			        <input type="hidden" name="accion" value="Ver"></input>
 					<input type="hidden" name="tipo" value="2"></input>
 			          <fieldset>
 			           <div class="control-group">

@@ -17,6 +17,7 @@ public class SMVPago extends CoServlet{
 		acciones.put("Consultar", new AccionConsultarPago());
 		acciones.put("Pagar", new AccionAgregarPago());
 		acciones.put("BuscarOrdenPago", new AccionBuscarOrdenPago());
+		acciones.put("AgregarCuotaExtraordinaria", new AccionAgregarCuotaExtra());
 		acciones.put("AgregarOrdenPago", new AccionAgregarOrdenPago());
 		acciones.put("ConsultarOrdenPago", new AccionConsultarOrdenPago());
 		acciones.put("BuscarEgreso", new AccionBuscarEgreso());
@@ -25,7 +26,6 @@ public class SMVPago extends CoServlet{
 		acciones.put("Modificar", new AccionModificarPago());
 		acciones.put("Eliminar", new AccionEliminarPago());
 	}
-	
 	
 	
 }

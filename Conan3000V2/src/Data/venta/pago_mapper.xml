@@ -184,10 +184,23 @@ from EGRESO
 <!-- Ordenes de pago-->
 
 
+<!-- Agregar plantilla membresia -->
+<insert id="insertOtroIngreso" parameterType="IngSoft.venta.bean.OrdenPagoBeanData" flushCache="true">
+	insert into INGRESO(IdIngreso,FechaPago,Estado,idOtroIngreso)
+	values (#{idIngreso},#{fechaPago},'Cancelado',#{idOtroIngreso})
+</insert>
+
+ <!-- Modificar elemento -->
+<update id="pagarOrdenPago" parameterType="IngSoft.venta.bean.OrdenPagoBeanData">
+update OTRO_INGRESO set Estado='Cancelado'
+ where IdOtroIngreso= #{idOtroIngreso}
+</update>
+
+
 <select id="searchOrdenPago" parameterType="IngSoft.venta.bean.CriterioOrdenPagoBeanData" resultType="IngSoft.venta.bean.ResultadoOrdenPagoBeanData">
 select 
 distinct PERSONA.IdPersona idSocio 
-,OTRO_INGRESO.Descripcion as descripcion
+,OTRO_INGRESO.Descripcion as concepto
 ,OTRO_INGRESO.IdOtroIngreso as idOtroIngreso
 ,OTRO_INGRESO.Monto as monto
 ,CONCAT(PERSONA.Nombres,' ',PERSONA.ApePaterno,' ',PERSONA.ApeMaterno) as socio
@@ -198,7 +211,7 @@ distinct PERSONA.IdPersona idSocio
 from OTRO_INGRESO, CONCEPTO, PERSONA, INGRESO
 <where>
 	<if test="socio != null">
-	OTRO_INGRESO.IdConcepto=CONCEPTO.IdConcepto and CONCEPTO.IdSocio=PERSONA.IdPersona and  (PERSONA.Nombres like #{socio} or PERSONA.ApePaterno like #{socio} or PERSONA.ApeMaterno like #{socio})
+	OTRO_INGRESO.IdConcepto=CONCEPTO.IdConcepto and CONCEPTO.IdSocio=PERSONA.IdPersona and (PERSONA.Nombres like #{socio} or PERSONA.ApePaterno like #{socio} or PERSONA.ApeMaterno like #{socio})
   </if>
   
   <if test="idSocio != null">
@@ -213,7 +226,7 @@ from OTRO_INGRESO, CONCEPTO, PERSONA, INGRESO
     </if>
   
     <if test="estado != null">
-        AND INGRESO.Estado= #{estado}
+        AND OTRO_INGRESO.Estado= #{estado}
        
     </if>
    ORDER BY OTRO_INGRESO.fechaVencimiento ASC
@@ -225,7 +238,7 @@ from OTRO_INGRESO, CONCEPTO, PERSONA, INGRESO
 <select id="searchOrdenPagada" parameterType="IngSoft.venta.bean.CriterioOrdenPagoBeanData" resultType="IngSoft.venta.bean.ResultadoOrdenPagoBeanData">
 select 
 distinct PERSONA.IdPersona idSocio 
-,OTRO_INGRESO.Descripcion as descripcion
+,OTRO_INGRESO.Descripcion as concepto
 ,OTRO_INGRESO.IdOtroIngreso as idOtroIngreso
 ,OTRO_INGRESO.Monto as monto
 ,CONCAT(PERSONA.Nombres,' ',PERSONA.ApePaterno,' ',PERSONA.ApeMaterno) as socio
@@ -236,13 +249,13 @@ distinct PERSONA.IdPersona idSocio
 from OTRO_INGRESO, CONCEPTO, PERSONA, INGRESO
 <where>
 	<if test="socio != null">
-	OTRO_INGRESO.IdConcepto=CONCEPTO.IdConcepto and CONCEPTO.IdSocio=PERSONA.IdPersona and INGRESO.idOtroIngreso=OTRO_INGRESO.IdOtroIngreso and (PERSONA.Nombres like #{socio} or PERSONA.ApePaterno like #{socio} or PERSONA.ApeMaterno like #{socio})
+	OTRO_INGRESO.IdConcepto=CONCEPTO.IdConcepto and INGRESO.IdOtroIngreso=OTRO_INGRESO.IdOtroIngreso and CONCEPTO.IdSocio=PERSONA.IdPersona and (PERSONA.Nombres like #{socio} or PERSONA.ApePaterno like #{socio} or PERSONA.ApeMaterno like #{socio})
   </if>
   
   <if test="idSocio != null">
         AND PERSONA.IdPersona = #{idSocio}
     </if>
-  
+   
   <if test="fechaPagoIni != null">
         AND INGRESO.FechaPago &gt;= #{fechaPagoIni}
     </if>
@@ -272,7 +285,8 @@ distinct PERSONA.IdPersona idSocio
 ,OTRO_INGRESO.Estado as estado
 ,OTRO_INGRESO.IdConcepto as idConcepto
 from OTRO_INGRESO, CONCEPTO, PERSONA, INGRESO
-OTRO_INGRESO.IdConcepto=CONCEPTO.IdConcepto and CONCEPTO.IdSocio=PERSONA.IdPersona and INGRESO.idOtroIngreso=OTRO_INGRESO.IdOtroIngreso and OTRO_INGRESO.IdOtroIngreso=#{codigo}
+WHERE 
+OTRO_INGRESO.IdConcepto=CONCEPTO.IdConcepto and CONCEPTO.IdSocio=PERSONA.IdPersona  and OTRO_INGRESO.IdOtroIngreso=#{codigo}
 </select>
 
 <select id="getNextCodigoOrden" resultType="java.lang.String">
@@ -363,6 +377,11 @@ OTRO_INGRESO.IdConcepto=CONCEPTO.IdConcepto and CONCEPTO.IdSocio=PERSONA.IdPerso
 <insert id="insertOrdenPagoTrasladoMembresia" parameterType="IngSoft.venta.bean.OrdenPagoBeanData" flushCache="true">
 	insert into CONCEPTO(IdMembresiaAnt,IdMembresiaNue,IdConcepto,IdSocio,Fecha)
 	values (#{idMembresiaAnt},#{idMembresiaNue},#{idConcepto},#{idSocio},#{fecha})
+</insert>
+
+<insert id="insertOrdenPagoCuotaExtra" parameterType="IngSoft.venta.bean.OrdenPagoBeanData" flushCache="true">
+	insert into CONCEPTO(IdConcepto,IdSocio,Fecha)
+	values (#{idConcepto},#{idSocio},#{fecha})
 </insert>
 
 

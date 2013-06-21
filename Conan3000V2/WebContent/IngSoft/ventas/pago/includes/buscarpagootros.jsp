@@ -1,6 +1,6 @@
  <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Calendar"%>
-<%@page import="IngSoft.venta.bean.ResultadoPagoBeanData"%>
+<%@page import="IngSoft.venta.bean.ResultadoOrdenPagoBeanData"%>
 <%@page import="java.util.Vector"%>
 <%@page import="java.util.GregorianCalendar"%>
 
@@ -11,7 +11,7 @@
 	}
 	function alt_agregar(){
 		var form=document.getElementById("frmAlternativo");
-		form.accion.value="AgregarOrdenPago";
+		form.accion.value="AgregarCuotaExtraordinaria";
 		form.submit();
 	}
 	
@@ -35,7 +35,7 @@
 	}
 	function alt_Pagar(cod){
 		var form=document.getElementById("frmAlternativo");
-		form.accion.value="PagarOrdenPago";
+		form.accion.value="AgregarOrdenPago";
 		form.codigo.value=cod;
 		form.submit();
 	}
@@ -77,6 +77,22 @@
 	
 	
 	
+	function igualarIni(tipo){
+		if(tipo==2)
+		document.frmCriteriosBusqueda.fFechaPagoIni.value=document.frmCriteriosBusqueda.fFechaEmisionIni.value;
+		else
+		document.frmCriteriosBusqueda.fFechaEmisionIni.value=document.frmCriteriosBusqueda.fFechaPagoIni.value;
+	}
+	
+	function igualarFin(tipo){
+		if(tipo==2)
+		document.frmCriteriosBusqueda.fFechaPagoFin.value=document.frmCriteriosBusqueda.fFechaEmisionFin.value;
+		else
+		document.frmCriteriosBusqueda.fFechaEmisionFin.value=document.frmCriteriosBusqueda.fFechaPagoFin.value;
+	}
+	
+	
+	
 	
 	
 	</script>	
@@ -113,40 +129,54 @@ String fecHoy=dfActual.format(new java.util.Date());
 		              <div class="control-group">
 		                <label class="control-label" for="typeahead">C&oacute;digo de socio:</label>
 		                <div class="controls">
-		                  <input type="text" class="span6 typeahead" id="typeahead">
+		                  <input type="text" class="span6 typeahead" id="txtCodigoSocio" name="txtCodigoSocio" >
 	                    </div>
 	                  </div>
 		              <div class="control-group">
 		                <label class="control-label" for="selectError">Socio:</label>
 		                <div class="controls">
-		                  <input type="text" class="span6 typeahead" id="typeahead">
+		                  <input type="text" class="span6 typeahead" id="typeahead" id="txtSocio" name="txtSocio">
 	                    </div>
 	                  </div>
 		               <div class="control-group">
 			              <label class="control-label" for="typeahead7">Concepto: </label>
 			              <div class="controls">
-								  <select id="selectError" data-rel="chosen">
-									<option>Bungalows</option>
-									<option>Canchas</option>
-									<option>Eventos</option>
-									<option>Actividades</option>
-									<option>Otros</option>
+			            	
+								  <select id="cmbConcepto" name="cmbConcepto" data-rel="chosen">
+								  <option value="ALL">Todos</option>
+								  <option value="CUOTAEXTRAORDINARIA">Cuota Extraordinaria</option>
+									<option value="SOLICITUDPRODUCTO">Solicitud de Producto</option>
+									<option value="SOLICITUDSERVICIO">Solicitud de Servicio</option>
+									<option value="EVENTOCORPORATIVO">Evento Corporativo</option>
+									<option value="EVENTOCORPORATIVOXSERVICIOADICIONAL">Servicio Adicional (Evento Corporativo)</option>
+									<option value="RESERVABUNGALOWXSERVICIOADICIONAL">Servicio Adicional (Reserva de Bungalow)</option>
+									<option value="BUNGALOWXSORTEO">Sorteo de Bungalow</option>
+									<option value="EVENTOSOCIO">Evento de Socio</option>
+									<option value="RESERVACANCHA">Reserva de Cancha</option>
+									<option value="RESERVABUNGALOW">Reserva de Bungalow</option>
+									<option value="ACTIVIDADSOCIO">Actividad de Socio</option>
+									<option value="ACTIVIDADFAMILIAR">Actividad Familiar</option>
+									<option value="SUSPENSIONFALTA">Suspension por Infraccion</option>
+									<option value="SOCIOXEVENTOSEDE">Socio por Evento Sede</option>
+									<option value="INVITADOXSOCIO">Invitado de Socio</option>
+									<option value="TRASLADOMEMBRESIA">Traslado de Membresia</option>
+									
 								  </select>
 								</div>
 		                </div>
 		              <div class="control-group" id="fechaEmision">
 		                <label class="control-label" for="typeahead2">Fecha de Emisi&oacute;n: </label>
 		                <div class="controls">
-		                  <input type="text" class="input-xlarge datepicker" id="fFechaEmisionIni" name="fFechaEmisionIni" value="<%=fecHoy%>" onpaste="return false;" > 
-		                  - <input type="text" class="input-xlarge datepicker" id="fFechaEmisionFin" name="fFechaEmisionFin" value="<%=fecHoy%>" onpaste="return false;" >
+		                  <input type="text" class="input-xlarge datepicker" id="fFechaEmisionIni" name="fFechaEmisionIni" value="<%=fecHoy%>" onChange="javascript:igualarIni(2)" onpaste="return false;"  > 
+		                  - <input type="text" class="input-xlarge datepicker" id="fFechaEmisionFin" name="fFechaEmisionFin" value="<%=fecHoy%>" onChange="javascript:igualarIni(2)" onpaste="return false;" >
 	                    </div>
 	                  </div>
 	                  
 	                  <div class="control-group" id="fechaPago">
 		                <label class="control-label" for="typeahead2">Fecha de Pago: </label>
 		                <div class="controls">
-		                  <input type="text" class="input-xlarge datepicker"  id="fFechaPagoIni" name="fFechaPagoIni" value="<%=fecHoy%>"  onpaste="return false;" >
-		                   - <input type="text" class="input-xlarge datepicker"  id="fFechaPagoFin" name="fFechaPagoFin" value="<%=fecHoy%>" onpaste="return false;" >
+		                  <input type="text" class="input-xlarge datepicker"  id="fFechaPagoIni" name="fFechaPagoIni" value="<%=fecHoy%>" onChange="javascript:igualarIni(1)" onpaste="return false;" >
+		                   - <input type="text" class="input-xlarge datepicker"  id="fFechaPagoFin" name="fFechaPagoFin" value="<%=fecHoy%>" onChange="javascript:igualarIni(1)" onpaste="return false;" >
 	                    </div>
 	                  </div>
 	                  
@@ -177,7 +207,7 @@ String fecHoy=dfActual.format(new java.util.Date());
 		    <!--/row-->
 		    
 		    <form id="frmAlternativo" name="frmAlternativo" method="POST" action="<%= response.encodeURL("SMVPago")%>">
-			  <input type="hidden" name="accion" value="Agregar"></input>
+			  <input type="hidden" name="accion" value="AgregarCuotaExtraordinaria"></input>
 			  <input type="hidden" name="codigo" value=""></input>
 			 <input type="hidden" name="tipo" value="1"></input>
 			  </form>
@@ -189,9 +219,9 @@ String fecHoy=dfActual.format(new java.util.Date());
 	            </div>
 		        <div class="box-content">
 		          <table class="table table-striped table-bordered bootstrap-datatable datatable">
-		            <!-- agregar nuevo boton -->
-		             <div  align="right"> <a class="btn btn-primary" href="registrapago.jsp"> <i class="icon icon-add icon-white"></i> Agregar </a> </div>
-		            <thead>
+		           <!-- agregar nuevo boton -->
+		           <div align="right"><a class="btn btn-primary" href="javascript:alt_agregar()"> <i class="icon icon-add icon-white"></i> Agregar Cuota Extraordinaria </a></div> 
+		           <thead>
 		              <tr>
 		                <th>C&oacute;digo de Socio</th>
 		                <th>Socio</th>
@@ -209,64 +239,66 @@ String fecHoy=dfActual.format(new java.util.Date());
 		             
                           			for(int i=0;
                           			i<resultados.size();i++){
+                          				
+                          				String concepto=null;
+                          				String dato=((ResultadoOrdenPagoBeanData)resultados.get(i)).getConcepto();
+                          				
+                          				if(dato.equals("SOLICITUDPRODUCTO")) concepto="Solicitud de Producto";
+                          				if(dato.equals("SOLICITUDSERVICIO")) concepto="Solicitud de Servicio";
+                          				if(dato.equals("EVENTOCORPORATIVO")) concepto="Evento Corporativo";
+                          				if(dato.equals("EVENTOCORPORATIVOXSERVICIOADICIONAL"))  concepto="Servicio Adicional (Evento Corporativo)";
+                          				if(dato.equals("RESERVABUNGALOWXSERVICIOADICIONAL")) concepto="Servicio Adicional (Reserva de Bungalow)";
+                          				if(dato.equals("BUNGALOWXSORTEO")) concepto="Sorteo de Bungalow";
+                          				if(dato.equals("EVENTOSOCIO")) concepto="Evento de Socio";
+                          				if(dato.equals("RESERVACANCHA")) concepto="Reserva de Cancha";
+                          				if(dato.equals("RESERVABUNGALOW")) concepto="Reserva de Bungalow";
+                          				if(dato.equals("ACTIVIDADSOCIO")) concepto="Actividad de Socio";
+                          				if(dato.equals("ACTIVIDADFAMILIAR")) concepto="Actividad Familiar";
+                          				if(dato.equals("SUSPENSIONFALTA")) concepto="Suspension por Infraccion";
+                          				if(dato.equals("SOCIOXEVENTOSEDE")) concepto="Socio por Evento Sede";
+                          				if(dato.equals("INVITADOXSOCIO")) concepto="Invitado de Socio";
+                          				if(dato.equals("TRASLADOMEMBRESIA")) concepto="Traslado de Membresia";
+                          				if(dato.equals("CUOTAEXTRAORDINARIA")) concepto="Cuota Extraordinaria";
+                          				
+                          				
+                          				
+                          				
+                          				
+                          				
                          %>
 		              <tr>
-		                <td>000012</td>
-		                <td class="center">Juan Perez</td>
-		                <td class="center">Bungalows</td>
-		                <td class="center">12/04/2013</td>
-		                <td class="center">S/.300.00</td>
-		                <td class="center">S/.300.00</td>
+		                <td><%=((ResultadoOrdenPagoBeanData)resultados.get(i)).getIdSocio()%></td>
+		                <td class="center"><%=((ResultadoOrdenPagoBeanData)resultados.get(i)).getSocio()%></td>
+		                <td class="center"><%=concepto%></td>
+		                <td class="center"><%=
+                         df.format(((ResultadoOrdenPagoBeanData)resultados.get(i)).getFechaEmision())
+                          %></td>
+		               
+		                <td class="center"><%=((ResultadoOrdenPagoBeanData)resultados.get(i)).getMonto()%></td>
+		                
+		                
 		                <td class="center"><span class="label label-success">
 		                <%=
-                         ((ResultadoPagoBeanData)resultados.get(i)).getEstado()
+                         ((ResultadoOrdenPagoBeanData)resultados.get(i)).getEstado()
                         %></span></td>
 		                <td class="center">
-		                
+		                   
 		                <a class="btn btn-success"
-                          					href="javascript:alt_consultar('<%=((ResultadoPagoBeanData)resultados.get(i)).getIdPago()%>')">
+                          					href="javascript:alt_consultar('<%=((ResultadoOrdenPagoBeanData)resultados.get(i)).getIdOtroIngreso()%>')">
                           					 <i class="icon-zoom-in icon-white"></i> Ver </a> 
-                        <% if(((ResultadoPagoBeanData)resultados.get(i)).getEstado().equals("Pagado")){ %>
-		                <a class="btn btn-info"
-                          					href="javascript:alt_modificar('<%=((ResultadoPagoBeanData)resultados.get(i)).getIdPago()%>')">
-                          					<i class="icon-edit icon-white"></i> Modificar </a>
+                        <% if(((ResultadoOrdenPagoBeanData)resultados.get(i)).getEstado().equals("Cancelado")){ %>
+		                
                         <% }else{ %>
                         <a class="btn btn-primary"
-                          					href="javascript:alt_Pagar('<%=((ResultadoPagoBeanData)resultados.get(i)).getIdPago()%>')">
+                          					href="javascript:alt_Pagar('<%=((ResultadoOrdenPagoBeanData)resultados.get(i)).getIdOtroIngreso()%>')">
                           					 <i class="icon-share icon-white"></i> Pagar </a>
                         <% } %>
-                        <a class="btn btn-danger"
-                          					href="javascript:alt_eliminar('<%=((ResultadoPagoBeanData)resultados.get(i)).getIdPago()%>')">
-                          					 <i class="icon-trash icon-white"></i> Eliminar </a>
                         
 						</td>
 	                  </tr>
 	                  
 	                  <%}%>
-		              <tr>
-		                <td>00034</td>
-		                <td class="center">Jose Sanchez</td>
-		                <td class="center">Evento</td>
-		                <td class="center">19/04/2013</td>
-		                <td class="center">S/.300.00</td>
-		                <td class="center">S/.300.00</td>
-		                <td class="center">
-		                <a class="btn btn-success" href="verpagootros.jsp"><i class="icon-zoom-in icon-white"></i>Ver</a>
-		                 <a class="btn btn-info" href="modificarpagootros.jsp"> <i class="icon-edit icon-white"></i> Modificar</a>
-		                 <a class="btn btn-danger" href="eliminarpagootros.jsp"> <i class="icon-trash icon-white"></i> Eliminar </a></td>
-	                  </tr>
-		              <tr>
-		                <td>00035</td>
-		                <td class="center">232434434455</td>
-		                <td class="center">Bungalows</td>
-		                <td class="center">29/04/2013</td>
-		                <td class="center">S/.300.00</td>
-		                <td class="center">S/.300.00</td>
-		                <td class="center">
-		                <a class="btn btn-success" href="verpagootros.jsp"><i class="icon-zoom-in icon-white"></i>Ver</a>
-		                 <a class="btn btn-info" href="modificarpagootros.jsp"> <i class="icon-edit icon-white"></i> Modificar</a>
-		                 <a class="btn btn-danger" href="eliminarpagootros.jsp"> <i class="icon-trash icon-white"></i> Eliminar </a></td>
-	                  </tr>
+		             
 	                </tbody>
 	              </table>
 	            </div>
