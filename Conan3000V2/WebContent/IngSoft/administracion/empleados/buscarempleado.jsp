@@ -469,7 +469,7 @@ function validaForm(){
 
 	//if(!esValido("Nombres",form.txtNombreEmpleado,"NombreEmpleado",1,1,50)){cadena[i]="Nombres";i++;}
 	
-	if(!esValido("Nombres",form.txtNombreEmpleado,"NombreEmpleado",1,1,50)){cadena[i]="Nombres";i++;}
+	if(!esValido("Nombres",form.txtNombreEmpleado,"NombreEmpleado",1,0,50)){cadena[i]="Nombres";i++;}
 	
 	else{
     	
@@ -477,7 +477,7 @@ function validaForm(){
 		
 	}
 	
-	if(!esValido("Apellido Paterno",form.txtApellidoPaterno,"ApellidoPaterno",1,1,50)){cadena[i]="Apellido Paterno";i++;}
+	if(!esValido("Apellido Paterno",form.txtApellidoPaterno,"ApellidoPaterno",1,0,50)){cadena[i]="Apellido Paterno";i++;}
     
 	
 	else{
