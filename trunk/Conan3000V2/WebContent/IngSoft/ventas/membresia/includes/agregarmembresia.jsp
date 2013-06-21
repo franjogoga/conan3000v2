@@ -133,7 +133,7 @@ String fecAnoFin=dfActual.format(c1.getTime()); %>
 		                </div>
 		              </fieldset>
 		            </form>
-		          (*) Datos Obligatorios</div>
+		          (*) Campos Obligatorios</div>
 		        </div>
 			    <!--/span-->
 		      </div>
