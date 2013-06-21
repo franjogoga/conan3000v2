@@ -8,9 +8,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import IngSoft.general.CoAccion;
 import IngSoft.general.CoException;
-import IngSoft.venta.bean.CriterioSocioBeanData;
-import IngSoft.venta.bean.CriterioSocioBeanFuncion;
-import IngSoft.venta.bean.ResultadoSocioBeanData;
+import IngSoft.venta.bean.CriterioSolicitudSocioBeanData;
+import IngSoft.venta.bean.CriterioSolicitudSocioBeanFuncion;
+import IngSoft.venta.bean.ResultadoSolicitudSocioBeanData;
 
 public class AccionBuscarSolicitudSocio extends CoAccion{
 	
@@ -19,12 +19,11 @@ public class AccionBuscarSolicitudSocio extends CoAccion{
 			HttpServletResponse response) throws CoException {
 		// TODO Auto-generated method stub
 		
-		CriterioSocioBeanData criterioSocioData =new CriterioSocioBeanFuncion().crearCriterio(request, response);
-		Vector<ResultadoSocioBeanData> resultados=new CriterioSocioBeanFuncion().buscarPlantillaSocio(criterioSocioData);
-		
-		//request.setAttribute(name, o)
+		CriterioSolicitudSocioBeanData criterioSolicitudSocioData =new CriterioSolicitudSocioBeanFuncion().crearCriterio(request, response);
+		Vector<ResultadoSolicitudSocioBeanData> resultados=new CriterioSolicitudSocioBeanFuncion().buscarPlantillaSolicitudSocio(criterioSolicitudSocioData);
+
 		request.setAttribute("resultados", resultados);
-		this.direccionar(sc, request, response, "/IngSoft/ventas/socio/buscarsocio.jsp");
+		this.direccionar(sc, request, response, "/IngSoft/ventas/solicitud/buscarsolicitudsocio.jsp");
 		
 	}
 
