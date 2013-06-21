@@ -100,7 +100,7 @@
                           </div>
                         </div>
                         <div class="control-group" id="dvDescripcion">
-                  		  <label class="control-label" for="textarea2">Descripci&oacute;n:</label>
+                  		  <label class="control-label" for="textarea2">Descripci&oacute;n (*):</label>
                           <div class="controls">
                             <textarea name="txtDescripcion" rows="3" id="txtDescripcion" style="resize:none"></textarea>
                           	<span class="help-inline" id="errDescripcion">Please correct the error</span>
@@ -272,7 +272,7 @@ function validaForm(){
 			if(!esValido("RUC",form.txtRuc,"Ruc",6,11,11)){cadena[i]="RUC";i++;}
 		}
 
-        if(!esValido("Descripci&oacute;n",form.txtDescripcion,"Descripcion",1,0,100)){cadena[i]="Descripci&oacute;n";i++;}
+        if(!esValido("Descripci&oacute;n",form.txtDescripcion,"Descripcion",1,1,100)){cadena[i]="Descripci&oacute;n";i++;}
         
         //No tocar
         if(i>0){

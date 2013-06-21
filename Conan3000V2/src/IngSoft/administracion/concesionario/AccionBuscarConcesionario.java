@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import IngSoft.general.CoAccion;
 import IngSoft.general.CoException;
-import IngSoft.administracion.bean.ConcesionarioBeanFunction;
 import IngSoft.administracion.bean.CriterioConcesionarioBeanData;
 import IngSoft.administracion.bean.CriterioConcesionarioBeanFunction;
 import IngSoft.administracion.bean.ResultadoConcesionarioBeanData;

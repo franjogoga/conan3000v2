@@ -184,7 +184,7 @@
 												<i class="icon-zoom-in icon-white"></i> Ver 
 											</a>
 											<a class="btn btn-info" href="javascript:alt_modificar('<%=((ResultadoConcesionarioBeanData)resultados.get(i)).getCodigo()%>')">
-												<i class="icon-edit icon-white"></i> Modificar
+												<i class="icon-edit icon-white"></i> Actualizar
 											</a>
 											<a class="btn btn-danger" href="javascript:alt_eliminar('<%=((ResultadoConcesionarioBeanData)resultados.get(i)).getCodigo()%>')">
 												<i class="icon-trash icon-white"></i> Eliminar

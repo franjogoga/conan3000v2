@@ -11,5 +11,8 @@ public class SMAConcesionario extends CoServlet{
 		acciones.put("Agregar", new AccionAgregarConcesionario());
 		acciones.put("Modificar", new AccionModificarConcesionario());
 		acciones.put("Eliminar", new AccionEliminarConcesionario());
+		acciones.put("Seleccionar", new AccionSeleccionarSede());
+		acciones.put("ModificarSede", new AccionModificarSede());
+		acciones.put("EliminarSede", new AccionEliminarSede());
 	}
 }
