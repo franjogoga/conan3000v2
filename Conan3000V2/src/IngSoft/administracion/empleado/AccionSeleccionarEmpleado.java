@@ -19,8 +19,8 @@ public class AccionSeleccionarEmpleado  extends CoAccion {
 			HttpServletResponse response) throws CoException {
 		// TODO Auto-generated method stub
 		
-		CriterioEmpleadoBeanData criterioProductoData =new CriterioEmpleadoBeanFunction().crearCriterio(request, response);
-		Vector<ResultadoEmpleadoBeanData> resultados=new CriterioEmpleadoBeanFunction().buscarPlantillaEmpleado(criterioProductoData);
+		CriterioEmpleadoBeanData criterioEmpleadoData =new CriterioEmpleadoBeanFunction().crearCriterio(request, response);
+		Vector<ResultadoEmpleadoBeanData> resultados=new CriterioEmpleadoBeanFunction().buscarPlantillaEmpleado(criterioEmpleadoData);
 		request.setAttribute("resultados", resultados);
 		this.direccionar(sc, request, response, "/IngSoft/administracion/empleados/seleccionarempleado.jsp");
 	
