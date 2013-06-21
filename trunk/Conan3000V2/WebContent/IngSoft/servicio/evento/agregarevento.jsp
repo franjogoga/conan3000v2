@@ -134,7 +134,26 @@
 				$('#txtNumEntradas').parent().parent().toggleClass("error");
 			}
 			else $('#txtNumEntradas').parent().parent().addClass("success");
-			
+			if($('#txtPrecio').val()==null || $('#txtPrecio').val().length<=0){
+				$('#txtPrecio').bind("change",function(){
+				var temp= $('#txtPrecio');
+				if(temp.val()!=null && temp.val().length>0) {
+				temp.parent().parent().parent().removeClass("error");
+				temp.parent().parent().parent().addClass("success");
+				$('#errPrecio').slideUp(1000);
+				}
+				else {
+				temp.parent().parent().parent().removeClass("success");
+				temp.parent().parent().parent().addClass("error");
+				$('#errPrecio').slideDown(1000);
+				}
+				
+				})
+				$('#errPrecio').slideDown(1000);
+				test=false;
+				$('#txtPrecio').parent().parent().parent().toggleClass("error");
+			}
+			else $('#txtPrecio').parent().parent().addClass("success");
 	return test;
 		
 		
@@ -156,13 +175,15 @@
 			  type: "POST",
 			  url: "/Conan3000V2/IngSoft/servicio/evento/SMSEvento",
 			  data: "accion=" + $(accion).val() + "&tipo=" + $(tipo).val() + "&txtNombreEvento=" + $(txtNombreEvento).val() + "&txtNumEntradas=" + $(txtNumEntradas).val()  
-			  +  "&cmbSedes=" + $(cmbSedes).val() + "&fFecha=" + $(fFecha).val()+"&concesionario="+concesionario+"&precioentrada=78.00",
+			  +  "&cmbSedes=" + $(cmbSedes).val() + "&fFecha=" + $(fFecha).val()+"&concesionario="+concesionario+"&precioentrada="+$(txtPrecio).val(),
 			  dataType: "text",
 			  success: function(msg){
 				  var url="<%=request.getContextPath()%>"+msg;
 				  $("#linkAceptar").css("display","inline");
 				  $("#linkCerrar").css("display","none");
-				  $("#modalTitulo").html("EXITO");				  
+				  $("#modalTitulo").html("EXITO");	
+				  $("#MensajeExito").css("display","inline");
+				  $("#listaConcecionarios").css("display","none");			  
 				  $("#modalContenido").html("La plantilla de evento ha sido agregada exitosamente");
 				  $("#linkAceptar").bind("click",function(){
 					  location.href=url;					  
@@ -297,10 +318,19 @@
 					        <div class="control-group">
 						      <label class="control-label" for="txtNumEntradas">Limite Maximo Entradas(*): </label>
 						      <div class="controls">
-						        <input type="text" class="input typeahead" id="txtNumEntradas"  data-provide="typeahead"  name="txtNumEntradas" onkeypress="return numerico(event);" autofocus maxlength="11"/><br/>
+						        <input type="text" class="input typeahead" id="txtNumEntradas"  data-provide="typeahead"  name="txtNumEntradas" onkeypress="return numerico(event);"  maxlength="11"/><br/>
 								<span class="help-inline" id="errNumEntradas" style="display:none;">Este campo no puede estar vacio</span>						        													       
 					          </div>
-					        </div>						   
+					        </div>	
+					        <div class="control-group">
+						      <label class="control-label" for="txtPrecio">Precio de la Entrada(*): </label>
+						      <div class="controls">
+								  <div class="input-append">
+									<input  id="txtPrecio" name="txtPrecio" size="8" type="text" onkeypress="return numerico(event);"  maxlength="10"><span class="add-on">.00</span>
+								  </div><br/>
+								  <span class="help-inline" id="errPrecio" name="errPrecio" style="display:none;">Este campo no puede estar vacio</span>
+					        </div>
+					        </div>					   
 							  <div class="control-group">
 								<label class="control-label" for="cmbSedes">Sede relacionada(*):</label>
 								<div class="controls">
@@ -316,7 +346,7 @@
 							  <div class="control-group">
 							  <label class="control-label" for="fFecha">Fecha(*):</label>
 							  <div class="controls">
-								<input type="text" class="input datepicker" id="fFecha" readonly="true" value="<%=new SimpleDateFormat("dd/MM/yyyy").format(Utils.fechaMas( new Date(), 1))%>"  name="fFecha" onchange="confirmarcambio($(this))">
+								<input type="text" class="input datepickerB" id="fFecha" readonly="true" value="<%=new SimpleDateFormat("dd/MM/yyyy").format(Utils.fechaMas( new Date(), 5))%>"  name="fFecha" onchange="confirmarcambio($(this))">
 							  </div>
 							</div>
 							 <div class="control-group">
@@ -470,6 +500,11 @@
 		$('#txtNumEntradas').bind('paste',function(){		
 			setTimeout(function(){filtrar('1234567890',$('#txtNumEntradas'),50)}, 0);
 		})
+		$(function() {
+    	$( ".datepickerB" ).datepicker({
+    		minDate: +5,
+    });
+  });
 	</script>
 	
 		

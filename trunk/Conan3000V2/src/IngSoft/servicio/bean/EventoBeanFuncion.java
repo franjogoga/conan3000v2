@@ -77,7 +77,7 @@ public class EventoBeanFuncion {
 			eventoData.setNombre(request.getParameter("txtNombreEvento").trim());			
 			eventoData.setFecha(new java.sql.Date(DF.parse(request.getParameter("fFecha")).getTime()));
 			eventoData.setLimiteEntradas(Integer.parseInt(request.getParameter("txtNumEntradas")));
-			eventoData.setPrecioEntrada(Double.parseDouble(request.getParameter("precioentrada")));
+			eventoData.setPrecioEntrada(Double.parseDouble(request.getParameter("precioentrada")+".00"));
 			eventoData.setIdConcesionario(request.getParameter("concesionario"));
 			}catch(Exception e){
 				e.printStackTrace();
@@ -104,6 +104,7 @@ public class EventoBeanFuncion {
 			map.put("limiteE", eventoData.getLimiteEntradas());
 			map.put("precio", eventoData.getPrecioEntrada());
 			map.put("sede", eventoData.getIdSede());
+			map.put("fecha", eventoData.getFecha());
 			map.put("concesionario", eventoData.getIdConcesionario());
 			sqlsesion.insert("Data.servicio.evento.insertEventoxSede",map);
 			sqlsesion.commit();
