@@ -85,7 +85,7 @@
 						    
 						    <div class="form-actions">
 					       <button  type="submit" class="btn btn-primary" href="">Buscar</button>  
-			               <button type="submit" class="btn" href="buscarservicio.jsp">Cancelar</button>  
+			               <button type="button" class="btn" href="buscarservicio.jsp">Cancelar</button>  
 							
 							</div>
 						  </fieldset>
