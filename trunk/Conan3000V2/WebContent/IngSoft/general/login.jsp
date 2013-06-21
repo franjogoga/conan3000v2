@@ -41,7 +41,7 @@
 
   function valida_envia(){
 
-
+	
    	if (document.fvalida.username.value.length==0)
 
  {
@@ -88,6 +88,7 @@
 						Por favor inicie sesi&oacute;n con su Usuario y Contraseña.
 					</div>
 					<form class="form-horizontal" action="<%= response.encodeURL("GENLogin")%>" name="fvalida" method="post">
+					<% %>
 					<input type="hidden" name="accion" value="Login"></input>
 						<fieldset>
 							<div class="input-prepend" title="Username" data-rel="tooltip">
