@@ -94,7 +94,7 @@
 			}
 	function alt_Insertar(cod,name){
 		
-		parent.anhadirprod(cod,name);
+		parent.anhadiremp(cod,name);
 	}
 	
 	
