@@ -2,32 +2,31 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="Data.venta.solicitud">
+<mapper namespace="Data.venta.solicitudproducto">
 
   <cache />
 
 <select id="searchPlantillaSolicitudProducto" parameterType="IngSoft.venta.bean.CriterioSolicitudProductoBeanData" resultType="IngSoft.venta.bean.ResultadoSolicitudProductoBeanData">
 select 
-PRODUCTO_PROV.IdSolicitudProducto as idSolicitudProducto
-,PRODUCTO_PROV.IdEmpleado as idEmpleado
-,PRODUCTO_PROV.Estado as estado
-,PRODUCTO_PROV.MontoTotal as montoTotal
-,PRODUCTO_PROV.Fecha as fecha
-,PRODUCTO_PROV.IdSede as idSede
+SOLICITUD_PRODUCTO.IdSolicitudProducto as idSolicitudProducto
+,SOLICITUD_PRODUCTO.IdEmpleado as idEmpleado
+,SOLICITUD_PRODUCTO.Estado as estado
+,SOLICITUD_PRODUCTO.MontoTotal as montoTotal
+,SOLICITUD_PRODUCTO.Fecha as fecha
+,SOLICITUD_PRODUCTO.IdSede as idSede
 ,LINEA_PRODUCTO.Cantidad as cantidad
-
 from SOLICITUD_PRODUCTO,LINEA_PRODUCTO
 <where>
 	
-    <if test="descripcion != null">
-       SOLICITUD_PRODUCTO.Descripcion like #{descripcion}
+    <if test="idEmpleado != null">
+       SOLICITUD_PRODUCTO.IdEmpleado like #{idEmpleado}
     </if>
-    <if test="nombre != null">
-        AND SOLICITUD_PRODUCTO.Nombre like #{nombre}
+    <if test="cantidad != null">
+        AND LINEA_PRODUCTO.Cantidad like #{cantidad}
     </if>
    
      <if test="estado != null">
-        AND SOLICITUD_PRODUCTO.Estado like #{estado}
+        AND SOLICITUD_PRODUCTO.IdSede like #{idSede}
     </if>  
       
 </where>
@@ -37,19 +36,12 @@ from SOLICITUD_PRODUCTO,LINEA_PRODUCTO
 		select IdSede as codigo, Nombre as nombre 
 		from SEDE
 	</select>
-	
-	  <select id="searchEmpleadoMini" resultType="IngSoft.venta.bean.EmpleadoMiniBeanData">
-		select EMPLEADO.IdEmpleado as codigo,
-		,CONCAT(PERSONA.Nombres,' ',PERSONA.ApePaterno,' ',PERSONA.ApeMaterno) as nombre
-		from EMPLEADO,PERSONA where  IdPersona= #{codigo};
-	</select>
-	
-  
+ 
   
 <!-- Agregar plantilla membresia -->
 <insert id="insertSolicitudProducto" parameterType="IngSoft.venta.bean.SolicitudProductoBeanData" flushCache="true">
 	insert into SOLICITUD_PRODUCTO(IdSolicitudProducto,IdEmpleado,Estado,MontoTotal,Fecha,IdSede)
-	values (#{idSolicitudProducto},#{idEmpleado},#{estado},#{montoTotal},#{fecha},#{idSede})
+	values (#{idSolicitudProducto},#{idEmpleado},'Pendiente',#{montoTotal},#{fecha},#{idSede})
 </insert>
 
 <select id="getNextCodigoS" resultType="java.lang.String">
@@ -58,7 +50,6 @@ from SOLICITUD_PRODUCTO,LINEA_PRODUCTO
 
 
  <!-- Fin agregar  -->
- 
 
 
 <!--Eliminar membresia -->
@@ -69,14 +60,14 @@ update SOLICITUD_PRODUCTO set Estado='Eliminado' where IdSolicitudProducto= #{Id
 
 <select id="getPlantillaSolicitudProducto" parameterType="java.lang.String"  resultType="IngSoft.venta.bean.SolicitudProductoBeanData">
 select 
-PRODUCTO_PROV.IdSolicitudProducto as idSolicitudProducto
-,PRODUCTO_PROV.IdEmpleado as idEmpleado
-,PRODUCTO_PROV.Estado as estado
-,PRODUCTO_PROV.MontoTotal as montoTotal
-,PRODUCTO_PROV.Fecha as fecha
-,PRODUCTO_PROV.IdSede as idSede
+SOLICITUD_PRODUCTO.IdSolicitudProducto as idSolicitudProducto
+,SOLICITUD_PRODUCTO.IdEmpleado as idEmpleado
+,SOLICITUD_PRODUCTO.Estado as estado
+,SOLICITUD_PRODUCTO.MontoTotal as montoTotal
+,SOLICITUD_PRODUCTO.Fecha as fecha
+,SOLICITUD_PRODUCTO.IdSede as idSede
 
-from PRODUCTO_PROV  where IdSolicitudProducto=#{idSolicitudProducto} 
+from SOLICITUD_PRODUCTO  where IdSolicitudProducto=#{idSolicitudProducto} 
 
 
 </select>
