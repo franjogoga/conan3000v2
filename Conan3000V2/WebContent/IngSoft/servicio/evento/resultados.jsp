@@ -37,8 +37,9 @@
                           		%>
                           		<tr>
                           			<td>
+                          			<%String codmin =((EventoBeanData)resultados.get(i)).getCodigo().substring(0, 3);%>
                           				<%=
-                          					((EventoBeanData)resultados.get(i)).getCodigo()
+                          					(codmin.equals("ESD")?"Evento Sede":"")+(codmin.equals("ESC")?"Evento Socio":"")+(codmin.equals("ECP")?"Evento Corporativo":"")
                           				%>
                           			</td>
                           			<td class="center">
@@ -68,8 +69,9 @@
                           					<i
                           						class="icon-zoom-in icon-white">
                           					</i>
-Ver
+<%=((EventoBeanData)resultados.get(i)).getEstado().equals("REGISTRADO")?"Evaluar":"Ver"%>
                           				</a>
+                          				<%if(((EventoBeanData)resultados.get(i)).getEstado().equals("REGISTRADO")){ %>
                           				<a class="btn btn-info"
                           					href="javascript:alt_modificar('<%=((EventoBeanData)resultados.get(i)).getCodigo()%>')">
                           					<i
@@ -77,12 +79,7 @@ Ver
                           					</i>
  Modificar
                           				</a>
-                          				<a class="btn btn-danger"
-                          					href="javascript:alt_eliminar('<%=((EventoBeanData)resultados.get(i)).getCodigo()%>')">
-                          					<i class="icon-trash icon-white">
-                          					</i>
-		Eliminar
-                          				</a>
+                          				<%} %>
                           			</td>
                           		</tr>
 

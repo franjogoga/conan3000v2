@@ -75,12 +75,14 @@
 		form.submit();
 	}
 	function alt_consultar(cod){
+	return null;
 		var form=document.getElementById("frmAlternativo");
 		form.accion.value="Consultar";
 		form.codigo.value=cod;
 		form.submit();
 	}
 	function alt_modificar(cod){
+	return null;
 		var form=document.getElementById("frmAlternativo");
 		form.accion.value="Modificar";
 		form.codigo.value=cod;
