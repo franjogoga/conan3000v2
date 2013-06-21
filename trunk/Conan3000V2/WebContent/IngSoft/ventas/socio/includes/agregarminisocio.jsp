@@ -155,7 +155,7 @@ function anhadir(cod, name){
 		                        </div>
 		                      </fieldset>
 		                    </form>
-                            (*) Datos Obligatorios
+                            (*) Campos Obligatorios
 		                  </div>
 		                </div>
 			            <!--/span-->
