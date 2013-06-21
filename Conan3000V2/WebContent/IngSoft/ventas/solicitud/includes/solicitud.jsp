@@ -1,11 +1,15 @@
+
+
+
 <script>
-function cambiar(){
-document.frmSolicitud.action=document.frmSolicitud.cmbTiposolicitud.value;
+function alt_submit(){
+		var form= document.frmSolicitud;
+		if(1) form.submit();		
 }
+</script>
 
-</script>	
 
-	<!-- content starts -->
+<!-- content starts -->
 			 	  <div>
 			    <ul class="breadcrumb">
 		        <li> <a href="../../general/index.jsp">Home</a> <span class="divider">/</span></li>
@@ -19,24 +23,25 @@ document.frmSolicitud.action=document.frmSolicitud.cmbTiposolicitud.value;
 			        <h2><i class="icon-plus-sign"></i> SOLICITUDES </h2>
 		          </div>
 			      <div class="box-content">
-			        <form class="form-horizontal" name="frmSolicitud" id="frmSolicitud" method="POST" action="agregarsolicitudproducto.jsp">
+			        <form class="form-horizontal" name="frmSolicitud" method="Post"  action="SMVSolicitud">
+			        <input type="hidden" name="accion" value="Agregar"></input>
+			        
 			          <fieldset>
-			                 <div class="control-group">
+			              <div class="control-group">
 			                <label class="control-label" for="selectError">Tipo de Solicitud(*):</label>
 			                <div class="controls">
-			                  <select name="cmbTiposolicitud" id="selectError" data-rel="chosen" onChange="javascript:cambiar();">
-			                    <option value="agregarsolicitudproducto.jsp" selected>Productos</option>
-			                    <option value="agregarsolicitudsocio.jsp">Socio</option>
-			                     <option value="agregarsolicitudservicio.jsp">Servicio de Proveedores</option>
-			                
+			                  <select name="cmbTiposolicitud" id="cmbTiposolicitud" data-rel="chosen">
+			                    <option selected>Productos</option>
+			                    <option>Socio</option>
+			                     <option>Servicio de proveedores</option>
 		                      </select>
 		                    </div>
 		                  </div>
                       
 			                <div class="control-group">
 							  <div class="controls">
-								<button name="btnAceptar" class="btn btn-primary" type="submit">Aceptar</button>
-                                <button name="btnCancelar" class="btn">Cancelar</button>
+								<button type="button" class="btn btn-primary" onclick="javascript:alt_submit()">Aceptar</button>
+                                <button type="button" class="btn">Cancelar</button>
 							  </div>
 							</div>
 			             
@@ -55,8 +60,4 @@ document.frmSolicitud.action=document.frmSolicitud.cmbTiposolicitud.value;
 			    <!--/span-->
 		      </div>
 			  <!--/row-->
-			 
-
-		  
-       
-					<!-- content ends -->
+<!-- content ends -->
