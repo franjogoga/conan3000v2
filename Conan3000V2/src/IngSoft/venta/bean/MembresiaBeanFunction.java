@@ -29,6 +29,24 @@ public class MembresiaBeanFunction {
 	   }
 	   
 	   private MembresiaBeanFunction() {}
+	   
+	   public MembresiaBeanData obtenerPrecio() throws CoException{
+		   MembresiaBeanData membresiaData= new MembresiaBeanData();
+		   l.lock();
+			SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+			
+			try{
+				membresiaData= sqlsesion.selectOne("Data.venta.membresia.getPrecio");
+			
+			}
+			finally{
+				sqlsesion.close();
+			}
+			
+		 
+		   return membresiaData;
+		   
+	   }
 	
 	public MembresiaBeanData crearMembresia(HttpServletRequest request, HttpServletResponse response){
 		MembresiaBeanData membresiaData= new MembresiaBeanData();
@@ -40,14 +58,14 @@ public class MembresiaBeanFunction {
 		membresiaData.setCosto(Double.parseDouble(request.getParameter("txtCosto")));
 		membresiaData.setPeriodo(request.getParameter("cmbPeriodo"));
 		membresiaData.setEstado(request.getParameter("rButton"));
-		if(membresiaData.getPeriodo().equals("Anual")){
+		if(membresiaData.getPeriodo().equals("Mensual")){
 		membresiaData.setCantCuota(12);
 		}else{
 			if(membresiaData.getPeriodo().equals("Semestral")){
-				membresiaData.setCantCuota(6);
+				membresiaData.setCantCuota(2);
 				}else{
-					if(membresiaData.getPeriodo().equals("Indefinido")){
-						membresiaData.setCantCuota(12);
+					if(membresiaData.getPeriodo().equals("Anual")){
+						membresiaData.setCantCuota(1);
 						}
 					
 					
@@ -130,6 +148,7 @@ public class MembresiaBeanFunction {
 			String codigoCuota= (String)sqlsesion.selectOne("Data.venta.membresia.getNextCodigoCuota");
 			
 			int codCuota=0;
+			int estadoPA=0;
 			for(int i=0;i<membresiaData.getCantCuota();i++){
 				
 				if(codigoCuota!=null){
@@ -149,8 +168,15 @@ public class MembresiaBeanFunction {
 				membresiaData.setEstadoCuota("No Cancelado");
 				
 				
-			
+					if(membresiaData.getCantCuota()>0 && estadoPA==0)
 					c.set(c.get(Calendar.YEAR), c.get(Calendar.MONTH)+1,7);// dia del mes que vence hardcodeado
+					else{
+						if(membresiaData.getCantCuota()==12)
+							c.set(c.get(Calendar.YEAR), c.get(Calendar.MONTH)+1,7);
+						if(membresiaData.getCantCuota()==2)
+							c.set(c.get(Calendar.YEAR), c.get(Calendar.MONTH)+6,7);
+						
+					}
 					
 					
 					
