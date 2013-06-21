@@ -40,7 +40,7 @@
 							  <div class="control-group">
 			                <label class="control-label" for="textarea2">Descripci&oacute;n:</label>
 			                <div class="controls">
-			                  <textarea name="textarea" disabled class="" id="textarea" ><%=producto.getDescripcion()%></textarea>
+			                  <textarea name="textarea" disabled class="" id="textarea" style="resize:none"><%=producto.getDescripcion()%></textarea>
 		                    </div>
 		                  </div>
 						      
