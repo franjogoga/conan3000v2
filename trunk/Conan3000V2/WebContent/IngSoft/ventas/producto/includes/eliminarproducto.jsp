@@ -58,7 +58,7 @@
 							  <div class="control-group">
 			                <label class="control-label" for="textarea2">Descripci&oacute;n:</label>
 			                <div class="controls">
-			                  <textarea name="textarea" class="" id="txtDescripcion" style="resize:none;" name="txtDescripcion" ><%=producto.getDescripcion()%></textarea>
+			                  <textarea name="textarea" class="" id="txtDescripcion" style="resize:none;" name="txtDescripcion" disabled><%=producto.getDescripcion()%></textarea>
 		                    </div>
 		                  </div>
 						      
@@ -66,7 +66,7 @@
 
 							    <label class="control-label" for="typeahead14">Presentación: </label>
 							    <div class="controls">
-							      <input type="text" class="span6 typeahead" value="<%=producto.getPresentacion()%>"  id="txtPresentacion" name="txtPresentacion" data-provide="typeahead" data-items="4"/>
+							      <input type="text" class="span6 typeahead" value="<%=producto.getPresentacion()%>" disabled id="txtPresentacion" name="txtPresentacion" data-provide="typeahead" data-items="4"/>
 						        </div>
 						      </div>
 						      
