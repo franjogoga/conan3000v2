@@ -72,7 +72,14 @@ function validaForm(){
 	var cadena= new Array();
 	var i=0;
 	var error=false;
-	
+	if(!esValido("Socio",form.txtSocio,"Socio",1,1,100)){cadena[i]="Socio";i++;}
+	if(!esValido("Descripcion",form.txtDescripcion,"Descripcion",1,1,100)){cadena[i]="Descripcion";i++;}
+	if(!esValido("Monto",form.txtMonto,"Monto",1,1,50)){
+		cadena[i]="Monto";i++;
+	}else{
+		//valida si es float o entero
+		if(!esValido("Monto",form.txtMonto,"Monto",5,1,1)){cadena[i]="Monto";i++;}
+	}
 	
 	//No tocar
 	if(i>0){
@@ -90,7 +97,9 @@ function inicializa(){
 /*Esto se debe llenar siempre deacuerdo a las etiuquetas <span> del formulario, esto sirve para ocultar inicialmente los avisos
 Solo poner el id de los <span> segun corresponda
 */
-	
+	document.getElementById("errDescripcion").style.display='none';
+	document.getElementById("errMonto").style.display='none';
+	document.getElementById("errSocio").style.display='none';
 }
 
 

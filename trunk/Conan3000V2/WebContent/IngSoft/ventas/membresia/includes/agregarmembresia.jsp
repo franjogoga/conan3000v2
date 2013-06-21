@@ -49,8 +49,17 @@ c1.add(Calendar.YEAR, 1);
 SimpleDateFormat dfActual= new SimpleDateFormat("dd/MM/YYYY");
 String fecAnoIni=dfActual.format(new java.util.Date());
 
-String fecAnoFin=dfActual.format(c1.getTime()); %>
+String fecAnoFin=dfActual.format(c1.getTime());
+
+
+
+
+
+%>
 <!-- content starts -->
+<!--The beans  -->
+	<jsp:useBean id="membresia" scope="request"class="IngSoft.venta.bean.MembresiaBeanData"></jsp:useBean>	
+
 			  <div>
 			   <ul class="breadcrumb">
 		        <li> <a href="index.jsp">Home</a> <span class="divider">/</span></li>
@@ -69,12 +78,13 @@ String fecAnoFin=dfActual.format(c1.getTime()); %>
 					<input type="hidden" name="tipo" value="2"></input>
 			          <fieldset>
 			          <div class="control-group" id="dvPeriodo">
-                            <label class="control-label" for="selectError">Periodo (*):</label>
+                            <label class="control-label" for="selectError">Periodo Pago (*):</label>
                             <div class="controls">
                               <select  id="cmbPeriodo" data-rel="chosen" name="cmbPeriodo" class='' onChange="javascript:confFecha();">
 								
 								<option value="Anual">Anual</option>
                                 <option value="Semestral">Semestral</option>
+                                <option value="Semestral">Mensual</option>
                               </select>
                               <span class="help-inline" id="errPeriodo">Please correct the error</span>
                             </div>
@@ -96,7 +106,7 @@ String fecAnoFin=dfActual.format(c1.getTime()); %>
 			              <div class="control-group" id="dvCosto">
 			                <label class="control-label" for="typeahead4">Costo (S/.) (*): </label>
 			                <div class="controls">
-			                  <input type="text" class="input-xlarge" id="txtCosto" name="txtCosto"  data-provide="typeahead" data-items="4" >
+			                  <input type="text" class="input-xlarge" id="txtCosto" name="txtCosto"  data-provide="typeahead" data-items="4" value="<%=membresia.getCosto()%>" >
 			                  <span class="help-inline" id="errCosto">Please correct the error</span>
 			                </div>
 		                  </div>
@@ -109,7 +119,7 @@ String fecAnoFin=dfActual.format(c1.getTime()); %>
 			                  <span class="help-inline" id="errSocio">Please correct the error</span>
 			                </div>
 		                  </div>
-                          
+                         
 						<div class="control-group" id="dvEstado">
 	                <label class="control-label" for="selectError">Estado (*):</label>
 			                <div class="controls">

@@ -44,6 +44,10 @@ from MEMBRESIA, PERSONA
 	select max(IdMembresia) from MEMBRESIA
 </select>
 
+<select id="getPrecio" resultType="IngSoft.venta.bean.MembresiaBeanData">
+	select max(PrecioMembresia) as costo from CONFIGURACION
+</select>
+
 <select id="getNextCodigoDetalle" resultType="java.lang.String">
 	select max(IdDetalleCuota) from DETALLE_CUOTA
 </select>

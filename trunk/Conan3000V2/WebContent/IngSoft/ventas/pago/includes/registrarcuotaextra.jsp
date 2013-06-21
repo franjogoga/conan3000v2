@@ -110,7 +110,7 @@ String fecHoy=dfActual.format(new java.util.Date());
 			              </div>
 		                </div>
                         <div class="control-group" >
-                            <label class="control-label" for="typeahead2">Fecha: </label>
+                            <label class="control-label" for="typeahead2">Fecha (*): </label>
                             <div class="controls">
                               <input type="text" class="input-xlarge datepicker disabled" id="date" value="<%=fecHoy%>" disabled="">
                              

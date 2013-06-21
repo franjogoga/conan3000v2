@@ -18,12 +18,19 @@ public class AccionAgregarMembresia extends CoAccion {
 		// TODO Auto-generated method stub
 		// TODO Auto-generated method stub
 				int tipo=Integer.parseInt(request.getParameter("tipo"));
+				MembresiaBeanFunction membresiaFunction= MembresiaBeanFunction.getInstance();
 				if(tipo==2){
-					MembresiaBeanFunction membresiaFunction= MembresiaBeanFunction.getInstance();
+					
 					MembresiaBeanData membresiaData=membresiaFunction.crearMembresia(request, response);
 					membresiaFunction.agregarMembresia(membresiaData);
 					this.direccionar(sc, request, response, "/IngSoft/ventas/membresia/buscarmembresia.jsp");
 				}
+				
+				MembresiaBeanData membresia=membresiaFunction.obtenerPrecio();
+				
+
+				request.setAttribute("membresia", membresia);
+				
 				
 				this.direccionar(sc, request, response, "/IngSoft/ventas/membresia/agregarmembresia.jsp");
 					

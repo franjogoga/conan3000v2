@@ -133,7 +133,7 @@ String fecAnoFin="31/12"+dfActual.format(c1.getTime()); %>
 		        <div class="box-content">
 		          <table class="table table-striped table-bordered bootstrap-datatable datatable">
 		            <!-- agregar nuevo boton -->
-		            <div  align="right"> <a class="btn btn-primary" href="agregarmembresia.jsp"> <i class="icon icon-add icon-white"></i> Agregar </a> </div>
+		            <div  align="right"> <a class="btn btn-primary" href="javascript:alt_agregar();"> <i class="icon icon-add icon-white"></i> Agregar </a> </div>
 		            <thead>
 		              <tr>
 		                <th width="20%">Socio</th>
