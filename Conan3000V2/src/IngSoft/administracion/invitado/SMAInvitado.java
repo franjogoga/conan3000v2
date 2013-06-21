@@ -9,8 +9,8 @@ public class SMAInvitado extends CoServlet{
 		acciones.put("Consultar", new AccionConsultarInvitado());
 		acciones.put("Eliminar", new AccionEliminarInvitado());		
 		acciones.put("Modificar", new AccionModificarInvitado());
-		
 		acciones.put("Agregar", new AccionAgregarInvitado()); 
-   
+		
+		  
 	}
 }
