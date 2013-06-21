@@ -185,7 +185,7 @@
                       <div class="box-content">
                         <table class="table table-striped table-bordered bootstrap-datatable datatable">
                           <!-- agregar nuevo boton -->
-                          <div align="right"> <a class="btn btn-primary iframe" href="SMAConcesionario?accion=Seleccionar&codigo=<%=concesionario.getCodigo()%>&tipo=1"><i class="icon icon-add icon-white"></i> Agregar</a></div>
+                          <div align="right"><a class="btn btn-primary iframe" href="SMAConcesionario?accion=Seleccionar&codigo=<%=concesionario.getCodigo()%>&tipo=1"><i class="icon icon-add icon-white"></i> Agregar</a></div>
                           <thead>
                             <tr>
                               <th>Sede</th>
@@ -205,7 +205,7 @@
 								 						out.print("<span class='label label-success'>"+((ConcesionarioSedeBeanData)concesionarioSede.get(i)).getEstado()+"</span>");
 												   }
 												   else{
-								 						out.print("<span class='label label-warning'>"+((ConcesionarioSedeBeanData)concesionarioSede.get(i)).getEstado()+"</span>");
+								 						out.print("<span class='label label-danger'>"+((ConcesionarioSedeBeanData)concesionarioSede.get(i)).getEstado()+"</span>");
 												   }%></td>
 							  <td class="center">
 											<a class="btn btn-info iframe" href="SMAConcesionario?accion=ModificarSede&codigo=<%=concesionario.getCodigo()%>&codigoSede=<%=((ConcesionarioSedeBeanData)concesionarioSede.get(i)).getCodigo()%>&tipo=1">
@@ -363,9 +363,9 @@
 <!--     -----------------------------------------------------   -->
 	
 	<script type="text/javascript" src="js/apprise-1.5.full.js"></script>
-<link rel="stylesheet" href="css/apprise.css" type="text/css" />
-<script type="text/javascript" src="js/script.js"></script>
-                <script>
+	<link rel="stylesheet" href="css/apprise.css" type="text/css" />
+	<script type="text/javascript" src="js/script.js"></script>
+    <script>
  
  
 function validaForm(){

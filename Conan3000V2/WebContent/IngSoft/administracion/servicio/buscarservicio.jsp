@@ -214,7 +214,7 @@
 								 						out.print("<span class='label label-success'>"+((ResultadoServicioBeanData)resultados.get(i)).getEstado()+"</span>");
 												   }
 												   else{
-								 						out.print("<span class='label label-warning'> "+((ResultadoServicioBeanData)resultados.get(i)).getEstado()+"</span>");
+								 						out.print("<span class='label label-danger'> "+((ResultadoServicioBeanData)resultados.get(i)).getEstado()+"</span>");
 												   }%></td>
                               <td class="center">
                               				<a class="btn btn-success" href="javascript:alt_consultar('<%=((ResultadoServicioBeanData)resultados.get(i)).getCodigo()%>')">

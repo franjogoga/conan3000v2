@@ -239,7 +239,7 @@
 								 						out.print("<span class='label label-success'>"+((ResultadoBungalowBeanData)resultados.get(i)).getEstado()+"</span>");
 												   }
 												   else{
-								 						out.print("<span class='label label-warning'> "+((ResultadoBungalowBeanData)resultados.get(i)).getEstado()+"</span>");
+								 						out.print("<span class='label label-danger'> "+((ResultadoBungalowBeanData)resultados.get(i)).getEstado()+"</span>");
 												   }%></td>
                               <td class="center">
                               				<a class="btn btn-success" href="javascript:alt_consultar('<%=((ResultadoBungalowBeanData)resultados.get(i)).getCodigo()%>')">
