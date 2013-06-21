@@ -46,8 +46,8 @@ where
 es.IdSede= s.IdSede
 and es.Estado like #{estado}
 and es.IdSede like #{sede}
-and DATE(es.Fecha) &lt;= DATE(#{FI})
-and DATE(es.Fecha) &gt;= DATE(#{FF})
+and DATE(es.Fecha) &gt;= DATE(#{FI})
+and DATE(es.Fecha) &lt;= DATE(#{FF})
 and es.Nombre like #{nombre}
 </select>
 
@@ -126,9 +126,9 @@ and DATE(cs.FechaInicio)&lt;=DATE(#{fecha})
 </insert>
 <insert id="insertEventoxSede" parameterType="hashmap">
 insert into 
-EVENTO_SEDE(IdEventoSede,Nombre,LimiteEntradas,Precio,IdSede,IdConcesionario)
+EVENTO_SEDE(IdEventoSede,Nombre,LimiteEntradas,Precio,IdSede,IdConcesionario,Estado,Fecha)
 values
-(#{codigo},#{nombre},#{limiteE},#{precio},#{sede},#{concesionario})
+(#{codigo},#{nombre},#{limiteE},#{precio},#{sede},#{concesionario},'REGISTRADO',#{fecha})
 </insert>
  <!-- Fin agregar  -->
  
