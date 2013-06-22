@@ -303,5 +303,26 @@ public String consultarMembresiaMax() throws CoException {
 		}			
 		return ;
 	}
+	
+	public void modificarSocio(String codigo) throws CoException {
+		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+		try{
+					
+		//	System.out.println("Ambs="+mods.size());
+			sqlsesion.update("Data.venta.membresia.updateSocio",codigo);
+		}
+		catch(Exception a)		
+		{sqlsesion.rollback();
+		a.printStackTrace();
+			//throw CoException.set("Error: No se pudo modificar la membresia, intente de nuevo", "SMVMembresia?accion=Modificar&tipo=1");
+			
+		}
+		
+		finally{
+			sqlsesion.commit();
+			sqlsesion.close();					
+		}			
+		return ;
+	}
 
 }
