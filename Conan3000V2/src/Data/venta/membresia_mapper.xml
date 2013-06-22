@@ -69,6 +69,11 @@ update MEMBRESIA set FechaInicio=#{fechaInicio}
  where IdMembresia= #{idMembresia}
 </update>
 
+<update id="updateSocio" parameterType="IngSoft.venta.bean.SocioBeanData">
+update SOCIO set Flag='1'
+ where SOCIO.IdSocio= #{codigo}
+</update>
+
 <!-- Fin modificar -->
 
 
