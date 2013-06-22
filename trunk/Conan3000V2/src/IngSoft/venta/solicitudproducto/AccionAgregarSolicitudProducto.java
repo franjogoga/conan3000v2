@@ -1,6 +1,6 @@
 package IngSoft.venta.solicitudproducto;
 
-import java.io.IOException;
+
 import java.util.Vector;
 
 import javax.servlet.ServletContext;
@@ -27,14 +27,8 @@ public class AccionAgregarSolicitudProducto extends CoAccion {
 					SolicitudProductoBeanFuncion solproductoFunction= SolicitudProductoBeanFuncion.getInstance();
 					SolicitudProductoBeanData solproductoData=solproductoFunction.crearSolProducto(request, response);
 					solproductoFunction.agregarSolicitudProducto(solproductoData);
-					response.setContentType("text/plain");  
-				    response.setCharacterEncoding("UTF-8");
-				    try {
-						response.getWriter().write( "/IngSoft/ventas/solicitudproducto/SMVSolicitudProducto?accion=Buscar&tipo=1");
-					} catch (IOException e) {				
-						e.printStackTrace();
-					}
-				}
+			
+					  this.direccionar(sc, request, response, "/IngSoft/ventas/solicitud/solicitud.jsp");  }
 				    if(tipo==1){
 				    	Vector<SedeMiniBeanData> sedeMiniData=eventoFunction.getSedes();
 
@@ -43,8 +37,11 @@ public class AccionAgregarSolicitudProducto extends CoAccion {
 				    	
 				        this.direccionar(sc, request, response, "/IngSoft/ventas/solicitud/agregarsolicitudproducto.jsp");
 				    }
-							
-	}
-
+			  }
 }
+
+							
+	
+
+
 			

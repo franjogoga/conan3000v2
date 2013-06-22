@@ -1,5 +1,4 @@
 <%@page import="IngSoft.servicio.bean.SedeMiniBeanData"%>
-<%@page import="IngSoft.venta.bean.EmpleadoMiniBeanData"%>
 <%@page import="IngSoft.administracion.bean.EmpleadoBeanData"%>
 
 	<meta charset="utf-8">
@@ -10,7 +9,9 @@
 	
 	<jsp:useBean id="sedes" scope="request" class="java.util.Vector"></jsp:useBean>
 	<jsp:useBean id="empleados" scope="request" class="IngSoft.administracion.bean.EmpleadoBeanData"></jsp:useBean>
+	<jsp:useBean id="lista" scope="request"class="IngSoft.venta.bean.ListaProductos"></jsp:useBean>
 	<jsp:useBean id="resultados" scope="request"class="java.util.Vector"></jsp:useBean>
+	
 		
 <script type="text/javascript" src="js/apprise-1.5.full.js"></script>
 
@@ -74,7 +75,7 @@
 			      <div class="box-content">
 			        <form class="form-horizontal" name="frmProducto"  method="Post"  action="SMVProducto" onsubmit="alt_submit();return false;" >
 						<input type="hidden" name="accion" id="accion" value="Agregar" ></input>
-						<input type="hidden" name="tipo" id="tipo" value="2" ></input>
+						<input type="hidden" name="tipo" id="tipo" value="1" ></input>
 						
 						    
 			         <div class="control-group" id="dvProducto">
@@ -91,8 +92,8 @@
 			         </form>
 			        
 			         <form  id="frmEmpleado" name="frmEmpleado" method="POST" action="SMSEmpleado" onsubmit="alt_submit();return false;"  >
-			        	    <input type="hidden" name="accion" value="Agregar"></input>
-   		 				<input type="hidden" name="tipo" value="2"></input>
+			        	    <input type="hidden" name="accion" id="accion" value="Agregar"></input>
+   		 				<input type="hidden" name="tipo" id="tipo" value="1"></input>
    		 				
    		 				 	 
 		                 <div class="control-group" id="dvEmpleado">
@@ -104,7 +105,7 @@
 			                  <span class="help-inline" id="errEmpleado">Please correct the error</span>
 			                </div>
 		                  </div>
-		                   <input type="hidden" name=idEmpleado value=""/></input>
+		                   <input type="hidden" name="idEmpleado" value=""/></input>
 		                  	 
 			         </form>
 			        
@@ -126,16 +127,12 @@
                           <label class="control-label" for="selectError">Sede (*):</label>
                           <div class="controls">
                             <select id="cmbSede" data-rel="chosen" name="cmbSede">
-								<%for(int i=0;i<sedes.size();i++){ %>
-										<option value="<%= ((SedeMiniBeanData)sedes.get(i)).getCodigo()%>"><%= ((SedeMiniBeanData)sedes.get(i)).getNombre()%></option>
+                          		<%for(int i=0;i<sedes.size();i++){ %>
+								 <option value="<%= ((SedeMiniBeanData)sedes.get(i)).getCodigo()%>" <%=i==0?"selected":""%>><%=((SedeMiniBeanData)sedes.get(i)).getNombre()%></option>
 								<%} %>
                             </select>
                           </div>
                         </div>
-		               		      
-		               	      
-		                   
-		               		      
 		               		              			          
 			            <div class="form-actions">
 			          
