@@ -36,7 +36,7 @@ from SOCIO,PERSONA
 </where>
 </select>
 
-  
+
 <!-- Agregar plantilla socio -->
 <insert id="insertSocio" parameterType="IngSoft.venta.bean.SocioBeanData" flushCache="true">
 	insert into SOCIO(IdSocio,IdPerfil,Direccion,Correo,TelefonoFijo,IdSolicitudIngreso,IdDistrito,TelefonoCelular,Flag)
