@@ -43,13 +43,12 @@ order by 1 asc
 	values (#{idSocio},#{idSorteo},#{fecha},#{codParticipante})
 </insert>
 
-<select id="getBungalowxSorteo" parameterType="String" resultType="IngSoft.servicio.bean.BungalowxSorteo">
+<select id="getBungalowxSorteo" parameterType="IngSoft.servicio.bean.BungalowxSorteo" resultType="IngSoft.servicio.bean.BungalowxSorteo">
 	select 
-	IdBungalow as idBungalow,
-	IdSorteo as idSorteo 
+	IdBungalow as idBungalow
 	from 
 	BUNGALOWxSORTEO
-	where IdSocio=#{idSocio};
+	where IdSocio=#{idSocio} and IdSorteo=#{idSorteo};
 </select>
 
 <select id="getAreaBungalow" parameterType="java.lang.String" resultType="double">
@@ -60,4 +59,23 @@ order by 1 asc
 	where IdBungalow=#{idBungalow};
 </select>
 
+<select id="searchHaySorteo2" parameterType="String" resultType="java.lang.Integer">
+	select flag
+	from SORTEO
+	where IdSorteo=#{idSorteo};
+</select>
+
+<select id="cantidadGanadores2" parameterType="String" resultType="String">
+	select count(*) 
+	from 
+	BUNGALOWxSORTEO
+	where IdSorteo=#{idSorteo} and IdSocio IS NOT NULL;
+</select>
+
+<select id="getNombSocio" parameterType="String" resultType="String">
+	select count(*) 
+	from 
+	BUNGALOWxSORTEO
+	where IdSorteo=#{idSorteo} and IdSocio IS NOT NULL;
+</select>
 </mapper>
