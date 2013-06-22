@@ -8,10 +8,16 @@ function alt_submit(){
 			
 }
 
-function anhadir(cod, name){
-	var form= document.frmMembresia;
-	form.txtSocio.value=name;
-	form.idSocio.value=cod;
+function anhadir(cod,name,apellidop,apellidom,direccion,fecha){
+	var form= document.frmSocio;
+	
+	form.txtSolicitud.value=cod;
+	form.txtNombres.value=name;
+	form.txtApellidoPaterno.value=apellidop;
+	form.txtApellidoMaterno.value=apellidom;
+	form.txtDireccion.value=direccion;
+	form.fFechaNacimiento.value=fecha;
+
 	$.fn.colorbox.close();
 	
 } 
@@ -45,6 +51,14 @@ function anhadir(cod, name){
 			                
 			                  <fieldset>
 			                  
+			                  <div class="control-group">
+			                      <label class="control-label" for="typeahead1">Codigo Solicitud(*): </label>
+			                      <div class="controls">
+			                        <input type="text" class="span6 typeahead" id="txtSolicitud" name="txtSolicitud" maxlength="9" onpaste="return false;" disabled>
+			                        <div  align="left"> <a class="btn btn-primary iframe" href="../solicitud/seleccionarsolicitudsocio.jsp"> <i class="icon icon-search icon-white"></i> Buscar Solicitud</a> </div>
+		                          </div>
+		                        </div>
+			                  
 			                    <div class="control-group" id="dvNombres">
 			                      <label class="control-label" for="typeahead1">Nombres(*): </label>
 			                      <div class="controls">
@@ -69,6 +83,13 @@ function anhadir(cod, name){
 		                            </div>
 		                          </div>
                                   
+                                 <div class="control-group" id="dvDireccion">
+			                          <label class="control-label" for="typeahead8">Direcci&oacute;n(*): </label>
+			                          <div class="controls">
+			                            <input type="text" class="span6 typeahead" id="txtDireccion" name="txtDireccion"  data-provide="typeahead" data-items="4" maxlength="100" onpaste="return false;">
+		                                <span class="help-inline" id="errDireccion">Please correct the error</span>
+		                              </div>
+		                            </div>
                                 
                                   <div class="control-group" id="dvFecha">
 			              		<label class="control-label" for="typeahead4">Fecha Nacimiento(*): </label>
@@ -123,13 +144,7 @@ function anhadir(cod, name){
 		                              </div>
 		                            </div>
 		                            
-			                        <div class="control-group" id="dvDireccion">
-			                          <label class="control-label" for="typeahead8">Direcci&oacute;n(*): </label>
-			                          <div class="controls">
-			                            <input type="text" class="span6 typeahead" id="txtDireccion" name="txtDireccion"  data-provide="typeahead" data-items="4" maxlength="100" onpaste="return false;">
-		                                <span class="help-inline" id="errDireccion">Please correct the error</span>
-		                              </div>
-		                            </div>
+			                       
 		                            
 		                             <div class="control-group" id="dvTelefonoFijo">
 			                        <label class="control-label" for="typeahead9">Tel&eacute;fono Fijo(*): </label>
@@ -150,6 +165,7 @@ function anhadir(cod, name){
 		                            
 		                          
 		                        <div class="form-actions">
+		                        <input type="hidden" name="idSolicitud" value=""/></input>
 			                      <button  type="button"  class="btn btn-primary" onclick="javascript:alt_submit()">Agregar</button>      
 			               		   <button  type="button"  class="btn" onclick="location.href='../socio/buscarsocio.jsp'">Cancelar</button>  
 		                        </div>
