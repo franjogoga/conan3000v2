@@ -21,15 +21,15 @@ public class AccionSeleccionarSolicitudSocio extends CoAccion{
 			HttpServletResponse response) throws CoException {
 		// TODO Auto-generated method stub
 		
-		String codigo=request.getParameter("codigo");
+		//String codigo=request.getParameter("codigo");
 		
-		SolicitudSocioBeanFuncion solicitudFuncion=SolicitudSocioBeanFuncion.getInstanceS();
-		SolicitudsocioBeanData solicitud=solicitudFuncion.consultarSolicitud(codigo);
+		//SolicitudSocioBeanFuncion solicitudFuncion=SolicitudSocioBeanFuncion.getInstanceS();
+		//SolicitudsocioBeanData solicitud=solicitudFuncion.consultarSolicitud(codigo);
 		
-		if(solicitud.getEstado().equalsIgnoreCase("Aceptada")){
-			solicitud.setEstado("Registrada");
-			solicitudFuncion.modificarSolicitud(solicitud);
-		}
+		//if(solicitud.getEstado().equalsIgnoreCase("Aceptada")){
+			//solicitud.setEstado("Registrada");
+			//solicitudFuncion.modificarSolicitud(solicitud);
+		//}
 		
 		CriterioSolicitudSocioBeanData criterioSolicitudData =new CriterioSolicitudSocioBeanFuncion().crearCriterio(request, response);
 		Vector<ResultadoSolicitudSocioBeanData> resultados=new CriterioSolicitudSocioBeanFuncion().buscarPlantillaSolicitudAceptada(criterioSolicitudData);
