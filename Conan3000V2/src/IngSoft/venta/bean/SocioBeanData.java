@@ -14,7 +14,7 @@ public class SocioBeanData implements Serializable{
 	//private int numeroDocumento;
 	private String idMembresia;
 	
-
+	private int flag;
 	private String correoElectronico;
 	private String direccion;
 	private long telefonoFijo;
@@ -23,6 +23,16 @@ public class SocioBeanData implements Serializable{
 	private String idDistrito;
 	private String idPerfil;
 	
+	
+	
+	public int getFlag() {
+		return flag;
+	}
+
+	public void setFlag(int flag) {
+		this.flag = flag;
+	}
+
 	public String getCodigo2() {
 		return codigo2;
 	}
