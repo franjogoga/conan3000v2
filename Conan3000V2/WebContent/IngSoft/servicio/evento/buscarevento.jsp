@@ -74,8 +74,7 @@
 		form.accion.value="Agregar";
 		form.submit();
 	}
-	function alt_consultar(cod){
-	return null;
+	function alt_consultar(cod){	
 		var form=document.getElementById("frmAlternativo");
 		form.accion.value="Consultar";
 		form.codigo.value=cod;
