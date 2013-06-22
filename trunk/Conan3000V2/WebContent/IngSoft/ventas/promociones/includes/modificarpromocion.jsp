@@ -2,16 +2,7 @@
 <%@page import="java.util.Date"%>
 
 <script>
-		function validar(form){
-			if(form.txtNombrePromocion.value.length <=0)return false;
-			if(form.fFechInicio.value.length<=0)return false;
-			if(form.fFechFin.value.lengtht<=0)return false;
-			if(form.txtDescripcion.value.length<=0)return false;
-			//if(form.cmbAmbientes.value.length<=0)return false;
-	return true;
 		
-		
-		}
 	
 	function alt_fecha(obj){
 	obj.value=obj.value.slice(0,5);
@@ -23,8 +14,48 @@
 		if(validaForm()) form.submit();
 			
 			}
-		
-</script>	
+	function verificar_fecha(comparacion,fecha1,fecha2){
+		var fec1=fecha1.value.split("/");
+		var fec2=document.getElementById(fecha2).value.split("/");
+		var test=true;
+		if(fec1.length==fec2.length) {
+			var size=fec1.length;
+			var a='';
+			var b='';	
+			for(i=size-1;i>=0;i--){
+				a=a.concat(fec1[i]);
+				b=b.concat(fec2[i]);
+				}
+			if(comparacion==0){
+				if(parseInt(a)==parseInt(b))  test=false;
+				}
+			if(comparacion==1){
+				if(parseInt(a)<=parseInt(b))   test=false;
+				}
+			if(comparacion==-1){
+				if(parseInt(a)>=parseInt(b) )  test=false;
+				}
+			if(test){			
+					fecha1.value=document.getElementById(fecha2).value;			
+				}
+				
+			} 
+		else{
+			alert("Error al comparar fechas");
+		}			
+	}
+
+
+	</script>
+
+	<%! 	
+	public String getFechaActual(){
+		SimpleDateFormat DF= new SimpleDateFormat("dd/MM/YYYY");
+		Date fecha= new Date();
+	return (DF.format(fecha));
+	}	
+	%>
+	
 
 	<%! public boolean  encontrar(String a, String[] b){
 		for(int i=0;i<b.length;i++){			
@@ -80,18 +111,17 @@
 		                  </div>
 		                </div>
 		                
-			              <div class="control-group" id="dvFechaInicio">
-			                <label class="control-label" for="date01">Fecha de inicio:</label>
+			               <div class="control-group" id="dvFechaInicio">
+			              <label class="control-label" for="date01">Fecha de inicio(*):</label>
 			                <div class="controls">
-			                  <input type="text" class="input-xlarge datepicker" id="fFechInicio" name="fFechInicio" value="<%=formatear(new Date(promocion.getFechaInicio().getTime())) %>" readonly="true" >
+			                  <input type="text" name="fFechInicio" class="datepicker" id="fFechInicio" value="<%=getFechaActual()%>"  readonly width=44px  onchange="verificar_fecha(1,this,'fFechFin');">
 			                  <span class="help-inline" id="errFechaInicio">Please correct the error</span>
 		                    </div>
 		                  </div>
-		                  
 			              <div class="control-group" id="dvFechaFin">
-			                <label class="control-label" for="date02">Fecha de fin:</label>
+			                <label class="control-label" for="date02">Fecha de fin(*):</label>
 			                <div class="controls">
-			                  <input type="text" class="input-xlarge datepicker" id="fFechFin" name="fFechFin" value="<%=formatear(new Date(promocion.getFechaFin().getTime())) %>" readonly="true" >
+			                  <input type="text" name="fFechFin" class="datepicker" id="fFechFin" value="<%=getFechaActual()%>"  readonly width=44px  onchange="verificar_fecha(-1,this,'fFechInicio');">
 			                  <span class="help-inline" id="errFechaFin">Please correct the error</span>
 		                    </div>
 		                  </div>

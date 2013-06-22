@@ -105,17 +105,11 @@ function validaForm(){
 	var i=0;
 	var error=false;
 	
-
-	
-	
-	if(!esValido("Fecha de inicio",form.fFechInicio,"FechaInicio",2,1,10)){cadena[i]="Fecha de inicio";i++;}
-	if(!esValido("Fecha de fin",form.fFechFin,"FechaFin",2,1,10)){
-		cadena[i]="Fecha de fin";i++;
-	}else{
-		if(!validarFechas("Fecha de fin",form.fFechFin,"FechaFin","Fecha de inicio",form.fFechInicio)){
-		cadena[i]="Fecha de fin";i++;
-		}
+	if(!esValido("Fecha Inicio",form.fFechInicio,"FechaInicio",2,1,10)){cadena[i]="Fecha Inicio";i++;}
+	if(!esValido("Fecha Fin",form.fFechFin,"FechaFin",2,1,10)){
+		cadena[i]="Fecha Fin";i++;
 	}
+
 	
 	
 	//No tocar
@@ -133,8 +127,7 @@ function validaForm(){
 function inicializa(){
 	
 	document.getElementById("errFechaInicio").style.display='none';
-	document.getElementById("errFechaFin").style.display='none';
-	
+	document.getElementById("errFechaFin").style.display='none';	
 	
 }
 

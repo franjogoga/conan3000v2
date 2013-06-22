@@ -66,6 +66,8 @@ function validaForm(){
 	var error=false;
 	if(!esValido("Nombre",form.txtNombrePromocion,"NombrePromocion",1,1,50)){cadena[i]="Nombre";i++;}
 	if(!esValido("Descripcion",form.txtDescripcion,"Descripcion",1,1,100)){cadena[i]="Descripcion";i++;}
+	if(!esValido("Fecha Inicio",form.fFechInicio,"FechaInicio",2,1,10)){cadena[i]="Fecha Inicio";i++;}
+	if(!esValido("Fecha Fin",form.fFechFin,"FechaFin",2,1,10)){cadena[i]="Fecha Fin";i++;}
 		
 	//No tocar
 	if(i>0){
