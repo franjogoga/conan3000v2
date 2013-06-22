@@ -290,9 +290,7 @@ function validaForm(){
         var cadena= new Array();
         var i=0;
         var error=false;
-        if(!esValido("Nombre",form.txtNombreAmbiente,"NombreAmbiente",1,1,50)){cadena[i]="Nombre";i++;}else{
-        	if(!esValido("Nombre",form.txtNombreAmbiente,"NombreAmbiente",4,1,50)){cadena[i]="Nombre";i++;}	
-        }
+        if(!esValido("Nombre",form.txtNombreAmbiente,"NombreAmbiente",1,1,50)){cadena[i]="Nombre";i++;}
         if(!esValido("Descripci&oacute;n",form.txtDescripcion,"Descripcion",1,0,100)){cadena[i]="Descripci&oacute;n";i++;}
         if(!esValido("Caracter&iacute;sticas",form.txtCaracteristica,"Caracteristica",1,0,100)){cadena[i]="Caracter&iacute;sticas";i++;}
        
