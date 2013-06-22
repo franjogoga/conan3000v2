@@ -74,8 +74,8 @@
 	}
 	
 	function alt_Insertar(cod,name,apellidop,apellidom,direccion,fecha){
-	
-		form.codigo.value=cod;
+		//var form=document.frmAlternativo;
+		//form.codigo.value=cod;
 		parent.anhadir(cod,name,apellidop,apellidom,direccion,fecha);
 	}
 	</script>	
