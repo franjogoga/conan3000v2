@@ -31,10 +31,7 @@ public class AccionAgregarSolicitudProducto extends CoAccion {
 					  this.direccionar(sc, request, response, "/IngSoft/ventas/solicitud/solicitud.jsp");  }
 				    if(tipo==1){
 				    	Vector<SedeMiniBeanData> sedeMiniData=eventoFunction.getSedes();
-
 						request.setAttribute("sedes",sedeMiniData );
-				    	
-				    	
 				        this.direccionar(sc, request, response, "/IngSoft/ventas/solicitud/agregarsolicitudproducto.jsp");
 				    }
 			  }
