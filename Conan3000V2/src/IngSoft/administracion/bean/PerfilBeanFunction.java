@@ -1,6 +1,7 @@
 package IngSoft.administracion.bean;
 
 import java.util.List;
+import java.util.Vector;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -35,6 +36,35 @@ public class PerfilBeanFunction {
 		return dataPerfil;
 	}
 	
+	public boolean agregarAccionxcasoxperfil(HttpServletRequest request, HttpServletResponse response, String codigoPerfil) throws CoException {
+		boolean resultado = false;
+		l.lock();
+		SqlSession sesion = MyBatisSesion.metodo().openSession();
+		try {
+			String[] valores = request.getParameterValues("checkAcciones");
+			String codigoCaso, codigoAccion;
+			CodigosBeanData codigos = new CodigosBeanData();						
+			for (int i=0; i<valores.length; i++) {
+				codigoCaso = valores[i].substring(0, 9);
+				codigoAccion = valores[i].substring(9, 18);
+				codigos.setCodigoPerfil(codigoPerfil);
+				codigos.setCodigoCaso(codigoCaso);
+				codigos.setCodigoAccion(codigoAccion);								
+				sesion.insert("Data.administracion.perfiles.insertAccionxcasoxperfil", codigos);
+			}
+			resultado = true;
+		} catch (Exception e4){
+			sesion.rollback();
+			e4.printStackTrace();						
+			throw CoException.set("Error: Nombre al insertar acciones en el perfil", "SMAPerfil?accion=Agregar&tipo=1");
+		} finally {
+			sesion.commit();
+			sesion.close();
+			l.unlock();
+		}		
+		return resultado;
+	}
+	
 	public boolean agregarPerfil(PerfilBeanData dataPerfil) throws CoException {
 		boolean resultado = false;
 		l.lock();
@@ -59,8 +89,7 @@ public class PerfilBeanFunction {
 			sesion.commit();
 			sesion.close();
 			l.unlock();
-		}
-		
+		}		
 		return resultado;
 	}
 	
@@ -107,5 +136,22 @@ public class PerfilBeanFunction {
 			sesion.close();			
 		}
 		return resultado;
+	}
+	
+	public Vector<CasosBeanData> getCasos() throws CoException {
+		Vector<CasosBeanData> casos= null;
+		SqlSession sesion=MyBatisSesion.metodo().openSession();				
+		try{
+			List<CasosBeanData> temp=sesion.selectList("Data.administracion.perfiles.getCasos");			
+			casos= new Vector<CasosBeanData>(temp);
+		}
+		catch(Exception e3){
+			e3.printStackTrace();
+			throw CoException.set("Error: No se pudo obtener la lista de casos", "SMAPerfil?accion=Modificar&tipo=1");
+		}
+		finally{
+			sesion.close();			
+		}
+		return casos;
 	}
 }
