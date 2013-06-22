@@ -27,22 +27,19 @@ public class AccionGenerarSorteo extends CoAccion {
 			HttpServletResponse response)  throws CoException{
 		SorteoBeanFuncion sorteoFuncion= SorteoBeanFuncion.getInstance();
 		String idSocio = (String)request.getSession().getAttribute("idSocio");
-		SorteoBeanData sorteoData=sorteoFuncion.consultarSorteo(request.getParameter("codigo"));
-		int cant_ganadores = sorteoFuncion.getCantidad(sorteoData.getIdSorteo());
+		String codSorteo = request.getParameter("codigo");
+		SorteoBeanData sorteoData=sorteoFuncion.consultarSorteo(codSorteo);
+		int cant_ganadores = sorteoFuncion.getCantidad2(sorteoData.getIdSorteo());
 		int flag=0;
-		if (sorteoFuncion.haySorteo(sorteoData.getIdSorteo())){
-			Vector<SocioInscritoBeanData> listaInscritos=sorteoFuncion.getInscritos(sorteoData.getIdSorteo());
-			
-			for (int i=0; i<listaInscritos.size(); i++)
+		if (sorteoFuncion.haySorteo2(sorteoData.getIdSorteo())){
+			Vector<String> listaGanadores=sorteoFuncion.consultaGanadores(sorteoData.getIdSorteo(),cant_ganadores);
+			String nombSocio = sorteoFuncion.getNombSocio(idSocio);
+			for (int i=0; i<cant_ganadores; i++)
 			{
-				if ((listaInscritos).get(i).getIdSocio().equals(idSocio)){flag=1; break;}
+				if ((listaGanadores).get(i).equals(nombSocio)){flag=1; break;}
 			}	
 			
-			Vector<String> listaGanadores=sorteoFuncion.getGanadores(listaInscritos,cant_ganadores,sorteoData.getIdSorteo());
-			/*Vector<SocioBeanData> nombreGanadores=sorteoFuncion.getNombGanadores(listaGanadores);
-			Vector<TipoEventoMiniBeanData> tipoEventoMiniData=eventoFuncion.getTipoEvento();
-			Vector<AmbienteMiniBeanData> AmbienteMiniData=eventoFuncion.getAmbientes();*/
-			
+			request.setAttribute("codSorteo", codSorteo);
 			request.setAttribute("flag", flag);
 			request.setAttribute("lista", listaGanadores);
 			this.direccionar(sc, request, response, "/Club/servicio/sorteo/generarsorteo.jsp");
