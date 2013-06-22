@@ -38,6 +38,14 @@ from SERVICIO_PROV,PROVEEDOR
 	select max(IdServicioProv) from SERVICIO_PROV
 </select>
 
+<select id="getUltimoCodigo" resultType="java.lang.String">
+	select max(IdSolicitudServicio) from SOLICITUD_SERVICIO
+</select>
+
+<select id="getCodigoLinea" resultType="java.lang.String">
+	select max(IdLineaServicio) from LINEA_SERVICIO
+</select>
+
 
  <!-- Fin agregar  -->
  
@@ -93,7 +101,6 @@ PROVEEDOR.IdProveedor as idProveedor
 ,PROVEEDOR.RazonSocial as razonSocial
 from PROVEEDOR where PROVEEDOR.RazonSocial like #{nombre}; 
 </select>
-
 
 </mapper>
  
