@@ -166,4 +166,6 @@ static private SolicitudSocioBeanFuncion SolicitudSocioFuncion=null;
 		}			
 		return ;
 	}
+	
+	
 }
