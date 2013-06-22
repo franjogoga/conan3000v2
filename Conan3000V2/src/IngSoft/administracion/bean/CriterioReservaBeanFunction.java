@@ -16,7 +16,7 @@ public class CriterioReservaBeanFunction {
 		CriterioReservaBeanData criterioReservaData = new CriterioReservaBeanData();		
 		
 		
-		criterioReservaData.setCodigoinvitado("%"+request.getParameter("txtCodigoInvitado")+"%");
+		criterioReservaData.setNombre("%"+request.getParameter("txtNombre")+"%");
 
 		return criterioReservaData;
 	}
@@ -26,7 +26,8 @@ public class CriterioReservaBeanFunction {
 		Vector<ResultadoReservaBeanData> resultadosV=null;
 		try{
 			
-		List<ResultadoReservaBeanData> resultados=sqlsesion.selectList("searchPlantillaReserva",criterioReservaData);
+			System.out.print("searchPlantillaReservaInvitadoxSocio ----> ");
+		List<ResultadoReservaBeanData> resultados=sqlsesion.selectList("searchPlantillaReservaInvitadoxSocio",criterioReservaData);
 	
 		resultadosV= new Vector<>(resultados);
 		
@@ -37,15 +38,5 @@ public class CriterioReservaBeanFunction {
 		return resultadosV;
 		
 	}
-	public Vector<ResultadoReservaBeanData> buscarReserva(CriterioReservaBeanData criterio) {
-		SqlSession sesion = MyBatisSesion.metodo().openSession();
-		Vector<ResultadoReservaBeanData> resultadosV = null;
-		try {
-			List<ResultadoReservaBeanData> resultados = sesion.selectList("searchPlantillaReserva", criterio);
-			resultadosV = new Vector<>(resultados);
-		} finally {
-			sesion.close();
-		}
-		return resultadosV;
-	}
+
 }
