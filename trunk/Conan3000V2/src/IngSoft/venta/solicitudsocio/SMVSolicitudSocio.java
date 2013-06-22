@@ -11,6 +11,7 @@ public class SMVSolicitudSocio extends CoServlet{
 		acciones.put("Agregar", new AccionAgregarSolicitudSocio());
 		acciones.put("Aceptar", new AccionAceptarSolicitudSocio());
 		acciones.put("Denegar", new AccionDenegarSolicitudSocio());
+		acciones.put("Seleccionar", new AccionSeleccionarSolicitudSocio());
 	}
 
 }
