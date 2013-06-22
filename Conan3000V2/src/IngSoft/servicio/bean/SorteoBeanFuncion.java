@@ -20,7 +20,8 @@ import IngSoft.general.MyBatisSesion;
 
 public class SorteoBeanFuncion {
 	static private SorteoBeanFuncion SorteoFuncion=null;
-	private Lock l= new ReentrantLock();     
+	private Lock l= new ReentrantLock();    
+	private Lock lAB= new ReentrantLock();
 	SimpleDateFormat DF = new SimpleDateFormat("dd/MM/yyyy");
 	public static SorteoBeanFuncion getInstance(){
 		if(SorteoFuncion==null) SorteoFuncion= new SorteoBeanFuncion();
@@ -44,11 +45,18 @@ public class SorteoBeanFuncion {
 	public double getCostoM2(){
 		return 15;
 	}
-	public BungalowxSorteo getBungalowSorteo(String idSocio){
+	
+	public String getNombSocio(String idSocio){
+		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+		String nombSocio= sqlsesion.selectOne("Data.servicio.sorteo.selectGanador",idSocio);
+		return nombSocio;
+	}
+	public BungalowxSorteo getBungalowSorteo(BungalowxSorteo bungalowSorteo){
 		BungalowxSorteo BS = new BungalowxSorteo();
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
-		BS = sqlsesion.selectOne("Data.club.inscripcionSorteo.getBungalowxSorteo",idSocio);
-		BS.setIdSocio(idSocio);
+		BS = sqlsesion.selectOne("Data.club.inscripcionSorteo.getBungalowxSorteo",bungalowSorteo);
+		BS.setIdSocio(bungalowSorteo.getIdSocio());
+		BS.setIdSorteo(bungalowSorteo.getIdSorteo());
 		double costoM2 = getCostoM2(); 
 		BS.setAreaBungalow((double)sqlsesion.selectOne("Data.club.inscripcionSorteo.getAreaBungalow",BS.getIdBungalow()));
 		BS.setMontoBungalow(costoM2*BS.getAreaBungalow());
@@ -139,6 +147,11 @@ public class SorteoBeanFuncion {
 			int cant= Integer.parseInt((String)sqlsesion.selectOne("Data.servicio.sorteo.cantidadGanadores",idSorteo));
 			return cant;
 		}
+		public int getCantidad2(String idSorteo){
+			SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+			int cant= Integer.parseInt((String)sqlsesion.selectOne("Data.club.inscripcionSorteo.cantidadGanadores2",idSorteo));
+			return cant;
+		}
 		private Random generator = new Random();
 		
 		public Vector<String> getGanadores(Vector<SocioInscritoBeanData> listaInscritos,int n, String idSorteo){			
@@ -174,6 +187,7 @@ public class SorteoBeanFuncion {
 			sqlsesion.close();
 			return new Vector<>(Ramdomsocios);
 		}
+		
 		public Vector<SocioBeanData> getNombGanadores(Vector<SocioInscritoBeanData> listaGanadores){			
 			
 			SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
@@ -204,6 +218,13 @@ public class SorteoBeanFuncion {
 			}
 			if (lista.size()==0) return false;
 			return false;
+		}
+		public boolean haySorteo2(String idSorteo){
+			SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+			Integer flag=sqlsesion.selectOne("Data.club.inscripcionSorteo.searchHaySorteo2",idSorteo);
+			sqlsesion.close();
+			if (flag==1) {return true;}
+			else {return false;}
 		}
 		private Vector<ModificacionesSorteoBeanData> generaListaCambios(String ant , String nue ,String cod){
 			Vector<ModificacionesSorteoBeanData> mods=new Vector<ModificacionesSorteoBeanData>();
