@@ -39,4 +39,16 @@
 		where IdPerfil = #{codigo}
 	</update>
 	
+	<select id="getCasos" resultType="IngSoft.administracion.bean.CasosBeanData">
+		select ACCIONxCASO_USO.IdCasoUso as codigoCaso, CASO_USO.Nombre as nombreCaso, ACCIONxCASO_USO.IdAccion as codigoAccion, ACCION.Nombre as nombreAccion 
+		from ACCIONxCASO_USO, ACCION, CASO_USO
+		where ACCION.IdAccion = ACCIONxCASO_USO.IdAccion and CASO_USO.IdCasoUso = ACCIONxCASO_USO.IdCasoUso;		
+	</select>
+
+	<insert id="insertAccionxcasoxperfil" parameterType="IngSoft.administracion.bean.PerfilBeanData" flushCache="true">
+		insert into ACCIONxCASO_USOxPERFIL(IdPerfil, IdCasoUso, IdAccion)
+		values (#{codigoPerfil}, #{codigoCaso}, #{codigoAccion})
+	</insert>
+
+	
 </mapper>
