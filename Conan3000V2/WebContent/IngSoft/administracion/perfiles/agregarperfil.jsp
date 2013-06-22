@@ -1,4 +1,9 @@
 <!DOCTYPE html>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Calendar"%>
+<%@page import="IngSoft.administracion.bean.CasosBeanData"%>
+<%@page import="java.util.Vector"%>
+<%@page import="java.lang.System"%>
 <html lang="en">
 <head>
 
@@ -7,6 +12,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="Dos Virgenes, perfil de administrador">
 	<meta name="author" content="Dos Virgenes">
+
+	<jsp:useBean id="casos" scope="request" class="java.util.Vector"></jsp:useBean>
 
 	<!-- The styles -->
 	<link id="bs-css" href="css/bootstrap-cerulean.css" rel="stylesheet">    
@@ -155,8 +162,42 @@
 										<input type="text" class="span6 typeahead" id="txtDescripcion" name="txtDescripcion" onkeypress="return alfanumerico(event);" autofocus maxlength="100"></input>
 										<span class="help-inline" id="errDescripcion" style="display:none;">Este campo no puede estar vac&iacute;o</span>								
 									  </div>
-									</div>																										
-						
+									</div>		
+									
+									<div class="control-group">
+										<label class="control-label"><%= ((CasosBeanData)casos.get(0)).getNombreCaso()%></label>
+										<div class="controls">
+											<label class="checkbox inline">
+												<input type="checkbox" name="checkAcciones" value="<%= ((CasosBeanData)casos.get(0)).getCodigoCaso() + ((CasosBeanData)casos.get(0)).getCodigoAccion()%>"> <%= ((CasosBeanData)casos.get(0)).getNombreAccion()%>
+											</label>
+																																												
+									<% String codigoCasoAnt = ((CasosBeanData)casos.get(0)).getCodigoCaso();
+									   String codigoCasoAct = ((CasosBeanData)casos.get(1)).getCodigoCaso();
+									 %>	
+									<% for(int i=1; i<casos.size(); i++) { %>
+										<% if ( codigoCasoAnt.equalsIgnoreCase(codigoCasoAct) ) { %>
+										   		<label class="checkbox inline">
+													<input type="checkbox" name="checkAcciones" value="<%= ((CasosBeanData)casos.get(i)).getCodigoCaso() + ((CasosBeanData)casos.get(i)).getCodigoAccion()%>"> <%= ((CasosBeanData)casos.get(i)).getNombreAccion()%>
+												</label>
+										<% } else { %>
+												</div>
+							  				</div>	
+										
+											<div class="control-group">
+											<label class="control-label"><%= ((CasosBeanData)casos.get(i)).getNombreCaso()%></label>
+											<div class="controls">
+												<label class="checkbox inline">
+													<input type="checkbox" name="checkAcciones" value="<%= ((CasosBeanData)casos.get(i)).getCodigoCaso() + ((CasosBeanData)casos.get(i)).getCodigoAccion()%>"> <%= ((CasosBeanData)casos.get(i)).getNombreAccion()%> 
+												</label>										
+										<% } %>
+									<% 
+										codigoCasoAnt = ((CasosBeanData)casos.get(i)).getCodigoCaso();
+									   	if (i+1<casos.size()) codigoCasoAct = ((CasosBeanData)casos.get(i+1)).getCodigoCaso();
+										} %>
+									
+										</div>
+							  		</div>																																																								
+																		
 							        <div class="form-actions">
 							           <button type="button" class="btn btn-primary" onclick="javascript:alt_submit_agregar_perfil()">Agregar</button>
 							           <button type="button" class="btn" onclick="location.href='buscarperfil.jsp'">Cancelar</button>
