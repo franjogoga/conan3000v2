@@ -37,7 +37,10 @@ public class AccionPagarSorteo extends CoAccion {
 		SorteoBeanFuncion sorteoFuncion= SorteoBeanFuncion.getInstance();
 		BungalowxSorteo bungalowSorteo = new BungalowxSorteo();
 		String idSocio = (String)request.getSession().getAttribute("idSocio");
-		bungalowSorteo = sorteoFuncion.getBungalowSorteo(idSocio);
+		String codSorteo = request.getParameter("codSorteo");
+		bungalowSorteo.setIdSocio(idSocio);
+		bungalowSorteo.setIdSorteo(codSorteo);
+		bungalowSorteo = sorteoFuncion.getBungalowSorteo(bungalowSorteo);
 		OrdenPagoBeanFunction orden=new OrdenPagoBeanFunction();
 		
 		java.util.Date valor = new java.util.Date();
