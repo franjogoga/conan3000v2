@@ -1,3 +1,6 @@
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
+
 <script>
 
 function alt_submit(){
@@ -6,7 +9,47 @@ function alt_submit(){
 			
 }
 
+function verificar_fecha(comparacion,fecha1,fecha2){
+	var fec1=fecha1.value.split("/");
+	var fec2=document.getElementById(fecha2).value.split("/");
+	var test=true;
+	if(fec1.length==fec2.length) {
+		var size=fec1.length;
+		var a='';
+		var b='';	
+		for(i=size-1;i>=0;i--){
+			a=a.concat(fec1[i]);
+			b=b.concat(fec2[i]);
+			}
+		if(comparacion==0){
+			if(parseInt(a)==parseInt(b))  test=false;
+			}
+		if(comparacion==1){
+			if(parseInt(a)<=parseInt(b))   test=false;
+			}
+		if(comparacion==-1){
+			if(parseInt(a)>=parseInt(b) )  test=false;
+			}
+		if(test){			
+				fecha1.value=document.getElementById(fecha2).value;			
+			}
+			
+		} 
+	else{
+		alert("Error al comparar fechas");
+	}			
+}
+
+
 </script>
+
+<%! 	
+public String getFechaActual(){
+	SimpleDateFormat DF= new SimpleDateFormat("dd/MM/YYYY");
+	Date fecha= new Date();
+return (DF.format(fecha));
+}	
+%>
 
 
 
@@ -39,14 +82,14 @@ function alt_submit(){
 			           <div class="control-group" id="dvFechaInicio">
 			              <label class="control-label" for="date01">Fecha de inicio(*):</label>
 			                <div class="controls">
-			                  <input type="text" name="fFechInicio" class="input-xlarge datepicker" id="fFechInicio" value="" readonly="true">
+			                  <input type="text" name="fFechInicio" class="datepicker" id="fFechInicio" value="<%=getFechaActual()%>"  readonly width=44px  onchange="verificar_fecha(1,this,'fFechFin');">
 			                  <span class="help-inline" id="errFechaInicio">Please correct the error</span>
 		                    </div>
 		                  </div>
 			              <div class="control-group" id="dvFechaFin">
 			                <label class="control-label" for="date02">Fecha de fin(*):</label>
 			                <div class="controls">
-			                  <input type="text" name="fFechFin" class="input-xlarge datepicker" id="fFechFin" value="" readonly="true">
+			                  <input type="text" name="fFechFin" class="datepicker" id="fFechFin" value="<%=getFechaActual()%>"  readonly width=44px  onchange="verificar_fecha(-1,this,'fFechInicio');">
 			                  <span class="help-inline" id="errFechaFin">Please correct the error</span>
 		                    </div>
 		                  </div>
