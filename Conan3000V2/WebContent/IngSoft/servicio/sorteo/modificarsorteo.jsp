@@ -58,6 +58,8 @@
 
 	<!-- The fav icon -->
 	<link rel="shortcut icon" href="img/conan_logo.png">
+		<script src="sorteo.js"></script>
+	
 	<script>
 	function alfanumerico(e) 
 	{ 
@@ -188,13 +190,13 @@
 							<div class="control-group">
 							  <label class="control-label" for="date02">Fecha Fin</label>
 							  <div class="controls">
-								<input type="text" class="input-xlarge datepicker" id="fFecFin" name="fFecFin"  value="<%=formatear(new Date(sorteo.getFechaFin().getTime())) %>" >
+								<input type="text" class="input-xlarge datepicker" id="fFecFin" name="fFecFin"  value="<%=formatear(new Date(sorteo.getFechaFin().getTime())) %>" onchange="verificar_fecha(1,this,'fFecInicio');"  >
 							  </div>
 							</div>
 							<div class="control-group">
 							  <label class="control-label" for="date03">Fecha Sorteo</label>
 							  <div class="controls">
-								<input type="text" class="input-xlarge datepicker" id="fFecSorteo" name="fFecSorteo"  value="<%=formatear(new Date(sorteo.getFechaSorteo().getTime())) %>" >
+								<input type="text" class="input-xlarge datepicker" id="fFecSorteo" name="fFecSorteo"  value="<%=formatear(new Date(sorteo.getFechaSorteo().getTime())) %>" onchange="verificar_fecha(1,this,'fFecFin');"  >
 							  </div>
 							</div>
 						    <div class="form-actions">
