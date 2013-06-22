@@ -23,33 +23,36 @@
 		parent.actualizar();
 	}
 	
-	
 	function verificar_fecha(comparacion,fecha1,fecha2){
-		var fec1=fecha1.value.split("/");
-		var fec2=document.getElementById(fecha2).value.split("/");
-		var resultado=true;
-		if(fec1.length==fec2.length) {
-			var size=fec1.length;
-			for(i=size-1;i>=0;i--){
-				if(comparacion==0){
-					if(fec1[i].indexOf(fec2[i])<0)  resultado= false;
-					}
-				if(comparacion==1){
-					if(parseInt(fec1[i])<parseInt(fec2[i]))  resultado= false;
-					}
-				if(comparacion==-1){
-					if(parseInt(fec1[i])>parseInt(fec2[i]))  resultado= false;
-					}
-				}
-			if(resultado==false){			
-					fecha1.value=document.getElementById(fecha2).value;			
-				}
-				
-			} 
-		else{
-			alert("Error al comparar fechas");
-		}			
-	}
+	var fec1=fecha1.value.split("/");
+	var fec2=document.getElementById(fecha2).value.split("/");
+	var test=true;
+	if(fec1.length==fec2.length) {
+		var size=fec1.length;
+		var a='';
+		var b='';	
+		for(i=size-1;i>=0;i--){
+			a=a.concat(fec1[i]);
+			b=b.concat(fec2[i]);
+			}
+		if(comparacion==0){
+			if(parseInt(a)==parseInt(b))  test=false;
+			}
+		if(comparacion==1){
+			if(parseInt(a)<=parseInt(b))   test=false;
+			}
+		if(comparacion==-1){
+			if(parseInt(a)>=parseInt(b) )  test=false;
+			}
+		if(test){			
+				fecha1.value=document.getElementById(fecha2).value;			
+			}
+			
+		} 
+	else{
+		alert("Error al comparar fechas");
+	}			
+}
 
 	<%! public boolean  encontrar(String a, String b){		
 			if(b.equals(a)) return true;
@@ -111,13 +114,13 @@
 			           <div class="control-group">
 			              <label class="control-label" for="date01" >Fecha Inicial (*):</label>
 			                <div class="controls">
-			                  <input type="text" name="fechaInicio" class="datepicker" id="fechaInicio" value="<%=formatear(new Date(concesionarioSede.getFechaInicio().getTime()))%>" readonly width=44px onchange="verificar_fecha(-1,this,'fechaFin');">
+			                  <input type="text" name="fechaInicio" class="datepicker" id="fechaInicio" value="<%=formatear(new Date(concesionarioSede.getFechaInicio().getTime()))%>" readonly width=44px onchange="verificar_fecha(1,this,'fechaFin');">
 		                    </div>
 		                  </div>
 			              <div class="control-group">
 			                <label class="control-label" for="date02">Fecha Final (*):</label>
 			                <div class="controls">
-			                  <input type="text" name="fechaFin" class="datepicker" id="fechaFin" value="<%=formatear(new Date(concesionarioSede.getFechaFin().getTime()))%>" readonly width=44px onchange="verificar_fecha(1,this,'fechaInicio');">
+			                  <input type="text" name="fechaFin" class="datepicker" id="fechaFin" value="<%=formatear(new Date(concesionarioSede.getFechaFin().getTime()))%>" readonly width=44px onchange="verificar_fecha(-1,this,'fechaInicio');">
 		                    </div>
 		                  </div>
                         <div class="control-group">
