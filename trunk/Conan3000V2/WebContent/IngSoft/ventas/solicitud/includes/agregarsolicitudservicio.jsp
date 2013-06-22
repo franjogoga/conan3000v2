@@ -1,7 +1,7 @@
 			 
 <script>	
 function alt_submit(){
-		var form= document.frmFamiliar;
+		var form= document.frmServicio;
 		if(1) form.submit();
 			
 }
@@ -28,7 +28,7 @@ function anhadir(cod,name){
 			        <h2>SOLICITUD DE SERVICIO</h2>
 		          </div>
 			      <div class="box-content">
-			        <form class="form-horizontal" name="frmServicio"  method="Post"  action="SMVProducto">
+			        <form class="form-horizontal" name="frmServicio"  method="Post"  action="SMVSolicitudServicio">
 			        <input type="hidden" name="accion" value="Agregar"></input>
 			 		<input type="hidden" name="codigo" value=""></input>
 			 		<input type="hidden" name="tipo" value="1"></input>
@@ -45,9 +45,9 @@ function anhadir(cod,name){
 		                  </div>
 			         			         
 						<div class="control-group">
-			                <label class="control-label" for="typeahead4">Precio(*):</label>
+			                <label class="control-label" for="typeahead4">Periodo(*):</label>
 			                <div class="controls">
-			                  <input type="text" class="span6 typeahead" id="typeahead4"  data-provide="typeahead" data-items="4" >
+			                  <input type="text" class="span6 typeahead" id="txtPeriodo"  data-provide="txtPeriodo" data-items="4" >
 		                    </div>
 		                  </div>
 		                  
