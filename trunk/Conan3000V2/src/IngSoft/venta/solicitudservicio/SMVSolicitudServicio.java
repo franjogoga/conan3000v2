@@ -9,7 +9,7 @@ public class SMVSolicitudServicio extends CoServlet{
 	protected void initAcciones() {
 		//acciones.put("Buscar", new AccionBuscarSolicitudProducto());
 		//acciones.put("Consultar", new AccionConsultarSolicitudProducto());
-		acciones.put("Agregar", new AccionAgregarSolicitudProducto());
+		acciones.put("Agregar", new AccionAgregarSolicitudServicio());
 
 	}
 
