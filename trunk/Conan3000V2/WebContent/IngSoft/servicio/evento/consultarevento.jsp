@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<%@page import="IngSoft.servicio.bean.ConcesionarioMiniBeanData"%>
+<%@page import="IngSoft.servicio.bean.EventoBeanData"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="IngSoft.servicio.bean.Utils"%>
@@ -18,12 +20,14 @@
 		http://twitter.com/halalit_usman
 	-->
 	<meta charset="utf-8">
-	<title>Consultar Solicitud de Evento</title>
+	<title>Agregar Solicitud de Evento</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
 	<meta name="author" content="Muhammad Usman">
 	<!--The beans  -->
 	<jsp:useBean id="sedes" scope="request"class="java.util.Vector"></jsp:useBean>
+	<jsp:useBean id="evento" scope="request"class="IngSoft.servicio.bean.EventoBeanData"></jsp:useBean>
+	<jsp:useBean id="concesionario" scope="request"class="IngSoft.servicio.bean.ConcesionarioMiniBeanData"></jsp:useBean>
 	
 	<!-- The styles -->
 	<link id="bs-css" href="css/bootstrap-cerulean.css" rel="stylesheet">
@@ -64,6 +68,7 @@
 	<!-- jQuery -->
 	<script src="js/jquery-1.7.2.min.js"></script>
 	<script>
+	var cont=-1;
 	var codSedeActual="none";
 	var fechaActual="<%=new SimpleDateFormat("dd/MM/yyyy").format(new Date())%>";
 	var boton='#btnConcecionarios';
@@ -134,7 +139,26 @@
 				$('#txtNumEntradas').parent().parent().toggleClass("error");
 			}
 			else $('#txtNumEntradas').parent().parent().addClass("success");
-			
+			if($('#txtPrecio').val()==null || $('#txtPrecio').val().length<=0){
+				$('#txtPrecio').bind("change",function(){
+				var temp= $('#txtPrecio');
+				if(temp.val()!=null && temp.val().length>0) {
+				temp.parent().parent().removeClass("error");
+				temp.parent().parent().addClass("success");
+				$('#errPrecio').slideUp(1000);
+				}
+				else {
+				temp.parent().parent().removeClass("success");
+				temp.parent().parent().addClass("error");
+				$('#errPrecio').slideDown(1000);
+				}
+				
+				})
+				$('#errPrecio').slideDown(1000);
+				test=false;
+				$('#txtPrecio').parent().parent().toggleClass("error");
+			}
+			else $('#txtPrecio').parent().parent().addClass("success");
 	return test;
 		
 		
@@ -156,13 +180,15 @@
 			  type: "POST",
 			  url: "/Conan3000V2/IngSoft/servicio/evento/SMSEvento",
 			  data: "accion=" + $(accion).val() + "&tipo=" + $(tipo).val() + "&txtNombreEvento=" + $(txtNombreEvento).val() + "&txtNumEntradas=" + $(txtNumEntradas).val()  
-			  +  "&cmbSedes=" + $(cmbSedes).val() + "&fFecha=" + $(fFecha).val()+"&concesionario="+concesionario+"&precioentrada=78.00",
+			  +  "&cmbSedes=" + $(cmbSedes).val() + "&fFecha=" + $(fFecha).val()+"&concesionario="+concesionario+"&precioentrada="+$(txtPrecio).val(),
 			  dataType: "text",
 			  success: function(msg){
 				  var url="<%=request.getContextPath()%>"+msg;
 				  $("#linkAceptar").css("display","inline");
 				  $("#linkCerrar").css("display","none");
-				  $("#modalTitulo").html("EXITO");				  
+				  $("#modalTitulo").html("EXITO");	
+				  $("#MensajeExito").css("display","inline");
+				  $("#listaConcecionarios").css("display","none");			  
 				  $("#modalContenido").html("La plantilla de evento ha sido agregada exitosamente");
 				  $("#linkAceptar").bind("click",function(){
 					  location.href=url;					  
@@ -271,7 +297,7 @@
 						<a href="buscarevento.jsp">Mantenimiento de Eventos</a> <span class="divider">/</span>
 					</li>
 					<li>
-						Agregar Solicitud de Eventos Internos
+						Consultar Solicitud de Eventos Internos
 					</li>
 				</ul>
 			</div>
@@ -279,35 +305,43 @@
 			<div class="row-fluid sortable">
 				<div class="box span12">
 					<div class="box-header well" data-original-title>
-					  <h2><i class="icon-plus-sign"></i>AGREGAR EVENTO</h2>
+					  <h2><i class="icon-plus-sign"></i>CONSULTAR EVENTO</h2>
 				  </div>
 					<div class="box-content">
-						<form class="form-horizontal" action="<%= response.encodeURL("SMSEvento")%>" onsubmit="alt_submit(); return false;"name="frmData" method="post">
-						<input type="hidden" name="accion" id="accion" value="Agregar"></input>
+						<form class="form-horizontal" onsubmit="alt_submit(); return false;"name="frmData" method="post">
+						<input type="hidden" name="accion" id="accion" value="Consultar"></input>
 						<input type="hidden" name="tipo" id="tipo" value="2"></input>
-						<input type="hidden" name="fFechaActual" id="fFechaActual" value="<%=new SimpleDateFormat("dd/MM/yyyy").format(new Date())%>"></input>
+						
 						  <fieldset>
 						    <div class="control-group">
 						      <label class="control-label" for="typeahead7">Nombre de evento(*): </label>
 						      <div class="controls">
-						        <input type="text" class="span6 typeahead" id="txtNombreEvento"  data-provide="typeahead"  id="txtNombreEvento" name="txtNombreEvento" onkeypress="return alfanumerico(event);" autofocus maxlength="50"/>
+						        <input type="text" class="span6 typeahead" id="txtNombreEvento"  data-provide="typeahead" readonly="true" id="txtNombreEvento" name="txtNombreEvento" value="<%=((EventoBeanData)evento).getNombre()%>"/>
 								<span class="help-inline" id="errNombreEvento" style="display:none;">Este campo no puede estar vacio</span>						        													       
 					          </div>
 					        </div>
 					        <div class="control-group">
 						      <label class="control-label" for="txtNumEntradas">Limite Maximo Entradas(*): </label>
 						      <div class="controls">
-						        <input type="text" class="input typeahead" id="txtNumEntradas"  data-provide="typeahead"  name="txtNumEntradas" onkeypress="return numerico(event);" autofocus maxlength="11"/><br/>
+						        <input type="text" class="input typeahead" id="txtNumEntradas"  data-provide="typeahead"  name="txtNumEntradas" readonly="true" value="<%((EventoBeanData)evento).getEntradasTotal()%> de <%=((EventoBeanData)evento).getLimiteEntradas()%>"/><br/>
 								<span class="help-inline" id="errNumEntradas" style="display:none;">Este campo no puede estar vacio</span>						        													       
 					          </div>
-					        </div>						   
+					        </div>	
+					        <div class="control-group">
+						      <label class="control-label" for="txtPrecio">Precio de la Entrada(*): </label>
+						      <div class="controls">
+
+									<input  id="txtPrecio" class="span4" name="txtPrecio" readonly="true"  type="text"  value="<%=((EventoBeanData)evento).getPrecioEntrada()%>">
+									<br/>
+								  <span class="help-inline" id="errPrecio" name="errPrecio" style="display:none;">Este campo no puede estar vacio</span>
+					        </div>
+					        </div>					   
 							  <div class="control-group">
 								<label class="control-label" for="cmbSedes">Sede relacionada(*):</label>
 								<div class="controls">
-								  <select  data-rel="chosen" id="cmbSedes" name="cmbSedes" onchange="confirmarcambio($(this))">
-								  	<option value="none" selected>--Seleccione una Sede--</option>
+								  <select  data-rel="chosen" id="cmbSedes" name="cmbSedes" disabled onchange="confirmarcambio($(this))">								  	
 									<%for(int i=0;i<sedes.size();i++){ %>
-										<option value="<%= ((SedeMiniBeanData)sedes.get(i)).getCodigo()%>"><%= ((SedeMiniBeanData)sedes.get(i)).getNombre()%></option>
+										<option value="<%= ((SedeMiniBeanData)sedes.get(i)).getCodigo()%>" <%=((EventoBeanData)evento).getIdSede().equals(((SedeMiniBeanData)sedes.get(i)).getCodigo())?"selected":""%>><%= ((SedeMiniBeanData)sedes.get(i)).getNombre()%></option>
 									<%} %>																									
 								  </select><br/>
 								  <span class="help-inline" id="errSedes" style="display:none;">Debe seleccionar una sede</span>
@@ -316,7 +350,7 @@
 							  <div class="control-group">
 							  <label class="control-label" for="fFecha">Fecha(*):</label>
 							  <div class="controls">
-								<input type="text" class="input datepicker" id="fFecha" readonly="true" value="<%=new SimpleDateFormat("dd/MM/yyyy").format(Utils.fechaMas( new Date(), 1))%>"  name="fFecha" onchange="confirmarcambio($(this))">
+								<input type="text" class="input datepickerB" id="fFecha" readonly="true" value="<%=((EventoBeanData)evento).getFecha()%>"  name="fFecha" onchange="confirmarcambio($(this))">
 							  </div>
 							</div>
 							 <div class="control-group">
@@ -324,14 +358,17 @@
 							  <div class="controls" id="listaServicios">
 								<div class="input-append">
 									<input id="appendedInputButton" size="16" type="text" readonly="true" value="Salon Principal"><button class="btn" disabled="disabled" type="button">X</button>
+								  </div><br/>
+								  <input id="appendedInputButton" size="16" type="text" readonly="true" value="<%=((ConcesionarioMiniBeanData)concesionario).getRazonSocial()%>"><button class="btn" disabled="disabled" type="button">X</button>
 								  </div><br/></div>
 							</div>
-							<div class="form-actions">
+							<div class="form-actions" style="display: none;">
 							  <button type="button" id="btnConcecionarios" class="btn btn-primary" disabled="disabled" >Concesionarios</button>							 
 							</div>														
 						    <div class="form-actions">
-							  <button type="submit" id="btnAgregar" class="btn btn-primary" >Agregar</button>
-							  <button type="button" class="btn" onclick="location.href='buscarevento.jsp'" >Cancelar</button>
+							  <button type="button" id="btnAprobar" class="btn btn-primary" >Aprobar</button>
+							  <button type="button" id="btnRechazar" class="btn btn-primary" >Rechazar</button>
+							  <button type="button" class="btn" onclick="location.href='<%=request.getContextPath()%>/IngSoft/servicio/evento/SMSEvento?accion=Buscar&tipo=1'" >Regresar</button>
 							</div>
 						  </fieldset>
 					  </form>   
@@ -470,6 +507,14 @@
 		$('#txtNumEntradas').bind('paste',function(){		
 			setTimeout(function(){filtrar('1234567890',$('#txtNumEntradas'),50)}, 0);
 		})
+		$('#txtPrecio').bind('paste',function(){		
+			setTimeout(function(){filtrar('1234567890.',$('#txtPrecio'),50)}, 0);			
+		})
+		$(function() {
+    	$( ".datepickerB" ).datepicker({
+    		minDate: +5,
+    });
+  });
 	</script>
 	
 		

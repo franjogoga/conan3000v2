@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import IngSoft.general.CoAccion;
 import IngSoft.general.CoException;
 import IngSoft.servicio.bean.AmbienteMiniBeanData;
+import IngSoft.servicio.bean.ConcesionarioMiniBeanData;
 import IngSoft.servicio.bean.EventoBeanData;
 import IngSoft.servicio.bean.EventoBeanFuncion;
 import IngSoft.servicio.bean.SedeMiniBeanData;
@@ -22,10 +23,17 @@ public class AccionConsultarEvento extends CoAccion {
 			HttpServletResponse response)  throws CoException{
 		EventoBeanFuncion eventoFuncion= EventoBeanFuncion.getInstance();
 		EventoBeanData eventoData=eventoFuncion.consultarEventoSede(request.getParameter("codigo"));
-		Vector<SedeMiniBeanData> sedeMiniData=eventoFuncion.getSedes();			
+		Vector<SedeMiniBeanData> sedeMiniData=eventoFuncion.getSedes();
+		Vector<ConcesionarioMiniBeanData> resultado=eventoFuncion.consultarConcesionariosxSede(eventoData.getIdSede(), eventoData.getFecha());
+		for(int i=0;i<resultado.size();i++){
+			if(resultado.get(i).getCodigo().equals(eventoData.getIdConcesionario())){
+				request.setAttribute("concesionario", resultado.get(i));
+				break;
+			}
+			
+		}
 		request.setAttribute("sedes",sedeMiniData );
-		//request.setAttribute("evento", eventoData);
-
+		request.setAttribute("evento", eventoData);
 		this.direccionar(sc, request, response, "/IngSoft/servicio/evento/consultarevento.jsp");
 		
 
