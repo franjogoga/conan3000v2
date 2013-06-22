@@ -23,6 +23,8 @@ public class AccionAgregarMembresia extends CoAccion {
 					
 					MembresiaBeanData membresiaData=membresiaFunction.crearMembresia(request, response);
 					membresiaFunction.agregarMembresia(membresiaData);
+					membresiaFunction.modificarSocio(membresiaData.getCodigoSocio());
+					
 					this.direccionar(sc, request, response, "/IngSoft/ventas/membresia/buscarmembresia.jsp");
 				}
 				
