@@ -15,7 +15,7 @@ SOCIO.IdSocio as idSocio
 ,PERSONA.ApeMaterno as apellidoMaterno
 ,PERSONA.TipoDocumento as tipoDocumento
 ,PERSONA.NumeroDocumento as numeroDocumento
-from SOCIO,PERSONA,MEMBRESIA
+from SOCIO,PERSONA
 <where>
 	<if test="nombres != null ">
         SOCIO.IdSocio=PERSONA.IdPersona and (PERSONA.nombres  like  #{nombres})
@@ -32,15 +32,15 @@ from SOCIO,PERSONA,MEMBRESIA
      <if test="tipoDocumento != null">
         AND PERSONA.TipoDocumento like #{tipoDocumento}
     </if>
-    AND MEMBRESIA.IdSocio=SOCIO.IdSocio and   MEMBRESIA.Estado='Activo'
+    AND SOCIO.Flag='0'
 </where>
 </select>
 
   
 <!-- Agregar plantilla socio -->
 <insert id="insertSocio" parameterType="IngSoft.venta.bean.SocioBeanData" flushCache="true">
-	insert into SOCIO(IdSocio,IdPerfil,Direccion,Correo,TelefonoFijo,IdSolicitudIngreso,IdDistrito,TelefonoCelular)
-	values (#{codigo},'PER000010',#{direccion},#{correoElectronico},#{telefonoFijo},'SOL000001',#{idDistrito},#{telefonoCelular})
+	insert into SOCIO(IdSocio,IdPerfil,Direccion,Correo,TelefonoFijo,IdSolicitudIngreso,IdDistrito,TelefonoCelular,Flag)
+	values (#{codigo},'PER000010',#{direccion},#{correoElectronico},#{telefonoFijo},'SOL000001',#{idDistrito},#{telefonoCelular},'0')
 </insert>
 
 <insert id="insertPersona" parameterType="IngSoft.venta.bean.PersonaMiniBeanData" flushCache="true">
