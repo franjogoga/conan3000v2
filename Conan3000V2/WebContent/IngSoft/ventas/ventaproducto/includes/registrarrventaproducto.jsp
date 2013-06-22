@@ -10,13 +10,18 @@ function alt_submit(){
 			
 }
 
-function anhadir(cod, name){
-	var form= document.frmMembresia;
-	form.txtSocio.value=name;
-	form.idSocio.value=cod;
+
+function anhadirprod(cod,name){
+	var form=document.frmVentaProductos;
+	var cadena = "";
+	var cadigo= cod;
+	var nombre = name;
+	//form.idProducto.value=cod;
+	form.txtProducto.value= cadena.concat(name,cod);
 	$.fn.colorbox.close();
-	
-} 
+}
+
+ 
 
 function confFecha(){
 	var form= document.frmMembresia;
@@ -98,12 +103,16 @@ String fecAnoFin=dfActual.format(c1.getTime()); %>
 			              <div class="control-group" id="dvProducto">
 			                <label class="control-label" for="typeahead8">Producto (*): </label>
 			                <div class="controls">
-			                  <input type="text" class="span6 typeahead" id="typeahead8"  data-provide="typeahead" name="txtProducto" readonly="readonly">
+			                  <input type="text" class="span6 typeahead"   data-provide="typeahead" id="txtProducto"  name="txtProducto" readonly="readonly">
 			                  <br>
-			                  <div  align="left"> <a class="btn btn-primary iframe" href="../producto/buscarproducto.jsp"> <i class="icon icon-search icon-white"></i> </a> </div>
+			                  <div  align="left"> <a class="btn btn-primary iframe" href="../producto/seleccionarproductoventa.jsp"> <i class="icon icon-search icon-white"></i> </a> </div>
 			            
 			                </div>
 		                  </div>
+                          
+                          
+                                                 
+                          
                           
                           <div class="control-group" id="dvMonto">
 			                <label class="control-label" for="typeahead4">Monto (S/.): </label>
@@ -115,11 +124,12 @@ String fecAnoFin=dfActual.format(c1.getTime()); %>
                  
 			            </div>
 			            <div class="form-actions">
-			            <input type="hidden" name="idSocio" value=""/></input>
+			            <input type="hidden" name="idVentaProducto" value=""/></input>
 			              <button type="button" class="btn btn-primary" onclick="javascript:alt_submit()">Agregar</button>
-			              <button type="button" class="btn" onclick="location.href='buscarmembresia.jsp'">Cancelar</button>
+			              <button type="button" class="btn" onclick="location.href='buscarventaproducto.jsp'">Cancelar</button>
 		                </div>
 		              </fieldset>
+		            
 		            </form>
 		          (*) Datos Obligatorios</div>
 		        </div>
