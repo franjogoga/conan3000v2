@@ -1,5 +1,6 @@
 package IngSoft.venta.bean;
 
+import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Vector;
@@ -33,10 +34,12 @@ public class SolicitudProductoBeanFuncion {
 		   SolicitudProductoBeanData solproductoData= new SolicitudProductoBeanData();
 			try{		
 		
-				
+				solproductoData.setIdSede(request.getParameter("cmbSede"));
+				solproductoData.setIdEmpleado(request.getParameter("idEmpleado"));
+				solproductoData.setIdProducto(request.getParameter("idProducto"));			
 				solproductoData.setCantidad(Integer.parseInt(request.getParameter("txtCantidad")));
-			
-	         	
+				solproductoData.setFecha(new Date(DF.parse(request.getParameter("fFecha")).getTime()));
+				
 			}
 			catch(Exception e){
 				e.printStackTrace();
@@ -51,7 +54,7 @@ public class SolicitudProductoBeanFuncion {
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		
 		try{
-			String codigo= (String)sqlsesion.selectOne("Data.venta.solicitud.getNextCodigoS");
+			String codigo= (String)sqlsesion.selectOne("Data.venta.solicitudproducto.getNextCodigoS");
 			if(codigo!=null){
 			int cod= Integer.parseInt(codigo.substring(3))+1;
 			String defecto= "000000";
@@ -84,7 +87,7 @@ public class SolicitudProductoBeanFuncion {
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
 		
-			sqlsesion.update("Data.venta.solicitud.deleteSolicitudProducto",codigo);
+			sqlsesion.update("Data.venta.solicitudproducto.deleteSolicitudProducto",codigo);
 			
 			resultado=true;
 		}
@@ -109,7 +112,7 @@ public class SolicitudProductoBeanFuncion {
 		SolicitudProductoBeanData productoData=null;
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
-			productoData= sqlsesion.selectOne("Data.venta.solicitud.getPlantillaSolicitudProducto",codigo);
+			productoData= sqlsesion.selectOne("Data.venta.solicitudproducto.getPlantillaSolicitudProducto",codigo);
 		}
 		finally{
 			sqlsesion.close();
@@ -125,7 +128,7 @@ public String consultarSolicitudProductoMax() throws CoException {
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		
 		try{
-			codigo= (String)sqlsesion.selectOne("Data.venta.solicitud.getNextCodigoS");
+			codigo= (String)sqlsesion.selectOne("Data.venta.solicitudproducto.getNextCodigoS");
 			if(codigo!=null){
 			int cod= Integer.parseInt(codigo.substring(3))+1;
 			String defecto= "000000";
@@ -156,11 +159,10 @@ public String consultarSolicitudProductoMax() throws CoException {
 
 public Vector<SedeMiniBeanData> getSedes(){
 	SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
-	List<SedeMiniBeanData> resultados1=sqlsesion.selectList("Data.venta.solicitudproducto.searchSedeMini");
+	List<SedeMiniBeanData> resultados=sqlsesion.selectList("Data.venta.solicitudproducto.searchSedeMini");
 	sqlsesion.close();
-	return new Vector<>(resultados1);
+	return new Vector<>(resultados);
 }
 
-	
-	
+
 }

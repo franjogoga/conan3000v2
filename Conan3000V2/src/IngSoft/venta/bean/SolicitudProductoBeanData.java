@@ -8,8 +8,15 @@ public class SolicitudProductoBeanData {
 private String idSolicitudProducto;
 private Integer cantidad;
 private String idEmpleado;
+private String idProducto;
 private String estado;
 private double montoTotal;
+public String getIdProducto() {
+	return idProducto;
+}
+public void setIdProducto(String idProducto) {
+	this.idProducto = idProducto;
+}
 private Date fecha;
 
 public String getIdSolicitudProducto() {
