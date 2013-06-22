@@ -24,6 +24,7 @@
 	<meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
 	<meta name="author" content="Muhammad Usman">
 	<!--The beans  -->
+	<jsp:useBean id="codSorteo" scope="request"class="java.lang.String"></jsp:useBean>	
 	<jsp:useBean id="flag" scope="request"class="java.lang.Integer"></jsp:useBean>
 	<jsp:useBean id="lista" scope="request"class="java.util.Vector"></jsp:useBean>
 	
@@ -136,6 +137,7 @@
 					<div class="box-content">
 						<form class="form-horizontal" action="<%= response.encodeURL("SMCSorteo")%>" name="frmData" method="post">
 						<input type="hidden" name="accion" value="Pagar"></input>
+						<input type="hidden" name="codSorteo" value="<%=codSorteo %>"></input>						
 						  <fieldset>
 						   
 							<div class="control-group">
