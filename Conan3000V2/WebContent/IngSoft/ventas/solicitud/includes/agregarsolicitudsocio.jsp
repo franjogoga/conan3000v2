@@ -9,6 +9,13 @@ function alt_submit(){
 			
 }
 
+function anhadir(cod,name){
+	var form=document.frmSolicitud;
+	form.idSolicitud.value=cod;
+	form.txtProveedor.value=name;
+	$.fn.colorbox.close();
+}
+
 </script>	
 
 <%
@@ -105,7 +112,7 @@ String fecAnoFin=dfActual.format(new java.util.Date()); %>
 		                          </div>
 
 		                             <div class="control-group" id="dvObservaciones">
-			                		<label class="control-label" for="textarea2">Observaciones(*):</label>
+			                		<label class="control-label" for="textarea2">Observaciones:</label>
 			                		<div class="controls">
 			                  		<textarea name="txtObservaciones" rows="3" class="" id="txtObservaciones"  style="resize:none" onpaste="return false;"></textarea>
 		                    		 <span class="help-inline" id="errObservaciones">Please correct the error</span>
@@ -114,6 +121,7 @@ String fecAnoFin=dfActual.format(new java.util.Date()); %>
 		                            
 		                          
 		                        <div class="form-actions">
+		                        
 			                      <button type="button" class="btn btn-primary" onclick="javascript:alt_submit()">Agregar</button>
 			                      <button type="button" class="btn" onclick="location.href='../solicitud/buscarsolicitudsocio.jsp'">Cancelar</button>
 		                        </div>
