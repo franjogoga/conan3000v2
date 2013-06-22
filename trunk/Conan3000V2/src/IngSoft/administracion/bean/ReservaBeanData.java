@@ -5,12 +5,19 @@ import java.util.Date;
 
 public class ReservaBeanData implements Serializable {
 	
-	String codigo;
-	String codigosocio;
-	String codigoinvitado;
-	Date fechainvitacion;
-	double monto;
-	String estado;
+	private String codigo;
+	private String codigosocio;
+	
+	private String codigoinvitado;
+	private String nombre;
+	private String apaterno;
+	private String amaterno;
+	private String dni;	
+	
+	private Date fechaingreso;
+	private Double monto;
+	private String estado;
+	
 	
 	public String getCodigo() {
 		return codigo;
@@ -30,16 +37,40 @@ public class ReservaBeanData implements Serializable {
 	public void setCodigoinvitado(String codigoinvitado) {
 		this.codigoinvitado = codigoinvitado;
 	}
-	public Date getFechainvitacion() {
-		return fechainvitacion;
+	public String getNombre() {
+		return nombre;
 	}
-	public void setFechainvitacion(Date fechainvitacion) {
-		this.fechainvitacion = fechainvitacion;
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
-	public double getMonto() {
+	public String getApaterno() {
+		return apaterno;
+	}
+	public void setApaterno(String apaterno) {
+		this.apaterno = apaterno;
+	}
+	public String getAmaterno() {
+		return amaterno;
+	}
+	public void setAmaterno(String amaterno) {
+		this.amaterno = amaterno;
+	}
+	public String getDni() {
+		return dni;
+	}
+	public void setDni(String dni) {
+		this.dni = dni;
+	}
+	public Date getFechaingreso() {
+		return fechaingreso;
+	}
+	public void setFechaingreso(Date fechaingreso) {
+		this.fechaingreso = fechaingreso;
+	}
+	public Double getMonto() {
 		return monto;
 	}
-	public void setMonto(double monto) {
+	public void setMonto(Double monto) {
 		this.monto = monto;
 	}
 	public String getEstado() {
@@ -48,12 +79,7 @@ public class ReservaBeanData implements Serializable {
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
-	
-	
-	
-	
-	
-	
+
 	
 	
 
