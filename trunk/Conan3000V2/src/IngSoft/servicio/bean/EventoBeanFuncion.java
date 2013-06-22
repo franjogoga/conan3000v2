@@ -77,7 +77,9 @@ public class EventoBeanFuncion {
 			eventoData.setNombre(request.getParameter("txtNombreEvento").trim());			
 			eventoData.setFecha(new java.sql.Date(DF.parse(request.getParameter("fFecha")).getTime()));
 			eventoData.setLimiteEntradas(Integer.parseInt(request.getParameter("txtNumEntradas")));
-			eventoData.setPrecioEntrada(Double.parseDouble(request.getParameter("precioentrada")+".00"));
+			String temp= request.getParameter("precioentrada");
+			temp= temp.contains(".")?temp:temp+".00";
+			eventoData.setPrecioEntrada(Double.parseDouble(temp));
 			eventoData.setIdConcesionario(request.getParameter("concesionario"));
 			}catch(Exception e){
 				e.printStackTrace();
@@ -258,7 +260,7 @@ public class EventoBeanFuncion {
 	
 	*/
 	
-	public EventoBeanData consultarEvento(String codigo){
+	public EventoBeanData consultarEventoSede(String codigo){
 		EventoBeanData eventoData=null;
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{

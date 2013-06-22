@@ -64,6 +64,7 @@
 	<!-- jQuery -->
 	<script src="js/jquery-1.7.2.min.js"></script>
 	<script>
+	var cont=-1;
 	var codSedeActual="none";
 	var fechaActual="<%=new SimpleDateFormat("dd/MM/yyyy").format(new Date())%>";
 	var boton='#btnConcecionarios';
@@ -138,20 +139,20 @@
 				$('#txtPrecio').bind("change",function(){
 				var temp= $('#txtPrecio');
 				if(temp.val()!=null && temp.val().length>0) {
-				temp.parent().parent().parent().removeClass("error");
-				temp.parent().parent().parent().addClass("success");
+				temp.parent().parent().removeClass("error");
+				temp.parent().parent().addClass("success");
 				$('#errPrecio').slideUp(1000);
 				}
 				else {
-				temp.parent().parent().parent().removeClass("success");
-				temp.parent().parent().parent().addClass("error");
+				temp.parent().parent().removeClass("success");
+				temp.parent().parent().addClass("error");
 				$('#errPrecio').slideDown(1000);
 				}
 				
 				})
 				$('#errPrecio').slideDown(1000);
 				test=false;
-				$('#txtPrecio').parent().parent().parent().toggleClass("error");
+				$('#txtPrecio').parent().parent().toggleClass("error");
 			}
 			else $('#txtPrecio').parent().parent().addClass("success");
 	return test;
@@ -325,9 +326,9 @@
 					        <div class="control-group">
 						      <label class="control-label" for="txtPrecio">Precio de la Entrada(*): </label>
 						      <div class="controls">
-								  <div class="input-append">
-									<input  id="txtPrecio" name="txtPrecio" size="8" type="text" onkeypress="return numerico(event);"  maxlength="10"><span class="add-on">.00</span>
-								  </div><br/>
+
+									<input  id="txtPrecio" class="span4" name="txtPrecio" onchange="vDinero($(this))"  type="text" onkeypress="return dinero(event);"  maxlength="10">
+									<br/>
 								  <span class="help-inline" id="errPrecio" name="errPrecio" style="display:none;">Este campo no puede estar vacio</span>
 					        </div>
 					        </div>					   
@@ -499,6 +500,9 @@
 		})
 		$('#txtNumEntradas').bind('paste',function(){		
 			setTimeout(function(){filtrar('1234567890',$('#txtNumEntradas'),50)}, 0);
+		})
+		$('#txtPrecio').bind('paste',function(){		
+			setTimeout(function(){filtrar('1234567890.',$('#txtPrecio'),50)}, 0);			
 		})
 		$(function() {
     	$( ".datepickerB" ).datepicker({

@@ -31,7 +31,8 @@
     <mapper resource="Data/administracion/servicio_mapper.xml"/>
     <mapper resource="Data/administracion/empleado_mapper.xml"/>
     <mapper resource="Data/administracion/jornada_mapper.xml"/>
-    <mapper resource="Data/administracion/concesionario_mapper.xml"/> 
+    <mapper resource="Data/administracion/concesionario_mapper.xml"/>
+    <mapper resource="Data/administracion/infraccion_mapper.xml"/> 
     <!--  <mapper resource="Data/administracion/reserva_mapper.xml"/> -->     
     <mapper resource="Data/venta/promocion_mapper.xml"/>
     <mapper resource="Data/venta/socio_mapper.xml"/>
