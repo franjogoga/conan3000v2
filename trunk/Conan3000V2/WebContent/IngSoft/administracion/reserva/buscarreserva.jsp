@@ -105,7 +105,7 @@
 				
 			} 
 		else{
-			alert("Error al comparar fechas");
+			alert("Error al comparar las fechas");
 		}			
 	}
 	
