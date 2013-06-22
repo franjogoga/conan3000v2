@@ -44,43 +44,31 @@ public class ReservaBeanFunction {
 	}
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	public ReservaBeanData getReserva(int codigo){
-		
-		ReservaBeanData i= null;
-		
-		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
-		try{
-			i= sqlsesion.selectOne("getReserva",codigo);
-		
-		}
-		finally{
-			sqlsesion.close();
-		}
-		return i;
-	}	
-	
+
 	
 	public ReservaBeanData crearReserva(HttpServletRequest request, HttpServletResponse response){
 		ReservaBeanData reservaData= new ReservaBeanData();
 		try{		
 	        
-  System.out.print("---> codigo que vamos a modificar" + request.getParameter("codigo"));
-	
-       
-		
-  		reservaData.setCodigosocio(			request.getParameter("txtCodigosocio"));		
-		reservaData.setCodigoinvitado(   		request.getParameter("txtCodigoinvitado") );
 
-		reservaData.setFechainvitacion(new Date(DF.parse(		request.getParameter("fFecNacimiento")+"/0000").getTime()));
-		reservaData.setMonto(Double.parseDouble(request.getParameter("txtMonto")));
-		reservaData.setEstado(    								request.getParameter("optionsRadios") );
+			
+			
+	  		System.out.print("txtCodigoSoc ---> "+request.getParameter("txtCodigoSoc"));		
+	  		System.out.print("txtCodigoInv ---> "+request.getParameter("txtCodigoInv") );
+
+	  		System.out.print("fecha ---> "+ new Date(DF.parse(		request.getParameter("fFecInvitado")+"/0000").getTime()));
+	  		System.out.print("monto ---> "+Double.parseDouble(            request.getParameter("txtMonto")));
+	  				
+			
+			
+			
+		
+  		reservaData.setCodigosocio(			                request.getParameter("txtCodigoSoc"));		
+		reservaData.setCodigoinvitado(   	             	request.getParameter("txtCodigoInv") );
+
+		reservaData.setFechaingreso(new Date(DF.parse(		request.getParameter("fFecInvitado")+"/0000").getTime()));
+		reservaData.setMonto(Double.parseDouble(            request.getParameter("txtMonto")));
+		reservaData.setEstado(    							"Activo" );
 			
 	
 
@@ -101,13 +89,32 @@ public class ReservaBeanFunction {
 		
 		try{
 			
+			
+			
+			String codigo = (String)sqlsesion.selectOne("Data.administracion.reserva.getNextInvitadoSocio");
+
+			System.out.print(" reservaData ----> "+ codigo);
+			
+			
+			if(codigo!=null)
+			{
+			int cod= Integer.parseInt(codigo.substring(3))+1;
+			String defecto= "000000";
+			String temp= defecto.substring(0, defecto.length()-String.valueOf(cod).length()).concat(String.valueOf(cod));
+			
+			reservaData.setCodigo(codigo.substring(0,3).concat(temp));
+			}
+			else reservaData.setCodigo("IXS000001");
+
+			
+			
 			sqlsesion.insert("Data.administracion.reserva.insertPlantillaReserva",reservaData);
 			resultado=true;
 		}
 		catch(Exception a)		
 		{sqlsesion.rollback();
 		a.printStackTrace();
-			throw CoException.set("Error: Nombre de Reserva repetido XD", "SMAReserva=Agregar&tipo=1");
+			throw CoException.set("Error: Nombre de Reserva repetido ", "SMAReserva=Agregar&tipo=1");
 			
 		}
 		
@@ -119,6 +126,46 @@ public class ReservaBeanFunction {
 			
 		return resultado;
 	}
+	
+	
+	
+	
+	public ReservaBeanData crearReservaModificar(HttpServletRequest request, HttpServletResponse response){
+		ReservaBeanData reservaData= new ReservaBeanData();
+		try{		
+	        
+
+			
+			System.out.print("codigo ---> "+request.getParameter("codigo"));
+	  		System.out.print("txtCodigoSoc ---> "+request.getParameter("txtCodigoSoc"));		
+	  		System.out.print("txtCodigoInv ---> "+request.getParameter("txtCodigoInv") );
+
+	  		System.out.print("fecha ---> "+ new Date(DF.parse(		request.getParameter("fFecInvitado")+"/0000").getTime()));
+	  		System.out.print("monto ---> "+Double.parseDouble(            request.getParameter("txtMonto")));
+	  				
+			
+			
+			
+	  		reservaData.setCodigo(		                   request.getParameter("codigo"));	
+  		reservaData.setCodigosocio(			                request.getParameter("txtCodigoSoc"));		
+		reservaData.setCodigoinvitado(   	             	request.getParameter("txtCodigoInv") );
+
+		reservaData.setFechaingreso(new Date(DF.parse(		request.getParameter("fFecInvitado")+"/0000").getTime()));
+		reservaData.setMonto(Double.parseDouble(            request.getParameter("txtMonto")));
+		reservaData.setEstado(    			request.getParameter("optionsRadios") 				);
+			
+	
+
+		}catch(Exception e){
+			e.printStackTrace();
+			
+		}
+		return reservaData;		
+	}
+	
+	
+	
+	
 	
 	public boolean modificarReserva(ReservaBeanData reservaData) throws CoException {
 		boolean resultado=false;		
@@ -172,6 +219,25 @@ public class ReservaBeanFunction {
 		return reservaData;
 	}
 	
+	public ReservaBeanData consultarReservaInvitado(String codigo){
+		ReservaBeanData reservaData=null;
+		
+		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+		try{
+			System.out.print("ReservaBeanFunction ---->  codigo = " + codigo);
+			
+			reservaData= sqlsesion.selectOne("Data.administracion.reserva.getPLantillaReservaInvitado",codigo);
+			
+		}
+		finally{
+			sqlsesion.close();
+		}
+
+		
+		return reservaData;
+	}
+
+	
 
 	public boolean eliminarReserva(String codigo) throws CoException {
 		boolean resultado=false;		
@@ -206,8 +272,23 @@ public class ReservaBeanFunction {
 	
 	
 	
+	public  Vector<PersonaBeanData> getAllpersonas(){		
+		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+		Vector<PersonaBeanData> resultadosV=null;
+		try{
+			
+			
+		List<PersonaBeanData> resultados=sqlsesion.selectList("Data.administracion.reserva.getAllpersonas");
 	
-	
+		resultadosV= new Vector<>(resultados);
+		
+		
+		}
+		finally{
+		sqlsesion.close();}
+		return resultadosV;
+		
+	}
 	
 	
 	
