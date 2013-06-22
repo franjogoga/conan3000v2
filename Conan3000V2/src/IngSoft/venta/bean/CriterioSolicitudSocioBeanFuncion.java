@@ -48,4 +48,18 @@ public class CriterioSolicitudSocioBeanFuncion {
 		return resultadosV;
 		
 	}
+	
+	public Vector<ResultadoSolicitudSocioBeanData> buscarPlantillaSolicitudAceptada(CriterioSolicitudSocioBeanData criterioSolicitudSocioData){		
+		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+		Vector<ResultadoSolicitudSocioBeanData> resultadosV=null;
+		try{		
+		List<ResultadoSolicitudSocioBeanData> resultados=sqlsesion.selectList("Data.venta.solicitudsocio.searchPlantillaSolicitudAceptada",criterioSolicitudSocioData);
+						
+		resultadosV= new Vector<>(resultados);
+		}
+		finally{
+		sqlsesion.close();}
+		return resultadosV;
+		
+	}
 }
