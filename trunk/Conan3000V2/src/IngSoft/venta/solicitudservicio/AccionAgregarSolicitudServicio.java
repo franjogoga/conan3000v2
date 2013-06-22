@@ -41,11 +41,11 @@ public class AccionAgregarSolicitudServicio extends CoAccion{
 					int codLinea= Integer.parseInt(codLineaS.substring(3))+1;
 					String defecto= "000000";
 					String temp= defecto.substring(0, defecto.length()-String.valueOf(codLinea).length()).concat(String.valueOf(codLinea));
-					
+				
 				lineaData.setCodLineaServicio(codLineaS.substring(0,3).concat(temp));}
 				else lineaData.setCodLineaServicio("LIS000001");
 				
-				Double precio=servicioData.getPrecio();
+				Double precio=servicioData.getPrecio();//dice que saca null
 				int periodo=Integer.parseInt(request.getParameter("txtperiodo"));
 				
 				Double monto=(double)precio*periodo;
