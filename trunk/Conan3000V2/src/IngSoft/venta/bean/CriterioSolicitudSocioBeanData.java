@@ -9,10 +9,29 @@ public class CriterioSolicitudSocioBeanData implements Serializable{
 	private String nombres;
 	private String apellidoPaterno;
 	private String apellidoMaterno;
+	private Date fechaNacimiento;
 	private Date fechaRegistro;
 	private String estado;
+	private String direccion;
 	
 	
+	
+	public Date getFechaNacimiento() {
+		return fechaNacimiento;
+	}
+
+	public void setFechaNacimiento(Date fechaNacimiento) {
+		this.fechaNacimiento = fechaNacimiento;
+	}
+
+	public String getDireccion() {
+		return direccion;
+	}
+
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
+	}
+
 	public String getEstado() {
 		return estado;
 	}
