@@ -77,7 +77,7 @@
 	obj.value=obj.value.slice(0,5);
 	
 	}
-	function alt_agregar(){
+	function alt_agregar(cod){
 		var form=document.getElementById("frmAlternativo");
 		form.accion.value="Multar";
 		form.submit();
@@ -145,9 +145,9 @@
 						<!-- <form class="form-horizontal" name="frmCriteriosBusqueda" id="frmCriteriosBusqueda"  method="post" onsubmit="xmlhttpPost('/Conan3000V2/IngSoft/servicio/evento/SMSEvento?accion=Buscar', 'frmCriteriosBusqueda', 'resultadoBusqueda','<img >');
 		 return false;"> -->
 		 
-		 <!--  paso 1  configuracion de link + variables -->													 <!-- nos linkea al archivo SMAInvitado -->
-		 <form class="form-horizontal" name="frmCriteriosBusqueda" id="frmCriteriosBusqueda"  method="post" action="<%= response.encodeURL("SMAInvitado")%>">
-		                                      <!-- Buscar  variable  que pasa al archivo SMAInvitado   -->	
+		 <!--  paso 1  configuracion de link + variables -->													 <!-- nos linkea al archivo SMAInfraccion -->
+		 <form class="form-horizontal" name="frmCriteriosBusqueda" id="frmCriteriosBusqueda"  method="post" action="<%= response.encodeURL("SMAInfraccion")%>">
+		                                      <!-- Buscar  variable  que pasa al archivo SMAInfraccion   -->	
 		 <input type="hidden" name="accion" value="Buscarinf"></input>
 		  <input type="hidden" name="tipo" value="2"></input>
 						  <fieldset>
@@ -179,9 +179,9 @@
 			
 			
 
-		    <!--  paso 3  configuracion de link + variables -->				  <!-- nos linkea al archivo SMAInvitado -->
-			<form id="frmAlternativo" name="frmAlternativo" method="post" action="<%= response.encodeURL("SMAInvitado")%>">
-			<input type="hidden" name="accion" value="Agregar"></input>
+		    <!--  paso 3  configuracion de link + variables -->				  <!-- nos linkea al archivo SMAInfraccion -->
+			<form id="frmAlternativo" name="frmAlternativo" method="post" action="<%= response.encodeURL("SMAInfraccion")%>">
+			<input type="hidden" name="accion" value="Multar"></input>
 			<input type="hidden" name="codigo" value=""></input>
 			<input type="hidden" name="tipo" value="1"></input>
 			</form>
@@ -201,20 +201,15 @@
                         <table class="table table-striped table-bordered bootstrap-datatable datatable">
                             <!-- agregar nuevo boton -->
                             
-                            
-                            <div align="right">
-                            
-                                <a class="btn btn-primary" href="javascript:alt_agregar()">
-                                    <i class="icon icon-add icon-white"></i>
-                                    Agregar
-                                </a>
-                              
-                             </div>          
+                                     
                           <thead>
 							  <tr>
-							       <th>Codigo</th>
-								    <th>Nombre</th>
-							        <th>Estado</th>
+							       <th>Codigo Socio</th>
+								    <th>Nombre Socio</th>
+								    <th>Apellido Paterno Socio</th>
+								    <th>Apellido Materno Socio</th>
+								    <th>Numero de Documento</th>
+							     
 							       	        							      							        
 							        <th>Accion</th>
 							
@@ -236,30 +231,35 @@
                           					((ResultadoInfraccionBeanData)resultados.get(i)).getNombre()
                           				%>
                           			</td>
-
                           			
                           			<td class="center">
+                          				<%=
+                          					((ResultadoInfraccionBeanData)resultados.get(i)).getApepaterno()
+                          				%>
+                          			</td>
                           			
-	                          			
-								           <%
-									 
-												  if( ((ResultadoInfraccionBeanData)resultados.get(i)).getEstado().equalsIgnoreCase("activo") ){    
-								 out.print(" <span class='label label-success'> " + ((ResultadoInfraccionBeanData)resultados.get(i)).getEstado()   +"   </span>       ");
-												  }
-												  else { 
-								 out.print(" <span class='label label-warning'> " + ((ResultadoInfraccionBeanData)resultados.get(i)).getEstado()   +"   </span>       ");
-													
-												  }
-									  
-									   
-									 
-		                          					            
-	                          				%>
-	                          			
+                          			<td class="center">
+                          				<%=
+                          					((ResultadoInfraccionBeanData)resultados.get(i)).getApematerno()
+                          				%>
+                          			</td>
                           			
+                          			<td class="center">
+                          				<%=
+                          					((ResultadoInfraccionBeanData)resultados.get(i)).getNumdocumento()
+                          				%>
                           			</td>
 
+                          			
                           			<td class="center">
+                          			
+                          				<a class="btn btn-primary"
+                          					href="javascript:alt_agregar('<%=((ResultadoInfraccionBeanData)resultados.get(i)).getCodigo()%>')">
+                          					<i
+                          						class="icon icon-add icon-white">
+                          					</i> 
+                          					Multar
+                          				</a>
                           				<a class="btn btn-success"
                           					href="javascript:alt_consultar('<%=((ResultadoInfraccionBeanData)resultados.get(i)).getCodigo()%>')">
                           					<i
@@ -267,19 +267,7 @@
                           					</i> 
                           					Ver
                           				</a>
-                          				<a class="btn btn-info"
-                          					href="javascript:alt_modificar('<%=((ResultadoInfraccionBeanData)resultados.get(i)).getCodigo()%>')">
-                          					<i
-                          						class="icon-edit icon-white">
-                          					</i>
-                          					Modificar
-                          				</a>
-                          				<a class="btn btn-danger"
-                          					href="javascript:alt_eliminar('<%=((ResultadoInfraccionBeanData)resultados.get(i)).getCodigo()%>')">
-                          					<i class="icon-trash icon-white">
-                          					</i>
-                          					Eliminar
-                          				</a>
+                          				
                           			</td>
                           		</tr>
 
