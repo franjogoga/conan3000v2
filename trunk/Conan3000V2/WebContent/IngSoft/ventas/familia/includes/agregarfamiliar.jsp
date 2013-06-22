@@ -54,7 +54,7 @@ String fecAnoFin=dfActual.format(c1.getTime()); %>
 			            <div class="control-group" id="dvCodigo">
 			              <label class="control-label" for="typeahead7">Socio Asociado:</label>
 			              <div class="controls">
-			                <input type="text"   class="span6 typeahead" id="txtSocio"  name="txtSocio" data-provide="typeahead">
+			                <input type="text"   class="span6 typeahead" id="txtSocio"  name="txtSocio" data-provide="typeahead" maxlength="9" onpaste="return false;">
 			                <br>
 		                     <div  align="left"> <a class="btn btn-primary iframe" href="../socio/seleccionarsocio.jsp"> <i class="icon icon-search icon-white"></i> Buscar Socio</a> </div>
 		                     <span class="help-inline" id="errCodigo">Please correct the error</span>
