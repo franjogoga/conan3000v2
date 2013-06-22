@@ -32,7 +32,7 @@ from SOLICITUD_PRODUCTO,LINEA_PRODUCTO
 </where>
 </select>
   
-  <select id="searchSedeMini" resultType="IngSoft.administracion.bean.SedeMiniBeanData">
+  <select id="searchSedeMini" resultType="IngSoft.venta.bean.SedeMiniBeanData">
 		select IdSede as codigo, Nombre as nombre 
 		from SEDE
 	</select>
