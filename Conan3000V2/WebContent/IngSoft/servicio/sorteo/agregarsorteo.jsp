@@ -54,6 +54,8 @@
 
 	<!-- The fav icon -->
 	<link rel="shortcut icon" href="img/conan_logo.png">
+	<script src="sorteo.js"></script>
+	
 	<script>
 	function alfanumerico(e) 
 	{ 
@@ -158,21 +160,21 @@
 						  <div class="control-group" id="dvFechaInicio">
 			              <label class="control-label" for="date01">Fecha de inicio(*):</label>
 			                <div class="controls">
-			                  <input type="text" name="fFecInicio" class="input-xlarge datepicker" id="fFecInicio" value="" readonly="true">
+			                  <input type="text" name="fFecInicio" class="input-xlarge datepicker" id="fFecInicio" value="" readonly="true" >
 			                  <span class="help-inline" id="errFechaInicio">Please correct the error</span>
 		                    </div>
 		                  </div>
 			              <div class="control-group" id="dvFechaFin">
 			                <label class="control-label" for="date02">Fecha de fin(*):</label>
 			                <div class="controls">
-			                  <input type="text" name="fFecFin" class="input-xlarge datepicker" id="fFecFin" value="" readonly="true">
+			                  <input type="text" name="fFecFin" class="input-xlarge datepicker" id="fFecFin" value="" readonly="true" onchange="verificar_fecha(1,this,'fFecInicio');" >
 			                  <span class="help-inline" id="errFechaFin">Please correct the error</span>
 		                    </div>
 		                  </div>
 							<div class="control-group" id="dvFechaSorteo">
 			                <label class="control-label" for="date03">Fecha de Sorteo(*):</label>
 			                <div class="controls">
-			                  <input type="text" name="fFecSorteo" class="input-xlarge datepicker" id="fFecSorteo" value="" readonly="true">
+			                  <input type="text" name="fFecSorteo" class="input-xlarge datepicker" id="fFecSorteo" value="" readonly="true" onchange="verificar_fecha(1,this,'fFecFin');" >
 			                  <span class="help-inline" id="errFechaSorteo">Please correct the error</span>
 		                    </div>
 		                  </div>
