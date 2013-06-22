@@ -30,6 +30,35 @@ from SOLICITUD_INGRESO
 </where>
 </select>
 
+
+
+ <select id="searchPlantillaSolicitudAceptada" parameterType="IngSoft.venta.bean.CriterioSolicitudSocioBeanData" resultType="IngSoft.venta.bean.ResultadoSolicitudSocioBeanData">
+select 
+SOLICITUD_INGRESO.IdSolicitudIngreso as codSolicitudSocio
+,SOLICITUD_INGRESO.Nombres as nombres
+,SOLICITUD_INGRESO.ApePaterno as apellidoPaterno
+,SOLICITUD_INGRESO.ApeMaterno as apellidoMaterno
+,SOLICITUD_INGRESO.FechaNac as fechaNacimiento
+,SOLICITUD_INGRESO.FechaRegistro as fechaRegistro
+,SOLICITUD_INGRESO.Estado as estado
+,SOLICITUD_INGRESO.Direccion as direccion
+from SOLICITUD_INGRESO
+<where>
+	 
+	<if test="nombres != null ">
+       (SOLICITUD_INGRESO.Nombres)  like #{nombres}
+    </if>
+    <if test="apellidoPaterno != null ">
+       AND (SOLICITUD_INGRESO.ApePaterno)  like #{apellidoPaterno}
+    </if>
+    <if test="apellidoMaterno != null ">
+       AND (SOLICITUD_INGRESO.ApeMaterno)  like #{apellidoMaterno}
+    </if>
+    AND SOLICITUD_INGRESO.Estado='Aceptada'
+
+</where>
+</select>
+
   
 <!-- Agregar plantilla socio -->
 <insert id="insertSolicitud" parameterType="IngSoft.venta.bean.SolicitudsocioBeanData" flushCache="true">
