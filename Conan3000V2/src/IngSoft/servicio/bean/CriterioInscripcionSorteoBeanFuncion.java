@@ -37,6 +37,22 @@ public class CriterioInscripcionSorteoBeanFuncion {
 		List<ResultadoInscripcionSorteoBeanData> resultados=sqlsesion.selectList("searchPlantillaInscripcionSorteo",criterioInscripcionSorteoData);
 		
 		resultadosV= new Vector<>(resultados);
+		
+		int valFecha=0;
+		java.util.Date fecha = new java.util.Date();
+		Date fechaSQL = new Date(fecha.getTime()); 
+		for (int i=0; i< resultadosV.size(); i++){
+			if ( (resultadosV.get(i).getFechaSorteo().before(fechaSQL)) || 
+				 ((resultadosV.get(i).getFechaIni().before(fechaSQL) && (resultadosV.get(i).getFechaFin().after(fechaSQL)))) ) { 
+				String codSorteo = resultadosV.get(i).getCodigo();
+				sqlsesion.update("Data.club.inscripcionSorteo.insertFechaFlag",codSorteo);
+				}
+			
+		}
+		resultados=sqlsesion.selectList("searchPlantillaInscripcionSorteo",criterioInscripcionSorteoData);
+		
+		resultadosV= new Vector<>(resultados);
+		
 		}
 		finally{
 		sqlsesion.close();}
