@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Calendar"%>
 <%@page import="IngSoft.servicio.bean.ResultadoInscripcionSorteoBeanData"%>
@@ -250,7 +251,7 @@
                           				%>
                           			</td>
                           			<td class="center">
-                          				<%if (((ResultadoInscripcionSorteoBeanData)resultados.get(i)).getFlag()==1){ %>
+                          				<%if ( ((ResultadoInscripcionSorteoBeanData)resultados.get(i)).getFlag()==1) { %>
                           				<a class="btn btn-success" 
                           					href="javascript:alt_consultar('<%=((ResultadoInscripcionSorteoBeanData)resultados.get(i)).getCodigo()%>')">
                           					<i class="icon-zoom-in icon-white">
