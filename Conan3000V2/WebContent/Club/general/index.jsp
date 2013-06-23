@@ -331,6 +331,103 @@ body #rt-logo {
 															<img src="images/ccb4e23c8aa216f1e96d31ab209c036b_XL.jpg"
 															alt="Praesent vestibulum" />
 													</a>
+													
+														<div class="flex-caption">
+															<div class="flexCaptionInner">
+																<!-- Plugins: AfterDisplayTitle -->
+																<!-- K2 Plugins: K2AfterDisplayTitle -->
+																<!-- Plugins: BeforeDisplayContent -->
+																<!-- K2 Plugins: K2BeforeDisplayContent -->
+																<div class="clr"></div>
+																<div class="clr"></div>
+																<!-- Plugins: AfterDisplayContent -->
+																<!-- K2 Plugins: K2AfterDisplayContent -->
+																<!-- Plugins: AfterDisplay -->
+																<!-- K2 Plugins: K2AfterDisplay -->
+															</div>
+														</div>
+													</li>
+													<li class="slide" data-thumb="">
+														<!-- Plugins: BeforeDisplay --> <!-- K2 Plugins: K2BeforeDisplay -->
+														<a class="moduleItemImage"
+														href="http://livedemo00.template-help.com/joomla_43780/index.php/component/k2/item/40-praesent-vestibulum"
+														title="Continue reading &quot;Praesent vestibulum&quot;">
+															<img src="images/club1.jpg"
+															alt="Praesent vestibulum" />
+													</a>
+													
+														<div class="flex-caption">
+															<div class="flexCaptionInner">
+																<!-- Plugins: AfterDisplayTitle -->
+																<!-- K2 Plugins: K2AfterDisplayTitle -->
+																<!-- Plugins: BeforeDisplayContent -->
+																<!-- K2 Plugins: K2BeforeDisplayContent -->
+																<div class="clr"></div>
+																<div class="clr"></div>
+																<!-- Plugins: AfterDisplayContent -->
+																<!-- K2 Plugins: K2AfterDisplayContent -->
+																<!-- Plugins: AfterDisplay -->
+																<!-- K2 Plugins: K2AfterDisplay -->
+															</div>
+														</div>
+													</li>
+													<li class="slide" data-thumb="">
+														<!-- Plugins: BeforeDisplay --> <!-- K2 Plugins: K2BeforeDisplay -->
+														<a class="moduleItemImage"
+														href="http://livedemo00.template-help.com/joomla_43780/index.php/component/k2/item/40-praesent-vestibulum"
+														title="Continue reading &quot;Praesent vestibulum&quot;">
+															<img src="images/club5.jpg"
+															alt="Praesent vestibulum" />
+													</a>
+													
+														<div class="flex-caption">
+															<div class="flexCaptionInner">
+																<!-- Plugins: AfterDisplayTitle -->
+																<!-- K2 Plugins: K2AfterDisplayTitle -->
+																<!-- Plugins: BeforeDisplayContent -->
+																<!-- K2 Plugins: K2BeforeDisplayContent -->
+																<div class="clr"></div>
+																<div class="clr"></div>
+																<!-- Plugins: AfterDisplayContent -->
+																<!-- K2 Plugins: K2AfterDisplayContent -->
+																<!-- Plugins: AfterDisplay -->
+																<!-- K2 Plugins: K2AfterDisplay -->
+															</div>
+														</div>
+													</li>
+													<li class="slide" data-thumb="">
+														<!-- Plugins: BeforeDisplay --> <!-- K2 Plugins: K2BeforeDisplay -->
+														<a class="moduleItemImage"
+														href="http://livedemo00.template-help.com/joomla_43780/index.php/component/k2/item/40-praesent-vestibulum"
+														title="Continue reading &quot;Praesent vestibulum&quot;">
+															<img src="images/club6.jpg"
+															alt="Praesent vestibulum" />
+													</a>
+													
+														<div class="flex-caption">
+															<div class="flexCaptionInner">
+																<!-- Plugins: AfterDisplayTitle -->
+																<!-- K2 Plugins: K2AfterDisplayTitle -->
+																<!-- Plugins: BeforeDisplayContent -->
+																<!-- K2 Plugins: K2BeforeDisplayContent -->
+																<div class="clr"></div>
+																<div class="clr"></div>
+																<!-- Plugins: AfterDisplayContent -->
+																<!-- K2 Plugins: K2AfterDisplayContent -->
+																<!-- Plugins: AfterDisplay -->
+																<!-- K2 Plugins: K2AfterDisplay -->
+															</div>
+														</div>
+													</li>
+													<li class="slide" data-thumb="">
+														<!-- Plugins: BeforeDisplay --> <!-- K2 Plugins: K2BeforeDisplay -->
+														<a class="moduleItemImage"
+														href="http://livedemo00.template-help.com/joomla_43780/index.php/component/k2/item/40-praesent-vestibulum"
+														title="Continue reading &quot;Praesent vestibulum&quot;">
+															<img src="images/club2.jpg"
+															alt="Praesent vestibulum" />
+													</a>
+													
 														<div class="flex-caption">
 															<div class="flexCaptionInner">
 																<!-- Plugins: AfterDisplayTitle -->
@@ -444,13 +541,9 @@ body #rt-logo {
 															Membresias<span>venta</span>
 														</h3>
 														<ul class="menu-list">
-															<li><a href="#">Solicitud Socios</a></li>
-															<li><a href="#">Pagos de Membresías</a></li>
-															<li><a href="#">Lorem ipsum dolor sit</a></li>
-															<li><a href="#">Consectetuer adipis</a></li>
-															<li><a href="#">Pellentesque sed dolor</a></li>
-															<li><a href="#">Aliquam congue fermentu</a></li>
-															<li><a href="#">Mauris accumsan</a></li>
+															<li><a href="#">Nuevos Socios</a></li>
+															<li><a href="#">Pago de Membresías</a></li>
+															<li><a href="#">Venta de Souvenirs</a></li>
 														</ul>
 													</div>
 													<div class="clr"></div>
@@ -469,11 +562,9 @@ body #rt-logo {
 														<h3 class="moduleItemTitle">
 															Bungalows <span>reservas</span>
 														</h3>
-														<p>Praesent vestibulum molestie lacus. Aenean nonummy
-															hendrerit mauris. Phasellus porta.</p>
-														<p>Fusce suscipit varius mi. Cum sociis natoque
-															penatibus et magnis dis parturient montes, nascetur
-															ridiculus mus.</p>
+														<p>Pasa un momento de relax junto a tus amigos y/o seres queridos en los mejores bungalows de Lima.</p>
+														<p>Consulta por nuestras promociones e inscribete en los sorteos y 
+														   pasa un gran momento!!!</p>
 													</div>
 													<div class="clr"></div>
 													<div class="clr"></div> <!-- Plugins: AfterDisplayContent -->
@@ -492,13 +583,8 @@ body #rt-logo {
 															Deportes<span>clases</span>
 														</h3>
 														<ul class="menu-list">
-															<li><a href="#">Proin dictum elementu</a></li>
-															<li><a href="#">Fusce euismod consequa</a></li>
-															<li><a href="#">Lorem ipsum dolor sit</a></li>
-															<li><a href="#">Consectetuer adipis</a></li>
-															<li><a href="#">Pellentesque sed dolor</a></li>
-															<li><a href="#">Aliquam congue fermentu</a></li>
-															<li><a href="#">Mauris accumsan</a></li>
+															<li><a href="#">Inscripción a talleres</a></li>
+															<li><a href="#">Pago de Talleres</a></li>
 														</ul>
 													</div>
 													<div class="clr"></div>
@@ -517,11 +603,9 @@ body #rt-logo {
 														<h3 class="moduleItemTitle">
 															Eventos<span>reservas</span>
 														</h3>
-														<p>Praesent vestibulum molestie lacus. Aenean nonummy
-															hendrerit mauris. Phasellus porta. Fusce suscipit varius
-															mi. Cum sociis natoque penatibus et magnis dis parturient
-															montes, nascetur ridiculus mus. Nulla dui. Fusce feugiat
-															malesuada odio. Morbi</p>
+														<p>Ofrecemos ambientes para que realices el evento de tu vida,
+														matrimonios, fiestas y recepciones.  Pregunta por nuestras ofertas 
+														corporativas.</p>
 													</div>
 													<div class="clr"></div>
 													<div class="clr"></div> <!-- Plugins: AfterDisplayContent -->
