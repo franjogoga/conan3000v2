@@ -299,16 +299,15 @@ body #rt-logo {
 					<div class="rt-container">
 						<div class="rt-grid-8 rt-alpha">
 							<div class="rt-block">
-								<a href="index.html" id="rt-logo"></a>
+								<a href="index.jsp" id="rt-logo"></a>
 							</div>
 						</div>
 						<div class="rt-grid-8 rt-omega">
 							<div class="rt-block">
 								<ul class="menu-phone">
-									<li id="item-213"><span class="separator"><span>Call
-												Us Toll Free</span></span></li>
+									<li id="item-213"><span class="separator"><span>Llamanos Gratis</span></span></li>
 									<li id="item-214"><span class="separator"><span>1
-												- 800 - 234 56 89</span></span></li>
+												-0800-77-6969</span></span></li>
 								</ul>
 							</div>
 						</div>
@@ -445,8 +444,8 @@ body #rt-logo {
 															Membresias<span>venta</span>
 														</h3>
 														<ul class="menu-list">
-															<li><a href="#">Proin dictum elementu</a></li>
-															<li><a href="#">Fusce euismod consequa</a></li>
+															<li><a href="#">Solicitud Socios</a></li>
+															<li><a href="#">Pagos de Membresías</a></li>
 															<li><a href="#">Lorem ipsum dolor sit</a></li>
 															<li><a href="#">Consectetuer adipis</a></li>
 															<li><a href="#">Pellentesque sed dolor</a></li>
@@ -559,11 +558,11 @@ body #rt-logo {
 																<!-- Item add link -->
 																<!-- Category image -->
 																<!-- Category title -->
-																<h2>Binvenidos a Nuestro Club</h2>
+																<h2>Binvenidos al Club Conan 3000</h2>
 																<!-- Category description -->
-																<div class="text">In pede mi aliquet sit amet
-																	euismod in, auc ligula aliquam dapibus tincidunt beatae
-																	vi.</div>
+																<div class="text">Ubicado en uno de los más bellos parajes de Lima, el hoy denominado Country Club Conan 3000,
+																				  es un compendio de la historia de la sociedad Limeña. ¡Se parte de una nueva experiencia en Clubs!
+															    </div>
 																<!-- K2 Plugins: K2CategoryDisplay -->
 																<div class="clr"></div>
 															</div>
@@ -592,13 +591,10 @@ body #rt-logo {
 																				<!-- Item Image -->
 																				<!-- Item introtext -->
 																				<div class="catItemIntroText">
-																					<p>Praesent vestibulum molestie lacus. Aenean
-																						nonummy hendrerit mauris. Phasellus porta. Fusce
-																						suscipit varius mi. Cum sociis natoque penatibus
-																						et magnis dis parturient montes, nascetur
-																						ridiculus mus. Nulla dui. Fusce feugiat malesuada
-																						odio. Morbi nunc odio, gravida at, cursus nec,
-																						luctus a. Praesent vestibulum molestie lacus.</p>
+																					<p>El Country Club Conan 3000 es una asociación civil sin fines de lucro, 
+																					   de índole social, cultural y deportiva, que promueve entre sus asociados 
+																					   y familiares el valor de la amistad, la unidad familiar, el respeto 
+																					   mutuo y el cumplimiento de las normas de la vida en sociedad.</p>
 																					<!-- Item "read more..." link -->
 																				</div>
 																				<div class="clr"></div>
@@ -648,17 +644,11 @@ body #rt-logo {
 																<!-- Plugins: AfterDisplayTitle --> <!-- K2 Plugins: K2AfterDisplayTitle -->
 																<!-- Plugins: BeforeDisplayContent --> <!-- K2 Plugins: K2BeforeDisplayContent -->
 																<div class="moduleItemIntrotext">
-																	<p>Praesent vestibulum molestie lacus. Aenean
-																		nonummy henerit mauris. Phasellus porta. Fusce
-																		suscipit varius mi. Cum sociis natoque penatibus et
-																		magnis dis parturient montes, nascetur ridiculus mus.
-																		Nulla dui. Fusce feugiat malesuada odio. Morbi nunc
-																		odio, gravida at, cursus nec, luctus a, lorem.
-																		Maecenas tristique orci ac sem. Duis ultricies
-																		pharetra magna. Donec accumsan malesuada orci. Donec
-																		sit amet eros. Lorem ipsum dolor. Fusce feugiat
-																		malesuada odio. Phasellus porta. Fusce suscipit varius
-																		mi.</p>
+																	<p>Ofrecemos los más variados servivios para su tranquilidad y diversión,
+																	   entre los cuales podemos encontrar las dos piscinas, canchas deportivas,
+																	   bungalows para pasar un buen fin de semana, restaurantes, los más diversos 
+																	   juegos deportivos, eventos internos y mucho más!! 
+																	   </p>
 																</div>
 																<div class="clr"></div>
 																<div class="clr"></div> <!-- Plugins: AfterDisplayContent -->
@@ -676,8 +666,8 @@ body #rt-logo {
 										<div id="rt-sidebar-b">
 											<div class="carousel indent">
 												<div class="rt-block">
-													<div class="module-title">
-														<h2 class="title">Testimonials</h2>
+													<div class="module-title">														
+														<h2 class="title">Testimonios de Socios</h2>
 													</div>
 													<div id="k2ModuleBox137"
 														class="k2ItemsBlock carousel indent">
@@ -693,14 +683,12 @@ body #rt-logo {
 																				href="http://livedemo00.template-help.com/joomla_43780/index.php/component/k2/item/88-praesent-vestibulum-molestie-lacus-aenean-nonummy-henerit-mauris"
 																				title="Continue reading &quot;Praesent vestibulum molestie lacus. Aenean nonummy henerit mauris.&quot;">
 																				<img
-																				src="http://livedemo00.template-help.com/joomla_43780/media/k2/items/cache/398a8bc2e3f7f879ff0986359513be80_XS.jpg"
+																				src="images/tacuri.jpg"
 																				alt="Praesent vestibulum molestie lacus. Aenean nonummy henerit mauris." />
 																			</a>
-																			<p>" Praesent vestibulum molestie lacus. Aenean
-																				nonummy hendrerit mauris. Phasellus porta. Fusce
-																				suscipit ."</p>
+																			<p>"Es un excelente club, lleno de areas verdes y buen clima."</p>
 																			<p class="name">
-																				<strong>Jessica Priston,</strong> <a href="#">demolink.org</a>
+																				<strong>Andres Tacuri</strong> <a href="#">Socio Vitalicio</a>
 																			</p>
 																			<!-- Last digit is a number of introtext symbols displayed -->
 																		</div>
@@ -719,14 +707,13 @@ body #rt-logo {
 																				href="http://livedemo00.template-help.com/joomla_43780/index.php/component/k2/item/89-praesent-vestibulum-molestie-lacus-aenean-nonummy-henerit-mauris"
 																				title="Continue reading &quot;Praesent vestibulum molestie lacus. Aenean nonummy henerit mauris.&quot;">
 																				<img
-																				src="http://livedemo00.template-help.com/joomla_43780/media/k2/items/cache/780149ddfa09fbd86eb140fe6810d770_XS.jpg"
+																				src="images/lizita.jpg"
 																				alt="Praesent vestibulum molestie lacus. Aenean nonummy henerit mauris." />
 																			</a>
-																			<p>" Praesent vestibulum molestie lacus. Aenean
-																				nonummy hendrerit mauris. Phasellus porta. Fusce
-																				suscipit ."</p>
+																			<p>"Cada vez que vengo con mi familia, mis hijos la pasan de maravilla 
+																			    con los divertidos juegos y shows de los ositos"</p>
 																			<p class="name">
-																				<strong>Patrick Winstone,</strong> <a href="#">demolink.org</a>
+																				<strong>Liz Diaz Castillo,</strong> <a href="#">Socia</a>
 																			</p>
 																			<!-- Last digit is a number of introtext symbols displayed -->
 																		</div>
@@ -745,14 +732,13 @@ body #rt-logo {
 																				href="http://livedemo00.template-help.com/joomla_43780/index.php/component/k2/item/90-praesent-vestibulum-molestie-lacus-aenean-nonummy-henerit-mauris"
 																				title="Continue reading &quot;Praesent vestibulum molestie lacus. Aenean nonummy henerit mauris.&quot;">
 																				<img
-																				src="http://livedemo00.template-help.com/joomla_43780/media/k2/items/cache/3707d8f2be163bd14c78cf07586f13bb_XS.jpg"
+																				src="images/bigio.jpg"
 																				alt="Praesent vestibulum molestie lacus. Aenean nonummy henerit mauris." />
 																			</a>
-																			<p>" Praesent vestibulum molestie lacus. Aenean
-																				nonummy hendrerit mauris. Phasellus porta. Fusce
-																				suscipit ."</p>
+																			<p>"Los eventos y fiestas que organiza el club son de maravilla, 
+																			    siempre la paso recontra bien. jejeje!"</p>
 																			<p class="name">
-																				<strong>Mark Polo,</strong> <a href="#">demolink.org</a>
+																				<strong>David Bigio Luks,</strong> <a href="#">Socio</a>
 																			</p>
 																			<!-- Last digit is a number of introtext symbols displayed -->
 																		</div>
@@ -771,14 +757,13 @@ body #rt-logo {
 																				href="http://livedemo00.template-help.com/joomla_43780/index.php/component/k2/item/91-praesent-vestibulum-molestie-lacus-aenean-nonummy-henerit-mauris"
 																				title="Continue reading &quot;Praesent vestibulum molestie lacus. Aenean nonummy henerit mauris.&quot;">
 																				<img
-																				src="images/737344dd8934cc52da9f7f85f2627abb_XS.jpg"
+																				src="images/jonatan.jpg"
 																				alt="Praesent vestibulum molestie lacus. Aenean nonummy henerit mauris." />
 																			</a>
-																			<p>" Praesent vestibulum molestie lacus. Aenean
-																				nonummy hendrerit mauris. Phasellus porta. Fusce
-																				suscipit ."</p>
+																			<p>"Soy parte de esta gran familia hace 30 años y puedo asegurar que desde sus inicios este club es mi vida y  
+																			    mi pasión.  Tengo muchos buenos recuerdos más que todo porque me case aqui. Gracias Conan 3000 !! "</p>
 																			<p class="name">
-																				<strong>John White,</strong> <a href="#">demolink.org</a>
+																				<strong>Jonatan Gonzales,</strong> <a href="#">Socio Vitalicio</a>
 																			</p>
 																			<!-- Last digit is a number of introtext symbols displayed -->
 																		</div>
@@ -840,8 +825,8 @@ body #rt-logo {
 							<div class="clear"></div>
 							<div class="rt-block">
 								<p class="copyright">
-									<span class="siteName">Fishing </span>&copy; 2013 &nbsp;|&nbsp;
-									<a href="index.php/privacy-policy.html">Privacy Policy</a>
+									<span class="siteName">Conan 3000 </span>&copy; 2013 &nbsp;|&nbsp;
+									<a href="index.php/privacy-policy.html">Política de Privacidad</a>
 								</p>
 							</div>
 						</div>
@@ -849,15 +834,14 @@ body #rt-logo {
 							<div class="rt-block">
 								<ul class="menu-footer">
 									<li id="item-101" class="current active"><a
-										href="index.html"><span>Home</span></a></li>
+										href="index.html"><span>Principal</span></a></li>
 									<li id="item-116" class="parent"><a
-										href="index.php/about.html"><span>About Us</span></a></li>
-									<li id="item-117"><a href="index.php/services.html"><span>Services</span></a></li>
-									<li id="item-118" class="parent"><span class="separator"><span>Gallery</span></span>
+										href="index.php/about.html"><span>Nosotros</span></a></li>
+									<li id="item-117"><a href="index.php/services.html"><span>Servicios</span></a></li>
+									<li id="item-118" class="parent"><span class="separator"><span>Galería</span></span>
 									</li>
-									<li id="item-122"><a href="index.php/testimonials.html"><span>Testimonials</span></a></li>
-									<li id="item-126"><a href="index.php/staff.html"><span>Staff</span></a></li>
-									<li id="item-114"><a href="index.php/contacts.html"><span>Contacts</span></a></li>
+									<li id="item-122"><a href="index.php/testimonials.html"><span>Sorteos</span></a></li>
+									<li id="item-114"><a href="index.php/contacts.html"><span>Contactenos</span></a></li>
 								</ul>
 							</div>
 						</div>
