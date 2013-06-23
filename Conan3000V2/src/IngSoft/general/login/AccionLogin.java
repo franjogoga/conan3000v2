@@ -33,7 +33,7 @@ public class AccionLogin extends CoAccion {
 		}
 		switch (perfil){
 		case 1: this.direccionar(sc, request, response, "/IngSoft/general/perfil1.jsp"); break;
-		case 2: this.direccionar(sc, request, response, "/Club/general/index.html"); break;
+		case 2: this.direccionar(sc, request, response, "/Club/generalClub/index.html"); break;
 		case 3: this.direccionar(sc, request, response, "/IngSoft/general/perfil3.jsp"); break;
 		default: this.direccionar(sc, request, response, "/IngSoft/general/perfil4.jsp"); break;
 		}

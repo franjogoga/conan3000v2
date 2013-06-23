@@ -7,32 +7,30 @@
 <!--			<h2>Sliding login panel Demo with jQuery</h2>		-->
 <!--				<p class="grey">You can put anything you want in this sliding panel: videos, audio, images, forms... The only limit is your imagination!</p>
 				<h2>Download</h2>-->
-				<p class="grey">To download this script go back to <a href="http://web-kreation.com/index.php/tutorials/nice-clean-sliding-login-panel-built-with-jquery" title="Download">article &raquo;</a></p>
+		   <!-- <p class="grey">To download this script go back to <a href="http://web-kreation.com/index.php/tutorials/nice-clean-sliding-login-panel-built-with-jquery" title="Download">article &raquo;</a></p> -->
 			</div>
-			<div class="left">
+			<div class="left right">
 				<!-- Login Form -->
 				<form class="clearfix" action="#" method="post">
-					<h1>Member Login</h1>
+					<h1>Login Socio</h1>
 					<label class="grey" for="log">Usuario:</label>
 					<input class="field" type="text" name="log" id="log" value="" size="23" />
 					<label class="grey" for="pwd">Contrase&ntilde;a:</label>
-					<input class="field" type="password" name="pwd" id="pwd" size="23" />
-	            	<label><input name="rememberme" id="rememberme" type="checkbox" checked="checked" value="forever" /> &nbsp;Recordar cuenta</label>
+					<input class="field" type="password" name="pwd" id="pwd" size="23" />	           
         			<div class="clear"></div>
-					<input type="submit" name="submit" value="Login" class="bt_login" />
-					<a class="lost-pwd" href="#">Olvide contrase&ntilde;a?</a>
+					<input type="submit" name="submit" value="Ingresar" class="bt_login" />
 				</form>
 			</div>
-			<div class="left right">			
-				<!-- Register Form -->
-				<form action="#" method="post">
-					<h1>&#191;Aun no es socio&#63; Registrate</h1>				
-					<label class="grey" for="signup">Usuario:</label>
-					<input class="field" type="text" name="signup" id="signup" value="" size="23" />
-					<label class="grey" for="email">Correo Electr&oacute;nico:</label>
-					<input class="field" type="text" name="email" id="email" size="23" />
-					<label>Se le enviara la informacion a su correo.</label>
-					<input type="submit" name="submit" value="Register" class="bt_register" />
+		 	<div class="left right">			
+				<!--Login para empresas-->
+				<form class="clearfix" action="#" method="post">
+					<h1>Login Corporativo</h1>
+					<label class="grey" for="log">Usuario:</label>
+					<input class="field" type="text" name="log" id="log" value="" size="23" />
+					<label class="grey" for="pwd">Contrase&ntilde;a:</label>
+					<input class="field" type="password" name="pwd" id="pwd" size="23" />	            	
+        			<div class="clear"></div>
+					<input type="submit" name="submit" value="Ingresar" class="bt_login" />					
 				</form>
 			</div>
 		</div>

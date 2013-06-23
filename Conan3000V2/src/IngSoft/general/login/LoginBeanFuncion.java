@@ -30,8 +30,7 @@ public class LoginBeanFuncion {
 		String p = (String)sqlsesion.selectOne("getPassLogin",pass);
 		if (u==null || p == null ) return -1;
 		UsuarioBeanData usuario = new UsuarioBeanData();
-		usuario.setNombUsuario(u); usuario.setPassword(p);
-		
+		usuario.setNombUsuario(u); usuario.setPassword(p);		
 		String idSocio = (String)sqlsesion.selectOne("getIdSocio",usuario);
 		request.getSession().setAttribute("nombre", u);
 		request.getSession().setAttribute("idSocio", idSocio);
