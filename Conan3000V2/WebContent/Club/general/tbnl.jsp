@@ -11,12 +11,13 @@
 			</div>
 			<div class="left right">
 				<!-- Login Form -->
-				<form class="clearfix" action="#" method="post">
+				<form class="clearfix" action="<%= response.encodeURL(request.getContextPath()+"/IngSoft/general/GENLogin")%>" method="post">
+				<input type="hidden" name="accion" value="Login"></input>
 					<h1>Login Socio</h1>
 					<label class="grey" for="log">Usuario:</label>
-					<input class="field" type="text" name="log" id="log" value="" size="23" />
+					<input class="field" type="text" name="username" id="username" value="" size="23" />
 					<label class="grey" for="pwd">Contrase&ntilde;a:</label>
-					<input class="field" type="password" name="pwd" id="pwd" size="23" />	           
+					<input class="field" type="password" name="password" id="password" size="23" />	           
         			<div class="clear"></div>
 					<input type="submit" name="submit" value="Ingresar" class="bt_login" />
 				</form>

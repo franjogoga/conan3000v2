@@ -50,34 +50,24 @@
 	</natures>
 	<linkedResources>
 		<link>
-			<name>WebContent/Club/servicio/evento/ajax.googleapis.com</name>
-			<type>2</type>
-			<locationURI>AJAX_GOOGLEAPIS</locationURI>
-		</link>
-		<link>
 			<name>WebContent/Club/servicio/evento/css</name>
 			<type>2</type>
-			<locationURI>CLUB_CSS</locationURI>
+			<locationURI>CSS_ADM_CLUB</locationURI>
 		</link>
 		<link>
-			<name>WebContent/Club/servicio/evento/hts-cache</name>
+			<name>WebContent/Club/servicio/evento/img</name>
 			<type>2</type>
-			<locationURI>HTS_CACHE</locationURI>
-		</link>
-		<link>
-			<name>WebContent/Club/servicio/evento/images</name>
-			<type>2</type>
-			<locationURI>CLUB_IMAGES</locationURI>
+			<locationURI>IMG</locationURI>
 		</link>
 		<link>
 			<name>WebContent/Club/servicio/evento/js</name>
 			<type>2</type>
-			<locationURI>CLUB_JS</locationURI>
+			<locationURI>JS_ADM_CLUB</locationURI>
 		</link>
 		<link>
 			<name>WebContent/Club/servicio/sorteo/css</name>
 			<type>2</type>
-			<locationURI>CSS</locationURI>
+			<locationURI>CSS_ADM_CLUB</locationURI>
 		</link>
 		<link>
 			<name>WebContent/Club/servicio/sorteo/img</name>
@@ -87,7 +77,7 @@
 		<link>
 			<name>WebContent/Club/servicio/sorteo/js</name>
 			<type>2</type>
-			<locationURI>JS</locationURI>
+			<locationURI>JS_ADM_CLUB</locationURI>
 		</link>
 		<link>
 			<name>WebContent/IngSoft/administracion/actividad/css</name>
@@ -592,6 +582,10 @@
 			<value>$%7BPROJECT_LOC%7D/webcontent/ingsoft/general/css</value>
 		</variable>
 		<variable>
+			<name>CSS_ADM_CLUB</name>
+			<value>$%7BPROJECT_LOC%7D/webcontent/Club/generalClub/css</value>
+		</variable>
+		<variable>
 			<name>HTS_CACHE</name>
 			<value>$%7BPROJECT_LOC%7D/webcontent/Club/general/hts-cache</value>
 		</variable>
@@ -600,8 +594,16 @@
 			<value>$%7BPROJECT_LOC%7D/WebContent/IngSoft/general/img</value>
 		</variable>
 		<variable>
+			<name>IMG_ADM_CLUB</name>
+			<value>$%7BPROJECT_LOC%7D/webcontent/Club/generalClub/img</value>
+		</variable>
+		<variable>
 			<name>JS</name>
 			<value>$%7BPROJECT_LOC%7D/WebContent/IngSoft/general/js</value>
+		</variable>
+		<variable>
+			<name>JS_ADM_CLUB</name>
+			<value>$%7BPROJECT_LOC%7D/webcontent/Club/generalClub/js</value>
 		</variable>
 	</variableList>
 </projectDescription>
