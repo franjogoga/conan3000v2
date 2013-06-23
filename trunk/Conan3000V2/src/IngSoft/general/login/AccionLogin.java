@@ -30,7 +30,7 @@ public class AccionLogin extends CoAccion {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}	
 		switch (perfil){
 		case 1: this.direccionar(sc, request, response, "/IngSoft/general/perfil1.jsp"); break;
 		case 2: this.direccionar(sc, request, response, "/Club/generalClub/index.html"); break;
