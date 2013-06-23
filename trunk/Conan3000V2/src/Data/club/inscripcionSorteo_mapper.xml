@@ -43,6 +43,10 @@ order by 1 asc
 	values (#{idSocio},#{idSorteo},#{fecha},#{codParticipante})
 </insert>
 
+<update id="insertFechaFlag" parameterType="java.lang.String">
+update SORTEO set Flag=1 where IdSorteo=#{codSorteo}
+</update>
+
 <select id="getBungalowxSorteo" parameterType="IngSoft.servicio.bean.BungalowxSorteo" resultType="IngSoft.servicio.bean.BungalowxSorteo">
 	select 
 	IdBungalow as idBungalow
