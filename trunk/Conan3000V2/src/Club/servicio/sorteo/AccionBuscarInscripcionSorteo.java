@@ -22,7 +22,7 @@ public class AccionBuscarInscripcionSorteo extends CoAccion {
 		// TODO Auto-generated method stub
 		CriterioInscripcionSorteoBeanData  criterioInscripcionSorteoData =new CriterioInscripcionSorteoBeanFuncion().crearCriterio(request,response);
 		Vector<ResultadoInscripcionSorteoBeanData> resultados=new CriterioInscripcionSorteoBeanFuncion().buscarPlantillaInscripcionSorteo(criterioInscripcionSorteoData);
-
+		
 		request.setAttribute("resultados", resultados);
 		this.direccionar(sc, request, response, "/Club/servicio/sorteo/buscarInscripcionSorteo.jsp");
 		
