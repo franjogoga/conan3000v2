@@ -126,9 +126,9 @@ and DATE(cs.FechaInicio)&lt;=DATE(#{fecha})
 </insert>
 <insert id="insertEventoxSede" parameterType="hashmap">
 insert into 
-EVENTO_SEDE(IdEventoSede,Nombre,LimiteEntradas,Precio,IdSede,IdConcesionario,Estado,Fecha)
+EVENTO_SEDE(IdEventoSede,Nombre,LimiteEntradas,Precio,IdSede,IdConcesionario,Estado,Fecha,EntradasTotal)
 values
-(#{codigo},#{nombre},#{limiteE},#{precio},#{sede},#{concesionario},'REGISTRADO',#{fecha})
+(#{codigo},#{nombre},#{limiteE},#{precio},#{sede},#{concesionario},'REGISTRADO',#{fecha},0)
 </insert>
  <!-- Fin agregar  -->
  

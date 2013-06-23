@@ -314,30 +314,27 @@
 						
 						  <fieldset>
 						    <div class="control-group">
-						      <label class="control-label" for="typeahead7">Nombre de evento(*): </label>
+						      <label class="control-label" for="typeahead7">Nombre de evento: </label>
 						      <div class="controls">
 						        <input type="text" class="span6 typeahead" id="txtNombreEvento"  data-provide="typeahead" readonly="true" id="txtNombreEvento" name="txtNombreEvento" value="<%=((EventoBeanData)evento).getNombre()%>"/>
 								<span class="help-inline" id="errNombreEvento" style="display:none;">Este campo no puede estar vacio</span>						        													       
 					          </div>
 					        </div>
 					        <div class="control-group">
-						      <label class="control-label" for="txtNumEntradas">Limite Maximo Entradas(*): </label>
+						      <label class="control-label" for="txtNumEntradas">Entradas: </label>
 						      <div class="controls">
-						        <input type="text" class="input typeahead" id="txtNumEntradas"  data-provide="typeahead"  name="txtNumEntradas" readonly="true" value="<%((EventoBeanData)evento).getEntradasTotal()%> de <%=((EventoBeanData)evento).getLimiteEntradas()%>"/><br/>
+						        <input type="text" class="input typeahead" id="txtNumEntradas"  data-provide="typeahead"  name="txtNumEntradas" readonly="true" value="<%=((EventoBeanData)evento).getEntradasTotal()%> de <%=((EventoBeanData)evento).getLimiteEntradas()%> vendidas"/><br/>
 								<span class="help-inline" id="errNumEntradas" style="display:none;">Este campo no puede estar vacio</span>						        													       
 					          </div>
 					        </div>	
 					        <div class="control-group">
-						      <label class="control-label" for="txtPrecio">Precio de la Entrada(*): </label>
+						      <label class="control-label" for="txtPrecio">Precio de la Entrada: </label>
 						      <div class="controls">
-
-									<input  id="txtPrecio" class="span4" name="txtPrecio" readonly="true"  type="text"  value="<%=((EventoBeanData)evento).getPrecioEntrada()%>">
-									<br/>
-								  <span class="help-inline" id="errPrecio" name="errPrecio" style="display:none;">Este campo no puede estar vacio</span>
+									<input  id="txtPrecio" class="span4" name="txtPrecio" readonly="true"  type="text"  value="<%=((EventoBeanData)evento).getMonto()%>">									
 					        </div>
 					        </div>					   
 							  <div class="control-group">
-								<label class="control-label" for="cmbSedes">Sede relacionada(*):</label>
+								<label class="control-label" for="cmbSedes">Sede relacionada:</label>
 								<div class="controls">
 								  <select  data-rel="chosen" id="cmbSedes" name="cmbSedes" disabled onchange="confirmarcambio($(this))">								  	
 									<%for(int i=0;i<sedes.size();i++){ %>
@@ -348,9 +345,9 @@
 								</div>
 							  </div>							   
 							  <div class="control-group">
-							  <label class="control-label" for="fFecha">Fecha(*):</label>
+							  <label class="control-label" for="fFecha">Fecha:</label>
 							  <div class="controls">
-								<input type="text" class="input datepickerB" id="fFecha" readonly="true" value="<%=((EventoBeanData)evento).getFecha()%>"  name="fFecha" onchange="confirmarcambio($(this))">
+								<input type="text" class="input datepickerB" id="fFecha" readonly="true" value="<%=new SimpleDateFormat("dd/MM/yyyy").format(((EventoBeanData)evento).getFecha())%>"  name="fFecha" onchange="confirmarcambio($(this))">
 							  </div>
 							</div>
 							 <div class="control-group">
@@ -358,21 +355,33 @@
 							  <div class="controls" id="listaServicios">
 								<div class="input-append">
 									<input id="appendedInputButton" size="16" type="text" readonly="true" value="Salon Principal"><button class="btn" disabled="disabled" type="button">X</button>
-								  </div><br/>
+								</div>	
+								  <br/>
+								  <%if(concesionario!=null){ %>
+								  <div>
 								  <input id="appendedInputButton" size="16" type="text" readonly="true" value="<%=((ConcesionarioMiniBeanData)concesionario).getRazonSocial()%>"><button class="btn" disabled="disabled" type="button">X</button>
-								  </div><br/></div>
+								  </div><%} %></div>
+								  
 							</div>
+							<div class="control-group">
+						      <label class="control-label" for="txtEstado">Estado: </label>
+						      <div class="controls">
+									<input  id="txtEstado" class="span4" name="txtEstado" readonly="true"  type="text"  value="<%=((EventoBeanData)evento).getEstado()%>">									
+					        </div>
+					        </div>
 							<div class="form-actions" style="display: none;">
 							  <button type="button" id="btnConcecionarios" class="btn btn-primary" disabled="disabled" >Concesionarios</button>							 
 							</div>														
 						    <div class="form-actions">
+						    <%if(((EventoBeanData)evento).getEstado().equals("REGISTRADO")){%>
 							  <button type="button" id="btnAprobar" class="btn btn-primary" >Aprobar</button>
 							  <button type="button" id="btnRechazar" class="btn btn-primary" >Rechazar</button>
+							  <%} %>
 							  <button type="button" class="btn" onclick="location.href='<%=request.getContextPath()%>/IngSoft/servicio/evento/SMSEvento?accion=Buscar&tipo=1'" >Regresar</button>
 							</div>
 						  </fieldset>
 					  </form>   
-					<span style="font-size:70%">(*)Campos Obligatorios</span>
+					
 				  </div>
 				</div><!--/span-->
 
