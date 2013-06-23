@@ -9,7 +9,7 @@
 	
 	<jsp:useBean id="sedes" scope="request" class="java.util.Vector"></jsp:useBean>
 	<jsp:useBean id="empleados" scope="request" class="IngSoft.administracion.bean.EmpleadoBeanData"></jsp:useBean>
-	<jsp:useBean id="lista" scope="request"class="IngSoft.venta.bean.ListaProductos"></jsp:useBean>
+
 	<jsp:useBean id="resultados" scope="request"class="java.util.Vector"></jsp:useBean>
 	
 		
