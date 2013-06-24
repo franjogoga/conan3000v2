@@ -27,7 +27,7 @@
 	<jsp:useBean id="ambientes" scope="request"class="java.util.Vector"></jsp:useBean>
 	<jsp:useBean id="tiposEvento" scope="request"class="java.util.Vector"></jsp:useBean>
 	<!-- The styles -->
-	<link id="bs-css" href="css/bootstrap-cerulean.css" rel="stylesheet">
+	<link id="bs-css" href="css/bootstrap-spacelab.css" rel="stylesheet">
 	<style type="text/css">
 	  body {
 		padding-bottom: 40px;
@@ -89,12 +89,12 @@
 </head>
 
 <body>
-		<jsp:include page="/IngSoft/general/superior.jsp" />
+		<jsp:include page="/Club/generalClub/superior.jsp" />
 		<div class="container-fluid">
 		<div class="row-fluid">
 				
 			<!-- left menu starts -->
-			<jsp:include page="/IngSoft/general/leftmenu.jsp" />
+			<jsp:include page="/Club/generalClub/leftmenu.jsp" />
 						<!-- left menu ends -->
 			
 			
@@ -130,7 +130,7 @@
 					  <h2><i class="icon-trash"></i>ELIMINAR EVENTO</h2>
 				  </div>
 					<div class="box-content">
-						<form class="form-horizontal" name="frmDelete"  action="<%= response.encodeURL("SMSEvento")%>" method="post">
+						<form class="form-horizontal" name="frmDelete"  action="<%= response.encodeURL("SMCEvento")%>" method="post">
 						<input type="hidden" name="codigo" value="<%=evento.getCodigo()%>"></input>
 						<input type="hidden" name="accion" value="Eliminar"></input>
 						<input type="hidden" name="tipo" value="2"></input>

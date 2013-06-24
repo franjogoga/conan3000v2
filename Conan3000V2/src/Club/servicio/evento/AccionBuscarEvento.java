@@ -32,14 +32,14 @@ public class AccionBuscarEvento extends CoAccion{
 			HashMap<String, Object> map =eventoFuncion.crearCriterio(request,response);
 		Vector<EventoBeanData> resultados=eventoFuncion.buscarSolicitudesEvento(map);	
 		request.setAttribute("resultados", resultados);
-		this.direccionar(sc, request, response, "/IngSoft/servicio/evento/resultados.jsp");
+		this.direccionar(sc, request, response, "/Club/servicio/evento/resultados.jsp");
 		}
 		if(tipo==1){
 			//sesion.removeAttribute("resultados");
 			EventoBeanFuncion eventoFuncion= EventoBeanFuncion.getInstance();
 			Vector<SedeMiniBeanData> sedeMiniData=eventoFuncion.getSedes();
 			request.setAttribute("sedes",sedeMiniData );			
-			this.direccionar(sc, request, response, "/IngSoft/servicio/evento/buscarevento.jsp");
+			this.direccionar(sc, request, response, "/Club/servicio/evento/buscarevento.jsp");
 			} 
 		
 		

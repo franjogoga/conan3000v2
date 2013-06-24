@@ -26,7 +26,7 @@
 	<jsp:useBean id="sedes" scope="request"class="java.util.Vector"></jsp:useBean>
 	
 	<!-- The styles -->
-	<link id="bs-css" href="css/bootstrap-cerulean.css" rel="stylesheet">
+	<link id="bs-css" href="css/bootstrap-spacelab.css" rel="stylesheet">
 	<style type="text/css">
 	  body {
 		padding-bottom: 40px;
@@ -113,48 +113,27 @@
 				test=false;
 				$('#cmbSedes').parent().parent().toggleClass("error");
 			}
-			else $('#cmbSedes').parent().parent().addClass("success");
-			
-			if($('#txtNumEntradas').val()==null || $('#txtNumEntradas').val().length<=0){
-				$('#txtNumEntradas').bind("change",function(){
-				var temp= $('#txtNumEntradas');
+			else $('#cmbSedes').parent().parent().addClass("success");						
+			if($('#txtCosto').val()==null || $('#txtCosto').val().length<=0){
+				$('#txtCosto').bind("change",function(){
+				var temp= $('#txtCosto');
 				if(temp.val()!=null && temp.val().length>0) {
 				temp.parent().parent().removeClass("error");
 				temp.parent().parent().addClass("success");
-				$('#errNumEntradas').slideUp(1000);
+				$('#errCosto').slideUp(1000);
 				}
 				else {
 				temp.parent().parent().removeClass("success");
 				temp.parent().parent().addClass("error");
-				$('#errNumEntradas').slideDown(1000);
+				$('#errCosto').slideDown(1000);
 				}
 				
 				})
-				$('#errNumEntradas').slideDown(1000);
+				$('#errCosto').slideDown(1000);
 				test=false;
-				$('#txtNumEntradas').parent().parent().toggleClass("error");
+				$('#txtCosto').parent().parent().toggleClass("error");
 			}
-			else $('#txtNumEntradas').parent().parent().addClass("success");
-			if($('#txtPrecio').val()==null || $('#txtPrecio').val().length<=0){
-				$('#txtPrecio').bind("change",function(){
-				var temp= $('#txtPrecio');
-				if(temp.val()!=null && temp.val().length>0) {
-				temp.parent().parent().removeClass("error");
-				temp.parent().parent().addClass("success");
-				$('#errPrecio').slideUp(1000);
-				}
-				else {
-				temp.parent().parent().removeClass("success");
-				temp.parent().parent().addClass("error");
-				$('#errPrecio').slideDown(1000);
-				}
-				
-				})
-				$('#errPrecio').slideDown(1000);
-				test=false;
-				$('#txtPrecio').parent().parent().toggleClass("error");
-			}
-			else $('#txtPrecio').parent().parent().addClass("success");
+			else $('#txtCosto').parent().parent().addClass("success");
 	return test;
 		
 		
@@ -174,9 +153,9 @@
 		}
 		$.ajax({
 			  type: "POST",
-			  url: "/Conan3000V2/IngSoft/servicio/evento/SMSEvento",
-			  data: "accion=" + $(accion).val() + "&tipo=" + $(tipo).val() + "&txtNombreEvento=" + $(txtNombreEvento).val() + "&txtNumEntradas=" + $(txtNumEntradas).val()  
-			  +  "&cmbSedes=" + $(cmbSedes).val() + "&fFecha=" + $(fFecha).val()+"&concesionario="+concesionario+"&precioentrada="+$(txtPrecio).val(),
+			  url: "<%=request.getContextPath()%>/Club/servicio/evento/SMCEvento",
+			  data: "accion=" + $(accion).val() + "&tipo=" + $(tipo).val() + "&txtNombreEvento=" + $(txtNombreEvento).val() +   
+			  +  "&cmbSedes=" + $(cmbSedes).val() + "&fFecha=" + $(fFecha).val()+"&concesionario="+concesionario+"&costo="+$(txtCosto).val(),
 			  dataType: "text",
 			  success: function(msg){
 				  var url="<%=request.getContextPath()%>"+msg;
@@ -212,7 +191,7 @@
 	$(this).attr('disabled','disabled');
 		$.ajax({
 			  type: "POST",
-			  url: "/Conan3000V2/IngSoft/servicio/evento/SMSEvento",
+			  url: "<%=request.getContextPath()%>/Club/servicio/evento/SMCEvento",
 			  data: "accion=" + $(accion).val() + "&tipo=3" + "&cmbSedes=" + $(cmbSedes).val() + "&fFecha=" + $(fFecha).val() ,
 			  dataType: "html",
 			  success: function(msg){				  
@@ -264,12 +243,12 @@
 </head>
 
 <body>
-		<jsp:include page="/IngSoft/general/superior.jsp" />
+		<jsp:include page="/Club/generalClub/superior.jsp" />
 		<div class="container-fluid">
 		<div class="row-fluid">
 				
 			<!-- left menu starts -->
-			<jsp:include page="/IngSoft/general/leftmenu.jsp" />
+			<jsp:include page="/Club/generalClub/leftmenu.jsp" />
 						<!-- left menu ends -->
 			
 			
@@ -304,7 +283,7 @@
 					  <h2><i class="icon-plus-sign"></i>AGREGAR EVENTO</h2>
 				  </div>
 					<div class="box-content">
-						<form class="form-horizontal" action="<%= response.encodeURL("SMSEvento")%>" onsubmit="alt_submit(); return false;"name="frmData" method="post">
+						<form class="form-horizontal" action="<%= response.encodeURL("SMCEvento")%>" onsubmit="alt_submit(); return false;"name="frmData" method="post">
 						<input type="hidden" name="accion" id="accion" value="Agregar"></input>
 						<input type="hidden" name="tipo" id="tipo" value="2"></input>
 						<input type="hidden" name="fFechaActual" id="fFechaActual" value="<%=new SimpleDateFormat("dd/MM/yyyy").format(new Date())%>"></input>
@@ -315,21 +294,14 @@
 						        <input type="text" class="span6 typeahead" id="txtNombreEvento"  data-provide="typeahead"  id="txtNombreEvento" name="txtNombreEvento" onkeypress="return alfanumerico(event);" autofocus maxlength="50"/>
 								<span class="help-inline" id="errNombreEvento" style="display:none;">Este campo no puede estar vacio</span>						        													       
 					          </div>
-					        </div>
+					        </div>					        
 					        <div class="control-group">
-						      <label class="control-label" for="txtNumEntradas">Limite Maximo Entradas(*): </label>
-						      <div class="controls">
-						        <input type="text" class="input typeahead" id="txtNumEntradas"  data-provide="typeahead"  name="txtNumEntradas" onkeypress="return numerico(event);"  maxlength="11"/><br/>
-								<span class="help-inline" id="errNumEntradas" style="display:none;">Este campo no puede estar vacio</span>						        													       
-					          </div>
-					        </div>	
-					        <div class="control-group">
-						      <label class="control-label" for="txtPrecio">Precio de la Entrada(*): </label>
+						      <label class="control-label" for="txtCosto">Costo Reserva Salon Principal: </label>
 						      <div class="controls">
 
-									<input  id="txtPrecio" class="span4" name="txtPrecio" onchange="vDinero($(this))"  type="text" onkeypress="return dinero(event);"  maxlength="10">
+									<input  id="txtPrecio" class="span4" name="txtCosto" readonly onchange="vDinero($(this))"  type="text" onkeypress="return dinero(event);"  maxlength="12">
 									<br/>
-								  <span class="help-inline" id="errPrecio" name="errPrecio" style="display:none;">Este campo no puede estar vacio</span>
+								  <span class="help-inline" id="errCosto" name="errCosto" style="display:none;">Este campo no puede estar vacio</span>
 					        </div>
 					        </div>					   
 							  <div class="control-group">

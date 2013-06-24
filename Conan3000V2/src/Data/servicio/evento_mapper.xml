@@ -112,6 +112,9 @@ and DATE(cs.FechaInicio)&lt;=DATE(#{fecha})
 <select id="getNextCodigoSdE" resultType="java.lang.String">
 	select Max(IdEventoSede) from  EVENTO_SEDE	
 </select>
+<select id="getNextCodigoScE" resultType="java.lang.String">
+	select Max(IdEventoSocio) from  EVENTO_SOCIO	
+</select>
 <insert id="insertPlantillaEventoSedes" parameterType="IngSoft.servicio.bean.EventoBeanData" flushCache="true">
  insert into SEDExPLANTILLA(IdPlantillaEvento,IdSede) values(#{codigo},
  <foreach item="idSede" index="i" collection="idSede" separator="),(#{codigo}," close=")">
@@ -129,6 +132,12 @@ insert into
 EVENTO_SEDE(IdEventoSede,Nombre,LimiteEntradas,Precio,IdSede,IdConcesionario,Estado,Fecha,EntradasTotal)
 values
 (#{codigo},#{nombre},#{limiteE},#{precio},#{sede},#{concesionario},'REGISTRADO',#{fecha},0)
+</insert>
+<insert id="insertEventoxSocio" parameterType="hashmap">
+insert into 
+EVENTO_SOCIO
+(IdEventoSocio,Nombre,IdSocio,IdSede,Fecha,MontoTotal,IdConcesionario,Estado)
+values(#{codigo},#{nombre},#{socio},#{sede},#{fecha},#{monto},#{concesionario},'REGISTRADO')
 </insert>
  <!-- Fin agregar  -->
  

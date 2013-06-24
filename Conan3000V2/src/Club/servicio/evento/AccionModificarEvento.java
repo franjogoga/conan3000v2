@@ -30,7 +30,7 @@ public class AccionModificarEvento extends CoAccion {
 			EventoBeanData eventoData=eventoFuncion.crearEvento(request, response);
 			eventoData.setCodigo(request.getParameter("codigo"));
 			//eventoFuncion.modificarEvento(eventoData, antSede, antAmb);
-			this.direccionar(sc, request, response, "/IngSoft/servicio/evento/buscarevento.jsp");
+			this.direccionar(sc, request, response, "/Club/servicio/evento/buscarevento.jsp");
 		}	
 		//EventoBeanData eventoData=eventoFuncion.consultarEvento(request.getParameter("codigo"));
 		Vector<SedeMiniBeanData> sedeMiniData=eventoFuncion.getSedes();
@@ -40,7 +40,7 @@ public class AccionModificarEvento extends CoAccion {
 		request.setAttribute("ambientes",AmbienteMiniData );
 		request.setAttribute("tiposEvento",tipoEventoMiniData);
 		//request.setAttribute("evento", eventoData);
-		this.direccionar(sc, request, response, "/IngSoft/servicio/evento/modificarevento.jsp");
+		this.direccionar(sc, request, response, "/Club/servicio/evento/modificarevento.jsp");
 	}
 
 }

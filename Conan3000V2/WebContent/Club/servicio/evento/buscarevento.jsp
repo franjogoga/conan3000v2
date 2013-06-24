@@ -28,7 +28,7 @@
 	<jsp:useBean id="sedes" scope="request"class="java.util.Vector"></jsp:useBean>
 
 	<!-- The styles -->
-	<link id="bs-css" href="css/bootstrap-cerulean.css" rel="stylesheet">
+	<link id="bs-css" href="css/bootstrap-spacelab.css" rel="stylesheet">
 	<style type="text/css">
 	  body {
 		padding-bottom: 40px;
@@ -102,7 +102,7 @@
 	function alt_submit2(){
 		$.ajax({
 		  type: "POST",
-		  url: "/Conan3000V2/IngSoft/servicio/evento/SMSEvento",
+		  url: "<%=request.getContextPath()%>/Club/servicio/evento/SMCEvento",
 		  data: "accion=" + $(accion).val() + "&tipo=" + $(tipo).val() + "&txtNombre=" + $(txtNombre).val() + "&cmbEstados=" + $(cmbEstados).val() + "&date01=" 
 		  + $(date01).val()+ "&date02=" + $(date02).val()+"&cmbSedes="+$(cmbSedes).val(),
 		  dataType: "html",
@@ -121,12 +121,12 @@
 </head>
 
 <body>
-	<jsp:include page="/IngSoft/general/superior.jsp" />
+	<jsp:include page="/Club/generalClub/superior.jsp" />
 		<div class="container-fluid">
 		<div class="row-fluid">
 				
 			<!-- left menu starts -->
-			<jsp:include page="/IngSoft/general/leftmenu.jsp" />
+			<jsp:include page="/Club/generalClub/leftmenu.jsp" />
 						<!-- left menu ends -->
 			
 			<noscript>
@@ -162,7 +162,7 @@
 						</div>
 					</div>
 					<div class="box-content">
-						<!-- <form class="form-horizontal" name="frmCriteriosBusqueda" id="frmCriteriosBusqueda"  method="post" onsubmit="xmlhttpPost('/Conan3000V2/IngSoft/servicio/evento/SMSEvento?accion=Buscar', 'frmCriteriosBusqueda', 'resultadoBusqueda','<img >');
+						<!-- <form class="form-horizontal" name="frmCriteriosBusqueda" id="frmCriteriosBusqueda"  method="post" onsubmit="xmlhttpPost('<%=request.getContextPath()%>/Club/servicio/evento/SMCEvento?accion=Buscar', 'frmCriteriosBusqueda', 'resultadoBusqueda','<img >');
 		 return false;"> -->
 		<form class="form-horizontal" name="frmCriteriosBusqueda" id="frmCriteriosBusqueda"  method="post" >
 		 <input type="hidden" id="accion" name="accion" value="Buscar"></input>
@@ -218,7 +218,7 @@
 				</div><!--/span-->
 
 			</div><!--/row-->
-			<form id="frmAlternativo" name="frmAlternativo" method="post" action="<%= response.encodeURL("SMSEvento")%>">
+			<form id="frmAlternativo" name="frmAlternativo" method="post" action="<%= response.encodeURL("SMCEvento")%>">
 			<input type="hidden" name="accion" value="Agregar"></input>
 			<input type="hidden" name="codigo" value=""></input>
 			<input type="hidden" name="tipo" value="1"></input>

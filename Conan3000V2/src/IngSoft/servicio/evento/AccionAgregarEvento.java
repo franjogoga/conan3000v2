@@ -29,7 +29,7 @@ public class AccionAgregarEvento extends CoAccion {
 		if(tipo==2){
 			EventoBeanFuncion eventoFuncion= EventoBeanFuncion.getInstance();
 			EventoBeanData eventoData=eventoFuncion.crearEvento(request, response);
-			eventoFuncion.agregarEvento(eventoData);
+			eventoFuncion.agregarEventoSede(eventoData);
 			response.setContentType("text/plain");  
 		    response.setCharacterEncoding("UTF-8");
 		    try {
