@@ -10,6 +10,7 @@ import java.util.concurrent.locks.ReentrantLock;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -19,7 +20,8 @@ import IngSoft.general.MyBatisSesion;
 public class EventoBeanFuncion {	
 	
 	static private EventoBeanFuncion EventoFuncion=null;
-	private Lock l= new ReentrantLock();     
+	private Lock l1= new ReentrantLock();
+	private Lock l2= new ReentrantLock();
 	SimpleDateFormat DF = new SimpleDateFormat("dd/MM/yyyy");
 	   
 	   public static EventoBeanFuncion getInstance(){
@@ -91,9 +93,9 @@ public class EventoBeanFuncion {
 	   
 	
 	
-	public boolean agregarEvento(EventoBeanData eventoData) throws CoException {
+	public boolean agregarEventoSede(EventoBeanData eventoData) throws CoException {
 		boolean resultado=false;		
-		l.lock();
+		l1.lock();
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
 			String codigo= (String)sqlsesion.selectOne("Data.servicio.evento.getNextCodigoSdE");
@@ -119,10 +121,47 @@ public class EventoBeanFuncion {
 		}		
 		finally{			
 			sqlsesion.close();
-			l.unlock();					
+			l1.unlock();					
 		}
 			
 		return resultado;
+	}
+	
+	public boolean agregarEventoSocio(EventoBeanData eventoData, HttpServletRequest request) {
+		boolean resultado=false;
+		l2.lock();
+		HttpSession sesion= request.getSession();
+		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();	
+		try{
+			String codigo= (String)sqlsesion.selectOne("Data.servicio.evento.getNextCodigoScE");
+			codigo=codigo==null?"ESC000000":codigo;
+			codigo=Utils.generaSiguienteCodigo(codigo);
+			eventoData.setCodigo(codigo);
+			HashMap<String, Object> map=new HashMap<String, Object>();
+			map.put("codigo", eventoData.getCodigo());
+			map.put("nombre", eventoData.getNombre());
+			map.put("socio", sesion.getAttribute("idSocio").toString());
+			map.put("monto", eventoData.getMonto());
+			map.put("sede", eventoData.getIdSede());
+			map.put("fecha", eventoData.getFecha());
+			map.put("concesionario", eventoData.getIdConcesionario());
+			sqlsesion.insert("Data.servicio.evento.insertEventoxSocio",map);
+			sqlsesion.commit();
+			resultado=true;
+		}
+		catch(Exception a)		
+		{sqlsesion.rollback();
+		a.printStackTrace();
+			//throw CoException.set("Error: Nombre de evento repetido", "SMSEvento?accion=Agregar&tipo=1");			
+		}		
+		finally{			
+			sqlsesion.close();
+			l1.unlock();					
+		}
+			
+		
+		return resultado;
+		
 	}
 	
 	public Vector<EventoBeanData> buscarSolicitudesEvento(HashMap<String, Object> map){		
@@ -294,4 +333,6 @@ public class EventoBeanFuncion {
 		
 		return map;
 	}
+
+	
 }

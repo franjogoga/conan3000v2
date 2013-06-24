@@ -69,15 +69,25 @@
                           					<i
                           						class="icon-zoom-in icon-white">
                           					</i>
-<%=((EventoBeanData)resultados.get(i)).getEstado().equals("REGISTRADO")?"Evaluar":"Ver"%>
+											Ver
                           				</a>
-                          				<%if(((EventoBeanData)resultados.get(i)).getEstado().equals("REGISTRADO")){ %>
+                          				
+                          				<%if(((EventoBeanData)resultados.get(i)).getEstado().equals("REGISTRADO") && !(codmin.equals("ESD"))){ %>
                           				<a class="btn btn-info"
                           					href="javascript:alt_modificar('<%=((EventoBeanData)resultados.get(i)).getCodigo()%>')">
                           					<i
                           						class="icon-edit icon-white">
                           					</i>
- Modificar
+ 											Modificar
+                          				</a>
+                          				<%}
+                          				else{ %>
+                          				    <a class="btn btn-info"
+                          					href="javascript:alt_registrar('<%=((EventoBeanData)resultados.get(i)).getCodigo()%>')">
+                          					<i
+                          						class="icon-edit icon-white">
+                          					</i>
+ 										Registrar
                           				</a>
                           				<%} %>
                           			</td>

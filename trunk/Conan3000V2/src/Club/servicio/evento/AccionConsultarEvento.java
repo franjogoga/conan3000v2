@@ -34,7 +34,7 @@ public class AccionConsultarEvento extends CoAccion {
 		}
 		request.setAttribute("sedes",sedeMiniData );
 		request.setAttribute("evento", eventoData);
-		this.direccionar(sc, request, response, "/IngSoft/servicio/evento/consultarevento.jsp");
+		this.direccionar(sc, request, response, "/Club/servicio/evento/consultarevento.jsp");
 		
 
 	}

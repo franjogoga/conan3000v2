@@ -24,7 +24,7 @@ public class AccionEliminarEvento extends CoAccion {
 			
 			EventoBeanFuncion eventoFuncion= EventoBeanFuncion.getInstance();
 		//	eventoFuncion.eliminarEvento(request.getParameter("codigo"));
-			this.direccionar(sc, request, response, "/IngSoft/servicio/evento/buscarevento.jsp");
+			this.direccionar(sc, request, response, "/Club/servicio/evento/buscarevento.jsp");
 		}
 		if(Integer.valueOf(request.getParameter("tipo"))==1){
 		EventoBeanFuncion eventoFuncion= EventoBeanFuncion.getInstance();
@@ -36,9 +36,9 @@ public class AccionEliminarEvento extends CoAccion {
 		request.setAttribute("ambientes",AmbienteMiniData );
 		request.setAttribute("tiposEvento",tipoEventoMiniData);
 		//request.setAttribute("evento", eventoData);
-		this.direccionar(sc, request, response, "/IngSoft/servicio/evento/eliminarevento.jsp");
+		this.direccionar(sc, request, response, "/Club/servicio/evento/eliminarevento.jsp");
 		}
-		this.direccionar(sc, request, response, "/IngSoft/servicio/evento/buscarevento.jsp");
+		this.direccionar(sc, request, response, "/Club/servicio/evento/buscarevento.jsp");
 		
 	}
 

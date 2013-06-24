@@ -29,15 +29,15 @@ public class AccionAgregarEvento extends CoAccion {
 		if(tipo==2){
 			EventoBeanFuncion eventoFuncion= EventoBeanFuncion.getInstance();
 			EventoBeanData eventoData=eventoFuncion.crearEvento(request, response);
-			eventoFuncion.agregarEvento(eventoData);
+			eventoFuncion.agregarEventoSede(eventoData);
 			response.setContentType("text/plain");  
 		    response.setCharacterEncoding("UTF-8");
 		    try {
-				response.getWriter().write( "/IngSoft/servicio/evento/SMSEvento?accion=Buscar&tipo=1");
+				response.getWriter().write( "/Club/servicio/evento/SMSEvento?accion=Buscar&tipo=1");
 			} catch (IOException e) {				
 				e.printStackTrace();
 			}
-			//this.direccionar(sc, request, response, "/IngSoft/servicio/evento/SMSEvento?accion=Buscar&tipo=1");
+			//this.direccionar(sc, request, response, "/Club/servicio/evento/SMSEvento?accion=Buscar&tipo=1");
 		}
 		if(tipo==1){		
 		Vector<SedeMiniBeanData> sedeMiniData=eventoFunction.getSedes();
@@ -46,7 +46,7 @@ public class AccionAgregarEvento extends CoAccion {
 		request.setAttribute("sedes",sedeMiniData );
 		//request.setAttribute("ambientes",AmbienteMiniData );
 		//request.setAttribute("tiposEvento",tipoEventoMiniData);
-		this.direccionar(sc, request, response, "/IngSoft/servicio/evento/agregarevento.jsp");
+		this.direccionar(sc, request, response, "/Club/servicio/evento/agregarevento.jsp");
 		}
 		if(tipo==3){
 			String codSede= request.getParameter("cmbSedes");
@@ -59,8 +59,21 @@ public class AccionAgregarEvento extends CoAccion {
 			}
 			Vector<ConcesionarioMiniBeanData> resultado=eventoFunction.consultarConcesionariosxSede(codSede, fecha);
 			request.setAttribute("resultados", resultado);
-			this.direccionar(sc, request, response, "/IngSoft/servicio/evento/concesionariosxsede.jsp");
+			this.direccionar(sc, request, response, "/Club/servicio/evento/concesionariosxsede.jsp");
 			
+		}
+		if(tipo==4){
+			EventoBeanFuncion eventoFuncion= EventoBeanFuncion.getInstance();
+			EventoBeanData eventoData=eventoFuncion.crearEvento(request, response);
+			eventoFuncion.agregarEventoSocio(eventoData,request);
+			response.setContentType("text/plain");  
+		    response.setCharacterEncoding("UTF-8");
+		    try {
+				response.getWriter().write( "/Club/servicio/evento/SMSEvento?accion=Buscar&tipo=1");
+			} catch (IOException e) {				
+				e.printStackTrace();
+			}
+			//this.direccionar(sc, request, response, "/Club/servicio/evento/SMSEvento?accion=Buscar&tipo=1");
 		}
 	}
 

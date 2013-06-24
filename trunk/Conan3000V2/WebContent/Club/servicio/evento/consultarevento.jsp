@@ -30,7 +30,7 @@
 	<jsp:useBean id="concesionario" scope="request"class="IngSoft.servicio.bean.ConcesionarioMiniBeanData"></jsp:useBean>
 	
 	<!-- The styles -->
-	<link id="bs-css" href="css/bootstrap-cerulean.css" rel="stylesheet">
+	<link id="bs-css" href="css/bootstrap-spacelab.css" rel="stylesheet">
 	<style type="text/css">
 	  body {
 		padding-bottom: 40px;
@@ -178,7 +178,7 @@
 		}
 		$.ajax({
 			  type: "POST",
-			  url: "/Conan3000V2/IngSoft/servicio/evento/SMSEvento",
+			  url: "<%=request.getContextPath()%>/Club/servicio/evento/SMCEvento",
 			  data: "accion=" + $(accion).val() + "&tipo=" + $(tipo).val() + "&txtNombreEvento=" + $(txtNombreEvento).val() + "&txtNumEntradas=" + $(txtNumEntradas).val()  
 			  +  "&cmbSedes=" + $(cmbSedes).val() + "&fFecha=" + $(fFecha).val()+"&concesionario="+concesionario+"&precioentrada="+$(txtPrecio).val(),
 			  dataType: "text",
@@ -216,7 +216,7 @@
 	$(this).attr('disabled','disabled');
 		$.ajax({
 			  type: "POST",
-			  url: "/Conan3000V2/IngSoft/servicio/evento/SMSEvento",
+			  url: "<%=request.getContextPath()%>/Club/servicio/evento/SMCEvento",
 			  data: "accion=" + $(accion).val() + "&tipo=3" + "&cmbSedes=" + $(cmbSedes).val() + "&fFecha=" + $(fFecha).val() ,
 			  dataType: "html",
 			  success: function(msg){				  
@@ -268,12 +268,12 @@
 </head>
 
 <body>
-		<jsp:include page="/IngSoft/general/superior.jsp" />
+		<jsp:include page="/Club/generalClub/superior.jsp" />
 		<div class="container-fluid">
 		<div class="row-fluid">
 				
 			<!-- left menu starts -->
-			<jsp:include page="/IngSoft/general/leftmenu.jsp" />
+			<jsp:include page="/Club/generalClub/leftmenu.jsp" />
 						<!-- left menu ends -->
 			
 			
@@ -377,7 +377,7 @@
 							  <button type="button" id="btnAprobar" class="btn btn-primary" >Aprobar</button>
 							  <button type="button" id="btnRechazar" class="btn btn-primary" >Rechazar</button>
 							  <%} %>
-							  <button type="button" class="btn" onclick="location.href='<%=request.getContextPath()%>/IngSoft/servicio/evento/SMSEvento?accion=Buscar&tipo=1'" >Regresar</button>
+							  <button type="button" class="btn" onclick="location.href='<%=request.getContextPath()%>/Club/servicio/evento/SMCEvento?accion=Buscar&tipo=1'" >Regresar</button>
 							</div>
 						  </fieldset>
 					  </form>   
