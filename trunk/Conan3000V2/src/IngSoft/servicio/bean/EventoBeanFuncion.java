@@ -36,7 +36,7 @@ public class EventoBeanFuncion {
 	   public Vector<SedeMiniBeanData> getSedes(){
 			SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 			List<SedeMiniBeanData> resultados=sqlsesion.selectList("Data.servicio.evento.searchSedeMini");
-			
+			sqlsesion.close();
 			return new Vector<>(resultados);
 		}
 	   
@@ -74,15 +74,21 @@ public class EventoBeanFuncion {
 		}
 		public EventoBeanData crearEvento(HttpServletRequest request, HttpServletResponse response){
 			EventoBeanData eventoData= new EventoBeanData();
+			String temp=null;
 			try{					
 			eventoData.setIdSede(request.getParameter("cmbSedes"));			
 			eventoData.setNombre(request.getParameter("txtNombreEvento").trim());			
-			eventoData.setFecha(new java.sql.Date(DF.parse(request.getParameter("fFecha")).getTime()));
-			eventoData.setLimiteEntradas(Integer.parseInt(request.getParameter("txtNumEntradas")));
-			String temp= request.getParameter("precioentrada");
+			eventoData.setFecha(new java.sql.Date(DF.parse(request.getParameter("fFecha")).getTime()));			
+			temp=request.getParameter("txtNumEntradas");
+			temp=(temp==null|temp.isEmpty())?"0":temp;
+			eventoData.setLimiteEntradas(Integer.parseInt(request.getParameter("txtNumEntradas")));			
+			temp= request.getParameter("precioentrada");
 			temp= temp.contains(".")?temp:temp+".00";
 			eventoData.setPrecioEntrada(Double.parseDouble(temp));
 			eventoData.setIdConcesionario(request.getParameter("concesionario"));
+			temp=request.getParameter("costo");
+			temp=(temp==null|temp.isEmpty())?"0":temp;
+			eventoData.setMonto(Double.parseDouble(temp));			
 			}catch(Exception e){
 				e.printStackTrace();
 				
