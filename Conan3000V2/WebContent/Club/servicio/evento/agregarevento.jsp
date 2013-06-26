@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%@page import="IngSoft.general.bean.Conan3000Constantes"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="IngSoft.servicio.bean.Utils"%>
@@ -154,8 +155,8 @@
 		$.ajax({
 			  type: "POST",
 			  url: "<%=request.getContextPath()%>/Club/servicio/evento/SMCEvento",
-			  data: "accion=" + $(accion).val() + "&tipo=" + $(tipo).val() + "&txtNombreEvento=" + $(txtNombreEvento).val() +   
-			  +  "&cmbSedes=" + $(cmbSedes).val() + "&fFecha=" + $(fFecha).val()+"&concesionario="+concesionario+"&costo="+$(txtCosto).val(),
+			  data: "accion=" + $(accion).val() + "&tipo=" + $(tipo).val() + "&txtNombreEvento=" + $(txtNombreEvento).val()   
+			  +"&cmbSedes="+ $(cmbSedes).val() + "&fFecha=" + $(fFecha).val()+"&concesionario="+concesionario+"&costo="+$(txtCosto).val(),
 			  dataType: "text",
 			  success: function(msg){
 				  var url="<%=request.getContextPath()%>"+msg;
@@ -299,7 +300,7 @@
 						      <label class="control-label" for="txtCosto">Costo Reserva Salon Principal: </label>
 						      <div class="controls">
 
-									<input  id="txtPrecio" class="span4" name="txtCosto" readonly onchange="vDinero($(this))"  type="text" onkeypress="return dinero(event);"  maxlength="12">
+									<input  id="txtCosto" class="span4" name="txtCosto" value="<%=Conan3000Constantes.getInstance().getPrecioSalonPrincipal()%>" readonly onchange="vDinero($(this))"  type="text" onkeypress="return dinero(event);"  maxlength="12">
 									<br/>
 								  <span class="help-inline" id="errCosto" name="errCosto" style="display:none;">Este campo no puede estar vacio</span>
 					        </div>

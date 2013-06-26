@@ -13,7 +13,6 @@ MontoInvitado,
 CostoXm2Bungalow,
 CostoReservaCancha,
 PrecioMembresia,
-Fecha,
 MontoMultaFalta,
 PrecioSalonPrincipal
 FROM CONFIGURACION

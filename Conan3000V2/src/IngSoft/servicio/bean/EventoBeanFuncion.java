@@ -16,6 +16,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import IngSoft.general.CoException;
 import IngSoft.general.MyBatisSesion;
+import IngSoft.venta.bean.OrdenPagoBeanFunction;
 
 public class EventoBeanFuncion {	
 	
@@ -80,14 +81,15 @@ public class EventoBeanFuncion {
 			eventoData.setNombre(request.getParameter("txtNombreEvento").trim());			
 			eventoData.setFecha(new java.sql.Date(DF.parse(request.getParameter("fFecha")).getTime()));			
 			temp=request.getParameter("txtNumEntradas");
-			temp=(temp==null|temp.isEmpty())?"0":temp;
-			eventoData.setLimiteEntradas(Integer.parseInt(request.getParameter("txtNumEntradas")));			
+			temp=(temp==null||temp.isEmpty())?"0":temp;
+			eventoData.setLimiteEntradas(Integer.parseInt(temp));			
 			temp= request.getParameter("precioentrada");
+			temp=(temp==null||temp.isEmpty())?"0.00":temp;
 			temp= temp.contains(".")?temp:temp+".00";
 			eventoData.setPrecioEntrada(Double.parseDouble(temp));
 			eventoData.setIdConcesionario(request.getParameter("concesionario"));
 			temp=request.getParameter("costo");
-			temp=(temp==null|temp.isEmpty())?"0":temp;
+			temp=(temp==null||temp.isEmpty())?"0":temp;
 			eventoData.setMonto(Double.parseDouble(temp));			
 			}catch(Exception e){
 				e.printStackTrace();
@@ -137,7 +139,8 @@ public class EventoBeanFuncion {
 		boolean resultado=false;
 		l2.lock();
 		HttpSession sesion= request.getSession();
-		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();	
+		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+		 OrdenPagoBeanFunction orden=OrdenPagoBeanFunction.getInstance();
 		try{
 			String codigo= (String)sqlsesion.selectOne("Data.servicio.evento.getNextCodigoScE");
 			codigo=codigo==null?"ESC000000":codigo;
@@ -153,6 +156,8 @@ public class EventoBeanFuncion {
 			map.put("concesionario", eventoData.getIdConcesionario());
 			sqlsesion.insert("Data.servicio.evento.insertEventoxSocio",map);
 			sqlsesion.commit();
+			//orden.agregarOrdenPago("EVENTOSOCIO", codigo,"" , sesion.getAttribute("idSocio").toString(), Double.valueOf(eventoData.getMonto()), new java.sql.Date(new java.util.Date().getTime()),  new java.sql.Date(eventoData.getFecha().getTime()));
+
 			resultado=true;
 		}
 		catch(Exception a)		
@@ -162,7 +167,7 @@ public class EventoBeanFuncion {
 		}		
 		finally{			
 			sqlsesion.close();
-			l1.unlock();					
+			l2.unlock();					
 		}
 			
 		

@@ -11,10 +11,12 @@ select r1.codigoBungalow
 ,r1.nombreBungalow
 ,r2.codigoSocio
 ,r2.fecha
+,r1.areaBungalow
 from
 (select b.IdBungalow as codigoBungalow
 ,b.Numero as nombreBungalow
 ,a.IdSede as codigoSede
+,b.AreaBungalow as areaBungalow
 from 
 BUNGALOW b 
 left join 
@@ -91,7 +93,6 @@ from SOCIO s
 where s.IdSocio=p.IdPersona 
 and p.NumeroDocumento=#{codigo};
 </select>
-
 
 <select id="getNextCodigoB" resultType="java.lang.String">
 	select max(IdReservaBungalow) from RESERVA_BUNGALOW;	

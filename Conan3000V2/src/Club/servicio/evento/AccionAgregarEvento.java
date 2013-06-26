@@ -33,7 +33,7 @@ public class AccionAgregarEvento extends CoAccion {
 			response.setContentType("text/plain");  
 		    response.setCharacterEncoding("UTF-8");
 		    try {
-				response.getWriter().write( "/Club/servicio/evento/SMSEvento?accion=Buscar&tipo=1");
+				response.getWriter().write( "/Club/servicio/evento/SMCEvento?accion=Buscar&tipo=1");
 			} catch (IOException e) {				
 				e.printStackTrace();
 			}
@@ -69,7 +69,7 @@ public class AccionAgregarEvento extends CoAccion {
 			response.setContentType("text/plain");  
 		    response.setCharacterEncoding("UTF-8");
 		    try {
-				response.getWriter().write( "/Club/servicio/evento/SMSEvento?accion=Buscar&tipo=1");
+				response.getWriter().write( "/Club/servicio/evento/SMCEvento?accion=Buscar&tipo=1");
 			} catch (IOException e) {				
 				e.printStackTrace();
 			}
