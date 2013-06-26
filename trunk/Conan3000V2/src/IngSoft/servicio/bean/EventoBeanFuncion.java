@@ -175,7 +175,7 @@ public class EventoBeanFuncion {
 		
 	}
 	
-	public Vector<EventoBeanData> buscarSolicitudesEvento(HashMap<String, Object> map){		
+	public Vector<EventoBeanData> buscarSolicitudesEventoSede(HashMap<String, Object> map){		
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		Vector<EventoBeanData> resultadosV=null;
 		try{
@@ -189,6 +189,22 @@ public class EventoBeanFuncion {
 		return resultadosV;
 		
 	}
+	
+	public Vector<EventoBeanData> buscarSolicitudesEventoSocio(HashMap<String, Object> map){		
+		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+		Vector<EventoBeanData> resultadosV=null;
+		try{
+		
+		List<EventoBeanData> resultados=sqlsesion.selectList("Data.servicio.evento.searchEventoSocioMini",map);
+	
+		resultadosV= new Vector<>(resultados);
+		}
+		finally{
+		sqlsesion.close();}
+		return resultadosV;
+		
+	}
+	
 	/*
 	public boolean eliminarEvento(String codigo) throws CoException {
 		boolean resultado=false;		
@@ -340,6 +356,9 @@ public class EventoBeanFuncion {
 		}
 		temp=request.getParameter("cmbSedes");
 		map.put("sede", temp.equals("all")?"%":temp);
+		temp=request.getSession().getAttribute("idSocio")==null?null:request.getSession().getAttribute("idSocio").toString();
+		temp= temp==null?request.getParameter("idsocio"):temp;
+		map.put("socio", temp.equals("all")?"%":temp);
 		
 		
 		return map;
