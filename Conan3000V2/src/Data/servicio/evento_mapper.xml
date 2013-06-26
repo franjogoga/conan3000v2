@@ -51,6 +51,26 @@ and DATE(es.Fecha) &lt;= DATE(#{FF})
 and es.Nombre like #{nombre}
 </select>
 
+<select id="searchEventoSocioMini" parameterType="hashmap" resultType="IngSoft.servicio.bean.EventoBeanData">
+select 
+so.IdEventoSocio as codigo
+,so.Nombre as nombre
+,so.Fecha as fecha
+,s.Nombre as idSede
+,so.Estado as estado
+from 
+EVENTO_SOCIO so
+, SEDE s 
+where 
+es.IdSede= s.IdSede
+and so.Estado like #{estado}
+and so.IdSede like #{sede}
+and DATE(so.Fecha) &gt;= DATE(#{FI})
+and DATE(so.Fecha) &lt;= DATE(#{FF})
+and so.Nombre like #{nombre}
+and so.IdSocio like #{socio}
+</select>
+
 <select id="searchEventoSede" parameterType="java.lang.String" resultType="IngSoft.servicio.bean.EventoBeanData">
 select 
 es.IdEventoSede as codigo

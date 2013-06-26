@@ -30,7 +30,7 @@ public class AccionBuscarEvento extends CoAccion{
 		if(tipo==2){
 			EventoBeanFuncion eventoFuncion= EventoBeanFuncion.getInstance();
 			HashMap<String, Object> map =eventoFuncion.crearCriterio(request,response);
-		Vector<EventoBeanData> resultados=eventoFuncion.buscarSolicitudesEvento(map);	
+		Vector<EventoBeanData> resultados=eventoFuncion.buscarSolicitudesEventoSede(map);	
 		request.setAttribute("resultados", resultados);
 		this.direccionar(sc, request, response, "/Club/servicio/evento/resultados.jsp");
 		}
