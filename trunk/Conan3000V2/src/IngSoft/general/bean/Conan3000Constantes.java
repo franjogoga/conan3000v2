@@ -1,19 +1,23 @@
 package IngSoft.general.bean;
 
+import java.io.Serializable;
+import java.util.Date;
+
 import org.apache.ibatis.session.SqlSession;
 
 import IngSoft.general.MyBatisSesion;
 import IngSoft.servicio.bean.EventoBeanFuncion;
 
-public class Conan3000Constantes {
+public class Conan3000Constantes implements Serializable {
 	private double montoInvitado;
 	private double costoXm2Bungalow;
 	private double costoReservaCancha;
 	private double precioMembresia;
-	private double fecha;
+	//private Date fecha;
 	private double montoMultaFalta;
 	private double precioSalonPrincipal;
 	private String codigo;
+	public static Integer step=60;
 	private static Conan3000Constantes constantes=null;
 	
 	private Conan3000Constantes(){}
@@ -58,13 +62,13 @@ public class Conan3000Constantes {
 		this.precioMembresia = precioMembresia;
 	}
 
-	public double getFecha() {
-		return fecha;
-	}
-
-	public void setFecha(double fecha) {
-		this.fecha = fecha;
-	}
+//	public double getFecha() {
+//		return fecha;
+//	}
+//
+//	public void setFecha(double fecha) {
+//		this.fecha = fecha;
+//	}
 
 	public double getMontoMultaFalta() {
 		return montoMultaFalta;

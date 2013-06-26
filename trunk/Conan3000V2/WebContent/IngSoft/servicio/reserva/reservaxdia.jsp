@@ -32,12 +32,14 @@
 							
 							<% 				
 							String Bungalow=null;
+							double Area=0;
 							boolean esnull=false;
 							int k=0;			
 							for (int j=0;j<reservas.size();j++){ 
 								String codActual= ((ReservaBungalowMiniBeanData)reservas.get(j)).getCodigoBungalow();
 								if(Bungalow==null || !Bungalow.equals(codActual)){
 								Bungalow=codActual;
+								Area= ((ReservaBungalowMiniBeanData)reservas.get(j)).getAreaBungalow();
 								esnull=false;
 								k=0;%>						
 							<tr>
@@ -47,7 +49,7 @@
 								 esnull=true;
 								 for(int i=0;i<dias.length;i++) {%>
 								<td class="center">
-									<a id="<%=codActual%><%=DF.format(Utils.fechaMas(fecIni, i))%>" 
+									<a id="<%=codActual%><%=DF.format(Utils.fechaMas(fecIni, i))%><%=Area%>" 
 									name="<%=codActual%><%=DF.format(Utils.fechaMas(fecIni, k))%>"
 									class="btn btn-success" onclick="javascript:cambiarClase(this)">
 										<i class="icon-ok icon-white"></i>  

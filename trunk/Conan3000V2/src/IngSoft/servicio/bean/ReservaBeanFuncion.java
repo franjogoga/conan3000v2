@@ -144,16 +144,19 @@ public class ReservaBeanFuncion {
 			   listareservas.removeAll(new Vector<String>(temp));
 			   int a= listareservas.size();
 			   HashMap<String, Object> map=new HashMap<String, Object>();
+			   Conan3000Constantes constantes=Conan3000Constantes.getInstance();
 			   map.put("idsocio",codSocio);
+			   double area=0;
 			   for(int i=0;i<a;i++){
 				   nextcodigo=this.generaSiguienteCodigo(nextcodigo);				   
 				   map.put("idbungalow", listareservas.get(i).substring(0, 9)); 
 				   map.put("idreservasbungalow", nextcodigo);
-				   map.put("monto",Conan3000Constantes.costoBungalowxDia);
-				   map.put("fecha",df.parseObject(listareservas.get(i).substring(9)));
+				   area=Double.parseDouble(listareservas.get(i).substring(18));
+				   map.put("monto",constantes.getCostoXm2Bungalow()*area);
+				   map.put("fecha",df.parseObject(listareservas.get(i).substring(9,10)));
 				   sqlsesion.insert("Data.servicio.reserva.insertBungalowReserva",map);
 				   sqlsesion.insert("Data.servicio.reserva.insertBungalowReservaFecha",map);
-				   orden.agregarOrdenPago("RESERVABUNGALOW", nextcodigo, "", codSocio, Conan3000Constantes.costoBungalowxDia,new java.sql.Date(new java.util.Date().getTime()), new java.sql.Date(new java.util.Date().getTime()));
+				   orden.agregarOrdenPago("RESERVABUNGALOW", nextcodigo, "", codSocio, constantes.getCostoXm2Bungalow()*area,new java.sql.Date(new java.util.Date().getTime()), new java.sql.Date(new java.util.Date().getTime()));
 			   }
 			   sqlsesion.commit();
 			   
@@ -182,6 +185,7 @@ public class ReservaBeanFuncion {
 			   listareservas.removeAll(new Vector<String>(temp));
 			   int a= listareservas.size();
 			   HashMap<String, Object> map=new HashMap<String, Object>();
+			   Conan3000Constantes constantes=Conan3000Constantes.getInstance();
 			   map.put("idsocio",codSocio);
 			   for(int i=0;i<a;i++){
 				   nextcodigo=this.generaSiguienteCodigo(nextcodigo);
@@ -190,12 +194,12 @@ public class ReservaBeanFuncion {
 				   map.put("idreservascancha", nextcodigo);
 				   map.put("fecha",df.parseObject(listareservas.get(i).substring(9,19)));
 				   map.put("horaIni",horaIni);
-				   map.put("monto",Conan3000Constantes.costoCanchaxHora);
+				   map.put("monto",constantes.getCostoReservaCancha());
 				   map.put("horaFin",Utils.addHora(horaIni, Conan3000Constantes.step.intValue()));
 				   sqlsesion.insert("Data.servicio.reserva.insertCanchaReserva",map);
 				   sqlsesion.insert("Data.servicio.reserva.insertCanchaReservaFecha",map);
 				   
-				   orden.agregarOrdenPago("RESERVACANCHA", nextcodigo, "", codSocio, Conan3000Constantes.costoCanchaxHora,new java.sql.Date(new java.util.Date().getTime()), new java.sql.Date(new java.util.Date().getTime()));
+				   orden.agregarOrdenPago("RESERVACANCHA", nextcodigo, "", codSocio, constantes.getCostoReservaCancha(),new java.sql.Date(new java.util.Date().getTime()), new java.sql.Date(new java.util.Date().getTime()));
 			   }
 			   sqlsesion.commit();
 			   

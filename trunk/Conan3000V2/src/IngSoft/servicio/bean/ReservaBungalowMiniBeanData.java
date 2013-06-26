@@ -6,6 +6,7 @@ public class ReservaBungalowMiniBeanData implements Serializable{
 	private String codigoBungalow;
 	private String nombreBungalow;
 	private String codigoSocio;
+	private double areaBungalow;
 	private java.sql.Date fecha;
 	
 	public String getCodigoBungalow() {
@@ -31,6 +32,12 @@ public class ReservaBungalowMiniBeanData implements Serializable{
 	}
 	public void setFecha(java.sql.Date fecha) {
 		this.fecha = fecha;
+	}
+	public double getAreaBungalow() {
+		return areaBungalow;
+	}
+	public void setAreaBungalow(double areaBungalow) {
+		this.areaBungalow = areaBungalow;
 	}
 	
 	
