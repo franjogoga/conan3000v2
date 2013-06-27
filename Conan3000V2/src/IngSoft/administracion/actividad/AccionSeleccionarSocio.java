@@ -35,6 +35,8 @@ public class AccionSeleccionarSocio extends CoAccion{
 		PersonaBeanData personaData= new PersonaBeanData();
 		personaData.setNombre("%"+request.getParameter("txtNombre")+"%");
 		
+		System.out.print("--> nombre --> "+ request.getParameter("txtNombre") );
+		
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		Vector<PersonaBeanData> resultados=null;
 		try{
@@ -54,7 +56,7 @@ public class AccionSeleccionarSocio extends CoAccion{
 		
 		System.out.print("resultados ----->"+ resultados.size());
 		
-		this.direccionar(sc, request, response, "/IngSoft/administracion/actividad/seleccionarempleado.jsp");	
+		this.direccionar(sc, request, response, "/IngSoft/administracion/actividad/seleccionarsocio.jsp");	
 		
 		
 		
