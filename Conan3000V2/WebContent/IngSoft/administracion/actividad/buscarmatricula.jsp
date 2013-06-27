@@ -143,7 +143,7 @@
 			<div>
 				<ul class="breadcrumb">
                   <li> <a href="../../general/index.jsp">Home</a> <span class="divider">/</span> </li>
-                  <li>Mantenimiento de Actividad</li>
+                  <li>Matricula de Actividad</li>
 				</ul>
 			</div>
 			
