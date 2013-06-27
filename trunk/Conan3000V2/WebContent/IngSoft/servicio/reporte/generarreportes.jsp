@@ -98,6 +98,8 @@
 									<option value="reportePagoMembresia.jsp">Estado de Pago de Membresías</option>									
 								  	<option value="reportePagoOtrosServicios.jsp">Estado de Pago de Otros Servicios</option>								
 								  	<option value="reporteEgresosClub.jsp">Egresos del Club </option>								
+								  	<option value="reporteInscritosSorteo.jsp">Inscritos por Sorteo </option>								
+								  	<option value="reportePrecioProveedor.jsp">Precio por Proveedor </option>								
 								  
 								  </select>
 								</div>
