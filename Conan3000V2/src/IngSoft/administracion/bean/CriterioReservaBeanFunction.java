@@ -16,7 +16,7 @@ public class CriterioReservaBeanFunction {
 		CriterioReservaBeanData criterioReservaData = new CriterioReservaBeanData();		
 		
 		
-		criterioReservaData.setNombreinvi("%"+request.getParameter("txtNombre")+"%");
+		criterioReservaData.setNombre("%"+request.getParameter("txtNombre")+"%");
 
 		return criterioReservaData;
 	}
