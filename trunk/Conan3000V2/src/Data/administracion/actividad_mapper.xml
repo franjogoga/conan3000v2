@@ -118,6 +118,33 @@ TIPO_ACTIVIDAD;
 
 </select>
 
+<select id="getHorariosActividad" resultType="IngSoft.administracion.bean.ResultadoHorariodeactividadBeanData">
+
+
+SELECT 
+inf245g2.ACTIVIDADxDIA_SEMANA.Horario AS Horario
+,inf245g2.ACTIVIDAD.IdActividad AS codigo
+,inf245g2.ACTIVIDAD.Nombre AS nombre
+,group_concat(inf245g2.DIA_SEMANA.IdDiaSemana ) AS codDiasemana
+,group_concat(inf245g2.DIA_SEMANA.Nombre,' ', DATE_FORMAT(inf245g2.ACTIVIDADxDIA_SEMANA.HoraInicio,'%h:%i'),'-',DATE_FORMAT(inf245g2.ACTIVIDADxDIA_SEMANA.HoraFin ,'%h:%i') SEPARATOR ' / '  ) AS diaSemana
+
+FROM
+      inf245g2.ACTIVIDAD,  inf245g2.DIA_SEMANA, inf245g2.ACTIVIDADxDIA_SEMANA
+WHERE
+		
+	  inf245g2.ACTIVIDAD.IdActividad         = inf245g2.ACTIVIDADxDIA_SEMANA.IdActividad 
+AND   inf245g2.DIA_SEMANA.IdDiaSemana    = inf245g2.ACTIVIDADxDIA_SEMANA.IdDiaSemana
+AND    inf245g2.ACTIVIDAD.IdActividad  like  'ACT000001' 
+
+group by inf245g2.ACTIVIDADxDIA_SEMANA.Horario 
+
+
+</select>
+
+
+
+
+
 
 <!-- sedes  -->
 <select id="getSede" resultType="IngSoft.administracion.bean.SedeBeanData">
