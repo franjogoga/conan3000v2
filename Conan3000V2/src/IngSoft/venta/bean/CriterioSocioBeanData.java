@@ -11,10 +11,18 @@ public class CriterioSocioBeanData implements Serializable{
 	private String direccion;
 	private String tipoDocumento;
 	private long numeroDocumento;
+	private int flag;
 	
 	
 	
-	
+	public int getFlag() {
+		return flag;
+	}
+
+	public void setFlag(int flag) {
+		this.flag = flag;
+	}
+
 	public String getDireccion() {
 		return direccion;
 	}
