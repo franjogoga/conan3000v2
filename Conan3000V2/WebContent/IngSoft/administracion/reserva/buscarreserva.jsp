@@ -219,9 +219,10 @@
                             <tr>
                               <th>Nombre Socio</th>
                               <th>Apellido Pat. Socio</th>
-                              <th>Nº Documento</th>
+                              <th>Codigo Invitado</th>
                               <th>Nombre Invitado</th>
                               <th>Apellido Pat. Invitado</th>
+                              <th>Nº Documento</th>
                               <th>Fecha Ingreso</th>
                               
                               <th>Acci&oacute;n</th>
@@ -232,9 +233,11 @@
                             <tr>
                               <td class="center"><%=((ResultadoReservaBeanData)resultados.get(i)).getNombresocio()%></td>
                               <td class="center"><%=((ResultadoReservaBeanData)resultados.get(i)).getApaternosocio()%></td>
-                              <td class="center"><%=((ResultadoReservaBeanData)resultados.get(i)).getDnisocio()%></td>
-                              <td class="center"><%=((ResultadoReservaBeanData)resultados.get(i)).getNombreinvi()%></td>
-                              <td class="center"><%=((ResultadoReservaBeanData)resultados.get(i)).getApaternoinvi()%></td>
+                              <td class="center"><%=((ResultadoReservaBeanData)resultados.get(i)).getCodigoinvitado()%></td>
+                              <td class="center"><%=((ResultadoReservaBeanData)resultados.get(i)).getNombre()%></td>
+                              <td class="center"><%=((ResultadoReservaBeanData)resultados.get(i)).getApaterno()%></td>
+                              <td class="center"><%=((ResultadoReservaBeanData)resultados.get(i)).getDni()%></td>
+                              
                               <td class="center">
                           
                               
