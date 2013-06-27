@@ -93,7 +93,7 @@
 						     <div class="control-group">
 							    <label class="control-label" for="typeahead6">Nombres: </label>
 							    <div class="controls">
-							      <input type="text" class="span6 typeahead" id="txtNombres" name="txtNombres" data-provide="typeahead" data-items="4" >
+							      <input type="text" class="span6 typeahead" id="txtNombres" name="txtNombre" data-provide="typeahead" data-items="4" >
 						        </div>
 						      </div>
 						    
