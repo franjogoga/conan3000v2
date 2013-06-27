@@ -97,6 +97,7 @@ es.IdEventoSede like #{codigo}
 	SEDE
 	order by 1
 </select>
+
 <select id="searchAmbienteMini" resultType="IngSoft.servicio.bean.AmbienteMiniBeanData">
 	select IdTipoAmbiente as codigo
 	,Nombre 
@@ -111,42 +112,24 @@ es.IdEventoSede like #{codigo}
 	TIPO_EVENTO
 	order by 1
 </select>
-<select id="getConcecionarioxSede" parameterType="hashmap" resultType="IngSoft.servicio.bean.ConcesionarioMiniBeanData">
-select c.IdConcesionario as codigo
-,c.RazonSocial as razonSocial
-,c.Descripcion as descripcion
-from
-CONCESIONARIO c
-,CONCESIONARIOxSEDE cs 
-where 
-c.IdConcesionario= cs.IdConcesionario
-and cs.IdSede like #{idsede}
-and DATE(cs.FechaFin)&gt;=DATE(#{fecha})
-and DATE(cs.FechaInicio)&lt;=DATE(#{fecha})
+
+<!--Aprobar eventos  -->
+<update id="aprobarEventoSocio" parameterType="java.lang.String">
+	update EVENTO_SOCIO set Estado='APROBADO' where IdEventoSocio=#{codigo};	
 </select>
-<!-- Agregar plantilla evento -->
-<insert id="insertPlantillaEvento" parameterType="IngSoft.servicio.bean.EventoBeanData" flushCache="true">
-	insert into PLANTILLA_EVENTO(IdPlantillaEvento,Nombre,FechaInicio,FechaFin,IdTipoEvento,Estado)
-	values (#{codigo},#{nombre},#{limiteInicio},#{limiteFin},#{idTipo},'A')
-</insert>
+<update id="aprobarEventoSede" parameterType="java.lang.String">
+	update EVENTO_SEDE set Estado='APROBADO' where IdEventoSede=#{codigo};	
+</select>
+<!-- Fin aprobar eventos -->
+<!-- Generar codigos -->
 <select id="getNextCodigoSdE" resultType="java.lang.String">
 	select Max(IdEventoSede) from  EVENTO_SEDE	
 </select>
 <select id="getNextCodigoScE" resultType="java.lang.String">
 	select Max(IdEventoSocio) from  EVENTO_SOCIO	
 </select>
-<insert id="insertPlantillaEventoSedes" parameterType="IngSoft.servicio.bean.EventoBeanData" flushCache="true">
- insert into SEDExPLANTILLA(IdPlantillaEvento,IdSede) values(#{codigo},
- <foreach item="idSede" index="i" collection="idSede" separator="),(#{codigo}," close=")">
- 	#{idSede}
- </foreach>
-</insert>
-<insert id="insertPlantillaEventoAmbiente" parameterType="IngSoft.servicio.bean.EventoBeanData" flushCache="true">
- insert into AMBIENTExPLANTILLA(IdPlantillaEvento,IdAmbiente) values(#{codigo},
- <foreach item="idAmbientes" index="i" collection="idAmbientes" separator="),(#{codigo}," close=")">
- 	#{idAmbientes}
- </foreach>
-</insert>
+<!-- Fin generar codigo -->
+<!-- insertar solicitudes -->
 <insert id="insertEventoxSede" parameterType="hashmap">
 insert into 
 EVENTO_SEDE(IdEventoSede,Nombre,LimiteEntradas,Precio,IdSede,IdConcesionario,Estado,Fecha,EntradasTotal)
@@ -159,7 +142,7 @@ EVENTO_SOCIO
 (IdEventoSocio,Nombre,IdSocio,IdSede,Fecha,MontoTotal,IdConcesionario,Estado)
 values(#{codigo},#{nombre},#{socio},#{sede},#{fecha},#{monto},#{concesionario},'REGISTRADO')
 </insert>
- <!-- Fin agregar  -->
+ <!-- Fin insertar solicitudes  -->
  
 <select id="getAmbientesId" parameterType="java.lang.String"  resultType="java.lang.String">
 select IdAmbiente from AMBIENTExPLANTILLA where IdPlantillaEvento= #{codigo};
@@ -168,16 +151,39 @@ select IdAmbiente from AMBIENTExPLANTILLA where IdPlantillaEvento= #{codigo};
 <select id="getSedesId" parameterType="java.lang.String"  resultType="java.lang.String">
 select IdSede  from SEDExPLANTILLA where IdPlantillaEvento= #{codigo};
 </select>
-
-<select id="getPLantillaEvento" parameterType="java.lang.String"  resultType="IngSoft.servicio.bean.EventoBeanData">
+<!-- consultar solicitudes -->
+<select id="searchEventoSede" parameterType="java.lang.String" resultType="IngSoft.servicio.bean.EventoBeanData">
 select 
-IdPlantillaEvento as codigo
-,IdTipoEvento as idTipo
-,Nombre as nombre
-,FechaInicio as limiteInicio
-,FechaFin as limiteFin
-from PLANTILLA_EVENTO  pe where pe.Estado='A' and  pe.IdPlantillaEvento=#{codigo}; 
+es.IdEventoSede as codigo
+,es.Nombre as nombre
+,es.Fecha as fecha
+,es.IdSede as idSede
+,es.Estado as estado
+,es.IdConcesionario as idConcesionario
+,es.LimiteEntradas as limiteEntradas
+,es.Precio as monto
+,es.EntradasTotal as entradasTotal
+from 
+EVENTO_SEDE es
+where 
+es.IdEventoSede like #{codigo}
 </select>
+<select id="searchEventoSocio" parameterType="java.lang.String" resultType="IngSoft.servicio.bean.EventoBeanData">
+SELECT
+IdEventoSocio as codigo,
+Nombre as nombre,
+IdSocio as socio,
+IdSede as idSede,
+Fecha as fecha,
+MontoTotal as monto,
+IdConcesionario as concesionario,
+Estado as estado
+FROM EVENTO_SOCIO 
+where
+IdEventoSocio like {codigo};
+</select>
+
+<!-- consultar solicitudes -->
 <!-- Modificar elemento -->
 <update id="updatePLantillaEvento" parameterType="IngSoft.servicio.bean.EventoBeanData">
 update PLANTILLA_EVENTO set nombre=#{nombre}

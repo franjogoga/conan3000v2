@@ -140,7 +140,7 @@ public class EventoBeanFuncion {
 		l2.lock();
 		HttpSession sesion= request.getSession();
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
-		 OrdenPagoBeanFunction orden=OrdenPagoBeanFunction.getInstance();
+		 
 		try{
 			String codigo= (String)sqlsesion.selectOne("Data.servicio.evento.getNextCodigoScE");
 			codigo=codigo==null?"ESC000000":codigo;
@@ -203,6 +203,38 @@ public class EventoBeanFuncion {
 		sqlsesion.close();}
 		return resultadosV;
 		
+	}
+	
+	public boolean aprobarEventoSocio(String codigo){
+		boolean resultado=false;
+		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+		OrdenPagoBeanFunction orden=OrdenPagoBeanFunction.getInstance();
+		try{
+			EventoBeanData eventoData= sqlsesion.selectOne("Data.servicio.evento.searchEventoSocio",codigo);
+			sqlsesion.update("Data.servicio.evento.aprobarEventoSocio", codigo);
+			orden.agregarOrdenPago("EVENTOSOCIO", eventoData.getCodigo(),"" , eventoData.getSocio(), eventoData.getMonto(), new java.sql.Date(new java.util.Date().getTime()),  new java.sql.Date(eventoData.getFecha().getTime()));
+			resultado=true;
+		}catch(Exception e){
+			e.printStackTrace();		
+		}
+		finally{
+			sqlsesion.close();
+		}
+		return resultado;
+	}
+	
+	public boolean aprobarEventoSede(String codigo){
+		boolean resultado=false;
+		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+		try {
+			sqlsesion.update("Data.servicio.evento.aprobarEventoSede", codigo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		finally{
+			sqlsesion.close();
+		}
+		return resultado;				
 	}
 	
 	/*
@@ -337,6 +369,17 @@ public class EventoBeanFuncion {
 		}
 		return eventoData;
 	}
+	public EventoBeanData consultarEventoSocio(String codigo){
+		EventoBeanData eventoData=null;
+		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+		try{
+			eventoData= sqlsesion.selectOne("Data.servicio.evento.searchEventoSocio",codigo);
+		}
+		finally{
+			sqlsesion.close();
+		}
+		return eventoData;
+	} 
 
 	public HashMap<String, Object> crearCriterio(HttpServletRequest request,
 			HttpServletResponse response) {

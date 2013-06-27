@@ -21,7 +21,10 @@ public class AccionConsultarEvento extends CoAccion {
 	@Override
 	public void ejecutar(ServletContext sc, HttpServletRequest request,
 			HttpServletResponse response)  throws CoException{
+		int tipo=Integer.parseInt(request.getParameter("tipo"));
 		EventoBeanFuncion eventoFuncion= EventoBeanFuncion.getInstance();
+		if(tipo==1){
+		
 		EventoBeanData eventoData=eventoFuncion.consultarEventoSede(request.getParameter("codigo"));
 		Vector<SedeMiniBeanData> sedeMiniData=eventoFuncion.getSedes();
 		Vector<ConcesionarioMiniBeanData> resultado=eventoFuncion.consultarConcesionariosxSede(eventoData.getIdSede(), eventoData.getFecha());
@@ -35,7 +38,21 @@ public class AccionConsultarEvento extends CoAccion {
 		request.setAttribute("sedes",sedeMiniData );
 		request.setAttribute("evento", eventoData);
 		this.direccionar(sc, request, response, "/IngSoft/servicio/evento/consultarevento.jsp");
-		
+		}
+		if(tipo==2){
+			String codigo=request.getParameter("codigo");
+			if(codigo!=null && !codigo.isEmpty()){
+				switch(codigo.substring(0, 3)){
+				case "ESC": eventoFuncion.aprobarEventoSocio(codigo);break;
+				case "ESD": eventoFuncion.aprobarEventoSede(codigo);break;
+					
+				}
+			}
+		}
+		if(tipo==3){
+			
+			
+		}
 
 	}
 
