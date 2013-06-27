@@ -11,8 +11,6 @@ public class SMAActividad extends CoServlet{
 		acciones.put("Buscar", new AccionBuscarActividad());
 		acciones.put("Consultar", new AccionConsultarActividad());
 		acciones.put("Eliminar", new  AccionEliminarActividad());
-		
-		
 		acciones.put("Modificar", new AccionModificarActividad());
 		acciones.put("Agregar", new AccionAgregarActividad());
 		
@@ -21,8 +19,14 @@ public class SMAActividad extends CoServlet{
 		
 		
 		acciones.put("BuscarMatricula", new AccionBuscarMatriculaActividad());
-		
 		acciones.put("Mostrarhorario", new AccionMostrarHorario());
+		
+		
+		acciones.put("SeleccionarSocio", new AccionSeleccionarSocio());
+		//acciones.put("SeleccionarFamiliar", new AccionSeleccionarFamiliar());
+		
+		
+		
 	}
 	
 	
