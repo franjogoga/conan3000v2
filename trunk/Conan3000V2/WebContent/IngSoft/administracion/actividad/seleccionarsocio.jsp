@@ -13,31 +13,13 @@
 			
 				<div id="content" class="span10">
 				    <!-- content starts -->
-				   
-				   
-				   
-				   
-				   
-				   
-				   
-				   
-				   
-				   
-				   
-				   
-				   
-				   
-				   
-				   
-				   
-				   
-				   
+		 
 				   
 <!-- -------------------------------------------------------------------------- -->		
 
 
 <%@page import="java.text.SimpleDateFormat"%>
-<%@page import="IngSoft.administracion.bean.ResultadoEmpleadoBeanData"%>
+<%@page import="IngSoft.administracion.bean.PersonaBeanData"%>
 <%@page import="java.util.Vector"%>
 
 <script>
@@ -75,7 +57,7 @@
 			<div class="row-fluid sortable">
 				<div class="box span12">
 					<div class="box-header well" data-original-title>
-						<h2><i class="icon-search"></i>  BUSCAR EMPLEADO				  </h2>
+						<h2><i class="icon-search"></i>  BUSCAR SOCIO				  </h2>
                         <div class="box-icon">
 							
 							<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
@@ -85,15 +67,15 @@
 				  </div>
 					<div class="box-content">
 						<form class="form-horizontal" name="frmCriteriosBusqueda" id="frmCriteriosBusqueda"  method="POST" action="<%= response.encodeURL("SMAActividad")%>">
-						   <input type="hidden" name="accion" value="Seleccionar"/></input>
+						   <input type="hidden" name="accion" value="SeleccionarSocio"/></input>
 						  
 						  <fieldset>
 						    <div class="control-group">
 						    
 						     <div class="control-group">
-							    <label class="control-label" for="typeahead6">Nombres: </label>
+							    <label class="control-label" for="typeahead6">Nombre Socio: </label>
 							    <div class="controls">
-							      <input type="text" class="span6 typeahead" id="txtNombres" name="txtNombres" data-provide="typeahead" data-items="4" >
+							      <input type="text" class="span6 typeahead" id="txtNombres" name="txtNombre" data-provide="typeahead" data-items="4" >
 						        </div>
 						      </div>
 						    
@@ -121,11 +103,7 @@
 			</div><!--/span-->
 			
 			
-			<form id="frmAlternativo" name="frmAlternativo" method="POST" action="<%= response.encodeURL("SMSEmpleado")%>">
-			  <input type="hidden" name="accion" value="Seleccionar"></input>
-			  <input type="hidden" name="codigo" value=""></input>
-			 <input type="hidden" name="tipo" value="1"></input>
-			  </form>
+			
 			  
 			  
 
@@ -143,7 +121,7 @@
 							  <tr>
 								  <th>Nombres</th>
 								  <th>Apellido Paterno</th>
-								  <th>Puesto</th>
+								  <th>Apellido Materno</th>
 								 
 								  
 								  <th>Accion</th>
@@ -165,21 +143,21 @@
 					        
 					        <td class="center">
                           				<%=
-                          					((ResultadoEmpleadoBeanData)resultados.get(i)).getNombre()
+                          					((PersonaBeanData)resultados.get(i)).getNombre()
 
                           				%>
                           	</td>
                           	
                           	 <td class="center">
                           				<%=
-                          					((ResultadoEmpleadoBeanData)resultados.get(i)).getApaterno()
+                          					((PersonaBeanData)resultados.get(i)).getApaterno()
 
                           				%>
                           	</td>
                           	
                             <td class="center">
                           			<%=
-                          					((ResultadoEmpleadoBeanData)resultados.get(i)).getPuesto()
+                          					((PersonaBeanData)resultados.get(i)).getAmaterno()
 
                           				%>
                           	</td>
@@ -188,7 +166,7 @@
                        
                                <td class="center">
                           				<a class="btn btn-success"
-                          					href="javascript:alt_Insertar('<%=((ResultadoEmpleadoBeanData)resultados.get(i)).getCodigo()%>','<%= ((ResultadoEmpleadoBeanData)resultados.get(i)).getNombre()+' '+((ResultadoEmpleadoBeanData)resultados.get(i)).getApaterno() %>','<%= ((ResultadoEmpleadoBeanData)resultados.get(i)).getPuesto()%>')">
+                          					href="javascript:alt_Insertar('<%=((PersonaBeanData)resultados.get(i)).getCodigo()%>','<%= ((PersonaBeanData)resultados.get(i)).getNombre()+' '+((PersonaBeanData)resultados.get(i)).getApaterno() %>','<%= ((PersonaBeanData)resultados.get(i)).getAmaterno()%>')">
                           					<i
                           						class="icon-zoom-in icon-white">
                           					</i>

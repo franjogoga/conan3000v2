@@ -288,7 +288,7 @@ return DF.format(date);
             
             <div class="controls">
                 
-                <div  align="left"> <a class="btn btn-primary iframe" href="seleccionarempleado.jsp"> <i class="icon icon-search icon-white"></i> Buscar Socio</a> </div>
+                <div  align="left"> <a class="btn btn-primary iframe" href="seleccionarsocio.jsp"> <i class="icon icon-search icon-white"></i> Buscar Socio</a> </div>
                 <span class="help-inline" id="errSocio"></span>
             </div>
         </div>
@@ -307,7 +307,7 @@ return DF.format(date);
             
             <div class="controls">
                 
-                <div  align="left"> <a class="btn btn-primary iframe" href="seleccionarempleado.jsp"> <i class="icon icon-search icon-white"></i> Buscar Familiar</a> </div>
+                <div  align="left"> <a class="btn btn-primary iframe" href="seleccionarfamilia.jsp"> <i class="icon icon-search icon-white"></i> Buscar Familiar</a> </div>
                 <span class="help-inline" id="errSocio"></span>
             </div>
         </div> 
