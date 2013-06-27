@@ -8,83 +8,85 @@ public class CriterioReservaBeanData implements Serializable{
 	private String codigo;
 	private String codigosocio;
 	private String codigoinvitado;
-	private String nombre;
-	private String apaterno;
-	private String amaterno;
-	private String dni;	
-	
+	private String nombresocio;
+	private String apaternosocio;
+	private String amaternosocio;
+	private String dnisocio;	
+	private String nombreinvi;
+	private String apaternoinvi;
+	private String amaternoinvi;
 	private Date fechaingreso;
-
 	private String estado;
-
+	
 	public String getCodigo() {
 		return codigo;
 	}
-
 	public void setCodigo(String codigo) {
 		this.codigo = codigo;
 	}
-
 	public String getCodigosocio() {
 		return codigosocio;
 	}
-
 	public void setCodigosocio(String codigosocio) {
 		this.codigosocio = codigosocio;
 	}
-
 	public String getCodigoinvitado() {
 		return codigoinvitado;
 	}
-
 	public void setCodigoinvitado(String codigoinvitado) {
 		this.codigoinvitado = codigoinvitado;
 	}
-
-	public String getNombre() {
-		return nombre;
+	public String getNombresocio() {
+		return nombresocio;
 	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setNombresocio(String nombresocio) {
+		this.nombresocio = nombresocio;
 	}
-
-	public String getApaterno() {
-		return apaterno;
+	public String getApaternosocio() {
+		return apaternosocio;
 	}
-
-	public void setApaterno(String apaterno) {
-		this.apaterno = apaterno;
+	public void setApaternosocio(String apaternosocio) {
+		this.apaternosocio = apaternosocio;
 	}
-
-	public String getAmaterno() {
-		return amaterno;
+	public String getAmaternosocio() {
+		return amaternosocio;
 	}
-
-	public void setAmaterno(String amaterno) {
-		this.amaterno = amaterno;
+	public void setAmaternosocio(String amaternosocio) {
+		this.amaternosocio = amaternosocio;
 	}
-
-	public String getDni() {
-		return dni;
+	public String getDnisocio() {
+		return dnisocio;
 	}
-
-	public void setDni(String dni) {
-		this.dni = dni;
+	public void setDnisocio(String dnisocio) {
+		this.dnisocio = dnisocio;
 	}
-
+	public String getNombreinvi() {
+		return nombreinvi;
+	}
+	public void setNombreinvi(String nombreinvi) {
+		this.nombreinvi = nombreinvi;
+	}
+	public String getApaternoinvi() {
+		return apaternoinvi;
+	}
+	public void setApaternoinvi(String apaternoinvi) {
+		this.apaternoinvi = apaternoinvi;
+	}
+	public String getAmaternoinvi() {
+		return amaternoinvi;
+	}
+	public void setAmaternoinvi(String amaternoinvi) {
+		this.amaternoinvi = amaternoinvi;
+	}
 	public Date getFechaingreso() {
 		return fechaingreso;
 	}
-
 	public void setFechaingreso(Date fechaingreso) {
 		this.fechaingreso = fechaingreso;
 	}
-
 	public String getEstado() {
 		return estado;
 	}
-
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
