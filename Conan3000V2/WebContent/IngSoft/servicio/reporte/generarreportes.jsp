@@ -95,6 +95,10 @@
 								<div class="controls">
 								  <select name="selectError" id="selectError" data-rel="chosen" >
 									<option value="reporteReservaBungalow.jsp">Reserva de Bungalows</option>
+									<option value="reportePagoMembresia.jsp">Estado de Pago de Membresías</option>									
+								  	<option value="reportePagoOtrosServicios.jsp">Estado de Pago de Otros Servicios</option>								
+								  	<option value="reporteEgresosClub.jsp">Egresos del Club </option>								
+								  
 								  </select>
 								</div>
 							  </div>
