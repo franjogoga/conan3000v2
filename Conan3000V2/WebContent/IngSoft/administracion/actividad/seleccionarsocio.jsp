@@ -38,7 +38,7 @@
 	
 	function alt_Insertar(cod,name,puesto){
 		
-		parent.anhadir(cod,name,puesto);
+		parent.anhadirSocio(cod,name,puesto);
 	}
 	</script>	
 	
