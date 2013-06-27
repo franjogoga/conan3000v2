@@ -66,14 +66,22 @@ padding: 9px 0;
 <script>
 
 
-function anhadir(cod, name,puesto){
+function anhadirSocio(cod, name,puesto){
 var form= document.frmData;
-form.cmbEncargado.value=name;
-form.cmbEncargadoCodigo.value=cod;
-form.txtPuesto.value=puesto;
+form.nombresocio.value=name;
+form.codigosocio.value=cod;
 $.fn.colorbox.close();
 
 }
+
+function anhadirFamiliar(cod, name,puesto){
+	var form= document.frmData;
+	form.nombrefamiliar.value=name;
+	form.codigofamiliar.value=cod;
+	$.fn.colorbox.close();
+
+}
+
 
 function alt_fecha(obj){
 obj.value=obj.value.slice(0,5);
@@ -158,7 +166,7 @@ return DF.format(date);
 <div>
 <ul class="breadcrumb">
 <li> <a href="../../general/index.jsp">Home</a> <span class="divider">/</span> </li>
-<li> <a href="buscaractividad.jsp">Mantenimiento de Horario de Actividad </a> <span class="divider">/</span></li>
+<li> <a href="buscarmatricula.jsp">Matricula de Actividad </a> <span class="divider">/</span></li>
 <li>  Consultar de Horario de Actividad </li>
 </ul>
 </div>
@@ -278,8 +286,9 @@ return DF.format(date);
         <div class="control-group">
             <label class="control-label" for="typeahead7">Socio(*): </label>
             <div class="controls">
-                <input type="text" class="span6 typeahead" id="txtPuesto"  data-provide="typeahead"  name="txtPuesto" disabled value="PROFESOR NATACION">
-                    </div>
+                <input type="text" class="span6 typeahead" id="nombresocio"  data-provide="typeahead"  name="nombresocio" disabled value="PROFESOR NATACION">
+                 <input type="hidden" name="codigosocio" value=""> </input>  
+                 </div>
         </div>
         
         
@@ -297,8 +306,9 @@ return DF.format(date);
         <div class="control-group">
             <label class="control-label" for="typeahead7">Familiar(*): </label>
             <div class="controls">
-                <input type="text" class="span6 typeahead" id="txtPuesto"  data-provide="typeahead"  name="txtPuesto" disabled value="PROFESOR NATACION">
-                    </div>
+                <input type="text" class="span6 typeahead" id="nombrefamiliar"  data-provide="typeahead"  name="nombrefamiliar" disabled value="PROFESOR NATACION">
+                <input type="hidden" name="codigofamiliar" value="">  </input>    
+                </div>
         </div>
         
         
@@ -307,7 +317,7 @@ return DF.format(date);
             
             <div class="controls">
                 
-                <div  align="left"> <a class="btn btn-primary iframe" href="seleccionarfamilia.jsp"> <i class="icon icon-search icon-white"></i> Buscar Familiar</a> </div>
+                <div  align="left"> <a class="btn btn-primary iframe" href="seleccionarfamiliar.jsp"> <i class="icon icon-search icon-white"></i> Buscar Familiar</a> </div>
                 <span class="help-inline" id="errSocio"></span>
             </div>
         </div> 
@@ -325,32 +335,7 @@ return DF.format(date);
 
 
 
-<input type="hidden" name="cmbEncargadoCodigo" value="EMP000003"></input>
 
-<div class="control-group">
-<label class="control-label" for="typeahead7">Encargado(*): </label>
-<div class="controls">
-<input type="text" class="span6 typeahead" id="cmbEncargado"  data-provide="typeahead"  name="cmbEncargado"  disabled value="Ronald">
-</div>
-</div>
-
-<div class="control-group">
-<label class="control-label" for="typeahead7">Puesto(*): </label>
-<div class="controls">
-<input type="text" class="span6 typeahead" id="txtPuesto"  data-provide="typeahead"  name="txtPuesto" disabled value="PROFESOR NATACION">
-</div>
-</div>
-
-
-
-<div class="control-group" id="dvSocio">
-
-<div class="controls">
-
-<div  align="left"> <a class="btn btn-primary iframe" href="seleccionarempleado.jsp"> <i class="icon icon-search icon-white"></i> Buscar Encargado</a> </div>
-<span class="help-inline" id="errSocio"></span>
-</div>
-</div>
     
     
     
