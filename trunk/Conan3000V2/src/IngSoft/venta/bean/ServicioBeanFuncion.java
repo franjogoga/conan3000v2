@@ -206,7 +206,7 @@ static private ServicioBeanFuncion ServicioFuncion=null;
 		catch(Exception a)		
 		{sqlsesion.rollback();
 		a.printStackTrace();
-			throw CoException.set("Error: No se pudo modificar la plantilla intente de nuevo", "SMVServicio?accion=Modificar&tipo=1");
+			//throw CoException.set("Error: No se pudo modificar la plantilla intente de nuevo", "SMVServicio?accion=Modificar&tipo=1");
 			
 		}
 		
