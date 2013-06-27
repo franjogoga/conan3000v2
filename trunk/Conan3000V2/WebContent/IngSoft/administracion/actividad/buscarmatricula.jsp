@@ -76,6 +76,13 @@
 		form.submit();
 	}
 	
+	
+	function alt_verhorarios(cod){
+		var form=document.getElementById("frmAlternativo");
+		form.accion.value="Mostrarhorario";
+		form.codigo.value=cod;
+		form.submit();
+	}
  // validaciones fechas 
 	function alt_fecha(obj){
 		obj.value=obj.value.slice(0,5);
@@ -274,7 +281,7 @@
                               
                               
                               <td class="center">
-                              				<a class="btn btn-primary" href="javascript:alt_consultar('<%=((ResultadoActividadBeanData)resultados.get(i)).getCodigo()%>')">
+                              				<a class="btn btn-primary" href="javascript:alt_verhorarios('<%=((ResultadoActividadBeanData)resultados.get(i)).getCodigo()%>')">
 												<i class="icon icon-add icon-white"></i> Matricular 
 											</a>
                               				<a class="btn btn-success" href="javascript:alt_consultar('<%=((ResultadoActividadBeanData)resultados.get(i)).getCodigo()%>')">
