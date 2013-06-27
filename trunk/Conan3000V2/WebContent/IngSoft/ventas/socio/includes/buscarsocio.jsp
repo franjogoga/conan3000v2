@@ -35,7 +35,8 @@
 	
 <!--The beans  -->
 <jsp:useBean id="resultados" scope="request"class="java.util.Vector"></jsp:useBean>
-	
+<jsp:useBean id="resultado" scope="request"class="java.util.Vector"></jsp:useBean>	
+
 			<!-- content starts -->
 
 			<div class="row-fluid sortable">
@@ -149,6 +150,7 @@
 								  <th>Apellido Materno</th>
 								  <th>Tipo Documento</th>
 								  <th>Numero Documento</th>
+								  <th>Membresia</th>
 								  <th>Accion</th>
 							  </tr>
 						  </thead>  
@@ -198,6 +200,16 @@
                           			<%=
                           					((ResultadoSocioBeanData)resultados.get(i)).getNumeroDocumento()
 
+                          				%>
+                          	</td>
+                          	
+                          	<%
+                          			if (((ResultadoSocioBeanData)resultados.get(i)).getFlag()==1) { ((ResultadoSocioBeanData)resultados.get(i)).setEsmembresia("Asignado"); }
+                          			else ((ResultadoSocioBeanData)resultados.get(i)).setEsmembresia("No Asignado");
+                          	 %>
+                          	<td class="center">
+                          			<%=
+                          					((ResultadoSocioBeanData)resultados.get(i)).getEsmembresia()
                           				%>
                           	</td>
                        
