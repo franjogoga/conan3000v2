@@ -15,7 +15,9 @@ public class SMSReporte extends CoServlet{
 		acciones.put("pagoMembresia", new AccionReportePagoMembresia());
 		acciones.put("PagoOtros", new AccionPagoOtrosServicios());
 		acciones.put("EgresosClub", new AccionReporteEgresosClub());
-		//acciones.put("Eliminar", new AccionEliminarSorteo());
+		acciones.put("InscritosSorteo", new AccionReporteInscritosSorteo());
+		acciones.put("PrecioProveedor", new AccionReportePrecioProveedor());
+
 	}
 	
 }
