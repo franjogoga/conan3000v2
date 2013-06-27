@@ -23,7 +23,7 @@ public class SMAActividad extends CoServlet{
 		
 		
 		acciones.put("SeleccionarSocio", new AccionSeleccionarSocio());
-		//acciones.put("SeleccionarFamiliar", new AccionSeleccionarFamiliar());
+		acciones.put("SeleccionarFamiliar", new AccionSeleccionarFamiliar());
 		
 		
 		
