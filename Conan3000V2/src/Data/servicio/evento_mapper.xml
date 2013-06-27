@@ -62,7 +62,7 @@ from
 EVENTO_SOCIO so
 , SEDE s 
 where 
-es.IdSede= s.IdSede
+so.IdSede= s.IdSede
 and so.Estado like #{estado}
 and so.IdSede like #{sede}
 and DATE(so.Fecha) &gt;= DATE(#{FI})
