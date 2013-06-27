@@ -11,9 +11,30 @@ public class ResultadoSocioBeanData implements Serializable{
 	private String direccion;
 	private String tipoDocumento;
 	private long numeroDocumento;
+	private int flag;
+	private String esmembresia;
 	
 	
 	
+	
+	
+	
+	public String getEsmembresia() {
+		return esmembresia;
+	}
+
+	public void setEsmembresia(String esmembresia) {
+		this.esmembresia = esmembresia;
+	}
+
+	public int getFlag() {
+		return flag;
+	}
+
+	public void setFlag(int flag) {
+		this.flag = flag;
+	}
+
 	public String getDireccion() {
 		return direccion;
 	}
