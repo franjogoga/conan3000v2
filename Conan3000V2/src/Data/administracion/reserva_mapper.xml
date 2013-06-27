@@ -22,13 +22,12 @@ inf245g2.INVITADOxSOCIO.IdSocio AS codigosocio,
 					SOC.Nombres AS nombresocio,
 					SOC.ApePaterno AS apaternosocio,
 					SOC.ApeMaterno AS amaternosocio,
-
+					SOC.NumeroDocumento AS dnisocio,
 
 inf245g2.INVITADO.IdInvitado AS codigoinvitado,
 inf245g2.PERSONA.Nombres AS nombreinvi,
 inf245g2.PERSONA.ApePaterno AS apaternoinvi,
 inf245g2.PERSONA.ApeMaterno AS amaternoinvi,
-inf245g2.PERSONA.NumeroDocumento AS dnisocio,
 inf245g2.INVITADOxSOCIO.FechaIngreso AS fechaingreso,
 inf245g2.INVITADOxSOCIO.Estado AS estado
 FROM  (inf245g2.INVITADO , inf245g2.PERSONA ) 
