@@ -19,24 +19,29 @@
 SELECT 
 inf245g2.INVITADOxSOCIO.IdInvitadoSocio AS codigo,
 inf245g2.INVITADOxSOCIO.IdSocio AS codigosocio,
+					SOC.Nombres AS nombresocio,
+					SOC.ApePaterno AS apaternosocio,
+					SOC.ApeMaterno AS amaternosocio,
+
+
 inf245g2.INVITADO.IdInvitado AS codigoinvitado,
-inf245g2.PERSONA.Nombres AS nombre,
-inf245g2.PERSONA.ApePaterno AS apaterno,
-inf245g2.PERSONA.ApeMaterno AS amaterno,
-inf245g2.PERSONA.NumeroDocumento AS dni,
+inf245g2.PERSONA.Nombres AS nombreinvi,
+inf245g2.PERSONA.ApePaterno AS apaternoinvi,
+inf245g2.PERSONA.ApeMaterno AS amaternoinvi,
+inf245g2.PERSONA.NumeroDocumento AS dnisocio,
 inf245g2.INVITADOxSOCIO.FechaIngreso AS fechaingreso,
 inf245g2.INVITADOxSOCIO.Estado AS estado
+FROM  (inf245g2.INVITADO , inf245g2.PERSONA ) 
+LEFT JOIN  inf245g2.INVITADOxSOCIO  
+ON inf245g2.INVITADOxSOCIO.IdInvitado = inf245g2.INVITADO.IdInvitado 
 
+LEFT JOIN  inf245g2.PERSONA SOC
+ON inf245g2.INVITADOxSOCIO.IdSocio = SOC.IdPersona
 
-
-FROM  (inf245g2.INVITADO , inf245g2.PERSONA)     LEFT JOIN  inf245g2.INVITADOxSOCIO  
-
-    
-ON inf245g2.INVITADOxSOCIO.IdInvitado = inf245g2.INVITADO.IdInvitado
 WHERE
-   inf245g2.INVITADO.IdInvitado = inf245g2.PERSONA.IdPersona
-AND   inf245g2.PERSONA.Nombres LIKE #{nombre}
-;
+    inf245g2.INVITADO.IdInvitado = inf245g2.PERSONA.IdPersona 
+
+AND inf245g2.PERSONA.Nombres LIKE #{nombreinvi}
 
 
 </select>
@@ -74,24 +79,29 @@ AND inf245g2.INVITADOxSOCIO.IdInvitadoSocio = #{codigo}
 SELECT 
 inf245g2.INVITADOxSOCIO.IdInvitadoSocio AS codigo,
 inf245g2.INVITADOxSOCIO.IdSocio AS codigosocio,
+					SOC.Nombres AS nombresocio,
+					SOC.ApePaterno AS apaternosocio,
+					SOC.ApeMaterno AS amaternosocio,
+
+
 inf245g2.INVITADO.IdInvitado AS codigoinvitado,
-inf245g2.PERSONA.Nombres AS nombre,
-inf245g2.PERSONA.ApePaterno AS apaterno,
-inf245g2.PERSONA.ApeMaterno AS amaterno,
-inf245g2.PERSONA.NumeroDocumento AS dni,
+inf245g2.PERSONA.Nombres AS nombreinvi,
+inf245g2.PERSONA.ApePaterno AS apaternoinvi,
+inf245g2.PERSONA.ApeMaterno AS amaternoinvi,
+inf245g2.PERSONA.NumeroDocumento AS dniinvi,
 inf245g2.INVITADOxSOCIO.FechaIngreso AS fechaingreso,
-inf245g2.INVITADOxSOCIO.Monto AS monto,
 inf245g2.INVITADOxSOCIO.Estado AS estado
+FROM  (inf245g2.INVITADO , inf245g2.PERSONA ) 
+LEFT JOIN  inf245g2.INVITADOxSOCIO  
+ON inf245g2.INVITADOxSOCIO.IdInvitado = inf245g2.INVITADO.IdInvitado 
 
+LEFT JOIN  inf245g2.PERSONA SOC
+ON inf245g2.INVITADOxSOCIO.IdSocio = SOC.IdPersona
 
-
-FROM  (inf245g2.INVITADO , inf245g2.PERSONA)     LEFT JOIN  inf245g2.INVITADOxSOCIO  
-
-    
-ON inf245g2.INVITADOxSOCIO.IdInvitado = inf245g2.INVITADO.IdInvitado
 WHERE
-   inf245g2.INVITADO.IdInvitado = inf245g2.PERSONA.IdPersona
-AND inf245g2.INVITADO.IdInvitado = #{codigo}
+    inf245g2.INVITADO.IdInvitado = inf245g2.PERSONA.IdPersona 
+
+AND inf245g2.PERSONA.Nombres LIKE #{nombreinvi}
 
 </select>
 
