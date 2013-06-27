@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Data.venta.solicitudservicio">
+
+  <cache />
+
+ <select id="searchPlantillaSolicitudSocio" parameterType="IngSoft.venta.bean.CriterioSolicitudSocioBeanData" resultType="IngSoft.venta.bean.ResultadoSolicitudSocioBeanData">
+select 
+SOLICITUD_INGRESO.IdSolicitudIngreso as codSolicitudSocio
+,SOLICITUD_INGRESO.Nombres as nombres
+,SOLICITUD_INGRESO.ApePaterno as apellidoPaterno
+,SOLICITUD_INGRESO.ApeMaterno as apellidoMaterno
+,SOLICITUD_INGRESO.FechaRegistro as fechaRegistro
+,SOLICITUD_INGRESO.Estado as estado
+from SOLICITUD_INGRESO
+<where>
+	 
+	<if test="nombres != null ">
+       (SOLICITUD_INGRESO.Nombres)  like #{nombres}
+    </if>
+    <if test="apellidoPaterno != null ">
+       AND (SOLICITUD_INGRESO.ApePaterno)  like #{apellidoPaterno}
+    </if>
+    <if test="apellidoMaterno != null ">
+       AND (SOLICITUD_INGRESO.ApeMaterno)  like #{apellidoMaterno}
+    </if>
+
+</where>
+</select>
+
+
+
+ <select id="searchPlantillaSolicitudAceptada" parameterType="IngSoft.venta.bean.CriterioSolicitudSocioBeanData" resultType="IngSoft.venta.bean.ResultadoSolicitudSocioBeanData">
+select 
+SOLICITUD_INGRESO.IdSolicitudIngreso as codSolicitudSocio
+,SOLICITUD_INGRESO.Nombres as nombres
+,SOLICITUD_INGRESO.ApePaterno as apellidoPaterno
+,SOLICITUD_INGRESO.ApeMaterno as apellidoMaterno
+,SOLICITUD_INGRESO.FechaNac as fechaNacimiento
+,SOLICITUD_INGRESO.FechaRegistro as fechaRegistro
+,SOLICITUD_INGRESO.Estado as estado
+,SOLICITUD_INGRESO.Direccion as direccion
+from SOLICITUD_INGRESO
+<where>
+	 
+	<if test="nombres != null ">
+       (SOLICITUD_INGRESO.Nombres)  like #{nombres}
+    </if>
+    <if test="apellidoPaterno != null ">
+       AND (SOLICITUD_INGRESO.ApePaterno)  like #{apellidoPaterno}
+    </if>
+    <if test="apellidoMaterno != null ">
+       AND (SOLICITUD_INGRESO.ApeMaterno)  like #{apellidoMaterno}
+    </if>
+    AND SOLICITUD_INGRESO.Estado='Aceptada'
+
+</where>
+</select>
+
+  
+<!-- Agregar plantilla socio -->
+<insert id="insertSolicitud" parameterType="IngSoft.venta.bean.SolicitudsocioBeanData" flushCache="true">
+	insert into SOLICITUD_INGRESO(IdSolicitudIngreso,FechaRegistro,Observaciones,Nombres,ApePaterno,ApeMaterno,FechaNac,Direccion,IdDistrito,Estado)
+	values (#{codSolicitudIngreso},#{fechaRegistro},#{observaciones},#{nombres},#{apellidoPaterno},#{apellidoMaterno},#{fechaNacimiento},#{direccion},#{codDistrito},'Nueva')
+</insert>
+
+<insert id="insertPersona" parameterType="IngSoft.venta.bean.PersonaMiniBeanData" flushCache="true">
+	insert into PERSONA(IdPersona,Nombres,ApePaterno,ApeMaterno,NumeroDocumento,TipoDocumento,FechaNac)
+	values (#{codigo},#{nombres},#{apellidoPaterno},#{apellidoMaterno},#{numeroDocumento},#{tipoDocumento},#{fechaNacimiento})
+</insert>
+
+<insert id="insertUsuario" parameterType="IngSoft.venta.bean.UsuarioBeanData" flushCache="true">
+	insert into USUARIO(IdPerfil,IdUsuario,Descripcion,Estado,NombreUsuario,Password,IdSocio)
+	values ('PER010000',#{codUsuario},'Socio','Activo',#{nombUsuario},#{contraseña},#{codSocio})
+</insert>
+
+
+ <!-- Fin agregar  -->
+ 
+<select id="getNextCodigo" resultType="java.lang.String">
+	select max(IdSolicitudIngreso) from SOLICITUD_INGRESO
+</select>
+
+<select id="getNextCodigoU" resultType="java.lang.String">
+	select max(IdUsuario) from USUARIO
+</select>
+
+<select id="searchDistritoMini" resultType="IngSoft.venta.bean.DistritoMiniBeanData">
+	select IdDistrito as idDistrito
+	,Nombre as nombreDistrito
+	from 
+	DISTRITO
+</select>
+
+<select id="getPlantillaSolicitud" parameterType="java.lang.String"  resultType="IngSoft.venta.bean.SolicitudsocioBeanData">
+select 
+SOLICITUD_INGRESO.IdSolicitudIngreso as codSolicitudIngreso
+,SOLICITUD_INGRESO.FechaRegistro as fechaRegistro
+,SOLICITUD_INGRESO.Observaciones as observaciones
+,SOLICITUD_INGRESO.Nombres as nombres
+,SOLICITUD_INGRESO.ApePaterno as apellidoPaterno
+,SOLICITUD_INGRESO.ApeMaterno as apellidoMaterno
+,SOLICITUD_INGRESO.FechaNac as fechaNacimiento
+,SOLICITUD_INGRESO.Estado as estado
+from SOLICITUD_INGRESO  where SOLICITUD_INGRESO.IdSolicitudIngreso=#{codigo}; 
+</select>
+
+
+<!--Eliminar socio -->
+<update id="deleteSocio" parameterType="java.lang.String" >
+update MEMBRESIA set MEMBRESIA.Estado='Eliminado' where MEMBRESIA.IdSocio=#{codigo}
+</update>
+<!-- Fin eliminar -->
+
+
+ <!-- Modificar socio -->
+<update id="updateSolicitud" parameterType="IngSoft.venta.bean.SolicitudsocioBeanData">
+update SOLICITUD_INGRESO set SOLICITUD_INGRESO.Estado=#{estado}
+ where SOLICITUD_INGRESO.IdSolicitudIngreso= #{codSolicitudIngreso}
+</update>
+
+<update id="updatePersona" parameterType="IngSoft.venta.bean.PersonaMiniBeanData">
+update PERSONA set PERSONA.ApeMaterno=#{apellidoMaterno}
+,PERSONA.Nombres=#{nombres}
+,PERSONA.ApePaterno=#{apellidoPaterno} 
+,PERSONA.FechaNac=#{fechaNacimiento}
+,PERSONA.NumeroDocumento=#{numeroDocumento}
+,PERSONA.TipoDocumento=#{tipoDocumento}
+ where PERSONA.IdPersona= #{codigo}
+</update>
+
+<!-- Fin modificar  
+
+ -->
+ 
+ </mapper>
+
+
+ 
