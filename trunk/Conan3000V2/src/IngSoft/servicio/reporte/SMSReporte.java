@@ -12,9 +12,9 @@ public class SMSReporte extends CoServlet{
 	@Override
 	protected void initAcciones() {
 		acciones.put("Reserva", new AccionReporteBungalow());
-		//acciones.put("Generar", new AccionGenerarSorteo());
-		//acciones.put("Agregar", new AccionAgregarSorteo());
-		//acciones.put("Modificar", new AccionModificarSorteo());
+		acciones.put("pagoMembresia", new AccionReportePagoMembresia());
+		acciones.put("PagoOtros", new AccionPagoOtrosServicios());
+		acciones.put("EgresosClub", new AccionReporteEgresosClub());
 		//acciones.put("Eliminar", new AccionEliminarSorteo());
 	}
 	
