@@ -15,6 +15,7 @@ SOCIO.IdSocio as idSocio
 ,PERSONA.ApeMaterno as apellidoMaterno
 ,PERSONA.TipoDocumento as tipoDocumento
 ,PERSONA.NumeroDocumento as numeroDocumento
+,SOCIO.Flag as flag
 from SOCIO,PERSONA
 <where>
 	<if test="nombres != null ">
@@ -32,7 +33,7 @@ from SOCIO,PERSONA
      <if test="tipoDocumento != null">
         AND PERSONA.TipoDocumento like #{tipoDocumento}
     </if>
-    AND SOCIO.Flag='0'
+    
 </where>
 </select>
 
