@@ -18,7 +18,6 @@ import org.apache.ibatis.session.SqlSession;
 
 import IngSoft.general.CoException;
 import IngSoft.general.MyBatisSesion;
-import IngSoft.venta.bean.OrdenPagoBeanFunction;
 
 public class ReservaBeanFunction {
 	static private ReservaBeanFunction reservaFunction= null;
@@ -53,9 +52,9 @@ public class ReservaBeanFunction {
 	        
 
 			
-			
+			System.out.print("txtCodigoInv ---> "+request.getParameter("txtCodigoInv") );
 	  		System.out.print("txtCodigoSoc ---> "+request.getParameter("txtCodigoSoc"));		
-	  		System.out.print("txtCodigoInv ---> "+request.getParameter("txtCodigoInv") );
+	  		
 
 	  		System.out.print("fecha ---> "+ new Date(DF.parse(		request.getParameter("fFecInvitado")+"/0000").getTime()));
 	  		System.out.print("monto ---> "+Double.parseDouble(            request.getParameter("txtMonto")));
@@ -108,13 +107,8 @@ public class ReservaBeanFunction {
 			else reservaData.setCodigo("IXS000001");
 
 			
+			
 			sqlsesion.insert("Data.administracion.reserva.insertPlantillaReserva",reservaData);
-			OrdenPagoBeanFunction orden=OrdenPagoBeanFunction.getInstance();
-			
-			
-			
-			orden.agregarOrdenPago("INVITADOXSOCIO", reservaData.getCodigoinvitado(),"", reservaData.getCodigosocio(), reservaData.getMonto(), new java.sql.Date(new java.util.Date().getTime()),
-			new java.sql.Date(new java.util.Date().getTime()));
 			resultado=true;
 		}
 		catch(Exception a)		
@@ -146,9 +140,7 @@ public class ReservaBeanFunction {
 	  		System.out.print("txtCodigoSoc ---> "+request.getParameter("txtCodigoSoc"));		
 	  		System.out.print("txtCodigoInv ---> "+request.getParameter("txtCodigoInv") );
 
-	  		System.out.print("fecha ---> "+ new Date(DF.parse(		request.getParameter("fFecInvitado")+"/0000").getTime()));
-	  		System.out.print("monto ---> "+Double.parseDouble(            request.getParameter("txtMonto")));
-	  				
+	  						
 			
 			
 			
