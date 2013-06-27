@@ -145,7 +145,7 @@
                            
 						  <thead>
 							  <tr>
-								  <th>Nombres</th>
+								  <th width="10%">Nombres</th>
 								  <th>Apellido Paterno</th>
 								  <th>Apellido Materno</th>
 								  <th>Tipo Documento</th>
