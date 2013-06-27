@@ -176,8 +176,8 @@ return DF.format(date);
 <h2><i class="icon-plus-sign"></i> CONSULTAR HORARIO DE ACTIVIDAD</h2>
 </div>
 <div class="box-content">
-<form class="form-horizontal" action="<%= response.encodeURL("SMAHorariodeactividad")%>" name="frmData" method="post">
-<input type="hidden" name="accion" value="Agregar"></input>
+<form class="form-horizontal" action="<%= response.encodeURL("SMAActividad")%>" name="frmData" method="post">
+<input type="hidden" name="accion" value="AgregarMatricula"></input>
 <input type="hidden" name="tipo" value="2"></input>
 <fieldset>
 
@@ -283,10 +283,10 @@ return DF.format(date);
         
         
         
-        <div class="control-group">
+        <div class="control-group"  id="dvNombresocio">
             <label class="control-label" for="typeahead7">Socio(*): </label>
             <div class="controls">
-                <input type="text" class="span6 typeahead" id="nombresocio"  data-provide="typeahead"  name="nombresocio" disabled value="PROFESOR NATACION">
+                <input type="text" class="span6 typeahead" id="nombresocio"  data-provide="typeahead"  name="nombresocio" disabled value="">
                  <input type="hidden" name="codigosocio" value=""> </input>  
                  </div>
         </div>
@@ -303,10 +303,10 @@ return DF.format(date);
         </div>
         
         
-        <div class="control-group">
+        <div class="control-group" id="dvNombreFamiliar">
             <label class="control-label" for="typeahead7">Familiar(*): </label>
             <div class="controls">
-                <input type="text" class="span6 typeahead" id="nombrefamiliar"  data-provide="typeahead"  name="nombrefamiliar" disabled value="PROFESOR NATACION">
+                <input type="text" class="span6 typeahead" id="nombrefamiliar"  data-provide="typeahead"  name="nombrefamiliar" disabled value="">
                 <input type="hidden" name="codigofamiliar" value="">  </input>    
                 </div>
         </div>
@@ -534,8 +534,8 @@ var form=document.frmData;
 var cadena= new Array();
 var i=0;
 var error=false;
-//if(!esValido("Nombre",form.txtNombre,"NombreAmbiente",1,1,50)){cadena[i]="Nombre";i++;}
-//if(!esValido("Descripci&oacute;n",form.txtDescripcion,"Descripcion",1,0,100)){cadena[i]="Descripci&oacute;n";i++;}
+if(!esValido("Nombre Socio",form.nombresocio,"Nombresocio",1,1,50)){cadena[i]="Nombre Socio";i++;}
+if(!esValido("Nombre Familiar",form.txtDescripcion,"Nombrefamiliar",1,0,100)){cadena[i]="Nombre Familiar";i++;}
 //if(!esValido("Caracter&iacute;sticas",form.txtCaracteristica,"Caracteristica",1,0,100)){cadena[i]="Caracter&iacute;sticas";i++;}
 
 //No tocar
@@ -548,8 +548,8 @@ return true;
 }
 
 function inicializa(){
-//document.getElementById("errNombreAmbiente").style.display='none';
-//document.getElementById("errDescripcion").style.display='none';
+document.getElementById("errNombresocio").style.display='none';
+document.getElementById("errNombrefamiliar").style.display='none';
 //document.getElementById("errCaracteristica").style.display='none';
 }
 
