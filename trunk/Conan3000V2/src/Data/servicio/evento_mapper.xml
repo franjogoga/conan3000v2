@@ -71,24 +71,6 @@ and so.Nombre like #{nombre}
 and so.IdSocio like #{socio}
 </select>
 
-<select id="searchEventoSede" parameterType="java.lang.String" resultType="IngSoft.servicio.bean.EventoBeanData">
-select 
-es.IdEventoSede as codigo
-,es.Nombre as nombre
-,es.Fecha as fecha
-,es.IdSede as idSede
-,es.Estado as estado
-,es.IdConcesionario as idConcesionario
-,es.LimiteEntradas as limiteEntradas
-,es.Precio as monto
-,es.EntradasTotal as entradasTotal
-from 
-EVENTO_SEDE es
-where 
-es.IdEventoSede like #{codigo}
-
-</select>
-
 
 <select id="searchSedeMini" resultType="IngSoft.servicio.bean.SedeMiniBeanData">
 	select IdSede as codigo
@@ -116,11 +98,19 @@ es.IdEventoSede like #{codigo}
 <!--Aprobar eventos  -->
 <update id="aprobarEventoSocio" parameterType="java.lang.String">
 	update EVENTO_SOCIO set Estado='APROBADO' where IdEventoSocio=#{codigo};	
-</select>
+</update>
 <update id="aprobarEventoSede" parameterType="java.lang.String">
 	update EVENTO_SEDE set Estado='APROBADO' where IdEventoSede=#{codigo};	
-</select>
+</update>
 <!-- Fin aprobar eventos -->
+<!-- Anular eventos -->
+<update id="anularEventoSocio" parameterType="java.lang.String">
+	update EVENTO_SOCIO set Estado='ANULADO' where IdEventoSocio=#{codigo};	
+</update>
+<update id="anularEventoSede" parameterType="java.lang.String">
+	update EVENTO_SEDE set Estado='ANULADO' where IdEventoSede=#{codigo};	
+</update>
+<!-- Fin Anular eventos -->
 <!-- Generar codigos -->
 <select id="getNextCodigoSdE" resultType="java.lang.String">
 	select Max(IdEventoSede) from  EVENTO_SEDE	
