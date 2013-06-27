@@ -8,7 +8,7 @@
 	}
 	function alt_agregar(){
 		var form=document.getElementById("frmAlternativo");
-		form.accion.value="Registrar";
+		form.accion.value="RegistrarVenta";
 		form.submit();
 	}
 	
@@ -57,7 +57,7 @@
 		          <h2><i class="icon-search"></i> BUSCAR VENTA DE PRODUCTOS</h2></div>
 		        <div class="box-content">
 		           <form id="frmAlternativo" name="frmAlternativo" method="post" action="<%= response.encodeURL("SMVVentaProductos")%>">
-					<input type="hidden" name="accion" value="Agregar"></input>
+					<input type="hidden" name="accion" value="RegistrarVenta"></input>
 					<input type="hidden" name="codigo" value=""></input>
 					<input type="hidden" name="tipo" value="1"></input>
 			
@@ -121,43 +121,22 @@
 		                <th>Vendedor</th>
 		                <th>Fecha</th>
 		                <th>Cliente</th>
-		                <th>Monto total</th>
+		               
 		                <th>Acci&oacute;n</th>
 	                  </tr>
 	                </thead>
 		            <tbody>
 		              <tr>
-		                <td>000012</td>
+		             
+		             	<td>000012</td>
 		                <td class="center">Juan Perez</td>
 		                <td class="center">12/04/2013</td>
 		                <td class="center">Jose Ruiz</td>
-		                <td class="center">S/.300.00</td>
 		                <td class="center">
 		                <a class="btn btn-success" href="verventaproducto.jsp"><i class="icon-zoom-in icon-white"></i>Ver</a>
 		                 <a class="btn btn-info" href="modificarventaproducto.jsp"> <i class="icon-edit icon-white"></i> Modificar</a>
 		                 <a class="btn btn-danger" href="eliminarventaproducto.jsp"> <i class="icon-trash icon-white"></i> Eliminar </a></td>
-	                  </tr>
-		              <tr>
-		                <td>00034</td>
-		                <td class="center">Jose Sanchez</td>
-		                <td class="center">19/04/2013</td>
-		                <td class="center">Carlos Gonzales</td>
-		                <td class="center">S/.390.00</td>
-		                <td class="center">
-		                <a class="btn btn-success" href="verventaproducto.jsp"><i class="icon-zoom-in icon-white"></i>Ver</a>
-		                 <a class="btn btn-info" href="modificarventaproducto.jsp"> <i class="icon-edit icon-white"></i> Modificar</a>
-		                 <a class="btn btn-danger" href="eliminarventaproducto.jsp"> <i class="icon-trash icon-white"></i> Eliminar </a></td>
-	                  </tr>
-		              <tr>
-		                <td>00035</td>
-		                <td class="center">Pedro Garcia</td>
-		                <td class="center">30/04/2013</td>
-		                <td class="center">Rocio Vega</td>
-		                <td class="center">S/.370.00</td>
-		                <td class="center">
-		                <a class="btn btn-success" href="verventaproducto.jsp"><i class="icon-zoom-in icon-white"></i>Ver</a>
-		                 <a class="btn btn-info" href="modificarventaproducto.jsp"> <i class="icon-edit icon-white"></i> Modificar</a>
-		                 <a class="btn btn-danger" href="eliminarventaproducto.jsp"> <i class="icon-trash icon-white"></i> Eliminar </a></td>
+		             
 	                  </tr>
 	                </tbody>
 	              </table>
