@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 
 <%@page import="java.util.Date"%>
-<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="IngSoft.administracion.bean.TipoActividadMiniBeanData"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Calendar"%>
 <%@page import="IngSoft.administracion.bean.ResultadoReservaBeanData"%>
 <%@page import="java.util.Vector"%>
 
@@ -48,9 +49,13 @@
 	<link href='css/uploadify.css' rel='stylesheet'>
 
 	<!-- The fav icon -->
-	<link rel="shortcut icon" href="img/favicon.ico">
+	<link rel="shortcut icon" href="img/conan_logo.png">
 		
 	<script>
+	function alt_fecha(obj){
+	obj.value=obj.value.slice(0,5);
+	
+	}
 	function alt_agregar(cod){
 		var form=document.getElementById("frmAlternativo");
 		form.accion.value="Agregar";
@@ -77,11 +82,7 @@
 	}
 	
  // validaciones fechas 
-	function alt_fecha(obj){
-		obj.value=obj.value.slice(0,5);
-		
-		}
-
+	
 	function verificar_fecha(comparacion,fecha1,fecha2){
 		var fec1=fecha1.value.split("/");
 		var fec2=document.getElementById(fecha2).value.split("/");
@@ -119,11 +120,11 @@
 		}
 	return false;
 	}
+	
 	public String formatear(java.util.Date date){
-		SimpleDateFormat DF= new SimpleDateFormat("dd/MM");
+		SimpleDateFormat DF= new SimpleDateFormat("dd/MM/yyyy");
 		return DF.format(date);
 	}
-	
 	public String generarCadena(String[] t){
 		String a="";
 		for(int i=0;i<t.length;i++)
@@ -183,13 +184,7 @@
                             <input type="text" class="span6 typeahead" id="txtNombre" name="txtNombre">
                           </div>
                         </div>
-                        
-                        
-         
-                        
-
-                        
-                        
+                             
                         
                         <div class="form-actions">
                           <button type="submit" class="btn btn-primary">Buscar</button>
@@ -222,9 +217,11 @@
                          
                           <thead>
                             <tr>
-                              <th>Nombre</th>
-                              <th>Apellido Paterno</th>
+                              <th>Nombre Socio</th>
+                              <th>Apellido Pat. Socio</th>
                               <th>Nº Documento</th>
+                              <th>Nombre Invitado</th>
+                              <th>Apellido Pat. Invitado</th>
                               <th>Fecha Ingreso</th>
                               
                               <th>Acci&oacute;n</th>
@@ -233,17 +230,17 @@
                           <tbody id="resultadoBusqueda">
                           	<% for(int i=0; i<resultados.size(); i++) { %>
                             <tr>
-                              <td class="center"><%=((ResultadoReservaBeanData)resultados.get(i)).getNombre()%></td>
-                              <td class="center"><%=((ResultadoReservaBeanData)resultados.get(i)).getApaterno()%></td>
-                              <td class="center"><%=((ResultadoReservaBeanData)resultados.get(i)).getDni()%></td>
+                              <td class="center"><%=((ResultadoReservaBeanData)resultados.get(i)).getNombresocio()%></td>
+                              <td class="center"><%=((ResultadoReservaBeanData)resultados.get(i)).getApaternosocio()%></td>
+                              <td class="center"><%=((ResultadoReservaBeanData)resultados.get(i)).getDnisocio()%></td>
+                              <td class="center"><%=((ResultadoReservaBeanData)resultados.get(i)).getNombreinvi()%></td>
+                              <td class="center"><%=((ResultadoReservaBeanData)resultados.get(i)).getApaternoinvi()%></td>
                               <td class="center">
                           
                               
-                             <%=  ((ResultadoReservaBeanData)resultados.get(i)).getCodigo()!= null?((ResultadoReservaBeanData)resultados.get(i)).getFechaingreso():"Pendiente"    %> 
+                             <%=  ((ResultadoReservaBeanData)resultados.get(i)).getCodigo()!= null?formatear(new Date(((ResultadoReservaBeanData)resultados.get(i)).getFechaingreso().getTime())):"Pendiente"    %> 
                               
-                              
-                              
-                              
+                                                 
                               
                               </td>
 
