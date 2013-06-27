@@ -7,17 +7,16 @@ public class ResultadoReservaBeanData implements Serializable{
 	
 	private String codigo;
 	private String codigosocio;
-	private String codigoinvitado;
 	private String nombresocio;
 	private String apaternosocio;
 	private String amaternosocio;
-	private String dnisocio;	
-	private String nombreinvi;
-	private String apaternoinvi;
-	private String amaternoinvi;
+	private String codigoinvitado;
+	private String nombre;
+	private String apaterno;
+	private String amaterno;
+	private String dni;	
 	private Date fechaingreso;
 	private String estado;
-	
 	public String getCodigo() {
 		return codigo;
 	}
@@ -29,12 +28,6 @@ public class ResultadoReservaBeanData implements Serializable{
 	}
 	public void setCodigosocio(String codigosocio) {
 		this.codigosocio = codigosocio;
-	}
-	public String getCodigoinvitado() {
-		return codigoinvitado;
-	}
-	public void setCodigoinvitado(String codigoinvitado) {
-		this.codigoinvitado = codigoinvitado;
 	}
 	public String getNombresocio() {
 		return nombresocio;
@@ -54,29 +47,35 @@ public class ResultadoReservaBeanData implements Serializable{
 	public void setAmaternosocio(String amaternosocio) {
 		this.amaternosocio = amaternosocio;
 	}
-	public String getDnisocio() {
-		return dnisocio;
+	public String getCodigoinvitado() {
+		return codigoinvitado;
 	}
-	public void setDnisocio(String dnisocio) {
-		this.dnisocio = dnisocio;
+	public void setCodigoinvitado(String codigoinvitado) {
+		this.codigoinvitado = codigoinvitado;
 	}
-	public String getNombreinvi() {
-		return nombreinvi;
+	public String getNombre() {
+		return nombre;
 	}
-	public void setNombreinvi(String nombreinvi) {
-		this.nombreinvi = nombreinvi;
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
-	public String getApaternoinvi() {
-		return apaternoinvi;
+	public String getApaterno() {
+		return apaterno;
 	}
-	public void setApaternoinvi(String apaternoinvi) {
-		this.apaternoinvi = apaternoinvi;
+	public void setApaterno(String apaterno) {
+		this.apaterno = apaterno;
 	}
-	public String getAmaternoinvi() {
-		return amaternoinvi;
+	public String getAmaterno() {
+		return amaterno;
 	}
-	public void setAmaternoinvi(String amaternoinvi) {
-		this.amaternoinvi = amaternoinvi;
+	public void setAmaterno(String amaterno) {
+		this.amaterno = amaterno;
+	}
+	public String getDni() {
+		return dni;
+	}
+	public void setDni(String dni) {
+		this.dni = dni;
 	}
 	public Date getFechaingreso() {
 		return fechaingreso;
@@ -92,6 +91,7 @@ public class ResultadoReservaBeanData implements Serializable{
 	}
 	
 	
+
 	
 	
 	
