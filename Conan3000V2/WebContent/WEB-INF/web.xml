@@ -156,6 +156,11 @@
         <servlet-name>SMCEvento</servlet-name>
 	<servlet-class>Club.servicio.evento.SMCEvento</servlet-class>				   
 </servlet>
+<servlet id="Servlet_0037">
+        <servlet-name>SMVSolicitudServicio</servlet-name>
+	<servlet-class>IngSoft.venta.solicitudservicio.SMVSolicitudServicio</servlet-class>				   
+</servlet>
+
 
 
 <servlet-mapping id="ServletMapping_0001">
@@ -307,6 +312,10 @@
 <servlet-mapping id="ServletMapping_0036">
         <servlet-name>SMCEvento</servlet-name>
 <url-pattern>/Club/servicio/evento/SMCEvento</url-pattern>
+</servlet-mapping>
+<servlet-mapping id="ServletMapping_0037">
+        <servlet-name>SMVSolicitudServicio</servlet-name>
+<url-pattern>/IngSoft/ventas/solicitud/SMVSolicitudServicio</url-pattern>
 </servlet-mapping>
 
 <error-page>
