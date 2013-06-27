@@ -124,9 +124,9 @@ if(b[i].equals(a)) return true;
 return false;
 }
 public String formatear(java.util.Date date){
-		SimpleDateFormat DF= new SimpleDateFormat("dd/MM/yyyy");
-		return DF.format(date);
-	}
+SimpleDateFormat DF= new SimpleDateFormat("dd/MM");
+return DF.format(date);
+}
 public String generarCadena(String[] t){
 String a="";
 for(int i=0;i<t.length;i++){
@@ -188,7 +188,7 @@ String fecAnoFin=dfActual.format(c1.getTime()); %>
                         <div class="control-group" id="dvNombreAmbiente">
                           <label class="control-label" for="typeahead">Nombre (*):</label>
                           <div class="controls">
-                            <input type="text" class="span6 typeahead" id="txtNombre"  data-provide="typeahead" name="txtNombre"  disabled value="<%= ((ReservaBeanData)reserva).getNombreinvi()%>" >
+                            <input type="text" class="span6 typeahead" id="txtNombre"  data-provide="typeahead" name="txtNombre"  disabled value="<%= ((ReservaBeanData)reserva).getNombre()%>" >
                           	<span class="help-inline" id="errNombreAmbiente">Please correct the error</span>
                           </div>
                         </div>
