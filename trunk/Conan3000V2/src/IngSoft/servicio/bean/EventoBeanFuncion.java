@@ -196,7 +196,7 @@ public class EventoBeanFuncion {
 		try{
 		
 		List<EventoBeanData> resultados=sqlsesion.selectList("Data.servicio.evento.searchEventoSocioMini",map);
-	
+		
 		resultadosV= new Vector<>(resultados);
 		}
 		finally{
@@ -358,7 +358,7 @@ public class EventoBeanFuncion {
 		map.put("sede", temp.equals("all")?"%":temp);
 		temp=request.getSession().getAttribute("idSocio")==null?null:request.getSession().getAttribute("idSocio").toString();
 		temp= temp==null?request.getParameter("idsocio"):temp;
-		map.put("socio", temp.equals("all")?"%":temp);
+		map.put("socio", temp==null?"%":temp);
 		
 		
 		return map;
