@@ -50,7 +50,14 @@ public class AccionConsultarEvento extends CoAccion {
 			}
 		}
 		if(tipo==3){
-			
+			String codigo=request.getParameter("codigo");
+			if(codigo!=null && !codigo.isEmpty()){
+				switch(codigo.substring(0, 3)){
+				case "ESC": eventoFuncion.anularEventoSocio(codigo);break;
+				case "ESD": eventoFuncion.anularEventoSede(codigo);break;
+					
+				}
+			}
 			
 		}
 

@@ -237,6 +237,34 @@ public class EventoBeanFuncion {
 		return resultado;				
 	}
 	
+	public boolean anularEventoSocio(String codigo){
+		boolean resultado=false;
+		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+		OrdenPagoBeanFunction orden=OrdenPagoBeanFunction.getInstance();
+		try{
+			sqlsesion.update("Data.servicio.evento.anularEventoSocio", codigo);			
+			resultado=true;
+		}catch(Exception e){
+			e.printStackTrace();		
+		}
+		finally{
+			sqlsesion.close();
+		}
+		return resultado;
+	}
+	public boolean anularEventoSede(String codigo){
+		boolean resultado=false;
+		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+		try {
+			sqlsesion.update("Data.servicio.evento.anularEventoSede", codigo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		finally{
+			sqlsesion.close();
+		}
+		return resultado;				
+	}
 	/*
 	public boolean eliminarEvento(String codigo) throws CoException {
 		boolean resultado=false;		
