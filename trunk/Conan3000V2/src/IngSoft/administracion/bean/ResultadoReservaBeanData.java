@@ -17,6 +17,7 @@ public class ResultadoReservaBeanData implements Serializable{
 	private String dni;	
 	private Date fechaingreso;
 	private String estado;
+	
 	public String getCodigo() {
 		return codigo;
 	}
@@ -89,9 +90,8 @@ public class ResultadoReservaBeanData implements Serializable{
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
-	
-	
 
+	
 	
 	
 	
