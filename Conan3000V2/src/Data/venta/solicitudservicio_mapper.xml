@@ -61,21 +61,10 @@ from SOLICITUD_INGRESO
 
   
 <!-- Agregar plantilla socio -->
-<insert id="insertSolicitud" parameterType="IngSoft.venta.bean.SolicitudsocioBeanData" flushCache="true">
-	insert into SOLICITUD_INGRESO(IdSolicitudIngreso,FechaRegistro,Observaciones,Nombres,ApePaterno,ApeMaterno,FechaNac,Direccion,IdDistrito,Estado)
-	values (#{codSolicitudIngreso},#{fechaRegistro},#{observaciones},#{nombres},#{apellidoPaterno},#{apellidoMaterno},#{fechaNacimiento},#{direccion},#{codDistrito},'Nueva')
+<insert id="insertLinea" parameterType="IngSoft.venta.bean.LineaServicioBeanData" flushCache="true">
+	insert into LINEA_SERVICIO(IdLineaServicio,IdServicioProv,IdSolicitudServicio,Monto)
+	values (#{codLineaServicio},#{codServicioP},#{codSolicitudS},#{monto})
 </insert>
-
-<insert id="insertPersona" parameterType="IngSoft.venta.bean.PersonaMiniBeanData" flushCache="true">
-	insert into PERSONA(IdPersona,Nombres,ApePaterno,ApeMaterno,NumeroDocumento,TipoDocumento,FechaNac)
-	values (#{codigo},#{nombres},#{apellidoPaterno},#{apellidoMaterno},#{numeroDocumento},#{tipoDocumento},#{fechaNacimiento})
-</insert>
-
-<insert id="insertUsuario" parameterType="IngSoft.venta.bean.UsuarioBeanData" flushCache="true">
-	insert into USUARIO(IdPerfil,IdUsuario,Descripcion,Estado,NombreUsuario,Password,IdSocio)
-	values ('PER010000',#{codUsuario},'Socio','Activo',#{nombUsuario},#{contraseña},#{codSocio})
-</insert>
-
 
  <!-- Fin agregar  -->
  
@@ -87,12 +76,6 @@ from SOLICITUD_INGRESO
 	select max(IdUsuario) from USUARIO
 </select>
 
-<select id="searchDistritoMini" resultType="IngSoft.venta.bean.DistritoMiniBeanData">
-	select IdDistrito as idDistrito
-	,Nombre as nombreDistrito
-	from 
-	DISTRITO
-</select>
 
 <select id="getPlantillaSolicitud" parameterType="java.lang.String"  resultType="IngSoft.venta.bean.SolicitudsocioBeanData">
 select 
@@ -108,28 +91,12 @@ from SOLICITUD_INGRESO  where SOLICITUD_INGRESO.IdSolicitudIngreso=#{codigo};
 </select>
 
 
-<!--Eliminar socio -->
-<update id="deleteSocio" parameterType="java.lang.String" >
-update MEMBRESIA set MEMBRESIA.Estado='Eliminado' where MEMBRESIA.IdSocio=#{codigo}
-</update>
-<!-- Fin eliminar -->
-
-
  <!-- Modificar socio -->
 <update id="updateSolicitud" parameterType="IngSoft.venta.bean.SolicitudsocioBeanData">
 update SOLICITUD_INGRESO set SOLICITUD_INGRESO.Estado=#{estado}
  where SOLICITUD_INGRESO.IdSolicitudIngreso= #{codSolicitudIngreso}
 </update>
 
-<update id="updatePersona" parameterType="IngSoft.venta.bean.PersonaMiniBeanData">
-update PERSONA set PERSONA.ApeMaterno=#{apellidoMaterno}
-,PERSONA.Nombres=#{nombres}
-,PERSONA.ApePaterno=#{apellidoPaterno} 
-,PERSONA.FechaNac=#{fechaNacimiento}
-,PERSONA.NumeroDocumento=#{numeroDocumento}
-,PERSONA.TipoDocumento=#{tipoDocumento}
- where PERSONA.IdPersona= #{codigo}
-</update>
 
 <!-- Fin modificar  
 
