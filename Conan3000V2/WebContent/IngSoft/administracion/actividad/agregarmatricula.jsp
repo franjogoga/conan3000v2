@@ -360,7 +360,7 @@ return DF.format(date);
 
 <div class="form-actions">
 <button type="button" class="btn btn-primary" onclick="javascript:alt_submit()">Agregar</button>
-<button type="button" class="btn" onclick="location.href='buscaractividad.jsp'" >Cancelar</button>
+<button type="button" class="btn" onclick="location.href='buscarmatricula.jsp'" >Cancelar</button>
 </div>
 
 
