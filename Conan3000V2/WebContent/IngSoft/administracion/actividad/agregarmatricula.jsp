@@ -308,26 +308,7 @@ return DF.format(date);
             </div>
         </div>
         
-        
-        <div class="control-group" id="dvNombreFamiliar">
-            <label class="control-label" for="typeahead7">Familiar(*): </label>
-            <div class="controls">
-                <input type="text" class="span6 typeahead" id="nombrefamiliar"  data-provide="typeahead"  name="nombrefamiliar" disabled value="">
-                <input type="hidden" name="codigofamiliar" value="">  </input>
-                    <span class="help-inline" id="errNombrefamiliar">Please correct the error</span>
-                </div>
-        </div>
-        
-        
-        
-        <div class="control-group" id="dvSocio">
-            
-            <div class="controls">
-                
-                <div  align="left"> <a class="btn btn-primary iframe" href="seleccionarfamiliar.jsp"> <i class="icon icon-search icon-white"></i> Buscar Familiar</a> </div>
-                <span class="help-inline" id="errSocio"></span>
-            </div>
-        </div> 
+
         
         <!-- ---------------------------------------------------- -->
         
