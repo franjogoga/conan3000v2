@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-
+<%@page import="IngSoft.administracion.bean.ResultadoActividadBeanData"%>
 <%@page import="IngSoft.administracion.bean.TipoActividadMiniBeanData"%>
 <%@page import="IngSoft.administracion.bean.MatriculaBeanData"%>
 <%@page import="java.util.Vector"%>
@@ -20,6 +20,10 @@
 	<jsp:useBean id="tiposAmbiente" scope="request" class="java.util.Vector"></jsp:useBean>
 	<jsp:useBean id="resultados" scope="request"class="java.util.Vector"></jsp:useBean>
 	<jsp:useBean id="tipoactividades"  scope="request"class="java.util.Vector"></jsp:useBean>
+        
+        
+	<jsp:useBean id="resultados2" scope="request"class="java.util.Vector"></jsp:useBean>
+        
 
 	<!-- The styles -->
 	<link id="bs-css" href="css/bootstrap-cerulean.css" rel="stylesheet">
@@ -113,6 +117,20 @@
 	
 	
 	</script>
+        
+        
+        <%! public int  busarNumeroIncritos(String c, String h ,Vector<ResultadoActividadBeanData> r)
+            {
+            
+            for(int i=0; i< r.size(); i++)
+                {
+                if(    ((ResultadoActividadBeanData)r.get(i)).getHorario().equals(h)  &&  ((ResultadoActividadBeanData)r.get(i)).getCodigo().equals(c)      )
+                return  ((ResultadoActividadBeanData)r.get(i)).getInscritos()  ;
+                }
+                return 0;
+                }
+                
+                %>
 		
 </head>
 
@@ -163,7 +181,13 @@
                       <div class="box-header well" data-original-title>
                         <h2><i class="icon-th-list"></i> Actividad : <%= ((MatriculaBeanData)resultados.get(0)).getNombreAtc() %>
                         / Vacantes: <%= ((MatriculaBeanData)resultados.get(0)).getVacantes() %>
-                         / Inscritos : <%= ((MatriculaBeanData)resultados.get(0)).getInscritos() %>
+                         / Inscritos : <%= busarNumeroIncritos(    ((MatriculaBeanData)resultados.get(0)).getCodigoActividad() ,
+                                             ((MatriculaBeanData)resultados.get(0)).getHorario() ,
+                                                               resultados2
+                                                               )
+                             
+                             
+                             %>
                         </h2>
                       </div>
                       <div class="box-content">
@@ -199,7 +223,15 @@
 							</tr>
                             <%}%>
                           </tbody>
+                            
                         </table>
+                          
+                          
+                          <div class="form-actions">
+                              
+                              <button type="reset" id="boton" class="btn">Regresar</button>
+                          </div>
+                          
                       </div>
                     </div>
                     <!--/span-->
