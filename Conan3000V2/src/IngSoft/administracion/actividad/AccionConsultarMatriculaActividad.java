@@ -15,6 +15,7 @@ import IngSoft.administracion.bean.CriterioActividadBeanData;
 import IngSoft.administracion.bean.CriterioSedeBeanData;
 import IngSoft.administracion.bean.CriterioSedeBeanFunction;
 import IngSoft.administracion.bean.DepartamentoBeanData;
+import IngSoft.administracion.bean.MatriculaBeanData;
 import IngSoft.administracion.bean.ResultadoSedeBeanData;
 import IngSoft.administracion.bean.SedeBeanFuncion;
 import IngSoft.administracion.bean.TipoActividadMiniBeanData;
@@ -24,7 +25,7 @@ import IngSoft.administracion.bean.ResultadoActividadBeanData;
 import IngSoft.administracion.bean.ResultadoActividadBeanData;
 import IngSoft.administracion.bean.ActividadBeanFuncion;
 
-public class AccionBuscarMatriculaActividad extends CoAccion{
+public class AccionConsultarMatriculaActividad extends CoAccion{
 
 
 	@Override
@@ -35,33 +36,33 @@ public class AccionBuscarMatriculaActividad extends CoAccion{
 		
 		
 
+		 System.out.print("tipo --> "+ tipo );
 		
-		
-		if(tipo==1){
+		if(tipo==2){
 			
-			
-			Vector<TipoActividadMiniBeanData> tipoactividades = ActividadBeanFuncion.getInstance().getTipoactividades();
-			request.setAttribute("tipoactividades", tipoactividades);
-			
-			System.out.print("tipo =1  ----->"+ tipoactividades.size());
 
+
+			 
+			 System.out.print("codigoAct --> "+ request.getParameter("codigoAct")   );
+			 System.out.print("codigoSoc --> "+ request.getParameter("codigoSoc")   );
+			 System.out.print("codigoFam --> "+ request.getParameter("codigoFam")   );
+			 System.out.print("horario --> "+ request.getParameter("horario")   );
+			
 			this.direccionar(sc, request, response, "/IngSoft/administracion/actividad/buscarmatricula.jsp");
 			
 		}
-		
-		if(tipo==2){
-			CriterioActividadBeanData criterioActividadData =new CriterioActividadBeanFunction().crearCriterio(request,response);
-			Vector<ResultadoActividadBeanData> resultados=new CriterioActividadBeanFunction().buscarPlantillaActividad(criterioActividadData);
-			//Vector<TipoActividadMiniBeanData> tipoactividades = ActividadBeanFuncion.getInstance().getTipoactividades();	
+		else
+		{
+			
+			System.out.print("------> entrar -----> AccionConsultarMatriculaActividad ---> "+ request.getParameter("codigo") );
+			
+			ActividadBeanFuncion actividadFuncion= ActividadBeanFuncion.getInstance(); 
+			
+			Vector<MatriculaBeanData> resultados= actividadFuncion.getMatriculadosActividad(request.getParameter("codigo"),request.getParameter("horario"));
 
-			//request.setAttribute("tipoactividades", tipoactividades);
-			
-			Vector<TipoActividadMiniBeanData> tipoactividades = ActividadBeanFuncion.getInstance().getTipoactividades();
-			request.setAttribute("tipoactividades", tipoactividades);
-			
 			request.setAttribute("resultados", resultados);
 			
-			this.direccionar(sc, request, response, "/IngSoft/administracion/actividad/buscarmatricula.jsp");	
+			this.direccionar(sc, request, response, "/IngSoft/administracion/actividad/consultarmatricula.jsp");	
 			
 		}
 		
