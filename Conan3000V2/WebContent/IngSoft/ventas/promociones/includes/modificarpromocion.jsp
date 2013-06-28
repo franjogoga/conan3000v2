@@ -136,7 +136,7 @@
 			            
 			            <div class="form-actions">
 			              <button type="button" class="btn btn-primary" onclick="javascript:alt_submit()">Guardar</button>
-			              <button type="button" class="btn"><a href="buscarpromocion.jsp">Cancelar</a></button>
+			             <button type="button" class="btn" onclick="location.href='buscarpromocion.jsp'" >Cancelar</button>
 		                </div>
 		              </fieldset>
 		            </form>
