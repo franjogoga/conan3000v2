@@ -2,7 +2,7 @@
 
 
 <%@page import="IngSoft.administracion.bean.TipoActividadMiniBeanData"%>
-<%@page import="IngSoft.administracion.bean.ResultadoActividadBeanData"%>
+<%@page import="IngSoft.administracion.bean.MatriculaBeanData"%>
 <%@page import="java.util.Vector"%>
 
 
@@ -69,25 +69,12 @@
 		form.codigo.value=cod;
 		form.submit();
 	}
-	function alt_eliminar(cod){
-		var form=document.getElementById("frmAlternativo");
-		form.accion.value="Eliminar";
-		form.codigo.value=cod;
-		form.submit();
-	}
-	
-	
-	function alt_matricular(cod){
-		var form=document.getElementById("frmAlternativo");
-		form.accion.value="Agregarmatricula";
-		form.codigo.value=cod;
-		form.submit();
-	}
-	
-	function alt_consultarmatricula(cod){
+	function alt_eliminar(cod,cod2,cod3){
 		var form=document.getElementById("frmAlternativo");
 		form.accion.value="Consultarmatricula";
-		form.codigo.value=cod;
+		form.codigoSoc.value=cod2;
+		form.codigoFam.value=cod3;
+		form.horario.value=cod;
 		form.submit();
 	}
 	
@@ -151,90 +138,20 @@
 			<div>
 				<ul class="breadcrumb">
                   <li> <a href="../../general/index.jsp">Home</a> <span class="divider">/</span> </li>
-                  <li>Matricula de Actividad</li>
+                  <li>Mantenimiento de Actividad</li>
 				</ul>
 			</div>
 			
 			<div class="row-fluid sortable">		
 				
-                <div class="row-fluid sortable">
-                  <div class="box span12">
-                    <div class="box-header well" data-original-title>
-                      <h2><i class="icon-search"></i> BUSCAR ACTIVIDAD</h2>
-                      <div class="box-icon">
-							<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
-						</div>
-                    </div>
-                    <div class="box-content">
-                      <form class="form-horizontal" name="frmCriteriosBusqueda" id="frmCriteriosBusqueda"  method="post" action="<%=response.encodeURL("SMAActividad")%>">
-						<input type="hidden" id="accion" name="accion" value="BuscarMatricula"></input>
-		  				<input type="hidden" id="tipo" name="tipo" value="2"></input>                      
-                        <fieldset> 
-                        
-                        <div class="control-group">
-                          <label class="control-label" for="typeahead">Nombre:</label>
-                          <div class="controls">
-                            <input type="text" class="span6 typeahead" id="txtNombre" name="txtNombre">
-                          </div>
-                        </div>
-                        
-                        
-							 <div class="control-group">
-								<label class="control-label" for="selectError">Tipo Actividad(*):</label>
-								<div class="controls">
-																						   <!-- cmbTipoactividad  variable     -->	
-							 		<select id="selectError12" data-rel="chosen" name="cmbTipoactividad">
-								  
-								  <%for(int i=0;i<tipoactividades.size();i++) if( i!=0){     %>
-										<option value="<%= ((TipoActividadMiniBeanData)tipoactividades.get(i)).getCodigo()%>" >
-										
-										<%= ((TipoActividadMiniBeanData)tipoactividades.get(i)).getNombre()%>
-										
-										
-										</option>
-									<%} else {   %>		
-										<option selected value="<%= ((TipoActividadMiniBeanData)tipoactividades.get(i)).getCodigo()%>" >
-										
-										<%= ((TipoActividadMiniBeanData)tipoactividades.get(i)).getNombre()%>
-										
-										
-										</option>
-									<%}   %>				
-								  </select>
-								</div>
-							  </div>           
-                        
-						   <div class="control-group">
-							  <label class="control-label" for="date01">Fecha Inicio(*):</label>
-							  <div class="controls">
-								<input type="text" class="input-xlarge datepicker" id="fFecIncio" readonly="true" value="01/01"  name="fFecIncio" onchange="alt_fecha(this);verificar_fecha(-1,this,'fFecFin');">
-							  </div>
-							</div>
-							
-							<div class="control-group">
-							  <label class="control-label" for="date02">Fecha Fin(*):</label>
-							  <div class="controls">
-								<input type="text" class="input-xlarge datepicker" id="fFecFin" readonly="true" value="31/12"  name="fFecFin" onchange="alt_fecha(this);verificar_fecha(1,this,'fFecIncio');">
-							  </div>
-							</div>
-                        
-                        
-                        
-                        <div class="form-actions">
-                          <button type="submit" class="btn btn-primary">Buscar</button>
-                          <button type="reset" id="boton" class="btn">Cancelar</button>
-                        </div>
-                        
-                      </fieldset>
-                      </form>
-                    </div>
-                  </div>
-                  <!--/span-->
-                </div>
+                
                 <form id="frmAlternativo" name="frmAlternativo" method="post" action="<%= response.encodeURL("SMAActividad")%>">
-				<input type="hidden" name="accion" value="Agregar"></input>
-				<input type="hidden" name="codigo" value=""></input>
-				<input type="hidden" name="tipo" value="1"></input>
+				<input type="hidden" name="accion" value="Consultarmatricula"></input>
+				<input type="hidden" name="codigoAct" value="   <%= ((MatriculaBeanData)resultados.get(0)).getCodigoActividad() %>  "></input>
+				<input type="hidden" name="codigoSoc" value="">  </input>
+                <input type="hidden" name="codigoFam" value="">  </input>
+				<input type="hidden" name="horario" value=""></input>
+				<input type="hidden" name="tipo" value="2"></input>
 				</form>	
 				
 				
@@ -244,58 +161,40 @@
                   <div class="row-fluid sortable">
                     <div class="box span12">
                       <div class="box-header well" data-original-title>
-                        <h2><i class="icon-th-list"></i> RESULTADOS</h2>
+                        <h2><i class="icon-th-list"></i> Actividad : <%= ((MatriculaBeanData)resultados.get(0)).getNombreAtc() %>
+                        / Vacantes: <%= ((MatriculaBeanData)resultados.get(0)).getVacantes() %>
+                         / Inscritos : <%= ((MatriculaBeanData)resultados.get(0)).getInscritos() %>
+                        </h2>
                       </div>
                       <div class="box-content">
                         <table class="table table-striped table-bordered bootstrap-datatable datatable">
-                        
                          
+                            
+                            
                           <thead>
                             <tr>
+                              <th>Nº</th>
                               <th>Nombre</th>
-                              <th>Tipo ACtividad</th>
-                              
-                              <th>Estado</th>
+                              <th>Apellido Paterno</th>
+                              <th>Apellido Materno</th>
                               <th>Acci&oacute;n</th>
                             </tr>
                           </thead>
                           <tbody id="resultadoBusqueda">
                           	<% for(int i=0; i<resultados.size(); i++) { %>
                             <tr>
-                              <td class="center"><%=((ResultadoActividadBeanData)resultados.get(i)).getNombre()%></td>
-                              <td class="center"><%=((ResultadoActividadBeanData)resultados.get(i)).getTipoactividad()%></td>
-                             
-								<td class="center">
-                          			
-	                          			
-								           <%
-									 
-												  if( ((ResultadoActividadBeanData)resultados.get(i)).getEstado().equalsIgnoreCase("disponible") ){    
-								 out.print(" <span class='label label-success'> " + ((ResultadoActividadBeanData)resultados.get(i)).getEstado()   +"   </span>       ");
-												  }
-												  else { 
-								 out.print(" <span class='label label-warning'> " + ((ResultadoActividadBeanData)resultados.get(i)).getEstado()   +"   </span>       ");
-													
-												  }
-									  
-									   
-									 
-		                          					            
-	                          				%>
-	                          			
-                          			
-                          			</td>
+                              <td class="center"><%= i+1%></td>
+                              <td class="center"><%=((MatriculaBeanData)resultados.get(i)).getNombreSoc()%></td>
+                              <td class="center"><%=((MatriculaBeanData)resultados.get(i)).getApaternoSoc()%></td>
+                              <td class="center"><%=((MatriculaBeanData)resultados.get(i)).getAmaternoSoc()%></td>
+
                               
                               
                               
                               <td class="center">
-                              				<a class="btn btn-primary" href="javascript:alt_matricular('<%=((ResultadoActividadBeanData)resultados.get(i)).getCodigo()%>')">
-												<i class="icon icon-add icon-white"></i> Matricular 
+											<a class="btn btn-danger" href="javascript:alt_eliminar('<%=((MatriculaBeanData)resultados.get(i)).getHorario()%>','<%=((MatriculaBeanData)resultados.get(i)).getCodigosocio()%>','<%=((MatriculaBeanData)resultados.get(i)).getCodigofamiliar()%>' )">
+												<i class="icon-trash icon-white"></i> Eliminar
 											</a>
-                              				<a class="btn btn-success" href="javascript:alt_consultarmatricula('<%=((ResultadoActividadBeanData)resultados.get(i)).getCodigo()%>')">
-												<i class="icon-zoom-in icon-white"></i> Ver Matriculados
-											</a>
-											
 							  </td>
 							</tr>
                             <%}%>
