@@ -232,7 +232,7 @@ String fecHoy=dfActual.format(new java.util.Date());
 						<input type="hidden" name="fFechaVencimiento0" value="<%=fecHoy%>">
 						<input type="hidden" name="txtTotalxCuota0" value="">
 			              <button type="button" class="btn btn-primary" onclick="javascript:alt_submit()">Agregar Cuota</button>
-			              <button type="button" class="btn" onclick="location.href='buscaregreso.jsp'">Cancelar</button>
+			              <button type="button" class="btn" onclick="location.href='buscarpagootros.jsp'">Cancelar</button>
 		                </div>
 		                </div>
 		              </fieldset>
