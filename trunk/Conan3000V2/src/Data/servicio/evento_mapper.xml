@@ -197,9 +197,10 @@ update PLANTILLA_EVENTO set nombre=#{nombre}
 </update>
 
 <!-- Fin modificar -->
-<!--Eliminar evento -->
-<update id="deletePLantillaEvento" parameterType="java.lang.String" >
-update PLANTILLA_EVENTO set Estado='I' where IdPlantillaEvento= #{codigo}
-</update>
-<!-- Fin eliminar -->
+<!--Inscribir en Evento sede -->
+<insert id="inscribirEventoSede" parameterType="hashmap">
+INSERT INTO SOCIOxEVENTO_SEDE (IdSocio,IdEventoSede,CantEntrAdquiridas,Monto)
+VALUES (#{socio},#{codigo},#{cantidad},#{monto})   
+</insert>
+<!-- Fin Inscribir en Evento sede -->
 </mapper>
