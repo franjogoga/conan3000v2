@@ -75,10 +75,10 @@ $.fn.colorbox.close();
 }
 
 function anhadirFamiliar(cod, name,puesto){
-	var form= document.frmData;
-	form.nombrefamiliar.value=name;
-	form.codigofamiliar.value=cod;
-	$.fn.colorbox.close();
+var form= document.frmData;
+form.nombrefamiliar.value=name;
+form.codigofamiliar.value=cod;
+$.fn.colorbox.close();
 
 }
 
@@ -127,7 +127,7 @@ function alt_submit(){
 var form= document.frmData;
     
 // if(validaForm())
-	form.submit();
+form.submit();
     
     
 }
@@ -206,7 +206,7 @@ return DF.format(date);
                  <input type="hidden" name="monto" value="<%=((ResultadoHorariodeactividadBeanData)resultados.get(0)).getMonto()%>"></input>
                 <!--- ------------  -->
                 
-                <!--  	<div class="row-fluid sortable"> -->
+                <!--  <div class="row-fluid sortable"> -->
                 
                 <div class="control-group">
                     
