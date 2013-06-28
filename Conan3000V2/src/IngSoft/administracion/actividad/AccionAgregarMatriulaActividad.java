@@ -87,6 +87,8 @@ public class AccionAgregarMatriulaActividad extends CoAccion{
 		
 			ActividadBeanFuncion actividadFuncion= ActividadBeanFuncion.getInstance(); 
 
+			 System.out.print("-------> codigo --> "+ request.getParameter("codigo")   );
+			
 			Vector<ResultadoHorariodeactividadBeanData> resultados = actividadFuncion.buscarPlantillaHorariosActividad(request.getParameter("codigo"));
 			
 			
