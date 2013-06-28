@@ -52,6 +52,13 @@ public class AccionBuscarMatriculaActividad extends CoAccion{
 		if(tipo==2){
 			CriterioActividadBeanData criterioActividadData =new CriterioActividadBeanFunction().crearCriterio(request,response);
 			Vector<ResultadoActividadBeanData> resultados=new CriterioActividadBeanFunction().buscarPlantillaMatriculaActividadHorario(criterioActividadData);
+			
+			 ActividadBeanFuncion actividadFuncion= ActividadBeanFuncion.getInstance(); 
+			 
+			Vector<ResultadoActividadBeanData> resultados2= actividadFuncion.getNumeroInscritos();
+			
+			
+			
 			//Vector<TipoActividadMiniBeanData> tipoactividades = ActividadBeanFuncion.getInstance().getTipoactividades();	
 
 			//request.setAttribute("tipoactividades", tipoactividades);
@@ -59,6 +66,7 @@ public class AccionBuscarMatriculaActividad extends CoAccion{
 			Vector<TipoActividadMiniBeanData> tipoactividades = ActividadBeanFuncion.getInstance().getTipoactividades();
 			request.setAttribute("tipoactividades", tipoactividades);
 			
+			request.setAttribute("resultados2", resultados2);
 			request.setAttribute("resultados", resultados);
 			
 			this.direccionar(sc, request, response, "/IngSoft/administracion/actividad/buscarmatricula.jsp");	
