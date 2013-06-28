@@ -53,7 +53,7 @@ public class ReservaBeanFunction {
 
 			
 			
-	  		System.out.print("txtCodigoSoc ---> "+request.getParameter("txtCodigoSoc"));		
+	  		System.out.print("txtCodigoSoc ---> "+request.getParameter("codigosocio"));		
 	  		System.out.print("txtCodigoInv ---> "+request.getParameter("txtCodigoInv") );
 
 	  		System.out.print("fecha ---> "+ new Date(DF.parse(		request.getParameter("fFecInvitado")+"/0000").getTime()));
@@ -63,7 +63,7 @@ public class ReservaBeanFunction {
 			
 			
 		
-  		reservaData.setCodigosocio(			                request.getParameter("txtCodigoSoc"));		
+  		reservaData.setCodigosocio(			                request.getParameter("codigosocio"));		
 		reservaData.setCodigoinvitado(   	             	request.getParameter("txtCodigoInv") );
 
 		reservaData.setFechaingreso(new Date(DF.parse(		request.getParameter("fFecInvitado")+"/0000").getTime()));
