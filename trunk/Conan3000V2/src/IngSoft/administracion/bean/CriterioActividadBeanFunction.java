@@ -40,5 +40,23 @@ public class CriterioActividadBeanFunction {
 		return resultadosV;
 		
 	}
+	
+	
+	public Vector<ResultadoActividadBeanData> buscarPlantillaMatriculaActividadHorario(CriterioActividadBeanData criterioActividadData){		
+		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+		Vector<ResultadoActividadBeanData> resultadosV=null;
+		try{
+			
+		List<ResultadoActividadBeanData> resultados=sqlsesion.selectList("searchPlantillaMatriculaActividadHorario",criterioActividadData);
+	
+		resultadosV= new Vector<>(resultados);
+		
+		
+		}
+		finally{
+		sqlsesion.close();}
+		return resultadosV;
+		
+	}
 
 }
