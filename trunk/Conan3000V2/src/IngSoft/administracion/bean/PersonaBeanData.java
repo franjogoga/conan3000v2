@@ -10,6 +10,12 @@ public class PersonaBeanData implements Serializable{
 	private String apaterno;
 	private String amaterno;
 	
+	
+	
+	private String codigofam;
+	private String nombrefam;
+	private String apaternofam;
+	private String amaternofam;
 	public String getCodigo() {
 		return codigo;
 	}
@@ -34,9 +40,34 @@ public class PersonaBeanData implements Serializable{
 	public void setAmaterno(String amaterno) {
 		this.amaterno = amaterno;
 	}
-
-
-
+	public String getCodigofam() {
+		return codigofam;
+	}
+	public void setCodigofam(String codigofam) {
+		this.codigofam = codigofam;
+	}
+	public String getNombrefam() {
+		return nombrefam;
+	}
+	public void setNombrefam(String nombrefam) {
+		this.nombrefam = nombrefam;
+	}
+	public String getApaternofam() {
+		return apaternofam;
+	}
+	public void setApaternofam(String apaternofam) {
+		this.apaternofam = apaternofam;
+	}
+	public String getAmaternofam() {
+		return amaternofam;
+	}
+	public void setAmaternofam(String amaternofam) {
+		this.amaternofam = amaternofam;
+	}
+	
+	
+	
+	
 	
 
 }
