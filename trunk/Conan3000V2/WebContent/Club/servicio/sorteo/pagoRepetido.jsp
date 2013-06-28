@@ -140,8 +140,8 @@
 					  <h2><i class="icon-plus-sign"></i>INSCRIPCION SATISFACTORIA</h2>
 				  </div>
 					<div class="box-content">
-						      <label class="control-label" for="typeahead7">Estimado Cliente, usted ya realizo el pago para este sorteo</label>
-						      <h1>Muchas Gracias!</h1>
+						      <label class="control-label" for="typeahead7">Estimado Cliente, usted ya realizó el pago</label>
+						      <h1>Muchas gracias!</h1>
 							  
 							 <!--  <button type="submit" class="btn btn-primary">Agregar</button> -->
 							  <button type="button" class="btn" onclick="location.href='buscarInscripcionSorteo.jsp'" >Regresar</button>
