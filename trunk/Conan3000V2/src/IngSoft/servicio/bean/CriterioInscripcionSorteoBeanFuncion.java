@@ -42,8 +42,7 @@ public class CriterioInscripcionSorteoBeanFuncion {
 		java.util.Date fecha = new java.util.Date();
 		Date fechaSQL = new Date(fecha.getTime()); 
 		for (int i=0; i< resultadosV.size(); i++){
-			if ( (resultadosV.get(i).getFechaSorteo().before(fechaSQL)) || 
-				 ((resultadosV.get(i).getFechaIni().before(fechaSQL) && (resultadosV.get(i).getFechaFin().after(fechaSQL)))) ) { 
+			if ( (resultadosV.get(i).getFechaSorteo().before(fechaSQL))  ) { 
 				String codSorteo = resultadosV.get(i).getCodigo();
 				sqlsesion.update("Data.club.inscripcionSorteo.insertFechaFlag",codSorteo);
 				}
