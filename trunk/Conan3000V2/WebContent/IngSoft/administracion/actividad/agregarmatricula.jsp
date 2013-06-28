@@ -126,7 +126,7 @@ return ((key >= 48 && key <= 57) ||(key >= 97 && key <= 122) ||(key >= 65 && key
 function alt_submit(){
 var form= document.frmData;
     
-// if(validaForm())
+if(validaForm())
 form.submit();
     
     
@@ -212,7 +212,7 @@ return DF.format(date);
                     
                     <div class="box span6">
                         <div class="box-header well" data-original-title>
-                            <h2>Horario </h2>
+                            <h2>Horarios De la Semana </h2>
                             <div class="box-icon">
                                 <a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
                                 
@@ -223,7 +223,8 @@ return DF.format(date);
                                 <thead>
                                     <tr>
                                         <th> </th>
-                                        <th></th>
+                                        <th>Codigo </th>
+                                         <th>Dias</th>
                                         
                                     </tr>
                                 </thead>
@@ -242,13 +243,15 @@ return DF.format(date);
                                         <td>
                                             
                                             <label class="checkbox inline">
-                                                <input type="checkbox"  id="inlineCheckbox<%=i%>" name="checkDia<%=i%>"   value="<%=((ResultadoHorariodeactividadBeanData)resultados.get(i)).getHorario()%>  ">
+                                                <input type="checkbox"  id="inlineCheckbox<%=i%>" name="checkDia<%=i%>"
+                                                    value="<%=((ResultadoHorariodeactividadBeanData)resultados.get(i)).getHorario()%>">
                                                     
                                                     </label>
                                             
                                         </td>
-                                        
-                                        
+                                         <td>
+                                         <%=((ResultadoHorariodeactividadBeanData)resultados.get(i)).getHorario()%>
+                                         </td>
                                         <td >
                                             
                                             <%= ((ResultadoHorariodeactividadBeanData)resultados.get(i)).getDiaSemana() %>
@@ -522,7 +525,7 @@ var form=document.frmData;
 var cadena= new Array();
 var i=0;
 var error=false;
-//if(!esValido("Nombre Socio",form.nombresocio,"Nombresocio",1,1,50)){cadena[i]="Nombre Socio";i++;}
+if(!esValido("Nombre_Socio",form.nombresocio,"Nombresocio",1,1,50)){cadena[i]="Nombre_Socio";i++;}
 //if(!esValido("Nombre Familiar",form.txtDescripcion,"Nombrefamiliar",1,0,50)){cadena[i]="Nombre Familiar";i++;}
 //if(!esValido("Caracter&iacute;sticas",form.txtCaracteristica,"Caracteristica",1,0,100)){cadena[i]="Caracter&iacute;sticas";i++;}
 
@@ -536,7 +539,7 @@ return true;
 }
 
 function inicializa(){
-//document.getElementById("errNombresocio").style.display='none';
+document.getElementById("errNombresocio").style.display='none';
 //document.getElementById("errNombrefamiliar").style.display='none';
 //document.getElementById("errCaracteristica").style.display='none';
 }
