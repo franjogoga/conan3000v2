@@ -54,6 +54,15 @@ public class SorteoBeanFuncion {
 	public BungalowxSorteo getBungalowSorteo(BungalowxSorteo bungalowSorteo){
 		BungalowxSorteo BS = new BungalowxSorteo();
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+		List<BungalowxSorteo> BS2 = sqlsesion.selectList("Data.club.inscripcionSorteo.getBungalowxSorteo2");
+		int flag=0;
+		int i;
+		for (i=0;i<BS2.size();i++){
+			
+			if (BS2.get(i).getIdSocio().equals(bungalowSorteo.getIdSocio())) {break;} 
+			else {BS.setIdBungalow("NO"); flag++;}
+		}
+		if (flag==i) return BS;
 		BS = sqlsesion.selectOne("Data.club.inscripcionSorteo.getBungalowxSorteo",bungalowSorteo);
 		BS.setIdSocio(bungalowSorteo.getIdSocio());
 		BS.setIdSorteo(bungalowSorteo.getIdSorteo());
