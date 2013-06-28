@@ -154,4 +154,21 @@ public class PerfilBeanFunction {
 		}
 		return casos;
 	}
+	
+	public Vector<CasosBeanData> getCasosxaccion(String codigoPerfil) throws CoException {
+		Vector<CasosBeanData> casosxaccion= null;
+		SqlSession sesion=MyBatisSesion.metodo().openSession();				
+		try{
+			List<CasosBeanData> temp=sesion.selectList("Data.administracion.perfiles.getAccionxcasoxperfil", codigoPerfil);			
+			casosxaccion= new Vector<CasosBeanData>(temp);
+		}
+		catch(Exception e3){
+			e3.printStackTrace();
+			throw CoException.set("Error: No se pudo obtener la lista de casos", "SMAPerfil?accion=Modificar&tipo=1");
+		}
+		finally{
+			sesion.close();			
+		}
+		return casosxaccion;
+	}
 }
