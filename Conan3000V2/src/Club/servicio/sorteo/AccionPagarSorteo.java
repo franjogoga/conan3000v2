@@ -42,7 +42,8 @@ public class AccionPagarSorteo extends CoAccion {
 		bungalowSorteo.setIdSocio(idSocio);
 		bungalowSorteo.setIdSorteo(codSorteo);
 		bungalowSorteo = sorteoFuncion.getBungalowSorteo(bungalowSorteo);
-		if (bungalowSorteo.getIdBungalow().equals("NO")) {this.direccionar(sc, request, response, "/Club/servicio/sorteo/pagoRepetido.jsp");}
+		if (bungalowSorteo.getIdBungalow().equals("NO")) {this.direccionar(sc, request, response, "/Club/servicio/sorteo/inscripcionFallida.jsp");}
+		else {this.direccionar(sc, request, response, "/Club/servicio/sorteo/pagoRepetido.jsp");}
 		OrdenPagoBeanFunction orden=new OrdenPagoBeanFunction();
 		
 		java.util.Date valor = new java.util.Date();
