@@ -65,6 +65,7 @@ public class AccionConsultarMatriculaActividad extends CoAccion{
 		{
 			
 			System.out.print("------> entrar -----> AccionConsultarMatriculaActividad ---> "+ request.getParameter("codigo") );
+			System.out.print("------> entrar -----> AccionConsultarMatriculaActividad ---> "+ request.getParameter("horario") );
 			
 			ActividadBeanFuncion actividadFuncion= ActividadBeanFuncion.getInstance(); 
 			
