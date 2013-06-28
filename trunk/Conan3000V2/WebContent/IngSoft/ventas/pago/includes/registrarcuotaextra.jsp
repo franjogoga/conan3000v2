@@ -163,6 +163,8 @@ String fecHoy=dfActual.format(new java.util.Date());
                             <div class="controls">
                               <select  id="cmbPeriodo" data-rel="chosen" name="cmbPeriodo" class=''>
 								<option value="Mensual">Mensual</option>
+								<option value="Bimestral">Bimestral</option>
+								<option value="Trimestral">Trimestral</option>
 								<option value="Semestral">Semestral</option>
                                 <option value="Anual">Anual</option>
                               </select>
@@ -182,7 +184,7 @@ String fecHoy=dfActual.format(new java.util.Date());
 			          <div class="control-group" id="dvMonto">
                             <label class="control-label" for="typeahead2">Monto Total: (*)</label>
                             <div class="controls">
-                              <input type="text" class="input-xlarge" id="txtMonto" name="txtMonto" value="" onKeyUp="comprueba(this);actualizarMonto();"  onKeyPress="comprueba(this);"onChange="actualizarMonto()">
+                              <input type="text" class="input-xlarge" id="txtMonto" name="txtMonto" value="" onKeyUp="comprueba(this);actualizarMonto();" onChange="actualizarMonto()">
                             <span class="help-inline" id="errMonto">Please correct the error</span>
                             </div>
                         </div>
