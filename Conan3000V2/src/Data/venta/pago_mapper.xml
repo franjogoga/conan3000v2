@@ -224,6 +224,11 @@ from OTRO_INGRESO, CONCEPTO, PERSONA, INGRESO
     <if test="fechaEmisionFin != null">
         AND OTRO_INGRESO.FechaEmision &lt;= #{fechaEmisionFin}
     </if>
+    
+  <if test="concepto != null">
+        AND OTRO_INGRESO.Descripcion= #{concepto}
+       
+    </if>
   
     <if test="estado != null">
         AND OTRO_INGRESO.Estado= #{estado}
@@ -298,8 +303,8 @@ OTRO_INGRESO.IdConcepto=CONCEPTO.IdConcepto and CONCEPTO.IdSocio=PERSONA.IdPerso
 </select>
 
 <insert id="insertOrdenPagoOtrosIngresos" parameterType="IngSoft.venta.bean.OrdenPagoBeanData" flushCache="true">
-	insert into OTRO_INGRESO(IdOtroIngreso,IdConcepto,Monto,FechaEmision,FechaVencimiento,Estado,Descripcion)
-	values (#{idOtroIngreso},#{idConcepto},#{monto},#{fechaEmision},#{fechaVencimiento},'No Cancelado',#{descripcion})
+	insert into OTRO_INGRESO(IdOtroIngreso,IdConcepto,Monto,FechaEmision,FechaVencimiento,Estado,Descripcion,Descripcion2)
+	values (#{idOtroIngreso},#{idConcepto},#{monto},#{fechaEmision},#{fechaVencimiento},'No Cancelado',#{descripcion},#{descripcionCuota})
 </insert>
 
 
@@ -385,9 +390,106 @@ OTRO_INGRESO.IdConcepto=CONCEPTO.IdConcepto and CONCEPTO.IdSocio=PERSONA.IdPerso
 </insert>
 
 
+ <select id="searchSocioMembresiaPago" parameterType="IngSoft.venta.bean.CriterioSocioBeanData" resultType="IngSoft.venta.bean.ResultadoSocioBeanData">
+select distinct
+SOCIO.IdSocio as idSocio
+,SOCIO.Direccion as direccion
+,PERSONA.Nombres as nombres
+,PERSONA.ApePaterno as apellidoPaterno
+,PERSONA.ApeMaterno as apellidoMaterno
+,PERSONA.TipoDocumento as tipoDocumento
+,PERSONA.NumeroDocumento as numeroDocumento
+,SOCIO.Flag as flag
+from SOCIO,PERSONA
+<where>
+	<if test="nombres != null ">
+        SOCIO.IdSocio=PERSONA.IdPersona and (PERSONA.nombres  like  #{nombres})
+    </if>
+    <if test="apellidoPaterno != null ">
+        AND (PERSONA.ApePaterno  like  #{apellidoPaterno})
+    </if>
+    <if test="apellidoMaterno != null ">
+        AND (PERSONA.ApeMaterno  like  #{apellidoMaterno})
+    </if>
+    <if test="direccion != null">
+        AND SOCIO.Direccion like #{direccion}
+    </if>
+     <if test="tipoDocumento != null">
+        AND PERSONA.TipoDocumento like #{tipoDocumento}
+    </if>
+    
+</where>
+</select>
 
 
+ <select id="searchSocioNoMembresia" parameterType="IngSoft.venta.bean.CriterioSocioBeanData" resultType="IngSoft.venta.bean.ResultadoSocioBeanData">
+select distinct
+SOCIO.IdSocio as idSocio
+,SOCIO.Direccion as direccion
+,PERSONA.Nombres as nombres
+,PERSONA.ApePaterno as apellidoPaterno
+,PERSONA.ApeMaterno as apellidoMaterno
+,PERSONA.TipoDocumento as tipoDocumento
+,PERSONA.NumeroDocumento as numeroDocumento
+,SOCIO.Flag as flag
+from SOCIO INNER JOIN  PERSONA ON PERSONA.IdPersona=SOCIO.IdSocio
+INNER JOIN MEMBRESIA ON MEMBRESIA.IdSocio!=SOCIO.IdSocio 
 
+<where>
+
+	<if test="nombres != null ">
+	PERSONA.IdPersona!=MEMBRESIA.IdSocio AND PERSONA.IdPersona NOT IN (SELECT IdSocio FROM MEMBRESIA) AND (PERSONA.nombres  like  #{nombres})
+    </if>
+    <if test="apellidoPaterno != null ">
+        AND (PERSONA.ApePaterno  like  #{apellidoPaterno})
+    </if>
+    <if test="apellidoMaterno != null ">
+        AND (PERSONA.ApeMaterno  like  #{apellidoMaterno})
+    </if>
+    <if test="direccion != null">
+        AND SOCIO.Direccion like #{direccion}
+    </if>
+     <if test="tipoDocumento != null">
+        AND PERSONA.TipoDocumento like #{tipoDocumento}
+    </if>
+    
+</where>
+</select>
+
+
+ <select id="flujoCajaIngreso" parameterType="IngSoft.venta.bean.CriterioSocioBeanData" resultType="IngSoft.venta.bean.ResultadoSocioBeanData">
+select distinct
+SOCIO.IdSocio as idSocio
+,SOCIO.Direccion as direccion
+,PERSONA.Nombres as nombres
+,PERSONA.ApePaterno as apellidoPaterno
+,PERSONA.ApeMaterno as apellidoMaterno
+,PERSONA.TipoDocumento as tipoDocumento
+,PERSONA.NumeroDocumento as numeroDocumento
+,SOCIO.Flag as flag
+from SOCIO INNER JOIN  PERSONA ON PERSONA.IdPersona=SOCIO.IdSocio
+INNER JOIN MEMBRESIA ON MEMBRESIA.IdSocio!=SOCIO.IdSocio 
+
+<where>
+
+	<if test="nombres != null ">
+	PERSONA.IdPersona!=MEMBRESIA.IdSocio AND PERSONA.IdPersona NOT IN (SELECT IdSocio FROM MEMBRESIA) AND (PERSONA.nombres  like  #{nombres})
+    </if>
+    <if test="apellidoPaterno != null ">
+        AND (PERSONA.ApePaterno  like  #{apellidoPaterno})
+    </if>
+    <if test="apellidoMaterno != null ">
+        AND (PERSONA.ApeMaterno  like  #{apellidoMaterno})
+    </if>
+    <if test="direccion != null">
+        AND SOCIO.Direccion like #{direccion}
+    </if>
+     <if test="tipoDocumento != null">
+        AND PERSONA.TipoDocumento like #{tipoDocumento}
+    </if>
+    
+</where>
+</select>
 
 
 </mapper>

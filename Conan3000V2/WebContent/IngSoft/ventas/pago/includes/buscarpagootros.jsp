@@ -168,7 +168,7 @@ String fecHoy=dfActual.format(new java.util.Date());
 		                <label class="control-label" for="typeahead2">Fecha de Emisi&oacute;n: </label>
 		                <div class="controls">
 		                  <input type="text" class="input-xlarge datepicker" id="fFechaEmisionIni" name="fFechaEmisionIni" value="<%=fecHoy%>" onChange="javascript:igualarIni(2)" onpaste="return false;"  > 
-		                  - <input type="text" class="input-xlarge datepicker" id="fFechaEmisionFin" name="fFechaEmisionFin" value="<%=fecHoy%>" onChange="javascript:igualarIni(2)" onpaste="return false;" >
+		                  - <input type="text" class="input-xlarge datepicker" id="fFechaEmisionFin" name="fFechaEmisionFin" value="<%=fecHoy%>" onChange="javascript:igualarFin(2)" onpaste="return false;" >
 	                    </div>
 	                  </div>
 	                  
@@ -176,7 +176,7 @@ String fecHoy=dfActual.format(new java.util.Date());
 		                <label class="control-label" for="typeahead2">Fecha de Pago: </label>
 		                <div class="controls">
 		                  <input type="text" class="input-xlarge datepicker"  id="fFechaPagoIni" name="fFechaPagoIni" value="<%=fecHoy%>" onChange="javascript:igualarIni(1)" onpaste="return false;" >
-		                   - <input type="text" class="input-xlarge datepicker"  id="fFechaPagoFin" name="fFechaPagoFin" value="<%=fecHoy%>" onChange="javascript:igualarIni(1)" onpaste="return false;" >
+		                   - <input type="text" class="input-xlarge datepicker"  id="fFechaPagoFin" name="fFechaPagoFin" value="<%=fecHoy%>" onChange="javascript:igualarFin(1)" onpaste="return false;" >
 	                    </div>
 	                  </div>
 	                  

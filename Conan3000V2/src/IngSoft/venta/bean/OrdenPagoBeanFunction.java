@@ -2,6 +2,7 @@ package IngSoft.venta.bean;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -56,14 +57,14 @@ public class OrdenPagoBeanFunction {
 			try{		
 		
 				ordenPagoData.setIdSocio(request.getParameter("idSocio"));
-				//ordenPagoData.setDescripcionCuota(request.getParameter("txtDescripcion"));
+				ordenPagoData.setDescripcionCuota(request.getParameter("txtDescripcion"));
 				ordenPagoData.setDescripcion("CUOTAEXTRAORDINARIA");
-				ordenPagoData.setMonto(Double.parseDouble(request.getParameter("txtMonto")));
-				ordenPagoData.setFechaPago(new Date(DF.parse(request.getParameter("fFechaPago")).getTime()));
-				ordenPagoData.setFechaEmision(new Date(DF.parse(request.getParameter("fFechaPago")).getTime()));
-				ordenPagoData.setFechaVencimiento(new Date(DF.parse(request.getParameter("fFechaPago")).getTime()));
-				
-	         	
+				ordenPagoData.setMonto(Double.parseDouble(request.getParameter("txtTotalxCuota0")));
+				//ordenPagoData.setFechaPago(new Date(DF.parse(request.getParameter("FechaEmision")).getTime()));
+				ordenPagoData.setFechaEmision(new Date(DF.parse(request.getParameter("fFechaEmision0")).getTime()));
+				ordenPagoData.setFechaVencimiento(new Date(DF.parse(request.getParameter("fFechaVencimiento0")).getTime()));
+				ordenPagoData.setCuota(Integer.parseInt(request.getParameter("txtCuota")));
+				ordenPagoData.setPeriodo(request.getParameter("cmbPeriodo"));
 				
 				
 				
@@ -294,12 +295,34 @@ public boolean agregarCuotaExtra(OrdenPagoBeanData ordenPagoData) throws CoExcep
 		ordenPagoData.setIdIngreso(codigo.substring(0,3).concat(temp));}
 		else ordenPagoData.setIdIngreso("ING000001");
 		//insertPago esta en pago mapper
-		
+		Integer periodos;
 		
 		sqlsesion.insert("insertOrdenPagoCuotaExtra",ordenPagoData);
+		Integer estadoPA=0;
+		
+		final Calendar c = Calendar.getInstance();
+		c.setTime(ordenPagoData.getFechaVencimiento());
+		Integer mes=0;
+		if(ordenPagoData.getPeriodo().equals("Mensual")) mes=1;
+		if(ordenPagoData.getPeriodo().equals("Bimestral")) mes=2;
+		if(ordenPagoData.getPeriodo().equals("Trimestral")) mes=3;
+		if(ordenPagoData.getPeriodo().equals("Semestral")) mes=6;
+		if(ordenPagoData.getPeriodo().equals("Anual")) mes=12;
+		
+		for(int i=0;i<3;i++){
+			if(ordenPagoData.getCuota()>0 && estadoPA==0){
+				c.set(c.get(Calendar.YEAR), c.get(Calendar.MONTH),c.get(Calendar.DAY_OF_YEAR));
+				estadoPA=1;
+				}else{
+					
+						c.set(c.get(Calendar.YEAR), c.get(Calendar.MONTH)+mes,c.get(Calendar.DAY_OF_YEAR));
+					
+				}
+			
+			ordenPagoData.setFechaVencimiento(c.getTime());
+			
 		sqlsesion.insert("insertOrdenPagoOtrosIngresos",ordenPagoData);
-		sqlsesion.update("Data.venta.pago.pagarOrdenPago",ordenPagoData);
-		sqlsesion.insert("insertOtroIngreso",ordenPagoData);
+		}
 		
 		resultado=true;
 	}
