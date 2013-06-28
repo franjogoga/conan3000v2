@@ -305,12 +305,12 @@ public boolean agregarCuotaExtra(OrdenPagoBeanData ordenPagoData) throws CoExcep
 			else ordenPagoData.setIdOtroIngreso("OIN000001");
 			
 			if(ordenPagoData.getCuota()>0 && estadoPA==0){
-				c.set(c.get(Calendar.YEAR), c.get(Calendar.MONTH),c.get(Calendar.DAY_OF_YEAR));
+				//c.set(c.get(Calendar.YEAR), c.get(Calendar.MONTH),c.get(2));
 				estadoPA=1;
 				}else{
 					
-						c.set(c.get(Calendar.YEAR), c.get(Calendar.MONTH)+mes,c.get(Calendar.DAY_OF_YEAR));
-					
+						//c.set(c.get(Calendar.YEAR), c.get(Calendar.MONTH)+mes,c.get(2));
+						c.add(Calendar.MONTH, mes);
 				}
 			
 			ordenPagoData.setFechaVencimiento(c.getTime());

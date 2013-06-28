@@ -13,6 +13,7 @@ public class ResultadoOrdenPagoBeanData implements Serializable {
 	private Date fechaVencimiento;
 	private Date fechaPago;
 	private String concepto;
+	private String descripcion;
 	private String estado;
 	private Double monto;
 	
@@ -24,6 +25,12 @@ public class ResultadoOrdenPagoBeanData implements Serializable {
 	
 	
 	
+	public String getDescripcion() {
+		return descripcion;
+	}
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
 	public String getIdOtroIngreso() {
 		return idOtroIngreso;
 	}
