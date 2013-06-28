@@ -321,7 +321,7 @@
 								  <th>Hora Registro</th>
 								  <th>Estado Registro</th>
 								  
-								  <th>Accion</th>
+								 
 							  </tr>
 						  </thead>  
 						  
@@ -382,16 +382,7 @@
                           			
                           			</td>
 
-                                    <td class="center">
-                          				<a class="btn btn-success"
-                          					href="javascript:alt_Insertar('<%=((ResultadoJornadaBeanData)resultados.get(i)).getIdEmpleado()%>','<%= ((ResultadoJornadaBeanData)resultados.get(i)).getNombreEmpleado()+' '+((ResultadoJornadaBeanData)resultados.get(i)).getApaterno() %>','<%= ((ResultadoJornadaBeanData)resultados.get(i)).getFlag()%>')">
-                          					<i
-                          						class="icon-zoom-in icon-white">
-                          					</i>
-													Seleccionar
-                          				</a>
-                          				
-                          			</td>
+                                 
                           	</tr>
                           	
 					        <%}%>
