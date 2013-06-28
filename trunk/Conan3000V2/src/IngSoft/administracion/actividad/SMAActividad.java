@@ -19,11 +19,17 @@ public class SMAActividad extends CoServlet{
 		
 		
 		acciones.put("BuscarMatricula", new AccionBuscarMatriculaActividad());
-		acciones.put("Mostrarhorario", new AccionMostrarHorario());
+		
+		
+		
+		acciones.put("Agregarmatricula", new AccionAgregarMatriulaActividad());
+		
+		acciones.put("Consultarmatricula", new AccionConsultarMatriculaActividad());
 		
 		
 		acciones.put("SeleccionarSocio", new AccionSeleccionarSocio());
 		acciones.put("SeleccionarFamiliar", new AccionSeleccionarFamiliar());
+		
 		
 		
 		
