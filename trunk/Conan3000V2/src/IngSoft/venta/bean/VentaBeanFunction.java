@@ -1,5 +1,6 @@
 package IngSoft.venta.bean;
 
+import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -31,26 +32,19 @@ public class VentaBeanFunction {
 		VentaBeanData ventaData= new VentaBeanData();
 		try{		
 	
-			
-			
-			
+		
+			//System.out.println(request.getParameter("txtCliente"));
 			
 			ventaData.setIdSocio(request.getParameter("txtCliente"));
-			ventaData.setIdEmpleado(request.getParameter("idEmpleado"));
-			ventaData.setFechaVenta(request.getParameter("txtFechaVenta"));
 			
-//			//productoData.setProveedor(request.getParameter("txtProveedor"));
-//			productoData.setDescripcion(request.getParameter("txtDescripcion"));
-//			productoData.setNombre(request.getParameter("txtNombre"));
-//			productoData.setPrecioU(Double.parseDouble(request.getParameter("txtPrecioU")));
-//			productoData.setPresentacion(request.getParameter("txtPresentacion"));
-//			
-//			if (request.getParameter("rButton")!=null){
-//				String estado;
-//				estado=request.getParameter("rButton");
-//				productoData.setEstado(estado);}
+			System.out.println(request.getParameter("txtCliente"));
+			
+			ventaData.setIdEmpleado(request.getParameter("txtVendedor"));
+			//ventaData.setFechaVenta(request.getParameter("txtFechaVenta"));
+			ventaData.setFechaVenta(new Date(DF.parse(request.getParameter("txtFechaVenta")).getTime()));
+			
 		
-         	
+		
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -82,7 +76,7 @@ public class VentaBeanFunction {
 		catch(Exception a)		
 		{sqlsesion.rollback();
 		a.printStackTrace();
-			//throw CoException.set("Error: Nombre de membresia repetido", "SMVMembresia?accion=Agregar&tipo=1");
+			//throw CoException.set("Error: Nombre de Venta repetido", "SMVVentaProductos?accion=Agregar&tipo=1");
 		}
 		
 		finally{
@@ -120,16 +114,16 @@ public class VentaBeanFunction {
 	
 	
 			
-	public ProductoBeanData consultarProducto(String codigo){
-		ProductoBeanData productoData=null;
+	public VentaBeanData consultarVenta(String codigo){
+		VentaBeanData ventaData=null;
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
-			productoData= sqlsesion.selectOne("Data.venta.producto.getPlantillaProducto",codigo);
+			ventaData= sqlsesion.selectOne("Data.venta.ventaproducto.getPlantillaVenta",codigo);
 		}
 		finally{
 			sqlsesion.close();
 		}
-		return productoData;
+		return ventaData;
 	}
 	
 public String consultarProductoMax() throws CoException {
