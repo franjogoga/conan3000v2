@@ -125,7 +125,11 @@ return ((key >= 48 && key <= 57) ||(key >= 97 && key <= 122) ||(key >= 65 && key
 
 function alt_submit(){
 var form= document.frmData;
-if(validaForm()) form.submit();
+    
+// if(validaForm())
+	form.submit();
+    
+    
 }
 
 </script>
@@ -177,7 +181,7 @@ return DF.format(date);
 </div>
 <div class="box-content">
 <form class="form-horizontal" action="<%= response.encodeURL("SMAActividad")%>" name="frmData" method="post">
-<input type="hidden" name="accion" value="AgregarMatricula"></input>
+<input type="hidden" name="accion" value="Agregarmatricula"></input>
 <input type="hidden" name="tipo" value="2"></input>
 <fieldset>
 
@@ -199,6 +203,7 @@ return DF.format(date);
         <div class="controls">
             <input type="text" class="span6 typeahead" id="txtNombre"  data-provide="typeahead"  name="txtNombre" disabled value=" <%=((ResultadoHorariodeactividadBeanData)resultados.get(0)).getNombre()%>">
                 <input type="hidden" name="codigoActividad" value="<%=((ResultadoHorariodeactividadBeanData)resultados.get(0)).getCodigo()%>"></input>
+                 <input type="hidden" name="monto" value="<%=((ResultadoHorariodeactividadBeanData)resultados.get(0)).getMonto()%>"></input>
                 <!--- ------------  -->
                 
                 <!--  	<div class="row-fluid sortable"> -->
@@ -277,7 +282,7 @@ return DF.format(date);
                 
                 
                 
-                <!-- -------- -->
+                <!-- --------    codigoActividad  checkDia codigosocio  codigofamiliar  monto   -->
                 </div><!-- fin controls -->
         
         
@@ -287,7 +292,8 @@ return DF.format(date);
             <label class="control-label" for="typeahead7">Socio(*): </label>
             <div class="controls">
                 <input type="text" class="span6 typeahead" id="nombresocio"  data-provide="typeahead"  name="nombresocio" disabled value="">
-                 <input type="hidden" name="codigosocio" value=""> </input>  
+                 <input type="hidden" name="codigosocio" value=""> </input>
+                    <span class="help-inline" id="errNombresocio">Please correct the error</span>
                  </div>
         </div>
         
@@ -307,7 +313,8 @@ return DF.format(date);
             <label class="control-label" for="typeahead7">Familiar(*): </label>
             <div class="controls">
                 <input type="text" class="span6 typeahead" id="nombrefamiliar"  data-provide="typeahead"  name="nombrefamiliar" disabled value="">
-                <input type="hidden" name="codigofamiliar" value="">  </input>    
+                <input type="hidden" name="codigofamiliar" value="">  </input>
+                    <span class="help-inline" id="errNombrefamiliar">Please correct the error</span>
                 </div>
         </div>
         
@@ -534,8 +541,8 @@ var form=document.frmData;
 var cadena= new Array();
 var i=0;
 var error=false;
-if(!esValido("Nombre Socio",form.nombresocio,"Nombresocio",1,1,50)){cadena[i]="Nombre Socio";i++;}
-if(!esValido("Nombre Familiar",form.txtDescripcion,"Nombrefamiliar",1,0,100)){cadena[i]="Nombre Familiar";i++;}
+//if(!esValido("Nombre Socio",form.nombresocio,"Nombresocio",1,1,50)){cadena[i]="Nombre Socio";i++;}
+//if(!esValido("Nombre Familiar",form.txtDescripcion,"Nombrefamiliar",1,0,50)){cadena[i]="Nombre Familiar";i++;}
 //if(!esValido("Caracter&iacute;sticas",form.txtCaracteristica,"Caracteristica",1,0,100)){cadena[i]="Caracter&iacute;sticas";i++;}
 
 //No tocar
@@ -548,8 +555,8 @@ return true;
 }
 
 function inicializa(){
-document.getElementById("errNombresocio").style.display='none';
-document.getElementById("errNombrefamiliar").style.display='none';
+//document.getElementById("errNombresocio").style.display='none';
+//document.getElementById("errNombrefamiliar").style.display='none';
 //document.getElementById("errCaracteristica").style.display='none';
 }
 
