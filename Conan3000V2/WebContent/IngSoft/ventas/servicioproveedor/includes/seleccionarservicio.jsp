@@ -163,7 +163,7 @@
                      
 		                <td class="center">
 		                <a class="btn btn-success"
-                          					href="javascript:alt_Insertar('<%=((ResultadoServicioBeanData)resultados.get(i)).getCodProveedor()%>','<%= ((ResultadoServicioBeanData)resultados.get(i)).getNombreServicio() %>')">
+                          					href="javascript:alt_Insertar('<%=((ResultadoServicioBeanData)resultados.get(i)).getCodServicio()%>','<%= ((ResultadoServicioBeanData)resultados.get(i)).getNombreServicio() %>')">
                           					 <i class="icon-zoom-in icon-white"></i>Seleccionar </a> 
 		    
                      </td>
