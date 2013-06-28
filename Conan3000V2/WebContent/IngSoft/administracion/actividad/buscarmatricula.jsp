@@ -79,10 +79,11 @@
 	}
 	
 	
-	function alt_matricular(cod){
+	function alt_matricular(cod,hor){
 		var form=document.getElementById("frmAlternativo");
 		form.accion.value="Agregarmatricula";
 		form.codigo.value=cod;
+        form.horario.value=hor;
 		form.submit();
 	}
 	
@@ -323,7 +324,7 @@
                               
                               <td class="center">
                                   <a class="<%=((ResultadoActividadBeanData)resultados.get(i)).getVacantes()>x?"btn btn-primary":"btn btn-small"%>"
-                                      href="javascript:<%=  ((ResultadoActividadBeanData)resultados.get(i)).getVacantes()>x?"alt_matricular":"" %>('<%=((ResultadoActividadBeanData)resultados.get(i)).getCodigo()%>')">
+                                      href="javascript:<%=  ((ResultadoActividadBeanData)resultados.get(i)).getVacantes()>x?"alt_matricular":"" %>('<%=((ResultadoActividadBeanData)resultados.get(i)).getCodigo()%>','<%=((ResultadoActividadBeanData)resultados.get(i)).getHorario()%>')">
 												<i class="icon icon-add icon-white"></i> Matricular
 											</a>
                                   

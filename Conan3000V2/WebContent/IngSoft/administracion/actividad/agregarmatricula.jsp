@@ -23,7 +23,7 @@
 <jsp:useBean id="tipoactividades"  scope="request"class="java.util.Vector"></jsp:useBean>
 
 <jsp:useBean id="resultados" scope="request" class="java.util.Vector"></jsp:useBean>
-
+<jsp:useBean id="temphorario" scope="request" class="java.lang.String"></jsp:useBean>
 
 
 <!-- The styles -->
@@ -244,7 +244,9 @@ return DF.format(date);
                                             
                                             <label class="checkbox inline">
                                                 <input type="checkbox"  id="inlineCheckbox<%=i%>" name="checkDia<%=i%>"
-                                                    value="<%=((ResultadoHorariodeactividadBeanData)resultados.get(i)).getHorario()%>">
+                                                    value="<%=((ResultadoHorariodeactividadBeanData)resultados.get(i)).getHorario()%>"
+                                                    <%= ((ResultadoHorariodeactividadBeanData)resultados.get(i)).getHorario().equalsIgnoreCase(temphorario)?"checked":"disabled" %>
+                                                >
                                                     
                                                     </label>
                                             
