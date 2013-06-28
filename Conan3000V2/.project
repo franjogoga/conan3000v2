@@ -65,6 +65,21 @@
 			<locationURI>JS_ADM_CLUB</locationURI>
 		</link>
 		<link>
+			<name>WebContent/Club/servicio/reserva/css</name>
+			<type>2</type>
+			<locationURI>CSS_ADM_CLUB</locationURI>
+		</link>
+		<link>
+			<name>WebContent/Club/servicio/reserva/img</name>
+			<type>2</type>
+			<locationURI>IMG</locationURI>
+		</link>
+		<link>
+			<name>WebContent/Club/servicio/reserva/js</name>
+			<type>2</type>
+			<locationURI>JS_ADM_CLUB</locationURI>
+		</link>
+		<link>
 			<name>WebContent/Club/servicio/sorteo/css</name>
 			<type>2</type>
 			<locationURI>CSS_ADM_CLUB</locationURI>
