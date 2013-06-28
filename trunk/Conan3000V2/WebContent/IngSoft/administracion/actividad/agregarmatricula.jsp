@@ -24,7 +24,7 @@
 
 <jsp:useBean id="resultados" scope="request" class="java.util.Vector"></jsp:useBean>
 <jsp:useBean id="temphorario" scope="request" class="java.lang.String"></jsp:useBean>
-
+<jsp:useBean id="tempvacantes" scope="request" class="java.lang.String"></jsp:useBean>
 
 <!-- The styles -->
 <link id="bs-css" href="css/bootstrap-cerulean.css" rel="stylesheet">
@@ -204,9 +204,12 @@ return DF.format(date);
             <input type="text" class="span6 typeahead" id="txtNombre"  data-provide="typeahead"  name="txtNombre" disabled value=" <%=((ResultadoHorariodeactividadBeanData)resultados.get(0)).getNombre()%>">
                 <input type="hidden" name="codigoActividad" value="<%=((ResultadoHorariodeactividadBeanData)resultados.get(0)).getCodigo()%>"></input>
                  <input type="hidden" name="monto" value="<%=((ResultadoHorariodeactividadBeanData)resultados.get(0)).getMonto()%>"></input>
+                 <input type="hidden" name="vacantes" value="<%=tempvacantes%>"></input>
                 <!--- ------------  -->
                 
                 <!--  <div class="row-fluid sortable"> -->
+                
+                
                 
                 <div class="control-group">
                     
