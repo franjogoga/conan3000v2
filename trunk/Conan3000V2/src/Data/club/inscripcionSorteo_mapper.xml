@@ -55,6 +55,13 @@ update SORTEO set Flag=1 where IdSorteo=#{codSorteo}
 	where IdSocio=#{idSocio} and IdSorteo=#{idSorteo};
 </select>
 
+<select id="getBungalowxSorteo2" resultType="IngSoft.servicio.bean.BungalowxSorteo">
+	select 
+	*
+	from 
+	BUNGALOWxSORTEO;
+</select>
+
 <select id="getAreaBungalow" parameterType="java.lang.String" resultType="double">
 	select 
 	AreaBungalow
