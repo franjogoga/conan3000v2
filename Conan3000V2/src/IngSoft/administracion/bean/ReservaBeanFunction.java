@@ -135,13 +135,13 @@ public class ReservaBeanFunction {
 		try{		
 	        
 
-			
+			System.out.print("modifciar");
 			System.out.print("codigo ---> "+request.getParameter("codigo"));
 	  		System.out.print("txtCodigoSoc ---> "+request.getParameter("txtCodigoSoc"));		
 	  		System.out.print("txtCodigoInv ---> "+request.getParameter("txtCodigoInv") );
 
 	  		System.out.print("fecha ---> "+ new Date(DF.parse(		request.getParameter("fFecInvitado")+"/0000").getTime()));
-	  		System.out.print("monto ---> "+Double.parseDouble(            request.getParameter("txtMonto")));
+	  		//System.out.print("monto ---> "+Double.parseDouble(            request.getParameter("txtMonto")));
 	  				
 			
 			
@@ -151,7 +151,7 @@ public class ReservaBeanFunction {
 		reservaData.setCodigoinvitado(   	             	request.getParameter("txtCodigoInv") );
 
 		reservaData.setFechaingreso(new Date(DF.parse(		request.getParameter("fFecInvitado")+"/0000").getTime()));
-		reservaData.setMonto(Double.parseDouble(            request.getParameter("txtMonto")));
+	//	reservaData.setMonto(Double.parseDouble(            request.getParameter("txtMonto"))  );
 		reservaData.setEstado(    									request.getParameter("optionsRadios")		);
 			
 	
