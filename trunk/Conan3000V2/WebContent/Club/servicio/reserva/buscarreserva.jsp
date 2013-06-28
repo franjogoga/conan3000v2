@@ -18,7 +18,7 @@
 	
 	<script src="js/ajaxsbmt.js"></script>
 	<!-- The styles -->
-	<link id="bs-css" href="css/bootstrap-cerulean.css" rel="stylesheet">
+	<link id="bs-css" href="css/bootstrap-spacelab.css" rel="stylesheet">
 	<style type="text/css">
 	  body {
 		padding-bottom: 40px;
@@ -64,18 +64,18 @@ var lock4=1;
 var lock5=1;
 var ctipo=2;
 var atipo=3;
-
+var socio='<%=session.getAttribute("idSocio").toString()%>';
 </script>
 <script src="reservas.js"></script>	
 </head>
 
 <body>
-		<jsp:include page="/IngSoft/general/superior.jsp" />
+		<jsp:include page="/Club/generalClub/superior.jsp" />
 		<div class="container-fluid">
 		<div class="row-fluid">
 				
 			<!-- left menu starts -->
-			<jsp:include page="/IngSoft/general/leftmenu.jsp" />
+			<jsp:include page="/Club/generalClub/leftmenu.jsp" />
 						<!-- left menu ends -->
 			<noscript>
 				<div class="alert alert-block span10">
@@ -220,14 +220,26 @@ var atipo=3;
 		<div class="modAgregar">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal">X</button>
-				<h3>Datos de socio</h3>
+				<h3>Confirmaci&oacute;n</h3>
 			</div>
 			<div class="modal-body">
-				<jsp:include page="/IngSoft/servicio/reserva/formularioreservas.jsp" />
+				¿Desea realizar la reserva?
 			</div>
 			<div class="modal-footer">
 				<a href="#" class="btn" data-dismiss="modal">Cancelar</a>
 				<a class="btn btn-primary" onclick="ajax_crearReserva();">Guardar Reservas</a>
+			</div>
+		</div>
+		<div class="modExito" style="display: none;">
+			<div class="modal-header">		
+				<h3>Exito</h3>
+			</div>
+			<div class="modal-body">
+				La reserva se hizo exitosamente
+			</div>
+			<div class="modal-footer">
+				<a href="#" class="btn" data-dismiss="modal">Aceptar</a>
+				
 			</div>
 		</div>
 		<div class="modEliminar" style="display: none;">

@@ -1,5 +1,6 @@
 package Club.servicio.evento;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Vector;
 
@@ -21,22 +22,39 @@ public class AccionConsultarEvento extends CoAccion {
 	@Override
 	public void ejecutar(ServletContext sc, HttpServletRequest request,
 			HttpServletResponse response)  throws CoException{
+		int tipo=Integer.parseInt(request.getParameter("tipo"));		
 		EventoBeanFuncion eventoFuncion= EventoBeanFuncion.getInstance();
-		EventoBeanData eventoData=eventoFuncion.consultarEventoSede(request.getParameter("codigo"));
-		Vector<SedeMiniBeanData> sedeMiniData=eventoFuncion.getSedes();
-		Vector<ConcesionarioMiniBeanData> resultado=eventoFuncion.consultarConcesionariosxSede(eventoData.getIdSede(), eventoData.getFecha());
-		for(int i=0;i<resultado.size();i++){
-			if(resultado.get(i).getCodigo().equals(eventoData.getIdConcesionario())){
-				request.setAttribute("concesionario", resultado.get(i));
-				break;
+		if(tipo==1){
+			
+			EventoBeanData eventoData=null;
+			String codigo=request.getParameter("codigo");
+			eventoData=eventoFuncion.consultarEventoSocio(codigo);			
+			Vector<SedeMiniBeanData> sedeMiniData=eventoFuncion.getSedes();		
+			Vector<ConcesionarioMiniBeanData> resultado=eventoFuncion.consultarConcesionariosxSede(eventoData.getIdSede(), eventoData.getFecha());
+			for(int i=0;i<resultado.size();i++){
+				if(resultado.get(i).getCodigo().equals(eventoData.getIdConcesionario())){
+					request.setAttribute("concesionario", resultado.get(i));
+					break;
+				}
+				
 			}
+			request.setAttribute("sedes",sedeMiniData );
+			request.setAttribute("evento", eventoData);
+			this.direccionar(sc, request, response, "/Club/servicio/evento/consultarevento.jsp");
+			}
+		if(tipo==3){
+			String codigo=request.getParameter("codigo");
+			if(codigo!=null && !codigo.isEmpty()){
+				 eventoFuncion.anularEventoSocio(codigo);
+				
+			}
+			 try {
+					response.getWriter().write( "/Club/servicio/evento/SMCEvento?accion=Buscar&tipo=1");
+				} catch (IOException e) {				
+					e.printStackTrace();
+				}
 			
 		}
-		request.setAttribute("sedes",sedeMiniData );
-		request.setAttribute("evento", eventoData);
-		this.direccionar(sc, request, response, "/Club/servicio/evento/consultarevento.jsp");
-		
-
 	}
 
 }

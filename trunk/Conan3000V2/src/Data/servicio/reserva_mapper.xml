@@ -148,7 +148,6 @@ and CONCAT(rb.IdBungalow,DATE_FORMAT(bf.fecha,'%d/%m/%Y')) in
  <foreach item="item" index="i" collection="list" open="(" separator="," close=")">
  	#{item}
  </foreach>
-
 </select>
 <update id="eliminarReservaBungalow" parameterType="java.util.List">
 update RESERVA_BUNGALOW rb 
@@ -181,5 +180,29 @@ and  rc.IdReservaCancha in
  	#{item}
  </foreach> 
 </update>
+
+<select id="verificarEliminarReservaBungalow" parameterType="java.util.List" resultType="java.lang.String">
+select rb.IdReservaBungalow 
+from RESERVA_BUNGALOW rb 
+where 
+rb.Estado='ACTIVO' 
+and rb.IdSocio like #{idsocio}
+and  rb.IdReservaBungalow in 
+<foreach item="item" index="i" collection="list" open="(" separator="," close=")">
+ 	#{item}
+ </foreach> 
+</select>
+<select id="verificarEliminarReservaCancha" parameterType="hashmap" resultType="java.lang.String">
+select rc.IdReservaCancha
+from RESERVA_CANCHA rc 
+where 
+rc.Estado='ACTIVO' 
+and rc.IdSocio like #{idsocio}
+and  rc.IdReservaCancha in 
+<foreach item="item" index="i" collection="list" open="(" separator="," close=")">
+ 	#{item}
+ </foreach> 
+</select>
+
 
 </mapper>

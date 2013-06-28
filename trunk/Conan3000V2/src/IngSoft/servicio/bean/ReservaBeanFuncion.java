@@ -151,9 +151,9 @@ public class ReservaBeanFuncion {
 				   nextcodigo=this.generaSiguienteCodigo(nextcodigo);				   
 				   map.put("idbungalow", listareservas.get(i).substring(0, 9)); 
 				   map.put("idreservasbungalow", nextcodigo);
-				   area=Double.parseDouble(listareservas.get(i).substring(18));
+				   area=Double.parseDouble(listareservas.get(i).substring(19));
 				   map.put("monto",constantes.getCostoXm2Bungalow()*area);
-				   map.put("fecha",df.parseObject(listareservas.get(i).substring(9,10)));
+				   map.put("fecha",df.parseObject(listareservas.get(i).substring(9,19)));
 				   sqlsesion.insert("Data.servicio.reserva.insertBungalowReserva",map);
 				   sqlsesion.insert("Data.servicio.reserva.insertBungalowReservaFecha",map);
 				   orden.agregarOrdenPago("RESERVABUNGALOW", nextcodigo, "", codSocio, constantes.getCostoXm2Bungalow()*area,new java.sql.Date(new java.util.Date().getTime()), new java.sql.Date(new java.util.Date().getTime()));

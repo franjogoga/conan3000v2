@@ -160,7 +160,10 @@
         <servlet-name>SMVSolicitudServicio</servlet-name>
 	<servlet-class>IngSoft.venta.solicitudservicio.SMVSolicitudServicio</servlet-class>				   
 </servlet>
-
+<servlet id="Servlet_0038">
+        <servlet-name>SMCReserva</servlet-name>
+	<servlet-class>Club.servicio.reserva.SMCReserva</servlet-class>
+</servlet>
 
 
 <servlet-mapping id="ServletMapping_0001">
@@ -317,7 +320,10 @@
         <servlet-name>SMVSolicitudServicio</servlet-name>
 <url-pattern>/IngSoft/ventas/solicitud/SMVSolicitudServicio</url-pattern>
 </servlet-mapping>
-
+<servlet-mapping id="ServletMapping_0038">
+        <servlet-name>SMCReserva</servlet-name>
+<url-pattern>/Club/servicio/reserva/SMCReserva</url-pattern>
+</servlet-mapping>
 <error-page>
 <error-code>404</error-code>
 <location>/IngSoft/general/404.jsp</location>
