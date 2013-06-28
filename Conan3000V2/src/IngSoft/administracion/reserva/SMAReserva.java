@@ -1,5 +1,6 @@
 package IngSoft.administracion.reserva;
 
+
 import IngSoft.general.CoServlet;
 
 public class SMAReserva extends CoServlet{
@@ -12,6 +13,7 @@ public class SMAReserva extends CoServlet{
 		acciones.put("Modificar", new AccionModificarReserva());
 		
 		acciones.put("Agregar", new AccionAgregarReserva()); 
+		acciones.put("Seleccionar", new AccionSeleccionarSo());
    
 	}
 }
