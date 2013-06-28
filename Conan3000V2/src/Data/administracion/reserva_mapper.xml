@@ -46,6 +46,26 @@ AND   inf245g2.PERSONA.Nombres LIKE #{nombre}
 
 </select>
 
+<select id="searchPlantillaSo" parameterType="IngSoft.administracion.bean.CriterioSoBeanData" resultType="IngSoft.administracion.bean.ResultadoSoBeanData">
+
+
+
+SELECT 
+inf245g2.SOCIO.IdSocio AS codigo,
+inf245g2.PERSONA.Nombres AS nombre,
+inf245g2.PERSONA.ApePaterno AS apaterno,
+inf245g2.PERSONA.ApeMaterno AS amaterno
+
+FROM  inf245g2.SOCIO, inf245g2.PERSONA
+
+
+WHERE
+    inf245g2.SOCIO.IdSocio = inf245g2.PERSONA.IdPersona 
+AND   inf245g2.PERSONA.Nombres LIKE #{nombre}
+;
+
+
+</select>
 
 
 
