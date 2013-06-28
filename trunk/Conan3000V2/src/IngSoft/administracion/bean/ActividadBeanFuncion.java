@@ -470,10 +470,9 @@ public class ActividadBeanFuncion {
 			matricula.setCodigofamiliar(codigoFam);
 			matricula.setHorario(horario);
 			
-            if( codigoFam.length()< 1 )
+        
 			sqlsesion.delete("Data.administracion.actividad.deletePLantillaMatriculaActividadSocio",matricula);
-			else
-			sqlsesion.delete("Data.administracion.actividad.deletePLantillaMatriculaActividadFamilia",matricula);
+
 			
 			resultado=true;
 		}
