@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <jsp:include page="/IngSoft/general/header.jsp" />
 
