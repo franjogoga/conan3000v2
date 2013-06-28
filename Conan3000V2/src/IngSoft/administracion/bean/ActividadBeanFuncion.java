@@ -493,7 +493,25 @@ public class ActividadBeanFuncion {
 	
 	
 	
-	
+	public Vector<ResultadoActividadBeanData> getNumeroInscritos() throws CoException {
+		Vector<ResultadoActividadBeanData> acts= null;
+		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+		
+		
+		try{
+			List<ResultadoActividadBeanData> temp=sqlsesion.selectList("Data.administracion.actividad.getNumeroInscritosHorariodeactividad");
+			acts= new Vector<ResultadoActividadBeanData>(temp);
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			throw CoException.set("Error: No se pudo obtener la lista de inscritos", "SMAActividad?accion=Agregar&tipo=1");
+		}
+		finally{
+			sqlsesion.close();
+			
+		}
+		return acts;
+	}
 	
 	
     
