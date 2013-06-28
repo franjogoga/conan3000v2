@@ -87,9 +87,18 @@ public class ActividadBeanFuncion {
             
             
 			matriculaData.setCodigoActividad(	codigoActividad	);
+			
+			if(    codigosocio.length() == 9 )
+			{
 			matriculaData.setCodigosocio(    codigosocio		);
-            
-			matriculaData.setCodigofamiliar(	codigofamiliar	);
+			}
+			else
+			{
+			matriculaData.setCodigosocio(    codigofamiliar		);	
+			}
+			
+			
+			//matriculaData.setCodigofamiliar(	''	);
 			matriculaData.setHorario(    	horario	 );
 			matriculaData.setMonto(    Double.parseDouble(   	monto)	 );
 			
@@ -220,7 +229,7 @@ public class ActividadBeanFuncion {
 		catch(Exception a)
 		{sqlsesion.rollback();
             a.printStackTrace();
-			throw CoException.set("Error en ingreso de datos: No se puede agregar la Matricula ", "SMAActividad?accion=Agregar&tipo=1");
+			throw CoException.set("Error en ingreso de datos: No se puede agregar la Matricula porque se encuentra inscrito", "SMAActividad?accion=Agregar&tipo=1");
 			
 		}
 		
@@ -438,6 +447,53 @@ public class ActividadBeanFuncion {
 		}
 		return matriculados;
 	}
+	
+	
+	
+	public boolean eliminarMatriculaActividad(String codigoAct,String codigoSoc, String codigoFam ,String horario) throws CoException {
+		boolean resultado=false;
+		
+		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+		try{
+			
+			
+			 System.out.print("codigoAct --> "+codigoAct   );
+			 System.out.print("codigoSoc --> "+codigoSoc   );
+			 System.out.print("codigoFam --> "+codigoFam   );
+			 System.out.print("horario 	 --> "+horario   );
+			
+			
+			MatriculaBeanData matricula = new MatriculaBeanData();
+			
+			matricula.setCodigoActividad(codigoAct);
+			matricula.setCodigosocio(codigoSoc);
+			matricula.setCodigofamiliar(codigoFam);
+			matricula.setHorario(horario);
+			
+            if( codigoFam.length()< 1 )
+			sqlsesion.delete("Data.administracion.actividad.deletePLantillaMatriculaActividadSocio",matricula);
+			else
+			sqlsesion.delete("Data.administracion.actividad.deletePLantillaMatriculaActividadFamilia",matricula);
+			
+			resultado=true;
+		}
+		catch(Exception a)
+		{sqlsesion.rollback();
+            a.printStackTrace();
+			throw CoException.set("Error: No se pudo eliminar la Actividad intente de nuevo", "SMAActividad?accion=Agregar&tipo=1");
+			
+		}
+		
+		finally{
+			sqlsesion.commit();
+			sqlsesion.close();
+		}
+        
+		return resultado;
+	}
+	
+	
+	
 	
 	
 	
