@@ -55,7 +55,7 @@ function alt_submit(){
 						   <div class="control-group" id="dvNombreServ">
 						      <label class="control-label" for="typeahead7">Nombre Servicio: </label>
 						      <div class="controls">
-						        <input type="text" class="span6 typeahead" id="txtNombreServ"  data-provide="typeahead"  name="txtNombreServ"  value="<%=servicio.getNombreServicio()%>">
+						        <input type="text" class="span6 typeahead" id="txtNombreServ"  data-provide="typeahead"  name="txtNombreServ"  value="<%=servicio.getNombreServicio()%>"  maxlength="50">
 					              <span class="help-inline" id="errNombreServ">Please correct the error</span>
 					          </div>
 					        </div>
@@ -63,7 +63,7 @@ function alt_submit(){
 						   <div class="control-group" id="dvDescripcion">
 			                <label class="control-label" for="textarea2">Descripci&oacute;n:</label>
 			                <div class="controls">
-			                  <textarea id="txtDescripcion" name="txtDescripcion" style="resize:none" rows="3"  onpaste="return false;"><%=servicio.getDescripcion() %></textarea>
+			                  <textarea id="txtDescripcion" name="txtDescripcion" style="resize:none" rows="3"  onpaste="return false;"  maxlength="100"><%=servicio.getDescripcion() %></textarea>
 		                      <span class="help-inline" id="errDescripcion">Please correct the error</span>
 		                    </div>
 		                   </div>
@@ -78,7 +78,7 @@ function alt_submit(){
 							<div class="control-group" id="dvNombreProv">
 							  <label class="control-label" for="typeahead4">Nombre Proveedor: </label>
 							  <div class="controls">
-								<input type="text" class="span6 typeahead" id="txtNombreProv" name="txtNombreProv"  data-provide="typeahead" data-items="4" value=<%=proveedor.getRazonSocial()%>>
+								<input type="text" class="span6 typeahead" id="txtNombreProv" name="txtNombreProv"  data-provide="typeahead" data-items="4" value=<%=proveedor.getRazonSocial()%>  maxlength="50" onpaste="return false;">
 							    <span class="help-inline" id="errNombreProv">Please correct the error</span>
 							  </div>
 							</div>
