@@ -188,11 +188,11 @@ String fecAnoFin=dfActual.format(c1.getTime()); %>
 
 						<input type="hidden" name="txtCodigoInv" value="<%=((ReservaBeanData)reserva).getCodigoinvitado()%>"></input>
                       
-                        <div class="control-group" id="dvNombreAmbiente">
+                        <div class="control-group" id="dvNombre">
                           <label class="control-label" for="typeahead">Nombre del Invitado(*):</label>
                           <div class="controls">
                             <input type="text" class="span6 typeahead" id="txtNombre"  data-provide="typeahead" name="txtNombre"  disabled value="<%= ((ReservaBeanData)reserva).getNombre()%>" >
-                          	<span class="help-inline" id="errNombreAmbiente">Please correct the error</span>
+                          	<span class="help-inline" id="errNombre">Please correct the error</span>
                           </div>
                         </div>
                         
@@ -220,11 +220,11 @@ String fecAnoFin=dfActual.format(c1.getTime()); %>
 
 
 
-						<div class="control-group" id="dvFecRegistro">
+						<div class="control-group" id="dvFecInvitado">
 				              <label class="control-label" for="typeahead6">Fecha Invitado (*): </label>
 				                <div class="controls">
 				                  <input type="text" class="input-xlarge datepicker" id="fFecInvitado" name="fFecInvitado" value="<%=formatear(new Date(reserva.getFechaingreso().getTime())) %>" readonly="readonly">
-				                  <span class="help-inline" id="errFecRegistro"></span>
+				                  <span class="help-inline" id="errFecInvitado"></span>
 				                </div>
 	                    </div>
 
@@ -455,7 +455,7 @@ function validaForm(){
         var cadena= new Array();
         var i=0;
         var error=false;
-        if(!esValido("Nombre",form.txtNombre,"NombreAmbiente",1,1,50)){cadena[i]="Nombre";i++;}
+        if(!esValido("Nombre",form.txtNombre,"Nombre",1,1,50)){cadena[i]="Nombre";i++;}
        // if(!esValido("Descripci&oacute;n",form.txtDescripcion,"Descripcion",1,0,100)){cadena[i]="Descripci&oacute;n";i++;}
         //if(!esValido("Caracter&iacute;sticas",form.txtCaracteristica,"Caracteristica",1,0,100)){cadena[i]="Caracter&iacute;sticas";i++;}
        
@@ -469,7 +469,7 @@ function validaForm(){
 } 
  
 function inicializa(){
-        document.getElementById("errNombreAmbiente").style.display='none';
+        document.getElementById("errNombre").style.display='none';
         //document.getElementById("errDescripcion").style.display='none'; 
         //document.getElementById("errCaracteristica").style.display='none';    
 } 

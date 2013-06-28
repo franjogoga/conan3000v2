@@ -217,6 +217,7 @@
                          
                           <thead>
                             <tr>
+                              <th>Código Socio</th>
                               <th>Nombre Socio</th>
                               <th>Apellido Pat. Socio</th>
                               <th>Codigo Invitado</th>
@@ -228,9 +229,11 @@
                               <th>Acci&oacute;n</th>
                             </tr>
                           </thead>
+                          
                           <tbody id="resultadoBusqueda">
                           	<% for(int i=0; i<resultados.size(); i++) { %>
                             <tr>
+                              <td class="center"><%=((ResultadoReservaBeanData)resultados.get(i)).getCodigosocio()%></td>
                               <td class="center"><%=((ResultadoReservaBeanData)resultados.get(i)).getNombresocio()%></td>
                               <td class="center"><%=((ResultadoReservaBeanData)resultados.get(i)).getApaternosocio()%></td>
                               <td class="center"><%=((ResultadoReservaBeanData)resultados.get(i)).getCodigoinvitado()%></td>
