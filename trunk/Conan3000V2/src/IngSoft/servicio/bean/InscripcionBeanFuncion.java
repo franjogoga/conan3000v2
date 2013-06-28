@@ -59,7 +59,7 @@ public class InscripcionBeanFuncion {
 				sorteoData.setCodParticipante(codParticipante.substring(0, 3)
 						.concat(temp));
 			} else {
-				sorteoData.setCodParticipante("CP000001");
+				sorteoData.setCodParticipante("CP0000001");
 			}
 
 		} catch (Exception a) {
