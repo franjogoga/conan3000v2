@@ -72,6 +72,7 @@ public class SorteoBeanFuncion {
 		BS.setAreaBungalow((double)sqlsesion.selectOne("Data.club.inscripcionSorteo.getAreaBungalow",BS.getIdBungalow()));
 		BS.setMontoBungalow(costoM2*BS.getAreaBungalow());
 		sqlsesion.update("Data.club.inscripcionSorteo.setCostoBungalow",BS);
+		sqlsesion.close();
 		return BS;
 	}
 	
