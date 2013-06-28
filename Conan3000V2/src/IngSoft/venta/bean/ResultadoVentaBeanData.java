@@ -3,7 +3,7 @@ package IngSoft.venta.bean;
 import java.io.Serializable;
 import java.util.Date;
 
-public class VentaBeanData implements Serializable{
+public class ResultadoVentaBeanData implements Serializable{
 	
 	private String idVenta;
 	private String idSocio; 
