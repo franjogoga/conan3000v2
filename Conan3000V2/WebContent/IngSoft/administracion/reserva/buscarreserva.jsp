@@ -233,9 +233,31 @@
                           <tbody id="resultadoBusqueda">
                           	<% for(int i=0; i<resultados.size(); i++) { %>
                             <tr>
-                              <td class="center"><%=((ResultadoReservaBeanData)resultados.get(i)).getCodigosocio()%></td>
-                              <td class="center"><%=((ResultadoReservaBeanData)resultados.get(i)).getNombresocio()%></td>
-                              <td class="center"><%=((ResultadoReservaBeanData)resultados.get(i)).getApaternosocio()%></td>
+                            	<td class="center">
+                          
+                              
+                             	<%=  ((ResultadoReservaBeanData)resultados.get(i)).getCodigo()!= null?((ResultadoReservaBeanData)resultados.get(i)).getCodigosocio():"Sin invitacion registrada"    %> 
+                              
+                                                 
+                              
+                              </td>
+                              <td class="center">
+                          
+                              
+                             	<%=  ((ResultadoReservaBeanData)resultados.get(i)).getCodigo()!= null?((ResultadoReservaBeanData)resultados.get(i)).getNombresocio():" "    %> 
+                              
+                                                 
+                              
+                              </td>
+                              <td class="center">
+                          
+                              
+                             	<%=  ((ResultadoReservaBeanData)resultados.get(i)).getCodigo()!= null?((ResultadoReservaBeanData)resultados.get(i)).getApaternosocio():" "    %> 
+                              
+                                                 
+                              
+                              </td>
+                              
                               <td class="center"><%=((ResultadoReservaBeanData)resultados.get(i)).getCodigoinvitado()%></td>
                               <td class="center"><%=((ResultadoReservaBeanData)resultados.get(i)).getNombre()%></td>
                               <td class="center"><%=((ResultadoReservaBeanData)resultados.get(i)).getApaterno()%></td>
