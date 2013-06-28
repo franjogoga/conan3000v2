@@ -73,7 +73,7 @@
 		              <div class="control-group" id="dvRazonSocial">
 		                <label class="control-label" for="typeahead7">Raz&oacute;n Social: </label>
 		                <div class="controls">
-		                  <input type="text" class="span6 typeahead" id="txtRazonSocial"  name="txtRazonSocial" data-provide="typeahead" value=<%=proveedor.getRazonSocial() %> onKeyUp="limita(this,100);" onKeyDown="limita(this,100);" onpaste="return false;"    >
+		                  <input type="text" class="span6 typeahead" id="txtRazonSocial"  name="txtRazonSocial" data-provide="typeahead" value=<%=proveedor.getRazonSocial() %> maxlength="100" onpaste="return false;"    >
 						  <span class="help-inline" id="errRazonSocial">Please correct the error</span>
 		                </div>
 	                  </div>
@@ -81,7 +81,7 @@
 		                <div class="control-group" id="dvRuc">
 		                  <label class="control-label" for="typeahead6">RUC: </label>
 		                  <div class="controls">
-		                    <input type="text" class="span6 typeahead" id="txtRuc" name="txtRuc"  data-provide="typeahead" data-items="4" value=<%=proveedor.getRuc() %> onKeyUp="limita(this,11);" onKeyDown="limita(this,11);" onpaste="return false;">
+		                    <input type="text" class="span6 typeahead" id="txtRuc" name="txtRuc"  data-provide="typeahead" data-items="4" value=<%=proveedor.getRuc() %> maxlength="11" onpaste="return false;">
 							<span class="help-inline" id="errRuc">Please correct the error</span>
 		                  </div>
 		                 </div>
@@ -89,7 +89,7 @@
 		                <div class="control-group" id="dvDireccion">
 		                  <label class="control-label" for="typeahead4">Direcci&oacute;n: </label>
 		                  <div class="controls">
-		                    <input type="text" class="span6 typeahead" id="txtDireccion" name="txtDireccion"  data-provide="typeahead" data-items="4"  value=<%=proveedor.getDireccion() %> onKeyUp="limita(this,100);" onKeyDown="limita(this,100);" onpaste="return false;">
+		                    <input type="text" class="span6 typeahead" id="txtDireccion" name="txtDireccion"  data-provide="typeahead" data-items="4"  value=<%=proveedor.getDireccion() %> maxlength="100" onpaste="return false;">
 							<span class="help-inline" id="errDireccion">Please correct the error</span>
 	                      </div>
 	                    </div>
@@ -97,7 +97,7 @@
 		                <div class="control-group" id="dvTelefono">
 		                  <label class="control-label" for="typeahead8">Tel&eacute;fono / Celular: </label>
 		                  <div class="controls">
-		                    <input type="text" class="span6 typeahead" id="txtTelefono" name="txtTelefono" data-provide="typeahead" data-items="4" value=<%=proveedor.getTelefono() %> onKeyUp="limita(this,8);" onKeyDown="limita(this,8);" onpaste="return false;">
+		                    <input type="text" class="span6 typeahead" id="txtTelefono" name="txtTelefono" data-provide="typeahead" data-items="4" value=<%=proveedor.getTelefono() %> maxlength="8" onpaste="return false;">
 							<span class="help-inline" id="errTelefono">Please correct the error</span>
 	                      </div>
 	                    </div>
@@ -105,7 +105,7 @@
 		                <div class="control-group" id="dvCorreoE">
 		                  <label class="control-label" for="typeahead9">Correo electr&oacute;nico: </label>
 		                  <div class="controls">
-		                    <input type="text" class="span6 typeahead" id="txtCorreo" name="txtCorreo"  data-provide="typeahead" data-items="4" value=<%=proveedor.getCorreo() %> onKeyUp="limita(this,50);" onKeyDown="limita(this,50);" onpaste="return false;">
+		                    <input type="text" class="span6 typeahead" id="txtCorreo" name="txtCorreo"  data-provide="typeahead" data-items="4" value=<%=proveedor.getCorreo() %> maxlength="50" onpaste="return false;">
 							<span class="help-inline" id="errCorreoE">Please correct the error</span>
 	                      </div>
 	                    </div>
@@ -113,7 +113,7 @@
 		                <div class="control-group" id="dvNombre">
 		                  <label class="control-label" for="typeahead10">Nombre Contacto: </label>
 		                  <div class="controls">
-		                    <input type="text" class="span6 typeahead" id="txtNombre"  name="txtNombre" data-provide="typeahead" data-items="4" value=<%=proveedor.getNomContacto() %> onKeyUp="limita(this,50);" onKeyDown="limita(this,50);" onpaste="return false;">
+		                    <input type="text" class="span6 typeahead" id="txtNombre"  name="txtNombre" data-provide="typeahead" data-items="4" value=<%=proveedor.getNomContacto() %> maxlength="50" onpaste="return false;">
 							<span class="help-inline" id="errNombre">Please correct the error</span>
 		                  </div>
 	                    </div>
@@ -121,7 +121,7 @@
 	                      <div class="control-group" id="dvApellidoP">
 		                  <label class="control-label" for="typeahead11">Apellido Paterno: </label>
 		                  <div class="controls">
-		                    <input type="text" class="span6 typeahead" id="txtApPaterno"  name="txtApPaterno" data-provide="typeahead" data-items="4" value=<%=proveedor.getApPaterno() %> onKeyUp="limita(this,50);" onKeyDown="limita(this,50);" onpaste="return false;">
+		                    <input type="text" class="span6 typeahead" id="txtApPaterno"  name="txtApPaterno" data-provide="typeahead" data-items="4" value=<%=proveedor.getApPaterno() %> maxlength="50" onpaste="return false;">
 							<span class="help-inline" id="errApellidoP">Please correct the error</span>
 		                  </div>
 	                    </div>
@@ -129,7 +129,7 @@
 	                      <div class="control-group" id="dvApellidoM">
 		                  <label class="control-label" for="typeahead12">Apellido Materno: </label>
 		                  <div class="controls">
-		                    <input type="text" class="span6 typeahead" id="txtApMaterno" name="txtApMaterno"  data-provide="typeahead" data-items="4" value=<%=proveedor.getApMaterno() %> onKeyUp="limita(this,50);" onKeyDown="limita(this,50);" onpaste="return false;">
+		                    <input type="text" class="span6 typeahead" id="txtApMaterno" name="txtApMaterno"  data-provide="typeahead" data-items="4" value=<%=proveedor.getApMaterno() %> maxlength="50" onpaste="return false;">
 							<span class="help-inline" id="errApellidoM">Please correct the error</span>
 		                  </div>
 	                    </div>
@@ -155,7 +155,7 @@
 		                <div class="control-group" id="dvNumDoc">
 		                  <label class="control-label" for="typeahead14">Numero Documento: </label>
 		                  <div class="controls">
-		                    <input type="text" class="span6 typeahead" id="txtNumDoc" name="txtNumDoc" data-provide="typeahead" data-items="4" value=<%=proveedor.getNumDoc() %> onKeyUp="limita(this,9);" onKeyDown="limita(this,9);" onpaste="return false;">
+		                    <input type="text" class="span6 typeahead" id="txtNumDoc" name="txtNumDoc" data-provide="typeahead" data-items="4" value=<%=proveedor.getNumDoc() %> maxlength="9" onpaste="return false;">
 							<span class="help-inline" id="errNumDoc">Please correct the error</span>
 	                      </div>
 	                    </div>
