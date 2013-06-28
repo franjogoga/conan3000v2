@@ -84,6 +84,17 @@ FROM inf245g2.ACTIVIDAD_SOCIO
 GROUP BY ACTIVIDAD_SOCIO.Horario
 </select>
 
+<select id="getNumeroInscritosHorariodeactividadone" parameterType="IngSoft.administracion.bean.MatriculaBeanData" resultType="java.lang.String">
+SELECT 
+
+COUNT(*)
+FROM inf245g2.ACTIVIDAD_SOCIO
+WHERE
+inf245g2.ACTIVIDAD_SOCIO.IdActividad =#{codigoActividad}
+AND inf245g2.ACTIVIDAD_SOCIO.Horario=#{horario}
+
+</select>
+
 
 <select id="getPLantillaActividad" parameterType="java.lang.String"  resultType="IngSoft.administracion.bean.ActividadBeanData">
 
