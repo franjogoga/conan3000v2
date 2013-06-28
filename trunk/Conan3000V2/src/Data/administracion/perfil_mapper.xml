@@ -50,5 +50,11 @@
 		values (#{codigoPerfil}, #{codigoCaso}, #{codigoAccion})
 	</insert>
 
+	<select id="getAccionxcasoxperfil" parameterType="java.lang.String" resultType="IngSoft.administracion.bean.CasosBeanData">
+		select ACCIONxCASO_USOxPERFIL.IdCasoUso as codigoCaso, CASO_USO.Nombre as nombreCaso, ACCIONxCASO_USOxPERFIL.IdAccion as codigoAccion, ACCION.Nombre as nombreAccion
+		from ACCION, CASO_USO, ACCIONxCASO_USOxPERFIL 
+		where ACCIONxCASO_USOxPERFIL.IdPerfil = #{codigoPerfil} and ACCION.IdAccion = ACCIONxCASO_USOxPERFIL.IdAccion 
+			and CASO_USO.IdCasoUso = ACCIONxCASO_USOxPERFIL.IdCasoUso;	
+	</select>
 	
 </mapper>
