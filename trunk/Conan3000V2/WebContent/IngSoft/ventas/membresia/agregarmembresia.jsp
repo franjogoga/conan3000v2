@@ -68,6 +68,7 @@ function validaForm(){
 	*/
 	
 	
+	
 	var form=document.frmMembresia;
 
 	var cadena= new Array();
@@ -84,7 +85,16 @@ function validaForm(){
 		//valida si es float o entero
 		if(!esValido("Costo",form.txtCosto,"Costo",5,1,1)){cadena[i]="Costo";i++;}
 	}
-	if(!esValido("Estado",form.rButton,"Estado",3,1,1)){cadena[i]="Estado";i++;}
+	
+	if(form.cmbPeriodo.value!="Mensual"){
+		if(!esValido("Descuento",form.txtDescuento,"Descuento",1,1,50)){
+			cadena[i]="Descuento";i++;
+		}else{
+			//valida si es float o entero
+			if(!esValido("Descuento",form.txtDescuento,"Descuento",5,1,1)){cadena[i]="Descuento";i++;}
+		}
+	}
+	
 	
 	
 	//No tocar
@@ -103,7 +113,7 @@ function inicializa(){
 /*Esto se debe llenar siempre deacuerdo a las etiuquetas <span> del formulario, esto sirve para ocultar inicialmente los avisos
 Solo poner el id de los <span> segun corresponda
 */
-	document.getElementById("errEstado").style.display='none';
+	document.getElementById("errDescuento").style.display='none';
 	document.getElementById("errFechaInicio").style.display='none';
 	document.getElementById("errFechaFin").style.display='none';
 	document.getElementById("errSocio").style.display='none';

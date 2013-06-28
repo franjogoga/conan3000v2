@@ -20,6 +20,7 @@ public class MembresiaBeanData implements Serializable {
 	private Date fechaCreacion;
 	private Date fechaEmision;
 	private Date fechaVencimiento;
+	private Date fechaActual;
 	private String idDetalleCuota;
 	private Integer cantCuota;
 	private String EstadoDetalle;
@@ -36,6 +37,14 @@ public class MembresiaBeanData implements Serializable {
 	
 	
 	
+	public Date getFechaActual() {
+		return fechaActual;
+	}
+
+	public void setFechaActual(Date fechaActual) {
+		this.fechaActual = fechaActual;
+	}
+
 	public Integer getMesIni() {
 		return mesIni;
 	}

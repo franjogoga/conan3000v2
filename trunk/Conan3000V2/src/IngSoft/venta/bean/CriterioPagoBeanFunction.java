@@ -78,4 +78,33 @@ public class CriterioPagoBeanFunction {
 		return resultadosV;
 		
 	}
+	
+	
+	public Vector<ResultadoSocioBeanData> buscarSocioMembresia(CriterioSocioBeanData criterioSocioData){		
+		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+		Vector<ResultadoSocioBeanData> resultadosV=null;
+		try{		
+		List<ResultadoSocioBeanData> resultados=sqlsesion.selectList("searchSocioMembresiaPago",criterioSocioData);
+						
+		resultadosV= new Vector<>(resultados);
+		}
+		finally{
+		sqlsesion.close();}
+		return resultadosV;
+		
+	}
+	
+	public Vector<ResultadoSocioBeanData> buscarSocioNoMembresia(CriterioSocioBeanData criterioSocioData){		
+		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+		Vector<ResultadoSocioBeanData> resultadosV=null;
+		try{		
+		List<ResultadoSocioBeanData> resultados=sqlsesion.selectList("searchSocioNoMembresia",criterioSocioData);
+						
+		resultadosV= new Vector<>(resultados);
+		}
+		finally{
+		sqlsesion.close();}
+		return resultadosV;
+		
+	}
 }

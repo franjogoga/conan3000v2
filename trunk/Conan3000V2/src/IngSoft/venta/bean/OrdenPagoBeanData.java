@@ -37,12 +37,30 @@ public class OrdenPagoBeanData implements Serializable {
 	private String idSuspensionFalta;
 	private String idSolicitudProducto;
 	private String idSolicitudServicio;
+	private Integer cuota;
+	private String descripcionCuota;
+	private String periodo;
 	
 	
 	
-	
-	
-	
+	public String getPeriodo() {
+		return periodo;
+	}
+	public void setPeriodo(String periodo) {
+		this.periodo = periodo;
+	}
+	public String getDescripcionCuota() {
+		return descripcionCuota;
+	}
+	public void setDescripcionCuota(String descripcionCuota) {
+		this.descripcionCuota = descripcionCuota;
+	}
+	public Integer getCuota() {
+		return cuota;
+	}
+	public void setCuota(Integer cuota) {
+		this.cuota = cuota;
+	}
 	public String getIdIngreso() {
 		return idIngreso;
 	}

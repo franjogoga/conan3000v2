@@ -36,17 +36,17 @@ public class CriterioOrdenPagoBeanFunction {
 			if(criterioOrdenPagoData.getConcepto().equals("ALL"))
 				criterioOrdenPagoData.setConcepto(request.getParameter(null));
 			
-			if(request.getParameter("fFechaVencimientoIni")!=null && request.getParameter("fFechaVencimientoFin")!=null){
-			criterioOrdenPagoData.setFechaVencimientoIni(new Date(DF.parse(request.getParameter("fFechaVencimientoIni")).getTime()));
-			criterioOrdenPagoData.setFechaVencimientoFin(new Date(DF.parse(request.getParameter("fFechaVencimientoFin")).getTime()));
+			if(request.getParameter("fFechaEmisionIni")!=null && request.getParameter("fFechaEmisionFin")!=null){
+			criterioOrdenPagoData.setFechaEmisionIni(new Date(DF.parse(request.getParameter("fFechaEmisionIni")).getTime()));
+			criterioOrdenPagoData.setFechaEmisionFin(new Date(DF.parse(request.getParameter("fFechaEmisionFin")).getTime()));
 			}else{
-				criterioOrdenPagoData.setFechaVencimientoIni(null);
-				criterioOrdenPagoData.setFechaVencimientoFin(null);
+				criterioOrdenPagoData.setFechaEmisionIni(null);
+				criterioOrdenPagoData.setFechaEmisionFin(null);
 			}
 			
-			if(request.getParameter("fFechaOrdenPagoIni")!=null && request.getParameter("fFechaOrdenPagoFin")!=null){
-				criterioOrdenPagoData.setFechaPagoIni(new Date(DF.parse(request.getParameter("fFechaOrdenPagoIni")).getTime()));
-				criterioOrdenPagoData.setFechaPagoFin(new Date(DF.parse(request.getParameter("fFechaOrdenPagoFin")).getTime()));
+			if(request.getParameter("fFechaPagoIni")!=null && request.getParameter("fFechaPagoFin")!=null){
+				criterioOrdenPagoData.setFechaPagoIni(new Date(DF.parse(request.getParameter("fFechaPagoIni")).getTime()));
+				criterioOrdenPagoData.setFechaPagoFin(new Date(DF.parse(request.getParameter("fFechaPagoFin")).getTime()));
 				}else{
 					criterioOrdenPagoData.setFechaPagoIni(null);
 					criterioOrdenPagoData.setFechaPagoFin(null);
