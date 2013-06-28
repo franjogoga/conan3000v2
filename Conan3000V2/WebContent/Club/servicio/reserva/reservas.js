@@ -62,7 +62,7 @@ function ajax_submit(tipo){
 	lock1=0;
 	$.ajax({
 		  type: "POST",
-		  url: "/Conan3000V2/IngSoft/servicio/reserva/SMSReserva",
+		  url: "/Conan3000V2/Club/servicio/reserva/SMCReserva",
 		  data: "accion=Buscar"+"&tipo=" + tipo + "&fecIni=" + $(fecIni).val()+"&cmbServicios="+$('#cmbServicios').val()+"&cmbSedes="+$('#cmbSedes').val()
 		  +"&cmbTipoCancha="+$('#cmbTipoCancha').val()+"&pendientes="+pendientes+"&cancelados="+cancelados,
 		  dataType: "html",
@@ -103,7 +103,7 @@ function ajax_search(){
 	lock2=0;
 	$.ajax({
 		  type: "POST",
-		  url: "/Conan3000V2/IngSoft/servicio/reserva/SMSReserva",
+		  url: "/Conan3000V2/Club/servicio/reserva/SMCReserva",
 		  data: "accion=Buscar"+"&tipo=2" +"&cmbServicios="+$('#cmbServicios').val()+"&cmbSedes="+$('#cmbSedes').val()+"&cmbTipoCancha="+$('#cmbTipoCancha').val()
 		  +"&fFechaIni="+$('#fFechaIni').val()+"&txtIdSocio="+$('#txtIdSocioAlt').val(),
 		  dataType: "html",
@@ -141,8 +141,9 @@ function cambiaModo(numero) {
 		temp=$('#titulo').html();
 		temp=temp.replace('AGREGAR','ELIMINAR');
 		temp=temp.replace('BUSCAR','ELIMINAR');
-		$('#txtDocSocio').prop('disabled', false);
-		$('#txtNomSocio').prop('disabled', false);
+		$('#txtDocSocio').prop('disabled', true);
+		$('#txtNomSocio').prop('disabled', true)
+		$('#txtIdSocioAlt').val(socio);
 		$('#titulo').html(temp);
 		$('.elim').css('display','inline');
 		$('.crear').css('display','none');
@@ -222,7 +223,7 @@ function ajax_confirmaSocio(origen,salida,img,idelem){
 	if(origen.val().length >0){
 	$.ajax({
 		  type: "POST",
-		  url: "/Conan3000V2/IngSoft/servicio/reserva/SMSReserva",
+		  url: "/Conan3000V2/Club/servicio/reserva/SMCReserva",
 		  data: "accion=Buscar"+"&tipo=5" +"&txtDNISocio="+origen.val(),
 		  dataType: "text",	
 		   beforeSend: function ( xhr ) {
@@ -256,25 +257,32 @@ function ajax_confirmaSocio(origen,salida,img,idelem){
 function ajax_crearReserva(){
 //alert("accion=Buscar"+"&tipo=" + tipo + "&fecIni=" + $(fecIni).val()+"&cmbServicios"+$('#cmbServicios').val());
 if(lock4==1){
-	if($('#txtIdSocio').val().length >0){
+	if($('#txtIdSocio').val().length >=0){
 	lock4=0;
 	$.ajax({
 		  type: "POST",
-		  url: "/Conan3000V2/IngSoft/servicio/reserva/SMSReserva",
+		  url: "/Conan3000V2/Club/servicio/reserva/SMCReserva",
 		  data: "accion=Buscar"+"&tipo=6" +"&cmbServicios="+$('#cmbServicios').val()+"&cmbSedes="+$('#cmbSedes').val()+"&cmbTipoCancha="+$('#cmbTipoCancha').val()
 		  +"&pendientes="+pendientes+"&cancelados="+cancelados,
 		  dataType: "text",
 		  success: function(msg){
 			$.ajax({
 		  type: "POST",
-		  url: "/Conan3000V2/IngSoft/servicio/reserva/SMSReserva",
+		  url: "/Conan3000V2/Club/servicio/reserva/SMCReserva",
 		  data: "accion=Crear"+"&tipo="+ctipo +"&txtIdSocio="+$('#txtIdSocio').val(),
 		  dataType: "text",		  
 		  success: function(msg){
 		  	lock4=1;
 		  			  			  
 		  	$("#resultadoBusqueda").html("");
-			alert("Operacion realizada sin problemas");},
+		  	$('.modAgregar').css('display','none');
+		  	 $('.modExito').css('display','inline');       		 
+		  	 setTimeout(function(){
+       $(".close").trigger("click");
+       $('.modExito').css('display','none');
+       $('.modAgregar').css('display','inline');
+       }, 2000);		  
+			},
 		  error: function(objeto, quepaso, otroobj){
 		  	lock4=1;
 		  	alert("ERROR!! No se pudo completar la operacion intente de nuevo");
@@ -298,20 +306,20 @@ function ajax_elim(){
 		lock5=0;
 		$.ajax({
 			  type: "POST",
-			  url: "/Conan3000V2/IngSoft/servicio/reserva/SMSReserva",
+			  url: "/Conan3000V2/Club/servicio/reserva/SMCReserva",
 			  data: "accion=Buscar"+"&tipo=6" +"&cmbServicios="+$('#cmbServicios').val()+"&cmbSedes="+$('#cmbSedes').val()+"&cmbTipoCancha="+$('#cmbTipoCancha').val()
 			  +"&pendientes="+pendientes+"&cancelados="+cancelados,
 			  dataType: "text",
 			  success: function(msg){
 				$.ajax({
 			  type: "POST",
-			  url: "/Conan3000V2/IngSoft/servicio/reserva/SMSReserva",
+			  url: "/Conan3000V2/Club/servicio/reserva/SMCReserva",
 			  data: "accion=Eliminar"+"&tipo="+ctipo +"&txtIdSocio="+$('#txtIdSocio').val(),
 			  dataType: "text",		  
 			  success: function(msg){
 			  	lock5=1;
 			  	$("#resultadoBusqueda").html("");
-				alert("Operacion realizada sin problemas");},
+	},
 			  error: function(objeto, quepaso, otroobj){
 			  	lock5=1;
 			  	alert("ERROR!! No se pudo completar la operacion intente de nuevo");
@@ -333,7 +341,7 @@ function ajax_elim(){
 function ajax_reset(){
 	$.ajax({
 		  type: "POST",
-		  url: "/Conan3000V2/IngSoft/servicio/reserva/SMSReserva",
+		  url: "/Conan3000V2/Club/servicio/reserva/SMCReserva",
 		  data: "accion=Buscar"+"&tipo=8",
 		  dataType: "text",
 		  success: function(msg){			  
