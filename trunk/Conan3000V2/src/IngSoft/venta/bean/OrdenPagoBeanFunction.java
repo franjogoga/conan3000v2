@@ -277,23 +277,7 @@ public boolean agregarCuotaExtra(OrdenPagoBeanData ordenPagoData) throws CoExcep
 		else ordenPagoData.setIdConcepto("OPG000001");
 		
 		
-		String codigoOtros= (String)sqlsesion.selectOne("Data.venta.pago.getNextCodigoOtroIngreso");
-		if(codigoOtros!=null){
-		int cod2= Integer.parseInt(codigoOtros.substring(3))+1;
-		String defecto2= "000000";
-		String temp2= defecto2.substring(0, defecto2.length()-String.valueOf(cod2).length()).concat(String.valueOf(cod2));
-		
-		ordenPagoData.setIdOtroIngreso(codigoOtros.substring(0,3).concat(temp2));}
-		else ordenPagoData.setIdOtroIngreso("OIN000001");
-		
-		String codigo= (String)sqlsesion.selectOne("Data.venta.pago.getNextCodigo2");
-		if(codigo!=null){
-		int cod= Integer.parseInt(codigo.substring(3))+1;
-		String defecto= "000000";
-		String temp= defecto.substring(0, defecto.length()-String.valueOf(cod).length()).concat(String.valueOf(cod));
-		
-		ordenPagoData.setIdIngreso(codigo.substring(0,3).concat(temp));}
-		else ordenPagoData.setIdIngreso("ING000001");
+	
 		//insertPago esta en pago mapper
 		Integer periodos;
 		
@@ -309,7 +293,17 @@ public boolean agregarCuotaExtra(OrdenPagoBeanData ordenPagoData) throws CoExcep
 		if(ordenPagoData.getPeriodo().equals("Semestral")) mes=6;
 		if(ordenPagoData.getPeriodo().equals("Anual")) mes=12;
 		
-		for(int i=0;i<3;i++){
+		for(int i=0;i<ordenPagoData.getCuota();i++){
+			
+			String codigoOtros= (String)sqlsesion.selectOne("Data.venta.pago.getNextCodigoOtroIngreso");
+			if(codigoOtros!=null){
+			int cod2= Integer.parseInt(codigoOtros.substring(3))+1;
+			String defecto2= "000000";
+			String temp2= defecto2.substring(0, defecto2.length()-String.valueOf(cod2).length()).concat(String.valueOf(cod2));
+			
+			ordenPagoData.setIdOtroIngreso(codigoOtros.substring(0,3).concat(temp2));}
+			else ordenPagoData.setIdOtroIngreso("OIN000001");
+			
 			if(ordenPagoData.getCuota()>0 && estadoPA==0){
 				c.set(c.get(Calendar.YEAR), c.get(Calendar.MONTH),c.get(Calendar.DAY_OF_YEAR));
 				estadoPA=1;
@@ -320,7 +314,6 @@ public boolean agregarCuotaExtra(OrdenPagoBeanData ordenPagoData) throws CoExcep
 				}
 			
 			ordenPagoData.setFechaVencimiento(c.getTime());
-			
 		sqlsesion.insert("insertOrdenPagoOtrosIngresos",ordenPagoData);
 		}
 		
