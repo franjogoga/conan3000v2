@@ -46,6 +46,45 @@ ORDER BY 1 ASC
 </select>
 
 
+<select id="searchPlantillaMatriculaActividadHorario" parameterType="IngSoft.administracion.bean.CriterioActividadBeanData" resultType="IngSoft.administracion.bean.ResultadoActividadBeanData">
+
+
+
+SELECT 
+inf245g2.ACTIVIDADxDIA_SEMANA.IdActividad AS codigo ,
+inf245g2.ACTIVIDAD.nombre as nombre,
+inf245g2.ACTIVIDAD.Vacante as vacantes,
+inf245g2.ACTIVIDAD.Inscritos as inscritos,
+inf245g2.TIPO_ACTIVIDAD.nombre as tipoactividad,
+inf245g2.ACTIVIDAD.estado as estado,
+
+inf245g2.ACTIVIDADxDIA_SEMANA.Estado as estadoHorario,
+inf245g2.ACTIVIDADxDIA_SEMANA.Horario  as horario
+FROM inf245g2.ACTIVIDADxDIA_SEMANA  ,inf245g2.ACTIVIDAD , inf245g2.TIPO_ACTIVIDAD 
+WHERE
+
+inf245g2.ACTIVIDAD.IdTipoActividad = inf245g2.TIPO_ACTIVIDAD.IdTipoActividad
+AND inf245g2.ACTIVIDADxDIA_SEMANA.IdActividad  = inf245g2.ACTIVIDAD.IdActividad
+
+AND inf245g2.ACTIVIDAD.nombre  like  #{nombre}
+
+group by inf245g2.ACTIVIDADxDIA_SEMANA.Horario
+
+;
+
+
+</select>
+
+<select id="getNumeroInscritosHorariodeactividad"  resultType="IngSoft.administracion.bean.ResultadoActividadBeanData">
+SELECT 
+inf245g2.ACTIVIDAD_SOCIO.IdActividad AS codigo ,
+inf245g2.ACTIVIDAD_SOCIO.Horario  as horario,
+COUNT( ACTIVIDAD_SOCIO.Horario) as inscritos
+FROM inf245g2.ACTIVIDAD_SOCIO
+GROUP BY ACTIVIDAD_SOCIO.Horario
+</select>
+
+
 <select id="getPLantillaActividad" parameterType="java.lang.String"  resultType="IngSoft.administracion.bean.ActividadBeanData">
 
 
