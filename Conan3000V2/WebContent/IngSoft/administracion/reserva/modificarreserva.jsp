@@ -180,7 +180,7 @@ String fecAnoFin=dfActual.format(c1.getTime()); %>
                   <div class="box-content">
                     <form class="form-horizontal" action="<%= response.encodeURL("SMAReserva")%>" name="frmData" method="post">
                     <input type="hidden" name="accion" value="Modificar"></input>
-                   <input type="hidden" name="codigo" value="<%= reserva.getCodigo() %>"></input>
+                   <input type="hidden" name="codigo" value="<%= reserva.getCodigo()%>"></input>
 					<input type="hidden" name="tipo" value="2"></input>
                       <fieldset>
                       
@@ -191,13 +191,12 @@ String fecAnoFin=dfActual.format(c1.getTime()); %>
                         <div class="control-group" id="dvNombre">
                           <label class="control-label" for="typeahead">Nombre del Invitado(*):</label>
                           <div class="controls">
-                            <input type="text" class="span6 typeahead" id="txtNombre"  data-provide="typeahead" name="txtNombre"  disabled value="<%= ((ReservaBeanData)reserva).getNombre()%>" >
+            <input type="text" class="span6 typeahead" id="txtNombre"  data-provide="typeahead" name="txtNombre"  disabled value="<%= ((ReservaBeanData)reserva).getNombre()+' '+((ReservaBeanData)reserva).getApaterno()+' '+((ReservaBeanData)reserva).getAmaterno()%>" >
                           	<span class="help-inline" id="errNombre">Please correct the error</span>
                           </div>
                         </div>
-                        
-
-                            <input type="hidden" class="span6 typeahead" id="txtCodigoSoc"  data-provide="typeahead"  name="<%= ((ReservaBeanData)reserva).getCodigosocio()%>"  >
+                                                  
+        <input type="hidden" class="span6 typeahead" id="txtCodigoSoc"  data-provide="typeahead"  name="txtCodigoSoc" value="<%= ((ReservaBeanData)reserva).getCodigosocio()%>" >
 							
 						    <div class="control-group">
 						      <label class="control-label" for="typeahead7">Nombre del Socio: </label>
