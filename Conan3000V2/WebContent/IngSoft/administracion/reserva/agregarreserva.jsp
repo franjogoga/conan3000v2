@@ -61,6 +61,7 @@
 	function anhadir(cod){
 		var form= document.frmData;
 		form.txtCodigoSoc.value=cod;
+		form.codigosocio.value=cod;
 		$.fn.colorbox.close();
 		
 	} 
@@ -198,7 +199,8 @@ String fecAnoFin=dfActual.format(c1.getTime()); %>
 						    <div class="control-group">
 						      <label class="control-label" for="typeahead7">Codigo Socio(*): </label>
 						      <div class="controls">
-						        <input type="text" class="span6 typeahead" id="txtCodigoSoc"  data-provide="typeahead"  name="txtCodigoSoc" disabled disabled value="" >
+						        <input type="text" class="span6 typeahead" id="txtCodigoSoc"  data-provide="typeahead"  name="txtCodigoSoc"  disabled  >
+					           <input type="hidden" name="codigosocio" value=""></input>
 					          </div>
 					        </div>
 					        
