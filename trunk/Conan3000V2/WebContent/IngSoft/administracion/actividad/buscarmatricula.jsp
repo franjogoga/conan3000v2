@@ -282,14 +282,17 @@
                             </tr>
                           </thead>
                           <tbody id="resultadoBusqueda">
-                          	<% for(int i=0; i<resultados.size(); i++) { %>
+                          	<%
+                                int x=0;
+                                
+                                for(int i=0; i<resultados.size(); i++) { %>
                             <tr>
                               <td class="center"><%=((ResultadoActividadBeanData)resultados.get(i)).getCodigo()%></td>
                               <td class="center"><%=((ResultadoActividadBeanData)resultados.get(i)).getNombre()%></td>
                               <td class="center"><%=((ResultadoActividadBeanData)resultados.get(i)).getTipoactividad()%></td>
                               <td class="center"><%=((ResultadoActividadBeanData)resultados.get(i)).getHorario()%></td>
                               <td class="center"><%=((ResultadoActividadBeanData)resultados.get(i)).getVacantes()%></td>
-                              <td class="center"><%=  busarNumeroIncritos( ((ResultadoActividadBeanData)resultados.get(i)).getCodigo(),
+                              <td class="center"><%=  x=busarNumeroIncritos( ((ResultadoActividadBeanData)resultados.get(i)).getCodigo(),
                                                                            ((ResultadoActividadBeanData)resultados.get(i)).getHorario(),
                                                                            resultados2
                                                                           )      %></td>
@@ -319,9 +322,12 @@
                               
                               
                               <td class="center">
-                              				<a class="btn btn-primary" href="javascript:alt_matricular('<%=((ResultadoActividadBeanData)resultados.get(i)).getCodigo()%>')">
-												<i class="icon icon-add icon-white"></i> Matricular 
+                                  <a class="<%=((ResultadoActividadBeanData)resultados.get(i)).getVacantes()>x?"btn btn-primary":"btn btn-small"%>"
+                                      href="javascript:<%=  ((ResultadoActividadBeanData)resultados.get(i)).getVacantes()>x?"alt_matricular":"" %>('<%=((ResultadoActividadBeanData)resultados.get(i)).getCodigo()%>')">
+												<i class="icon icon-add icon-white"></i> Matricular
 											</a>
+                                  
+                                  
                               				<a class="btn btn-success" href="javascript:alt_consultarmatricula('<%=((ResultadoActividadBeanData)resultados.get(i)).getCodigo()%>',
                                                                                                                '<%=((ResultadoActividadBeanData)resultados.get(i)).getHorario()%>')">
 												<i class="icon-zoom-in icon-white"></i> Ver Matriculados
