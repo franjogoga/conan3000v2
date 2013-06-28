@@ -91,6 +91,5 @@ public class CriterioReservaBeanData implements Serializable{
 	}
 
 	
-	
 
 }
