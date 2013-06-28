@@ -56,7 +56,7 @@ public class AccionAgregarMatriulaActividad extends CoAccion{
 				 System.out.print("codigosocio --> "+ request.getParameter("codigosocio")   );
 				 System.out.print("codigofamiliar --> "+ request.getParameter("codigofamiliar")   );
 				 System.out.print("monto --> "+ request.getParameter("monto")   );
-				 
+				 System.out.print("vacantes --> "+ request.getParameter("vacantes")   );
 				 
 				 
 				 ActividadBeanFuncion actividadFuncion= ActividadBeanFuncion.getInstance(); 
@@ -66,7 +66,8 @@ public class AccionAgregarMatriulaActividad extends CoAccion{
 						 request.getParameter("codigosocio"),
 						 request.getParameter("codigofamiliar"),
 						 request.getParameter("checkDia"+i), 
-						 request.getParameter("monto")
+						 request.getParameter("monto"),
+						 request.getParameter("vacantes")
 						 );
 				 
 				 actividadFuncion.agregarMatriculaActividad(matriculaData);
@@ -88,12 +89,16 @@ public class AccionAgregarMatriulaActividad extends CoAccion{
 			ActividadBeanFuncion actividadFuncion= ActividadBeanFuncion.getInstance(); 
 
 			 System.out.print("-------> codigo --> "+ request.getParameter("codigo")   );
-			
+			 System.out.print("-------> horario --> "+ request.getParameter("horario")   );
+			 System.out.print("-------> vacantes --> "+ request.getParameter("vacantes")   );
+			 
 			Vector<ResultadoHorariodeactividadBeanData> resultados = actividadFuncion.buscarPlantillaHorariosActividad(request.getParameter("codigo"));
 			
 			
            System.out.print(" --> "+ resultados.get(0).getHorario());
 			
+           request.setAttribute("tempvacantes", request.getParameter("vacantes"));
+           request.setAttribute("temphorario", request.getParameter("horario"));
 			request.setAttribute("resultados", resultados);
 			
 			this.direccionar(sc, request, response, "/IngSoft/administracion/actividad/agregarmatricula.jsp");	
