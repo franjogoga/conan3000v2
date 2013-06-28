@@ -47,7 +47,7 @@ function anhadir(cod,name){
 						<div class="control-group">
 			                <label class="control-label" for="typeahead4">Periodo(*):</label>
 			                <div class="controls">
-			                  <input type="text" class="span6 typeahead" id="txtPeriodo"  data-provide="txtPeriodo" data-items="4" >
+			                  <input type="text" class="span6 typeahead" id="txtPeriodo"  name="txtPeriodo" data-provide="typeahead" data-items="4" >
 		                    </div>
 		                  </div>
 		                  
