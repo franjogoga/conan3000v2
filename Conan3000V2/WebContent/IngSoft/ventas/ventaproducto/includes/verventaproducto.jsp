@@ -1,82 +1,79 @@
- <!-- content starts -->
-			  <div>
-			    <ul class="breadcrumb">
-			      <li> <a href="index.jsp">Home</a> <span class="divider">/</span></li>
-		        <li> <a href="buscarventaproducto.jsp">Mantenimiento de Venta de Productos</a> <span class="divider">/</span></li>
-		        <li> Ver Venta de Producto </li>
-		        </ul>
-		      </div>
-			  <div class="row-fluid sortable">
-			    <div class="box span12">
-			      <div class="box-header well" data-original-title>
-			        <h2>VER VENTA DE PRODUCTO</h2>
-		          </div>
-			      <div class="box-content">
-			        <form class="form-horizontal">
-			          <fieldset>
-			            <div class="control-group">
-			              <label class="control-label" for="typeahead8">Vendedor (*): </label>
-			              <div class="controls">
-			                <input type="text" class="span6 typeahead disabled" id="typeahead8"  data-provide="typeahead" data-items="4" value="Juan Perez" disabled="" >
-			            
-		                  </div>
-		                </div>
-                        <div class="control-group">
-			                <label class="control-label" for="typeahead4">Cliente (*): </label>
+	 <script>
+	function alt_submit(){
+		var form= document.frmVer;
+		
+			}	
+
+	 </script>
+
+			<!-- content starts -->
+			
+	<jsp:useBean id="producto" scope="request"class="IngSoft.venta.bean.VentaBeanData"></jsp:useBean>	
+			<div>
+				<ul class="breadcrumb">
+					<li>
+					<a href="#">Home /<a href="buscarproducto.jsp"> Mantenimiento de Venta Productos /</a> Ver Producto</li>
+				</ul>
+			</div>
+			
+			<div class="row-fluid sortable">
+				<div class="box span12">
+					<div class="box-header well" data-original-title>
+						<h2>VER PRODUCTO				  </h2>
+				  </div>
+					<div class="box-content">
+						<form class="form-horizontal"  name="frmVer " action="<%= response.encodeURL("SMVVentaProductos")%>" method="post">
+					
+					<input type="hidden" name="codigo" value="<%=producto.getIdVenta()%>"></input>
+			        <input type="hidden" name="accion" value="Consultar"></input>
+					<input type="hidden" name="tipo" value="2"></input>
+						  <fieldset>
+						    <div class="control-group">
+						      <label class="control-label" for="typeahead7">Codigo Vendedor: </label>
+						      <div class="controls">
+						        <input type="text" value="<%=producto.getIdEmpleado()%>" disabled class="span6 typeahead" id="typeahead7"  data-provide="typeahead" disabled="" > 
+					          </div>
+					        </div>
+						    
+							   <div class="control-group">
+							  
+							  <div class="control-group">
+			                <label class="control-label" for="textarea2">Estado:</label>
 			                <div class="controls">
-			                  <input type="text" class="span6 typeahead disabled" id="typeahead"  data-provide="typeahead" data-items="4" value="Jose Ruiz" disabled="">
-			                </div>
+			                  <textarea name="textarea" disabled class="" id="textarea" style="resize:none"><%=producto.getEstado()%></textarea>
+		                    </div>
 		                  </div>
-			            <div class="control-group">
-			              <label class="control-label" for="typeahead7">Fecha (*): </label>
-			              <div class="controls">
-			                <input type="text" class="input-xlarge datepicker disabled" id="date01" value="07/05/2013" disabled="">
-			              </div>
-		                </div>
-			            <div class="control-group">
-			              <label class="control-label" for="typeahead2">Producto (*): </label>
-			              <div class="controls">
-			               <select id="selectError1" multiple data-rel="chosen" disabled="">
-									<option>Producto A (1)</option>
-									<option selected>Producto B (2)</option>
-									<option>Producto C (3)</option>
-									<option>Producto D (2)</option>
-									<option>Producto E (1)</option>
-								  </select>
+						      
+						      <div class="control-group">
 
-		                  </div>
-		                </div>
-                        
+							    <label class="control-label" for="typeahead14">Socio: </label>
+							    <div class="controls">
+							      <input type="text" disabled class="span6 typeahead" value="<%=producto.getIdSocio()%>"id="typeahead14" data-provide="typeahead" data-items="4"/>
+						        </div>
+						      </div>
+						      
+							
+						    </div>
+						    <div class="form-actions">
+							 
+			               <a  name="btnCancelar" class="btn btn-primary" href="buscarventaproducto.jsp">Regresar</a>  
+			           
+							</div>
+						  </fieldset>
+					  </form>   
 
-                         <div class="control-group">
-			                <label class="control-label" for="typeahead4">Monto (S/.) (*): </label>
-			                <div class="controls">
-			                  <input type="text" class="input-xlarge  disabled" id="typeahead4"  data-provide="typeahead" data-items="4" value="300" disabled="" >
-			                </div>
-		                  </div>
-		                
-			        
-			            <div class="form-actions">
-			              <button type="submit" class="btn btn-primary">Eliminar</button>
-			              <button type="reset" class="btn">Cancelar</button>
-		                </div>
-		              </fieldset>
-		            </form>
-		          (*) Datos Obligatorios</div>
-		        </div>
-			    <!--/span-->
-		      </div>
-			  <!--/row-->
-			  <div class="row-fluid sortable">
-			    <!--/span-->
-		      </div>
-			  <!--/row-->
-			  <div class="row-fluid sortable">
-			    <!--/span-->
-		      </div>
-			  <!--/row-->
-			 
+				  </div>
+				</div><!--/span-->
 
-		  
-       
+			</div><!--/row-->
+
+
+			<div class="row-fluid sortable"><!--/span-->
+			
+			</div><!--/row-->
+			
+			<div class="row-fluid sortable"><!--/span-->
+
+			</div><!--/row-->
+    
 					<!-- content ends -->

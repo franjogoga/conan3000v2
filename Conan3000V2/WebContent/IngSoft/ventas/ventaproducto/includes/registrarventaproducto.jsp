@@ -11,7 +11,7 @@
 <script>
 function alt_submit(){
 		var form= document.dynsel;
-		if(validaForm()) form.submit();
+		 form.submit();
 			
 }
 
@@ -100,25 +100,28 @@ String fecAnoFin=dfActual.format(c1.getTime()); %>
 		          </div>
 			      <div class="box-content">
 			        <form class="form-horizontal"  name="dynsel" id="dynsel" method="Post"  action="SMVVentaProductos">
-					<input type="hidden" name="accion" value="RegistrarVenta"></input>
+					<input type="hidden" name="accion" value="Registrar"></input>
 					<input type="hidden" name="tipo" value="2"></input>
 			          <fieldset>
 			          
-			          <div class="control-group" id="dvVendedor">
-			                <label class="control-label" for="typeahead4">Vendedor (*): </label>
-			                <div class="controls">
-			                  <input type="text" class="input-xlarge" id="txtVendedor" name="txtVendedor"  data-provide="typeahead">
-			                  
-			                </div>
-		                 </div>
+			       			            
 			            
-			              <div class="control-group" id="dvCliente">
-			                <label class="control-label" for="typeahead4">Cliente (*): </label>
-			                <div class="controls">
-			                  <input type="text" class="input-xlarge" id="txtCliente" name="txtCliente"  data-provide="typeahead">
-			                  
-			                </div>
-		                 </div>
+			            <div class="control-group" id="dvVendedor">
+							  <label class="control-label" for="vendedor">Vendedor (*):</label>							  
+							  <div class="controls">
+								<input type="text" class="span6 typeahead"   id="txtVendedor" name="txtVendedor" value="" onkeypress="return alfanumerico(event);" autofocus maxlength="50"/>														
+							  
+							  </div>
+							</div>
+							
+							  <div class="control-group" id="dvCliente">
+							  <label class="control-label" for="cliente">Cliente (*):</label>							  
+							  <div class="controls">
+								<input type="text" class="span6 typeahead"   id="txtCliente" name="txtCliente" value="" onkeypress="return alfanumerico(event);" autofocus maxlength="50"/>														
+							  
+							  </div>
+							</div>
+						
 			            
 			            
 			            <div class="control-group" id="dvFechaVenta">
