@@ -138,6 +138,8 @@
 						<form class="form-horizontal" action="<%= response.encodeURL("SMCSorteo")%>" name="frmData" method="post">
 						<input type="hidden" name="accion" value="Pagar"></input>
 						<input type="hidden" name="codSorteo" value="<%=codSorteo %>"></input>						
+						<input type="hidden" name="codSorteo" value="<%=lista %>"></input>						
+
 						  <fieldset>
 						   
 							<div class="control-group">
