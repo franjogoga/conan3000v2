@@ -76,7 +76,7 @@ public class ActividadBeanFuncion {
 	}
 	
 	
-	public MatriculaBeanData crearMatriculaActividad(String codigoActividad,String codigosocio,String codigofamiliar, String horario , String monto ){
+	public MatriculaBeanData crearMatriculaActividad(String codigoActividad,String codigosocio,String codigofamiliar, String horario , String monto ,String vacantes){
 		MatriculaBeanData matriculaData= new MatriculaBeanData();
 		
 		
@@ -88,19 +88,15 @@ public class ActividadBeanFuncion {
             
 			matriculaData.setCodigoActividad(	codigoActividad	);
 			
-			if(    codigosocio.length() == 9 )
-			{
+
 			matriculaData.setCodigosocio(    codigosocio		);
-			}
-			else
-			{
-			matriculaData.setCodigosocio(    codigofamiliar		);	
-			}
-			
+
 			
 			//matriculaData.setCodigofamiliar(	''	);
 			matriculaData.setHorario(    	horario	 );
 			matriculaData.setMonto(    Double.parseDouble(   	monto)	 );
+			
+			matriculaData.setVacantes(vacantes);
 			
 			
             
@@ -227,7 +223,7 @@ public class ActividadBeanFuncion {
             
           System.out.print("-----> agregar matriculaBeanData "+ numero);
           
-          if( Integer.parseInt(numero) >=20 )
+          if( Integer.parseInt(numero) >= Integer.parseInt(matriculaBeanData.getVacantes()) )
         	  throw CoException.set("Error en ingreso de datos: No se puede agregar la Matricula por falta de vacantes", "SMAActividad?accion=Agregar&tipo=1");
           else
 			sqlsesion.insert("Data.administracion.actividad.insertPlantillaMatriculaActividad", matriculaBeanData);
@@ -238,7 +234,7 @@ public class ActividadBeanFuncion {
 		catch(Exception a)
 		{sqlsesion.rollback();
             a.printStackTrace();
-			throw CoException.set("Error en ingreso de datos: No se pudo agregar la Matricula , se encuentra inscrito", "SMAActividad?accion=Agregar&tipo=1");
+			throw CoException.set(" No se pudo agregar la Matricula por los siguientes motivos: No hay vacantes , se encuentra inscrito en alguno de los horarios de la misma actividad  ", "SMAActividad?accion=Agregar&tipo=1");
 			
 		}
 		
