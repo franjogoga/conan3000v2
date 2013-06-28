@@ -18,8 +18,15 @@
 SELECT 
 inf245g2.ACTIVIDAD.IdActividad AS codigo ,
 inf245g2.ACTIVIDAD.nombre as nombre,
+
+inf245g2.ACTIVIDAD.Vacante as vacantes,
+inf245g2.ACTIVIDAD.Inscritos as inscritos,
+
+
+
 inf245g2.TIPO_ACTIVIDAD.nombre as tipoactividad,
 inf245g2.ACTIVIDAD.estado as estado
+
 
 
 FROM inf245g2.ACTIVIDAD , inf245g2.TIPO_ACTIVIDAD 
@@ -80,7 +87,72 @@ ORDER BY 1 ASC
 </insert>
 
 
-<!--Modificar sede -->
+<!-- Agregar plantilla Actividad_socio -->
+
+<insert id="insertPlantillaMatriculaActividad" parameterType="IngSoft.administracion.bean.MatriculaBeanData" flushCache="true">
+	insert into ACTIVIDAD_SOCIO (IdActividad,IdSocio,Monto,FechaRegistro,IdFamiliar,Horario)
+	values (#{codigoActividad},#{codigosocio},#{monto},#{fecha},#{codigofamiliar},#{horario})
+</insert>
+
+<delete id="deletePLantillaMatriculaActividadSocio" parameterType="java.lang.String" >
+DELETE FROM `inf245g2`.`ACTIVIDAD_SOCIO` 
+WHERE `IdActividad`=#{codigoActividad} 
+and`IdSocio`=#{codigosocio}
+and`Horario`=#{horario}
+;
+
+</delete>
+
+
+
+
+
+<select id="getMatriculadosactividad" parameterType="IngSoft.administracion.bean.MatriculaBeanData" resultType="IngSoft.administracion.bean.MatriculaBeanData">
+
+SELECT 
+inf245g2.ACTIVIDAD_SOCIO.IdActividad AS codigoActividad,
+inf245g2.ACTIVIDAD.Nombre AS nombreAtc ,
+inf245g2.ACTIVIDAD.Vacante AS vacantes ,
+inf245g2.ACTIVIDAD.Inscritos AS inscritos ,
+
+inf245g2.ACTIVIDAD_SOCIO.IdSocio AS codigosocio,
+inf245g2.PERSONA.Nombres AS nombreSoc,
+inf245g2.PERSONA.ApePaterno AS apaternoSoc,
+inf245g2.PERSONA.ApeMaterno AS amaternoSoc,
+
+inf245g2.ACTIVIDAD_SOCIO.Monto AS monto,
+inf245g2.ACTIVIDAD_SOCIO.FechaRegistro AS fecha,
+
+
+inf245g2.ACTIVIDAD_SOCIO.IdFamiliar AS codigofamiliar,
+SOC.Nombres AS nombreFam,
+SOC.ApePaterno AS apaternoFam,
+SOC.ApeMaterno AS amaternoFam,
+
+
+inf245g2.ACTIVIDAD_SOCIO.Horario AS horario
+
+FROM inf245g2.ACTIVIDAD_SOCIO
+LEFT JOIN  inf245g2.PERSONA 
+ON inf245g2.ACTIVIDAD_SOCIO.IdSocio = inf245g2.PERSONA.IdPersona
+
+LEFT JOIN  inf245g2.PERSONA SOC
+ON inf245g2.ACTIVIDAD_SOCIO.IdFamiliar = SOC.IdPersona
+
+LEFT JOIN  inf245g2.ACTIVIDAD
+ON inf245g2.ACTIVIDAD_SOCIO.IdActividad = inf245g2.ACTIVIDAD.IdActividad
+
+WHERE 
+    inf245g2.ACTIVIDAD_SOCIO.IdActividad = 'ACT000001'
+AND inf245g2.ACTIVIDAD_SOCIO.Horario = 'HOR000001'
+</select>
+
+<!-- Fin eliminar -->
+
+
+
+
+<!--Modificar ACTIVIDAD -->
 
 <update id="modificarPlantillaActividad" parameterType="IngSoft.administracion.bean.ActividadBeanData" >
 update ACTIVIDAD 
@@ -127,7 +199,7 @@ inf245g2.ACTIVIDADxDIA_SEMANA.Horario AS Horario
 ,inf245g2.ACTIVIDAD.Nombre AS nombre
 ,group_concat(inf245g2.DIA_SEMANA.IdDiaSemana ) AS codDiasemana
 ,group_concat(inf245g2.DIA_SEMANA.Nombre,' ', DATE_FORMAT(inf245g2.ACTIVIDADxDIA_SEMANA.HoraInicio,'%h:%i'),'-',DATE_FORMAT(inf245g2.ACTIVIDADxDIA_SEMANA.HoraFin ,'%h:%i') SEPARATOR ' / '  ) AS diaSemana
-
+,inf245g2.ACTIVIDAD.Costo AS monto
 FROM
       inf245g2.ACTIVIDAD,  inf245g2.DIA_SEMANA, inf245g2.ACTIVIDADxDIA_SEMANA
 WHERE
@@ -193,7 +265,7 @@ ORDER BY 1 ASC
 
 
 <!-- complemto para buscar empleado   -->
-<select id="searchPlantillaEmpleadoAndres" parameterType="IngSoft.administracion.bean.CriterioEmpleadoBeanData" resultType="IngSoft.administracion.bean.ResultadoEmpleadoBeanData">
+<select id="searchPlantillaEmpleadoSeleccion" parameterType="IngSoft.administracion.bean.CriterioEmpleadoBeanData" resultType="IngSoft.administracion.bean.ResultadoEmpleadoBeanData">
 
 
 
@@ -211,7 +283,7 @@ FROM inf245g2.EMPLEADO , inf245g2.PERSONA
 WHERE
 
 inf245g2.EMPLEADO.IdEmpleado = inf245g2.PERSONA.IdPersona
-
+AND inf245g2.PERSONA.Nombres  like  #{nombre}
 
 
 
@@ -220,5 +292,49 @@ ORDER BY 1 ASC
 
 
 </select>
+
+
+
+<!-- complemto para buscar SocioMatricula   -->
+<select id="searchPlantillaSocioMatricula" parameterType="IngSoft.administracion.bean.PersonaBeanData" resultType="IngSoft.administracion.bean.PersonaBeanData">
+
+
+
+
+SELECT 
+inf245g2.SOCIO.IdSocio  AS codigo ,
+SOC.Nombres AS nombre,
+SOC.ApePaterno AS apaterno,
+SOC.ApeMaterno AS amaterno,
+
+inf245g2.FAMILIAR.IdFamiliar AS codigofam ,
+FAM.Nombres AS nombrefam,
+FAM.ApePaterno AS apaternofam,
+FAM.ApeMaterno AS amaternofam
+
+FROM inf245g2.SOCIO  
+LEFT JOIN  inf245g2.FAMILIAR 
+ON inf245g2.SOCIO.IdSocio = inf245g2.FAMILIAR.IdSocio
+
+LEFT JOIN  inf245g2.PERSONA SOC
+ON inf245g2.SOCIO.IdSocio = SOC.IdPersona
+
+LEFT JOIN  inf245g2.PERSONA FAM
+ON inf245g2.FAMILIAR.IdFamiliar = FAM.IdPersona
+
+
+ORDER BY 1 ASC
+;
+
+
+
+
+
+
+
+</select>
+
+
+
 
 </mapper>
