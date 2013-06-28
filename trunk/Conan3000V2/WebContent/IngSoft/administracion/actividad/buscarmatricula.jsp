@@ -10,7 +10,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Buscar Actividad</title>
+	<title>Matricula Actividad</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
 	<meta name="author" content="Muhammad Usman">
@@ -20,6 +20,8 @@
 	<jsp:useBean id="tiposAmbiente" scope="request" class="java.util.Vector"></jsp:useBean>
 	<jsp:useBean id="resultados" scope="request"class="java.util.Vector"></jsp:useBean>
 	<jsp:useBean id="tipoactividades"  scope="request"class="java.util.Vector"></jsp:useBean>
+	
+	<jsp:useBean id="resultados2" scope="request"class="java.util.Vector"></jsp:useBean>
 
 	<!-- The styles -->
 	<link id="bs-css" href="css/bootstrap-cerulean.css" rel="stylesheet">
@@ -126,6 +128,21 @@
 	
 	
 	</script>
+        
+        <%! public int  busarNumeroIncritos(String c, String h ,Vector<ResultadoActividadBeanData> r)
+            {  
+            
+                for(int i=0; i< r.size(); i++)
+                {
+                    if(    ((ResultadoActividadBeanData)r.get(i)).getHorario().equals(h)  &&  ((ResultadoActividadBeanData)r.get(i)).getCodigo().equals(c)      )
+                    return  ((ResultadoActividadBeanData)r.get(i)).getInscritos()  ;
+                }
+                return 0;
+            }
+
+            %>
+        
+        
 		
 </head>
 
@@ -252,29 +269,40 @@
                          
                           <thead>
                             <tr>
+                              <th>Codigo</th>
                               <th>Nombre</th>
-                              <th>Tipo ACtividad</th>
-                              
-                              <th>Estado</th>
+                              <th>Tipo</th>
+                               <th>Horario</th>
+                              <th>Vacantes</th>
+                              <th>Inscritos </th>
+                              <th>Estado Horario</th>
                               <th>Acci&oacute;n</th>
                             </tr>
                           </thead>
                           <tbody id="resultadoBusqueda">
                           	<% for(int i=0; i<resultados.size(); i++) { %>
                             <tr>
+                              <td class="center"><%=((ResultadoActividadBeanData)resultados.get(i)).getCodigo()%></td>
                               <td class="center"><%=((ResultadoActividadBeanData)resultados.get(i)).getNombre()%></td>
                               <td class="center"><%=((ResultadoActividadBeanData)resultados.get(i)).getTipoactividad()%></td>
-                             
+                              <td class="center"><%=((ResultadoActividadBeanData)resultados.get(i)).getHorario()%></td>
+                              <td class="center"><%=((ResultadoActividadBeanData)resultados.get(i)).getVacantes()%></td>
+                              <td class="center"><%=  busarNumeroIncritos( ((ResultadoActividadBeanData)resultados.get(i)).getCodigo(),
+                                                                           ((ResultadoActividadBeanData)resultados.get(i)).getHorario(),
+                                                                           resultados2
+                                                                          )      %></td>
+                              
+                                                           
 								<td class="center">
                           			
 	                          			
 								           <%
 									 
-												  if( ((ResultadoActividadBeanData)resultados.get(i)).getEstado().equalsIgnoreCase("disponible") ){    
-								 out.print(" <span class='label label-success'> " + ((ResultadoActividadBeanData)resultados.get(i)).getEstado()   +"   </span>       ");
+												  if( ((ResultadoActividadBeanData)resultados.get(i)).getEstadoHorario().equalsIgnoreCase("activo") ){    
+								 out.print(" <span class='label label-success'> " + ((ResultadoActividadBeanData)resultados.get(i)).getEstadoHorario()   +"   </span>       ");
 												  }
 												  else { 
-								 out.print(" <span class='label label-warning'> " + ((ResultadoActividadBeanData)resultados.get(i)).getEstado()   +"   </span>       ");
+								 out.print(" <span class='label label-warning'> " + ((ResultadoActividadBeanData)resultados.get(i)).getEstadoHorario()   +"   </span>       ");
 													
 												  }
 									  
