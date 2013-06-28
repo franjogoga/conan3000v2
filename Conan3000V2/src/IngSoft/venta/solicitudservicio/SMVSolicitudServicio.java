@@ -1,7 +1,6 @@
 package IngSoft.venta.solicitudservicio;
 
 import IngSoft.general.CoServlet;
-import IngSoft.venta.solicitudproducto.AccionAgregarSolicitudProducto;
 
 public class SMVSolicitudServicio extends CoServlet{
 	
