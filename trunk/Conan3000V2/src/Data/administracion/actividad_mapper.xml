@@ -75,6 +75,10 @@ group by inf245g2.ACTIVIDADxDIA_SEMANA.Horario
 
 </select>
 
+<select id="getNextHorario" resultType="java.lang.String">
+	select max(Horario) from ACTIVIDADxDIA_SEMANA	
+</select>
+
 <select id="getNumeroInscritosHorariodeactividad"  resultType="IngSoft.administracion.bean.ResultadoActividadBeanData">
 SELECT 
 inf245g2.ACTIVIDAD_SOCIO.IdActividad AS codigo ,
