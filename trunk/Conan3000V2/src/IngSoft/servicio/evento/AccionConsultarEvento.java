@@ -1,5 +1,6 @@
 package IngSoft.servicio.evento;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Vector;
 
@@ -22,11 +23,19 @@ public class AccionConsultarEvento extends CoAccion {
 	public void ejecutar(ServletContext sc, HttpServletRequest request,
 			HttpServletResponse response)  throws CoException{
 		int tipo=Integer.parseInt(request.getParameter("tipo"));
+		
 		EventoBeanFuncion eventoFuncion= EventoBeanFuncion.getInstance();
 		if(tipo==1){
 		
-		EventoBeanData eventoData=eventoFuncion.consultarEventoSede(request.getParameter("codigo"));
-		Vector<SedeMiniBeanData> sedeMiniData=eventoFuncion.getSedes();
+		EventoBeanData eventoData=null;
+		String codigo=request.getParameter("codigo");
+		if(codigo!=null && !codigo.isEmpty()){
+			switch(codigo.substring(0, 3)){
+			case "ESC": eventoData=eventoFuncion.consultarEventoSocio(codigo);break;
+			case "ESD": eventoData=eventoFuncion.consultarEventoSede(codigo);break;				
+			}
+		}
+		Vector<SedeMiniBeanData> sedeMiniData=eventoFuncion.getSedes();		
 		Vector<ConcesionarioMiniBeanData> resultado=eventoFuncion.consultarConcesionariosxSede(eventoData.getIdSede(), eventoData.getFecha());
 		for(int i=0;i<resultado.size();i++){
 			if(resultado.get(i).getCodigo().equals(eventoData.getIdConcesionario())){
@@ -48,6 +57,11 @@ public class AccionConsultarEvento extends CoAccion {
 					
 				}
 			}
+			 try {
+					response.getWriter().write( "/IngSoft/servicio/evento/SMSEvento?accion=Buscar&tipo=1");
+				} catch (IOException e) {				
+					e.printStackTrace();
+				}
 		}
 		if(tipo==3){
 			String codigo=request.getParameter("codigo");
@@ -58,6 +72,11 @@ public class AccionConsultarEvento extends CoAccion {
 					
 				}
 			}
+			 try {
+					response.getWriter().write( "/IngSoft/servicio/evento/SMSEvento?accion=Buscar&tipo=1");
+				} catch (IOException e) {				
+					e.printStackTrace();
+				}
 			
 		}
 

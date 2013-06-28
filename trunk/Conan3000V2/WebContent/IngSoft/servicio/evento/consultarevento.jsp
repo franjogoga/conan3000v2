@@ -29,6 +29,7 @@
 	<jsp:useBean id="evento" scope="request"class="IngSoft.servicio.bean.EventoBeanData"></jsp:useBean>
 	<jsp:useBean id="concesionario" scope="request"class="IngSoft.servicio.bean.ConcesionarioMiniBeanData"></jsp:useBean>
 	
+	<%String modo=((EventoBeanData)evento).getCodigo().substring(0, 3);%>
 	<!-- The styles -->
 	<link id="bs-css" href="css/bootstrap-cerulean.css" rel="stylesheet">
 	<style type="text/css">
@@ -73,114 +74,14 @@
 	var fechaActual="<%=new SimpleDateFormat("dd/MM/yyyy").format(new Date())%>";
 	var boton='#btnConcecionarios';
 	var concesionario='';
-		function validar(){
-			var test=true;			
-			$('#fFecha').parent().parent().addClass("success");
-			$('#listaServicios').parent().addClass("success");										
-			if($('#txtNombreEvento').val()==null || $('#txtNombreEvento').val().length<=0){
-				$('#txtNombreEvento').bind("change",function(){
-				var temp= $('#txtNombreEvento');
-				if(temp.val()!=null && temp.val().length>0) {
-				temp.parent().parent().removeClass("error");
-				temp.parent().parent().addClass("success");
-				$('#errNombreEvento').slideUp(1000);
-				}
-				else {
-				temp.parent().parent().removeClass("success");
-				temp.parent().parent().addClass("error");
-				$('#errNombreEvento').slideDown(1000);
-				}
 				
-				})
-				$('#errNombreEvento').slideDown(1000);
-				test=false;
-				$('#txtNombreEvento').parent().parent().toggleClass("error");
-			}
-			else $('#txtNombreEvento').parent().parent().addClass("success");
-			
-			if($('#cmbSedes').val()==null||$('#cmbSedes').val().length<=0||$('#cmbSedes').val().indexOf('none')==0){
-				$('#cmbSedes').bind("change",function(){
-				var temp= $('#cmbSedes');
-				if(temp.val()!=null && temp.val().length>0 && $('#cmbSedes').val().indexOf('none')<0) {
-				temp.parent().parent().removeClass("error");
-				temp.parent().parent().addClass("success");
-				$('#errSedes').slideUp(1000);
-				}
-				else {
-				temp.parent().parent().removeClass("success");
-				temp.parent().parent().addClass("error");
-				$('#errSedes').slideDown(1000);
-				}
-				
-				})
-				$('#errSedes').slideDown(1000);
-				test=false;
-				$('#cmbSedes').parent().parent().toggleClass("error");
-			}
-			else $('#cmbSedes').parent().parent().addClass("success");
-			
-			if($('#txtNumEntradas').val()==null || $('#txtNumEntradas').val().length<=0){
-				$('#txtNumEntradas').bind("change",function(){
-				var temp= $('#txtNumEntradas');
-				if(temp.val()!=null && temp.val().length>0) {
-				temp.parent().parent().removeClass("error");
-				temp.parent().parent().addClass("success");
-				$('#errNumEntradas').slideUp(1000);
-				}
-				else {
-				temp.parent().parent().removeClass("success");
-				temp.parent().parent().addClass("error");
-				$('#errNumEntradas').slideDown(1000);
-				}
-				
-				})
-				$('#errNumEntradas').slideDown(1000);
-				test=false;
-				$('#txtNumEntradas').parent().parent().toggleClass("error");
-			}
-			else $('#txtNumEntradas').parent().parent().addClass("success");
-			if($('#txtPrecio').val()==null || $('#txtPrecio').val().length<=0){
-				$('#txtPrecio').bind("change",function(){
-				var temp= $('#txtPrecio');
-				if(temp.val()!=null && temp.val().length>0) {
-				temp.parent().parent().removeClass("error");
-				temp.parent().parent().addClass("success");
-				$('#errPrecio').slideUp(1000);
-				}
-				else {
-				temp.parent().parent().removeClass("success");
-				temp.parent().parent().addClass("error");
-				$('#errPrecio').slideDown(1000);
-				}
-				
-				})
-				$('#errPrecio').slideDown(1000);
-				test=false;
-				$('#txtPrecio').parent().parent().toggleClass("error");
-			}
-			else $('#txtPrecio').parent().parent().addClass("success");
-	return test;
-		
-		
-		}
 	
-	
-	function alt_submit(){
-		var form= document.frmData;
-		if(validar()) alt_submit2();
-		else alert("Uno o mas campos estan vacios");			
-			}
-	function alt_submit2(){
-		var listaconcecionarios=$(".btn-success [disabled='disabled']");
 		
-		for(i=0;i<listaconcecionarios.length;i++){
-			concesionario=concesionario+listaconcecionario[i].attr('id')+'@';		
-		}
+	function alt_aprobar(codigo){
 		$.ajax({
 			  type: "POST",
 			  url: "/Conan3000V2/IngSoft/servicio/evento/SMSEvento",
-			  data: "accion=" + $(accion).val() + "&tipo=" + $(tipo).val() + "&txtNombreEvento=" + $(txtNombreEvento).val() + "&txtNumEntradas=" + $(txtNumEntradas).val()  
-			  +  "&cmbSedes=" + $(cmbSedes).val() + "&fFecha=" + $(fFecha).val()+"&concesionario="+concesionario+"&precioentrada="+$(txtPrecio).val(),
+			  data: "accion=Consultar"+ "&tipo=2"+"&codigo="+codigo,
 			  dataType: "text",
 			  success: function(msg){
 				  var url="<%=request.getContextPath()%>"+msg;
@@ -189,7 +90,7 @@
 				  $("#modalTitulo").html("EXITO");	
 				  $("#MensajeExito").css("display","inline");
 				  $("#listaConcecionarios").css("display","none");			  
-				  $("#modalContenido").html("La plantilla de evento ha sido agregada exitosamente");
+				  $("#modalContenido").html("La solicitud de evento ha sido aprobada");
 				  $("#linkAceptar").bind("click",function(){
 					  location.href=url;					  
 				  });
@@ -200,18 +101,43 @@
 				$("#linkAceptar").css("display","inline");
 				$("#linkCerrar").css("display","none");
 				$("#modalTitulo").html("ERROR");
-				$("#modalContenido").html("No se pudo agregar su plantilla de evento, intentelo mas tarde");
-				$("#bModal").trigger("click");
-				alert("ERROR!!");			
+				$("#modalContenido").html("La operacion fallo intente de nuevo");
+				$("#bModal").trigger("click");				
+			  }		
+			});		
+	}
+	
+	function alt_anular(codigo){
+		$.ajax({
+			  type: "POST",
+			  url: "/Conan3000V2/IngSoft/servicio/evento/SMSEvento",
+			  data: "accion=Consultar"+ "&tipo=3"+"&codigo="+codigo,
+			  dataType: "text",
+			  success: function(msg){
+				  var url="<%=request.getContextPath()%>"+msg;
+				  $("#linkAceptar").css("display","inline");
+				  $("#linkCerrar").css("display","none");
+				  $("#modalTitulo").html("EXITO");	
+				  $("#MensajeExito").css("display","inline");
+				  $("#listaConcecionarios").css("display","none");			  
+				  $("#modalContenido").html("La solicitud de evento ha sido anulada");
+				  $("#linkAceptar").bind("click",function(){
+					  location.href=url;					  
+				  });
+				  $("#bModal").trigger("click");
+				  				  								
+			  },
+			  error: function(objeto, quepaso, otroobj){
+				$("#linkAceptar").css("display","inline");l
+				$("#linkCerrar").css("display","none");
+				$("#modalTitulo").html("ERROR");
+				$("#modalContenido").html("La operacion fallo intente de nuevo");
+				$("#bModal").trigger("click");				
 			  }
 		
 			});		
 	}
-	
-	function resetConcesionarios(){	 
-	 $('#listaServicios').html("<div class='input-append'><input id='appendedInputButton' size='16' type='text' readonly='true' value='Salon Principal'><button class='btn' disabled='disabled' type='button'>X</button></div><br/>");
-	 concesionario='';
-	}
+		
 	function getConcecionarios(){
 	$(this).attr('disabled','disabled');
 		$.ajax({
@@ -234,36 +160,12 @@
 				$("#modalTitulo").html("ERROR");
 				$("#modalContenido").html("Hubo un error, no se pudo conseguir la lista de concesionarios");
 				$("#bModal").trigger("click");
-				$(this).removeAttr('disabled','');
-				
-			  }
-		
+				$(this).removeAttr('disabled','');				
+			  }		
 			});		
 		
 	}
-	
-	
-	function confirmarcambio(elem){
-		var contenido=elem.val();
-		$('.btn-success').removeAttr('disabled')
-		resetConcesionarios();
-		//if(temp.length>0) temp.removeAtrr('disabled');
-		if($('#cmbSedes').val().indexOf('0')==0){
-			$(boton).attr('disabled','disabled');
-		}
-		else $(boton).removeAttr('disabled');
-		if(elem.attr('id').indexOf("fFecha")>=0){
-			$(boton).unbind('click');
-			if((contenido.indexOf(fechaActual)>=0)) $(boton).bind('click', function(){$("#bModal").trigger("click");});
-			else $(boton).bind('click',function(){getConcecionarios();})
-		}
-		else{
-			$(boton).unbind('click');
-			if((contenido.indexOf(codSedeActual)>=0)) $(boton).bind('click', function(){$("#bModal").trigger("click");});
-			else $(boton).bind('click',function(){getConcecionarios();})		
-		}
-	}
-			
+		
 	</script>	
 </head>
 
@@ -320,6 +222,17 @@
 								<span class="help-inline" id="errNombreEvento" style="display:none;">Este campo no puede estar vacio</span>						        													       
 					          </div>
 					        </div>
+					        <%if(modo.equals("ESC")){ %>
+					        	<div class="control-group">
+						      <label class="control-label" for="txtCosto">Costo Reserva Salon Principal: </label>
+						      <div class="controls">
+
+									<input  id="txtCosto" class="span4" name="txtCosto" value="<%=((EventoBeanData)evento).getMonto()%>" readonly onchange="vDinero($(this))"  type="text" onkeypress="return dinero(event);"  maxlength="12">
+									<br/>
+								  <span class="help-inline" id="errCosto" name="errCosto" style="display:none;">Este campo no puede estar vacio</span>
+					        </div>
+					        <%}
+					        else if(modo.equals("ESD")){ %>
 					        <div class="control-group">
 						      <label class="control-label" for="txtNumEntradas">Entradas: </label>
 						      <div class="controls">
@@ -332,7 +245,8 @@
 						      <div class="controls">
 									<input  id="txtPrecio" class="span4" name="txtPrecio" readonly="true"  type="text"  value="<%=((EventoBeanData)evento).getMonto()%>">									
 					        </div>
-					        </div>					   
+					        </div>					 
+					        <%} %>  
 							  <div class="control-group">
 								<label class="control-label" for="cmbSedes">Sede relacionada:</label>
 								<div class="controls">
@@ -374,8 +288,8 @@
 							</div>														
 						    <div class="form-actions">
 						    <%if(((EventoBeanData)evento).getEstado().equals("REGISTRADO")){%>
-							  <button type="button" id="btnAprobar" class="btn btn-primary" >Aprobar</button>
-							  <button type="button" id="btnRechazar" class="btn btn-primary" >Rechazar</button>
+							  <button type="button" id="btnAprobar" class="btn btn-primary" onclick="alt_aprobar('<%=((EventoBeanData)evento).getCodigo()%>')">Aprobar</button>
+							  <button type="button" id="btnRechazar" class="btn btn-primary" onclick="alt_anular('<%=((EventoBeanData)evento).getCodigo()%>')" >Rechazar</button>
 							  <%} %>
 							  <button type="button" class="btn" onclick="location.href='<%=request.getContextPath()%>/IngSoft/servicio/evento/SMSEvento?accion=Buscar&tipo=1'" >Regresar</button>
 							</div>
