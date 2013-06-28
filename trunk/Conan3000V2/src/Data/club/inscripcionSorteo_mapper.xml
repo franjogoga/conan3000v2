@@ -47,6 +47,11 @@ order by 1 asc
 update SORTEO set Flag=1 where IdSorteo=#{codSorteo}
 </update>
 
+
+<update id="setCostoBungalow" parameterType="IngSoft.servicio.bean.BungalowxSorteo">
+update INSCRIPCION_SORTEO set Monto=#{montoBungalow} where IdSorteo=#{idSorteo} and IdSocio=#{idSocio}
+</update>
+
 <select id="getBungalowxSorteo" parameterType="IngSoft.servicio.bean.BungalowxSorteo" resultType="IngSoft.servicio.bean.BungalowxSorteo">
 	select 
 	IdBungalow as idBungalow
@@ -54,6 +59,8 @@ update SORTEO set Flag=1 where IdSorteo=#{codSorteo}
 	BUNGALOWxSORTEO
 	where IdSocio=#{idSocio} and IdSorteo=#{idSorteo};
 </select>
+
+
 
 <select id="getBungalowxSorteo2" resultType="IngSoft.servicio.bean.BungalowxSorteo">
 	select 
