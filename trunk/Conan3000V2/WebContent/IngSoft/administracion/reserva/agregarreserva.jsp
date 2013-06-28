@@ -196,11 +196,12 @@ String fecAnoFin=dfActual.format(c1.getTime()); %>
 
 							
 							
-						    <div class="control-group">
+						    <div class="control-group" id="dvCodigoSoc">
 						      <label class="control-label" for="typeahead7">Codigo Socio(*): </label>
 						      <div class="controls">
 						        <input type="text" class="span6 typeahead" id="txtCodigoSoc"  data-provide="typeahead"  name="txtCodigoSoc"  disabled  >
 					           <input type="hidden" name="codigosocio" value=""></input>
+					           <span class="help-inline" id="errCodigoSoc"> Please correct the error</span>
 					          </div>
 					        </div>
 					        
@@ -215,10 +216,11 @@ String fecAnoFin=dfActual.format(c1.getTime()); %>
 			                </div>
 		                  </div>
 		                  
-						    <div class="control-group">
+						    <div class="control-group" id="dvMonto">
 						      <label class="control-label" for="typeahead7">Monto(*): </label>
 						      <div class="controls">
 						        <input type="text" class="span6 typeahead" id="txtMonto"  data-provide="typeahead"  name="txtMonto" >
+						        <span class="help-inline" id="errMonto"> Please correct the error</span>
 					          </div>
 					        </div>
 
@@ -236,11 +238,11 @@ String fecAnoFin=dfActual.format(c1.getTime()); %>
 
                         
 
-						<div class="control-group" id="dvFecRegistro">
+						<div class="control-group" id="dvfFecInvitado">
 				              <label class="control-label" for="typeahead6">Fecha Invitado (*): </label>
 				                <div class="controls">
 				                  <input type="text" class="input-xlarge datepicker" id="fFecInvitado" name="fFecInvitado" value="<%=fecAnoIni%>" readonly="readonly">
-				                  <span class="help-inline" id="errFecRegistro"></span>
+				                  <span class="help-inline" id="errfFecInvitado"></span>
 				                </div>
 	                    </div>
 
@@ -431,6 +433,15 @@ function validaForm(){
         var i=0;
         var error=false;
         if(!esValido("Nombre Invitado",form.txtNombre,"Nombre",1,1,50)){cadena[i]="Nombre Invitado";i++;}
+        if(!esValido("Codigo Socio",form.txtCodigoSoc,"CodigoSoc",1,9,9)){cadena[i]="Codigo Socio";i++;}
+        
+        if(!esValido("Monto",form.txtMonto,"Monto",1,1,50)){
+		cadena[i]="Monto";i++;
+			}else{
+		//valida si es float o entero
+				if(!esValido("Monto",form.txtMonto,"Monto",5,1,1)){cadena[i]="Monto";i++;}
+	}
+        
        // if(!esValido("Descripci&oacute;n",form.txtDescripcion,"Descripcion",1,0,100)){cadena[i]="Descripci&oacute;n";i++;}
         //if(!esValido("Caracter&iacute;sticas",form.txtCaracteristica,"Caracteristica",1,0,100)){cadena[i]="Caracter&iacute;sticas";i++;}
        
@@ -445,6 +456,8 @@ function validaForm(){
  
 function inicializa(){
         document.getElementById("errNombre").style.display='none';
+        document.getElementById("errCodigoSoc").style.display='none';
+        document.getElementById("errMonto").style.display='none';
         //document.getElementById("errDescripcion").style.display='none'; 
         //document.getElementById("errCaracteristica").style.display='none';    
 } 
