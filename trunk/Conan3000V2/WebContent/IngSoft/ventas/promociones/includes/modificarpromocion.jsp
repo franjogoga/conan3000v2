@@ -106,7 +106,7 @@
 			            <div class="control-group" id="dvNombrePromocion">
 			              <label class="control-label" for="typeahead7">Nombre  de Promoci&oacute;n:</label>
 			              <div class="controls">
-			                <input type="text" class="span6 typeahead" id="txtNombrePromocion" name="txtNombrePromocion" onpaste="return false;" onKeyUp="limita(this,50);" onKeyDown="limita(this,50);" value="<%=promocion.getNombre()%>">
+			                <input type="text" class="span6 typeahead" id="txtNombrePromocion" name="txtNombrePromocion"  onKeyUp="limita(this,50);" onKeyDown="limita(this,50);" value="<%=promocion.getNombre()%>">
 		                  <span class="help-inline" id="errNombrePromocion">Please correct the error</span>
 		                  </div>
 		                </div>
@@ -114,14 +114,14 @@
 			               <div class="control-group" id="dvFechaInicio">
 			              <label class="control-label" for="date01">Fecha de inicio(*):</label>
 			                <div class="controls">
-			                  <input type="text" name="fFechInicio" class="datepicker" id="fFechInicio" value="<%=promocion.getFechaInicio()%>"  readonly width=44px  onchange="verificar_fecha(1,this,'fFechFin');">
+			                  <input type="text" name="fFechInicio" class="datepicker" id="fFechInicio" value="<%=formatear(promocion.getFechaInicio())%>"  readonly width=44px  onchange="verificar_fecha(1,this,'fFechFin');">
 			                  <span class="help-inline" id="errFechaInicio">Please correct the error</span>
 		                    </div>
 		                  </div>
 			              <div class="control-group" id="dvFechaFin">
 			                <label class="control-label" for="date02">Fecha de fin(*):</label>
 			                <div class="controls">
-			                  <input type="text" name="fFechFin" class="datepicker" id="fFechFin" value="<%=promocion.getFechaFin()%>"  readonly width=44px  onchange="verificar_fecha(-1,this,'fFechInicio');">
+			                  <input type="text" name="fFechFin" class="datepicker" id="fFechFin" value="<%=formatear(promocion.getFechaFin())%>"  readonly width=44px  onchange="verificar_fecha(-1,this,'fFechInicio');">
 			                  <span class="help-inline" id="errFechaFin">Please correct the error</span>
 		                    </div>
 		                  </div>

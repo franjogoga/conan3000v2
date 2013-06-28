@@ -1,4 +1,34 @@
+
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Date"%>
+  
+
+
+	<script>
+	function alt_fecha(obj){
+	obj.value=obj.value.slice(0,5);
+	
+	}
+	
+
+	</script>	
+	
+	<%! public boolean  encontrar(String a, String[] b){
+		for(int i=0;i<b.length;i++){			
+			if(b[i].equals(a)) return true;	
+		}
+	return false;
+	}
+	public String formatear(java.util.Date date){
+		SimpleDateFormat DF= new SimpleDateFormat("dd/MM/YYYY");
+		return DF.format(date);
+	}
+	%>	
+
+
+
 <!-- content starts -->
+<jsp:useBean id="promocion" scope="request"class="IngSoft.venta.bean.PromocionBeanData"></jsp:useBean>
 			  <div>
 			    <ul class="breadcrumb">
 		        <li> <a href="../../general/index.jsp">Home</a> <span class="divider">/</span></li>
@@ -12,46 +42,37 @@
 			        <h2>VER PROMOCI&Oacute;N</h2>
 		          </div>
 			      <div class="box-content">
-			        <form class="form-horizontal">
+			       
+			            <div class="box-content">
+			  			        <form class="form-horizontal" name="frmDelete"  action="<%= response.encodeURL("SMVPromocion")%>" method="post">
+						<input type="hidden" name="codigo" value="<%=promocion.getCodigo()%>" ></input>
+						<input type="hidden" name="accion" value="Eliminar"></input>
+						<input type="hidden" name="tipo" value="2"></input>
 			          <fieldset>
 			           <div class="control-group">
 			              <label class="control-label" for="typeahead7">Nombre:</label>
 			              <div class="controls">
-			                <input type="text" disabled class="span6 typeahead" id="typeahead7" value="PromoBungalow"  data-provide="typeahead" >
+			                <input type="text" disabled class="span6 typeahead" name="txtNombrePromocion" id="txtNombrePromocion" value="<%=promocion.getNombre()%>"  data-provide="typeahead" >
 		                  </div>
 		                </div>
 			            <div class="control-group">
 			              <div class="control-group">
 			                <label class="control-label" for="date01">Fecha de inicio:</label>
 			                <div class="controls">
-			                  <input type="text" disabled class="input-xlarge datepicker" id="date01" value="02/16/12">
+			                  <input type="text" disabled class="input-xlarge datepicker" id="fFechInicio" name="fFechInicio" readonly="true" value="<%=formatear(new Date(promocion.getFechaInicio().getTime())) %>" onchange="alt_fecha(this)" disabled>
 		                    </div>
 		                  </div>
 			              <div class="control-group">
-			                <label class="control-label" for="date01">Fecha de fin:</label>
+			                <label class="control-label" for="date02">Fecha de fin:</label>
 			                <div class="controls">
-			                  <input type="text" disabled class="input-xlarge datepicker" id="date01" value="02/16/13">
+			                  <input type="text" disabled class="input-xlarge datepicker"  id="fFechFin" name="fFechFin" readonly="true" value="<%=formatear(new Date(promocion.getFechaFin().getTime())) %>" onchange="alt_fecha(this)" disabled>
 		                    </div>
 		                  </div>
 
-			           				<div class="control-group">
-								<label class="control-label" for="typeahead3">Estado</label>
-								<div class="controls">
-								  <label class="radio">
-									<input type="radio" disabled="disabled" "optionsRadios" id="optionsRadios1" value="option1" checked="">
-									Activo
-								  </label>
-								  <div style="clear:both"></div>
-								  <label class="radio">
-									<input type="radio" disabled="disabled" name="optionsRadios" id="optionsRadios2" value="option2">
-									Inactivo
-								  </label>
-								</div>
-							  </div>
 			              <div class="control-group">
 			                <label class="control-label" for="textarea2">Descripci&oacute;n:</label>
 			                <div class="controls">
-			                  <textarea name="textarea" rows="3" disabled class="" id="textarea2" style="resize:none">Descuento si reservas 2 bungalow.</textarea>
+			                  <textarea name="textarea" rows="3" disabled class="" id="txtDescripcion" style="resize:none"><%=promocion.getDescripcion()%></textarea>
 		                    </div>
 		                  </div>
 			            </div>
