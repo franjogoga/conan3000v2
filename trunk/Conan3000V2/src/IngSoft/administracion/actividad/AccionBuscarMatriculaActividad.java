@@ -51,7 +51,7 @@ public class AccionBuscarMatriculaActividad extends CoAccion{
 		
 		if(tipo==2){
 			CriterioActividadBeanData criterioActividadData =new CriterioActividadBeanFunction().crearCriterio(request,response);
-			Vector<ResultadoActividadBeanData> resultados=new CriterioActividadBeanFunction().buscarPlantillaActividad(criterioActividadData);
+			Vector<ResultadoActividadBeanData> resultados=new CriterioActividadBeanFunction().buscarPlantillaMatriculaActividadHorario(criterioActividadData);
 			//Vector<TipoActividadMiniBeanData> tipoactividades = ActividadBeanFuncion.getInstance().getTipoactividades();	
 
 			//request.setAttribute("tipoactividades", tipoactividades);
