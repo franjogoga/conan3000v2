@@ -58,11 +58,9 @@
 	<script>
 	
 	
-	function anhadir(cod, name,puesto){
+	function anhadir(cod){
 		var form= document.frmData;
-		form.cmbEncargado.value=name;
-		form.cmbEncargadoCodigo.value=cod;
-		form.txtPuesto.value=puesto;
+		form.txtCodigoSoc.value=cod;
 		$.fn.colorbox.close();
 		
 	} 
@@ -185,11 +183,11 @@ String fecAnoFin=dfActual.format(c1.getTime()); %>
 
 						<input type="hidden" name="txtCodigoInv" value="<%=((ReservaBeanData)reserva).getCodigoinvitado()%>"></input>
                       
-                        <div class="control-group" id="dvNombreAmbiente">
-                          <label class="control-label" for="typeahead">Nombre (*):</label>
+                        <div class="control-group" id="dvNombre">
+                          <label class="control-label" for="typeahead">Nombre Invitado(*):</label>
                           <div class="controls">
                             <input type="text" class="span6 typeahead" id="txtNombre"  data-provide="typeahead" name="txtNombre"  disabled value="<%= ((ReservaBeanData)reserva).getNombre()%>" >
-                          	<span class="help-inline" id="errNombreAmbiente">Please correct the error</span>
+                          	<span class="help-inline" id="errNombre"> Please correct the error</span>
                           </div>
                         </div>
                         
@@ -200,10 +198,21 @@ String fecAnoFin=dfActual.format(c1.getTime()); %>
 						    <div class="control-group">
 						      <label class="control-label" for="typeahead7">Codigo Socio(*): </label>
 						      <div class="controls">
-						        <input type="text" class="span6 typeahead" id="txtCodigoSoc"  data-provide="typeahead"  name="txtCodigoSoc"  >
+						        <input type="text" class="span6 typeahead" id="txtCodigoSoc"  data-provide="typeahead"  name="txtCodigoSoc" disabled disabled value="" >
 					          </div>
 					        </div>
 					        
+					        
+					        
+					        <div class="control-group" id="dvSocio">
+			                
+			                <div class="controls">
+			           
+			                  <div  align="left"> <a class="btn btn-primary iframe" href="seleccionarsocio.jsp"> <i class="icon icon-search icon-white"></i> Buscar Socio</a> </div>
+			                  <span class="help-inline" id="errSocio"></span>
+			                </div>
+		                  </div>
+		                  
 						    <div class="control-group">
 						      <label class="control-label" for="typeahead7">Monto(*): </label>
 						      <div class="controls">
@@ -419,7 +428,7 @@ function validaForm(){
         var cadena= new Array();
         var i=0;
         var error=false;
-        if(!esValido("Nombre",form.txtNombre,"NombreAmbiente",1,1,50)){cadena[i]="Nombre";i++;}
+        if(!esValido("Nombre Invitado",form.txtNombre,"Nombre",1,1,50)){cadena[i]="Nombre Invitado";i++;}
        // if(!esValido("Descripci&oacute;n",form.txtDescripcion,"Descripcion",1,0,100)){cadena[i]="Descripci&oacute;n";i++;}
         //if(!esValido("Caracter&iacute;sticas",form.txtCaracteristica,"Caracteristica",1,0,100)){cadena[i]="Caracter&iacute;sticas";i++;}
        
@@ -433,7 +442,7 @@ function validaForm(){
 } 
  
 function inicializa(){
-        document.getElementById("errNombreAmbiente").style.display='none';
+        document.getElementById("errNombre").style.display='none';
         //document.getElementById("errDescripcion").style.display='none'; 
         //document.getElementById("errCaracteristica").style.display='none';    
 } 
