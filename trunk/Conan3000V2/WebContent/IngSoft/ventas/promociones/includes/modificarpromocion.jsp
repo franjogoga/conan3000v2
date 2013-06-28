@@ -114,14 +114,14 @@
 			               <div class="control-group" id="dvFechaInicio">
 			              <label class="control-label" for="date01">Fecha de inicio(*):</label>
 			                <div class="controls">
-			                  <input type="text" name="fFechInicio" class="datepicker" id="fFechInicio" value="<%=getFechaActual()%>"  readonly width=44px  onchange="verificar_fecha(1,this,'fFechFin');">
+			                  <input type="text" name="fFechInicio" class="datepicker" id="fFechInicio" value="<%=promocion.getFechaInicio()%>"  readonly width=44px  onchange="verificar_fecha(1,this,'fFechFin');">
 			                  <span class="help-inline" id="errFechaInicio">Please correct the error</span>
 		                    </div>
 		                  </div>
 			              <div class="control-group" id="dvFechaFin">
 			                <label class="control-label" for="date02">Fecha de fin(*):</label>
 			                <div class="controls">
-			                  <input type="text" name="fFechFin" class="datepicker" id="fFechFin" value="<%=getFechaActual()%>"  readonly width=44px  onchange="verificar_fecha(-1,this,'fFechInicio');">
+			                  <input type="text" name="fFechFin" class="datepicker" id="fFechFin" value="<%=promocion.getFechaFin()%>"  readonly width=44px  onchange="verificar_fecha(-1,this,'fFechInicio');">
 			                  <span class="help-inline" id="errFechaFin">Please correct the error</span>
 		                    </div>
 		                  </div>
