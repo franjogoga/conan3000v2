@@ -75,6 +75,167 @@
 
 
 <script>
+    
+    
+    
+    
+    
+    function selectIni0()
+    {
+        var selObj1 = document.getElementById('cmbHoraInicio0');
+        var selObj2 = document.getElementById('cmbHoraFin0');
+        
+        selObj2.selectedIndex = selObj1.selectedIndex;
+        
+    }
+    
+    
+    function selectFin0()
+    {
+        var selObj1 = document.getElementById('cmbHoraInicio0');
+        var selObj2 = document.getElementById('cmbHoraFin0');
+        
+        
+        if(  selObj1.value >selObj2.value )
+        selObj2.selectedIndex = selObj1.selectedIndex;
+        
+    }
+    
+    
+    function selectIni1()
+    {
+        var selObj1 = document.getElementById('cmbHoraInicio1');
+        var selObj2 = document.getElementById('cmbHoraFin1');
+        
+        selObj2.selectedIndex = selObj1.selectedIndex;
+        
+    }
+    
+    
+    function selectFin1()
+    {
+        var selObj1 = document.getElementById('cmbHoraInicio1');
+        var selObj2 = document.getElementById('cmbHoraFin1');
+        
+        
+        if(  selObj1.value >selObj2.value )
+        selObj2.selectedIndex = selObj1.selectedIndex;
+        
+    }
+    
+    function selectIni2()
+    {
+        var selObj1 = document.getElementById('cmbHoraInicio2');
+        var selObj2 = document.getElementById('cmbHoraFin2');
+        
+        selObj2.selectedIndex = selObj1.selectedIndex;
+        
+    }
+    
+    
+    function selectFin2()
+    {
+        var selObj1 = document.getElementById('cmbHoraInicio2');
+        var selObj2 = document.getElementById('cmbHoraFin2');
+        
+        
+        if(  selObj1.value >selObj2.value )
+        selObj2.selectedIndex = selObj1.selectedIndex;
+        
+    }
+    
+    
+    function selectIni3()
+    {
+        var selObj1 = document.getElementById('cmbHoraInicio3');
+        var selObj2 = document.getElementById('cmbHoraFin3');
+        
+        selObj2.selectedIndex = selObj1.selectedIndex;
+        
+    }
+    
+    
+    function selectFin3()
+    {
+        var selObj1 = document.getElementById('cmbHoraInicio3');
+        var selObj2 = document.getElementById('cmbHoraFin3');
+        
+        
+        if(  selObj1.value >selObj2.value )
+        selObj2.selectedIndex = selObj1.selectedIndex;
+        
+    }
+    
+    function selectIni4()
+    {
+        var selObj1 = document.getElementById('cmbHoraInicio4');
+        var selObj2 = document.getElementById('cmbHoraFin4');
+        
+        selObj2.selectedIndex = selObj1.selectedIndex;
+        
+    }
+    
+    
+    function selectFin4()
+    {
+        var selObj1 = document.getElementById('cmbHoraInicio4');
+        var selObj2 = document.getElementById('cmbHoraFin4');
+        
+        
+        if(  selObj1.value >selObj2.value )
+        selObj2.selectedIndex = selObj1.selectedIndex;
+        
+    }
+    
+    
+    
+    function selectIni5()
+    {
+        var selObj1 = document.getElementById('cmbHoraInicio5');
+        var selObj2 = document.getElementById('cmbHoraFin5');
+        
+        selObj2.selectedIndex = selObj1.selectedIndex;
+        
+    }
+    
+    
+    function selectFin5()
+    {
+        var selObj1 = document.getElementById('cmbHoraInicio5');
+        var selObj2 = document.getElementById('cmbHoraFin5');
+        
+        
+        if(  selObj1.value >selObj2.value )
+        selObj2.selectedIndex = selObj1.selectedIndex;
+        
+    }
+    
+    
+    function selectIni6()
+    {
+        var selObj1 = document.getElementById('cmbHoraInicio6');
+        var selObj2 = document.getElementById('cmbHoraFin6');
+        
+        selObj2.selectedIndex = selObj1.selectedIndex;
+        
+    }
+    
+    
+    function selectFin6()
+    {
+        var selObj1 = document.getElementById('cmbHoraInicio6');
+        var selObj2 = document.getElementById('cmbHoraFin6');
+        
+        
+        if(  selObj1.value >selObj2.value )
+        selObj2.selectedIndex = selObj1.selectedIndex;
+        
+    }
+    
+    
+    
+    
+
 
 
 function cambiar0()
@@ -330,7 +491,7 @@ function cambiar6()
 													            %>
 																<td class="center">
 							 																																													
-														 		<select  style="width: 70px;"  data-rel="chosen" id="cmbHoraInicio<%=i%>"  name="cmbHoraInicio<%=i%>" >
+														 		<select  style="width: 70px;"  data-rel="chosen" id="cmbHoraInicio<%=i%>"  name="cmbHoraInicio<%=i%>"   onChange="selectIni<%=i%>();"    >
 															        <%for(int k=0;k<horasDelDia.size();k++){     %>
 													<option value="<%=    ((String)horasDelDia.get(k))   %>"    <%= ((String)horasDelDia.get(k)).equalsIgnoreCase(   iniHora[x]     )?"selected":"" %> >  <%=       ((String)horasDelDia.get(k))    %>    </option>
 																    <%} %>						
@@ -342,7 +503,7 @@ function cambiar6()
 																
 																<td class="center">
 							 																																													
-														 		<select  style="width: 70px;"  data-rel="chosen" id="cmbHoraInicio<%=i%>"  name="cmbHoraInicio<%=i%>" >
+														 		<select  style="width: 70px;"  data-rel="chosen" id="cmbHoraInicio<%=i%>"  name="cmbHoraInicio<%=i%>" onChange="selectIni<%=i%>();"    >
 															        <%for(int k=0;k<horasDelDia.size();k++){     %>
 													<option value="<%=    ((String)horasDelDia.get(k))   %>"    <%= k==0?"selected":"" %>  > <%=    ((String)horasDelDia.get(k))    %>    </option>
 																    <%} %>						
@@ -367,7 +528,7 @@ function cambiar6()
 													            %>
 																<td class="center">
 							 																																													
-														 		<select  style="width: 70px;"  data-rel="chosen" id="cmbHoraFin<%=i%>"  name="cmbHoraFin<%=i%>" >
+														 		<select  style="width: 70px;"  data-rel="chosen" id="cmbHoraFin<%=i%>"  name="cmbHoraFin<%=i%>"  onChange="selectFin<%=i%>();"   >
 															        <%for(int k=0;k<horasDelDia.size();k++){     %>
 													<option value="<%=    ((String)horasDelDia.get(k))   %>"    <%= ((String)horasDelDia.get(k)).equalsIgnoreCase(   finHora[x]     )?"selected":"" %> >  <%=       ((String)horasDelDia.get(k))    %>    </option>
 																    <%} %>						
@@ -379,7 +540,7 @@ function cambiar6()
 																
 																<td class="center">
 							 																																													
-														 		<select  style="width: 70px;"  data-rel="chosen" id="cmbHoraFin<%=i%>"  name="cmbHoraFin<%=i%>" >
+														 		<select  style="width: 70px;"  data-rel="chosen" id="cmbHoraFin<%=i%>"  name="cmbHoraFin<%=i%>"  onChange="selectFin<%=i%>();"   >
 															        <%for(int k=0;k<horasDelDia.size();k++){     %>
 													<option value="<%=    ((String)horasDelDia.get(k))   %>"    <%= k==0?"selected":"" %>  > <%=    ((String)horasDelDia.get(k))    %>    </option>
 																    <%} %>						
