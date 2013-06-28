@@ -10,6 +10,7 @@ public class ActividadDiaSemanaBeanData implements Serializable{
 	private String horaFin;
 	private Double duracion;
 	private String estado;
+	private String horario;
 	
 	
 	public String getCodigoDia() {
@@ -47,6 +48,12 @@ public class ActividadDiaSemanaBeanData implements Serializable{
 	}
 	public void setEstado(String estado) {
 		this.estado = estado;
+	}
+	public String getHorario() {
+		return horario;
+	}
+	public void setHorario(String horario) {
+		this.horario = horario;
 	}
 	
 	

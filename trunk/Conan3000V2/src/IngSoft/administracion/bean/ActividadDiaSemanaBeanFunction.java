@@ -37,7 +37,7 @@ public class ActividadDiaSemanaBeanFunction {
 	}
 	
 	
-	public ActividadDiaSemanaBeanData crearHorarioDiaSemana(String codDia,String codAct,String horIn,String horFin  ){
+	public ActividadDiaSemanaBeanData crearHorarioDiaSemana(String codDia,String codAct,String horIn,String horFin ,String horario ){
 		   ActividadDiaSemanaBeanData actividadDiaSemanaBeanData= new ActividadDiaSemanaBeanData();
 		try{		
 
@@ -48,6 +48,7 @@ public class ActividadDiaSemanaBeanFunction {
 			actividadDiaSemanaBeanData.setHoraFin(           horFin+":00"   );
 			actividadDiaSemanaBeanData.setDuracion(           0.0  );
 			actividadDiaSemanaBeanData.setEstado(           "Activo"   );
+			actividadDiaSemanaBeanData.setHorario(          horario );
 
 		}catch(Exception e){
 			e.printStackTrace();
@@ -65,6 +66,8 @@ public class ActividadDiaSemanaBeanFunction {
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		
 		try{
+			
+			
 			System.out.print("Agregar Horario dia Semana Actividad");
 			System.out.print("CODIGO DIA       -->"+actividadDiaSemanaBeanData.getCodigoDia());
 		    System.out.print("Codigo Actividad -->"+actividadDiaSemanaBeanData.getCodigoActividad());
@@ -72,6 +75,25 @@ public class ActividadDiaSemanaBeanFunction {
 			System.out.print("hora fin         -->"+actividadDiaSemanaBeanData.getHoraInicio());
 			System.out.print("duracionn        -->"+actividadDiaSemanaBeanData.getDuracion());
 			System.out.print("Estado           -->"+actividadDiaSemanaBeanData.getEstado());
+			
+			
+/*			
+			String horario = (String)sqlsesion.selectOne("Data.administracion.actividad.getNextHorario");
+            
+			System.out.print(" Horario Actividad creada ----> "+ horario);
+			
+			
+			if(horario!=null)
+			{
+                int cod= Integer.parseInt(horario.substring(3))+1;
+                String defecto= "000000";
+                String temp= defecto.substring(0, defecto.length()-String.valueOf(cod).length()).concat(String.valueOf(cod));
+                
+                actividadDiaSemanaBeanData.setHorario(horario.substring(0,3).concat(temp));
+			}
+			else actividadDiaSemanaBeanData.setHorario("HOR000001");
+*/			
+			System.out.print(" Horario Actividad creada ----> "+ actividadDiaSemanaBeanData.getHorario());
 			
 			
 			
