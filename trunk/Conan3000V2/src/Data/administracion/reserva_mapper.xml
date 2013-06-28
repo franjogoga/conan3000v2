@@ -140,9 +140,10 @@ inf245g2.INVITADOxSOCIO.FechaIngreso    =	#{fechaingreso} ,
 inf245g2.INVITADOxSOCIO.Estado     =	#{estado}
 
 
-WHERE inf245g2.INVITADOxSOCIO.IdInvitadoSocio = #{codigo}
+WHERE inf245g2.INVITADOxSOCIO.IdInvitadoSocio =  #{codigo}
 
 ;
+
 
 
 </update>
