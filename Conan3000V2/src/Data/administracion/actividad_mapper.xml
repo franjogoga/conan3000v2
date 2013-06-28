@@ -245,7 +245,7 @@ WHERE
 		
 	  inf245g2.ACTIVIDAD.IdActividad         = inf245g2.ACTIVIDADxDIA_SEMANA.IdActividad 
 AND   inf245g2.DIA_SEMANA.IdDiaSemana    = inf245g2.ACTIVIDADxDIA_SEMANA.IdDiaSemana
-AND    inf245g2.ACTIVIDAD.IdActividad  like  'ACT000001' 
+AND    inf245g2.ACTIVIDAD.IdActividad  like  #{codigo} 
 
 group by inf245g2.ACTIVIDADxDIA_SEMANA.Horario 
 
