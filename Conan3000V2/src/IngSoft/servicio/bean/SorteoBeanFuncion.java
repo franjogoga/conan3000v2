@@ -56,19 +56,22 @@ public class SorteoBeanFuncion {
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		List<BungalowxSorteo> BS2 = sqlsesion.selectList("Data.club.inscripcionSorteo.getBungalowxSorteo2");
 		int flag=0;
+		int pagoRealizado=0;
 		int i;
 		for (i=0;i<BS2.size();i++){
 			
-			if (BS2.get(i).getIdSocio().equals(bungalowSorteo.getIdSocio())) {break;} 
+			if (BS2.get(i).getIdSocio().equals(bungalowSorteo.getIdSocio())) {flag++;pagoRealizado++;break;} 
 			else {BS.setIdBungalow("NO"); flag++;}
 		}
 		if (flag==i) return BS;
+		if (pagoRealizado>0) {BS.setIdBungalow("SI"); return BS;}
 		BS = sqlsesion.selectOne("Data.club.inscripcionSorteo.getBungalowxSorteo",bungalowSorteo);
 		BS.setIdSocio(bungalowSorteo.getIdSocio());
 		BS.setIdSorteo(bungalowSorteo.getIdSorteo());
 		double costoM2 = getCostoM2(); 
 		BS.setAreaBungalow((double)sqlsesion.selectOne("Data.club.inscripcionSorteo.getAreaBungalow",BS.getIdBungalow()));
 		BS.setMontoBungalow(costoM2*BS.getAreaBungalow());
+		sqlsesion.update("Data.club.inscripcionSorteo.setCostoBungalow",BS);
 		return BS;
 	}
 	
