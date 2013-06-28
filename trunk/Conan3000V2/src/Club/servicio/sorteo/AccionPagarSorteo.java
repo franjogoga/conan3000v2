@@ -38,9 +38,11 @@ public class AccionPagarSorteo extends CoAccion {
 		BungalowxSorteo bungalowSorteo = new BungalowxSorteo();
 		String idSocio = (String)request.getSession().getAttribute("idSocio");
 		String codSorteo = request.getParameter("codSorteo");
+		
 		bungalowSorteo.setIdSocio(idSocio);
 		bungalowSorteo.setIdSorteo(codSorteo);
 		bungalowSorteo = sorteoFuncion.getBungalowSorteo(bungalowSorteo);
+		if (bungalowSorteo.getIdBungalow().equals("NO")) {this.direccionar(sc, request, response, "/Club/servicio/sorteo/pagoRepetido.jsp");}
 		OrdenPagoBeanFunction orden=new OrdenPagoBeanFunction();
 		
 		java.util.Date valor = new java.util.Date();
