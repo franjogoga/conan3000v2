@@ -4,17 +4,50 @@
 
 <mapper namespace="Data.venta.ventaproducto">
 
+<select id="searchPlantillaVenta" parameterType="IngSoft.venta.bean.CriterioVentaBeanData" resultType="IngSoft.venta.bean.ResultadoVentaBeanData">
+select 
+VENTA.IdVenta as idVenta
+,VENTA.Fecha as fechaVenta
+
+from VENTA
+<where>
+	
+    <if test="idVenta != null">
+       VENTA.IdVenta like #{idVenta}
+    </if>
+      
+     <if test="estado != null">
+        AND VENTA.Estado='Activo'
+    </if>  
+      
+</where>
+</select>
+
+
 
  <select id="getNextCodigo" resultType="java.lang.String">
 	select max(IdVenta) from VENTA
 </select>
  
  <insert id="insertVenta" parameterType="IngSoft.venta.bean.VentaBeanData" flushCache="true">
-	insert into VENTA(IdVenta,IdSocio,Estado,IdEmpleado,Fecha,Observacion,Monto)
+	insert into VENTA(IdVenta,IdSocio,Estado,IdEmpleado,Fecha,Observacion,MontoTotal)
 	values (#{idVenta},#{idSocio},'Activo',#{idEmpleado},#{fechaVenta},'Venta de productos',0)
 </insert>
  
  
-</mapper>
 
+
+	
+<select id="getPlantillaVenta" parameterType="java.lang.String"  resultType="IngSoft.venta.bean.VentaBeanData">
+select 
+VENTA.Estado as estado
+,VENTA.IdEmpleado as idEmpleado
+,VENTA.IdSocio as idSocio
+
+from VENTA  where IdVenta=#{idVenta} 
+
+
+</select>	
+	
+	</mapper>
 	
