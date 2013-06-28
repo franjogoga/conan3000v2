@@ -10,7 +10,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Buscar Actividad</title>
+	<title>Lista Matriculados</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
 	<meta name="author" content="Muhammad Usman">
@@ -156,7 +156,10 @@
 			<div>
 				<ul class="breadcrumb">
                   <li> <a href="../../general/index.jsp">Home</a> <span class="divider">/</span> </li>
-                  <li>Mantenimiento de Actividad</li>
+                  <li><a href="buscarmatricula.jsp"> Mantenimiento de Actividad </a>/</span></li>
+                    <li>
+						Lista de Matriculados 
+					</li>
 				</ul>
 			</div>
 			
@@ -227,9 +230,9 @@
                         </table>
                           
                           
-                          <div class="form-actions">
+                          <div class="form-actions"  >
                               
-                              <button type="reset" id="boton" class="btn">Regresar</button>
+                               <button type="button" class="btn" onclick="location.href='buscarmatricula.jsp'" >Regresar</button>
                           </div>
                           
                       </div>
