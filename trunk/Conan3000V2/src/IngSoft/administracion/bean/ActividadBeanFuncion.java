@@ -220,7 +220,16 @@ public class ActividadBeanFuncion {
 			
 
             System.out.print("-----> agregar matriculaBeanData "+ matriculaBeanData.getHorario());
-			
+            
+            
+            
+          String  numero= sqlsesion.selectOne("Data.administracion.actividad.getNumeroInscritosHorariodeactividadone",matriculaBeanData);
+            
+          System.out.print("-----> agregar matriculaBeanData "+ numero);
+          
+          if( Integer.parseInt(numero) >=20 )
+        	  throw CoException.set("Error en ingreso de datos: No se puede agregar la Matricula por falta de vacantes", "SMAActividad?accion=Agregar&tipo=1");
+          else
 			sqlsesion.insert("Data.administracion.actividad.insertPlantillaMatriculaActividad", matriculaBeanData);
             
 			
@@ -229,7 +238,7 @@ public class ActividadBeanFuncion {
 		catch(Exception a)
 		{sqlsesion.rollback();
             a.printStackTrace();
-			throw CoException.set("Error en ingreso de datos: No se puede agregar la Matricula por falta de vacantes o esta encuentra inscrito", "SMAActividad?accion=Agregar&tipo=1");
+			throw CoException.set("Error en ingreso de datos: No se pudo agregar la Matricula , se encuentra inscrito", "SMAActividad?accion=Agregar&tipo=1");
 			
 		}
 		
