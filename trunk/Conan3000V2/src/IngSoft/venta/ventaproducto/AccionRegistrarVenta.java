@@ -1,5 +1,6 @@
 package IngSoft.venta.ventaproducto;
 
+import java.io.IOException;
 import java.util.Vector;
 
 import javax.servlet.ServletContext;
@@ -12,57 +13,40 @@ import IngSoft.venta.bean.*;
 
 
 
-public class AccionRegistrarVenta extends CoAccion{
-	
+
+
+
+public class AccionRegistrarVenta extends CoAccion {
+
 	@Override
 	public void ejecutar(ServletContext sc, HttpServletRequest request,
 			HttpServletResponse response) throws CoException {
 		// TODO Auto-generated method stub
-				
-				
-				
+
 				int tipo=Integer.parseInt(request.getParameter("tipo"));
 				if(tipo==2){
+					VentaBeanFunction VentaFunction= VentaBeanFunction.getInstance();
+					VentaBeanData VentaData=VentaFunction.crearVenta(request, response);
+					VentaFunction.registrarVenta(VentaData);
 					
-					//TrasladoBeanFuncion trasladoFuncion= TrasladoBeanFuncion.getInstance();
-					//TrasladoBeanData trasladoData=trasladoFuncion.crearTraslado(request, response);
-					
-					
-					
-					//SocioBeanFuncion socioFuncion= SocioBeanFuncion.getInstanceS();
-					//SocioBeanData socioData=socioFuncion.crearSocio(request, response);
-					//socioData.setIdMembresia("MEM000032");
-					//socioFuncion.agregarSocio(socioData);
-					
-					//PersonaMiniBeanFuncion personaFuncion=PersonaMiniBeanFuncion.getInstanceP();
-					//PersonaMiniBeanData personaData=personaFuncion.crearPersona(request, response);
-					//personaFuncion.agregarPersona(personaData);
-					
-					//MembresiaBeanFunction membresiaFuncion=MembresiaBeanFunction.getInstance();
-					//MembresiaBeanData membresiaData2=new MembresiaBeanData();
-					//membresiaData2.setIdMembresia(request.getParameter("txtIdMembresiaAntiguo"));
-					//membresiaFuncion.agregarMembresia(membresiaData);
-					
-					
-					//trasladoFuncion.agregarTraslado(trasladoData);
+					//response.setContentType("text/plain");  
+				    //response.setCharacterEncoding("UTF-8");
+				    try {
+						response.getWriter().write( "/IngSoft/ventas/producto/SMVProducto?accion=Buscar&tipo=1");
+					} catch (IOException e) {				
+						e.printStackTrace();
+					}
+				}
+				    if(tipo==1){
+				      
+					    this.direccionar(sc, request, response, "/IngSoft/ventas/ventaproducto/registrarventaproducto.jsp");
+				    }
 				
-					//request.setAttribute("membresia2", membresiaData2);
-					//request.setAttribute("socio", socioData);
+				
+				
+				
+							
+	}
 
-					//this.direccionar(sc, request, response, "/IngSoft/ventas/membresia/trasladomembresia.jsp");
-					//request.setAttribute("typeahead7",codigo);
-				
-				}
-				//SocioBeanFuncion socioFunction= SocioBeanFuncion.getInstanceS();
-				//Vector<DistritoMiniBeanData> distritoMiniData=socioFunction.getDistritos();
-				//Vector<TipoEventoMiniBeanData> tipoEventoMiniData=eventoFunction.getTipoEvento();
-				//Vector<AmbienteMiniBeanData> AmbienteMiniData=eventoFunction.getAmbientes();
-				//request.setAttribute("sedes",sedeMiniData );
-				//request.setAttribute("ambientes",AmbienteMiniData );
-				
-				
-				//request.setAttribute("tiposDistrito",distritoMiniData);
-				
-				this.direccionar(sc, request, response, "/IngSoft/ventas/ventaproducto/buscarventaproducto.jsp");
-				}
 }
+	
