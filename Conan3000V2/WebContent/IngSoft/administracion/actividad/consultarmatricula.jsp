@@ -147,7 +147,7 @@
                 
                 <form id="frmAlternativo" name="frmAlternativo" method="post" action="<%= response.encodeURL("SMAActividad")%>">
 				<input type="hidden" name="accion" value="Consultarmatricula"></input>
-				<input type="hidden" name="codigoAct" value="   <%= ((MatriculaBeanData)resultados.get(0)).getCodigoActividad() %>  "></input>
+				<input type="hidden" name="codigoAct" value="<%=((MatriculaBeanData)resultados.get(0)).getCodigoActividad()%>"></input>
 				<input type="hidden" name="codigoSoc" value="">  </input>
                 <input type="hidden" name="codigoFam" value="">  </input>
 				<input type="hidden" name="horario" value=""></input>
