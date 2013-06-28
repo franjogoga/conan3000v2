@@ -70,6 +70,10 @@ public class AccionConsultarMatriculaActividad extends CoAccion{
 			
 			Vector<MatriculaBeanData> resultados= actividadFuncion.getMatriculadosActividad(request.getParameter("codigo"),request.getParameter("horario"));
 
+			Vector<ResultadoActividadBeanData> resultados2= actividadFuncion.getNumeroInscritos();
+			
+			
+			request.setAttribute("resultados2", resultados2);
 			request.setAttribute("resultados", resultados);
 			
 			this.direccionar(sc, request, response, "/IngSoft/administracion/actividad/consultarmatricula.jsp");	
