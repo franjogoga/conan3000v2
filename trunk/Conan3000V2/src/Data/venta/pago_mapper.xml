@@ -201,6 +201,7 @@ update OTRO_INGRESO set Estado='Cancelado'
 select 
 distinct PERSONA.IdPersona idSocio 
 ,OTRO_INGRESO.Descripcion as concepto
+,OTRO_INGRESO.Descripcion2 as descripcion
 ,OTRO_INGRESO.IdOtroIngreso as idOtroIngreso
 ,OTRO_INGRESO.Monto as monto
 ,CONCAT(PERSONA.Nombres,' ',PERSONA.ApePaterno,' ',PERSONA.ApeMaterno) as socio

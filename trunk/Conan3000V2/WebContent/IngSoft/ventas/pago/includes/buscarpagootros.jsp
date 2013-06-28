@@ -258,7 +258,7 @@ String fecHoy=dfActual.format(new java.util.Date());
                           				if(dato.equals("SOCIOXEVENTOSEDE")) concepto="Socio por Evento Sede";
                           				if(dato.equals("INVITADOXSOCIO")) concepto="Invitado de Socio";
                           				if(dato.equals("TRASLADOMEMBRESIA")) concepto="Traslado de Membresia";
-                          				if(dato.equals("CUOTAEXTRAORDINARIA")) concepto="Cuota Extraordinaria";
+                          				if(dato.equals("CUOTAEXTRAORDINARIA")) concepto="Cuota Extraordinaria ("+((ResultadoOrdenPagoBeanData)resultados.get(i)).getDescripcion()+" )";
                           				
                           				
                           				
