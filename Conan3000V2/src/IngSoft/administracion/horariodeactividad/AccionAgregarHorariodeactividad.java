@@ -6,9 +6,12 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.ibatis.session.SqlSession;
+
 
 import IngSoft.general.CoAccion;
 import IngSoft.general.CoException;
+import IngSoft.general.MyBatisSesion;
 
 
 import IngSoft.administracion.bean.HorariodeactividadBeanFuncion;
@@ -36,6 +39,28 @@ public class AccionAgregarHorariodeactividad extends CoAccion{
 			
 			System.out.print(  "codActividad ---> "+request.getParameter("codActividad") );
 			
+			
+		//----------------
+			
+			SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+			
+			String horario = (String)sqlsesion.selectOne("Data.administracion.actividad.getNextHorario");
+            
+			System.out.print(" Horario Actividad creada ----> "+ horario);
+			
+			
+			if(horario!=null)
+			{
+                int cod= Integer.parseInt(horario.substring(3))+1;
+                String defecto= "000000";
+                String temp= defecto.substring(0, defecto.length()-String.valueOf(cod).length()).concat(String.valueOf(cod));
+                
+                horario= horario.substring(0,3).concat(temp) ;
+			}
+			else horario="HOR000001";
+			
+			
+			
 		for(int i=0; i<7;i++)
 		{
 			
@@ -46,7 +71,8 @@ public class AccionAgregarHorariodeactividad extends CoAccion{
 					request.getParameter("checkDia"+i)  ,
 					request.getParameter("codActividad"),
 					request.getParameter("cmbHoraInicio"+i), 
-					request.getParameter("cmbHoraFin"+i)
+					request.getParameter("cmbHoraFin"+i),
+					horario
 					);
 			
 			actividadDiaSemanaFunction.agregarHorarioDiaSemana(horarioDiaSemanaData);
