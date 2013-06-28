@@ -86,10 +86,11 @@
 		form.submit();
 	}
 	
-	function alt_consultarmatricula(cod){
+	function alt_consultarmatricula(cod,hor){
 		var form=document.getElementById("frmAlternativo");
 		form.accion.value="Consultarmatricula";
 		form.codigo.value=cod;
+        form.horario.value=hor;
 		form.submit();
 	}
 	
@@ -251,6 +252,7 @@
                 <form id="frmAlternativo" name="frmAlternativo" method="post" action="<%= response.encodeURL("SMAActividad")%>">
 				<input type="hidden" name="accion" value="Agregar"></input>
 				<input type="hidden" name="codigo" value=""></input>
+                <input type="hidden" name="horario" value=""></input>    
 				<input type="hidden" name="tipo" value="1"></input>
 				</form>	
 				
@@ -320,7 +322,8 @@
                               				<a class="btn btn-primary" href="javascript:alt_matricular('<%=((ResultadoActividadBeanData)resultados.get(i)).getCodigo()%>')">
 												<i class="icon icon-add icon-white"></i> Matricular 
 											</a>
-                              				<a class="btn btn-success" href="javascript:alt_consultarmatricula('<%=((ResultadoActividadBeanData)resultados.get(i)).getCodigo()%>')">
+                              				<a class="btn btn-success" href="javascript:alt_consultarmatricula('<%=((ResultadoActividadBeanData)resultados.get(i)).getCodigo()%>',
+                                                                                                               '<%=((ResultadoActividadBeanData)resultados.get(i)).getHorario()%>')">
 												<i class="icon-zoom-in icon-white"></i> Ver Matriculados
 											</a>
 											
