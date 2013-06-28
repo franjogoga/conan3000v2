@@ -229,7 +229,7 @@ public class ActividadBeanFuncion {
 		catch(Exception a)
 		{sqlsesion.rollback();
             a.printStackTrace();
-			throw CoException.set("Error en ingreso de datos: No se puede agregar la Matricula porque se encuentra inscrito", "SMAActividad?accion=Agregar&tipo=1");
+			throw CoException.set("Error en ingreso de datos: No se puede agregar la Matricula por falta de vacantes o esta encuentra inscrito", "SMAActividad?accion=Agregar&tipo=1");
 			
 		}
 		
