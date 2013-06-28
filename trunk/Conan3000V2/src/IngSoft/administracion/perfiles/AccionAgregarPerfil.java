@@ -6,12 +6,9 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import IngSoft.administracion.bean.ActividadBeanFuncion;
-import IngSoft.administracion.bean.AmbienteBeanData;
 import IngSoft.administracion.bean.CasosBeanData;
 import IngSoft.administracion.bean.PerfilBeanData;
 import IngSoft.administracion.bean.PerfilBeanFunction;
-import IngSoft.administracion.bean.ResultadoPerfilBeanData;
 import IngSoft.general.CoAccion;
 import IngSoft.general.CoException;
 
@@ -26,8 +23,7 @@ public class AccionAgregarPerfil extends CoAccion {
 			funcionPerfil.agregarPerfil(dataPerfil);
 			System.out.println(dataPerfil.getCodigo());
 			funcionPerfil.agregarAccionxcasoxperfil(request, response, dataPerfil.getCodigo());
-			
-			
+						
 			this.direccionar(sc, request, response, "/IngSoft/administracion/perfiles/buscarperfil.jsp");
 		}
 		if (tipo == 1) { //desde la ventana buscar da click al boton agregar			
