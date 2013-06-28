@@ -23,7 +23,7 @@ public class AccionAgregarReserva extends CoAccion {
 		
 		if(Integer.valueOf(request.getParameter("tipo"))==2){
 			
-			System.out.print( "-----> entro  agregar registro  -------->" );
+			System.out.print( "-----> entro  agregar registro  txtCodigoSoc  -------->"   + request.getParameter("codigosocio")    );
 			
 		
 		ReservaBeanFunction reservaFuncion= ReservaBeanFunction.getInstance();
