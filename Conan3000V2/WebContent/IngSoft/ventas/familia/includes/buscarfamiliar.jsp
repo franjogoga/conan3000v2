@@ -58,12 +58,12 @@
 			          
 			          <fieldset>
 			          
-		                <div class="control-group">
+		                <!-- <div class="control-group">
 			                <label class="control-label" for="typeahead9">Socio:</label>
 			                <div class="controls">
 			                  <input type="text" class="span6 typeahead" id="typeahead9"  data-provide="typeahead" data-items="4" >
 	                      </div>
-	                    </div>
+	                    </div> -->
 		              
 			              <div class="control-group">
 			                <label class="control-label" for="typeahead6">Nombres:</label>
