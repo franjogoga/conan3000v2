@@ -78,7 +78,14 @@ public class AccionAgregarEvento extends CoAccion {
 		if(tipo==5){
 			HttpSession sesion= request.getSession();
 			EventoBeanFuncion eventoFuncion= EventoBeanFuncion.getInstance();
-			eventoFuncion.registarSocioEventoSede(request.getParameter("codigo"),  sesion.getAttribute("idSocio").toString(), Integer.parseInt(request.getParameter("cantidad")));
+			int resultado=eventoFuncion.registarSocioEventoSede(request.getParameter("codigo"),  sesion.getAttribute("idSocio").toString(), Integer.parseInt(request.getParameter("cantidad")));
+			response.setContentType("text/plain");  
+		    response.setCharacterEncoding("UTF-8");
+		    try {
+				response.getWriter().write(resultado==0?"EXITO":String.valueOf(resultado));
+			} catch (IOException e) {				
+				e.printStackTrace();
+			}
 			
 		}
 	}

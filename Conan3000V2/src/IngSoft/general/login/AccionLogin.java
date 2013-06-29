@@ -26,11 +26,12 @@ public class AccionLogin extends CoAccion {
 		Vector<PerfilBeanData> perfil = new Vector<>();
 		try {
 			perfil = login.verificaUsuario(request, response);
+			HttpSession sesion = request.getSession(false);
 			if (perfil == null) {
 				this.direccionar(sc, request, response, "/IngSoft/general/perfil4.jsp");
 				}
 			else{
-				request.setAttribute("casosDeUso", perfil);
+				sesion.setAttribute("casosDeUso", perfil);
 				this.direccionar(sc, request, response, "/IngSoft/general/index.jsp");
 			}
 		} catch (ServletException e) {

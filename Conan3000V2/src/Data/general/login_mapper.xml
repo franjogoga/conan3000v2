@@ -31,12 +31,13 @@ select 	ACUP.IdPerfil as idPerfil,
 				when CU.Nombre like 'SMA%' then 'ADMINISTRACION'
 				when CU.Nombre like 'SMV%' then 'VENTA'
 				when CU.Nombre like 'GEN%' then 'LOGIN'
+				when CU.Nombre like 'SMC%' then 'SOCIO'
 		END as mantenimiento
 from 	inf245g2.ACCIONxCASO_USOxPERFIL ACUP
 		left join inf245g2.CASO_USO CU on (ACUP.IdCasoUso = CU.IdCasoUso)
 		left join inf245g2.ACCION A on (ACUP.IdAccion=A.IdAccion)
 where ACUP.IdPerfil=#{perfil}
-order by 4;
+order by 4,3;
 
 </select>
 

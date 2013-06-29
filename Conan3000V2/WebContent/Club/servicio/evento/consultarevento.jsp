@@ -28,7 +28,7 @@
 	<jsp:useBean id="sedes" scope="request"class="java.util.Vector"></jsp:useBean>
 	<jsp:useBean id="evento" scope="request"class="IngSoft.servicio.bean.EventoBeanData"></jsp:useBean>
 	<jsp:useBean id="concesionario" scope="request"class="IngSoft.servicio.bean.ConcesionarioMiniBeanData"></jsp:useBean>
-	
+	<%String modo=((EventoBeanData)evento).getCodigo().substring(0, 3);%>
 	<!-- The styles -->
 	<link id="bs-css" href="css/bootstrap-spacelab.css" rel="stylesheet">
 	<style type="text/css">
@@ -218,6 +218,7 @@
 								<span class="help-inline" id="errNombreEvento" style="display:none;">Este campo no puede estar vacio</span>						        													       
 					          </div>
 					        </div>
+					        	<%if(modo.equals("ESC")){ %>
 					        	<div class="control-group">
 						      <label class="control-label" for="txtCosto">Costo Reserva Salon Principal: </label>
 						      <div class="controls">
@@ -225,7 +226,23 @@
 									<input  id="txtCosto" class="span4" name="txtCosto" value="<%=((EventoBeanData)evento).getMonto()%>" readonly onchange="vDinero($(this))"  type="text" onkeypress="return dinero(event);"  maxlength="12">
 									<br/>
 								  <span class="help-inline" id="errCosto" name="errCosto" style="display:none;">Este campo no puede estar vacio</span>
-					        </div>					   
+					        </div>
+					        <%}
+					        else if(modo.equals("ESD")){ %>
+					        <div class="control-group">
+						      <label class="control-label" for="txtNumEntradas">Entradas: </label>
+						      <div class="controls">
+						        <input type="text" class="input typeahead" id="txtNumEntradas"  data-provide="typeahead"  name="txtNumEntradas" readonly="true" value="<%=((EventoBeanData)evento).getEntradasTotal()%> de <%=((EventoBeanData)evento).getLimiteEntradas()%> vendidas"/><br/>
+								<span class="help-inline" id="errNumEntradas" style="display:none;">Este campo no puede estar vacio</span>						        													       
+					          </div>
+					        </div>	
+					        <div class="control-group">
+						      <label class="control-label" for="txtPrecio">Precio de la Entrada: </label>
+						      <div class="controls">
+									<input  id="txtPrecio" class="span4" name="txtPrecio" readonly="true"  type="text"  value="<%=((EventoBeanData)evento).getMonto()%>">									
+					        </div>
+					        </div>					 
+					        <%} %> 				   
 							  <div class="control-group">
 								<label class="control-label" for="cmbSedes">Sede relacionada:</label>
 								<div class="controls">
@@ -269,7 +286,13 @@
 						    <%if(((EventoBeanData)evento).getEstado().equals("REGISTRADO")){%>
 							  <button type="button" id="btnRechazar" class="btn btn-primary" onclick="alt_anular('<%=((EventoBeanData)evento).getCodigo()%>')" >Anular</button>
 							  <%} %>
+							  <%if(modo.equals("ESC")){ %>
 							  <button type="button" class="btn" onclick="location.href='<%=request.getContextPath()%>/Club/servicio/evento/SMCEvento?accion=Buscar&tipo=1'" >Regresar</button>
+							  <%}
+							  	else if(modo.equals("ESD")){
+							   %>
+							   <button type="button" class="btn" onclick="location.href='<%=request.getContextPath()%>/Club/servicio/evento/SMCEvento?accion=Buscar&tipo=3'" >Regresar</button>
+							   <%} %>
 							</div>
 						  </fieldset>
 					  </form>   
