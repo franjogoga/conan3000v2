@@ -152,7 +152,7 @@ function anhadir(cod,name){
 						    </div>
                             
 						    <div class="form-actions">
-			            <input type="hidden" name="idProveedor" value=""/></input>
+					   <input type="hidden" name="idProveedor" value=""/></input>
 			           <button type="submit" class="btn btn-primary" >Agregar</button>
 			              <button type="button" class="btn" onclick="location.href='buscarproducto.jsp'">Cancelar</button>
 		                </div>

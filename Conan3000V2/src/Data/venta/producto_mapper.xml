@@ -80,12 +80,15 @@ PRODUCTO_PROV.IdProductoProv as idProdProveedor
 ,PRODUCTO_PROV.Presentacion as presentacion
 ,PRODUCTO_PROV.Estado as estado
 
-from PRODUCTO_PROV  where IdProductoProv=#{codigo} 
+from PRODUCTO_PROV  where IdProductoProv=#{idProdProveedor} 
 
 
 </select>
 
-
+<update id="updateProveedor" parameterType="IngSoft.venta.bean.ProveedorBeanData">
+update PROVEEDOR set Flag='1'
+ where PROVEEDOR.IdProveedor= #{codigo}
+</update>
 
 
 </mapper>

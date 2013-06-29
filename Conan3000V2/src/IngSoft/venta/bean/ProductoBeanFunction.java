@@ -182,5 +182,18 @@ public String consultarProductoMax() throws CoException {
 		}			
 		return ;
 	}
-
+	
+	
+	public ProveedorBeanData BuscarProveedor(String nombre){
+		ProveedorBeanData proveedorData=null;
+		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+		try{
+			proveedorData= sqlsesion.selectOne("Data.venta.servicio.getPlantillaMiniProveedor",nombre);
+		}
+		finally{
+			sqlsesion.close();
+		}
+		return proveedorData;
+		}
+	
 }
