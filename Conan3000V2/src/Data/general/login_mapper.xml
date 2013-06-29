@@ -21,4 +21,23 @@ select IdPerfil from USUARIO where Password = #{pass};
 <select id="getIdSocio" parameterType="IngSoft.general.bean.UsuarioBeanData" resultType="java.lang.String">
 select IdSocio from USUARIO where Password = #{password} and NombreUsuario=#{nombUsuario};
 </select>
+
+
+<select id="getCasosDeUso" parameterType="java.lang.String" resultType="IngSoft.general.bean.PerfilBeanData">
+select 	ACUP.IdPerfil as idPerfil,
+		A.Nombre idAccion,
+		CU.Nombre idCasoUso,
+		case 	when CU.Nombre like 'SMS%' then 'SERVICIO'
+				when CU.Nombre like 'SMA%' then 'ADMINISTRACION'
+				when CU.Nombre like 'SMV%' then 'VENTA'
+				when CU.Nombre like 'GEN%' then 'LOGIN'
+		END as mantenimiento
+from 	inf245g2.ACCIONxCASO_USOxPERFIL ACUP
+		left join inf245g2.CASO_USO CU on (ACUP.IdCasoUso = CU.IdCasoUso)
+		left join inf245g2.ACCION A on (ACUP.IdAccion=A.IdAccion)
+where ACUP.IdPerfil=#{perfil}
+order by 4;
+
+</select>
+
 </mapper>
