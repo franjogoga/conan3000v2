@@ -41,7 +41,20 @@ public class AccionBuscarEvento extends CoAccion{
 			request.setAttribute("sedes",sedeMiniData );			
 			this.direccionar(sc, request, response, "/Club/servicio/evento/buscarevento.jsp");
 			} 
-		
+		if(tipo==3){
+			//sesion.removeAttribute("resultados");
+			EventoBeanFuncion eventoFuncion= EventoBeanFuncion.getInstance();
+			Vector<SedeMiniBeanData> sedeMiniData=eventoFuncion.getSedes();
+			request.setAttribute("sedes",sedeMiniData );			
+			this.direccionar(sc, request, response, "/Club/servicio/evento/buscareventosede.jsp");
+			} 
+		if(tipo==4){
+			EventoBeanFuncion eventoFuncion= EventoBeanFuncion.getInstance();
+			HashMap<String, Object> map =eventoFuncion.crearCriterio(request,response);
+		Vector<EventoBeanData> resultados=eventoFuncion.buscarSolicitudesEventoSede(map);	
+		request.setAttribute("resultados", resultados);
+		this.direccionar(sc, request, response, "/Club/servicio/evento/resultados.jsp");
+		}
 		
 	}
 

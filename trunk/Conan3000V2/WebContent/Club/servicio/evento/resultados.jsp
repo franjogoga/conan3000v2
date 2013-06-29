@@ -83,7 +83,7 @@
                           				<%}
                           				else if (codmin.equals("ESD")){ %>
                           				    <a class="btn btn-info"
-                          					href="javascript:alt_registrar('<%=((EventoBeanData)resultados.get(i)).getCodigo()%>')">
+                          					href="javascript:alt_registrar('<%=((EventoBeanData)resultados.get(i)).getCodigo()%>',$(this))">
                           					<i
                           						class="icon-edit icon-white">
                           					</i>

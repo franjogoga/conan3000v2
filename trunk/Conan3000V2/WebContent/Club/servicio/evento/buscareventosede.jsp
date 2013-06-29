@@ -65,6 +65,8 @@
 	<script src="evento.js"></script>
 	
 	<script>
+	var codigoEvento='';
+	var boton;
 	function alt_fecha(obj){
 	obj.value=obj.value.slice(0,5);
 	
@@ -87,11 +89,29 @@
 		form.codigo.value=cod;
 		form.submit();
 	}
-	function alt_eliminar(cod){
-		var form=document.getElementById("frmAlternativo");
-		form.accion.value="Eliminar";
-		form.codigo.value=cod;
-		form.submit();
+	function alt_registar(cod,elem){		
+		codigoEvento=cod;
+		boton=elem;
+		$("#bModal").trigger("click");
+	}
+	function alt_guardar_registro(){
+	$.ajax({
+		  type: "POST",
+		  url: "<%=request.getContextPath()%>/Club/servicio/evento/SMCEvento",
+		  data: "accion=Agregar" + "&tipo=5"+ "&codigo="+codigo+ "&cantidad="+$('#txtCant').val(),
+		  dataType: "text",
+		  success: function(msg){
+			$('#txtCant').val('');
+			elem.remove();
+		  },
+		  error: function(objeto, quepaso, otroobj){
+		  	$('#txtCant').val('');
+			alert("ERROR!! NO SE PUEDO REGISTAR EL EVENTO);
+			
+		  }
+	
+		});
+		
 	}
 		
 	function alt_submit(){
@@ -103,7 +123,7 @@
 		$.ajax({
 		  type: "POST",
 		  url: "<%=request.getContextPath()%>/Club/servicio/evento/SMCEvento",
-		  data: "accion=" + $(accion).val() + "&tipo=" + $(tipo).val() + "&txtNombre=" + $(txtNombre).val() + "&cmbEstados=" + $(cmbEstados).val() + "&date01=" 
+		  data: "accion=" + $(accion).val() + "&tipo=" + $(tipo).val() + "&txtNombre=" + $(txtNombre).val() + "&cmbEstados=APROBADO"+ "&date01=" 
 		  + $(date01).val()+ "&date02=" + $(date02).val()+"&cmbSedes="+$(cmbSedes).val(),
 		  dataType: "html",
 		  success: function(msg){
@@ -166,7 +186,7 @@
 		 return false;"> -->
 		<form class="form-horizontal" name="frmCriteriosBusqueda" id="frmCriteriosBusqueda"  method="post" >
 		 <input type="hidden" id="accion" name="accion" value="Buscar"></input>
-		  <input type="hidden" id="tipo" name="tipo" value="2"></input>
+		  <input type="hidden" id="tipo" name="tipo" value="4"></input>
 						  <fieldset>
 							
 							<div class="control-group">
@@ -185,18 +205,7 @@
 									<%} %>																									
 								  </select><br/>								  
 								</div>
-							  </div>
-							  <div class="control-group">
-								<label class="control-label" for="cmbEstados">Estado:</label>
-								<div class="controls">
-								  <select  data-rel="chosen" id="cmbEstados" name="cmbEstados">
-								  	<option value="all" selected>Todos</option>
-								  	<option value="REGISTRADO" >Registrado</option>								  	
-								  	<option value="APROBADO" >Aprobado</option>
-								  	<option value="ANULADO" >Anulado</option>								  																																
-								  </select><br/>								  
-								</div>
-							  </div>	
+							  </div>							  
 							<div class="control-group">
 							  <label class="control-label" for="date01">Rango de Fecha</label>
 							  <div class="controls">
@@ -273,18 +282,27 @@
 				
 				
 		<hr>
-
+	<div style="display: none;">
+			<button class="btn btn-primary btn-setting" id="bModal"/>
+		</div>
 		<div class="modal hide fade" id="myModal">
 			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal">×</button>
-				<h3>Settings</h3>
+				<button type="button" class="close" data-dismiss="modal">X</button>
+				<h3>Datos de registro</h3>
 			</div>
 			<div class="modal-body">
-				<p>Here settings can be configured...</p>
+				<form name="frmRegistrar" id="frmRegistrar">
+					<div class="control-group">
+							  <label class="control-label" for="txtCant">Cant. Entradas a Comprar</label>
+							  <div class="controls">
+								<input type="text" class="span6 typeahead" id="txtCant" name="txtCant" onkeypress="return numerico(event);" autofocus maxlength="50">
+							  </div>
+							</div>
+				</form>
 			</div>
 			<div class="modal-footer">
-				<a href="#" class="btn" data-dismiss="modal">Close</a>
-				<a href="#" class="btn btn-primary">Save changes</a>
+				<button class="btn" data-dismiss="modal">Cancelar</button>
+				<button class="btn btn-primary" onclick="">Registrar</button>
 			</div>
 		</div>
 		<jsp:include page="/IngSoft/general/inferior.jsp" />
@@ -371,7 +389,8 @@
     	$( ".datepickerB" ).datepicker({
     		 changeMonth: true,
     	      changeYear: true,
-    	      showButtonPanel: true
+    	      showButtonPanel: true,
+    	      minDate: +0
     });
   });
 	</script>

@@ -5,7 +5,8 @@
    						
    						<a style="CURSOR: hand; text-decoration:none" href="#"> <li class="nav-header hidden-tablet" onclick="$('.administracion').slideToggle(800)">Servicios</li> </a>
    						<li><a class="ajax-link administracion" href="<%=request.getContextPath()%>/Club/servicio/sorteo/buscarInscripcionSorteo.jsp"><i class="icon-wrench"></i><span class="hidden-tablet"> Sorteos</span></a></li>
-   						<li><a class="ajax-link administracion" href="<%=request.getContextPath()%>/Club/servicio/evento/SMCEvento?accion=Buscar&tipo=1"><i class="icon-wrench"></i><span class="hidden-tablet"> Eventos</span></a></li>	
+   						<li><a class="ajax-link administracion" href="<%=request.getContextPath()%>/Club/servicio/evento/SMCEvento?accion=Buscar&tipo=1"><i class="icon-wrench"></i><span class="hidden-tablet"> Eventos Socio</span></a></li>
+   						<li><a class="ajax-link administracion" href="<%=request.getContextPath()%>/Club/servicio/evento/SMCEvento?accion=Buscar&tipo=3"><i class="icon-wrench"></i><span class="hidden-tablet"> Eventos Sede</span></a></li>	
    						<li><a class="ajax-link administracion" href="<%=request.getContextPath()%>/Club/servicio/reserva/SMCReserva?accion=Buscar&tipo=1"><i class="icon-wrench"></i><span class="hidden-tablet"> Reservas</span></a></li>
    									   					
 						<!-- <li><a class="ajax-link administracion" href="<%=request.getContextPath()%>/IngSoft/administracion/actividad/SMAActividad?accion=Buscar&tipo=1"style="display:none"><i class="icon-wrench"></i><span class="hidden-tablet"> Actividades</span></a></li>
