@@ -30,6 +30,8 @@
 	   										}else if (casoUso.equals("SMAServicio")){%> <li><a class="ajax-link administracion" href="<%=request.getContextPath()%>/IngSoft/administracion/servicio/SMAServicio?accion=Buscar&tipo=1"style="display:none"><i class="icon-wrench"></i><span class="hidden-tablet"> Servicios</span></a></li> <%
 	   										}else if (casoUso.equals("SMASocio")){%> <li><a class="ajax-link administracion" href="<%=request.getContextPath()%>/IngSoft/administracion/socio/accionsocio.jsp"style="display:none"><i class="icon-wrench"></i><span class="hidden-tablet"> Socio</span></a></li><%
 	   										}else if (casoUso.equals("SMSEmpleado")){%><li><a class="ajax-link administracion" href="<%=request.getContextPath()%>/IngSoft/administracion/empleados/buscarempleado.jsp"style="display:none"><i class="icon-wrench"></i><span class="hidden-tablet"> Empleados</span></a></li><%
+	   										}else if (casoUso.equals("SMAConcesionario")){%> <li><a class="ajax-link administracion" href="<%=request.getContextPath()%>/IngSoft/administracion/concesionario/SMAConcesionario?accion=Buscar&tipo=1"style="display:none"><i class="icon-wrench"></i><span class="hidden-tablet"> Concesionarios </span></a></li> <%
+	   										}else if (casoUso.equals("SMAInfraccion")){%> <li><a class="ajax-link administracion" href="<%=request.getContextPath()%>/IngSoft/administracion/infraccion/buscarinfraccion.jsp"style="display:none"><i class="icon-wrench"></i><span class="hidden-tablet"> Multas por Infraccion </span></a></li> <%
 	   										}
 	   										i++;
 	   										if (i==casosDeUso.size()) break;
@@ -43,8 +45,7 @@
 	   										}else if (casoUso.equals("SMSReporte")){%><li><a class="ajax-link servicio" href="<%=request.getContextPath()%>/IngSoft/servicio/reporte/generarreportes.jsp"style="display:none"><i class="icon-wrench"></i><span class="hidden-tablet"> Reportes</span></a></li><%
 	   										}else if (casoUso.equals("SMSReserva")){%><li><a class="ajax-link servicio" href="<%=request.getContextPath()%>/IngSoft/servicio/reserva/SMSReserva?accion=Buscar&tipo=1"style="display:none"><i class="icon-wrench"></i><span class="hidden-tablet"> Reservas</span></a></li><%
 	   										}else if (casoUso.equals("SMSSorteo")){%><li><a class="ajax-link servicio" href="<%=request.getContextPath()%>/IngSoft/servicio/sorteo/buscarsorteo.jsp"style="display:none"><i class="icon-wrench"></i><span class="hidden-tablet"> Sorteos</span></a></li><%
-	   										}else if (casoUso.equals("SMAConcesionario")){%> <li><a class="ajax-link administracion" href="<%=request.getContextPath()%>/IngSoft/administracion/concesionario/SMAConcesionario?accion=Buscar&tipo=1"style="display:none"><i class="icon-wrench"></i><span class="hidden-tablet"> Concesionarios </span></a></li> <%
-	   										} /*CONSESIONARIOS?*/
+	   										}
 	   										i++;
 	   										if (i==casosDeUso.size()) break;
 	   									}
@@ -63,7 +64,8 @@
 	   										}else if (casoUso.equals("SMVSocio")){%> <li><a class="ajax-link venta" href="<%=request.getContextPath()%>/IngSoft/ventas/socio/buscarsocio.jsp"style="display:none"><i class="icon-wrench"></i><span class="hidden-tablet"> Socios</span></a></li> <%
 	   										}else if (casoUso.equals("SMVFamiliar")){%> <li><a class="ajax-link venta" href="<%=request.getContextPath()%>/IngSoft/ventas/familia/buscarfamiliar.jsp"style="display:none"><i class="icon-wrench"></i><span class="hidden-tablet"> Socios</span></a></li> <%
 	   										}else if (casoUso.equals("SMVSolicitudSocio")){%> <li><a class="ajax-link venta" href="<%=request.getContextPath()%>/IngSoft/ventas/solicitud/agregarsolicitudsocio.jsp"style="display:none"><i class="icon-wrench"></i><span class="hidden-tablet"> Socios</span></a></li> <%
-	   										}
+	   										}else if (casoUso.equals("SMVSolicitud")){%> <li><a class="ajax-link venta" href="<%=request.getContextPath()%>/IngSoft/ventas/solicitud/solicitud.jsp"style="display:none"><i class="icon-wrench"></i><span class="hidden-tablet"> Solicitudes </span></a></li> <%
+	   										} 
 	   										i++;
 	   										if (i==casosDeUso.size()) break;
 	   									}
