@@ -20,10 +20,8 @@ public class AccionAgregarPerfil extends CoAccion {
 			
 			PerfilBeanFunction funcionPerfil = PerfilBeanFunction.getInstance();
 			PerfilBeanData dataPerfil = funcionPerfil.crearPerfil(request, response);
-			funcionPerfil.agregarPerfil(dataPerfil);
-			System.out.println(dataPerfil.getCodigo());
-			funcionPerfil.agregarAccionxcasoxperfil(request, response, dataPerfil.getCodigo());
-						
+			funcionPerfil.agregarPerfil(dataPerfil);			
+			funcionPerfil.agregarAccionxcasoxperfil(request, response, dataPerfil.getCodigo());						
 			this.direccionar(sc, request, response, "/IngSoft/administracion/perfiles/buscarperfil.jsp");
 		}
 		if (tipo == 1) { //desde la ventana buscar da click al boton agregar			
