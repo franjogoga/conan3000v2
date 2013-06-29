@@ -163,6 +163,19 @@ body {
 										<div class="control-group" id="dvCorreo">
 
 
+										<div class="control-group" id="dvTelefono">
+											<label class="control-label" for="txtTelefono">Telefono de Contacto(*):
+											</label>
+											<div class="controls">
+												<input type="text" class="span6 typeahead" id="txtTelefono"
+													name="txtTelefono" data-provide="typeahead">
+													<span class="help-inline" id="errTelefono">Please correct the error</span>
+											</div>
+										</div>
+
+
+
+
 											<label class="control-label" for="typeahead7">Correo:
 											</label>
 											<div class="controls">
@@ -174,17 +187,6 @@ body {
 										</div>
 
 
-
-
-										<div class="control-group" id="dvTelefono">
-											<label class="control-label" for="txtTelefono">Telefono:
-											</label>
-											<div class="controls">
-												<input type="text" class="span6 typeahead" id="txtTelefono"
-													name="txtTelefono" data-provide="typeahead">
-													<span class="help-inline" id="errTelefono">Please correct the error</span>
-											</div>
-										</div>
 
 
 
@@ -419,14 +421,14 @@ function validaForm(){
 	
 		}
 	
-	if(!esValido("Telefono",form.txtTelefono,"Telefono",1,0,7)){cadena[i]="Telefono";i++;}
+	if(!esValido("Telefono",form.txtTelefono,"Telefono",1,7,7)){cadena[i]="Telefono";i++;}
 	
 	else{
 		
 
 		if (telefono.length > 0){
 		
-				if(!esValido("Telefono",form.txtTelefono,"Telefono",6,1,7)){cadena[i]="Telefono";i++;}
+				if(!esValido("Telefono",form.txtTelefono,"Telefono",6,7,7)){cadena[i]="Telefono";i++;}
 			
 			}
 		}
