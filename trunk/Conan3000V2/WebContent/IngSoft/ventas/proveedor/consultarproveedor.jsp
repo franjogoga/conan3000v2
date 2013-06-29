@@ -20,8 +20,7 @@
 	<meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
 	<meta name="author" content="Muhammad Usman">
 	
-	<!--The beans  -->
-	<jsp:useBean id="proveedor" scope="request"class="IngSoft.venta.bean.ProveedorBeanData"></jsp:useBean>
+
 
 	<!-- The styles -->
 	<link id="bs-css" href="css/bootstrap-cerulean.css" rel="stylesheet">
@@ -90,6 +89,8 @@
 	%>
 </head>
 
+	<!--The beans  -->
+	<jsp:useBean id="proveedor" scope="request"class="IngSoft.venta.bean.ProveedorBeanData"></jsp:useBean>
 <body>
 		<jsp:include page="/IngSoft/general/superior.jsp" />
 		<div class="container-fluid">
@@ -136,58 +137,60 @@
 						<input type="hidden" name="tipo" value="2"></input>
 						
 						              <fieldset>
-		              <div class="control-group"  id="dvRazonSocial">
+		              <div class="control-group">
 		                <label class="control-label" for="typeahead7">Raz&oacute;n Social (*):</label>
 		                <div class="controls">
-		                  <input type="text" class="span6 typeahead" id="txtRazonSocial" name="txtRazonSocial"  data-provide="typeahead" value=<%=proveedor.getRazonSocial() %> disabled="disabled">
+		                  <input type="text" class="span6 typeahead" id="txtRazonSocial" name="txtRazonSocial"  data-provide="typeahead" value=<%=proveedor.getRazonSocial() %> disabled>
 		                </div>
 	                  </div>
-		              <div class="control-group">
+	                  
+	                   <div class="control-group">
 		                <div class="control-group">
 		                  <label class="control-label" for="typeahead6">RUC (*): </label>
 		                  <div class="controls">
-		                    <input type="text" class="span6 typeahead" id="txtRuc" name="txtRuc"  data-provide="typeahead" data-items="4" value=<%=proveedor.getRuc() %> disabled="disabled">
+		                    <input type="text" class="span6 typeahead" id="txtRuc" name="txtRuc"  data-provide="typeahead" data-items="4" value=<%=proveedor.getRuc() %> disabled>
 		                  </div>
 	                    </div>
-		                <div class="control-group">
-		                  <label class="control-label" for="typeahead4">Direcci&oacute;n: </label>
-		                  <div class="controls">
-		                    <input type="text" class="span6 typeahead" id="txtDireccion"  name="txtDireccion" data-provide="typeahead" data-items="4" value=<%=proveedor.getDireccion() %> disabled="disabled">
-		                  </div>
-	                    </div>
+	                    
+	                     <div class="control-group">
+						      <label class="control-label" for="typeahead7">Direcci&oacute;n(*): </label>
+						      <div class="controls">
+						        <input type="text" class="span6 typeahead" id="txtDireccion"  data-provide="typeahead"  name="txtDireccion" disabled value="<%=proveedor.getDireccion()%>">
+					          </div>
+					        </div>
 		                
 		                <div class="control-group">
 		                  <label class="control-label" for="typeahead8">Tel&eacute;fono / Celular: </label>
 		                  <div class="controls">
-		                    <input type="text" class="span6 typeahead" id="txtTelefono" name="txtTelefono"  data-provide="typeahead" data-items="4" value=<%=proveedor.getTelefono() %> disabled="disabled">
+		                    <input type="text" class="span6 typeahead" id="txtTelefono" name="txtTelefono"  data-provide="typeahead" data-items="4" value=<%=proveedor.getTelefono() %> disabled>
 		                  </div>
 	                    </div>
 	                    
 		                <div class="control-group">
 		                  <label class="control-label" for="typeahead9">Correo electr&oacute;nico: </label>
 		                  <div class="controls">
-		                    <input type="text" class="span6 typeahead" id="txtCorreo" name="txtCorreo"  data-provide="typeahead" data-items="4" value=<%=proveedor.getCorreo() %> disabled="disabled">
+		                    <input type="text" class="span6 typeahead" id="txtCorreo" name="txtCorreo"  data-provide="typeahead" data-items="4" value=<%=proveedor.getCorreo() %> disabled>
 		                  </div>
 	                    </div>
 	                    
 		                <div class="control-group">
 		                  <label class="control-label" for="typeahead10">Nombre Contacto: </label>
 		                  <div class="controls">
-		                    <input type="text" class="span6 typeahead" id="txtNombre"  name="txtNombre" data-provide="typeahead" data-items="4" value=<%=proveedor.getNomContacto() %> disabled="disabled">
+		                    <input type="text" class="span6 typeahead" id="txtNombre"  name="txtNombre" data-provide="typeahead" data-items="4" value=<%=proveedor.getNomContacto() %> disabled>
 		                  </div>
 	                    </div>
 	                    
 	                      <div class="control-group">
 		                  <label class="control-label" for="typeahead10">Apellido Paterno: </label>
 		                  <div class="controls">
-		                    <input type="text" class="span6 typeahead" id="txtApPaterno"  name="txtApPaterno" data-provide="typeahead" data-items="4" value=<%=proveedor.getApPaterno() %> disabled="disabled">
+		                    <input type="text" class="span6 typeahead" id="txtApPaterno"  name="txtApPaterno" data-provide="typeahead" data-items="4" value=<%=proveedor.getApPaterno() %> disabled>
 		                  </div>
 	                    </div>
 	                    
 	                      <div class="control-group">
 		                  <label class="control-label" for="typeahead10">Apellido Materno: </label>
 		                  <div class="controls">
-		                    <input type="text" class="span6 typeahead" id="txtApMaterno" name="txtApMaterno"  data-provide="typeahead" data-items="4" value=<%=proveedor.getApMaterno() %> disabled="disabled">
+		                    <input type="text" class="span6 typeahead" id="txtApMaterno" name="txtApMaterno"  data-provide="typeahead" data-items="4" value=<%=proveedor.getApMaterno() %> disabled>
 		                  </div>
 	                    </div>
 	                    
@@ -211,7 +214,7 @@
 		                <div class="control-group">
 		                  <label class="control-label" for="typeahead2">Numero de Documento: </label>
 		                  <div class="controls">
-		                    <input type="text" class="span6 typeahead" id="txtNumDoc"  name="txtNumDoc" data-provide="typeahead" data-items="4" value=<%=proveedor.getNumDoc() %> disabled="disabled">
+		                    <input type="text" class="span6 typeahead" id="txtNumDoc"  name="txtNumDoc" data-provide="typeahead" data-items="4" value=<%=proveedor.getNumDoc() %> disabled>
 	                      </div>
 	                    </div>
 	                  </div>
