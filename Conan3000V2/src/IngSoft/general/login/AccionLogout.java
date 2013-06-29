@@ -14,8 +14,11 @@ public class AccionLogout extends CoAccion {
 	public void ejecutar(ServletContext sc, HttpServletRequest request,
 			HttpServletResponse response) throws CoException {
 		// TODO Auto-generated method stub
-		HttpSession sesion= request.getSession(false);
-		sesion.invalidate();
+		
+		if (request.getSession()!=null){
+			HttpSession sesion= request.getSession(false);
+			sesion.invalidate();
+		}
 		this.direccionar(sc, request, response, "/IngSoft/general/login.jsp");
 
 	}
