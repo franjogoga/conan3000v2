@@ -65,9 +65,9 @@
 	   										i++;
 	   										if (i==casosDeUso.size()) break;
 	   									}
-   									}if (mant.equals("CLIENTE")){ 
+   									}if (mant.equals("SOCIO")){ 
    										%><a style="CURSOR: hand; text-decoration:none" href="#"> <li class="nav-header hidden-tablet" onclick="$('.venta').slideToggle(800)">Ventas</li> </a><%
-   										while ( ((PerfilBeanData)casosDeUso.get(i)).getMantenimiento().equals("SERVICIOS AL CLIENTE") ){
+   										while ( ((PerfilBeanData)casosDeUso.get(i)).getMantenimiento().equals("SERVICIOS AL SOCIO") ){
 	   										String casoUso = ((PerfilBeanData)casosDeUso.get(i)).getIdCasoUso();
 	   										if (casoUso.equals("SMCEvento")) {%><li><a class="ajax-link administracion" href="<%=request.getContextPath()%>/Club/servicio/evento/SMCEvento?accion=Buscar&tipo=1"><i class="icon-wrench"></i><span class="hidden-tablet"> Eventos Socio</span></a></li>
    																				<li><a class="ajax-link administracion" href="<%=request.getContextPath()%>/Club/servicio/evento/SMCEvento?accion=Buscar&tipo=3"><i class="icon-wrench"></i><span class="hidden-tablet"> Eventos Sede</span></a></li><%
