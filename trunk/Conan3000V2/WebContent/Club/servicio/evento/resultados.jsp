@@ -81,7 +81,7 @@
  											Modificar
                           				</a>-->
                           				<%}
-                          				else if (codmin.equals("ESD")){ %>
+                          				else if (codmin.equals("ESD")&& ((EventoBeanData)resultados.get(i)).getRegistrado().equals("NO")){ %>
                           				    <a class="btn btn-info"
                           					href="javascript:alt_registrar('<%=((EventoBeanData)resultados.get(i)).getCodigo()%>',$(this))">
                           					<i

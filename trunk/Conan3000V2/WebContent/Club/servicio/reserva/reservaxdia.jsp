@@ -49,12 +49,12 @@
 								 esnull=true;
 								 for(int i=0;i<dias.length;i++) {%>
 								<td class="center">
-									<a id="<%=codActual%><%=DF.format(Utils.fechaMas(fecIni, i))%><%=Area%>" 
-									name="<%=codActual%><%=DF.format(Utils.fechaMas(fecIni, k))%><%=Area%>"
+									<button id="<%=codActual%><%=DF.format(Utils.fechaMas(fecIni, i))%><%=Area%>" 
+									name="<%=codActual%><%=DF.format(Utils.fechaMas(fecIni, k))%><%=Area%>" <%=(inv.format(Utils.fechaMas(fecIni, k)).compareTo(inv.format(new java.util.Date()))<=0)?"disabled":""%>
 									class="btn btn-success" onclick="javascript:cambiarClase(this)">
 										<i class="icon-ok icon-white"></i>  
 										Reservar&nbsp;&nbsp;&nbsp;&nbsp;                                      
-								</a>										
+								</button>										
 								</td>
 								<%}}
 								else if(!esnull){
@@ -66,12 +66,12 @@
 								 	test=inv.format(Utils.fechaMas(fecIni, k)).compareTo(temp)==0;			 	
 								 	%>
 								 	<td class="center">
-									<a id="<%=codActual%><%=DF.format(Utils.fechaMas(fecIni, k))%><%=Area%>" 
-									name="<%=codActual%><%=DF.format(Utils.fechaMas(fecIni, k))%><%=Area%>"
+									<button id="<%=codActual%><%=DF.format(Utils.fechaMas(fecIni, k))%><%=Area%>" 
+									name="<%=codActual%><%=DF.format(Utils.fechaMas(fecIni, k))%><%=Area%>" <%=(inv.format(Utils.fechaMas(fecIni, k)).compareTo(inv.format(new java.util.Date()))<=0)?"disabled":""%>
 									class="btn <%=test?"btn-danger":"btn-success"%>" onclick="javascript:cambiarClase(this)">
 										<i class="icon-<%=test?"remove":"ok"%> icon-white"></i>
 										<%=test?"Reservado":"Reservar&nbsp;&nbsp;&nbsp;&nbsp;"%>  										                                      
-									</a>										
+									</button>										
 									</td>
 								 	<%k++;
 								 	if(test){

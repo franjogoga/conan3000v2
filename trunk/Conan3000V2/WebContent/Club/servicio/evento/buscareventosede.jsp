@@ -105,7 +105,7 @@
 		  success: function(msg){
 		  	
 			$('#txtCant').val('');
-			if(msg.indexOf('EXITO')=0){
+			if(msg.indexOf('EXITO')==0){
 			elem.remove();			
 			$('#tituloMensaje').innerHTML="EXITO";
 			$('#mensaje').innerHTML="Ha sido registrado en el evento, le recordamos que el ingreso esta restringido a socios y sus familiares";

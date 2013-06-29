@@ -16,6 +16,7 @@ public class EventoBeanData implements Serializable{
 	private double monto;
 	private String socio;
 	private String estado;
+	private String registrado;
 	public String getCodigo() {
 		return codigo;
 	}
@@ -81,6 +82,12 @@ public class EventoBeanData implements Serializable{
 	}
 	public void setSocio(String socio) {
 		this.socio = socio;
+	}
+	public String getRegistrado() {
+		return registrado;
+	}
+	public void setRegistrado(String registrado) {
+		this.registrado = registrado;
 	}
 	
 	

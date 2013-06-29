@@ -210,5 +210,31 @@ es.EntradasTotal= es.EntradasTotal+#{cantidad}
 where 
 es.IdEventoSede = #{codigo};
 </update>
+<select id="searchEventoSedeMiniSocio" parameterType="hashmap" resultType="IngSoft.servicio.bean.EventoBeanData">
+select 
+es.IdEventoSede as codigo
+,es.Nombre as nombre
+,es.Fecha as fecha
+,s.Nombre as idSede
+,es.Estado as estado
+,case when ses.IdSocio is null then 'NO'			
+	  when ses.IdSocio is not null then 'SI'				
+		END as registrado
+
+from 
+SEDE s 
+,EVENTO_SEDE es
+left join 
+SOCIOxEVENTO_SEDE ses
+on es.IdEventoSede=ses.IdEventoSede
+where 
+es.IdSede= s.IdSede
+and (ses.IdSocio=#{socio} or ses.IdSocio is null)
+and es.Estado like #{estado}
+and es.IdSede like #{sede}
+and DATE(es.Fecha) &gt;= DATE(#{FI})
+and DATE(es.Fecha) &lt;= DATE(#{FF})
+and es.Nombre like #{nombre}
+</select>
 <!-- Fin Inscribir en Evento sede -->
 </mapper>

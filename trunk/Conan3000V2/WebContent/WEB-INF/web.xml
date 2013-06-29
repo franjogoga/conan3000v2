@@ -328,7 +328,9 @@
 <error-code>404</error-code>
 <location>/IngSoft/general/404.jsp</location>
 </error-page>
-
+<error-page>
+<location>/IngSoft/general/perfil5.jsp</location>
+</error-page>
 </web-app>
 
 
