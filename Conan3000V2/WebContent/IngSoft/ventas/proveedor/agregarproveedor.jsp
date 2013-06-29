@@ -75,24 +75,24 @@ function validaForm(){
 	var error=false;
 
 	if(!esValido("Razon Social",form.txtRazonSocial,"RazonSocial",1,1,100)){cadena[i]="Razon Social";i++;}
-
-	if(!esValido("Direccion",form.txtDireccion,"Direccion",1,1,100)){cadena[i]="Direccion";i++;}
-	if(!esValido("Nombre Contacto",form.txtNombre,"Nombre",1,1,50)){cadena[i]="Nombre contacto";i++;}
-	if(!esValido("Apellido Paterno",form.txtApPaterno,"ApellidoP",1,1,50)){cadena[i]="Apellido Paterno";i++;}
-	if(!esValido("Apellido Materno",form.txtApMaterno,"ApellidoM",1,1,50)){cadena[i]="Apellido Materno";i++;}
-	if(!esValido("Tipo de Documento",form.rButton,"Tipo",3,1,100)){cadena[i]="Tipo de Documento";i++;}
-	if(!esValido("Telefono",form.txtTelefono,"Telefono",1,1,8)){cadena[i]="Telefono";i++;}else{
-		if(!esValido("Telefono",form.txtTelefono,"Telefono",6,1,50)){cadena[i]="Telefono";i++;}
-	}
 	if(!esValido("Ruc",form.txtRuc,"Ruc",1,1,11)){cadena[i]="Ruc";i++;}else{
 		if(!esValido("Ruc",form.txtRuc,"Ruc",6,1,50)){cadena[i]="Ruc";i++;}
 	}
-	if(!esValido("Numero Documento",form.txtNumDoc,"NumDoc",1,1,9)){cadena[i]="Numero Documento";i++;}else{
-		if(!esValido("Numero Documento",form.txtNumDoc,"NumDoc",6,1,50)){cadena[i]="Numero Documento";i++;}
+	if(!esValido("Direccion",form.txtDireccion,"Direccion",1,1,100)){cadena[i]="Direccion";i++;}
+	if(!esValido("Telefono",form.txtTelefono,"Telefono",1,1,8)){cadena[i]="Telefono";i++;}else{
+		if(!esValido("Telefono",form.txtTelefono,"Telefono",6,1,50)){cadena[i]="Telefono";i++;}
 	}
 	if(!esValido("Correo Electronico",form.txtCorreo,"CorreoE",1,1,50)){cadena[i]="Correo Electronico";i++;}else{
 		if(!esValido("Correo Electronico",form.txtCorreo,"CorreoE",9,1,100)){cadena[i]="Correo Electronico";i++;}
 	}
+	if(!esValido("Nombre Contacto",form.txtNombre,"Nombre",1,1,50)){cadena[i]="Nombre contacto";i++;}
+	if(!esValido("Apellido Paterno",form.txtApPaterno,"ApellidoP",1,1,50)){cadena[i]="Apellido Paterno";i++;}
+	if(!esValido("Apellido Materno",form.txtApMaterno,"ApellidoM",1,1,50)){cadena[i]="Apellido Materno";i++;}
+	if(!esValido("Tipo de Documento",form.rButton,"Tipo",3,1,100)){cadena[i]="Tipo de Documento";i++;}
+	if(!esValido("Numero Documento",form.txtNumDoc,"NumDoc",1,1,9)){cadena[i]="Numero Documento";i++;}else{
+		if(!esValido("Numero Documento",form.txtNumDoc,"NumDoc",6,1,50)){cadena[i]="Numero Documento";i++;}
+	}
+
 	
 	
 	//No tocar
