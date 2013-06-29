@@ -21,7 +21,7 @@ import IngSoft.general.bean.UsuarioBeanData;
 public class LoginBeanFuncion {
 	
 	public Vector<PerfilBeanData> verificaUsuario(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession sesion = request.getSession(false);
+		HttpSession sesion = request.getSession(true);
 		if (sesion!=null){
 			sesion.invalidate();
 		}

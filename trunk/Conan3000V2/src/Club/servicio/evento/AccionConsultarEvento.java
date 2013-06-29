@@ -28,7 +28,12 @@ public class AccionConsultarEvento extends CoAccion {
 			
 			EventoBeanData eventoData=null;
 			String codigo=request.getParameter("codigo");
-			eventoData=eventoFuncion.consultarEventoSocio(codigo);			
+			if(codigo!=null && !codigo.isEmpty()){
+				switch(codigo.substring(0, 3)){
+				case "ESC": eventoData=eventoFuncion.consultarEventoSocio(codigo);break;
+				case "ESD": eventoData=eventoFuncion.consultarEventoSede(codigo);break;				
+				}
+			}			
 			Vector<SedeMiniBeanData> sedeMiniData=eventoFuncion.getSedes();		
 			Vector<ConcesionarioMiniBeanData> resultado=eventoFuncion.consultarConcesionariosxSede(eventoData.getIdSede(), eventoData.getFecha());
 			for(int i=0;i<resultado.size();i++){

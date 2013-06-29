@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%@page import="IngSoft.servicio.bean.Utils"%>
 <%@page import="java.util.Date"%>
 <%@page import="IngSoft.servicio.bean.SedeMiniBeanData"%>
 <%@page import="IngSoft.servicio.bean.TipoEventoMiniBeanData"%>
@@ -89,25 +90,49 @@
 		form.codigo.value=cod;
 		form.submit();
 	}
-	function alt_registar(cod,elem){		
+	function alt_registrar(cod,elem){		
 		codigoEvento=cod;
 		boton=elem;
 		$("#bModal").trigger("click");
 	}
+	
 	function alt_guardar_registro(){
 	$.ajax({
 		  type: "POST",
 		  url: "<%=request.getContextPath()%>/Club/servicio/evento/SMCEvento",
-		  data: "accion=Agregar" + "&tipo=5"+ "&codigo="+codigo+ "&cantidad="+$('#txtCant').val(),
+		  data: "accion=Agregar" + "&tipo=5"+ "&codigo="+codigoEvento+ "&cantidad="+$('#txtCant').val(),
 		  dataType: "text",
 		  success: function(msg){
+		  	
 			$('#txtCant').val('');
-			elem.remove();
-		  },
-		  error: function(objeto, quepaso, otroobj){
-		  	$('#txtCant').val('');
-			alert("ERROR!! NO SE PUEDO REGISTAR EL EVENTO);
+			if(msg.indexOf('EXITO')=0){
+			elem.remove();			
+			$('#tituloMensaje').innerHTML="EXITO";
+			$('#mensaje').innerHTML="Ha sido registrado en el evento, le recordamos que el ingreso esta restringido a socios y sus familiares";
+			}
+			else{
+			$('#tituloMensaje').innerHTML="ERROR";
+			$('#mensaje').innerHTML="Lo sentimos, ya no hay suficientes vacantes para la cantidad espcicificada en este evento. Solo hay disponibles "+msg+" vacantes";
+			}
+			$('#formularioRegistro').css('display','none');
+			$('#msgResultado').css('display','inline');
+			setTimeout(function(){
+       		$(".close").trigger("click");
+       		$('#msgResultado').css('display','none');
+       		$('#formularioRegistro').css('display','inline');
+       }, 2000);	
 			
+		  },
+		 error: function(objeto, quepaso, otroobj){
+			$('#tituloMensaje').innerHTML="ERROR";
+			$('#mensaje').innerHTML="Hubo un error, intente de nuevo";
+			$('#formularioRegistro').css('display','none');
+			$('#msgResultado').css('display','inline');
+			setTimeout(function(){
+       		$(".close").trigger("click");
+       		$('#msgResultado').css('display','none');
+       		$('#formularioRegistro').css('display','inline');
+       }, 2000);
 		  }
 	
 		});
@@ -209,9 +234,9 @@
 							<div class="control-group">
 							  <label class="control-label" for="date01">Rango de Fecha</label>
 							  <div class="controls">
-								<input type="text" class="datepickerB" id="date01" name="date01" readonly="readonly" value="<%=new SimpleDateFormat("dd/MM/yyyy").format(new Date())%>" onchange="verificar_fecha(1,this,'date02');">
+								<input type="text" class="datepickerB" id="date01" name="date01" readonly="readonly" value="<%=new SimpleDateFormat("dd/MM/yyyy").format(Utils.fechaMas(new Date(), 1))%>" onchange="verificar_fecha(1,this,'date02');">
 								&nbsp;a&nbsp;
-								<input type="text" class="datepickerB" id="date02" readonly="readonly" name="date02" value="<%=new SimpleDateFormat("dd/MM/yyyy").format(new Date())%>" onchange="verificar_fecha(-1,this,'date01');">
+								<input type="text" class="datepickerB" id="date02" readonly="readonly" name="date02" value="<%=new SimpleDateFormat("dd/MM/yyyy").format(Utils.fechaMas(new Date(), 8))%>" onchange="verificar_fecha(-1,this,'date01');">
 							  </div>
 							</div>														
 									
@@ -286,6 +311,7 @@
 			<button class="btn btn-primary btn-setting" id="bModal"/>
 		</div>
 		<div class="modal hide fade" id="myModal">
+		<div id="formularioRegistro">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal">X</button>
 				<h3>Datos de registro</h3>
@@ -295,14 +321,23 @@
 					<div class="control-group">
 							  <label class="control-label" for="txtCant">Cant. Entradas a Comprar</label>
 							  <div class="controls">
-								<input type="text" class="span6 typeahead" id="txtCant" name="txtCant" onkeypress="return numerico(event);" autofocus maxlength="50">
+								<input type="text" class="span2 typeahead" id="txtCant" name="txtCant" onkeypress="return numerico(event);" autofocus maxlength="50">
 							  </div>
 							</div>
 				</form>
 			</div>
 			<div class="modal-footer">
 				<button class="btn" data-dismiss="modal">Cancelar</button>
-				<button class="btn btn-primary" onclick="">Registrar</button>
+				<button class="btn btn-primary" onclick="alt_guardar_registro()">Registrar</button>
+			</div>
+			</div>			
+			<div id="msgResultado" style="display: none;">
+			<div class="modal-header" >
+				<h3 id="tituloMensaje">Exito</h3>
+			</div>
+			<div class="modal-body" id="mensaje">
+				Ha sido registrado en el evento, le recordamos que el ingreso esta restringido a socios y sus familiares
+			</div>			
 			</div>
 		</div>
 		<jsp:include page="/IngSoft/general/inferior.jsp" />
@@ -382,7 +417,7 @@
 	<script src="js/jquery.history.js"></script>
 	<!-- application script for Charisma demo -->
 	<script src="js/charisma.js"></script>
-	
+	<script src="js/conan3000.js"></script>
 	<script src="js/ajaxsbmt.js"></script>
 	<script>
 		$(function() {

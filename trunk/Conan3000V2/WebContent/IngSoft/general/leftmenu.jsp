@@ -1,6 +1,6 @@
 <%@page import="java.util.Vector"%>
 <%@page import="IngSoft.general.bean.PerfilBeanData"%>
-<jsp:useBean id="casosDeUso" scope="request" class="java.util.Vector"></jsp:useBean>
+<jsp:useBean id="casosDeUso" scope="session" class="java.util.Vector"></jsp:useBean>
 
 <div class="span2 main-menu-span">
 				<div class="well nav-collapse sidebar-nav">
@@ -65,8 +65,7 @@
 	   										i++;
 	   										if (i==casosDeUso.size()) break;
 	   									}
-   									}
-   								
+   									}else i++;    									   							
    							}
    						 %>
    							

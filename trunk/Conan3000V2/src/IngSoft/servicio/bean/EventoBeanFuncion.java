@@ -23,6 +23,7 @@ public class EventoBeanFuncion {
 	static private EventoBeanFuncion EventoFuncion=null;
 	private Lock l1= new ReentrantLock();
 	private Lock l2= new ReentrantLock();
+	private Lock l3= new ReentrantLock();
 	SimpleDateFormat DF = new SimpleDateFormat("dd/MM/yyyy");
 	   
 	   public static EventoBeanFuncion getInstance(){
@@ -265,144 +266,33 @@ public class EventoBeanFuncion {
 		}
 		return resultado;				
 	}
-	public boolean registarSocioEventoSede(String codigo,String socio,int cantEntradas){
-		boolean resultado=false;
+	public int registarSocioEventoSede(String codigo,String socio,int cantEntradas){
+		int resultado=-1;
+		l3.lock();
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		OrdenPagoBeanFunction orden=OrdenPagoBeanFunction.getInstance();
-		try{			
-			sqlsesion.update("Data.servicio.evento.aprobarEventoSocio", codigo);
+		try{
 			EventoBeanData eventoData= this.consultarEventoSede(codigo);
+			int libres=eventoData.getLimiteEntradas()-eventoData.getEntradasTotal();
+			if(libres>=cantEntradas){
+			sqlsesion.update("Data.servicio.evento.aprobarEventoSocio", codigo);
+			HashMap<String, Object> map=new HashMap<String, Object>();
+			map.put("codigo", eventoData.getCodigo());
+			map.put("cantidad", cantEntradas);
+			sqlsesion.update("Data.servicio.evento.actEntradasEventoSede", map);						
 			orden.agregarOrdenPago("SOCIOXEVENTOSEDE", codigo, "", socio, cantEntradas*eventoData.getMonto(), new java.sql.Date(new java.util.Date().getTime()), new java.sql.Date(eventoData.getFecha().getTime()));
-			resultado=true;
+			resultado=0;}
+			else resultado=libres;
 		}catch(Exception e){
 			e.printStackTrace();		
 		}
 		finally{
 			sqlsesion.close();
+			l3.unlock();
 		}
 		return resultado;
 	}
-	/*
-	public boolean eliminarEvento(String codigo) throws CoException {
-		boolean resultado=false;		
 		
-		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
-		try{
-		
-			sqlsesion.update("Data.servicio.evento.deletePLantillaEvento",codigo);
-			
-			resultado=true;
-		}
-		catch(Exception a)		
-		{sqlsesion.rollback();
-		a.printStackTrace();
-			throw CoException.set("Error: No se pudo eliminar la plantilla intente de nuevo", "SMSEvento?accion=Agregar&tipo=1");
-			
-		}
-		
-		finally{
-			sqlsesion.commit();
-			sqlsesion.close();					
-		}
-			
-		return resultado;
-	}
-	
-	private Vector<ModificacionesEventoBeanData> generaListaCambios(String[] ant , String[] nue ,String cod){
-			Vector<ModificacionesEventoBeanData> mods=new Vector<ModificacionesEventoBeanData>();
-			Vector<String> antV= new Vector<String>(Arrays.asList(ant));
-			Vector<String> nueV= new Vector<String>(Arrays.asList(nue));
-			antV.remove("");
-			nueV.remove("");
-			for(int i=0;i<antV.size();i++){
-				if(nueV.remove(antV.get(i))){
-				antV.remove(i);
-				i--;}
-			}
-			for(int i=0;i<nueV.size();i++){
-				if(antV.remove(nueV.get(i))){
-					nueV.remove(i);
-					i--;
-				}
-				
-			}
-			while(true){
-				if(antV.size()==0 && nueV.size()==0) break;
-				ModificacionesEventoBeanData cambio= new ModificacionesEventoBeanData();
-				if(antV.size()==0 || "".equals((String)antV.get(0)) ) {
-					cambio.setCambio("I");
-					cambio.setNuevo((String)nueV.get(0));
-					nueV.remove(nueV.get(0));
-					cambio.setCodigo(cod);
-					mods.add(cambio);
-					continue;					
-					}
-				if(nueV.size()==0 || "".equals((String)nueV.get(0)) ) {
-					cambio.setCambio("D");
-					cambio.setAntiguo((String)antV.get(0));
-					antV.remove(antV.get(0));
-					cambio.setCodigo(cod);
-					mods.add(cambio);
-					continue;}					
-				else {
-				cambio.setCambio("U");
-				cambio.setAntiguo((String)antV.get(0));
-				cambio.setNuevo((String)nueV.get(0));
-				antV.remove(antV.get(0));
-				nueV.remove(nueV.get(0));
-				cambio.setCodigo(cod);
-				mods.add(cambio);
-				continue;
-				}
-							
-			}
-		
-		return mods;
-	}
-	
-	public void modificarEvento(EventoBeanData evento,String[] antSede,String[] antAmb) throws CoException {
-		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
-		try{
-			Vector<ModificacionesEventoBeanData> mods;
-			mods= this.generaListaCambios(antSede, evento.getIdSede(),evento.getCodigo());
-			for(int i=0;i<mods.size();i++){
-				if("I".equals(mods.get(i).getCambio())) sqlsesion.insert("Data.servicio.evento.insertPlantillaEventoSedesUpdate",(ModificacionesEventoBeanData)mods.get(i));
-				if("U".equals(mods.get(i).getCambio())) sqlsesion.delete("Data.servicio.evento.updatePlantillaEventoSedes",(ModificacionesEventoBeanData)mods.get(i));	
-				if("D".equals(mods.get(i).getCambio())) sqlsesion.update("Data.servicio.evento.deletePlantillaEventoSede",(ModificacionesEventoBeanData)mods.get(i));	
-			}		
-		//	System.out.println("Sedes="+mods.size());
-			mods= this.generaListaCambios(antAmb, evento.getIdAmbientes(),evento.getCodigo());
-			for(int i=0;i<mods.size();i++){
-				if("I".equals(mods.get(i).getCambio())) sqlsesion.insert("Data.servicio.evento.insertPlantillaEventoAmbienteUpdate",(ModificacionesEventoBeanData)mods.get(i));
-				if("U".equals(mods.get(i).getCambio())) sqlsesion.delete("Data.servicio.evento.updatePlantillaEventoAmbiente",(ModificacionesEventoBeanData)mods.get(i));	
-				if("D".equals(mods.get(i).getCambio())) sqlsesion.update("Data.servicio.evento.deletePlantillaEventoAmbiente",(ModificacionesEventoBeanData)mods.get(i));	
-			}
-		//	System.out.println("Ambs="+mods.size());
-			sqlsesion.update("Data.servicio.evento.updatePLantillaEvento",evento);
-			
-			
-		
-		}
-		catch(Exception a)		
-		{sqlsesion.rollback();
-		a.printStackTrace();
-			throw CoException.set("Error: No se pudo modificar la plantilla intente de nuevo", "SMSEvento?accion=Modificar&tipo=1");
-			
-		}
-		
-		finally{
-			sqlsesion.commit();
-			sqlsesion.close();					
-		}
-			
-		return ;
-	}
-	
-	
-	
-	
-	*/
-	
 	public EventoBeanData consultarEventoSede(String codigo){
 		EventoBeanData eventoData=null;
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
