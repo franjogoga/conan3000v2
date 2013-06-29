@@ -5,25 +5,17 @@ import java.util.Date;
 
 public class InfraccionBeanData implements Serializable {
 	String codigo;
-	String codigofamiliar;
 	String codigosocio;
-	String montomulta;
+	Double montomulta;
 	String descripcion;
 	Date fechainicio;
 	Date fechafin;
 	String estado;
-	
 	public String getCodigo() {
 		return codigo;
 	}
 	public void setCodigo(String codigo) {
 		this.codigo = codigo;
-	}
-	public String getCodigofamiliar() {
-		return codigofamiliar;
-	}
-	public void setCodigofamiliar(String codigofamiliar) {
-		this.codigofamiliar = codigofamiliar;
 	}
 	public String getCodigosocio() {
 		return codigosocio;
@@ -31,10 +23,10 @@ public class InfraccionBeanData implements Serializable {
 	public void setCodigosocio(String codigosocio) {
 		this.codigosocio = codigosocio;
 	}
-	public String getMontomulta() {
+	public Double getMontomulta() {
 		return montomulta;
 	}
-	public void setMontomulta(String montomulta) {
+	public void setMontomulta(Double montomulta) {
 		this.montomulta = montomulta;
 	}
 	public String getDescripcion() {
@@ -61,6 +53,7 @@ public class InfraccionBeanData implements Serializable {
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
+	
 	
 	
 	
