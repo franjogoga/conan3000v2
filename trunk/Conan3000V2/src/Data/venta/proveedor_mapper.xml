@@ -55,7 +55,7 @@ select
 PROVEEDOR.IdProveedor as codigo
 ,PROVEEDOR.RazonSocial as razonSocial	
 ,PROVEEDOR.Ruc as ruc
-,PROVEEDOR.NombresContacto as contacto
+,CONCAT(PROVEEDOR.NombresContacto,' ',PROVEEDOR.ApePaternoContacto,' ',PROVEEDOR.ApeMaternoContacto) as contacto
 ,PROVEEDOR.Direccion as direccion
 ,PROVEEDOR.Correo as correo
 from PROVEEDOR 
