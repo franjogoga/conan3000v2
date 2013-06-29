@@ -9,8 +9,8 @@ import java.util.Vector;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import IngSoft.administracion.bean.ConcesionarioBeanData;
 import IngSoft.general.CoAccion;
 import IngSoft.general.CoException;
 import IngSoft.servicio.bean.ConcesionarioMiniBeanData;
@@ -74,6 +74,12 @@ public class AccionAgregarEvento extends CoAccion {
 				e.printStackTrace();
 			}
 			//this.direccionar(sc, request, response, "/Club/servicio/evento/SMSEvento?accion=Buscar&tipo=1");
+		}
+		if(tipo==5){
+			HttpSession sesion= request.getSession();
+			EventoBeanFuncion eventoFuncion= EventoBeanFuncion.getInstance();
+			eventoFuncion.registarSocioEventoSede(request.getParameter("codigo"),  sesion.getAttribute("idSocio").toString(), Integer.parseInt(request.getParameter("cantidad")));
+			
 		}
 	}
 

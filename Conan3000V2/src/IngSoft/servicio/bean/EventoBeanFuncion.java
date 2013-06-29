@@ -265,6 +265,23 @@ public class EventoBeanFuncion {
 		}
 		return resultado;				
 	}
+	public boolean registarSocioEventoSede(String codigo,String socio,int cantEntradas){
+		boolean resultado=false;
+		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+		OrdenPagoBeanFunction orden=OrdenPagoBeanFunction.getInstance();
+		try{			
+			sqlsesion.update("Data.servicio.evento.aprobarEventoSocio", codigo);
+			EventoBeanData eventoData= this.consultarEventoSede(codigo);
+			orden.agregarOrdenPago("SOCIOXEVENTOSEDE", codigo, "", socio, cantEntradas*eventoData.getMonto(), new java.sql.Date(new java.util.Date().getTime()), new java.sql.Date(eventoData.getFecha().getTime()));
+			resultado=true;
+		}catch(Exception e){
+			e.printStackTrace();		
+		}
+		finally{
+			sqlsesion.close();
+		}
+		return resultado;
+	}
 	/*
 	public boolean eliminarEvento(String codigo) throws CoException {
 		boolean resultado=false;		
