@@ -8,7 +8,6 @@ public class ResultadoInfraccionBeanData implements Serializable{
 	private String apepaterno;
 	private String apematerno;
 	private String numdocumento;
-	
 	public String getCodigo() {
 		return codigo;
 	}
@@ -39,6 +38,7 @@ public class ResultadoInfraccionBeanData implements Serializable{
 	public void setNumdocumento(String numdocumento) {
 		this.numdocumento = numdocumento;
 	}
+	
 	
 	
 	
