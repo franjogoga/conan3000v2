@@ -40,5 +40,8 @@ where ACUP.IdPerfil=#{perfil}
 order by 4,3;
 
 </select>
+<select id="getNombrePerfil" parameterType="java.lang.String" resultType="java.lang.String">
+	select Nombre from PERFIL where IdPerfil = #{perfil}
+</select>
 
 </mapper>

@@ -43,6 +43,8 @@ public class LoginBeanFuncion {
 			sesion.setAttribute("username",user);
 			String perfil = (String)sqlsesion.selectOne("getPerfilUsuario",pass);
 			request.getSession().setAttribute("idPerfil", perfil);
+			String nombre= (String)sqlsesion.selectOne("Data.general.login.getNombrePerfil", perfil);
+			request.getSession().setAttribute("tipoUsuario", nombre);
 			List <PerfilBeanData> casosDeUso = sqlsesion.selectList("Data.general.login.getCasosDeUso",perfil);
 			Vector<PerfilBeanData> CU = new Vector<>();
 			for (int i=0; i< casosDeUso.size() ; i++){
