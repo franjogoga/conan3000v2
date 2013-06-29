@@ -169,9 +169,7 @@
                           </td>
                           
                            <td class="center">
-                          				<%=
-                          					((ResultadoProveedorBeanData)resultados.get(i)).getContacto()
-                          				%>
+                          				<%=((ResultadoProveedorBeanData)resultados.get(i)).getContacto()%>
                           </td>
                           
                           <td class="center">
