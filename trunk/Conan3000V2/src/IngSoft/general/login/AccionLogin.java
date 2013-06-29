@@ -1,6 +1,7 @@
 package IngSoft.general.login;
 
 import java.io.IOException;
+import java.util.Vector;
 
 import javax.faces.bean.SessionScoped;
 import javax.servlet.ServletContext;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import IngSoft.general.CoAccion;
 import IngSoft.general.CoException;
+import IngSoft.general.bean.PerfilBeanData;
 
 @SessionScoped
 public class AccionLogin extends CoAccion {
@@ -21,9 +23,16 @@ public class AccionLogin extends CoAccion {
 		// TODO Auto-generated method stub
 		
 		LoginBeanFuncion login = new LoginBeanFuncion();
-		int perfil = 0;
+		Vector<PerfilBeanData> perfil = new Vector<>();
 		try {
 			perfil = login.verificaUsuario(request, response);
+			if (perfil == null) {
+				this.direccionar(sc, request, response, "/IngSoft/general/perfil4.jsp");
+				}
+			else{
+				request.setAttribute("casosDeUso", perfil);
+				this.direccionar(sc, request, response, "/IngSoft/general/index.jsp");
+			}
 		} catch (ServletException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -31,12 +40,7 @@ public class AccionLogin extends CoAccion {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}	
-		switch (perfil){
-		case 1: this.direccionar(sc, request, response, "/IngSoft/general/perfil1.jsp"); break;
-		case 2: this.direccionar(sc, request, response, "/Club/generalClub/index.html"); break;
-		case 3: this.direccionar(sc, request, response, "/IngSoft/general/perfil3.jsp"); break;
-		default: this.direccionar(sc, request, response, "/IngSoft/general/perfil4.jsp"); break;
-		}
+		
 
 	}
 
