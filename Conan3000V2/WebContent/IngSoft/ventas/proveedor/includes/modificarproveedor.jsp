@@ -2,16 +2,6 @@
 <%@page import="java.util.Date"%>
 
 <script>
-		function validar(form){
-			if(form.txtRazonSocil.value.length <=0)return false;
-			if(form.txtDireccion.value.length<=0)return false;
-			if(form.txtTelefono.value.lengtht<=0)return false;
-			if(form.txtCorreo.value.length<=0)return false;
-			//if(form.cmbAmbientes.value.length<=0)return false;
-	return true;
-		
-		
-		}
 	
 	function alt_fecha(obj){
 	obj.value=obj.value.slice(0,5);
@@ -89,7 +79,7 @@
 		                <div class="control-group" id="dvDireccion">
 		                  <label class="control-label" for="typeahead4">Direcci&oacute;n: </label>
 		                  <div class="controls">
-		                    <input type="text" class="span6 typeahead" id="txtDireccion" name="txtDireccion"  data-provide="typeahead" data-items="4"  value=<%=proveedor.getDireccion() %> maxlength="100" onpaste="return false;">
+		                    <input type="text" class="span6 typeahead" id="txtDireccion" name="txtDireccion"  data-provide="typeahead" data-items="4"  value="<%=proveedor.getDireccion() %>" maxlength="100" onpaste="return false;">
 							<span class="help-inline" id="errDireccion">Please correct the error</span>
 	                      </div>
 	                    </div>
@@ -168,7 +158,7 @@
 	                  
 	                </fieldset>
 	              </form>
-	            (*) Datos Obligatorios</div>
+	      </div>
 	          </div>
 		      <!--/span-->
 	        </div>
