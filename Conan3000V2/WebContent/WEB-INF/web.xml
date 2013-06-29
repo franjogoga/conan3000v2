@@ -164,7 +164,10 @@
         <servlet-name>SMCReserva</servlet-name>
 	<servlet-class>Club.servicio.reserva.SMCReserva</servlet-class>
 </servlet>
-
+<servlet id="Servlet_0039">
+        <servlet-name>SMAInfraccion</servlet-name>
+	<servlet-class>IngSoft.administracion.infraccion.SMAInfraccion</servlet-class>				   
+</servlet>
 
 <servlet-mapping id="ServletMapping_0001">
         <servlet-name>SMSEvento</servlet-name>
@@ -324,6 +327,12 @@
         <servlet-name>SMCReserva</servlet-name>
 <url-pattern>/Club/servicio/reserva/SMCReserva</url-pattern>
 </servlet-mapping>
+
+<servlet-mapping id="ServletMapping_0039">
+        <servlet-name>SMAInfraccion</servlet-name>
+<url-pattern>/IngSoft/administracion/infraccion/SMAInfraccion</url-pattern>
+</servlet-mapping>
+
 <error-page>
 <error-code>404</error-code>
 <location>/IngSoft/general/404.jsp</location>
