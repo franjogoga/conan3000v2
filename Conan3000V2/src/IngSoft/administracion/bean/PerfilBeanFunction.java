@@ -110,6 +110,23 @@ public class PerfilBeanFunction {
 		return resultado;
 	}
 	
+	public boolean eliminarPerfilxaccionxcaso(String codigo) throws CoException {
+		boolean resultado = false;
+		SqlSession sesion = MyBatisSesion.metodo().openSession();
+		try {
+			sesion.delete("Data.administracion.perfiles.deletePerfilxaccionxcaso", codigo);
+			resultado = true;
+		} catch (Exception e1){
+			sesion.rollback();
+			e1.printStackTrace();
+			throw CoException.set("Error: No se pudo eliminar el Perfil de Usuario intente nuevamente", "SMAPerfil?accion=Agregar&tipo=1");
+		} finally {
+			sesion.commit();
+			sesion.close();
+		}		
+		return resultado;
+	}
+	
 	public PerfilBeanData consultarPerfil (String codigo) {
 		PerfilBeanData dataPerfil = null;
 		SqlSession sesion = MyBatisSesion.metodo().openSession();
