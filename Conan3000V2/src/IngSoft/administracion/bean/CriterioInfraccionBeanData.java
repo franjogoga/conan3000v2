@@ -5,11 +5,9 @@ public class CriterioInfraccionBeanData implements Serializable{
 	
 	private String codigo;
 	private String nombre;
-	private String apellidopaterno;
-	private String apellidomaterno;
-	private String documento;
-	
-	
+	private String apepaterno;
+	private String apematerno;
+	private String numdocumento;
 	public String getCodigo() {
 		return codigo;
 	}
@@ -22,24 +20,27 @@ public class CriterioInfraccionBeanData implements Serializable{
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public String getApellidopaterno() {
-		return apellidopaterno;
+	public String getApepaterno() {
+		return apepaterno;
 	}
-	public void setApellidopaterno(String apellidopaterno) {
-		this.apellidopaterno = apellidopaterno;
+	public void setApepaterno(String apepaterno) {
+		this.apepaterno = apepaterno;
 	}
-	public String getApellidomaterno() {
-		return apellidomaterno;
+	public String getApematerno() {
+		return apematerno;
 	}
-	public void setApellidomaterno(String apellidomaterno) {
-		this.apellidomaterno = apellidomaterno;
+	public void setApematerno(String apematerno) {
+		this.apematerno = apematerno;
 	}
-	public String getDocumento() {
-		return documento;
+	public String getNumdocumento() {
+		return numdocumento;
 	}
-	public void setDocumento(String documento) {
-		this.documento = documento;
+	public void setNumdocumento(String numdocumento) {
+		this.numdocumento = numdocumento;
 	}
+	
+	
+	
 	
 	
 
