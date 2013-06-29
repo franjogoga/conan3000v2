@@ -7,7 +7,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="Dos Virgenes, pagina de administrador">
 	<meta name="author" content="Dos Virgenes">
-
+	<!--The beans  -->
+	<jsp:useBean id="casosDeUso" scope="request" class="java.util.Vector"></jsp:useBean>
 	<!-- The styles -->
 	<link id="bs-css" href="css/bootstrap-cerulean.css" rel="stylesheet">
 	<style type="text/css">
@@ -47,7 +48,9 @@
 		<div class="row-fluid">
 				
 			<!-- left menu starts -->
-			<jsp:include page="leftmenu.jsp" />
+			<jsp:include page="leftmenu.jsp" >
+				<jsp:param name="casosDeUso" value="<%=casosDeUso %>" />
+			</jsp:include>
 						<!-- left menu ends -->
 			
 			<noscript>
