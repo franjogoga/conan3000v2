@@ -1,9 +1,11 @@
 package IngSoft.general.login;
 
 import java.io.IOException;
+import java.util.Vector;
 
 import javax.faces.bean.SessionScoped;
 import javax.servlet.ServletContext;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,12 +14,13 @@ import javax.servlet.http.HttpSession;
 import org.apache.ibatis.session.SqlSession;
 
 import IngSoft.general.MyBatisSesion;
+import IngSoft.general.bean.PerfilBeanData;
 import IngSoft.general.bean.UsuarioBeanData;
 
 @SessionScoped
 public class LoginBeanFuncion {
 	
-	public int verificaUsuario(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public Vector<PerfilBeanData> verificaUsuario(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession sesion = request.getSession(false);
 		if (sesion!=null){
 			sesion.invalidate();
@@ -28,7 +31,7 @@ public class LoginBeanFuncion {
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		String u = (String)sqlsesion.selectOne("getUsuarioLogin",user);
 		String p = (String)sqlsesion.selectOne("getPassLogin",pass);
-		if (u==null || p == null ) return -1;
+		if (u==null || p == null ) return null;
 		UsuarioBeanData usuario = new UsuarioBeanData();
 		usuario.setNombUsuario(u); usuario.setPassword(p);		
 		String idSocio = (String)sqlsesion.selectOne("getIdSocio",usuario);
@@ -36,15 +39,20 @@ public class LoginBeanFuncion {
 		request.getSession().setAttribute("idSocio", idSocio);
 		
 		if (user.equals(u) && pass.equals(p)){
-			
-			String perfil = (String)sqlsesion.selectOne("getPerfilUsuario",pass);
-			if (perfil.equals("PER000001")) return 1; //Administrador
-			if (perfil.equals("PER000002")) return 2; //Profesor
-			if (perfil.equals("PER000003")) return 3; //JP
 			sesion.setMaxInactiveInterval(10*60);
 			sesion.setAttribute("username",user);
+			String perfil = (String)sqlsesion.selectOne("getPerfilUsuario",pass);
+			request.getSession().setAttribute("idPerfil", perfil);
+			List <PerfilBeanData> casosDeUso = sqlsesion.selectList("Data.general.login.getCasosDeUso",perfil);
+			Vector<PerfilBeanData> CU = new Vector<>();
+			for (int i=0; i< casosDeUso.size() ; i++){
+				CU.add(casosDeUso.get(i));
+			}
+			CU.trimToSize();
+			sqlsesion.close();
+			return CU;
+			
 		}
-		
-		return -1; 
+		return null;
 	}
 }
