@@ -34,7 +34,7 @@ String fecAnoFin=dfActual.format(new java.util.Date()); %>
 			  <div>
 			    <ul class="breadcrumb">
 		        <li> <a href="../../general/index.jsp">Home</a> <span class="divider">/</span></li>
-		        <li> <a href="solicitud.jsp">Mantenimiento de Solicitud de socio </a> <span class="divider">/</span></li>
+		        <li> <a href="buscarsolicitudsocio.jsp">Mantenimiento de Solicitud de socio </a> <span class="divider">/</span></li>
 		       <li>Agregar Solicitud de Socio</li>
 	          </ul>
 		      </div>  
