@@ -57,4 +57,9 @@
 			and CASO_USO.IdCasoUso = ACCIONxCASO_USOxPERFIL.IdCasoUso;	
 	</select>
 	
+	<delete id="deletePerfilxaccionxcaso" parameterType="java.lang.String">
+		delete from ACCIONxCASO_USOxPERFIL 
+		where IdPerfil = #{codigo}
+	</delete>
+	
 </mapper>
