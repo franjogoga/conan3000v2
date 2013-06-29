@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%@page import="IngSoft.servicio.bean.Utils"%>
 <%@page import="java.util.Date"%>
 <%@page import="IngSoft.servicio.bean.SedeMiniBeanData"%>
 <%@page import="IngSoft.servicio.bean.TipoEventoMiniBeanData"%>
@@ -200,9 +201,9 @@
 							<div class="control-group">
 							  <label class="control-label" for="date01">Rango de Fecha</label>
 							  <div class="controls">
-								<input type="text" class="datepickerB" id="date01" name="date01" readonly="readonly" value="<%=new SimpleDateFormat("dd/MM/yyyy").format(new Date())%>" onchange="verificar_fecha(1,this,'date02');">
+								<input type="text" class="datepickerB" id="date01" name="date01" readonly="readonly" value="<%=new SimpleDateFormat("dd/MM/yyyy").format(Utils.fechaMas(new Date(), 1))%>" onchange="verificar_fecha(1,this,'date02');">
 								&nbsp;a&nbsp;
-								<input type="text" class="datepickerB" id="date02" readonly="readonly" name="date02" value="<%=new SimpleDateFormat("dd/MM/yyyy").format(new Date())%>" onchange="verificar_fecha(-1,this,'date01');">
+								<input type="text" class="datepickerB" id="date02" readonly="readonly" name="date02" value="<%=new SimpleDateFormat("dd/MM/yyyy").format(Utils.fechaMas(new Date(), 8))%>" onchange="verificar_fecha(-1,this,'date01');">
 							  </div>
 							</div>														
 									

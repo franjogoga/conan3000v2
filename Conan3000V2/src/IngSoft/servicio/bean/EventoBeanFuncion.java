@@ -191,6 +191,20 @@ public class EventoBeanFuncion {
 		
 	}
 	
+	public Vector<EventoBeanData> buscarSolicitudesEventoSedeSocio(HashMap<String, Object> map){		
+		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+		Vector<EventoBeanData> resultadosV=null;
+		try{		
+		List<EventoBeanData> resultados=sqlsesion.selectList("Data.servicio.evento.searchEventoSedeMiniSocio",map);
+	
+		resultadosV= new Vector<>(resultados);
+		}
+		finally{
+		sqlsesion.close();}
+		return resultadosV;
+		
+	}
+	
 	public Vector<EventoBeanData> buscarSolicitudesEventoSocio(HashMap<String, Object> map){		
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		Vector<EventoBeanData> resultadosV=null;
@@ -279,7 +293,10 @@ public class EventoBeanFuncion {
 			HashMap<String, Object> map=new HashMap<String, Object>();
 			map.put("codigo", eventoData.getCodigo());
 			map.put("cantidad", cantEntradas);
-			sqlsesion.update("Data.servicio.evento.actEntradasEventoSede", map);						
+			map.put("socio", socio);
+			map.put("monto", cantEntradas*eventoData.getMonto());
+			sqlsesion.update("Data.servicio.evento.actEntradasEventoSede", map);
+			sqlsesion.insert("Data.servicio.evento.inscribirEventoSede", map);
 			orden.agregarOrdenPago("SOCIOXEVENTOSEDE", codigo, "", socio, cantEntradas*eventoData.getMonto(), new java.sql.Date(new java.util.Date().getTime()), new java.sql.Date(eventoData.getFecha().getTime()));
 			resultado=0;}
 			else resultado=libres;
