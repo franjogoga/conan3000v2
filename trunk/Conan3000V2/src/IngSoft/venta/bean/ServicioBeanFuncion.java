@@ -1,8 +1,5 @@
 package IngSoft.venta.bean;
 
-import java.util.List;
-import java.util.Vector;
-import java.text.ParseException;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -86,7 +83,7 @@ static private ServicioBeanFuncion ServicioFuncion=null;
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
 			
-			sqlsesion.insert("Data.venta.servicio.insertLinea",lineaData);
+			sqlsesion.insert("Data.venta.solicitudservicio.insertLinea",lineaData);
 
 			resultado=true;
 		}
