@@ -11,6 +11,7 @@ public class AmbienteBeanData implements Serializable{
 	private String caracteristicas;
 	private String idTipoAmbiente;
 	private String estado;
+	private Integer flag;
 	
 	public String getCodigo() {
 		return codigo;
@@ -54,4 +55,10 @@ public class AmbienteBeanData implements Serializable{
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}	
+	public Integer getFlag() {
+		return flag;
+	}
+	public void setFlag(Integer flag) {
+		this.flag = flag;
+	}
 }

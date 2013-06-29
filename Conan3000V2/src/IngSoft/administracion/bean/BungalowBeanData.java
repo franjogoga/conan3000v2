@@ -12,6 +12,7 @@ public class BungalowBeanData implements Serializable{
 	private Double areaBungalow;
 	private String descripcion;
 	private String idSede;
+	private Integer flag;
 	
 	public String getCodigo() {
 		return codigo;
@@ -60,5 +61,11 @@ public class BungalowBeanData implements Serializable{
 	}
 	public void setIdSede(String idSede) {
 		this.idSede = idSede;
+	}	
+	public Integer getFlag() {
+		return flag;
+	}
+	public void setFlag(Integer flag) {
+		this.flag = flag;
 	}
 }

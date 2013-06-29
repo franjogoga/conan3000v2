@@ -30,6 +30,7 @@
 	<select id="searchTipoAmbienteMini" resultType="IngSoft.administracion.bean.TipoAmbienteMiniBeanData">
 		select IdTipoAmbiente as codigo, Nombre as nombre 
 		from TIPO_AMBIENTE
+		order by 2;
 	</select>
 
 	<insert id="insertAmbiente" parameterType="IngSoft.administracion.bean.AmbienteBeanData" flushCache="true">
@@ -63,4 +64,29 @@
 		UPDATE AMBIENTE SET Estado='Eliminado' WHERE IdAmbiente = #{codigo}
 	</update>
 	
+	<select id="searchAmbienteOtros" parameterType="java.lang.String" resultType="IngSoft.administracion.bean.AmbienteBeanData">			
+		SELECT a.IdAmbiente as codigo
+		FROM AMBIENTE a
+		WHERE a.IdAmbiente=#{codigo} AND
+			  (a.IdAmbiente IN ( 
+					SELECT a.IdAmbiente
+					FROM AMBIENTE a, BUNGALOW b
+					WHERE a.IdAmbiente=b.IdAmbiente
+						  AND b.Estado!='Eliminado')
+	  		  OR a.IdAmbiente IN (
+					SELECT a.IdAmbiente
+					FROM AMBIENTE a, CANCHA c
+					WHERE a.IdAmbiente=c.IdAmbiente
+						  AND c.Estado!='Eliminado')
+	  		  OR a.IdAmbiente IN (
+					SELECT a.IdAmbiente
+					FROM AMBIENTE a, SERVICIO s
+					WHERE a.IdAmbiente=s.IdAmbiente
+						  AND s.Estado!='Eliminado')
+	  		  OR a.IdAmbiente IN (
+					SELECT a.IdAmbiente
+					FROM AMBIENTE a, ACTIVIDAD ac
+					WHERE a.IdAmbiente=ac.IdAmbiente
+						  AND ac.Estado!='No Disponible'))
+	</select>
 </mapper>

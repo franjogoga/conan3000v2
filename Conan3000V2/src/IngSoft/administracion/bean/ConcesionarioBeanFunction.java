@@ -133,6 +133,24 @@ public class ConcesionarioBeanFunction {
 		finally{
 			sqlsesion.close();
 		}
+		//BUSCA CONCESIONARIO EN OTRAS TABLAS
+		sqlsesion=MyBatisSesion.metodo().openSession();
+		Vector<ConcesionarioBeanData> resultadosV=null;
+		try{		
+			List<ConcesionarioBeanData> resultados = sqlsesion.selectList("searchConcesionarioOtros",codigo);
+			resultadosV= new Vector<>(resultados);
+		}
+		finally{
+		sqlsesion.close();
+		}
+		//COMPROBAR EL TAMAÑANO PARA SETEAR EL FLAG
+		if(resultadosV.size()==0){
+			concesionarioData.setFlag(0);
+		}
+		else {
+			concesionarioData.setFlag(1);
+		}
+		
 		return concesionarioData;
 	}	
 

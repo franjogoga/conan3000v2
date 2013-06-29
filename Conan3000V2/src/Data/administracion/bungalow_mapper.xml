@@ -81,4 +81,19 @@
 	<update id="deleteBungalow" parameterType="java.lang.String" >
 		UPDATE BUNGALOW SET Estado='Eliminado' WHERE IdBungalow = #{codigo}
 	</update>
+	
+	<select id="searchBungalowOtros" parameterType="java.lang.String" resultType="IngSoft.administracion.bean.BungalowBeanData">
+		SELECT b.IdBungalow as codigo
+		FROM BUNGALOW b
+		WHERE b.IdBungalow= #{codigo} AND
+			  (b.IdBungalow IN ( 
+					SELECT b.IdBungalow
+					FROM BUNGALOW b, BUNGALOWxSORTEO bs
+					WHERE b.IdBungalow=bs.IdBungalow)
+	  		  OR b.IdBungalow IN (
+					SELECT b.IdBungalow
+					FROM BUNGALOW b, RESERVA_BUNGALOW rb
+					WHERE b.IdBungalow=rb.IdBungalow
+						  AND rb.Estado!='ELIMINADO'))
+	</select>
 </mapper>

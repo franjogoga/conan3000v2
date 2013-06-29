@@ -135,6 +135,23 @@ public class BungalowBeanFunction {
 		finally{
 			sqlsesion.close();
 		}
+		//BUSCA BUNGALOWS EN OTRAS TABLAS
+		sqlsesion=MyBatisSesion.metodo().openSession();
+		Vector<BungalowBeanData> resultadosV=null;
+		try{		
+			List<BungalowBeanData> resultados = sqlsesion.selectList("searchBungalowOtros",codigo);
+			resultadosV= new Vector<>(resultados);
+		}
+		finally{
+		sqlsesion.close();
+		}
+		//COMPROBAR EL TAMAÑANO PARA SETEAR EL FLAG
+		if(resultadosV.size()==0){
+			bungalowData.setFlag(0);
+		}
+		else {
+			bungalowData.setFlag(1);
+		}		
 		return bungalowData;
 	}
 	
