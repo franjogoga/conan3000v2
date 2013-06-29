@@ -65,8 +65,21 @@
 	   										i++;
 	   										if (i==casosDeUso.size()) break;
 	   									}
-   									}else i++;    									   							
+   									}if (mant.equals("CLIENTE")){ 
+   										%><a style="CURSOR: hand; text-decoration:none" href="#"> <li class="nav-header hidden-tablet" onclick="$('.venta').slideToggle(800)">Ventas</li> </a><%
+   										while ( ((PerfilBeanData)casosDeUso.get(i)).getMantenimiento().equals("SERVICIOS AL CLIENTE") ){
+	   										String casoUso = ((PerfilBeanData)casosDeUso.get(i)).getIdCasoUso();
+	   										if (casoUso.equals("SMCEvento")) {%><li><a class="ajax-link administracion" href="<%=request.getContextPath()%>/Club/servicio/evento/SMCEvento?accion=Buscar&tipo=1"><i class="icon-wrench"></i><span class="hidden-tablet"> Eventos Socio</span></a></li>
+   																				<li><a class="ajax-link administracion" href="<%=request.getContextPath()%>/Club/servicio/evento/SMCEvento?accion=Buscar&tipo=3"><i class="icon-wrench"></i><span class="hidden-tablet"> Eventos Sede</span></a></li><%
+	   										}else if (casoUso.equals("SMCReserva")){%><li><a class="ajax-link administracion" href="<%=request.getContextPath()%>/Club/servicio/reserva/SMCReserva?accion=Buscar&tipo=1"><i class="icon-wrench"></i><span class="hidden-tablet"> Reservas</span></a></li><%
+	   										}else if (casoUso.equals("SMCSorteo")){%><li><a class="ajax-link administracion" href="<%=request.getContextPath()%>/Club/servicio/sorteo/buscarInscripcionSorteo.jsp"><i class="icon-wrench"></i><span class="hidden-tablet"> Sorteos</span></a></li><%
+	   										}
+	   										i++;
+	   										if (i==casosDeUso.size()) break;
+	   									}
+	   								}else i++;    									   							
    							}
+   							
    						 %>
    							
    						
