@@ -18,8 +18,8 @@
 	</select>
 	
 	<insert id="insertPerfil" parameterType="IngSoft.administracion.bean.PerfilBeanData" flushCache="true">
-		insert into PERFIL(IdPerfil, Nombre, Descripcion)
-		values (#{codigo}, #{nombre}, #{descripcion})
+		insert into PERFIL(IdPerfil, Nombre, Descripcion,Estado)
+		values (#{codigo}, #{nombre}, #{descripcion},'Activo')
 	</insert>
 	
 	<select id="getPerfil" parameterType="java.lang.String" resultType="IngSoft.administracion.bean.PerfilBeanData">
@@ -42,7 +42,7 @@
 	<select id="getCasos" resultType="IngSoft.administracion.bean.CasosBeanData">
 		select ACCIONxCASO_USO.IdCasoUso as codigoCaso, CASO_USO.Nombre as nombreCaso, ACCIONxCASO_USO.IdAccion as codigoAccion, ACCION.Nombre as nombreAccion 
 		from ACCIONxCASO_USO, ACCION, CASO_USO
-		where ACCION.IdAccion = ACCIONxCASO_USO.IdAccion and CASO_USO.IdCasoUso = ACCIONxCASO_USO.IdCasoUso;		
+		where ACCION.IdAccion = ACCIONxCASO_USO.IdAccion and CASO_USO.IdCasoUso = ACCIONxCASO_USO.IdCasoUso order by 2;		
 	</select>
 
 	<insert id="insertAccionxcasoxperfil" parameterType="IngSoft.administracion.bean.PerfilBeanData" flushCache="true">
