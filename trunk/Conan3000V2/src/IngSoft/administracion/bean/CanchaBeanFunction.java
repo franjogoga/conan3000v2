@@ -131,6 +131,24 @@ public class CanchaBeanFunction {
 		finally{
 			sqlsesion.close();
 		}
+		//BUSCA AMBIENTES EN OTRAS TABLAS
+		sqlsesion=MyBatisSesion.metodo().openSession();
+		Vector<CanchaBeanData> resultadosV=null;
+		try{		
+			List<CanchaBeanData> resultados = sqlsesion.selectList("searchCanchaOtros",codigo);
+			resultadosV= new Vector<>(resultados);
+		}
+		finally{
+		sqlsesion.close();
+		}
+		//COMPROBAR EL TAMAÑANO PARA SETEAR EL FLAG
+		if(resultadosV.size()==0){
+			canchaData.setFlag(0);
+		}
+		else {
+			canchaData.setFlag(1);
+		}
+		
 		return canchaData;
 	}
 	

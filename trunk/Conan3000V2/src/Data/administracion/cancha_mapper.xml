@@ -83,4 +83,15 @@
 		FROM TIPO_CANCHA tc
 		ORDER BY 2 asc;
 	</select>
+	
+	<select id="searchCanchaOtros" parameterType="java.lang.String" resultType="IngSoft.administracion.bean.CanchaBeanData">
+		SELECT c.IdCancha as codigo
+		FROM CANCHA c
+		WHERE c.IdCancha=#{codigo} AND
+			  (c.IdCancha IN (
+					SELECT c.IdCancha
+					FROM CANCHA c, RESERVA_CANCHA rc
+					WHERE c.IdCancha=rc.IdCancha
+						  AND rc.Estado!='ELIMINADO'))
+		</select>
 </mapper>

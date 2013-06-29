@@ -87,6 +87,18 @@ function crearAlert(cadena){
 	});
 }
 
+function crearAlert2(cadena){
+	$(document).ready(function() {
+		apprise(cadena, {'animate':true}, function(r) {
+
+			if(r) { 
+			
+			} else { 
+		
+			}
+		});
+	});
+}
 
 function inputRadioLleno(valor){
 	var s=0;

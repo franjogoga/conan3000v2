@@ -135,6 +135,23 @@ public class AmbienteBeanFunction {
 		finally{
 			sqlsesion.close();
 		}
+		//BUSCA AMBIENTES EN OTRAS TABLAS
+		sqlsesion=MyBatisSesion.metodo().openSession();
+		Vector<AmbienteBeanData> resultadosV=null;
+		try{		
+			List<AmbienteBeanData> resultados = sqlsesion.selectList("searchAmbienteOtros",codigo);
+			resultadosV= new Vector<>(resultados);
+		}
+		finally{
+		sqlsesion.close();
+		}
+		//COMPROBAR EL TAMAÑANO PARA SETEAR EL FLAG
+		if(resultadosV.size()==0){
+			ambienteData.setFlag(0);
+		}
+		else {
+			ambienteData.setFlag(1);
+		}
 		return ambienteData;
 	}
 	

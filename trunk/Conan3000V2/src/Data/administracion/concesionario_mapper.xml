@@ -105,4 +105,29 @@
 	 		  Estado not like 'Eliminado';
 	</update>
 	
+	<select id="searchConcesionarioOtros" parameterType="java.lang.String" resultType="IngSoft.administracion.bean.ConcesionarioBeanData">
+		SELECT c.IdConcesionario as codigo
+		FROM CONCESIONARIO c
+		WHERE c.IdConcesionario=#{codigo} AND
+			  (c.IdConcesionario IN ( 
+					SELECT c.IdConcesionario
+					FROM CONCESIONARIO c, CONCESIONARIOxSEDE cs
+					WHERE c.IdConcesionario=cs.IdConcesionario
+						  AND cs.Estado!='Eliminado')
+	  		  OR c.IdConcesionario IN (
+					SELECT c.IdConcesionario
+					FROM CONCESIONARIO c, EVENTO_CORPORATIVO ec
+					WHERE c.IdConcesionario=ec.IdConcesionario
+						  AND ec.Estado!='ANULADO')
+	  		  OR c.IdConcesionario IN (
+					SELECT c.IdConcesionario
+					FROM CONCESIONARIO c, EVENTO_SEDE es
+					WHERE c.IdConcesionario=es.IdConcesionario
+						  AND es.Estado!='ANULADO')
+	  		  OR c.IdConcesionario IN (
+					SELECT c.IdConcesionario
+					FROM CONCESIONARIO c, EVENTO_SOCIO eso
+					WHERE c.IdConcesionario=eso.IdConcesionario
+						  AND eso.Estado!='ANULADO'))
+		</select>	
 </mapper>
