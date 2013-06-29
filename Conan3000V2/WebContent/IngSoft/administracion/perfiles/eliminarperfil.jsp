@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<%@page import="IngSoft.administracion.bean.CasosBeanData"%>
+<%@page import="java.util.Vector"%>
+<%@page import="java.lang.System"%>
 <html lang="en">
 <head>
 
@@ -9,6 +12,8 @@
 	<meta name="author" content="Dos Virgenes">
 
 	<jsp:useBean id="perfil" scope="request" class="IngSoft.administracion.bean.PerfilBeanData"></jsp:useBean>
+	<jsp:useBean id="casos" scope="request" class="java.util.Vector"></jsp:useBean>
+	<jsp:useBean id="casosxaccion" scope="request" class="java.util.Vector"></jsp:useBean>
 	
 	<!-- The styles -->
 	<link id="bs-css" href="css/bootstrap-cerulean.css" rel="stylesheet">    
@@ -111,6 +116,58 @@
 											<input type="text" class="span6 typeahead" id="txtDescripcion" name="txtDescripcion" value="<%=perfil.getDescripcion()%>" disabled=""></input>								
 										</div>
 									</div>																				
+							
+									<div class="control-group">
+										<label class="control-label"><%= ((CasosBeanData)casos.get(0)).getNombreCaso()%></label>
+										<div class="controls">
+											<label class="checkbox inline">
+												<input type="checkbox" name="checkAcciones" 
+												<% for(int j=0; j<casosxaccion.size(); j++) {
+														  if ( ((CasosBeanData)casosxaccion.get(j)).getCodigoCaso().equals( ((CasosBeanData)casos.get(0)).getCodigoCaso() ) && ((CasosBeanData)casosxaccion.get(j)).getCodigoAccion().equals( ((CasosBeanData)casos.get(0)).getCodigoAccion() ) ) {%>
+																<%="checked" %>
+														<%} %>																											
+												<%}%> 
+												disabled value="<%= ((CasosBeanData)casos.get(0)).getCodigoCaso() + ((CasosBeanData)casos.get(0)).getCodigoAccion()%>"> <%= ((CasosBeanData)casos.get(0)).getNombreAccion()%>
+											</label>
+																																												
+									<% String codigoCasoAnt = ((CasosBeanData)casos.get(0)).getCodigoCaso();
+									   String codigoCasoAct = ((CasosBeanData)casos.get(1)).getCodigoCaso();
+									 %>
+									<% for(int i=1; i<casos.size(); i++) { %>
+										<% if ( codigoCasoAnt.equalsIgnoreCase(codigoCasoAct) ) { %>
+										   		<label class="checkbox inline">
+													<input type="checkbox" name="checkAcciones" 
+													<% for(int j=0; j<casosxaccion.size(); j++)  {
+														  if ( ((CasosBeanData)casosxaccion.get(j)).getCodigoCaso().equals( ((CasosBeanData)casos.get(i)).getCodigoCaso() ) && ((CasosBeanData)casosxaccion.get(j)).getCodigoAccion().equals( ((CasosBeanData)casos.get(i)).getCodigoAccion() ) ) {%>
+																<%="checked" %>
+														<%} %>																											
+													<%}%>													
+													disabled value="<%= ((CasosBeanData)casos.get(i)).getCodigoCaso() + ((CasosBeanData)casos.get(i)).getCodigoAccion()%>"> <%= ((CasosBeanData)casos.get(i)).getNombreAccion()%>
+												</label>
+										<% } else { %>
+												</div>
+							  				</div>	
+										
+											<div class="control-group">
+											<label class="control-label"><%= ((CasosBeanData)casos.get(i)).getNombreCaso()%></label>
+											<div class="controls">
+												<label class="checkbox inline">
+													<input type="checkbox" name="checkAcciones"
+													<% for(int j=0; j<casosxaccion.size(); j++) {
+														  if ( ((CasosBeanData)casosxaccion.get(j)).getCodigoCaso().equalsIgnoreCase( ((CasosBeanData)casos.get(i)).getCodigoCaso() ) && ((CasosBeanData)casosxaccion.get(j)).getCodigoAccion().equalsIgnoreCase( ((CasosBeanData)casos.get(i)).getCodigoAccion() ) ) {%>
+																<%="checked" %>
+														<%} %>																											
+													<%}%>													
+													disabled value="<%= ((CasosBeanData)casos.get(i)).getCodigoCaso() + ((CasosBeanData)casos.get(i)).getCodigoAccion()%>"> <%= ((CasosBeanData)casos.get(i)).getNombreAccion()%> 
+												</label>										
+										<% } %>
+									 <% 
+										   codigoCasoAnt = ((CasosBeanData)casos.get(i)).getCodigoCaso();
+									   	   if (i+1<casos.size()) codigoCasoAct = ((CasosBeanData)casos.get(i+1)).getCodigoCaso();
+									   } %>
+									
+										</div>
+							  		</div>																
 							
 						            <div class="form-actions">
 						            	<button type="button" class="btn btn-primary" onclick="javascript:alt_submit_eliminar()">Eliminar</button>
