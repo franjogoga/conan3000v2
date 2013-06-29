@@ -7,8 +7,8 @@
   <cache />
   
   
-<select id="getNextCodigo" resultType="java.lang.String">
-	select max(IdInvitado) from INVITADO	
+<select id="getNextInfraccion" resultType="java.lang.String">
+	select max(IdSuspensionFalta) from SUSPENSION_FALTA
 </select>
 
 
@@ -22,11 +22,11 @@ inf245g2.PERSONA.ApePaterno AS apepaterno,
 inf245g2.PERSONA.ApeMaterno AS apematerno,
 inf245g2.PERSONA.NumeroDocumento AS numdocumento
 FROM inf245g2.SOCIO, inf245g2.PERSONA
-WHERE
+WHERE 
 inf245g2.SOCIO.IdSocio=inf245g2.PERSONA.IdPersona AND inf245g2.PERSONA.Nombres like #{nombre}
 order by 1 asc
 
-</select>
+</select> 
 
 
 
