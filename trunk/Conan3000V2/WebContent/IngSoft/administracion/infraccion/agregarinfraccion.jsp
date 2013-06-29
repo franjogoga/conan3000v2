@@ -14,7 +14,7 @@
 	<meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
 	<meta name="author" content="Muhammad Usman">
 	
-	<!--The beans  -->
+	<!--The beans -->
 	<jsp:useBean id="infraccion" scope="request"class="IngSoft.administracion.bean.InfraccionBeanData"></jsp:useBean>
 
 	
