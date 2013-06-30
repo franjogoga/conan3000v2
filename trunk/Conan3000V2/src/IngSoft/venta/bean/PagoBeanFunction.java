@@ -106,6 +106,10 @@ public class PagoBeanFunction {
 			
 			sqlsesion.update("Data.venta.pago.registrarPago",pagoData);
 			sqlsesion.insert("insertIngreso",pagoData);
+			String idMembresia=(String)sqlsesion.selectOne("Data.venta.pago.getIdMembresia",pagoData);
+			pagoData.setIdMembresia(idMembresia);
+			sqlsesion.update("Data.venta.pago.activarPago",pagoData);
+			sqlsesion.update("Data.venta.pago.vencidoMembresiaPago",pagoData);
 			//sqlsesion.insert("insertPlantillaEventoSedes",eventoData);
 			
 			resultado=true;
@@ -278,6 +282,7 @@ public boolean aplicarMulta(PagoBeanData pagoData) throws CoException {
 			
 			
 			sqlsesion.update("Data.venta.pago.generarMulta",pagoData);
+			sqlsesion.update("Data.venta.pago.vencidoMembresiaPago",pagoData);
 			//sqlsesion.insert("insertPlantillaEventoSedes",eventoData);
 			
 			resultado=true;
