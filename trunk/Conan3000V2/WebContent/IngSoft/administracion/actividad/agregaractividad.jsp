@@ -253,7 +253,7 @@
                           <div class="control-group" id="dvVacantes">
                               <label class="control-label" for="typeahead">Vacantes (*):</label>
                               <div class="controls">
-                                  <input type="text" class="span6 typeahead" id="txtVacantes"  data-provide="typeahead" name="txtVacantes">
+                                  <input type="text" class="span6 typeahead" id="txtVacantes"  data-provide="typeahead" name="txtVacantes"  maxlength="7" onkeypress="return numerico(event);">
                                       <span class="help-inline" id="errVacantes">Please correct the error</span>
                                       </div>
                           </div>
@@ -261,7 +261,7 @@
                           <div class="control-group" id="dvCosto">
                               <label class="control-label" for="typeahead">Costo S/.(*):</label>
                               <div class="controls">
-                                  <input type="text" class="span6 typeahead" id="txtCosto"  data-provide="typeahead" name="txtCosto">
+                                  <input type="text" class="span6 typeahead" id="txtCosto"  data-provide="typeahead" name="txtCosto"    maxlength="7" onkeypress="return numerico(event);">
                                       <span class="help-inline" id="errCosto">Please correct the error</span>
                                       </div>
                           </div>
@@ -269,17 +269,18 @@
                           
 							<input type="hidden" name="cmbEncargadoCodigo" value="EMP000003"></input>
 							
-						    <div class="control-group">
+						    <div class="control-group" id="dvCmbEncargado">
 						      <label class="control-label" for="typeahead7">Encargado(*): </label>
 						      <div class="controls">
-						        <input type="text" class="span6 typeahead" id="cmbEncargado"  data-provide="typeahead"  name="cmbEncargado"  disabled value="Ronald">
+						        <input type="text" class="span6 typeahead" id="cmbEncargado"  data-provide="typeahead"  name="cmbEncargado"  disabled value="">
+                                    <span class="help-inline" id="errCmbEncargado">Please correct the error</span>
 					          </div>
 					        </div>
 					        
 						    <div class="control-group">
 						      <label class="control-label" for="typeahead7">Puesto(*): </label>
 						      <div class="controls">
-						        <input type="text" class="span6 typeahead" id="txtPuesto"  data-provide="typeahead"  name="txtPuesto" disabled value="PROFESOR NATACION">
+						        <input type="text" class="span6 typeahead" id="txtPuesto"  data-provide="typeahead"  name="txtPuesto" disabled value="">
 					          </div>
 					        </div>
 
@@ -554,6 +555,9 @@ function validaForm(){
         if(!esValido("Descripci&oacute;n",form.txtDescripcion,"Descripcion",1,0,100)){cadena[i]="Descripci&oacute;n";i++;}
         if(!esValido("Vacantes",form.txtVacantes,"Vacantes",1,1,6)){cadena[i]="Vacantes";i++;}
         if(!esValido("Costo",form.txtCosto,"Costo",1,1,6)){cadena[i]="Costo";i++;}
+        if(!esValido("Encargado",form.cmbEncargado,"CmbEncargado",1,1,50)){cadena[i]="Encargado";i++;}
+    
+    
     
         //No tocar
         if(i>0){
@@ -568,7 +572,8 @@ function inicializa(){
         document.getElementById("errNombreAmbiente").style.display='none';
         document.getElementById("errDescripcion").style.display='none'; 
         document.getElementById("errVacantes").style.display='none';
-         document.getElementById("errCosto").style.display='none'; 
+         document.getElementById("errCosto").style.display='none';
+     document.getElementById("errCmbEncargado").style.display='none';
 } 
  
 inicializa();
