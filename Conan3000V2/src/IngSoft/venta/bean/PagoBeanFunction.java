@@ -2,6 +2,7 @@ package IngSoft.venta.bean;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -63,6 +64,28 @@ public class PagoBeanFunction {
 		}
 		return pagoData;		
 	}
+	
+	public PagoBeanData crearMulta(HttpServletRequest request, HttpServletResponse response){
+		PagoBeanData pagoData= new PagoBeanData();
+		try{		
+	
+		pagoData.setMulta(1+(Double.parseDouble(request.getParameter("txtMulta"))/100));
+		//pagoData.setIdConcepto(request.getParameter("cmbConcepto"));
+		pagoData.setFechaActual(new Date(DF.parse(request.getParameter("fFechaActual")).getTime()));
+		
+				
+		
+         	
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			
+		}
+		return pagoData;		
+	} 
+	
+	
+	
 	
 	public boolean agregarPago(PagoBeanData pagoData) throws CoException {
 		
@@ -217,5 +240,125 @@ public String consultarPagoMax() throws CoException {
 		}			
 		return ;
 	}
+	
+public String consultarMulta() throws CoException {
+		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+		String cantidad=null;
+		try{
+			PagoBeanData pago=new PagoBeanData();
+			final Calendar c = Calendar.getInstance();
+			java.util.Date fechaActual = new java.util.Date(); 
+			pago.setFechaActual(fechaActual);
+			
+			
+			cantidad= (String)sqlsesion.selectOne("Data.venta.pago.getCantMultas");
+		}
+		catch(Exception a)		
+		{sqlsesion.rollback();
+		a.printStackTrace();
+			throw CoException.set("Error: No se pudo obtener los datos", "SMVPago?accion=AplicarMulta&tipo=1");
+			
+		}
+		
+		finally{
+			sqlsesion.commit();
+			sqlsesion.close();					
+		}			
+		return cantidad;
+}
+
+
+public boolean aplicarMulta(PagoBeanData pagoData) throws CoException {
+		
+		boolean resultado=false;		
+		l.lock();
+		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+		
+		try{
+			
+			
+			sqlsesion.update("Data.venta.pago.generarMulta",pagoData);
+			//sqlsesion.insert("insertPlantillaEventoSedes",eventoData);
+			
+			resultado=true;
+		}
+		catch(Exception a)		
+		{sqlsesion.rollback();
+		a.printStackTrace();
+			//throw CoException.set("Error: Nombre de pago repetido", "SMVPago?accion=Agregar&tipo=1");
+		}
+		
+		finally{
+			sqlsesion.commit();
+			sqlsesion.close();
+			l.unlock();					
+		}
+		return resultado;
+	}
+
+
+
+
+
+
+public String consultarMultaExtra() throws CoException {
+	SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+	String cantidad=null;
+	try{
+		PagoBeanData pago=new PagoBeanData();
+		final Calendar c = Calendar.getInstance();
+		pago.setFechaActual(c.getTime());
+		cantidad= (String)sqlsesion.selectOne("Data.venta.pago.getCantMultasExtra",pago);
+	}
+	catch(Exception a)		
+	{sqlsesion.rollback();
+	a.printStackTrace();
+		throw CoException.set("Error: No se pudo obtener los datos", "SMVPago?accion=AplicarMultaExtra&tipo=1");
+		
+	}
+	
+	finally{
+		sqlsesion.commit();
+		sqlsesion.close();					
+	}			
+	return cantidad;
+}
+
+
+public boolean aplicarMultaExtra(PagoBeanData pagoData) throws CoException {
+	
+	boolean resultado=false;		
+	l.lock();
+	SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+	
+	try{
+		
+		
+		sqlsesion.update("Data.venta.pago.generarMultaExtra",pagoData);
+		//sqlsesion.insert("insertPlantillaEventoSedes",eventoData);
+		
+		resultado=true;
+	}
+	catch(Exception a)		
+	{sqlsesion.rollback();
+	a.printStackTrace();
+		//throw CoException.set("Error: Nombre de pago repetido", "SMVPago?accion=Agregar&tipo=1");
+	}
+	
+	finally{
+		sqlsesion.commit();
+		sqlsesion.close();
+		l.unlock();					
+	}
+	return resultado;
+}
+
+
+
+
+
+
 
 }
+
+

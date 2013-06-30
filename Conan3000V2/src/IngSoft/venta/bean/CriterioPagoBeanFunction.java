@@ -3,12 +3,16 @@ package IngSoft.venta.bean;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Vector;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.ibatis.session.SqlSession;
 
+import IngSoft.general.CoException;
 import IngSoft.general.MyBatisSesion;
 
 
@@ -61,6 +65,27 @@ public class CriterioPagoBeanFunction {
 		return criterioPagoData;				
 	}
 	
+public CriterioPagoBeanData crearCriterioFlujo(HttpServletRequest request, HttpServletResponse response){
+		
+		CriterioPagoBeanData criterioPagoData= new CriterioPagoBeanData();
+		
+		//criterioPagoData.setTipo(Integer.parseInt(request.getParameter("cmbTipoEvento")==null?"0":request.getParameter("cmbTipoEvento")));
+		
+		
+		try {
+			
+			
+			if(request.getParameter("cmbAnho")!=null){
+			criterioPagoData.setAnho(request.getParameter("cmbAnho"));
+			}else{
+			criterioPagoData.setAnho(request.getParameter("2013"));	
+			}
+			
+			
+		}finally{ }
+		return criterioPagoData;				
+	}
+	
 	public Vector<ResultadoPagoBeanData> buscarPago(CriterioPagoBeanData criterioPagoData){		
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		Vector<ResultadoPagoBeanData> resultadosV=null;
@@ -107,4 +132,21 @@ public class CriterioPagoBeanFunction {
 		return resultadosV;
 		
 	}
+	
+	
+	public Vector<ResultadoFlujoCajaBeanData> buscarFlujo(CriterioPagoBeanData criterioPagoData) throws CoException {
+		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+		Vector<ResultadoFlujoCajaBeanData> resultadosV=null;
+		try{		
+			List<ResultadoFlujoCajaBeanData> resultados=sqlsesion.selectList("getFlujoCaja",criterioPagoData.getAnho());
+		resultadosV= new Vector<>(resultados);
+		}
+		finally{
+		sqlsesion.close();
+		}
+		return resultadosV;
+	}
+
+	
+	
 }

@@ -12,12 +12,10 @@
 				<a data-rel="tooltip" title="Egresos" class="well span3 top-block" href="buscaregreso.jsp">
 					<span class="icon32 icon-color icon-date"></span>
 					<div>EGRESOS</div>
-					<span class="notification yellow">34</span>
 				</a>
 				
-				<a data-rel="tooltip" title="Flujo de Caja" class="well span3 top-block" href="buscarflujocaja.jsp">
+				<a data-rel="tooltip" title="Flujo de Caja" class="well span3 top-block" href="flujocaja.jsp">
 					<span class="icon32 icon-color icon-pin"></span>
 					<div>FLUJO DE CAJA</div>
-					<span class="notification blue">4</span>
 				</a>
 			</div>
