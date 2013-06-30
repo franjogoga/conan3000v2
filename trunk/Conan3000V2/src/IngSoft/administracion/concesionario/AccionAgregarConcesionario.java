@@ -1,5 +1,6 @@
 package IngSoft.administracion.concesionario;
 
+import javax.faces.bean.SessionScoped;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -9,6 +10,7 @@ import IngSoft.general.CoException;
 import IngSoft.administracion.bean.ConcesionarioBeanData;
 import IngSoft.administracion.bean.ConcesionarioBeanFunction;
 
+@SessionScoped
 public class AccionAgregarConcesionario extends CoAccion {
 
 	@Override

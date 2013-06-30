@@ -2,6 +2,7 @@ package IngSoft.administracion.concesionario;
 
 import java.util.Vector;
 
+import javax.faces.bean.SessionScoped;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,6 +13,7 @@ import IngSoft.administracion.bean.CriterioConcesionarioBeanData;
 import IngSoft.administracion.bean.CriterioConcesionarioBeanFunction;
 import IngSoft.administracion.bean.ResultadoConcesionarioBeanData;
 
+@SessionScoped
 public class AccionBuscarConcesionario extends CoAccion{
 
 	@Override

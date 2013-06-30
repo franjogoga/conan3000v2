@@ -2,6 +2,7 @@ package IngSoft.administracion.bungalow;
 
 import java.util.Vector;
 
+import javax.faces.bean.SessionScoped;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,6 +14,7 @@ import IngSoft.administracion.bean.BungalowBeanFunction;
 import IngSoft.administracion.bean.AmbienteMiniBeanData;
 import IngSoft.administracion.bean.SedeMiniBeanData;
 
+@SessionScoped
 public class AccionConsultarBungalow extends CoAccion {
 
 	@Override
