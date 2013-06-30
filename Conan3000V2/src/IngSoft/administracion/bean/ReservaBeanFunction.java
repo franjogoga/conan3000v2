@@ -18,6 +18,8 @@ import org.apache.ibatis.session.SqlSession;
 
 import IngSoft.general.CoException;
 import IngSoft.general.MyBatisSesion;
+import IngSoft.general.bean.Conan3000Constantes;
+import IngSoft.venta.bean.OrdenPagoBeanFunction;
 
 public class ReservaBeanFunction {
 	static private ReservaBeanFunction reservaFunction= null;
@@ -122,7 +124,7 @@ public class ReservaBeanFunction {
 			if(  Integer.parseInt(contador) > 6 )
 			{
 				
-				
+				OrdenPagoBeanFunction orden=OrdenPagoBeanFunction.getInstance();
 				String cadena    = (String)sqlsesion.selectOne("Data.administracion.reserva.getMontoInvitadoSocio");
 				Double monto = Double.parseDouble(cadena);
 				
@@ -135,6 +137,15 @@ public class ReservaBeanFunction {
 				
 				System.out.print("entrooo ---> "+  reservaData.getCodigo() );		
 		  		System.out.print("entrroo ---> "+  reservaData.getMonto() );
+				
+		  		orden.agregarOrdenPago(
+		  				"INVITADOXSOCIO", 
+		  				reservaData.getCodigo(), 
+		  				"", 
+		  				reservaData.getCodigosocio(),
+		  				reservaData.getMonto(),
+		  				new Date(reservaData.getFechaingreso().getTime()), 
+		  				new Date(reservaData.getFechaingreso().getTime()));
 				
 			}	
 			
@@ -250,14 +261,16 @@ public class ReservaBeanFunction {
 		return reservaData;
 	}
 	
-	public ReservaBeanData consultarReservaInvitado(String codigo){
-		ReservaBeanData reservaData=null;
+	public Vector<ReservaBeanData> consultarReservaInvitado(String codigo){
+		Vector<ReservaBeanData> resultadosV=null;
 		
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
 			System.out.print("ReservaBeanFunction ---->  codigo = " + codigo);
 			
-			reservaData= sqlsesion.selectOne("Data.administracion.reserva.getPLantillaReservaInvitado",codigo);
+			List<ReservaBeanData>  resultados= sqlsesion.selectList("Data.administracion.reserva.getPLantillaReservaInvitado",codigo);
+			
+			resultadosV= new Vector<>(resultados);
 			
 		}
 		finally{
@@ -265,7 +278,7 @@ public class ReservaBeanFunction {
 		}
 
 		
-		return reservaData;
+		return resultadosV;
 	}
 
 	
