@@ -55,6 +55,7 @@ from SOLICITUD_INGRESO
        AND (SOLICITUD_INGRESO.ApeMaterno)  like #{apellidoMaterno}
     </if>
     AND SOLICITUD_INGRESO.Estado='Aceptada'
+    AND SOLICITUD_INGRESO.Flag='0'
 
 </where>
 </select>
