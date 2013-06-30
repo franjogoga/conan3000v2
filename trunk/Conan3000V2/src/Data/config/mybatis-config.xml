@@ -48,7 +48,7 @@
     <mapper resource="Data/venta/ventaproducto_mapper.xml"/>
     <mapper resource="Data/venta/solicitudproducto_mapper.xml"/>
     <mapper resource="Data/venta/solicitudsocio_mapper.xml"/>     
-    <mapper resource="Data/venta/solicitudservicio_mapper.xml"/>   
+    <!-- <mapper resource="Data/venta/solicitudservicio_mapper.xml"/> -->   
     <mapper resource="Data/general/login_mapper.xml"/>
     <mapper resource="Data/general/constantes_mapper.xml"/>
     <mapper resource="Data/servicio/reporte_mapper.xml"/>
