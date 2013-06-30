@@ -240,6 +240,23 @@ public class EmpleadoBeanFuncion {
 		finally{
 			sqlsesion.close();
 		}
+		//BUSCA EMPLEADO EN OTRAS TABLAS
+		sqlsesion=MyBatisSesion.metodo().openSession();
+		Vector<EmpleadoBeanData> resultadosV=null;
+		try{		
+			List<EmpleadoBeanData> resultados = sqlsesion.selectList("searchEmpleadoOtros",codigo);
+			resultadosV= new Vector<>(resultados);
+		}
+		finally{
+			sqlsesion.close();
+		}
+		//COMPROBAR EL TAMAÑANO PARA SETEAR EL FLAG
+		if(resultadosV.size()==0){
+			EmpleadoData.setFlag(0);
+		}
+		else {
+			EmpleadoData.setFlag(1);
+		}
 		return EmpleadoData;
 	}
 	
