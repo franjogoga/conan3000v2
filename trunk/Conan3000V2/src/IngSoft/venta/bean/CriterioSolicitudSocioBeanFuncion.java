@@ -28,7 +28,7 @@ public class CriterioSolicitudSocioBeanFuncion {
 		criterioSolicitudSocioData.setNombres(request.getParameter("txtNombres")+"%");
 		criterioSolicitudSocioData.setApellidoMaterno(request.getParameter("txtApellidoM")+"%");
 		criterioSolicitudSocioData.setApellidoPaterno(request.getParameter("txtApellidoP")+"%");
-		criterioSolicitudSocioData.setFechaRegistro(new Date(DF.parse(request.getParameter("fFechaR")).getTime()));
+		//criterioSolicitudSocioData.setFechaRegistro(new Date(DF.parse(request.getParameter("fFechaR")).getTime()));
 		
 		}catch(Exception e){
 			e.printStackTrace();
