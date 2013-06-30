@@ -39,8 +39,6 @@
 	
 	<!--The beans  -->
 	<jsp:useBean id="socio" scope="request" class="IngSoft.venta.bean.SocioBeanData"></jsp:useBean>	
-		
-	<!--The beans  -->
 	<jsp:useBean id="persona" scope="request" class="IngSoft.venta.bean.PersonaMiniBeanData"></jsp:useBean>	
 					
 
@@ -164,7 +162,7 @@
 							</div>
 						  </fieldset>
 					  </form>   
-					(*) Campos Obligatorios 
+		
 				  </div>
 				</div><!--/span-->
 
