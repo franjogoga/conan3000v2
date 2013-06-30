@@ -9,8 +9,8 @@ import java.util.Vector;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import IngSoft.administracion.bean.ConcesionarioBeanData;
 import IngSoft.general.CoAccion;
 import IngSoft.general.CoException;
 import IngSoft.servicio.bean.ConcesionarioMiniBeanData;
@@ -40,12 +40,8 @@ public class AccionAgregarEvento extends CoAccion {
 			//this.direccionar(sc, request, response, "/IngSoft/servicio/evento/SMSEvento?accion=Buscar&tipo=1");
 		}
 		if(tipo==1){		
-		Vector<SedeMiniBeanData> sedeMiniData=eventoFunction.getSedes();
-		//Vector<TipoEventoMiniBeanData> tipoEventoMiniData=eventoFunction.getTipoEvento();
-		//Vector<AmbienteMiniBeanData> AmbienteMiniData=eventoFunction.getAmbientes();
-		request.setAttribute("sedes",sedeMiniData );
-		//request.setAttribute("ambientes",AmbienteMiniData );
-		//request.setAttribute("tiposEvento",tipoEventoMiniData);
+		Vector<SedeMiniBeanData> sedeMiniData=eventoFunction.getSedes();		
+		request.setAttribute("sedes",sedeMiniData );		
 		this.direccionar(sc, request, response, "/IngSoft/servicio/evento/agregarevento.jsp");
 		}
 		if(tipo==3){
@@ -58,8 +54,28 @@ public class AccionAgregarEvento extends CoAccion {
 				e.printStackTrace();
 			}
 			Vector<ConcesionarioMiniBeanData> resultado=eventoFunction.consultarConcesionariosxSede(codSede, fecha);
-			request.setAttribute("resultados", resultado);
+			request.setAttribute("resultados", resultado);			
 			this.direccionar(sc, request, response, "/IngSoft/servicio/evento/concesionariosxsede.jsp");
+			
+			
+		}
+		if(tipo==4){
+			Vector<SedeMiniBeanData> sedeMiniData=eventoFunction.getSedes();		
+			request.setAttribute("sedes",sedeMiniData );		
+			this.direccionar(sc, request, response, "/IngSoft/servicio/evento/agregareventocorporativo.jsp");
+			
+		}
+		
+		if(tipo==5){
+			
+			EventoBeanFuncion eventoFuncion= EventoBeanFuncion.getInstance();	
+			EventoBeanData eventoData=eventoFuncion.crearEvento(request, response);
+			String corporativo=request.getParameter("idJuridica");
+			String temp=request.getParameter("invitados");
+			String invitados=temp.substring(0, temp.length()-1);
+			eventoFuncion.registrarEventoCorporativo(eventoData, invitados, corporativo);
+			//eventoFuncion.insertInvitados(evento, invitados) request.getParameter("codigo")
+			
 			
 		}
 	}
