@@ -58,6 +58,11 @@
 
 	<!-- The fav icon -->
 	<link rel="shortcut icon" href="img/conan_logo.png">
+	
+	<script type="text/javascript" src="js/apprise-1.5.full.js"></script>
+	<link rel="stylesheet" href="css/apprise.css" type="text/css" />
+	<script type="text/javascript" src="js/script.js"></script>
+		
 	<script>
 	function alt_fecha(obj){
 	obj.value=obj.value.slice(0,5);
@@ -67,8 +72,14 @@
 	function alt_submit(){
 		var form= document.frmDelete;
 		var r=confirm("¿Esta seguro que desea eliminar esta Sede ?");
-		if(r==true){form.submit();}
-			}	
+		if(r==true){
+				if(<%=sede.getFlag()%>==1){
+        			crearAlert2("No se puede eliminar la sede. Se está violando el principio de dependencia.");
+        		}else{
+					form.submit();    
+        		}
+			}
+		}	
 
 
 	</script>	
