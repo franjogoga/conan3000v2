@@ -6,7 +6,7 @@
 
   <cache />
 
- <select id="searchPlantillaSolicitudSocio" parameterType="IngSoft.venta.bean.CriterioSolicitudSocioBeanData" resultType="IngSoft.venta.bean.ResultadoSolicitudSocioBeanData">
+ <select id="searchPlantillaLinea" parameterType="IngSoft.venta.bean.CriterioLinSolicServBeanData" resultType="IngSoft.venta.bean.ResultadoLinSolicServBeanData">
 select 
 SOLICITUD_INGRESO.IdSolicitudIngreso as codSolicitudSocio
 ,SOLICITUD_INGRESO.Nombres as nombres
