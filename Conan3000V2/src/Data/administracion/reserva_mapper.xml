@@ -51,16 +51,17 @@ AND   inf245g2.PERSONA.Nombres LIKE #{nombre}
 
 
 SELECT 
-inf245g2.SOCIO.IdSocio AS codigo,
+inf245g2.MEMBRESIA.IdSocio AS codigo,
 inf245g2.PERSONA.Nombres AS nombre,
 inf245g2.PERSONA.ApePaterno AS apaterno,
 inf245g2.PERSONA.ApeMaterno AS amaterno
 
-FROM  inf245g2.SOCIO, inf245g2.PERSONA
+FROM  inf245g2.MEMBRESIA, inf245g2.PERSONA
 
 
 WHERE
-    inf245g2.SOCIO.IdSocio = inf245g2.PERSONA.IdPersona 
+    inf245g2.MEMBRESIA.IdSocio = inf245g2.PERSONA.IdPersona 
+AND inf245g2.MEMBRESIA.Estado='Activo'
 AND   inf245g2.PERSONA.Nombres LIKE #{nombre}
 ;
 
