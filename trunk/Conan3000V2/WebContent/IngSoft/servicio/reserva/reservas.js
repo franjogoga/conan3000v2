@@ -1,6 +1,7 @@
 function cambiarClase(elemento){
 	if (atipo == 1) cAgregar(elemento);
-	else if(atipo == 2)cEliminar(elemento);	
+	else if(atipo == 2)cEliminar(elemento)
+	else if(atipo == 4)cAdicionar(elemento);	
 }
 
 function cAgregar(elemento){
@@ -22,6 +23,32 @@ function cAgregar(elemento){
 		cancelados=cancelados.concat(temp);
 		else pendientes=pendientes.replace(temp,"");
 		}	
+}
+
+function cAdicionar(elemento){
+	if (elemento.className == "btn btn-danger") {
+		$('#bModal').trigger('click');
+		$('.mod').css('display','none');
+		$('.modAdicional').css('display','inline');
+		var temp=elemento.getAttribute("id");
+		$.ajax({
+		  type: "POST",
+		  url: "/Conan3000V2/IngSoft/servicio/reserva/SMSReserva",
+		  data: "accion=Buscar"+"&tipo=9" + "&codigo="+temp,
+		  dataType: "html",
+		  beforeSend: function ( xhr ) {
+   		  $("#resultadoAdicional").html("<div align='center'><img src='img/ajax-loaders/ajax-loader-7.gif'></img></div>");
+  		  },
+		  success: function(msg){
+			$("#resultadoAdicional").html(msg);	
+			
+		  },
+		  error: function(objeto, quepaso, otroobj){
+			alert("ERROR!!");
+		  }
+	
+		});
+		}
 }
 
 function cEliminar(elemento){
@@ -141,6 +168,7 @@ function cambiaModo(numero) {
 		temp=$('#titulo').html();
 		temp=temp.replace('AGREGAR','ELIMINAR');
 		temp=temp.replace('BUSCAR','ELIMINAR');
+		temp=temp.replace('ADICIONAR A','ELIMINAR');
 		$('#txtDocSocio').prop('disabled', false);
 		$('#txtNomSocio').prop('disabled', false);
 		$('#titulo').html(temp);
@@ -154,6 +182,7 @@ function cambiaModo(numero) {
 		temp=$('#titulo').html();
 		temp=temp.replace('ELIMINAR','AGREGAR');
 		temp=temp.replace('BUSCAR','AGREGAR');
+		temp=temp.replace('ADICIONAR A','AGREGAR');
 		$('#txtDocSocio').prop('disabled', true);
 		$('#txtNomSocio').prop('disabled', true);
 		$('#titulo').html(temp);
@@ -167,6 +196,21 @@ function cambiaModo(numero) {
 		temp=$('#titulo').html();
 		temp=temp.replace('ELIMINAR','BUSCAR');
 		temp=temp.replace('AGREGAR','BUSCAR');
+		temp=temp.replace('ADICIONAR A','BUSCAR');
+		$('#txtDocSocio').prop('disabled', false);
+		$('#txtNomSocio').prop('disabled', false);
+		$('#titulo').html(temp);
+		$('.crear').css('display','none');
+		$('.elim').css('display','none');
+		$('.modAgregar').css('display','none');
+		$('.modEliminar').css('display','none');		
+	}
+	else if(numero==4){
+		atipo=4;
+		temp=$('#titulo').html();
+		temp=temp.replace('ELIMINAR','ADICIONAR A');
+		temp=temp.replace('AGREGAR','ADICIONAR A');
+		temp=temp.replace('BUSCAR','ADICIONAR A');
 		$('#txtDocSocio').prop('disabled', false);
 		$('#txtNomSocio').prop('disabled', false);
 		$('#titulo').html(temp);
@@ -274,7 +318,14 @@ if(lock4==1){
 		  	lock4=1;
 		  			  			  
 		  	$("#resultadoBusqueda").html("");
-			alert("Operacion realizada sin problemas");},
+			$('.modAgregar').css('display','none');
+		  	 $('.modExito').css('display','inline');       		 
+		  	 setTimeout(function(){
+       $(".close").trigger("click");
+       $('.modExito').css('display','none');
+       $('.modAgregar').css('display','inline');
+       }, 2000);
+       },
 		  error: function(objeto, quepaso, otroobj){
 		  	lock4=1;
 		  	alert("ERROR!! No se pudo completar la operacion intente de nuevo");
@@ -357,4 +408,17 @@ else{
 	ctipo=2;
 }
 
+}
+
+
+function updatetable(){		
+	docReady();
+$('.datatable').dataTable({
+	"sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span12'i><'span12 center'p>>",
+	"sPaginationType": "bootstrap",
+	"oLanguage": {
+	"sLengthMenu": "_MENU_ registros por pagina"
+	},
+	"bDestroy": true
+} );
 }

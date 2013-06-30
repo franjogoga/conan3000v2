@@ -203,6 +203,26 @@ and  rc.IdReservaCancha in
  	#{item}
  </foreach> 
 </select>
+<select id="getServiciosAdicionales" parameterType="java.lang.String"  resultType="IngSoft.servicio.bean.ServicioAdicionalBeanData">
+SELECT
+sa.IdServAdicional as codigo,
+sa.Nombre,
+sa.Tipo,
+sa.Monto,
+sa.Descripcion,
+sa.Estado
+,case when brsa.IdReservaBungalow is null then 'NO'			
+	  when brsa.IdReservaBungalow is not null then 'SI'				
+		END as Registrado
 
+FROM 
+SERV_ADICIONAL sa
+left join 
+RESERVA_BUNGALOWxSERV_ADICIONA brsa
+on sa.IdServAdicional=brsa.IdServAdicional
+where sa.Estado='Activo'
+and (brsa.IdReservaBungalow=#{codigo} or brsa.IdReservaBungalow is null)
+order by 3,4
+</select>
 
 </mapper>

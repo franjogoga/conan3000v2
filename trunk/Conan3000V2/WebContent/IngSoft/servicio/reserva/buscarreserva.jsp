@@ -110,12 +110,16 @@ var atipo=3;
 				<a data-rel="tooltip" title="Eliminar Reservas" class="well span3 top-block" href="javascript:cambiaModo(2)">
 					<span class="icon32 icon-red icon-minus"></span>
 					<div>Eliminar Reservas</div>
+				</a>
+				<a data-rel="tooltip" title="Eliminar Reservas" class="well span3 top-block" href="javascript:cambiaModo(4)">
+					<span class="icon32 icon-blue icon-plus"></span>
+					<div>Adicionales a Reservas</div>
 				</a>			
 			</div>
 			<div class="row-fluid sortable">
 				<div class="box span12">
 					<div class="box-header well" data-original-title>
-						<h2 id="titulo"><i class="icon-plus"></i> BUSCAR RESERVAS</h2>						
+						<h2 id="titulo"><i class="icon-book"></i> BUSCAR RESERVAS</h2>						
 					</div>
 					
 					<div class="box-content">
@@ -216,8 +220,11 @@ var atipo=3;
 <input type="hidden" value="" id="txtIdSocio" name="txtIdSocio"></input>
 <input type="hidden" value="" id="txtIdSocioAlt" name="txtIdSocioAlt"></input>
 </form>
+<div style="display: none;">
+			<button class="btn btn-primary btn-setting" id="bModal"/>
+		</div>
 		<div class="modal hide fade" id="myModal">
-		<div class="modAgregar">
+		<div class="modAgregar mod">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal">X</button>
 				<h3>Datos de socio</h3>
@@ -230,7 +237,32 @@ var atipo=3;
 				<a class="btn btn-primary" onclick="ajax_crearReserva();">Guardar Reservas</a>
 			</div>
 		</div>
-		<div class="modEliminar" style="display: none;">
+		<div class="modExito mod" style="display: none;">
+			<div class="modal-header">		
+				<h3>Exito</h3>
+			</div>
+			<div class="modal-body">
+				La reserva se hizo exitosamente
+			</div>
+			<div class="modal-footer">
+				<a href="#" class="btn" data-dismiss="modal">Aceptar</a>
+				
+			</div>
+		</div>
+		<div class="modAdicional mod" style="display: none;">
+			<div class="modal-header">		
+				<h3>ADICIONAL</h3>
+			</div>
+			<div class="modal-body" id="resultadoAdicional">
+				ADICIONAL
+			</div>
+			<div class="modal-footer">
+				<a href="#" class="btn" data-dismiss="modal">Cancelar</a>
+				<button class="btn btn-primary" onclick="">Guardar Adicionales</button>
+				
+			</div>
+		</div>
+		<div class="modEliminar mod" style="display: none;">
 			<div class="modal-header">				
 				<h3>Confirmaci&oacute;n</h3>
 			</div>

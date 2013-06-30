@@ -265,4 +265,11 @@ public class ReservaBeanFuncion {
 				else next=actual.substring(0, 3).concat("000001");
 		   return next;		   
 	   }
+	   
+	   public Vector<ServicioAdicionalBeanData> getServicios(String codigo){		  
+		   SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+			List<ServicioAdicionalBeanData> resultados=sqlsesion.selectList("Data.servicio.reserva.getServiciosAdicionales",codigo);
+			sqlsesion.close();
+			return new Vector<>(resultados);
+	   }
 }

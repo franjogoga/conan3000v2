@@ -62,7 +62,7 @@
 			}
 
 		</style>
-		<title>Credenciales Invalidas</title>
+		<title>Sesion vencida</title>
 	</head>
 	<body>
 		

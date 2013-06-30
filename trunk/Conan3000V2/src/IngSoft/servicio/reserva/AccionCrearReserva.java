@@ -30,7 +30,7 @@ public class AccionCrearReserva extends CoAccion {
 			HttpServletResponse response) throws CoException {
 		int tipo=Integer.parseInt(request.getParameter("tipo"));
 		if(tipo==2){
-			HttpSession sesion= request.getSession(true);
+			HttpSession sesion= request.getSession(false);
 			Vector<String> listareservas=(Vector<String>)sesion.getAttribute("listareservas");
 			listareservas=listareservas==null?new Vector<String>():listareservas;
 			String codSocio=request.getParameter("txtIdSocio");
@@ -43,9 +43,20 @@ public class AccionCrearReserva extends CoAccion {
 			
 		}
 		if(tipo==3){
-			HttpSession sesion= request.getSession(true);
+			HttpSession sesion= request.getSession(false);
 			Vector<String> listareservas=(Vector<String>)sesion.getAttribute("listareservas");
 			listareservas=listareservas==null?new Vector<String>():listareservas;
+			String codSocio=request.getParameter("txtIdSocio");			
+			if(listareservas.size()>0 && !"".equals(codSocio)){
+				ReservaBeanFuncion reservaFuncion=ReservaBeanFuncion.getInstance();
+				reservaFuncion.agregarReservaCancha(listareservas,codSocio);
+				sesion.removeAttribute("reservas");
+				sesion.removeAttribute("listareservas");								
+			}
+		}
+		if(tipo==4){			
+			String lista[]=request.getParameter("adicionales").split("@");
+			
 			String codSocio=request.getParameter("txtIdSocio");			
 			if(listareservas.size()>0 && !"".equals(codSocio)){
 				ReservaBeanFuncion reservaFuncion=ReservaBeanFuncion.getInstance();
