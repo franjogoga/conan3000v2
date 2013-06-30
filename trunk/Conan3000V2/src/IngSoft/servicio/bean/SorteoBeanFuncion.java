@@ -51,6 +51,20 @@ public class SorteoBeanFuncion {
 		String nombSocio= sqlsesion.selectOne("Data.servicio.sorteo.selectGanador",idSocio);
 		return nombSocio;
 	}
+	
+	
+	public void ingresaCostoBungalow(BungalowxSorteo bungalowSorteo){
+		try {
+			SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+			sqlsesion.update("Data.club.inscripcionSorteo.updateCostoBungalow",bungalowSorteo);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		
+		
+	}
+	
 	public BungalowxSorteo getBungalowSorteo(BungalowxSorteo bungalowSorteo){
 		BungalowxSorteo BS = new BungalowxSorteo();
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
@@ -58,19 +72,27 @@ public class SorteoBeanFuncion {
 		int flag=0;
 		int pagoRealizado=0;
 		int i;
-		for (i=0;i<BS2.size();i++){
+		int limite=0;
+		while (BS2.get(limite).getIdSocio()!=null) {limite++;}
+		for (i=0;i<limite;i++){
 			
-			if (BS2.get(i).getIdSocio().equals(bungalowSorteo.getIdSocio())) {flag++;pagoRealizado++;break;} 
+			if (BS2.get(i).getIdSocio().equals(bungalowSorteo.getIdSocio())) {
+				flag++;
+				BS.setIdBungalow("SI");
+				
+				if (BS2.get(i).getMontoBungalow()>0){pagoRealizado++;}
+				break;
+			} 
 			else {BS.setIdBungalow("NO"); flag++;}
 		}
-		if (flag==i) return BS;
+		if (BS.getIdBungalow().equals("NO")) return BS;
 		if (pagoRealizado>0) {BS.setIdBungalow("SI"); return BS;}
 		BS = sqlsesion.selectOne("Data.club.inscripcionSorteo.getBungalowxSorteo",bungalowSorteo);
 		BS.setIdSocio(bungalowSorteo.getIdSocio());
 		BS.setIdSorteo(bungalowSorteo.getIdSorteo());
-		double costoM2 = getCostoM2(); 
-		BS.setAreaBungalow((double)sqlsesion.selectOne("Data.club.inscripcionSorteo.getAreaBungalow",BS.getIdBungalow()));
-		BS.setMontoBungalow(costoM2*BS.getAreaBungalow());
+		float costoM2 = (float) getCostoM2(); 
+		BS.setAreaBungalow((float)sqlsesion.selectOne("Data.club.inscripcionSorteo.getAreaBungalow",BS.getIdBungalow()));
+		BS.setMontoBungalow((float) (costoM2*BS.getAreaBungalow()));
 		sqlsesion.update("Data.club.inscripcionSorteo.setCostoBungalow",BS);
 		sqlsesion.close();
 		return BS;
