@@ -1,5 +1,6 @@
 package IngSoft.venta.familiar;
 
+import javax.faces.bean.SessionScoped;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -10,7 +11,7 @@ import IngSoft.venta.bean.FamiliarBeanData;
 import IngSoft.venta.bean.FamiliarBeanFuncion;
 import IngSoft.venta.bean.PersonaMiniBeanData;
 import IngSoft.venta.bean.PersonaMiniBeanFuncion;
-
+@SessionScoped
 public class AccionEliminarFamiliar extends CoAccion{
 
 	@Override

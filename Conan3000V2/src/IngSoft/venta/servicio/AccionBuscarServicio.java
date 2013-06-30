@@ -2,6 +2,7 @@ package IngSoft.venta.servicio;
 
 import java.util.Vector;
 
+import javax.faces.bean.SessionScoped;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,7 +12,7 @@ import IngSoft.general.CoException;
 import IngSoft.venta.bean.CriterioServicioBeanData;
 import IngSoft.venta.bean.CriterioServicioBeanFunction;
 import IngSoft.venta.bean.ResultadoServicioBeanData;
-
+@SessionScoped
 public class AccionBuscarServicio extends CoAccion{
 
 	@Override

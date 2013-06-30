@@ -2,6 +2,7 @@ package IngSoft.venta.socio;
 
 import java.util.Vector;
 
+import javax.faces.bean.SessionScoped;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,7 +12,7 @@ import IngSoft.general.CoException;
 import IngSoft.venta.bean.CriterioSocioBeanData;
 import IngSoft.venta.bean.CriterioSocioBeanFuncion;
 import IngSoft.venta.bean.ResultadoSocioBeanData;
-
+@SessionScoped
 public class AccionSeleccionarSocio extends CoAccion{
 
 	@Override

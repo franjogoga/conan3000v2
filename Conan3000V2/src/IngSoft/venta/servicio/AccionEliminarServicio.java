@@ -1,5 +1,6 @@
 package IngSoft.venta.servicio;
 
+import javax.faces.bean.SessionScoped;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -9,7 +10,7 @@ import IngSoft.general.CoException;
 import IngSoft.venta.bean.ProveedorBeanData;
 import IngSoft.venta.bean.ServicioBeanData;
 import IngSoft.venta.bean.ServicioBeanFuncion;
-
+@SessionScoped
 
 public class AccionEliminarServicio extends CoAccion{
 

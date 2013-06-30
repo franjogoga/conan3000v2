@@ -1,5 +1,6 @@
 package IngSoft.venta.socio;
 
+import javax.faces.bean.SessionScoped;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -10,7 +11,7 @@ import IngSoft.venta.bean.PersonaMiniBeanData;
 import IngSoft.venta.bean.PersonaMiniBeanFuncion;
 import IngSoft.venta.bean.SocioBeanData;
 import IngSoft.venta.bean.SocioBeanFuncion;
-
+@SessionScoped
 public class AccionConsultarSocio extends CoAccion{
 
 	@Override
