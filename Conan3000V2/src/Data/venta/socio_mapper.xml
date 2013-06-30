@@ -86,7 +86,7 @@ from SOCIO  where SOCIO.IdSocio=#{codigo};
 <select id="getPlantillaPersona" parameterType="java.lang.String"  resultType="IngSoft.venta.bean.PersonaMiniBeanData">
 select 
 PERSONA.IdPersona as codigo
-,PERSONA.Nombres as nombres
+,CONCAT(PERSONA.Nombres,' ',PERSONA.ApePaterno,' ',PERSONA.ApeMaterno) as nombres
 ,PERSONA.ApePaterno as apellidoPaterno
 ,PERSONA.ApeMaterno as apellidoMaterno
 ,PERSONA.TipoDocumento as tipoDocumento
@@ -98,9 +98,7 @@ from PERSONA  where PERSONA.IdPersona=#{codigo};
 <select id="getPlantillaPersonaSocio" parameterType="java.lang.String"  resultType="IngSoft.venta.bean.PersonaMiniBeanData">
 select 
 PERSONA.IdPersona as codigo
-,PERSONA.Nombres as nombres
-,PERSONA.ApePaterno as apellidoPaterno
-,PERSONA.ApeMaterno as apellidoMaterno
+,CONCAT(PERSONA.Nombres,' ',PERSONA.ApePaterno,' ',PERSONA.ApeMaterno) as nombres
 ,PERSONA.TipoDocumento as tipoDocumento
 ,PERSONA.FechaNac as fechaNacimiento
 ,PERSONA.NumeroDocumento as numeroDocumento
