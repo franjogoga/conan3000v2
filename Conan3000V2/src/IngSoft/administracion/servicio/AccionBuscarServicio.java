@@ -2,13 +2,13 @@ package IngSoft.administracion.servicio;
 
 import java.util.Vector;
 
+import javax.faces.bean.SessionScoped;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import IngSoft.general.CoAccion;
 import IngSoft.general.CoException;
-import IngSoft.administracion.bean.BungalowBeanFunction;
 import IngSoft.administracion.bean.SedeMiniBeanData;
 import IngSoft.administracion.bean.ServicioBeanFunction;
 import IngSoft.administracion.bean.CriterioServicioBeanData;
@@ -16,6 +16,7 @@ import IngSoft.administracion.bean.CriterioServicioBeanFunction;
 import IngSoft.administracion.bean.ResultadoServicioBeanData;
 import IngSoft.administracion.bean.AmbienteMiniBeanData;
 
+@SessionScoped
 public class AccionBuscarServicio extends CoAccion{
 
 	@Override

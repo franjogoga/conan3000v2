@@ -1,7 +1,7 @@
 package IngSoft.administracion.servicio;
 
 import java.util.Vector;
-
+import javax.faces.bean.SessionScoped;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,6 +13,7 @@ import IngSoft.administracion.bean.ServicioBeanData;
 import IngSoft.administracion.bean.ServicioBeanFunction;
 import IngSoft.administracion.bean.AmbienteMiniBeanData;
 
+@SessionScoped
 public class AccionAgregarServicio extends CoAccion {
 
 	@Override
