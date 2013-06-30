@@ -36,12 +36,12 @@ public class InfraccionBeanFunction {
 	public InfraccionBeanData crearInfraccion(HttpServletRequest request, HttpServletResponse response){
 		InfraccionBeanData infraccionData= new InfraccionBeanData();
 		try{			        												
-	  		infraccionData.setCodigo(			                request.getParameter("txtCodigoSoc"));		
-			infraccionData.setMontomulta(Double.parseDouble(            request.getParameter("txtMonto")));
-			infraccionData.setDescripcion(			                request.getParameter("txtDescripcion"));
-			infraccionData.setFechainicio(new Date(DF.parse(		request.getParameter("fFecInicio")+"/0000").getTime()));
-			infraccionData.setFechafin(new Date(DF.parse(		request.getParameter("fFecFin")+"/0000").getTime()));			
-			infraccionData.setEstado(    							"Activo" );
+	  		infraccionData.setCodigosocio(request.getParameter("txtCodigoSoc"));		
+			infraccionData.setMontomulta(Double.parseDouble(request.getParameter("txtMonto")));
+			infraccionData.setDescripcion(request.getParameter("txtDescripcion"));
+			infraccionData.setFechainicio(new Date(DF.parse(request.getParameter("fFecInicio")+"/0000").getTime()));
+			infraccionData.setFechafin(new Date(DF.parse(request.getParameter("fFecFin")+"/0000").getTime()));			
+			infraccionData.setEstado("Activo");
 		} catch(Exception e){
 			e.printStackTrace();		
 		}
@@ -53,22 +53,20 @@ public class InfraccionBeanFunction {
 		l.lock();		
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();		
 		try{			
-			String codigo = (String)sqlsesion.selectOne("Data.administracion.infraccion.getNextInfraccion");						
-			
+			String codigo = (String)sqlsesion.selectOne("Data.administracion.infraccion.getNextInfraccion");									
 			if(codigo!=null) {
 				int cod= Integer.parseInt(codigo.substring(3))+1;
 				String defecto= "000000";
 				String temp= defecto.substring(0, defecto.length()-String.valueOf(cod).length()).concat(String.valueOf(cod));				
 				infraccionData.setCodigo(codigo.substring(0,3).concat(temp));
-			}
-			else infraccionData.setCodigo("SXF000001");			
-			sqlsesion.insert("Data.administracion.infraccion.insertPlantillaInfraccion",infraccionData);
+			} else infraccionData.setCodigo("SXF000001");			
+			sqlsesion.insert("Data.administracion.infraccion.insertInfraccion",infraccionData);
 			resultado=true;
 		}
 		catch(Exception a) {
 			sqlsesion.rollback();
 			a.printStackTrace();
-			throw CoException.set("Error: Nombre de infraccion repetido ", "SMAInfraccion=Agregar&tipo=1");			
+			throw CoException.set("Error: Error al agregar  la infraccion ", "SMAInfraccion=Agregar&tipo=1");			
 		} finally {
 			sqlsesion.commit();
 			sqlsesion.close();
