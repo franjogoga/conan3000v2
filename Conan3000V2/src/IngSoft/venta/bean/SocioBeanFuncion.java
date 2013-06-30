@@ -18,6 +18,9 @@ public class SocioBeanFuncion {
 	static private SocioBeanFuncion SocioFuncion=null;
 	
 	private Lock l= new ReentrantLock();     
+	private Lock l1= new ReentrantLock();     
+	private Lock l2= new ReentrantLock();     
+    
 	//SimpleDateFormat DF = new SimpleDateFormat("dd/MM/yyyy");
 	   
 	   public static SocioBeanFuncion getInstanceS(){
@@ -94,13 +97,15 @@ public class SocioBeanFuncion {
 	
 	
 	public SocioBeanData consultarSocio(String codigo){
-	SocioBeanData socioData=null;
+	l1.lock();
+		SocioBeanData socioData=null;
 	SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 	try{
 		socioData= sqlsesion.selectOne("Data.venta.socio.getPlantillaSocio",codigo);
 	}
 	finally{
 		sqlsesion.close();
+		l1.unlock();
 	}
 	return socioData;
 	}
@@ -141,6 +146,7 @@ public class SocioBeanFuncion {
 	}
 	
 	public void modificarSocio(SocioBeanData socio) throws CoException {
+	l2.lock();
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
 					
@@ -155,7 +161,8 @@ public class SocioBeanFuncion {
 		
 		finally{
 			sqlsesion.commit();
-			sqlsesion.close();					
+			sqlsesion.close();
+			l2.unlock();
 		}			
 		return ;
 	}
