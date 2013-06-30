@@ -10,7 +10,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Modificar Reserva</title>
+	<title>Modificar Visita</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
 	<meta name="author" content="Muhammad Usman">
@@ -168,14 +168,14 @@ String fecAnoFin=dfActual.format(c1.getTime()); %>
               <div>
                 <ul class="breadcrumb">
                   <li> <a href="../../general/index.jsp">Home</a> <span class="divider">/</span> </li>
-                  <li> <a href="buscarreserva.jsp">Mantenimiento de Reserva</a> <span class="divider">/</span></li>
-                  <li>Modificar Reserva</li>
+                  <li> <a href="buscarreserva.jsp">Mantenimiento de Visita de Invitado</a> <span class="divider">/</span></li>
+                  <li>Modificar Visita</li>
                 </ul>
               </div>
               <div class="row-fluid sortable">
                 <div class="box span12">
                   <div class="box-header well" data-original-title>
-                    <h2><i class="icon-plus-sign"></i>MODIFICAR RESERVA</h2>
+                    <h2><i class="icon-plus-sign"></i>MODIFICAR VISITA</h2>
                   </div>
                   <div class="box-content">
                     <form class="form-horizontal" action="<%= response.encodeURL("SMAReserva")%>" name="frmData" method="post">

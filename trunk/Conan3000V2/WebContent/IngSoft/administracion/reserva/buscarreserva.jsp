@@ -12,7 +12,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Buscar Reserva</title>
+	<title>Buscar Visita de Invitado</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
 	<meta name="author" content="Muhammad Usman">
@@ -158,7 +158,7 @@
 			<div>
 				<ul class="breadcrumb">
                   <li> <a href="../../general/index.jsp">Home</a> <span class="divider">/</span> </li>
-                  <li>Mantenimiento de Reserva</li>
+                  <li>Mantenimiento de Visita de Invitado</li>
 				</ul>
 			</div>
 			
@@ -167,7 +167,7 @@
                 <div class="row-fluid sortable">
                   <div class="box span12">
                     <div class="box-header well" data-original-title>
-                      <h2><i class="icon-search"></i> BUSCAR RESERVA</h2>
+                      <h2><i class="icon-search"></i> BUSCAR VISITA</h2>
                       <div class="box-icon">
 							<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
 						</div>
