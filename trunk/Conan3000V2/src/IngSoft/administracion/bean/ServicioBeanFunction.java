@@ -83,6 +83,7 @@ public class ServicioBeanFunction {
 	
 	public boolean eliminarServicio(String codigo) throws CoException {
 		boolean resultado=false;
+		l.lock();		
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
 			sqlsesion.update("Data.administracion.servicio.deleteServicio",codigo);
@@ -95,7 +96,8 @@ public class ServicioBeanFunction {
 		}		
 		finally{
 			sqlsesion.commit();
-			sqlsesion.close();					
+			sqlsesion.close();
+			l.unlock();							
 		}
 		return resultado;
 	}
@@ -115,7 +117,8 @@ public class ServicioBeanFunction {
 		}
 		finally{
 			sqlsesion.commit();
-			sqlsesion.close();					
+			sqlsesion.close();
+			l.unlock();							
 		}
 		return resultado;
 	}

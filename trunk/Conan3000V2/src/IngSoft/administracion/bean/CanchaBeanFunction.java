@@ -85,6 +85,7 @@ public class CanchaBeanFunction {
 	
 	public boolean eliminarCancha(String codigo) throws CoException {
 		boolean resultado=false;
+		l.lock();		
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
 			sqlsesion.update("Data.administracion.cancha.deleteCancha",codigo);
@@ -97,7 +98,8 @@ public class CanchaBeanFunction {
 		}		
 		finally{
 			sqlsesion.commit();
-			sqlsesion.close();					
+			sqlsesion.close();
+			l.unlock();							
 		}
 		return resultado;
 	}
@@ -117,7 +119,8 @@ public class CanchaBeanFunction {
 		}
 		finally{
 			sqlsesion.commit();
-			sqlsesion.close();					
+			sqlsesion.close();
+			l.unlock();							
 		}
 		return resultado;
 	}
