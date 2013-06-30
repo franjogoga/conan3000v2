@@ -21,6 +21,7 @@ public class EmpleadoBeanData implements Serializable{
 	private String idEmpleado;
 	private Date fechaContrato;
 	private String estado;
+	private Integer flag;
 	
 	public int getNumeroDocumento() {
 		return numeroDocumento;
@@ -111,8 +112,10 @@ public class EmpleadoBeanData implements Serializable{
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
-	
-	
-
-	
+	public Integer getFlag() {
+		return flag;
+	}
+	public void setFlag(Integer flag) {
+		this.flag = flag;
+	}
 }
