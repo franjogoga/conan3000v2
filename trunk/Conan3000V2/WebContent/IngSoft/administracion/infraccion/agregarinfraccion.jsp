@@ -44,7 +44,7 @@
 	<link href='css/uploadify.css' rel='stylesheet'>	
 
 	<!-- The fav icon -->
-	<link rel="shortcut icon" href="img/favicon.ico">		
+	<link rel="shortcut icon" href="img/conan_logo.png">		
 	
 	<script>	
 	function anhadir(cod){
@@ -90,7 +90,7 @@
 	} 		
 	function alt_submit(){
 		var form= document.frmData;
-		if(validaForm()) form.submit();
+		/*if(validaForm())*/ form.submit();
 	}	
 	</script>				
 	
@@ -351,7 +351,7 @@
     <script>
  
  
-function validaForm(){
+	function validaForm(){
                 /*
         esValido(nombre, casilla, id, tipoValidacion, minimo,maximo)
         nombre: es el nombre de la casilla: ejemplo -> Nombre, Apellido, Fecha de Nacimiento, etc
@@ -404,15 +404,15 @@ function validaForm(){
         }
 } 
  
-function inicializa(){
+	function inicializa(){
         document.getElementById("errNombre").style.display='none';
         document.getElementById("errCodigoSoc").style.display='none';
         document.getElementById("errMonto").style.display='none';
         //document.getElementById("errDescripcion").style.display='none'; 
         //document.getElementById("errCaracteristica").style.display='none';    
-} 
+	} 
  
-inicializa();
+	inicializa();
  
 </script>
 </body>
