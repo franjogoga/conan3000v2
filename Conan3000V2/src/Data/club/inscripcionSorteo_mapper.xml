@@ -49,8 +49,13 @@ update SORTEO set Flag=1 where IdSorteo=#{codSorteo}
 
 
 <update id="setCostoBungalow" parameterType="IngSoft.servicio.bean.BungalowxSorteo">
-update INSCRIPCION_SORTEO set Monto=#{montoBungalow} where IdSorteo=#{idSorteo} and IdSocio=#{idSocio}
+update BUNGALOWxSORTEO set Monto=#{montoBungalow} where IdSorteo=#{idSorteo} and IdSocio=#{idSocio}
 </update>
+
+<update id="updateCostoBungalow" parameterType="IngSoft.servicio.bean.BungalowxSorteo">
+update BUNGALOWxSORTEO set Monto=#{montoBungalow} where IdSorteo=#{idSorteo} and IdSocio=#{idSocio}
+</update>
+
 
 <select id="getBungalowxSorteo" parameterType="IngSoft.servicio.bean.BungalowxSorteo" resultType="IngSoft.servicio.bean.BungalowxSorteo">
 	select 
@@ -64,12 +69,15 @@ update INSCRIPCION_SORTEO set Monto=#{montoBungalow} where IdSorteo=#{idSorteo} 
 
 <select id="getBungalowxSorteo2" resultType="IngSoft.servicio.bean.BungalowxSorteo">
 	select 
-	*
+	IdBungalow as idBungalow,
+	IdSorteo as idSorteo,
+	IdSocio as idSocio,
+	Monto as montoBungalow
 	from 
 	BUNGALOWxSORTEO;
 </select>
 
-<select id="getAreaBungalow" parameterType="java.lang.String" resultType="double">
+<select id="getAreaBungalow" parameterType="java.lang.String" resultType="float">
 	select 
 	AreaBungalow
 	from 
