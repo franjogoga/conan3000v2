@@ -95,6 +95,7 @@ function validaForm(){
 	var i=0;
 	var error=false;
 	
+	if(!esValido("Solicitud",form.txtSolicitud,"Solicitud",1,9,9)){cadena[i]="Codigo de Solicitud";i++;}
 	
 	if(!esValido("Nombres",form.txtNombres,"Nombres",1,1,50)){cadena[i]="Nombres";i++;}
 	if(!esValido("Apellido Paterno",form.txtApellidoPaterno,"ApellidoP",1,1,50)){cadena[i]="Apellido Paterno";i++;}
@@ -158,6 +159,8 @@ function validaForm(){
 
 
 function inicializa(){
+	document.getElementById("errSolicitud").style.display='none';
+	
 	document.getElementById("errNombres").style.display='none';
 	document.getElementById("errApellidoP").style.display='none';
 	document.getElementById("errApellidoM").style.display='none';
