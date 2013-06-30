@@ -19,6 +19,7 @@ public class ProveedorBeanData implements Serializable {
 	private String distrito;
 	private String provincia;
 	private String departamento;
+	private Integer flag;
 	
 	
 	public String getDistrito() {
@@ -118,18 +119,11 @@ public class ProveedorBeanData implements Serializable {
 
 	public void setNumDoc(long numDoc) {
 		this.numDoc = numDoc;
+	}	
+	public Integer getFlag() {
+		return flag;
 	}
-
-
-	
-	
+	public void setFlag(Integer flag) {
+		this.flag = flag;
+	}	
 }
-	
-	
-	
-	
-	
-	
-	
-
-

@@ -132,7 +132,21 @@ from PROVEEDOR  where PROVEEDOR.IdProveedor=#{codigo};
 
 </select>
  
- 
+ <select id="searchProveedorOtros" parameterType="java.lang.String" resultType="IngSoft.venta.bean.ProveedorBeanData">
+ 		SELECT p.IdProveedor as codigo
+		FROM PROVEEDOR p
+		WHERE p.IdProveedor=#{codigo} AND
+			  (p.IdProveedor IN ( 
+					SELECT p.IdProveedor
+					FROM PROVEEDOR p, PRODUCTO_PROV pp
+					WHERE p.IdProveedor=pp.IdProveedor
+						  AND pp.Estado!='Eliminado')
+	  		  OR p.IdProveedor IN (
+					SELECT p.IdProveedor
+					FROM PROVEEDOR p, SERVICIO_PROV ps
+					WHERE p.IdProveedor=ps.IdProveedor
+						  AND ps.Estado!='Eliminado'))
+ </select>
  
 </mapper>
  

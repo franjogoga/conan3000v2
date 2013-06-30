@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.ibatis.session.SqlSession;
 
+import IngSoft.administracion.bean.AmbienteBeanData;
 import IngSoft.general.CoException;
 import IngSoft.general.MyBatisSesion;
 public class ProveedorBeanFuncion {
@@ -145,6 +146,23 @@ public class ProveedorBeanFuncion {
 		finally{
 			sqlsesion.close();
 			l2.unlock();
+		}
+		//BUSCA PROVEEDORES EN OTRAS TABLAS
+		sqlsesion=MyBatisSesion.metodo().openSession();
+		Vector<ProveedorBeanData> resultadosV=null;
+		try{		
+			List<ProveedorBeanData> resultados = sqlsesion.selectList("Data.venta.proveedor.searchProveedorOtros",codigo);
+			resultadosV= new Vector<>(resultados);
+		}
+		finally{
+			sqlsesion.close();
+		}
+		//COMPROBAR EL TAMAÑANO PARA SETEAR EL FLAG
+		if(resultadosV.size()==0){
+			proveedorData.setFlag(0);
+		}
+		else {
+			proveedorData.setFlag(1);
 		}
 		return proveedorData;
 	}
