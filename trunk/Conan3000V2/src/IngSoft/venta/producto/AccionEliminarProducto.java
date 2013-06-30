@@ -1,5 +1,6 @@
 package IngSoft.venta.producto;
 
+import javax.faces.bean.SessionScoped;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -10,7 +11,7 @@ import IngSoft.venta.bean.MembresiaBeanData;
 import IngSoft.venta.bean.MembresiaBeanFunction;
 import IngSoft.venta.bean.ProductoBeanData;
 import IngSoft.venta.bean.ProductoBeanFunction;
-
+@SessionScoped
 public class AccionEliminarProducto extends CoAccion{
 
 	@Override

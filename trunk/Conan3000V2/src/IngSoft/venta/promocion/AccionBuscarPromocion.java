@@ -2,6 +2,7 @@ package IngSoft.venta.promocion;
 
 import java.util.Vector;
 
+import javax.faces.bean.SessionScoped;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,7 +15,7 @@ import IngSoft.servicio.bean.ResultadoEventoBeanData;
 import IngSoft.venta.bean.CriterioPromocionBeanData;
 import IngSoft.venta.bean.CriterioPromocionBeanFunction;
 import IngSoft.venta.bean.ResultadoPromocionBeanData;
-
+@SessionScoped
 public class AccionBuscarPromocion extends CoAccion {
 
 	@Override

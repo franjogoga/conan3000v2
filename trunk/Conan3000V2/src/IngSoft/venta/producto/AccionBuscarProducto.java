@@ -2,6 +2,7 @@ package IngSoft.venta.producto;
 
 import java.util.Vector;
 
+import javax.faces.bean.SessionScoped;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,7 +15,7 @@ import IngSoft.venta.bean.CriterioProductoBeanData;
 import IngSoft.venta.bean.CriterioProductoBeanFunction;
 import IngSoft.venta.bean.ResultadoMembresiaBeanData;
 import IngSoft.venta.bean.ResultadoProductoBeanData;
-
+@SessionScoped
 public class AccionBuscarProducto extends CoAccion {
 	
 
