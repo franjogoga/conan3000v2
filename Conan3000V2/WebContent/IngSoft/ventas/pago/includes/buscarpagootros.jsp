@@ -220,8 +220,9 @@ String fecHoy=dfActual.format(new java.util.Date());
 		        <div class="box-content">
 		          <table class="table table-striped table-bordered bootstrap-datatable datatable">
 		           <!-- agregar nuevo boton -->
-		           <div align="right"><a class="btn btn-primary" href="javascript:alt_agregar()"> <i class="icon icon-add icon-white"></i> Agregar Cuota Extraordinaria </a></div> 
-		           <thead>
+				   <div align="right"><a class="btn btn-primary iframe" href="multasextra2.jsp"> <i class="icon icon-add icon-white"></i> Aplicar Multa a Cuota Extraordinaria </a>
+		           <a class="btn btn-primary" href="javascript:alt_agregar()"> <i class="icon icon-add icon-white"></i> Agregar Cuota Extraordinaria </a></div> 
+		           <br><thead>
 		              <tr>
 		                <th>C&oacute;digo de Socio</th>
 		                <th>Socio</th>

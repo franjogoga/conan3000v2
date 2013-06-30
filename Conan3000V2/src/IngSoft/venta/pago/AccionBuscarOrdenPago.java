@@ -3,6 +3,7 @@ package IngSoft.venta.pago;
 
 import java.util.Vector;
 
+import javax.faces.bean.SessionScoped;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,7 +16,7 @@ import IngSoft.venta.bean.CriterioPagoBeanData;
 import IngSoft.venta.bean.CriterioPagoBeanFunction;
 import IngSoft.venta.bean.ResultadoOrdenPagoBeanData;
 import IngSoft.venta.bean.ResultadoPagoBeanData;
-
+@SessionScoped
 public class AccionBuscarOrdenPago extends CoAccion {
 
 	@Override

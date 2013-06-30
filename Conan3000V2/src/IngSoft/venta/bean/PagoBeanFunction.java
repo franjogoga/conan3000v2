@@ -313,7 +313,7 @@ public String consultarMultaExtra() throws CoException {
 		PagoBeanData pago=new PagoBeanData();
 		final Calendar c = Calendar.getInstance();
 		pago.setFechaActual(c.getTime());
-		cantidad= (String)sqlsesion.selectOne("Data.venta.pago.getCantMultasExtra",pago);
+		cantidad= (String)sqlsesion.selectOne("Data.venta.pago.getCantMultasExtra");
 	}
 	catch(Exception a)		
 	{sqlsesion.rollback();

@@ -3,6 +3,7 @@ package IngSoft.venta.pago;
 
 import java.util.Vector;
 
+import javax.faces.bean.SessionScoped;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,7 +13,7 @@ import IngSoft.general.CoException;
 import IngSoft.venta.bean.CriterioEgresoBeanData;
 import IngSoft.venta.bean.CriterioEgresoBeanFunction;
 import IngSoft.venta.bean.ResultadoEgresoBeanData;
-
+@SessionScoped
 public class AccionBuscarEgreso extends CoAccion {
 
 	@Override

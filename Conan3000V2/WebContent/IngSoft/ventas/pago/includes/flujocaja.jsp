@@ -296,18 +296,18 @@ String fecHoy=dfActual.format(new java.util.Date());
 	                 <tr>
 					  
 						<td class="center"><strong>TOTAL MES</strong></td>
-					    <td class="center"><%=Tenero%></td>
-		                <td class="center"><%=Tfebrero%></td>
-		                <td class="center"><%=Tmarzo%></td>
-		                <td class="center"><%=Tabril%></td>		               
-		                <td class="center"><%=Tmayo%></td>
-		                <td class="center"><%=Tjunio%></td>
-                        <td class="center"><%=Tjulio%></td>
-		                <td class="center"><%=Tagosto%></td>
-		                <td class="center"><%=Tsetiembre%></td>
-		                <td class="center"><%=Toctubre%></td>		               
-		                <td class="center"><%=Tnoviembre%></td>
-		                <td class="center"><%=Tdiciembre%></td>
+					    <td class="center"><strong><%=Tenero%></strong></td>
+		                <td class="center"><strong><%=Tfebrero%></strong></td>
+		                <td class="center"><strong><%=Tmarzo%></strong></td>
+		                <td class="center"><strong><%=Tabril%></strong></td>		               
+		                <td class="center"><strong><%=Tmayo%></strong></td>
+		                <td class="center"><strong><%=Tjunio%></strong></td>
+                        <td class="center"><strong><%=Tjulio%></strong></td>
+		                <td class="center"><strong><%=Tagosto%></strong></td>
+		                <td class="center"><strong><%=Tsetiembre%></strong></td>
+		                <td class="center"><strong><%=Toctubre%></strong></td>		               
+		                <td class="center"><strong><%=Tnoviembre%></strong></td>
+		                <td class="center"><strong><%=Tdiciembre%></strong></td>
 		                
 	                  </tr>
 	                  

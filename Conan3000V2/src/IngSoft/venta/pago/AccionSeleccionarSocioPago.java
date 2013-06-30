@@ -1,5 +1,6 @@
 package IngSoft.venta.pago;
 
+import javax.faces.bean.SessionScoped;
 import javax.servlet.ServletContext;
 import java.util.Vector;
 
@@ -13,7 +14,7 @@ import IngSoft.venta.bean.CriterioPagoBeanFunction;
 import IngSoft.venta.bean.CriterioSocioBeanData;
 import IngSoft.venta.bean.CriterioSocioBeanFuncion;
 import IngSoft.venta.bean.ResultadoSocioBeanData;
-
+@SessionScoped
 public class AccionSeleccionarSocioPago extends CoAccion{
 
 	@Override

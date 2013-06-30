@@ -1,5 +1,6 @@
 package IngSoft.venta.pago;
 
+import javax.faces.bean.SessionScoped;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -9,7 +10,7 @@ import IngSoft.venta.bean.OrdenPagoBeanData;
 import IngSoft.venta.bean.OrdenPagoBeanFunction;
 import IngSoft.venta.bean.PagoBeanData;
 import IngSoft.venta.bean.PagoBeanFunction;
-
+@SessionScoped
 public class AccionConsultarOrdenPago extends CoAccion{
 
 	@Override

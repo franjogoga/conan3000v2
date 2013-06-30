@@ -1,5 +1,6 @@
 package IngSoft.venta.pago;
 
+import javax.faces.bean.SessionScoped;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,7 +12,7 @@ import IngSoft.venta.bean.EgresoBeanData;
 import IngSoft.venta.bean.EgresoBeanFunction;
 import IngSoft.venta.bean.OrdenPagoBeanData;
 import IngSoft.venta.bean.OrdenPagoBeanFunction;
-
+@SessionScoped
 public class AccionAgregarCuotaExtra extends CoAccion {
 
 	@Override
