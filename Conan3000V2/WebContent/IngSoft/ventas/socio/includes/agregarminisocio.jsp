@@ -94,7 +94,7 @@ function anhadir(cod,name,apellidop,apellidom,direccion,fecha){
                                   <div class="control-group" id="dvFecha">
 			              		<label class="control-label" for="typeahead4">Fecha Nacimiento(*): </label>
 			              		<div class="controls">
-			               		 <input type="text" class="input-xlarge datepicker" id="fFechaNacimiento" name="fFechaNacimiento" maxlength="10" onpaste="return false;">
+			               		 <input type="text" class="input-xlarge datepicker" id="fFechaNacimiento" name="fFechaNacimiento" maxlength="10" readonly="readonly">
 			             		  <span class="help-inline" id="errFecha">Please correct the error</span>
 			             		</div>
 		                		</div>
@@ -115,12 +115,12 @@ function anhadir(cod,name,apellidop,apellidom,direccion,fecha){
 								<label class="control-label" for="typeahead5">Tipo de Documento(*):</label>
 								<div class="controls">
 								  <label class="radio">
-									<input type="radio" name="rButton" id="optionsRadios1" value="DNI" >
+									<input type="radio" name="rButton" id="rButton" value="DNI" >
 									DNI
 								  </label>
 								  <div style="clear:both">
 								  <label class="radio">
-									<input type="radio" name="rButton" id="optionsRadios2" value="Carnet de Extranjeria">
+									<input type="radio" name="rButton" id="rButton" value="Carnet de Extranjeria">
 									Carnet de Extranjeria
 								  </label>
 								   <span class="help-inline" id="errTipo">Please correct the error</span>
