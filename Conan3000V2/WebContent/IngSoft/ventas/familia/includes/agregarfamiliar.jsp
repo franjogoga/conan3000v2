@@ -52,7 +52,7 @@ String fecAnoFin=dfActual.format(c1.getTime()); %>
 			          <fieldset>
 
 			            <div class="control-group" id="dvCodigo">
-			              <label class="control-label" for="typeahead7">Socio Asociado:</label>
+			              <label class="control-label" for="typeahead7">Socio Relacionado(*):</label>
 			              <div class="controls">
 			                <input type="text"   class="span6 typeahead" id="txtSocio"  name="txtSocio" data-provide="typeahead" maxlength="9" onpaste="return false;">
 			                <br>
