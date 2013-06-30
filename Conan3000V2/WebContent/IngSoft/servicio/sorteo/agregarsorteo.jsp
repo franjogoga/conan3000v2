@@ -133,7 +133,7 @@
 				  </div>
 					<div class="box-content">
 						<form class="form-horizontal" action="<%= response.encodeURL("SMSSorteo")%>" name="frmData" method="post">
-						<input type="hidden" name="accion" value="Agregar"></input>
+						<input type="hidden" name="accion" value="BuscarBungalows"></input>
 						<input type="hidden" name="tipo" value="2"></input>
 						  <fieldset>
 						    <div class="control-group" id="dvNombreSorteo" >
@@ -179,7 +179,7 @@
 		                    </div>
 		                  </div>
 							<div class="form-actions">
-							  <button type="button" class="btn btn-primary" onclick="javascript:alt_submit()">Agregar</button>
+							  <button type="button" class="btn btn-primary" onclick="javascript:alt_submit()">BuscarBungalows</button>
 							  <button type="button" class="btn" onclick="location.href='buscarsorteo.jsp'" >Cancelar</button>
 							</div>
 						  </fieldset>
