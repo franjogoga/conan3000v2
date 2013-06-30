@@ -226,6 +226,23 @@
 							  </div>
 
 
+                              
+                              <div class="control-group" id="dvVacantes">
+                                  <label class="control-label" for="typeahead">Vacantes (*):</label>
+                                  <div class="controls">
+                                      <input type="text" class="span6 typeahead" id="txtVacantes"  data-provide="typeahead" name="txtVacantes"  disabled value="<%= actividad.getVacantes()%>">
+                                          <span class="help-inline" id="errVacantes">Please correct the error</span>
+                                          </div>
+                              </div>
+                              
+                              <div class="control-group" id="dvCosto">
+                                  <label class="control-label" for="typeahead">Costo S/.(*):</label>
+                                  <div class="controls">
+                                      <input type="text" class="span6 typeahead" id="txtCosto"  data-provide="typeahead" name="txtCosto" disabled  value="<%= actividad.getCosto()%>">
+                                          <span class="help-inline" id="errCosto">Please correct the error</span>
+                                          </div>
+                              </div>
+                              
 
 
 						    <div class="control-group">
