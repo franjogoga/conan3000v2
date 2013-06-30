@@ -87,6 +87,7 @@ public class ConcesionarioBeanFunction {
 	
 	public boolean eliminarConcesionario(String codigo) throws CoException {
 		boolean resultado=false;
+		l.lock();
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
 			sqlsesion.update("Data.administracion.concesionario.deleteConcesionario",codigo);
@@ -99,7 +100,8 @@ public class ConcesionarioBeanFunction {
 		}		
 		finally{
 			sqlsesion.commit();
-			sqlsesion.close();					
+			sqlsesion.close();
+			l.unlock();
 		}
 		return resultado;
 	}
@@ -119,7 +121,8 @@ public class ConcesionarioBeanFunction {
 		}
 		finally{
 			sqlsesion.commit();
-			sqlsesion.close();					
+			sqlsesion.close();
+			l.unlock();
 		}
 		return resultado;
 	}
@@ -141,7 +144,7 @@ public class ConcesionarioBeanFunction {
 			resultadosV= new Vector<>(resultados);
 		}
 		finally{
-		sqlsesion.close();
+			sqlsesion.close();
 		}
 		//COMPROBAR EL TAMAÑANO PARA SETEAR EL FLAG
 		if(resultadosV.size()==0){
@@ -204,6 +207,7 @@ public class ConcesionarioBeanFunction {
 	
 	public boolean eliminarConcesionarioSede(String codigoCon,String codigoSede) throws CoException {
 		boolean resultado=false;
+		l.lock();
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
 			ConSedeBeanData conSede=new ConSedeBeanData();
@@ -219,7 +223,8 @@ public class ConcesionarioBeanFunction {
 		}		
 		finally{
 			sqlsesion.commit();
-			sqlsesion.close();					
+			sqlsesion.close();
+			l.unlock();					
 		}
 		return resultado;
 	}
@@ -277,7 +282,8 @@ public class ConcesionarioBeanFunction {
 		}
 		finally{
 			sqlsesion.commit();
-			sqlsesion.close();					
+			sqlsesion.close();	
+			l.unlock();				
 		}
 		return resultado;
 	}

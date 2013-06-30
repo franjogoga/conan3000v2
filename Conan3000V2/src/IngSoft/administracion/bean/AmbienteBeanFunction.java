@@ -89,6 +89,7 @@ public class AmbienteBeanFunction {
 	
 	public boolean eliminarAmbiente(String codigo) throws CoException {
 		boolean resultado=false;
+		l.lock();
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
 			sqlsesion.update("Data.administracion.ambiente.deleteAmbiente",codigo);
@@ -101,7 +102,8 @@ public class AmbienteBeanFunction {
 		}		
 		finally{
 			sqlsesion.commit();
-			sqlsesion.close();					
+			sqlsesion.close();
+			l.unlock();						
 		}
 		return resultado;
 	}
@@ -121,7 +123,8 @@ public class AmbienteBeanFunction {
 		}
 		finally{
 			sqlsesion.commit();
-			sqlsesion.close();					
+			sqlsesion.close();	
+			l.unlock();						
 		}
 		return resultado;
 	}
@@ -143,7 +146,7 @@ public class AmbienteBeanFunction {
 			resultadosV= new Vector<>(resultados);
 		}
 		finally{
-		sqlsesion.close();
+			sqlsesion.close();
 		}
 		//COMPROBAR EL TAMAÑANO PARA SETEAR EL FLAG
 		if(resultadosV.size()==0){

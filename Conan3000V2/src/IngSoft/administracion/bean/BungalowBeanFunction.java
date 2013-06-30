@@ -89,6 +89,7 @@ public class BungalowBeanFunction {
 	
 	public boolean eliminarBungalow(String codigo) throws CoException {
 		boolean resultado=false;
+		l.lock();		
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
 			sqlsesion.update("Data.administracion.bungalow.deleteBungalow",codigo);
@@ -101,7 +102,8 @@ public class BungalowBeanFunction {
 		}		
 		finally{
 			sqlsesion.commit();
-			sqlsesion.close();					
+			sqlsesion.close();
+			l.unlock();							
 		}
 		return resultado;
 	}
@@ -121,7 +123,8 @@ public class BungalowBeanFunction {
 		}
 		finally{
 			sqlsesion.commit();
-			sqlsesion.close();					
+			sqlsesion.close();
+			l.unlock();							
 		}
 		return resultado;
 	}
