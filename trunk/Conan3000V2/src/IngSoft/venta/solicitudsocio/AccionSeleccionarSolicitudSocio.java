@@ -11,8 +11,7 @@ import IngSoft.general.CoException;
 import IngSoft.venta.bean.CriterioSolicitudSocioBeanData;
 import IngSoft.venta.bean.CriterioSolicitudSocioBeanFuncion;
 import IngSoft.venta.bean.ResultadoSolicitudSocioBeanData;
-import IngSoft.venta.bean.SolicitudSocioBeanFuncion;
-import IngSoft.venta.bean.SolicitudsocioBeanData;
+
 
 public class AccionSeleccionarSolicitudSocio extends CoAccion{
 
