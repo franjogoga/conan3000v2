@@ -37,6 +37,7 @@ WHERE
 inf245g2.ACTIVIDAD.IdTipoActividad = inf245g2.TIPO_ACTIVIDAD.IdTipoActividad
 
 AND inf245g2.ACTIVIDAD.nombre  like  #{nombre}
+AND  inf245g2.TIPO_ACTIVIDAD.IdTipoActividad  like  #{tipoactividad}
 
 
 ORDER BY 1 ASC
