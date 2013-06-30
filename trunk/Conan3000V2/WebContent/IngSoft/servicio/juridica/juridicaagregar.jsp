@@ -424,14 +424,11 @@ function validaForm(){
 	if(!esValido("Telefono",form.txtTelefono,"Telefono",1,7,7)){cadena[i]="Telefono";i++;}
 	
 	else{
-		
-
-		if (telefono.length > 0){
-		
-				if(!esValido("Telefono",form.txtTelefono,"Telefono",6,7,7)){cadena[i]="Telefono";i++;}
-			
-			}
+	
+		if(!esValido("Telefono",form.txtTelefono,"Telefono",6,7,7)){cadena[i]="Telefono";i++;}
+	
 		}
+		
 	
 	//if(!esValido("Fecha Fin",form.fFechaFin,"FechaFin",2,1,10)){cadena[i]="Fecha Fin";i++;}
 	//if(!validarFechas("Fecha Final",form.fFechaFin,"FechaFin","Fecha Inicio",form.fFechaInicio)){cadena[i]="Fecha Fin";i++;};
@@ -464,8 +461,9 @@ Solo poner el id de los <span> segun corresponda
 */
 	document.getElementById("errRazonSocial").style.display='none';
 	document.getElementById("errRuc").style.display='none';
-	document.getElementById("errCorreo").style.display='none';
 	document.getElementById("errTelefono").style.display='none';
+	document.getElementById("errCorreo").style.display='none';
+	
 	//document.getElementById("errCorreo").style.display='none';
 	//document.getElementById("errFechaInicio").style.display='none';
 	//document.getElementById("errFechaFin").style.display='none';
