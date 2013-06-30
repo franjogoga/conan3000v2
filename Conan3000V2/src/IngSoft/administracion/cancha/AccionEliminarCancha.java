@@ -2,6 +2,7 @@ package IngSoft.administracion.cancha;
 
 import java.util.Vector;
 
+import javax.faces.bean.SessionScoped;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,6 +15,7 @@ import IngSoft.administracion.bean.AmbienteMiniBeanData;
 import IngSoft.administracion.bean.SedeMiniBeanData;
 import IngSoft.administracion.bean.TipoCanchaMiniBeanData;
 
+@SessionScoped
 public class AccionEliminarCancha extends CoAccion {
 
 	@Override
