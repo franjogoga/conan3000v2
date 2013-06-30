@@ -42,6 +42,22 @@ public class SorteoBeanFuncion {
 			return sorteoData;		
 		} 
 	
+	
+	public Vector<String> getBungalowsSorteo(Date fSorteo){
+		Vector<String>  bungalows= new Vector<>();
+		try{
+			
+			SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+			
+			java.sql.Date fecha = new java.sql.Date(fSorteo.getTime());
+			List<String> bunga =sqlsesion.selectList("Data.servicio.sorteo.getBungalows",fecha);
+			bungalows = new Vector<>(bunga);
+			}catch(Exception e){
+				e.printStackTrace();		
+			}
+			bungalows.trimToSize();
+			return bungalows;		
+		}
 	public double getCostoM2(){
 		return 15;
 	}
