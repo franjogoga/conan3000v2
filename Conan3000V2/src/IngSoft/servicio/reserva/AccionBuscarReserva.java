@@ -26,6 +26,7 @@ import IngSoft.servicio.bean.ReservaBungalowMiniBeanData;
 import IngSoft.servicio.bean.ReservaCanchaMiniBeanData;
 import IngSoft.servicio.bean.ResultadoEventoBeanData;
 import IngSoft.servicio.bean.SedeMiniBeanData;
+import IngSoft.servicio.bean.ServicioAdicionalBeanData;
 import IngSoft.servicio.bean.Utils;
 
 public class AccionBuscarReserva extends CoAccion {
@@ -231,6 +232,11 @@ public class AccionBuscarReserva extends CoAccion {
 		if(tipo==8){
 			sesion.removeAttribute("reservas");
 			sesion.removeAttribute("listareservas");			
+		}
+		if(tipo==9){
+			Vector<ServicioAdicionalBeanData> adicionales=reservaFuncion.getServicios(request.getParameter("codigo").toString());	
+			request.setAttribute("adicionales", adicionales);
+			this.direccionar(sc, request, response, "/IngSoft/servicio/reserva/formularioAdicional.jsp");
 		}
 	}
 
