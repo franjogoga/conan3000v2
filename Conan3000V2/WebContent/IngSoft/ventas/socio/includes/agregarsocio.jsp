@@ -18,7 +18,9 @@ function alt_submit(){
 			  <div>
 			    <ul class="breadcrumb">
 			      		           
-			              <li><a href="/Conan3000V2/IngSoft/general/index.jsp">Home / </a><a href="/Conan3000V2/IngSoft/ventas/socio/buscarsocio.jsp">Mantenimiento de Socios / </a>Agregar Socio
+			              <li><a href="/Conan3000V2/IngSoft/general/index.jsp">Home / </a>
+			              <a href="/Conan3000V2/IngSoft/ventas/membresia/trasladominimembresia.jsp">Traslado de membresia / </a>
+			              Agregar Socio
 			           
 			              </li>
 			              
@@ -65,7 +67,7 @@ function alt_submit(){
                                   <div class="control-group" id="dvFecha">
 			              		<label class="control-label" for="typeahead4">Fecha Nacimiento(*): </label>
 			              		<div class="controls">
-			               		 <input type="text" class="input-xlarge datepicker" id="fFechaNacimiento" name="fFechaNacimiento" readonly="readonly" maxlength="10" onpaste="return false;">
+			               		 <input type="text" class="input-xlarge datepicker" id="fFechaNacimiento" name="fFechaNacimiento" readonly="readonly" maxlength="10">
 			             		 <span class="help-inline" id="errFecha">Please correct the error</span>
 			             		</div>
 		                		</div>
@@ -82,7 +84,7 @@ function alt_submit(){
 								</div>
 							</div>		
 			               
-                            <div class="control-group" id="dvTipo">
+                            <!-- <div class="control-group" id="dvTipo">
 								<label class="control-label" for="typeahead5">Tipo de Documento(*):</label>
 								<div class="controls">
 								  <label class="radio">
@@ -97,7 +99,21 @@ function alt_submit(){
 								  <span class="help-inline" id="errTipo">Please correct the error</span>
 								  </div>
 								</div>
-							  </div>
+							  </div> -->
+						   
+						   
+						   <div class="control-group" id="dvTipoDocumento">
+								<label class="control-label" for="cmbTipoDocumento">Tipo de Documento (*):</label>
+								<div class="controls">
+								  <select name="cmbTipoDocumento" id="cmbTipoDocumento" name="cmbTipoDocumento"  data-rel="chosen">
+									<option>DNI</option>
+									<option>Carnet de extranjeria</option>
+									</select>
+								</div>
+							</div>
+						   
+						   
+						   
 						   
 		                          <div class="control-group" id="dvNumDoc">
 			                          <label class="control-label" for="typeahead6">N&uacute;mero de Documento(*): </label>
@@ -143,7 +159,7 @@ function alt_submit(){
 		                          
 		                        <div class="form-actions">
 			                      <button  type="button"  class="btn btn-primary" onclick="javascript:alt_submit()">Agregar</button>      
-			               		   <button  type="button"  class="btn" onclick="location.href='../membresia/trasladomembresia.jsp'">Cancelar</button>  
+			               		   <button  type="button"  class="btn" onclick="location.href='../membresia/trasladominimembresia.jsp'">Cancelar</button>  
 		                        </div>
 		                      </fieldset>
 		                    </form>
