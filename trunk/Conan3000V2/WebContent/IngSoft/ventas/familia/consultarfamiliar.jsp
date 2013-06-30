@@ -125,7 +125,7 @@
 			<div class="row-fluid sortable">
 				<div class="box span12">
 					<div class="box-header well" data-original-title>
-					  <h2><i class="icon-plus-sign"></i>CONSULTAR FAMILIAR</h2>
+					  <h2>CONSULTAR FAMILIAR</h2>
 				  </div>
 					<div class="box-content">
 						<form class="form-horizontal" action="<%= response.encodeURL("SMVFAMILIAR")%>" name="frmData" method="POST">
@@ -134,26 +134,13 @@
 						
 						  <fieldset>
 						   <div class="control-group">
-			              <label class="control-label" for="typeahead7">Nombres Socio Asociado:</label>
+			              <label class="control-label" for="typeahead7">Socio Relacionado:</label>
 			              <div class="controls">
-			                <input type="text" name="txtSocioasociado" disabled class="span6 typeahead" id="typeahead7"  data-provide="typeahead" value=<%=personaSocio.getNombres() %>>
+			                <input type="text" name="txtSocioasociado" disabled class="span6 typeahead" id="typeahead7"  data-provide="typeahead" value="<%=personaSocio.getNombres() %>">
 		                  </div>
 		                </div>
 		                
-		                  <div class="control-group">
-			              <label class="control-label" for="typeahead7">Apellido Paterno Socio Asociado :</label>
-			              <div class="controls">
-			                <input type="text" name="txtSocioasociado" disabled class="span6 typeahead" id="typeahead7"  data-provide="typeahead" value=<%=personaSocio.getApellidoPaterno()%>>
-		                  </div>
-		                </div>
-		                
-		                <div class="control-group">
-			              <label class="control-label" for="typeahead7">Apellido Materno Socio Asociado :</label>
-			              <div class="controls">
-			                <input type="text" name="txtSocioasociado" disabled class="span6 typeahead" id="typeahead7"  data-provide="typeahead" value=<%=personaSocio.getApellidoMaterno()%>>
-		                  </div>
-		                </div>
-		                
+		
 		                  <div class="control-group">
 			                  <label class="control-label" for="selectError">Parentesco:</label>
 			                  <div class="controls">
@@ -165,23 +152,9 @@
 		                   </div>
 
 			              <div class="control-group">
-			                <label class="control-label" for="typeahead6">Nombres:</label>
+			                <label class="control-label" for="typeahead6">Familiar:</label>
 			                <div class="controls">
-			                  <input type="text" disabled class="span6 typeahead" id="typeahead6"  data-provide="typeahead" data-items="4" value=<%=persona.getNombres() %> >
-		                    </div>
-		                  </div>
-		                  
-			              <div class="control-group">
-			                <label class="control-label" for="typeahead4">Apellido Paterno:</label>
-			                <div class="controls">
-			                  <input type="text" disabled class="span6 typeahead" id="typeahead4"  data-provide="typeahead" data-items="4" value=<%=persona.getApellidoPaterno() %>>
-		                    </div>
-		                  </div>
-		                  
-			              <div class="control-group">
-			                <label class="control-label" for="typeahead8">Apellido Materno:</label>
-			                <div class="controls">
-			                  <input type="text" disabled class="span6 typeahead" id="typeahead8"   data-provide="typeahead" data-items="4" value=<%=persona.getApellidoMaterno() %>>
+			                  <input type="text" disabled class="span6 typeahead" id="typeahead6"  data-provide="typeahead" data-items="4" value="<%=persona.getNombres()%>" >
 		                    </div>
 		                  </div>
 		             
