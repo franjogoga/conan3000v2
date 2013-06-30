@@ -32,6 +32,27 @@ public class CriterioSorteoBeanFuncion {
 		return criterioSorteoData;				
 	}
 	
+	public CriterioBungalowSorteoBeanData crearCriterioBungalows(HttpServletRequest request, HttpServletResponse response){
+		CriterioBungalowSorteoBeanData criterioBungalows= new CriterioBungalowSorteoBeanData();
+		
+		try {
+			
+			criterioBungalows.setfInicioSorteo(new Date(DF.parse(request.getParameter("date01")).getTime()));
+			criterioBungalows.setfFinSorteo(new Date(DF.parse(request.getParameter("date02")).getTime()));
+			criterioBungalows.setfSorteo(new Date(DF.parse(request.getParameter("date03")).getTime()));
+			SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+			List<String> resultados=sqlsesion.selectList("Data.servicio.sorteo.searchBungalows",new Date(DF.parse(request.getParameter("date03")).getTime()));
+			Vector<String> bungalows = new Vector<>(resultados);
+			criterioBungalows.setBungalows(bungalows);
+			sqlsesion.close();
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+		return criterioBungalows;				
+	}
+	
+	
 	public Vector<ResultadoSorteoBeanData> buscarPlantillaSorteo(CriterioSorteoBeanData criterioSorteoData){		
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		Vector<ResultadoSorteoBeanData> resultadosV=null;
