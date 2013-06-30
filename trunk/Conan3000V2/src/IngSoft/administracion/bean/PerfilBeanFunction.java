@@ -134,7 +134,24 @@ public class PerfilBeanFunction {
 			dataPerfil = sesion.selectOne("Data.administracion.perfiles.getPerfil", codigo);			
 		} finally {
 			sesion.close();
-		}				
+		}
+		//BUSCA PERFILES EN OTRAS TABLAS
+		sesion=MyBatisSesion.metodo().openSession();
+		Vector<PerfilBeanData> resultadosV=null;
+		try{		
+			List<PerfilBeanData> resultados = sesion.selectList("searchPerfilOtros",codigo);
+			resultadosV= new Vector<>(resultados);
+		}
+		finally{
+			sesion.close();
+		}
+		//COMPROBAR EL TAMAÑANO PARA SETEAR EL FLAG
+		if(resultadosV.size()==0){
+			dataPerfil.setFlag(0);
+		}
+		else {
+			dataPerfil.setFlag(1);
+		}
 		return dataPerfil;
 	}
 	

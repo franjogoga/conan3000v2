@@ -45,12 +45,20 @@
 	<!-- The fav icon -->
 	<link rel="shortcut icon" href="img/conan_logo.png">
 	
+	<script type="text/javascript" src="js/apprise-1.5.full.js"></script>
+	<link rel="stylesheet" href="css/apprise.css" type="text/css" />
+	<script type="text/javascript" src="js/script.js"></script>
+	
 	<script>
 		function alt_submit_eliminar() {
 			var form = document.frmDeletePerfil;
 			var r = confirm("¿Esta seguro que desea borrar este perfil?");
 			if (r == true) {
-				form.submit();
+				if(<%=perfil.getFlag()%>==1){
+        			crearAlert2("No se puede eliminar el perfil. Se está violando el principio de dependencia.");
+        		}else{
+					form.submit();    
+        		}
 			}
 		}
 	</script>

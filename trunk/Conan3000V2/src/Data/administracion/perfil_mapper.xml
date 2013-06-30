@@ -62,4 +62,14 @@
 		where IdPerfil = #{codigo}
 	</delete>
 	
+	<select id="searchPerfilOtros" parameterType="java.lang.String" resultType="IngSoft.administracion.bean.PerfilBeanData">
+		SELECT p.IdPerfil as codigo
+		FROM PERFIL p
+		WHERE p.IdPerfil=#{codigo} AND
+			  (p.IdPerfil IN ( 
+					SELECT p.IdPerfil
+					FROM PERFIL p, USUARIO u
+					WHERE p.IdPerfil=u.IdPerfil
+						  AND u.Estado!='Eliminado'))
+	</select>
 </mapper>

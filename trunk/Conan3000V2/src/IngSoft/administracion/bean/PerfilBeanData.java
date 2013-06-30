@@ -6,6 +6,7 @@ public class PerfilBeanData implements Serializable{
 	private String codigo;
 	private String nombre;
 	private String descripcion;
+	private Integer flag;
 	
 	public String getCodigo() {
 		return codigo;
@@ -24,5 +25,11 @@ public class PerfilBeanData implements Serializable{
 	}
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
+	}	
+	public Integer getFlag() {
+		return flag;
+	}
+	public void setFlag(Integer flag) {
+		this.flag = flag;
 	}
 }
