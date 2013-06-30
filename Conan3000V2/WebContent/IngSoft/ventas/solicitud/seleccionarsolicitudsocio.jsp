@@ -152,7 +152,7 @@
 						    </div>
 						    <div class="form-actions">
 						    <button type="submit" class="btn btn-primary">Buscar</button>
-			              <button type="button" class="btn" onclick="location.href='../solicitud/buscarsolicitudsocio.jsp'">Cancelar</button>
+	
 						    
 							</div>
 						  </fieldset>
@@ -183,7 +183,7 @@
                         
                         
                         <div  align="right">
-                               <a class="btn btn-primary" href="javascript:alt_agregar()"> <i class="icon icon-add icon-white"></i> Agregar </a> 
+                           
                            </div>
                            
 						  <thead>
