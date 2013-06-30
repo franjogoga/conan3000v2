@@ -34,7 +34,7 @@ from CUOTA, DETALLE_CUOTA, MEMBRESIA, PERSONA
     </if>
   
     <if test="estado != null">
-        AND CUOTA.Estado= #{estado} OR CUOTA.Estado='Vencido'
+        AND (CUOTA.Estado= #{estado} or CUOTA.Estado='Vencido')
        
     </if>
    ORDER BY CUOTA.fechaVencimiento ASC
@@ -105,6 +105,23 @@ from CUOTA,DETALLE_CUOTA, MEMBRESIA, PERSONA  where CUOTA.IdDetalleCuota=DETALLE
 update CUOTA set Estado='Cancelado'
  where IdCuota= #{idCuota}
 </update>
+
+<update id="activarPago" parameterType="IngSoft.venta.bean.PagoBeanData">
+update MEMBRESIA set Estado='Activo'
+ where IdMembresia= #{idMembresia}
+</update>
+
+<update id="vencidoMembresiaPago" parameterType="IngSoft.venta.bean.PagoBeanData">
+update MEMBRESIA M, CUOTA C, DETALLE_CUOTA D set M.Estado='Vencido'
+ where  C.Estado='Vencido' and D.IdDetalleCuota=C.IdDetalleCuota and  M.IdMembresia=D.IdMembresia 
+ and M.Estado!='Eliminado'
+</update>
+
+<select id="getIdMembresia" parameterType="IngSoft.venta.bean.PagoBeanData" resultType="java.lang.String">
+	select max(IdMembresia) from DETALLE_CUOTA D, CUOTA C, MEMBRESIA M 
+	WHERE D.IdDetalleCuota=C.IdDetalleCuota D.IdMembresia=M.IdMembresia and C.IdCuota=#{idCuota}
+</select>
+
 
  <!-- Modificar elemento -->
 <update id="anularPago" parameterType="IngSoft.venta.bean.PagoBeanData">
@@ -469,7 +486,7 @@ INNER JOIN MEMBRESIA ON MEMBRESIA.IdSocio!=SOCIO.IdSocio
 
 
 <update id="generarMulta" parameterType="IngSoft.venta.bean.PagoBeanData">
-update CUOTA set Estado='Vencido', Monto=#{monto}
+update CUOTA set Estado='Vencido', Monto=Monto*#{multa}, Multa=1.0
  where  FechaVencimiento&lt;NOW()  and Estado='No Cancelado'
 </update>
 

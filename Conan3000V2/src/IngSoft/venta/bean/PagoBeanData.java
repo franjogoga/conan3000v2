@@ -31,10 +31,18 @@ public class PagoBeanData implements Serializable {
 	private Integer numCuota;
 	private Double multa;
 	private Date fechaActual;
+	private String idMembresia;
 	
 	
 	
-	
+	public String getIdMembresia() {
+		return idMembresia;
+	}
+
+	public void setIdMembresia(String idMembresia) {
+		this.idMembresia = idMembresia;
+	}
+
 	public Double getMulta() {
 		return multa;
 	}
