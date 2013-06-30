@@ -16,6 +16,7 @@ public class SMSSorteo extends CoServlet{
 		acciones.put("Agregar", new AccionAgregarSorteo());
 		acciones.put("Modificar", new AccionModificarSorteo());
 		acciones.put("Eliminar", new AccionEliminarSorteo());
+		acciones.put("BuscarBungalows", new AccionBuscarBungalows());
 	}
 	
 }
