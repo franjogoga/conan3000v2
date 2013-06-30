@@ -10,8 +10,14 @@ public class CriterioActividadBeanData implements Serializable{
 	private int vacantes;
 	private int inscritos;
 	
+
+	
 	private String estadoHorario;
 	private String horario;
+	
+	private Date fechaini;
+	private Date fechafin;
+	
 	
 	public String getNombre() {
 		return nombre;
@@ -54,6 +60,18 @@ public class CriterioActividadBeanData implements Serializable{
 	}
 	public void setHorario(String horario) {
 		this.horario = horario;
+	}
+	public Date getFechaini() {
+		return fechaini;
+	}
+	public void setFechaini(Date fechaini) {
+		this.fechaini = fechaini;
+	}
+	public Date getFechafin() {
+		return fechafin;
+	}
+	public void setFechafin(Date fechafin) {
+		this.fechafin = fechafin;
 	}
 	
 	
