@@ -4,11 +4,22 @@ import java.util.Date;
 
 public class SolicitudServicioBeanData {
 
+	private String codigoSolicitud;
 	private Date fecha;
 	private Double montototal;
 	private String estado;
 	private Double[] monto;
 	
+	
+	
+	public String getCodigoSolicitud() {
+		return codigoSolicitud;
+	}
+
+	public void setCodigoSolicitud(String codigoSolicitud) {
+		this.codigoSolicitud = codigoSolicitud;
+	}
+
 	public Date getFecha() {
 		return fecha;
 	}
