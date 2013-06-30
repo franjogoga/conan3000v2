@@ -2,6 +2,7 @@ package IngSoft.venta.proveedor;
 
 import java.util.Vector;
 
+import javax.faces.bean.SessionScoped;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,7 +13,7 @@ import IngSoft.venta.bean.DistritoMiniBeanData;
 import IngSoft.venta.bean.ProveedorBeanData;
 import IngSoft.venta.bean.ProveedorBeanFuncion;
 
-
+@SessionScoped
 
 public class AccionAgregarProveedor extends CoAccion{
 	
