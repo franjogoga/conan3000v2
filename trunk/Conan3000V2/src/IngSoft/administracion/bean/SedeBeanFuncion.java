@@ -198,7 +198,24 @@ public class SedeBeanFuncion {
 		finally{
 			sqlsesion.close();
 		}
-		
+
+		//BUSCA SEDES EN OTRAS TABLAS
+		sqlsesion=MyBatisSesion.metodo().openSession();
+		Vector<SedeBeanData> resultadosV=null;
+		try{		
+			List<SedeBeanData> resultados = sqlsesion.selectList("Data.administracion.sede.searchSedeOtros",codigo);
+			resultadosV= new Vector<>(resultados);
+		}
+		finally{
+			sqlsesion.close();
+		}
+		//COMPROBAR EL TAMAÑANO PARA SETEAR EL FLAG
+		if(resultadosV.size()==0){
+			sedeData.setFlag(0);
+		}
+		else {
+			sedeData.setFlag(1);
+		}
 		System.out.print(" SedeBeanFuncion <-- "+sedeData.getProvincia());
 		
 		return sedeData;
