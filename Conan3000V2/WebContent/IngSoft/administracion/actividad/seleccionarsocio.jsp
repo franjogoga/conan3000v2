@@ -109,7 +109,10 @@ parent.anhadirSocio(cod,name,puesto);
   <th>Nombres Familiar</th>
 
  
-  <th>Accion</th>
+  <th>Accion Socio</th>
+
+  <th>Accion Familiar</th>
+      
   </tr>
   </thead>  
  
@@ -148,7 +151,7 @@ parent.anhadirSocio(cod,name,puesto);
 
                        
                                <td class="center">
-                          <a class="btn btn-success"
+                          <a class="btn btn-success btn-small"
                           href="javascript:alt_Insertar('<%=((PersonaBeanData)resultados.get(i)).getCodigo()%>','<%= ((PersonaBeanData)resultados.get(i)).getNombre()+' '+((PersonaBeanData)resultados.get(i)).getApaterno()+' '+ ((PersonaBeanData)resultados.get(i)).getAmaterno()    %>','<%= ((PersonaBeanData)resultados.get(i)).getAmaterno()  %>')">
                           <i
                           class="icon-zoom-in icon-white">
@@ -166,7 +169,7 @@ Seleccionar Socio
                 
                           
                                <td class="center">
-                          <a class="<%= ((PersonaBeanData)resultados.get(i)).getCodigofam()!= null?"btn btn-success":"btn btn-small"%>" 
+                          <a class="<%= ((PersonaBeanData)resultados.get(i)).getCodigofam()!= null?"btn btn-success btn-small":"btn btn-small"%>" 
                           href="javascript:<%= ((PersonaBeanData)resultados.get(i)).getCodigofam()!= null?"alt_Insertar":"" %>('<%=((PersonaBeanData)resultados.get(i)).getCodigofam()%>','<%= ((PersonaBeanData)resultados.get(i)).getNombrefam()+' '+((PersonaBeanData)resultados.get(i)).getApaternofam()+' '+ ((PersonaBeanData)resultados.get(i)).getAmaternofam()      %>','<%= ((PersonaBeanData)resultados.get(i)).getAmaterno()%>')">
                           <i
                           class="icon-zoom-in icon-white">

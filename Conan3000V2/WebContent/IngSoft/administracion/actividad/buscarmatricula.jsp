@@ -200,44 +200,8 @@
                         </div>
                         
                         
-							 <div class="control-group">
-								<label class="control-label" for="selectError">Tipo Actividad(*):</label>
-								<div class="controls">
-																						   <!-- cmbTipoactividad  variable     -->	
-							 		<select id="selectError12" data-rel="chosen" name="cmbTipoactividad">
-								  
-								  <%for(int i=0;i<tipoactividades.size();i++) if( i!=0){     %>
-										<option value="<%= ((TipoActividadMiniBeanData)tipoactividades.get(i)).getCodigo()%>" >
-										
-										<%= ((TipoActividadMiniBeanData)tipoactividades.get(i)).getNombre()%>
-										
-										
-										</option>
-									<%} else {   %>		
-										<option selected value="<%= ((TipoActividadMiniBeanData)tipoactividades.get(i)).getCodigo()%>" >
-										
-										<%= ((TipoActividadMiniBeanData)tipoactividades.get(i)).getNombre()%>
-										
-										
-										</option>
-									<%}   %>				
-								  </select>
-								</div>
-							  </div>           
-                        
-						   <div class="control-group">
-							  <label class="control-label" for="date01">Fecha Inicio(*):</label>
-							  <div class="controls">
-								<input type="text" class="input-xlarge datepicker" id="fFecIncio" readonly="true" value="01/01"  name="fFecIncio" onchange="alt_fecha(this);verificar_fecha(-1,this,'fFecFin');">
-							  </div>
-							</div>
-							
-							<div class="control-group">
-							  <label class="control-label" for="date02">Fecha Fin(*):</label>
-							  <div class="controls">
-								<input type="text" class="input-xlarge datepicker" id="fFecFin" readonly="true" value="31/12"  name="fFecFin" onchange="alt_fecha(this);verificar_fecha(1,this,'fFecIncio');">
-							  </div>
-							</div>
+         
+
                         
                         
                         
@@ -279,8 +243,8 @@
                               <th>Nombre</th>
                               <th>Tipo</th>
                                <th>Horario</th>
-                              <th>Vacantes</th>
-                              <th>Inscritos </th>
+                              <th>Vac.</th>
+                              <th>Ins.</th>
                               <th>Estado Horario</th>
                               <th>Acci&oacute;n</th>
                             </tr>
@@ -326,16 +290,17 @@
                               
                               
                               <td class="center">
-                                  <a class="<%=((ResultadoActividadBeanData)resultados.get(i)).getVacantes()>x?"btn btn-primary":"btn btn-small"%>"
+                                  <a class="<%=((ResultadoActividadBeanData)resultados.get(i)).getVacantes()>x?"btn btn-primary":"btn "%>"
                                       href="javascript:<%=  ((ResultadoActividadBeanData)resultados.get(i)).getVacantes()>x?"alt_matricular":"" %>('<%=((ResultadoActividadBeanData)resultados.get(i)).getCodigo()%>','<%=((ResultadoActividadBeanData)resultados.get(i)).getHorario()%>','<%=((ResultadoActividadBeanData)resultados.get(i)).getVacantes()%>')">
 												<i class="icon icon-add icon-white"></i> Matricular
 											</a>
                                   
+                                  <a class="<%=((ResultadoActividadBeanData)resultados.get(i)).getVacantes()>0?"btn btn-success":"btn "%>"
+                                      href="javascript:<%=  ((ResultadoActividadBeanData)resultados.get(i)).getVacantes()>0?"alt_consultarmatricula":"" %>('<%=((ResultadoActividadBeanData)resultados.get(i)).getCodigo()%>','<%=((ResultadoActividadBeanData)resultados.get(i)).getHorario()%>')">
+                                      <i class="icon-zoom-in icon-white"></i>Ver Matriculados
+                                  </a>
                                   
-                              				<a class="btn btn-success" href="javascript:alt_consultarmatricula('<%=((ResultadoActividadBeanData)resultados.get(i)).getCodigo()%>',
-                                                                                                               '<%=((ResultadoActividadBeanData)resultados.get(i)).getHorario()%>')">
-												<i class="icon-zoom-in icon-white"></i> Ver Matriculados
-											</a>
+                              			
 											
 							  </td>
 							</tr>
