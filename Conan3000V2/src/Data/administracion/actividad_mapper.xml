@@ -109,6 +109,8 @@ inf245g2.ACTIVIDAD.IdSede AS nombreSede,
 inf245g2.ACTIVIDAD.nombre as nombre,
 inf245g2.ACTIVIDAD.IdTipoActividad as nombreTipoactividad,
 
+inf245g2.ACTIVIDAD.Vacante as vacantes,
+inf245g2.ACTIVIDAD.Costo as costo,
 
 inf245g2.ACTIVIDAD.IdEmpleado AS nombreEncargado,
 inf245g2.ACTIVIDAD.IdAmbiente as nombreAmbientes,
@@ -136,8 +138,8 @@ ORDER BY 1 ASC
 <!-- Agregar plantilla ACTIVIDAD -->
 
 <insert id="insertPlantillaActividad" parameterType="IngSoft.administracion.bean.ActividadBeanData" flushCache="true">
-	insert into ACTIVIDAD (IdActividad,IdSede,Nombre,IdEmpleado,IdAmbiente,FechaInicio,FechaFin,Descripcion,IdTipoActividad,Estado)
-	values (#{codigo},#{nombreSede},#{nombre},#{nombreEncargado},#{nombreAmbientes},#{fechaInicio},#{fechaFin},#{descripcion},#{nombreTipoactividad},#{estado})
+	insert into ACTIVIDAD (IdActividad,IdSede,Nombre,IdEmpleado,IdAmbiente,FechaInicio,FechaFin,Descripcion,IdTipoActividad,Estado,Vacante,Inscritos,Costo)
+	values (#{codigo},#{nombreSede},#{nombre},#{nombreEncargado},#{nombreAmbientes},#{fechaInicio},#{fechaFin},#{descripcion},#{nombreTipoactividad},#{estado},#{vacantes},#{inscritos},#{costo})
 </insert>
 
 
@@ -219,7 +221,9 @@ FechaInicio	=	#{fechaInicio} ,
 FechaFin	=	#{fechaFin} ,
 Descripcion	=	#{descripcion} ,
 IdTipoActividad	=	#{nombreTipoactividad},
-estado	=	#{estado}
+Estado	=	#{estado},
+Vacante = #{vacantes},
+Costo = #{costo}
 
 where IdActividad= #{codigo}
 </update>
