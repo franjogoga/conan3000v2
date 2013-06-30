@@ -187,7 +187,7 @@ String fecAnoFin=dfActual.format(c1.getTime()); %>
                         <div class="control-group" id="dvNombre">
                           <label class="control-label" for="typeahead">Nombre Invitado(*):</label>
                           <div class="controls">
-                            <input type="text" class="span6 typeahead" id="txtNombre"  data-provide="typeahead" name="txtNombre"  disabled value="<%= ((ReservaBeanData)reserva).getNombre()%>" >
+                            <input type="text" class="span6 typeahead" id="txtNombre"  data-provide="typeahead" name="txtNombre"  disabled value="<%= ((ReservaBeanData)reserva).getNombre()+' '+ ((ReservaBeanData)reserva).getApaterno()+' '+ ((ReservaBeanData)reserva).getAmaterno()   %>" >
                           	<span class="help-inline" id="errNombre"> Please correct the error</span>
                           </div>
                         </div>
