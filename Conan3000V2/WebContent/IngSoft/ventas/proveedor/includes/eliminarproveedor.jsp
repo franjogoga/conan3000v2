@@ -3,6 +3,15 @@
 <%@page import="java.util.Date"%>    
 		    
 	<!-- content starts -->
+
+<!-- content starts -->
+<jsp:useBean id="proveedor" scope="request"class="IngSoft.venta.bean.ProveedorBeanData"></jsp:useBean>
+
+	<script type="text/javascript" src="js/apprise-1.5.full.js"></script>
+	<link rel="stylesheet" href="css/apprise.css" type="text/css" />
+	<script type="text/javascript" src="js/script.js"></script>
+	
+
    <script>
 	function alt_fecha(obj){
 	obj.value=obj.value.slice(0,5);
@@ -12,8 +21,13 @@
 	function alt_submit(){
 		var form= document.frmDelete;
 		var r=confirm("¿Esta seguro que desea borrar este proveedor?");
-		if(r==true){form.submit();}
-			}	
+		if(r==true){
+				if(<%=proveedor.getFlag()%>==1){
+        			crearAlert2("No se puede eliminar el proveedor. Se está violando el principio de dependencia.");
+        		}else{
+					form.submit();    
+        		}			}
+		}	
 
 
 	</script>	
@@ -30,8 +44,6 @@
 	}
 	%>	
 	
-<!-- content starts -->
-<jsp:useBean id="proveedor" scope="request"class="IngSoft.venta.bean.ProveedorBeanData"></jsp:useBean>
 		    
 		    <div>
 		      <ul class="breadcrumb">

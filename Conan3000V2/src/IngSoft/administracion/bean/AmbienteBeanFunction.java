@@ -142,7 +142,7 @@ public class AmbienteBeanFunction {
 		sqlsesion=MyBatisSesion.metodo().openSession();
 		Vector<AmbienteBeanData> resultadosV=null;
 		try{		
-			List<AmbienteBeanData> resultados = sqlsesion.selectList("searchAmbienteOtros",codigo);
+			List<AmbienteBeanData> resultados = sqlsesion.selectList("Data.administracion.ambiente.searchAmbienteOtros",codigo);
 			resultadosV= new Vector<>(resultados);
 		}
 		finally{
