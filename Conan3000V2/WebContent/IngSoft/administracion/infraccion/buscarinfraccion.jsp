@@ -1,14 +1,6 @@
 <!DOCTYPE html>
-
-<%@page import="java.util.Date"%>
-<%@page import="IngSoft.administracion.bean.TipoActividadMiniBeanData"%>
-<%@page import="java.text.SimpleDateFormat"%>
-<%@page import="java.util.Calendar"%>
 <%@page import="IngSoft.administracion.bean.ResultadoInfraccionBeanData"%>
 <%@page import="java.util.Vector"%>
-
-
-
 <html lang="en">
 <head>
 	<meta charset="utf-8">
@@ -51,11 +43,7 @@
 	<!-- The fav icon -->
 	<link rel="shortcut icon" href="img/conan_logo.png">
 		
-	<script>
-	function alt_fecha(obj){
-	obj.value=obj.value.slice(0,5);
-	
-	}
+	<script>	
 	function alt_agregar(cod){
 		var form=document.getElementById("frmAlternativo");
 		form.accion.value="Agregar";
@@ -67,73 +55,8 @@
 		form.accion.value="Consultar";
 		form.codigo.value=cod;
 		form.submit();
-	}
-	function alt_modificar(cod){
-		var form=document.getElementById("frmAlternativo");
-		form.accion.value="Modificar";
-		form.codigo.value=cod;
-		form.submit();
-	}
-	function alt_eliminar(cod){
-		var form=document.getElementById("frmAlternativo");
-		form.accion.value="Eliminar";
-		form.codigo.value=cod;
-		form.submit();
-	}
-	
- // validaciones fechas 
-	
-	function verificar_fecha(comparacion,fecha1,fecha2){
-		var fec1=fecha1.value.split("/");
-		var fec2=document.getElementById(fecha2).value.split("/");
-		var resultado=true;
-		if(fec1.length==fec2.length) {
-			var size=fec1.length;
-			for(i=size-1;i>=0;i--){
-				if(comparacion==0){
-					if(fec1[i].indexOf(fec2[i])<0)  resultado= false;
-					}
-				if(comparacion==1){
-					if(parseInt(fec1[i])<parseInt(fec2[i]))  resultado= false;
-					}
-				if(comparacion==-1){
-					if(parseInt(fec1[i])>parseInt(fec2[i]))  resultado= false;
-					}
-				}
-			if(resultado==false){			
-					fecha1.value=document.getElementById(fecha2).value;			
-				}
-				
-			} 
-		else{
-			alert("Error al comparar las fechas");
-		}			
-	}
-	
-	
+	}		
 	</script>
-	
-	
-	<%! public boolean  encontrar(String a, String[] b){
-		for(int i=0;i<b.length;i++){			
-			if(b[i].equals(a)) return true;	
-		}
-	return false;
-	}
-	
-	public String formatear(java.util.Date date){
-		SimpleDateFormat DF= new SimpleDateFormat("dd/MM/yyyy");
-		return DF.format(date);
-	}
-	public String generarCadena(String[] t){
-		String a="";
-		for(int i=0;i<t.length;i++)
-			a= a.concat(t[i]+"/");
-			if(a.length()>0) a=a.substring(0, a.length()-1);
-		return a;
-	}
-	%>
-		
 </head>
 
 <body>
@@ -184,14 +107,13 @@
                             <input type="text" class="span6 typeahead" id="txtNombre" name="txtNombre">
                           </div>
                         </div>
-                             
-                        
+                                                    
                         <div class="form-actions">
                           <button type="submit" class="btn btn-primary">Buscar</button>
                           <button type="reset" id="boton" class="btn">Cancelar</button>
                         </div>
                         
-                      </fieldset>
+                        </fieldset>
                       </form>
                     </div>
                   </div>
@@ -202,10 +124,7 @@
 				<input type="hidden" name="codigo" value=""></input>
 				<input type="hidden" name="tipo" value="1"></input>
 				</form>	
-				
-				
-				
-				
+
                 <div class="row-fluid sortable">
                   <div class="row-fluid sortable">
                     <div class="box span12">
@@ -220,49 +139,25 @@
                               <th>Código Socio</th>
                               <th>Nombre Socio</th>
                               <th>Apellido Pat. Socio</th>
-                              <th>Apellido Mat. Socio</th>
-                              <th>Numero de Documento</th>
-                                                            
+                              <th>Apellido Mat. Socio</th>                                                                                         
                               <th>Acci&oacute;n</th>
                             </tr>
                           </thead>
                           
                           <tbody id="resultadoBusqueda">
                           	<% for(int i=0; i<resultados.size(); i++) { %>
-                            <tr>
-                            	
-                              
-                                                   
+                            <tr>                                     
+                              <td class="center"> <%=((ResultadoInfraccionBeanData)resultados.get(i)).getCodigo()%> </td>
+                              <td class="center"> <%=((ResultadoInfraccionBeanData)resultados.get(i)).getNombre()%> </td>
+                              <td class="center"> <%=((ResultadoInfraccionBeanData)resultados.get(i)).getApepaterno()%> </td>
+                              <td class="center"> <%=((ResultadoInfraccionBeanData)resultados.get(i)).getApematerno()%> </td>                   
                               <td class="center">
-                              <%=((ResultadoInfraccionBeanData)resultados.get(i)).getCodigo()%>
-                              </td>
-                              <td class="center">
-                              <%=((ResultadoInfraccionBeanData)resultados.get(i)).getNombre()%>
-                              </td>
-                              <td class="center">
-                              <%=((ResultadoInfraccionBeanData)resultados.get(i)).getApepaterno()%>
-                              </td>
-                              <td class="center">
-                              <%=((ResultadoInfraccionBeanData)resultados.get(i)).getApematerno()%>
-                              </td>
-                         
-                              
-                                                            
-                              
-                              
-                              <td class="center">
-                              				<a class="btn btn-primary"        
-                              				    href="javascript:alt_agregar('<%=((ResultadoInfraccionBeanData)resultados.get(i)).getCodigo()%>')">
-												<i class="icon icon-add icon-white"></i> Agregar 
-											</a>   
-                              
-                              
-                              				<a class="btn btn-success" 
-                              				   href="javascript:alt_consultar('<%=((ResultadoInfraccionBeanData)resultados.get(i)).getCodigo()%>')">
-												<i class="icon-zoom-in icon-white"></i> Ver 
-											</a>
-
-											
+                           		<a class="btn btn-primary" href="javascript:alt_agregar('<%=((ResultadoInfraccionBeanData)resultados.get(i)).getCodigo()%>')">
+									<i class="icon icon-add icon-white"></i> Agregar 
+								</a>                                                             
+                           		<a class="btn btn-success" href="javascript:alt_consultar('<%=((ResultadoInfraccionBeanData)resultados.get(i)).getCodigo()%>')">
+									<i class="icon-zoom-in icon-white"></i> Ver 
+								</a>											
 							  </td>
 							</tr>
                             <%}%>
@@ -276,12 +171,7 @@
                 </div>
                 <!--/span-->
 			
-			</div><!--/row-->
-                
-                
-                
-                
-                
+			</div><!--/row-->              
 
 			<div class="row-fluid sortable"><!--/span--><!--/span-->
 			</div><!--/row-->
