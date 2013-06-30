@@ -41,7 +41,7 @@ public class AccionAgregarActividad extends CoAccion{
 		
 		
 		
-		this.direccionar(sc, request, response, "/IngSoft/administracion/actividad/buscaractividad.jsp");
+		this.direccionar(sc, request, response, "/IngSoft/administracion/actividad/SMAActividad?accion=Buscar&tipo=1");
 		
 		}
 		else
