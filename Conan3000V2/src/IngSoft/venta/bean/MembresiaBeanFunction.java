@@ -54,13 +54,65 @@ public class MembresiaBeanFunction {
 		   
 	   }
 	
+	   
+	   public MembresiaBeanData crearMembresiaRenovar(HttpServletRequest request, HttpServletResponse response){
+			MembresiaBeanData membresiaData= new MembresiaBeanData();
+			try{		
+		
+			membresiaData.setCodigoSocio(request.getParameter("idSocio"));
+			membresiaData.setFechaInicio(new Date(DF.parse(request.getParameter("fFechaInicio2")).getTime()));
+			membresiaData.setFechaFin(new Date(DF.parse(request.getParameter("fFechaFin2")).getTime()));
+			membresiaData.setCosto(Double.parseDouble(request.getParameter("total")));
+			membresiaData.setPeriodo(request.getParameter("cmbPeriodo"));
+			membresiaData.setEstado("Activo");
+			//Double descuento=Double.parseDouble(request.getParameter("txtDescuento"))/100;
+			
+			if(membresiaData.getPeriodo().equals("Mensual")){
+			membresiaData.setCantCuota(12);
+			}else{
+				if(membresiaData.getPeriodo().equals("Semestral")){
+					membresiaData.setCantCuota(2);
+					//membresiaData.setCosto(Double.parseDouble(request.getParameter("txtCosto"))*6*(1-descuento));
+					}else{
+						if(membresiaData.getPeriodo().equals("Anual")){
+							membresiaData.setCantCuota(1);
+							//membresiaData.setCosto(Double.parseDouble(request.getParameter("txtCosto"))*12*(1-descuento));
+							}
+						
+						
+					}
+				
+			}
+			
+			
+			if (request.getParameter("rButton")!=null){
+			String est;
+			est=request.getParameter("rButton");
+			membresiaData.setEstado(est);}
+			
+			//if(request.getParameter("rButton").equals("option1")) {
+			//membresiaData.setEstado(request.getParameter("option1"));}
+	          // else if (request.getParameter("rButton").equals("option2"))
+	            //	membresiaData.setEstado(request.getParameter("option2"));
+	         	
+			}
+			catch(Exception e){
+				e.printStackTrace();
+				
+			}
+			return membresiaData;		
+		} 
+		
+	   
+	   
+	   
 	public MembresiaBeanData crearMembresia(HttpServletRequest request, HttpServletResponse response){
 		MembresiaBeanData membresiaData= new MembresiaBeanData();
 		try{		
 	
 		membresiaData.setCodigoSocio(request.getParameter("idSocio"));
 		membresiaData.setFechaInicio(new Date(DF.parse(request.getParameter("fFechaInicio")).getTime()));
-		membresiaData.setFechafin(new Date(DF.parse(request.getParameter("fFechaFin")).getTime()));
+		membresiaData.setFechaFin(new Date(DF.parse(request.getParameter("fFechaFin")).getTime()));
 		membresiaData.setCosto(Double.parseDouble(request.getParameter("txtCosto")));
 		membresiaData.setPeriodo(request.getParameter("cmbPeriodo"));
 		membresiaData.setEstado("Activo");
@@ -348,20 +400,31 @@ public String consultarMembresiaMax() throws CoException {
 			final Calendar c = Calendar.getInstance();
 			final Calendar c2 = Calendar.getInstance();
 			
-			c.setTime(membresia.getFechaEmision());
-			String fechaEmision=DF.format(membresia.getFechaEmision());
+			
+			System.out.println("Fecha Inicio: "+membresia.getFechaInicio());
+			
+			c.setTime(membresia.getFechaInicio());
+			String fechaEmision=DF.format(membresia.getFechaInicio());
 			
 			String codigoCuota= (String)sqlsesion.selectOne("Data.venta.membresia.getNextCodigoCuota");
 			String cantCuota= (String)sqlsesion.selectOne("Data.venta.membresia.getCantidadCuota",membresia.getIdMembresia());
+			System.out.println("Cantidad Cuotas: "+cantCuota);
 			Integer cuotas=Integer.parseInt(cantCuota);
 			cuotas+=membresia.getCantCuota();
+			
+			Integer cuotasCant=membresia.getCantCuota();
 			membresia.setCantCuota(cuotas);
+			membresia.setNumCuota(cuotas);
 			
 			sqlsesion.update("Data.venta.membresia.renovarMembresia",membresia);
-			
+			sqlsesion.update("Data.venta.membresia.renuevaFechaFinMembresia",membresia);
+			String idDetalle= (String)sqlsesion.selectOne("Data.venta.membresia.getCodigoDetalle",membresia);
+			membresia.setIdDetalleCuota(idDetalle);
+			System.out.println("Detalle cuota: "+membresia.getIdDetalleCuota());
+			System.out.println("Idmembresia: "+membresia.getIdMembresia());
 			int codCuota=0;
 			int estadoPA=0;
-			for(int i=0;i<membresia.getCantCuota();i++){
+			for(int i=Integer.parseInt(cantCuota);i<membresia.getCantCuota();i++){
 				
 				if(codigoCuota!=null){
 				if(codCuota==0)	
@@ -380,13 +443,13 @@ public String consultarMembresiaMax() throws CoException {
 				membresia.setEstadoCuota("No Cancelado");
 				
 				
-					if(membresia.getCantCuota()>0 && estadoPA==0){
+					if(cuotasCant>0 && estadoPA==0){
 					c.set(c.get(Calendar.YEAR), c.get(Calendar.MONTH),7);
 					estadoPA=1;
 					}else{
-						if(membresia.getCantCuota()==12)
+						if(cuotasCant==12)
 							c.set(c.get(Calendar.YEAR), c.get(Calendar.MONTH)+1,7);
-						if(membresia.getCantCuota()==2)
+						if(cuotasCant==2)
 							c.set(c.get(Calendar.YEAR), c.get(Calendar.MONTH)+6,7);
 						
 					}

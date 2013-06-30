@@ -114,9 +114,21 @@ from MEMBRESIA, PERSONA  where MEMBRESIA.IdMembresia=#{codigo} and MEMBRESIA.IdS
 	values (#{idMembresia},#{idDetalleCuota},#{fechaCreacion},#{cantCuota},#{estadoDetalle})
 </insert>
 
+<select id="getCodigoDetalle" parameterType="IngSoft.venta.bean.MembresiaBeanData"  resultType="java.lang.String">
+select max(D.idDetalleCuota) 
+from DETALLE_CUOTA D  where D.IdMembresia=#{idMembresia}; 
+
+
+</select>
+
 <update id="renovarMembresia" parameterType="IngSoft.venta.bean.MembresiaBeanData" >
-update DETALLE_CUOTA set CantCuota=#{cantCuota} where IdMembresia= #{codigo}
+update DETALLE_CUOTA set CantCuota=#{cantCuota} where IdMembresia= #{idMembresia}
 </update>
+
+<update id="renuevaFechaFinMembresia" parameterType="IngSoft.venta.bean.MembresiaBeanData" >
+update MEMBRESIA set FechaFin=#{fechaFin} where IdMembresia= #{idMembresia}
+</update>
+
 
 <update id="darBajaCuota" parameterType="IngSoft.venta.bean.MembresiaBeanData" >
 update CUOTA,DETALLE_CUOTA set CUOTA.Estado='Eliminado' where DETALLE_CUOTA.IdMembresia= #{codigo} and DETALLE_CUOTA.IdDetalleCuota=CUOTA.IdDetalleCuota and CUOTA.FechaVencimiento>=#{fechaActual}

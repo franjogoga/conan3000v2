@@ -27,11 +27,11 @@ function anhadir(cod, name){
 function actualizarTotal(){
 var form= document.frmMembresia;
 	if(form.cmbPeriodo.value=="Anual"){
-	form.txtTotal.value=form.txtCosto.value*12*(1-form.txtDescuento.value/100);
+	form.txtTotal.value=form.txtCosto.value*(1-(form.txtDescuento.value/100));
 	}
 
 	if(form.cmbPeriodo.value=="Semestral"){
-	form.txtTotal.value=form.txtCosto.value*6*(1-form.txtDescuento.value/100);
+	form.txtTotal.value=form.txtCosto.value*(1-(form.txtDescuento.value/100));
 
 	}
 
@@ -112,13 +112,13 @@ String fecAnoFin=dfActual.format(c1.getTime());
 			   <ul class="breadcrumb">
 		        <li> <a href="index.jsp">Home</a> <span class="divider">/</span></li>
 		        <li> <a href="buscarmembresia.jsp">Mantenimiento de Membres&iacute;a</a> <span class="divider">/</span></li>
-		        <li> Modificar  Membres&iacute;a</li>
+		        <li> Renovar  Membres&iacute;a</li>
 	          </ul>
 		      </div>
 			  <div class="row-fluid sortable">
 			    <div class="box span12">
 			      <div class="box-header well" data-original-title>
-			        <h2>MODIFICAR MEMBRESIA</h2>
+			        <h2>RENOVAR MEMBRESIA</h2>
 		          </div>
 			      <div class="box-content">
 			        <form class="form-horizontal"  name="frmMembresia" method="Post"  action="SMVMembresia">
@@ -161,7 +161,7 @@ String fecAnoFin=dfActual.format(c1.getTime());
 			              <div class="control-group" id="dvSocio">
 			                <label class="control-label" for="typeahead8">Socio (*): </label>
 			                <div class="controls">
-			                  <input type="text" class="span6 typeahead" id="typeahead8"  data-provide="typeahead" name="txtSocio" data-items="4" readonly="readonly">
+			                  <input type="text" class="span6 typeahead" id="typeahead8"  data-provide="typeahead" name="txtSocio" data-items="4" readonly="readonly" value="<%=membresia.getSocio() %>">
 			                  <br>
 			                  <span class="help-inline" id="errSocio">Please correct the error</span>
 			                </div>
@@ -186,6 +186,8 @@ String fecAnoFin=dfActual.format(c1.getTime());
 						  </div>
 			            <div class="form-actions">
 			            <input type="hidden" name="idSocio" value="<%=membresia.getCodigoSocio() %>"/></input>
+						<input type="hidden" name="fFechaInicio2" value="<%=formatear(new Date(membresia.getFechaInicio().getTime())) %>"/></input>
+						<input type="hidden" name="fFechaFin2" value="<%=formatear(new Date(membresia.getFechaFin().getTime())) %>"/></input>
 			              <button type="button" class="btn btn-primary" onclick="javascript:alt_submit()">Modificar</button>
 			              <button type="button" class="btn" onclick="location.href='buscarmembresia.jsp'">Cancelar</button>
 		                </div>
