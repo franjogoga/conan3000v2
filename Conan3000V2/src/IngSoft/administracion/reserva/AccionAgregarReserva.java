@@ -40,8 +40,10 @@ public class AccionAgregarReserva extends CoAccion {
 		
 			
 			ReservaBeanFunction reservaFuncion= ReservaBeanFunction.getInstance(); 
-			ReservaBeanData reserva=reservaFuncion.consultarReservaInvitado(request.getParameter("codigo"));
+			Vector<ReservaBeanData> reserva=reservaFuncion.consultarReservaInvitado(request.getParameter("codigo"));
 
+			
+			
 			request.setAttribute("reserva", reserva);
 			
 			System.out.print("vamos agregar");
