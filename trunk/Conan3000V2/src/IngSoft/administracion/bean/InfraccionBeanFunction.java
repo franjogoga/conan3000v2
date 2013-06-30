@@ -150,4 +150,37 @@ public class InfraccionBeanFunction {
 			sqlsesion.close();}
 		return resultadosV;		
 	}	
+	
+	public Vector<InfraccionSocioBeanData> getInfraccionxsocio(String codigo) throws CoException {
+		Vector<InfraccionSocioBeanData> infracciones= null;
+		SqlSession sesion=MyBatisSesion.metodo().openSession();				
+		try{
+			List<InfraccionSocioBeanData> temp=sesion.selectList("Data.administracion.infraccion.getInfraccionxsocio", codigo);			
+			infracciones= new Vector<InfraccionSocioBeanData>(temp);
+		}
+		catch(Exception e3){
+			e3.printStackTrace();
+			throw CoException.set("Error: No se pudo obtener la lista de infracciones de este socio", "SMAInfraccion?accion=Buscar&tipo=1");
+		}
+		finally{
+			sesion.close();			
+		}
+		return infracciones;
+	}
+	
+	public String getNombreSocio(String codigo) throws CoException {
+		NombreSocioBeanData dataNombre= new NombreSocioBeanData();
+		SqlSession sesion=MyBatisSesion.metodo().openSession();				
+		try{
+			dataNombre = sesion.selectOne("Data.administracion.infraccion.getNombreSocio", codigo);						
+		}
+		catch(Exception e4){
+			e4.printStackTrace();
+			throw CoException.set("Error: No se pudo obtener la lista de infracciones de este socio", "SMAInfraccion?accion=Buscar&tipo=1");
+		}
+		finally{
+			sesion.close();			
+		}
+		return dataNombre.getNombres() + " "+ dataNombre.getApepaterno() + " "+ dataNombre.getApematerno();
+	}
 }
