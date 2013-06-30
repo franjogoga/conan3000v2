@@ -2,6 +2,7 @@ package IngSoft.servicio.juridica;
 
 import java.util.Vector;
 
+import javax.faces.bean.SessionScoped;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,10 +14,10 @@ import IngSoft.servicio.bean.*;
 import org.apache.ibatis.session.SqlSession;
 
 import IngSoft.general.MyBatisSesion;
-
+@SessionScoped
 public class AccionBuscarJuridica extends CoAccion {
-
-	@Override
+	
+	
 	public void ejecutar(ServletContext sc, HttpServletRequest request,
 			HttpServletResponse response) throws CoException {
 		// TODO Auto-generated method stub
