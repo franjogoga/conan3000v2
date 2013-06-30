@@ -20,6 +20,11 @@ import IngSoft.general.MyBatisSesion;
 public class MembresiaBeanFunction {
 	static private MembresiaBeanFunction MembresiaFuncion=null;
 	private Lock l= new ReentrantLock();     
+	private Lock l1= new ReentrantLock();
+	private Lock l2= new ReentrantLock();
+	private Lock l3= new ReentrantLock();
+	private Lock l4= new ReentrantLock();
+	private Lock l5= new ReentrantLock();
 	SimpleDateFormat DF = new SimpleDateFormat("dd/MM/yyyy");
 	   
 	   public static MembresiaBeanFunction getInstance(){
@@ -41,6 +46,7 @@ public class MembresiaBeanFunction {
 			}
 			finally{
 				sqlsesion.close();
+				l.unlock();
 			}
 			
 		 
@@ -99,7 +105,7 @@ public class MembresiaBeanFunction {
 	public boolean agregarMembresia(MembresiaBeanData membresiaData) throws CoException {
 		
 		boolean resultado=false;		
-		l.lock();
+		l1.lock();
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		
 		try{
@@ -206,7 +212,7 @@ public class MembresiaBeanFunction {
 		finally{
 			sqlsesion.commit();
 			sqlsesion.close();
-			l.unlock();					
+			l1.unlock();					
 		}
 		return resultado;
 	}
@@ -243,6 +249,7 @@ public class MembresiaBeanFunction {
 	
 			
 	public MembresiaBeanData consultarMembresia(String codigo){
+		l2.lock();
 		MembresiaBeanData membresiaData=null;
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
@@ -258,6 +265,34 @@ public class MembresiaBeanFunction {
 		}
 		finally{
 			sqlsesion.close();
+			l2.unlock();
+		}
+		return membresiaData;
+	}
+	
+	
+	public MembresiaBeanData consultarMembresiaRenovar(String codigo){
+		l2.lock();
+		MembresiaBeanData membresiaData=null;
+		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+		try{
+			membresiaData= sqlsesion.selectOne("Data.venta.membresia.getPlantillaMembresia",codigo);
+			
+			final Calendar c = Calendar.getInstance();
+			c.setTime(membresiaData.getFechaFin());
+			c.set(c.get(Calendar.YEAR), c.get(Calendar.MONTH)+1,1);
+			
+			final Calendar c2 = Calendar.getInstance();
+			c2.setTime(membresiaData.getFechaFin());
+			c2.set(c.get(Calendar.YEAR)+1, c.get(Calendar.MONTH)+1,1);
+			
+			membresiaData.setFechaInicio(c.getTime());
+			membresiaData.setFechaFin(c2.getTime());
+			
+		}
+		finally{
+			sqlsesion.close();
+			l2.unlock();
 		}
 		return membresiaData;
 	}
@@ -266,6 +301,7 @@ public String consultarMembresiaMax() throws CoException {
 		
 		//boolean resultado=false;		
 		//l.lock();
+	l3.lock();
 	String codigo=null;
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		
@@ -292,15 +328,16 @@ public String consultarMembresiaMax() throws CoException {
 		}
 		
 		finally{
-			//sqlsesion.commit();
+			sqlsesion.commit();
 			sqlsesion.close();
-			//l.unlock();					
+			l3.unlock();					
 		}
 		return codigo;
 	}
 
 
 	public void modificarMembresia(MembresiaBeanData membresia) throws CoException {
+		l4.lock();
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
 					
@@ -379,12 +416,14 @@ public String consultarMembresiaMax() throws CoException {
 		
 		finally{
 			sqlsesion.commit();
-			sqlsesion.close();					
+			sqlsesion.close();	
+			l4.unlock();
 		}			
 		return ;
 	}
 	
 	public void modificarSocio(String codigo) throws CoException {
+		l5.lock();
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
 					
@@ -400,7 +439,8 @@ public String consultarMembresiaMax() throws CoException {
 		
 		finally{
 			sqlsesion.commit();
-			sqlsesion.close();					
+			sqlsesion.close();
+			l5.unlock();
 		}			
 		return ;
 	}

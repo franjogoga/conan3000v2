@@ -17,7 +17,12 @@ import IngSoft.general.MyBatisSesion;
 public class OrdenPagoBeanFunction {
 	
 	static private OrdenPagoBeanFunction ordenPagoFunction=null;
-	private Lock l= new ReentrantLock();     
+	private Lock l= new ReentrantLock();
+	private Lock l1= new ReentrantLock();
+	private Lock l2= new ReentrantLock();
+	private Lock l3= new ReentrantLock();
+	private Lock l4= new ReentrantLock();
+	
 	SimpleDateFormat DF = new SimpleDateFormat("dd/MM/yyyy");
 	   
 	   public static OrdenPagoBeanFunction getInstance(){
@@ -223,7 +228,7 @@ public boolean agregarOrdenPago(String concepto, String id, String id2, String i
 public boolean pagarOrdenPago(OrdenPagoBeanData ordenPagoData) throws CoException {
 	
 	boolean resultado=false;		
-	l.lock();
+	l1.lock();
 	SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 	
 	try{
@@ -254,7 +259,7 @@ public boolean pagarOrdenPago(OrdenPagoBeanData ordenPagoData) throws CoExceptio
 	finally{
 		sqlsesion.commit();
 		sqlsesion.close();
-		l.unlock();					
+		l1.unlock();					
 	}
 	return resultado;
 }
@@ -262,7 +267,7 @@ public boolean pagarOrdenPago(OrdenPagoBeanData ordenPagoData) throws CoExceptio
 public boolean agregarCuotaExtra(OrdenPagoBeanData ordenPagoData) throws CoException {
 	
 	boolean resultado=false;		
-	l.lock();
+	l2.lock();
 	SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 	
 	try{
@@ -328,7 +333,7 @@ public boolean agregarCuotaExtra(OrdenPagoBeanData ordenPagoData) throws CoExcep
 	finally{
 		sqlsesion.commit();
 		sqlsesion.close();
-		l.unlock();					
+		l2.unlock();					
 	}
 	return resultado;
 }
@@ -338,13 +343,19 @@ public boolean agregarCuotaExtra(OrdenPagoBeanData ordenPagoData) throws CoExcep
 
 
 public OrdenPagoBeanData consultarOrdenPago(String codigo){
+	l3.lock();
 	OrdenPagoBeanData ordenPagoData=null;
 	SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 	try{
 		ordenPagoData= sqlsesion.selectOne("Data.venta.pago.getOrdenPagoIngreso",codigo);
 	}
+	catch(Exception a)		
+	{
+	a.printStackTrace();
+	}
 	finally{
 		sqlsesion.close();
+		l3.unlock();
 	}
 	return ordenPagoData;
 }
@@ -361,7 +372,7 @@ public boolean agregarOrdenPagoPrueba() throws CoException {
 	boolean resultado=false;
 	OrdenPagoBeanData ordenData= new OrdenPagoBeanData();
 	
-	l.lock();
+	l4.lock();
 	SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 	
 	try{
@@ -405,7 +416,7 @@ public boolean agregarOrdenPagoPrueba() throws CoException {
 	finally{
 		sqlsesion.commit();
 		sqlsesion.close();
-		l.unlock();					
+		l4.unlock();					
 	}
 	return resultado;
 }

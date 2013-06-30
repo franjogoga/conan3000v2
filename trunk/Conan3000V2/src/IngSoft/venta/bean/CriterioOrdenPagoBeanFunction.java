@@ -5,6 +5,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Vector;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.ibatis.session.SqlSession;
@@ -13,7 +16,7 @@ import IngSoft.general.MyBatisSesion;
 
 
 public class CriterioOrdenPagoBeanFunction {
-
+	private Lock l1= new ReentrantLock();
 	SimpleDateFormat DF = new SimpleDateFormat("dd/MM/yyyy");
 
 	public CriterioOrdenPagoBeanData crearCriterio(HttpServletRequest request, HttpServletResponse response){
@@ -66,6 +69,7 @@ public class CriterioOrdenPagoBeanFunction {
 	}
 	
 	public Vector<ResultadoOrdenPagoBeanData> buscarOrdenPago(CriterioOrdenPagoBeanData criterioOrdenPagoData){		
+		l1.lock();
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		Vector<ResultadoOrdenPagoBeanData> resultadosV=null;
 		try{		
@@ -77,8 +81,14 @@ public class CriterioOrdenPagoBeanFunction {
 			}				
 		resultadosV= new Vector<>(resultados);
 		}
+		catch(Exception a)		
+		{
+		a.printStackTrace();
+		}
 		finally{
-		sqlsesion.close();}
+		sqlsesion.close();
+		l1.unlock();
+		}
 		return resultadosV;
 		
 	}
