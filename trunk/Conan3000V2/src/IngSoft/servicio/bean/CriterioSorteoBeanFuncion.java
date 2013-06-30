@@ -43,7 +43,7 @@ public class CriterioSorteoBeanFuncion {
 			SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 			List<String> resultados=sqlsesion.selectList("Data.servicio.sorteo.searchBungalows",new Date(DF.parse(request.getParameter("date03")).getTime()));
 			Vector<String> bungalows = new Vector<>(resultados);
-			criterioBungalows.setBungalows(bungalows);
+		//	criterioBungalows.setBungalows(bungalows);
 			sqlsesion.close();
 		} catch (ParseException e) {
 			e.printStackTrace();

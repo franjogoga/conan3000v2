@@ -2,6 +2,8 @@ package IngSoft.venta.bean;
 
 import java.util.List;
 import java.util.Vector;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,7 +13,7 @@ import org.apache.ibatis.session.SqlSession;
 import IngSoft.general.MyBatisSesion;
 
 public class CriterioServicioBeanFunction {
-
+	private Lock l= new ReentrantLock(); 
 public CriterioServicioBeanData crearCriterio(HttpServletRequest request, HttpServletResponse response){
 		
 		CriterioServicioBeanData criterioServicioData= new CriterioServicioBeanData();
@@ -29,6 +31,7 @@ public CriterioServicioBeanData crearCriterio(HttpServletRequest request, HttpSe
 	}
 	
 	public Vector<ResultadoServicioBeanData> buscarPlantillaServicio(CriterioServicioBeanData criterioServicioData){		
+		l.lock();
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		Vector<ResultadoServicioBeanData> resultadosV=null;
 		try{		
@@ -37,7 +40,8 @@ public CriterioServicioBeanData crearCriterio(HttpServletRequest request, HttpSe
 		resultadosV= new Vector<>(resultados);
 		}
 		finally{
-		sqlsesion.close();}
+		sqlsesion.close();
+		l.unlock();}
 		return resultadosV;
 		
 	}

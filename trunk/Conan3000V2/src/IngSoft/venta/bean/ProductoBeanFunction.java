@@ -16,6 +16,11 @@ public class ProductoBeanFunction {
 	
 	static private ProductoBeanFunction ProductoFuncion=null;
 	private Lock l= new ReentrantLock();     
+	private Lock l1= new ReentrantLock();
+	private Lock l2= new ReentrantLock();
+	private Lock l3= new ReentrantLock();
+	private Lock l4= new ReentrantLock();
+	private Lock l5= new ReentrantLock();
 	SimpleDateFormat DF = new SimpleDateFormat("dd/MM/yyyy");
 	   
 	   public static ProductoBeanFunction getInstance(){
@@ -54,7 +59,7 @@ public class ProductoBeanFunction {
 	public boolean agregarProducto(ProductoBeanData productoData) throws CoException {
 		
 		boolean resultado=false;		
-		l.lock();
+		l1.lock();
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		
 		try{
@@ -74,13 +79,13 @@ public class ProductoBeanFunction {
 		catch(Exception a)		
 		{sqlsesion.rollback();
 		a.printStackTrace();
-			//throw CoException.set("Error: Nombre de membresia repetido", "SMVMembresia?accion=Agregar&tipo=1");
+			//throw CoException.set("Error: Ha ocurrido un error al guardar los datos", "SMVProducto?accion=Agregar&tipo=1");
 		}
 		
 		finally{
 			sqlsesion.commit();
 			sqlsesion.close();
-			l.unlock();					
+			l1.unlock();					
 		}
 		return resultado;
 	}
@@ -113,6 +118,7 @@ public class ProductoBeanFunction {
 	
 			
 	public ProductoBeanData consultarProducto(String codigo){
+		l2.lock();
 		ProductoBeanData productoData=null;
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
@@ -120,12 +126,13 @@ public class ProductoBeanFunction {
 		}
 		finally{
 			sqlsesion.close();
+			l2.unlock();
 		}
 		return productoData;
 	}
 	
 public String consultarProductoMax() throws CoException {
-		
+	l3.lock();
 		//boolean resultado=false;		
 		//l.lock();
 	String codigo=null;
@@ -154,37 +161,39 @@ public String consultarProductoMax() throws CoException {
 		}
 		
 		finally{
-			//sqlsesion.commit();
+			sqlsesion.commit();
 			sqlsesion.close();
-			//l.unlock();					
+			l3.unlock();					
 		}
 		return codigo;
 	}
 
 
 	public void modificarProducto(ProductoBeanData producto) throws CoException {
+		l4.lock();
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
-		try{
-					
+		try{					
 		//	System.out.println("Ambs="+mods.size());
 			sqlsesion.update("Data.venta.producto.updateProducto",producto);
 		}
 		catch(Exception a)		
 		{sqlsesion.rollback();
 		a.printStackTrace();
-			throw CoException.set("Error: No se pudo modificar el producto, intente de nuevo", "SMVProducto?accion=Modificar&tipo=1");
+			//throw CoException.set("Error: No se pudo modificar el producto, intente de nuevo", "SMVProducto?accion=Modificar&tipo=1");
 			
 		}
 		
 		finally{
 			sqlsesion.commit();
-			sqlsesion.close();					
+			sqlsesion.close();	
+			l4.unlock();
 		}			
 		return ;
 	}
 	
 	
 	public ProveedorBeanData BuscarProveedor(String nombre){
+		l5.lock();
 		ProveedorBeanData proveedorData=null;
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
@@ -192,6 +201,7 @@ public String consultarProductoMax() throws CoException {
 		}
 		finally{
 			sqlsesion.close();
+			l5.unlock();
 		}
 		return proveedorData;
 		}

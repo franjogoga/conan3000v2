@@ -18,6 +18,7 @@ import IngSoft.venta.bean.TrasladoBeanData;
 public class TrasladoBeanFuncion {
 	static private TrasladoBeanFuncion TrasladoFuncion=null;
 	private Lock l= new ReentrantLock();     
+		
 	SimpleDateFormat DF = new SimpleDateFormat("dd/MM/yyyy");
 	   
 	   public static TrasladoBeanFuncion getInstance(){
@@ -104,16 +105,5 @@ public class TrasladoBeanFuncion {
 		}
 		return resultado;
 	}
-	
-	//public TrasladoBeanData consultarTraslado(String codigo){
-		//TrasladoBeanData TrasladoData=null;
-		//SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
-		//try{
-			//TrasladoData= sqlsesion.selectOne("Data.venta.traslado.getPlantillaMembresia",codigo);
-		//}
-		//finally{
-			//sqlsesion.close();
-		//}
-		//return TrasladoData;
-	//}
+
 }			  

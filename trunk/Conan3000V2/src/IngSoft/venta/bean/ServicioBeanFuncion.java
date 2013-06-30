@@ -15,7 +15,16 @@ public class ServicioBeanFuncion {
 
 static private ServicioBeanFuncion ServicioFuncion=null;
 	
-	private Lock l= new ReentrantLock();     
+private Lock l= new ReentrantLock();     
+private Lock l1= new ReentrantLock();
+private Lock l2= new ReentrantLock();
+private Lock l3= new ReentrantLock();
+private Lock l4= new ReentrantLock();
+private Lock l5= new ReentrantLock();
+private Lock l6= new ReentrantLock();
+private Lock l7= new ReentrantLock();
+private Lock l8= new ReentrantLock();
+	
 	//SimpleDateFormat DF = new SimpleDateFormat("dd/MM/yyyy");
 	   
 	   public static ServicioBeanFuncion getInstanceS(){
@@ -45,7 +54,7 @@ static private ServicioBeanFuncion ServicioFuncion=null;
 	
 	public boolean agregarServicio(ServicioBeanData servicioData) throws CoException {
 		boolean resultado=false;		
-		l.lock();
+		l1.lock();
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
 			String codigo= (String)sqlsesion.selectOne("Data.venta.servicio.getNextCodigo");
@@ -64,14 +73,14 @@ static private ServicioBeanFuncion ServicioFuncion=null;
 		catch(Exception a)		
 		{sqlsesion.rollback();
 		a.printStackTrace();
-			throw CoException.set("Error: Nombre de servicio repetido", "SMVServicio?accion=Agregar&tipo=1");
+			//throw CoException.set("Error: Nombre de servicio repetido", "SMVServicio?accion=Agregar&tipo=1");
 			
 		}
 		
 		finally{
 			sqlsesion.commit();
 			sqlsesion.close();
-			l.unlock();					
+			l1.unlock();					
 		}
 			
 		return resultado;
@@ -79,7 +88,7 @@ static private ServicioBeanFuncion ServicioFuncion=null;
 	
 	public boolean agregarLinea(LineaServicioBeanData lineaData) throws CoException {
 		boolean resultado=false;		
-		l.lock();
+		l2.lock();
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
 			
@@ -97,14 +106,14 @@ static private ServicioBeanFuncion ServicioFuncion=null;
 		finally{
 			sqlsesion.commit();
 			sqlsesion.close();
-			l.unlock();					
+			l2.unlock();					
 		}
 			
 		return resultado;
 	}
 	
 	public String consultarSolicitudServicio() throws CoException {	
-
+        l4.lock();
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		String codS=null;
 		try{
@@ -113,7 +122,8 @@ static private ServicioBeanFuncion ServicioFuncion=null;
 		}
 		
 		finally{
-			sqlsesion.close();				
+			sqlsesion.close();
+			l4.lock();
 		}
 			
 		return codS;
@@ -121,18 +131,21 @@ static private ServicioBeanFuncion ServicioFuncion=null;
 	
 	
 	public ServicioBeanData consultarServicio(String codigo){
-	ServicioBeanData servicioData=null;
+	l5.lock();
+		ServicioBeanData servicioData=null;
 	SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 	try{
 		servicioData= sqlsesion.selectOne("Data.venta.servicio.getPlantillaServicio",codigo);
 	}
 	finally{
 		sqlsesion.close();
+		l5.unlock();
 	}
 	return servicioData;
 	}
 	
 	public ProveedorBeanData consultarProveedor(String codigo){
+	l3.lock();
 	ProveedorBeanData proveedorData=null;
 	SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 	try{
@@ -140,12 +153,14 @@ static private ServicioBeanFuncion ServicioFuncion=null;
 	}
 	finally{
 		sqlsesion.close();
+		l3.unlock();
 	}
 	return proveedorData;
 	}
 	
 
 	public ProveedorBeanData BuscarProveedor(String nombre){
+		l6.lock();
 	ProveedorBeanData proveedorData=null;
 	SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 	try{
@@ -153,6 +168,7 @@ static private ServicioBeanFuncion ServicioFuncion=null;
 	}
 	finally{
 		sqlsesion.close();
+		l6.unlock();
 	}
 	return proveedorData;
 	}
@@ -170,7 +186,7 @@ static private ServicioBeanFuncion ServicioFuncion=null;
 		catch(Exception a)		
 		{sqlsesion.rollback();
 		a.printStackTrace();
-			throw CoException.set("Error: No se pudo eliminar la plantilla intente de nuevo", "SMVServicio?accion=Agregar&tipo=1");
+			throw CoException.set("Error: No se pudo eliminar el servicio, intente de nuevo", "SMVServicio?accion=Agregar&tipo=1");
 			
 		}
 		
@@ -183,6 +199,7 @@ static private ServicioBeanFuncion ServicioFuncion=null;
 	}
 	
 	public String consultarLineaServicio(){
+		l7.lock();
 		String lineaData=null;
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
@@ -190,11 +207,13 @@ static private ServicioBeanFuncion ServicioFuncion=null;
 		}
 		finally{
 			sqlsesion.close();
+			l7.unlock();
 		}
 		return lineaData;
 	}
 	
 	public void modificarServicio(ServicioBeanData servicio) throws CoException {
+		l8.lock();
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
 					
@@ -209,7 +228,8 @@ static private ServicioBeanFuncion ServicioFuncion=null;
 		
 		finally{
 			sqlsesion.commit();
-			sqlsesion.close();					
+			sqlsesion.close();
+			l8.unlock();
 		}			
 		return ;
 	}

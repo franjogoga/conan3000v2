@@ -4,6 +4,8 @@ import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Vector;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,7 +15,8 @@ import org.apache.ibatis.session.SqlSession;
 import IngSoft.general.MyBatisSesion;
 
 public class CriterioSolicitudSocioBeanFuncion {
-
+	private Lock l= new ReentrantLock();
+	private Lock l1= new ReentrantLock(); 
 	SimpleDateFormat DF = new SimpleDateFormat("dd/MM/yyyy");
 
 	public CriterioSolicitudSocioBeanData crearCriterio(HttpServletRequest request, HttpServletResponse response){
@@ -36,6 +39,8 @@ public class CriterioSolicitudSocioBeanFuncion {
 	}
 	
 	public Vector<ResultadoSolicitudSocioBeanData> buscarPlantillaSolicitudSocio(CriterioSolicitudSocioBeanData criterioSolicitudSocioData){		
+		
+		l.lock();
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		Vector<ResultadoSolicitudSocioBeanData> resultadosV=null;
 		try{		
@@ -44,12 +49,15 @@ public class CriterioSolicitudSocioBeanFuncion {
 		resultadosV= new Vector<>(resultados);
 		}
 		finally{
-		sqlsesion.close();}
+		sqlsesion.close();
+		l.unlock();
+		}
 		return resultadosV;
 		
 	}
 	
 	public Vector<ResultadoSolicitudSocioBeanData> buscarPlantillaSolicitudAceptada(CriterioSolicitudSocioBeanData criterioSolicitudSocioData){		
+		l1.lock();
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		Vector<ResultadoSolicitudSocioBeanData> resultadosV=null;
 		try{		
@@ -58,7 +66,9 @@ public class CriterioSolicitudSocioBeanFuncion {
 		resultadosV= new Vector<>(resultados);
 		}
 		finally{
-		sqlsesion.close();}
+		sqlsesion.close();
+		l1.unlock();
+		}
 		return resultadosV;
 		
 	}

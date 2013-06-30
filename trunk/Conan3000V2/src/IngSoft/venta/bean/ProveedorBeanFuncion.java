@@ -12,15 +12,17 @@ import org.apache.ibatis.session.SqlSession;
 
 import IngSoft.general.CoException;
 import IngSoft.general.MyBatisSesion;
-
-
-
-
 public class ProveedorBeanFuncion {
 
 	static private ProveedorBeanFuncion ProveedorFuncion=null;
 	
 	private Lock l= new ReentrantLock();     
+	private Lock l1= new ReentrantLock();
+	private Lock l2= new ReentrantLock();
+	private Lock l3= new ReentrantLock();
+	private Lock l4= new ReentrantLock();
+	private Lock l5= new ReentrantLock();
+	
 	//SimpleDateFormat DF = new SimpleDateFormat("dd/MM/yyyy");
 	   
 	   public static ProveedorBeanFuncion getInstanceS(){
@@ -134,6 +136,7 @@ public class ProveedorBeanFuncion {
 	
 			
 	public ProveedorBeanData consultarProveedor(String codigo){
+		l2.lock();
 		ProveedorBeanData proveedorData=null;
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
@@ -141,12 +144,14 @@ public class ProveedorBeanFuncion {
 		}
 		finally{
 			sqlsesion.close();
+			l2.unlock();
 		}
 		return proveedorData;
 	}
 
 
 	public void modificarProveedor(ProveedorBeanData proveedor) throws CoException {
+		l3.lock();
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
 					
@@ -162,23 +167,11 @@ public class ProveedorBeanFuncion {
 		
 		finally{
 			sqlsesion.commit();
-			sqlsesion.close();					
+			sqlsesion.close();
+			l3.unlock();
 		}			
 		return ;
 	}
 	
-	/*
-	public Vector<AmbienteMiniBeanData> getAmbientes(){
-		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
-		List<AmbienteMiniBeanData> resultados=sqlsesion.selectList("Data.servicio.evento.searchAmbienteMini");
-		sqlsesion.close();
-		return new Vector<>(resultados);
-	}
 	
-	public Vector<TipoEventoMiniBeanData> getTipoEvento(){
-		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
-		List<TipoEventoMiniBeanData> resultados=sqlsesion.selectList("Data.servicio.evento.searchTipoEventoMini");
-		sqlsesion.close();
-		return new Vector<>(resultados);
-	}*/
 }
