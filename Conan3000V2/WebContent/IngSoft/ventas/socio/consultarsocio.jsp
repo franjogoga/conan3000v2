@@ -78,7 +78,7 @@
 	return false;
 	}
 	public String formatear(java.util.Date date){
-		SimpleDateFormat DF= new SimpleDateFormat("dd/MM");
+		SimpleDateFormat DF= new SimpleDateFormat("dd/MM/yyyy");
 		return DF.format(date);
 	}
 	%>
