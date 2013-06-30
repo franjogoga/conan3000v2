@@ -30,7 +30,10 @@ function cAdicionar(elemento){
 		$('#bModal').trigger('click');
 		$('.mod').css('display','none');
 		$('.modAdicional').css('display','inline');
+		$('#cmbServicios')[0].selectedIndex = 0;
+		
 		var temp=elemento.getAttribute("id");
+		reserva=temp;
 		$.ajax({
 		  type: "POST",
 		  url: "/Conan3000V2/IngSoft/servicio/reserva/SMSReserva",
@@ -176,6 +179,7 @@ function cambiaModo(numero) {
 		$('.crear').css('display','none');
 		$('.modEliminar').css('display','inline');
 		$('.modAgregar').css('display','none');
+		$('#servicios').show();
 		}
 	else if(numero==1){
 		atipo=1;
@@ -190,6 +194,7 @@ function cambiaModo(numero) {
 		$('.elim').css('display','none');
 		$('.modAgregar').css('display','inline');
 		$('.modEliminar').css('display','none');
+		$('#servicios').show();
 		}
 	else if(numero==3){
 		atipo=3;
@@ -203,7 +208,8 @@ function cambiaModo(numero) {
 		$('.crear').css('display','none');
 		$('.elim').css('display','none');
 		$('.modAgregar').css('display','none');
-		$('.modEliminar').css('display','none');		
+		$('.modEliminar').css('display','none');	
+		$('#servicios').show();	
 	}
 	else if(numero==4){
 		atipo=4;
@@ -217,7 +223,8 @@ function cambiaModo(numero) {
 		$('.crear').css('display','none');
 		$('.elim').css('display','none');
 		$('.modAgregar').css('display','none');
-		$('.modEliminar').css('display','none');		
+		$('.modEliminar').css('display','none');
+		$('#servicios').hide();		
 	}
 	//$('#TipoCancha').slideUp('fast');
 	//$('#cmbServicios').selectedIndex = 0;
@@ -410,7 +417,6 @@ else{
 
 }
 
-
 function updatetable(){		
 	docReady();
 $('.datatable').dataTable({
@@ -421,4 +427,33 @@ $('.datatable').dataTable({
 	},
 	"bDestroy": true
 } );
+}
+
+function CambiarEstadoAdicional(elem){
+	elem.toggleClass('btn-success btn-warning');
+	if (elem.hasClass('btn-success')) elem.val('Agregar');
+	if (elem.hasClass('btn-warning')) elem.val('Agregando');
+}
+function registrarAdicion(){
+	var selec=$('.btn-warning');
+	var adicion='';
+	for(i=0;i<selec.length;i++){
+		adicion=adicion+selec[i].id+'@';	
+	}
+	if(adicion.length>0 && reserva.length>0){
+	adicion=adicion.substring(0,adicion.length-2);
+	$.ajax({
+		  type: "POST",
+		  url: "/Conan3000V2/IngSoft/servicio/reserva/SMSReserva",
+		  data: "accion=Crear"+"&tipo=4"+"&codigo="+reserva+"&adicionales="+adicion,
+		  dataType: "text",
+		  success: function(msg){	
+		   $('.close').trigger('click');		  
+		  },
+		  error: function(){
+			  alert("No se pudo vaciar la memoria")
+		  			  }
+	
+		});
+}
 }

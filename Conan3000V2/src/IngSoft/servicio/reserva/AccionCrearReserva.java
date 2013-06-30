@@ -56,15 +56,11 @@ public class AccionCrearReserva extends CoAccion {
 		}
 		if(tipo==4){			
 			String lista[]=request.getParameter("adicionales").split("@");
-			
-			String codSocio=request.getParameter("txtIdSocio");			
-			if(listareservas.size()>0 && !"".equals(codSocio)){
-				ReservaBeanFuncion reservaFuncion=ReservaBeanFuncion.getInstance();
-				reservaFuncion.agregarReservaCancha(listareservas,codSocio);
-				sesion.removeAttribute("reservas");
-				sesion.removeAttribute("listareservas");								
-			}
+			String codigo=request.getParameter("codigo");
+			ReservaBeanFuncion reservaFuncion=ReservaBeanFuncion.getInstance();
+			reservaFuncion.registrarServiciosxReserva(lista, codigo);						
 		}
+		
 		response.setContentType("text/plain");  
 		response.setCharacterEncoding("UTF-8");			    
 		    try {
@@ -72,6 +68,7 @@ public class AccionCrearReserva extends CoAccion {
 			} catch (IOException e) {				
 				e.printStackTrace();
 			}
+		    
 	}
 
 }

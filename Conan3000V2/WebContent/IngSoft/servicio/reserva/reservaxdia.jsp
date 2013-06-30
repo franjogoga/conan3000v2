@@ -66,8 +66,8 @@
 								 	test=inv.format(Utils.fechaMas(fecIni, k)).compareTo(temp)==0;			 	
 								 	%>
 								 	<td class="center">
-									<a id="<%=codActual%><%=DF.format(Utils.fechaMas(fecIni, k))%><%=Area%>" 
-									name="<%=codActual%><%=DF.format(Utils.fechaMas(fecIni, k))%><%=Area%>" <%=(inv.format(Utils.fechaMas(fecIni, k)).compareTo(inv.format(new java.util.Date()))<0)?"disabled":""%>
+									<a id="<%=codActual%><%=DF.format(Utils.fechaMas(fecIni, k))%><%=test?"":Area%>" 
+									name="<%=codActual%><%=DF.format(Utils.fechaMas(fecIni, k))%><%=test?"":Area%>" <%=(inv.format(Utils.fechaMas(fecIni, k)).compareTo(inv.format(new java.util.Date()))<0)?"disabled":""%>
 									class="btn <%=test?"btn-danger":"btn-success"%>" onclick="javascript:cambiarClase(this)">
 										<i class="icon-<%=test?"remove":"ok"%> icon-white"></i>
 										<%=test?"Reservado":"Reservar&nbsp;&nbsp;&nbsp;&nbsp;"%>  										                                      
