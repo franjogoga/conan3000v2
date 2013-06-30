@@ -121,7 +121,7 @@
 			</div><!--/span-->
 			
 			
-			<form id="frmAlternativo" name="frmAlternativo" method="POST" action="<%= response.encodeURL("SMSReserva")%>">
+			<form id="frmAlternativo" name="frmAlternativo" method="POST" action="<%= response.encodeURL("SMAReserva")%>">
 			  <input type="hidden" name="accion" value="Seleccionar"></input>
 			  <input type="hidden" name="codigo" value=""></input>
 			 <input type="hidden" name="tipo" value="1"></input>

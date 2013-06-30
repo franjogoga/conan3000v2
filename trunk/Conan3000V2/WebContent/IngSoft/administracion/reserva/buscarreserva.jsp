@@ -282,16 +282,16 @@
 											</a>   
                               
                               
-                              				<a class="<%= ((ResultadoReservaBeanData)resultados.get(i)).getCodigo()!= null?"btn btn-success":"btn btn-small"%>" 
+                              				<a class="<%= ((ResultadoReservaBeanData)resultados.get(i)).getCodigo()!= null?"btn btn-success":"btn "%>" 
                               				   href="javascript:<%= ((ResultadoReservaBeanData)resultados.get(i)).getCodigo()!= null?"alt_consultar":"" %>('<%=((ResultadoReservaBeanData)resultados.get(i)).getCodigo()%>')">
 												<i class="icon-zoom-in icon-white"></i> Ver 
 											</a>
 
-											<a class="<%= ((ResultadoReservaBeanData)resultados.get(i)).getCodigo()!= null?"btn btn-info":"btn btn-small"%>"    
+											<a class="<%= ((ResultadoReservaBeanData)resultados.get(i)).getCodigo()!= null?"btn btn-info":"btn "%>"    
 											    href="javascript:<%= ((ResultadoReservaBeanData)resultados.get(i)).getCodigo()!= null?"alt_modificar":"" %>('<%=((ResultadoReservaBeanData)resultados.get(i)).getCodigo()%>')">
 												<i class="icon-edit icon-white"></i> Modificar
 											</a>
-											<a class="<%= ((ResultadoReservaBeanData)resultados.get(i)).getCodigo()!= null?"btn btn-danger":"btn btn-small"%>"       
+											<a class="<%= ((ResultadoReservaBeanData)resultados.get(i)).getCodigo()!= null?"btn btn-danger":"btn "%>"       
 											    href="javascript:<%= ((ResultadoReservaBeanData)resultados.get(i)).getCodigo()!= null?"alt_eliminar":"" %>('<%=((ResultadoReservaBeanData)resultados.get(i)).getCodigo()%>')">
 												<i class="icon-trash icon-white"></i> Eliminar
 											</a>

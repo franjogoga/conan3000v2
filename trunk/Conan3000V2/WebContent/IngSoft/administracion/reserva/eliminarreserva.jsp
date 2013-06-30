@@ -180,12 +180,15 @@
 					          </div>
 					        </div>
 					        
-
-
-
+                              <div class="control-group">
+                                  <label class="control-label" for="typeahead7">Monto(*): </label>
+                                  <div class="controls">
+                                      <input type="text" class="span6 typeahead" id="txtMonto"  data-provide="typeahead"  name="txtMonto" value="<%= ((ReservaBeanData)reserva).getMonto()%>" disabled >
+                                          </div>
+                              </div>
 
 							<div class="control-group">
-							  <label class="control-label" for="date02">Fecha Fin(*):</label>
+							  <label class="control-label" for="date02">Fecha Invitado(*):</label>
 							  <div class="controls">
 								<input type="text" class="input-xlarge datepicker" id="date02" value="<%=formatear(new Date(reserva.getFechaingreso().getTime())) %>" name="fFecFin" onchange="alt_fecha(this)" disabled>
 							  </div>

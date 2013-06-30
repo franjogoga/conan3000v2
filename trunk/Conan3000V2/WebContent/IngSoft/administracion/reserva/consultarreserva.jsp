@@ -181,8 +181,14 @@
 					        </div>
 					        
 
-
-
+                              <div class="control-group">
+                                  <label class="control-label" for="typeahead7">Monto(*): </label>
+                                  <div class="controls">
+                                      <input type="text" class="span6 typeahead" id="txtMonto"  data-provide="typeahead"  name="txtMonto" value="<%= ((ReservaBeanData)reserva).getMonto()%>" disabled >
+                                          </div>
+                              </div>
+       
+                              
 
 							<div class="control-group">
 							  <label class="control-label" for="date02">Fecha Invitado(*):</label>
