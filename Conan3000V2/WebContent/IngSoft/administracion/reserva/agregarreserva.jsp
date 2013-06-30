@@ -166,14 +166,14 @@ String fecAnoFin=dfActual.format(c1.getTime()); %>
               <div>
                 <ul class="breadcrumb">
                   <li> <a href="../../general/index.jsp">Home</a> <span class="divider">/</span> </li>
-                  <li> <a href="buscarreserva.jsp">Mantenimiento de Reserva</a> <span class="divider">/</span></li>
-                  <li>Agregar Reserva</li>
+                  <li> <a href="buscarreserva.jsp">Mantenimiento de Visita de Invitado</a> <span class="divider">/</span></li>
+                  <li>Agregar Visita</li>
                 </ul>
               </div>
               <div class="row-fluid sortable">
                 <div class="box span12">
                   <div class="box-header well" data-original-title>
-                    <h2><i class="icon-plus-sign"></i>AGREGAR RESERVA</h2>
+                    <h2><i class="icon-plus-sign"></i>AGREGAR VISITA</h2>
                   </div>
                   <div class="box-content">
                     <form class="form-horizontal" action="<%= response.encodeURL("SMAReserva")%>" name="frmData" method="post">
