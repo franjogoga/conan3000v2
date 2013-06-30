@@ -136,6 +136,7 @@
 		          <h2><i class="icon-search"></i> BUSCAR EMPLEADO</h2>
 		          </div>
 		        <div class="box-content">
+		         
 		         <form class="form-horizontal" name="frmCriteriosBusqueda" id="frmCriteriosBusqueda"  action="<%= response.encodeURL("SMSEmpleado")%>" method="post" >
 		             <input type="hidden" name="accion" value="Buscar"></input>
 		            <fieldset>		              			 
