@@ -21,5 +21,17 @@
 		insert into SUSPENSION_FALTA(IdSuspensionFalta, IdSocio, MontoMulta, Descripcion, FechaInicio, FechaFin, Estado)
 		values (#{codigo}, #{codigosocio}, #{montomulta}, #{descripcion}, #{fechainicio}, #{fechafin}, #{estado})
 	</insert>
+	
+	<select id="getInfraccionxsocio" parameterType="java.lang.String" resultType="IngSoft.administracion.bean.InfraccionSocioBeanData">
+		select IdSuspensionFalta as codigo, IdSocio as codigosocio, MontoMulta as montomulta, Descripcion as descripcion, FechaInicio as fechainicio, FechaFin as fechafin, Estado as estado
+		from SUSPENSION_FALTA
+		where IdSocio = #{codigo}
+	</select>
+	
+	<select id="getNombreSocio" parameterType="java.lang.String" resultType="IngSoft.administracion.bean.NombreSocioBeanData">
+		select Nombres as nombres, ApePaterno as apepaterno, ApeMaterno as apematerno
+		from PERSONA
+		where IdPersona = #{codigo}
+	</select>
 
 </mapper>
