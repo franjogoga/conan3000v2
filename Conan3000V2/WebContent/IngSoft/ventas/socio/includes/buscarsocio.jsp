@@ -228,12 +228,7 @@ Ver
                           					</i>
  Modificar
                           				</a>
-                          				<a class="btn btn-danger"
-                          					href="javascript:alt_eliminar('<%=((ResultadoSocioBeanData)resultados.get(i)).getIdSocio()%>')">
-                          					<i class="icon-trash icon-white">
-                          					</i>
-		Eliminar
-                          				</a>
+ 
                           			</td>
                           	</tr>
                           	
