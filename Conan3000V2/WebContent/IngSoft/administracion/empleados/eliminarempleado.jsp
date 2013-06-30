@@ -12,7 +12,7 @@
 	<meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
 	<meta name="author" content="Dos Virgenes">
 	
-	<jsp:useBean id="empleado" scope="request" class="IngSoft.administracion.bean.EmpleadoBeanData">></jsp:useBean>
+	<jsp:useBean id="empleado" scope="request" class="IngSoft.administracion.bean.EmpleadoBeanData"></jsp:useBean>
 
 	<!-- The styles -->
 	<link id="bs-css" href="css/bootstrap-cerulean.css" rel="stylesheet">    
@@ -43,6 +43,10 @@
 
 	<!-- The fav icon -->
 	<link rel="shortcut icon" href="img/conan_logo.png">
+		
+	<script type="text/javascript" src="js/apprise-1.5.full.js"></script>
+	<link rel="stylesheet" href="css/apprise.css" type="text/css" />
+	<script type="text/javascript" src="js/script.js"></script>
 	
 	
 		<script>
@@ -59,8 +63,15 @@
 	function alt_submit(){
 		var form= document.frmDelete;
 		var r=confirm("¿Esta seguro que desea borrar este empleado?");
-		if(r==true){form.submit();}
-			}	
+		if(r==true){
+				if(<%=empleado.getFlag()%>==1){
+        			crearAlert2("No se puede eliminar el empleado. Se está violando el principio de dependencia.");
+        		}
+        		else{
+					form.submit();    
+		}
+	}
+	}	
 
 
 	</script>
