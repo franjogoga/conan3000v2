@@ -96,7 +96,7 @@ function confFecha(){
 		                  </div>
 	                    </div>
 		                <div class="control-group" id="dvTelefono">
-		                  <label class="control-label" for="typeahead8">Tel&eacute;fono / Celular(*): </label>
+		                  <label class="control-label" for="typeahead8">Tel&eacute;fono (*): </label>
 		                  <div class="controls">
 		                    <input type="text" class="span6 typeahead" id="txtTelefono" name="txtTelefono"  data-provide="typeahead" data-items="4" maxlength="8" onpaste="return false;">
 		                    <span class="help-inline" id="errTelefono">Please correct the error</span>

@@ -59,7 +59,7 @@
 	                      </div>
 	                    </div>
 		                <div class="control-group">
-		                  <label class="control-label" for="typeahead8">Tel&eacute;fono / Celular: </label>
+		                  <label class="control-label" for="typeahead8">Tel&eacute;fono : </label>
 		                  <div class="controls">
 		                    <input type="text" class="input-xlarge disabled" id="typeahead8"  data-provide="typeahead" data-items="4" disabled="" value="2334545" >
 	                      </div>
