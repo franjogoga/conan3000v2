@@ -62,8 +62,8 @@ from SOLICITUD_INGRESO
   
 <!-- Agregar plantilla socio -->
 <insert id="insertSolicitud" parameterType="IngSoft.venta.bean.SolicitudsocioBeanData" flushCache="true">
-	insert into SOLICITUD_INGRESO(IdSolicitudIngreso,FechaRegistro,Observaciones,Nombres,ApePaterno,ApeMaterno,FechaNac,Direccion,IdDistrito,Estado)
-	values (#{codSolicitudIngreso},#{fechaRegistro},#{observaciones},#{nombres},#{apellidoPaterno},#{apellidoMaterno},#{fechaNacimiento},#{direccion},#{codDistrito},'Nueva')
+	insert into SOLICITUD_INGRESO(IdSolicitudIngreso,FechaRegistro,Observaciones,Nombres,ApePaterno,ApeMaterno,FechaNac,Direccion,IdDistrito,Estado,Flag)
+	values (#{codSolicitudIngreso},#{fechaRegistro},#{observaciones},#{nombres},#{apellidoPaterno},#{apellidoMaterno},#{fechaNacimiento},#{direccion},#{codDistrito},'Nueva','0')
 </insert>
 
 <insert id="insertPersona" parameterType="IngSoft.venta.bean.PersonaMiniBeanData" flushCache="true">
