@@ -106,9 +106,40 @@ public class ReservaBeanFunction {
 			}
 			else reservaData.setCodigo("IXS000001");
 
+
+			
+			System.out.print("antes ---> "+  reservaData.getCodigo()  );		
+	  		System.out.print("antes ---> "+  reservaData.getMonto() );
+			
 			
 			
 			sqlsesion.insert("Data.administracion.reserva.insertPlantillaReserva",reservaData);
+			
+			String codigosocio = reservaData.getCodigosocio();
+			
+			String contador    = (String)sqlsesion.selectOne("Data.administracion.reserva.getContadorInvitadoSocio",codigosocio);
+			
+			if(  Integer.parseInt(contador) > 6 )
+			{
+				
+				
+				String cadena    = (String)sqlsesion.selectOne("Data.administracion.reserva.getMontoInvitadoSocio");
+				Double monto = Double.parseDouble(cadena);
+				
+				reservaData.setMonto(monto);
+				
+		  		System.out.print("entrooo ---> "+  reservaData.getCodigo() );		
+		  		System.out.print("entrroo ---> "+  reservaData.getMonto() );
+				
+				sqlsesion.update("Data.administracion.reserva.actualizaPLantillaMontoReserva",reservaData);
+				
+				System.out.print("entrooo ---> "+  reservaData.getCodigo() );		
+		  		System.out.print("entrroo ---> "+  reservaData.getMonto() );
+				
+			}	
+			
+			
+			
 			resultado=true;
 		}
 		catch(Exception a)		
@@ -185,7 +216,7 @@ public class ReservaBeanFunction {
 		catch(Exception a)		
 		{sqlsesion.rollback();
 		a.printStackTrace();
-			throw CoException.set("Error: Nose pudo modificar la plantilla ", "SMAReserva?accion=Agregar&tipo=1");
+			throw CoException.set(" Nose pudo modificar la plantilla ", "SMAReserva?accion=Agregar&tipo=1");
 			
 		}
 		
