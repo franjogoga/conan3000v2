@@ -51,11 +51,13 @@ function anhadir(cod,name,apellidop,apellidom,direccion,fecha){
 			                
 			                  <fieldset>
 			                  
-			                  <div class="control-group">
+			                  <div class="control-group" id="dvSolicitud">
 			                      <label class="control-label" for="typeahead1">Codigo Solicitud(*): </label>
 			                      <div class="controls">
-			                        <input type="text" class="span6 typeahead" id="txtSolicitud" name="txtSolicitud" maxlength="9" onpaste="return false;" disabled>
+			                        <input type="text" class="span6 typeahead" id="txtSolicitud" name="txtSolicitud" maxlength="9" onpaste="return false;">
 			                        <div  align="left"> <a class="btn btn-primary iframe" href="../solicitud/seleccionarsolicitudsocio.jsp"> <i class="icon icon-search icon-white"></i> Buscar Solicitud</a> </div>
+		                          	<span class="help-inline" id="errSolicitud">Please correct the error</span>
+		                          	
 		                          </div>
 		                        </div>
 			                  
