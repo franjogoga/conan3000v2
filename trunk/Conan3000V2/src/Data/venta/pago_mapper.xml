@@ -118,8 +118,8 @@ update MEMBRESIA M, CUOTA C, DETALLE_CUOTA D set M.Estado='Vencido'
 </update>
 
 <select id="getIdMembresia" parameterType="IngSoft.venta.bean.PagoBeanData" resultType="java.lang.String">
-	select max(IdMembresia) from DETALLE_CUOTA D, CUOTA C, MEMBRESIA M 
-	WHERE D.IdDetalleCuota=C.IdDetalleCuota D.IdMembresia=M.IdMembresia and C.IdCuota=#{idCuota}
+	select max(M.IdMembresia) from DETALLE_CUOTA D, CUOTA C, MEMBRESIA M 
+	WHERE D.IdDetalleCuota=C.IdDetalleCuota and D.IdMembresia=M.IdMembresia and C.IdCuota=#{idCuota}
 </select>
 
 
@@ -246,7 +246,7 @@ from OTRO_INGRESO, CONCEPTO, PERSONA, INGRESO
     </if>
   
     <if test="estado != null">
-        AND OTRO_INGRESO.Estado= #{estado}
+        AND (OTRO_INGRESO.Estado= #{estado} or OTRO_INGRESO.Estado='Vencido')
        
     </if>
    ORDER BY OTRO_INGRESO.fechaVencimiento ASC
@@ -491,13 +491,13 @@ update CUOTA set Estado='Vencido', Monto=Monto*#{multa}, Multa=1.0
 </update>
 
 <select id="getCantMultasExtra" parameterType="IngSoft.venta.bean.PagoBeanData" resultType="java.lang.String">
-	select count(*) as cantidad from OTRO_INGRESO where FechaVencimiento&lt;NOW()  and Estado='No Cancelado'
+	select count(*) as cantidad from OTRO_INGRESO where FechaVencimiento&lt;NOW()  and Estado='No Cancelado' and Descripcion='CUOTAEXTRAORDINARIA'
 </select>
 
 
 <update id="generarMultaExtra" parameterType="IngSoft.venta.bean.PagoBeanData">
-update OTRO_INGRESO set Estado='Vencido', Monto=Monto*#{monto}
- where  FechaVencimiento&lt;NOW()  and Estado='No Cancelado'
+update OTRO_INGRESO set Estado='Vencido', Monto=Monto*#{multa}
+ where  FechaVencimiento&lt;NOW()  and Estado='No Cancelado' and Descripcion='CUOTAEXTRAORDINARIA'
 </update>
 
 

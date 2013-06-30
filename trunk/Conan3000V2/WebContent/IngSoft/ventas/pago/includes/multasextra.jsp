@@ -42,7 +42,7 @@ String fecHoy=dfActual.format(new java.util.Date());
 				  </div>
 					<div class="box-content">
 						<form class="form-horizontal" name="frmMulta" id="frmMulta"  method="POST" action="<%= response.encodeURL("SMVPago")%>">
-						   <input type="hidden" name="accion" value="AplicarMulta"/></input>
+						   <input type="hidden" name="accion" value="AplicarMultaExtra"/></input>
 						  <input type="hidden" name="tipo" value="2"></input>
 						  <fieldset>
 						    <div class="control-group">

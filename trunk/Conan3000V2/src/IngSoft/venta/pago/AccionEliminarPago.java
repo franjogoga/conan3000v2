@@ -1,6 +1,7 @@
 package IngSoft.venta.pago;
 
 
+import javax.faces.bean.SessionScoped;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -10,7 +11,7 @@ import IngSoft.general.CoException;
 
 import IngSoft.venta.bean.PagoBeanData;
 import IngSoft.venta.bean.PagoBeanFunction;
-
+@SessionScoped
 public class AccionEliminarPago extends CoAccion {
 
 	@Override
