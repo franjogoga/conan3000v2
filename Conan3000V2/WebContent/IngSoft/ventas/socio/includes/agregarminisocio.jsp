@@ -111,8 +111,8 @@ function anhadir(cod,name,apellidop,apellidom,direccion,fecha){
 								</div>
 							</div>		
 			               
-                            <div class="control-group" id="dvTipo">
-								<label class="control-label" for="typeahead5">Tipo de Documento(*):</label>
+                            <!-- <div class="control-group" id="dvTipo">
+								<label class="control-label" for="rButton">Tipo de Documento(*):</label>
 								<div class="controls">
 								  <label class="radio">
 									<input type="radio" name="rButton" id="rButton" value="DNI" >
@@ -126,13 +126,23 @@ function anhadir(cod,name,apellidop,apellidom,direccion,fecha){
 								   <span class="help-inline" id="errTipo">Please correct the error</span>
 								  </div>
 								</div>
-							  </div>
+							  </div> -->
+							  <div class="control-group" id="dvTipoDocumento">
+								<label class="control-label" for="cmbTipoDocumento">Tipo de Documento (*):</label>
+								<div class="controls">
+								  <select name="cmbTipoDocumento" id="cmbTipoDocumento" name="cmbTipoDocumento"  data-rel="chosen">
+									<option>DNI</option>
+									<option>Carnet de extranjeria</option>
+									</select>
+								</div>
+							</div>
+							  
 						   
-		                          <div class="control-group" id="dvNumDoc">
+		                          <div class="control-group" id="dvNumeroDocumento">
 			                          <label class="control-label" for="typeahead6">N&uacute;mero de Documento(*): </label>
 			                          <div class="controls">
-			                            <input type="text" class="span6 typeahead" id="txtNumeroDocumento" name="txtNumeroDocumento" data-provide="typeahead" maxlength="9" onpaste="return false;" >
-		                                <span class="help-inline" id="errNumDoc">Please correct the error</span>
+			                            <input type="text" class="span6 typeahead" id="txtNumeroDocumento" name="txtNumeroDocumento" data-provide="typeahead" onpaste="return false;" >
+		                                <span class="help-inline" id="errNumeroDocumento">Please correct the error</span>
 		                              </div>
 		                      	</div>
 		                     
