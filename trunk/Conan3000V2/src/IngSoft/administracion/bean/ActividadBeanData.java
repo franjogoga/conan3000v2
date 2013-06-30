@@ -14,6 +14,7 @@ public class ActividadBeanData implements Serializable{
 	
 	private String nombreTipoactividad;
 	
+	
 	private String nombreEncargado;
 	private String puesto;
 	
@@ -29,6 +30,9 @@ public class ActividadBeanData implements Serializable{
 	
 	private int vacantes;
 	private int inscritos;
+	
+	private Double costo;
+	
 	
 	
 	public String getCodigo() {
@@ -114,6 +118,12 @@ public class ActividadBeanData implements Serializable{
 	}
 	public void setInscritos(int inscritos) {
 		this.inscritos = inscritos;
+	}
+	public Double getCosto() {
+		return costo;
+	}
+	public void setCosto(Double costo) {
+		this.costo = costo;
 	}
 	
 	

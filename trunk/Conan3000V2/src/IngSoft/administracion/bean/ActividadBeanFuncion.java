@@ -55,6 +55,11 @@ public class ActividadBeanFuncion {
             
             actividadData.setNombreTipoactividad(	request.getParameter("cmbTipoactividad"));
             
+            actividadData.setVacantes( Integer.parseInt( request.getParameter("txtVacantes"))  );
+            actividadData.setInscritos(  0  );
+            actividadData.setCosto( Double.parseDouble( request.getParameter("txtCosto")) );
+            
+            
             actividadData.setNombreEncargado(		request.getParameter("cmbEncargadoCodigo"));
             //actividadData.setNombreEncargado(		request.getParameter("cmbEncargado"));
             actividadData.setPuesto(				request.getParameter("txtPuesto"));
@@ -127,6 +132,11 @@ public class ActividadBeanFuncion {
             actividadData.setNombre(    		request.getParameter("txtNombre") );
             
             actividadData.setNombreTipoactividad(	request.getParameter("cmbTipoactividad"));
+            
+            actividadData.setVacantes( Integer.parseInt( request.getParameter("txtVacantes"))  );
+            //actividadData.setInscritos(  0  );
+            actividadData.setCosto( Double.parseDouble( request.getParameter("txtCosto")) );
+            
             
             actividadData.setNombreEncargado(		request.getParameter("cmbEncargadoCodigo"));
             //actividadData.setNombreEncargado(		request.getParameter("cmbEncargado"));
