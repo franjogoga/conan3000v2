@@ -16,6 +16,11 @@ public class FamiliarBeanFuncion {
 
 	static private FamiliarBeanFuncion FamiliarFuncion=null;
 	private Lock l= new ReentrantLock();     
+	private Lock l1= new ReentrantLock();
+	private Lock l2= new ReentrantLock();
+	private Lock l3= new ReentrantLock();
+	private Lock l4= new ReentrantLock();
+	private Lock l5= new ReentrantLock();
 	SimpleDateFormat DF = new SimpleDateFormat("dd/MM/yyyy");
 	   
 	   public static FamiliarBeanFuncion getInstance(){
@@ -61,7 +66,7 @@ public class FamiliarBeanFuncion {
 		catch(Exception a)		
 		{sqlsesion.rollback();
 		a.printStackTrace();
-			//throw CoException.set("Error: Nombre de familiar repetido", "SMVFamiliar?accion=Agregar&tipo=1");
+	    //throw CoException.set("Error:  Ha ocurrido un error al guardar los datos", "SMVFamiliar?accion=Agregar&tipo=1");
 		}
 		
 		finally{
@@ -74,7 +79,7 @@ public class FamiliarBeanFuncion {
 	
 	public boolean agregarPersona(PersonaMiniBeanData personaData) throws CoException {
 		boolean resultado=false;		
-		l.lock();
+		l1.lock();
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
 			String codigo= (String)sqlsesion.selectOne("Data.venta.familiar.getNextCodigo");
@@ -95,14 +100,14 @@ public class FamiliarBeanFuncion {
 		catch(Exception a)		
 		{sqlsesion.rollback();
 		a.printStackTrace();
-			//throw CoException.set("Error: Nombre de evento repetido", "SMSEvento?accion=Agregar&tipo=1");
+	    //throw CoException.set("Error: Nombre de evento repetido", "SMSFamiliar?accion=Agregar&tipo=1");
 			
 		}
 		
 		finally{
 			sqlsesion.commit();
 			sqlsesion.close();
-			l.unlock();					
+			l1.unlock();					
 		}
 			
 		return resultado;
@@ -136,6 +141,7 @@ public class FamiliarBeanFuncion {
 	
 			
 	public FamiliarBeanData consultarFamiliar(String codigo){
+		l3.lock();
 		FamiliarBeanData familiarData=null;
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
@@ -143,11 +149,13 @@ public class FamiliarBeanFuncion {
 		}
 		finally{
 			sqlsesion.close();
+			l3.unlock();
 		}
 		return familiarData;
 	}
 
 	public void modificarFamiliar(FamiliarBeanData familiar) throws CoException {
+		l4.lock();
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
 					
@@ -162,7 +170,8 @@ public class FamiliarBeanFuncion {
 		
 		finally{
 			sqlsesion.commit();
-			sqlsesion.close();					
+			sqlsesion.close();	
+			l4.unlock();
 		}			
 		return ;
 	}

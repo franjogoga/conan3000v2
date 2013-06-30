@@ -18,6 +18,10 @@ public class PersonaMiniBeanFuncion {
 	static private PersonaMiniBeanFuncion PersonaFuncion=null;
 	SimpleDateFormat DF = new SimpleDateFormat("dd/MM/yyyy");
 	private Lock l= new ReentrantLock(); 
+	private Lock l1= new ReentrantLock(); 
+	private Lock l2= new ReentrantLock();
+	private Lock l3= new ReentrantLock(); 
+	
 	public static PersonaMiniBeanFuncion getInstanceP(){
 	       if(PersonaFuncion==null) PersonaFuncion= new PersonaMiniBeanFuncion();
 	       
@@ -114,6 +118,7 @@ public class PersonaMiniBeanFuncion {
 	}
 	
 	public void modificarPersona(PersonaMiniBeanData persona) throws CoException {
+		l1.lock();
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
 					
@@ -123,18 +128,19 @@ public class PersonaMiniBeanFuncion {
 		{sqlsesion.rollback();
 		a.printStackTrace();
 			//throw CoException.set("Error: No se pudo modificar la plantilla intente de nuevo", "SMVSocio?accion=Modificar&tipo=1");
-			
-		}
+					}
 		
 		finally{
 			sqlsesion.commit();
-			sqlsesion.close();					
+			sqlsesion.close();
+			l1.unlock();
 		}			
 		return ;
 	}
 	
 	
 	public PersonaMiniBeanData consultarPersona(String codigo){
+		l2.lock();
 		PersonaMiniBeanData personaData=null;
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
@@ -142,11 +148,13 @@ public class PersonaMiniBeanFuncion {
 		}
 		finally{
 			sqlsesion.close();
+			l2.unlock();
 		}
 		return personaData;
 	}
 	
 	public PersonaMiniBeanData consultarPersonaSocio(String codigo){
+		l3.lock();
 		PersonaMiniBeanData personaData=null;
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
@@ -154,6 +162,7 @@ public class PersonaMiniBeanFuncion {
 		}
 		finally{
 			sqlsesion.close();
+			l3.unlock();
 		}
 		return personaData;
 	}

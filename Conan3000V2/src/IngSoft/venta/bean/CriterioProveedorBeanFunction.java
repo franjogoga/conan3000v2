@@ -5,6 +5,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Vector;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,7 +19,7 @@ import IngSoft.general.MyBatisSesion;
 
 
 public class CriterioProveedorBeanFunction {
-
+	private Lock l= new ReentrantLock(); 
 	SimpleDateFormat DF = new SimpleDateFormat("dd/MM/yyyy");
 
 	public CriterioProveedorBeanData crearCriterio(HttpServletRequest request, HttpServletResponse response){
@@ -42,6 +44,7 @@ public class CriterioProveedorBeanFunction {
 	
 
 	public Vector<ResultadoProveedorBeanData> buscarPlantillaProveedor(CriterioProveedorBeanData criterioProveedorData){		
+		l.lock();
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		Vector<ResultadoProveedorBeanData> resultadosV=null;
 		try{		
@@ -50,7 +53,9 @@ public class CriterioProveedorBeanFunction {
 		resultadosV= new Vector<>(resultados);
 		}
 		finally{
-		sqlsesion.close();}
+		sqlsesion.close();
+		l.unlock();
+		}
 		return resultadosV;
 		
 	}

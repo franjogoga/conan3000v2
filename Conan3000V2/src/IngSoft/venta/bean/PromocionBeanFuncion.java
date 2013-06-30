@@ -22,6 +22,11 @@ import IngSoft.servicio.bean.ModificacionesEventoBeanData;
 public class PromocionBeanFuncion {
 	static private PromocionBeanFuncion PromocionFuncion=null;
 	private Lock l= new ReentrantLock();     
+	private Lock l1= new ReentrantLock();
+	private Lock l2= new ReentrantLock();
+	private Lock l3= new ReentrantLock();
+	private Lock l4= new ReentrantLock();
+	private Lock l5= new ReentrantLock();   
 	SimpleDateFormat DF = new SimpleDateFormat("dd/MM/yyyy");
 	   
 	   public static PromocionBeanFuncion getInstance(){
@@ -82,7 +87,7 @@ public class PromocionBeanFuncion {
 		catch(Exception a)		
 		{sqlsesion.rollback();
 		a.printStackTrace();
-			//throw CoException.set("Error: Nombre de promocion repetido", "SMVPromocion?accion=Agregar&tipo=1");
+	    throw CoException.set("Error: Ha ocurrido un error al guardar los datos", "SMVPromocion?accion=Agregar&tipo=1");
 		}
 		
 		finally{
@@ -121,6 +126,7 @@ public class PromocionBeanFuncion {
 	
 			
 	public PromocionBeanData consultarPromocion(String codigo){
+		l2.lock();
 		PromocionBeanData promocionData=null;
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
@@ -128,12 +134,14 @@ public class PromocionBeanFuncion {
 		}
 		finally{
 			sqlsesion.close();
+			l2.unlock();
 		}
 		return promocionData;
 	}
 
 
 	public void modificarPromocion(PromocionBeanData promocion) throws CoException {
+		l3.lock();
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
 					
@@ -149,7 +157,8 @@ public class PromocionBeanFuncion {
 		
 		finally{
 			sqlsesion.commit();
-			sqlsesion.close();					
+			sqlsesion.close();	
+			l3.unlock();
 		}			
 		return ;
 	}

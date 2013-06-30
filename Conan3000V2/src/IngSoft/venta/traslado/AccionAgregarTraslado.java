@@ -12,14 +12,12 @@ import IngSoft.venta.bean.TrasladoBeanFuncion;
 
 @SessionScoped
 public class AccionAgregarTraslado extends CoAccion {
-
 	@Override
 	public void ejecutar(ServletContext sc, HttpServletRequest request,
 			HttpServletResponse response) throws CoException {
 		// TODO Auto-generated method stub
 				int tipo=Integer.parseInt(request.getParameter("tipo"));
 				if(tipo==2){
-					
 					TrasladoBeanFuncion trasladoFuncion= TrasladoBeanFuncion.getInstance();
 					TrasladoBeanData trasladoData=trasladoFuncion.crearTraslado(request, response);
 

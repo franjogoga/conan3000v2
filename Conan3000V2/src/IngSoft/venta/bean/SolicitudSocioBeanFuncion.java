@@ -16,8 +16,13 @@ import IngSoft.general.MyBatisSesion;
 public class SolicitudSocioBeanFuncion {
 
 static private SolicitudSocioBeanFuncion SolicitudSocioFuncion=null;
-	
-	private Lock l= new ReentrantLock();     
+private Lock l= new ReentrantLock();     
+private Lock l1= new ReentrantLock();
+private Lock l2= new ReentrantLock();
+private Lock l3= new ReentrantLock();
+private Lock l4= new ReentrantLock();
+
+
 	SimpleDateFormat DF = new SimpleDateFormat("dd/MM/yyyy");
 	   
 	   public static SolicitudSocioBeanFuncion getInstanceS(){
@@ -86,19 +91,23 @@ static private SolicitudSocioBeanFuncion SolicitudSocioFuncion=null;
 	
 	
 	public SolicitudsocioBeanData consultarSolicitud(String codigo){
-	SolicitudsocioBeanData solicitudData=null;
+	  l1.lock();
+		SolicitudsocioBeanData solicitudData=null;
 	SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 	try{
 		solicitudData= sqlsesion.selectOne("Data.venta.solicitudsocio.getPlantillaSolicitud",codigo);
 	}
 	finally{
 		sqlsesion.close();
+	  l1.unlock();
 	}
 	return solicitudData;
 	}
 	
 
 	public ProveedorBeanData BuscarProveedor(String nombre){
+	
+	l2.lock();
 	ProveedorBeanData proveedorData=null;
 	SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 	try{
@@ -106,6 +115,7 @@ static private SolicitudSocioBeanFuncion SolicitudSocioFuncion=null;
 	}
 	finally{
 		sqlsesion.close();
+		l2.unlock();
 	}
 	return proveedorData;
 	}
@@ -123,7 +133,7 @@ static private SolicitudSocioBeanFuncion SolicitudSocioFuncion=null;
 		catch(Exception a)		
 		{sqlsesion.rollback();
 		a.printStackTrace();
-			throw CoException.set("Error: No se pudo eliminar la plantilla intente de nuevo", "SMVServicio?accion=Agregar&tipo=1");
+			throw CoException.set("Error: No se pudo eliminar la solicitud, intente de nuevo", "SMVServicio?accion=Agregar&tipo=1");
 			
 		}
 		
@@ -136,6 +146,7 @@ static private SolicitudSocioBeanFuncion SolicitudSocioFuncion=null;
 	}
 	
 	public ProveedorBeanData consultarProveedor(String codigo){
+		l3.lock();
 		ProveedorBeanData proveedorData=null;
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
@@ -143,11 +154,13 @@ static private SolicitudSocioBeanFuncion SolicitudSocioFuncion=null;
 		}
 		finally{
 			sqlsesion.close();
+			l3.unlock();
 		}
 		return proveedorData;
 	}
 	
 	public void modificarSolicitud(SolicitudsocioBeanData solicitud) throws CoException {
+	l4.lock();
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
 					
@@ -162,10 +175,10 @@ static private SolicitudSocioBeanFuncion SolicitudSocioFuncion=null;
 		
 		finally{
 			sqlsesion.commit();
-			sqlsesion.close();					
+			sqlsesion.close();
+			l4.unlock();
 		}			
 		return ;
 	}
 	
-	
-}
+	}

@@ -5,6 +5,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Vector;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,7 +16,7 @@ import org.apache.ibatis.session.SqlSession;
 import IngSoft.general.MyBatisSesion;
 
 public class CriterioProductoBeanFunction {
-
+	private Lock l= new ReentrantLock(); 
 	SimpleDateFormat DF = new SimpleDateFormat("dd/MM/yyyy");
 
 	public CriterioProductoBeanData crearCriterio(HttpServletRequest request, HttpServletResponse response){
@@ -32,6 +34,7 @@ public class CriterioProductoBeanFunction {
 	}
 	
 	public Vector<ResultadoProductoBeanData> buscarPlantillaProducto(CriterioProductoBeanData criterioProductoData){		
+		l.lock();
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		Vector<ResultadoProductoBeanData> resultadosV=null;
 		try{		
@@ -40,7 +43,9 @@ public class CriterioProductoBeanFunction {
 		resultadosV= new Vector<>(resultados);
 		}
 		finally{
-		sqlsesion.close();}
+		sqlsesion.close();
+		l.unlock();
+		}
 		return resultadosV;
 		
 	}
