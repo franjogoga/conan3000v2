@@ -90,7 +90,7 @@ function validaForm(){
 	
 	
 	var form=document.frmSocio;
-	var tipoDocumento=frmSocio.rButton.value;
+	var tipoDocumento = frmSocio.cmbTipoDocumento.value;
 	var cadena= new Array();
 	var i=0;
 	var error=false;
@@ -105,19 +105,34 @@ function validaForm(){
 	/* if(!esValido("Numero Documento",form.txtNumeroDocumento,"NumDoc",1,1,9)){cadena[i]="Numero de documento";i++;}else{
 		if(!esValido("Numero Documento",form.txtNumeroDocumento,"NumDoc",6,1,50)){cadena[i]="Numero de documento";i++;}
 	} */
-		if(!esValido("Tipo de Documento",form.rButton,"Tipo",3,1,100)){cadena[i]="Tipo de Documento";i++;}
-		
-		if  (tipoDocumento == "DNI"){
- 				if(!esValido("Numero Documento",form.txtNumeroDocumento,"NumDoc",1,1,8)){cadena[i]="Numero de documento";i++;}else{
-				if(!esValido("Numero Documento",form.txtNumeroDocumento,"NumDoc",6,1,50)){cadena[i]="Numero de documento";i++;}
-				}
- 		}
+		 			if  (tipoDocumento == "DNI"){
 			
-		else if(tipoDocumento == "Carnet de extranjeria"){
-				if(!esValido("Numero Documento",form.txtNumeroDocumento,"NumDoc",1,1,11)){cadena[i]="Numero de documento";i++;}else{
-				if(!esValido("Numero Documento",form.txtNumeroDocumento,"NumDoc",6,1,50)){cadena[i]="Numero de documento";i++;}
-				}	
-		}
+ 				//alert(tipoDocumento);
+ 				
+ 				if(!esValido("Numero de Documento",form.txtNumeroDocumento,"NumeroDocumento",1,8,8)){cadena[i]="Numero de Documento";i++;}
+			
+ 					else{
+				
+ 				if(!esValido("Numero de Documento",form.txtNumeroDocumento,"NumeroDocumento",6,8,8)){cadena[i]="Numero de Documento";i++;}
+			
+ 				}
+			
+ 			}
+			
+			else if(tipoDocumento == "Carnet de extranjeria"){
+				
+				//alert("entre");
+				
+ 				if(!esValido("Numero de Documento",form.txtNumeroDocumento,"NumeroDocumento",1,11,11)){cadena[i]="Numero de Documento";i++;}
+				
+ 				else{
+			
+ 			if(!esValido("Numero de Documento",form.txtNumeroDocumento,"NumeroDocumento",6,11,11)){cadena[i]="Numero de Documento";i++;}
+		
+			}
+				
+			
+ 			}
 	
 	
 		if(!esValido("Telefono Fijo",form.txtTelefonoFijo,"TelefonoFijo",1,7,7)){cadena[i]="Telefono Fijo";i++;}else{
@@ -148,9 +163,9 @@ function inicializa(){
 	document.getElementById("errApellidoM").style.display='none';
 	document.getElementById("errDistrito").style.display='none';
 	document.getElementById("errFecha").style.display='none';
-	document.getElementById("errTipo").style.display='none';
+	//document.getElementById("errTipo").style.display='none';
 	document.getElementById("errCorreoE").style.display='none';
-	document.getElementById("errNumDoc").style.display='none';
+	document.getElementById("errNumeroDocumento").style.display='none';
 	document.getElementById("errDireccion").style.display='none';
 	document.getElementById("errTelefonoFijo").style.display='none';
 	document.getElementById("errCelular").style.display='none';
