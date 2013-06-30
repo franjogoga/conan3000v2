@@ -3,34 +3,23 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="Data.administracion.infraccion">
-
-  <cache />
+	<cache />  
   
-  
-<select id="getNextInfraccion" resultType="java.lang.String">
-	select max(IdSuspensionFalta) from SUSPENSION_FALTA
-</select>
-
-
-
-<select id="searchPlantillaInfraccion" parameterType="IngSoft.administracion.bean.CriterioInfraccionBeanData" resultType="IngSoft.administracion.bean.ResultadoInfraccionBeanData">
-
-SELECT 
-inf245g2.SOCIO.IdSocio AS codigo,
-inf245g2.PERSONA.Nombres AS nombre,
-inf245g2.PERSONA.ApePaterno AS apepaterno,
-inf245g2.PERSONA.ApeMaterno AS apematerno,
-inf245g2.PERSONA.NumeroDocumento AS numdocumento
-FROM inf245g2.SOCIO, inf245g2.PERSONA
-WHERE 
-inf245g2.SOCIO.IdSocio=inf245g2.PERSONA.IdPersona AND inf245g2.PERSONA.Nombres like #{nombre}
-order by 1 asc
-
-</select> 
-
-
-
-
-
+	<select id="getNextInfraccion" resultType="java.lang.String">
+		select max(IdSuspensionFalta) from SUSPENSION_FALTA
+	</select>
+	
+	<select id="searchPlantillaInfraccion" parameterType="IngSoft.administracion.bean.CriterioInfraccionBeanData" resultType="IngSoft.administracion.bean.ResultadoInfraccionBeanData">
+		SELECT	inf245g2.SOCIO.IdSocio AS codigo, inf245g2.PERSONA.Nombres AS nombre, inf245g2.PERSONA.ApePaterno AS apepaterno,
+			inf245g2.PERSONA.ApeMaterno AS apematerno, inf245g2.PERSONA.NumeroDocumento AS numdocumento
+		FROM inf245g2.SOCIO, inf245g2.PERSONA
+		WHERE inf245g2.SOCIO.IdSocio=inf245g2.PERSONA.IdPersona AND inf245g2.PERSONA.Nombres like #{nombre}
+		order by 1 asc
+	</select> 
+	
+	<insert id="insertInfraccion" parameterType="IngSoft.administracion.bean.InfraccionBeanData" flushCache="true">
+		insert into SUSPENSION_FALTA(IdSuspensionFalta, IdSocio, MontoMulta, Descripcion, FechaInicio, FechaFin, Estado)
+		values (#{codigo}, #{codigosocio}, #{montomulta}, #{descripcion}, #{fechainicio}, #{fechafin}, #{estado})
+	</insert>
 
 </mapper>
