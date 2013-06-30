@@ -4,6 +4,7 @@
 <%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="IngSoft.administracion.bean.ReservaBeanData"%>
+<%@page import="java.util.Vector"%>
 
 
 <html lang="en">
@@ -15,7 +16,7 @@
 	<meta name="author" content="Muhammad Usman">
 	
 	<!--The beans  -->
-	<jsp:useBean id="reserva" scope="request"class="IngSoft.administracion.bean.ReservaBeanData"></jsp:useBean>
+	<jsp:useBean id="reserva" scope="request" class="java.util.Vector"></jsp:useBean>
 
 	
 	<!-- The styles -->
@@ -182,12 +183,12 @@ String fecAnoFin=dfActual.format(c1.getTime()); %>
                       
                       
 
-						<input type="hidden" name="txtCodigoInv" value="<%=((ReservaBeanData)reserva).getCodigoinvitado()%>"></input>
+						<input type="hidden" name="txtCodigoInv" value="<%=((ReservaBeanData)reserva.get(0)).getCodigoinvitado()%>"></input>
                       
                         <div class="control-group" id="dvNombre">
                           <label class="control-label" for="typeahead">Nombre Invitado(*):</label>
                           <div class="controls">
-                            <input type="text" class="span6 typeahead" id="txtNombre"  data-provide="typeahead" name="txtNombre"  disabled value="<%= ((ReservaBeanData)reserva).getNombre()+' '+ ((ReservaBeanData)reserva).getApaterno()+' '+ ((ReservaBeanData)reserva).getAmaterno()   %>" >
+                            <input type="text" class="span6 typeahead" id="txtNombre"  data-provide="typeahead" name="txtNombre"  disabled value="<%= ((ReservaBeanData)reserva.get(0)).getNombre()+' '+ ((ReservaBeanData)reserva.get(0)).getApaterno()+' '+ ((ReservaBeanData)reserva.get(0)).getAmaterno()   %>" >
                           	<span class="help-inline" id="errNombre"> Please correct the error</span>
                           </div>
                         </div>
