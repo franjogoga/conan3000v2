@@ -12,6 +12,51 @@
 </select>
 
 
+
+<select id="getMontoInvitadoSocio" resultType="java.lang.String">
+
+
+SELECT 
+CONFIGURACION.MontoInvitado AS monto
+FROM CONFIGURACION WHERE CONFIGURACION.IdConfiguracion like '%CNF000001%'
+	
+</select>
+
+<select id="getContadorInvitadoSocio" parameterType="java.lang.String" resultType="java.lang.String">
+
+SELECT  count(*) 
+FROM INVITADOxSOCIO as I 
+WHERE
+ I.IdSocio = #{codigosocio} 
+ AND MONTH(I.FechaIngreso) = MONTH(NOW());
+	
+	
+</select>
+
+<update id="actualizaPLantillaMontoReserva" parameterType="IngSoft.administracion.bean.ReservaBeanData" >
+
+
+UPDATE
+
+inf245g2.INVITADOxSOCIO
+
+SET
+
+
+inf245g2.INVITADOxSOCIO.Monto     =	#{monto}
+
+
+WHERE inf245g2.INVITADOxSOCIO.IdInvitadoSocio =  #{codigo}
+
+;
+
+
+
+</update>
+
+
+
+
 <select id="searchPlantillaReservaInvitadoxSocio" parameterType="IngSoft.administracion.bean.CriterioReservaBeanData" resultType="IngSoft.administracion.bean.ResultadoReservaBeanData">
 
 
