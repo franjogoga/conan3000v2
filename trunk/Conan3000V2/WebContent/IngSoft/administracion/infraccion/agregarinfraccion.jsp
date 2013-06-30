@@ -2,21 +2,19 @@
 <%@page import="java.util.Calendar"%>
 <%@page import="java.util.GregorianCalendar"%>
 <%@page import="java.util.Date"%>
+<%@page import="java.lang.String"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="IngSoft.administracion.bean.InfraccionBeanData"%>
-
-
 <html lang="en">
 <head>
 	<meta charset="utf-8">
 	<title>Agregar Infraccion</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
-	<meta name="author" content="Muhammad Usman">
+	<meta name="description" content="Dos virgenes">
+	<meta name="author" content="Dos virgenes">
 	
 	<!--The beans -->
-	<jsp:useBean id="infraccion" scope="request"class="IngSoft.administracion.bean.InfraccionBeanData"></jsp:useBean>
-
+	<jsp:useBean id="codigoSocio" scope="request"class="java.lang.String"></jsp:useBean>
 	
 	<!-- The styles -->
 	<link id="bs-css" href="css/bootstrap-cerulean.css" rel="stylesheet">
@@ -43,33 +41,22 @@
 	<link href='css/elfinder.theme.css' rel='stylesheet'>
 	<link href='css/jquery.iphone.toggle.css' rel='stylesheet'>
 	<link href='css/opa-icons.css' rel='stylesheet'>
-	<link href='css/uploadify.css' rel='stylesheet'>
-
-	<!-- The HTML5 shim, for IE6-8 support of HTML5 elements -->
-	<!--[if lt IE 9]>
-	  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
+	<link href='css/uploadify.css' rel='stylesheet'>	
 
 	<!-- The fav icon -->
-	<link rel="shortcut icon" href="img/favicon.ico">
+	<link rel="shortcut icon" href="img/favicon.ico">		
 	
-	
-	
-	<script>
-	
-	
+	<script>	
 	function anhadir(cod){
 		var form= document.frmData;
 		form.txtCodigoSoc.value=cod;
 		form.codigosocio.value=cod;
-		$.fn.colorbox.close();
-		
+		$.fn.colorbox.close();	
 	} 
 	
 	function alt_fecha(obj){
-		obj.value=obj.value.slice(0,5);
-		
-		}
+		obj.value=obj.value.slice(0,5);		
+	}
 
 	function verificar_fecha(comparacion,fecha1,fecha2){
 		var fec1=fecha1.value.split("/");
@@ -90,57 +77,49 @@
 				}
 			if(resultado==false){			
 					fecha1.value=document.getElementById(fecha2).value;			
-				}
-				
+				}			
 			} 
 		else{
 			alert("Error al comparar fechas");
 		}			
 	}
 
-	function alfanumerico(e) 
-	{ 
-	var key = window.event.keyCode || event.keyCode;
-	return ((key >= 48 && key <= 57) ||(key >= 97 && key <= 122) ||(key >= 65 && key <=90) ||(key >= 192 && key <=246)||(key <=13) ||(key ==32));
-	} 	
-
-	
-		
+	function alfanumerico(e) { 
+		var key = window.event.keyCode || event.keyCode;
+		return ((key >= 48 && key <= 57) ||(key >= 97 && key <= 122) ||(key >= 65 && key <=90) ||(key >= 192 && key <=246)||(key <=13) ||(key ==32));
+	} 		
 	function alt_submit(){
 		var form= document.frmData;
 		if(validaForm()) form.submit();
-	}
-	
-	</script>	
-	
-	
-	
+	}	
+	</script>				
 	
 <%! public boolean  encontrar(String a, String[] b){
-for(int i=0;i<b.length;i++){
-if(b[i].equals(a)) return true;
-}
-return false;
-}
-public String formatear(java.util.Date date){
-SimpleDateFormat DF= new SimpleDateFormat("dd/MM");
-return DF.format(date);
-}
-public String generarCadena(String[] t){
-String a="";
-for(int i=0;i<t.length;i++){
-a= a.concat(t[i]+"/");
-if(a.length()>0) a=a.substring(0, a.length()-1);}
-return a;
-}
+		for(int i=0;i<b.length;i++){
+			if(b[i].equals(a)) return true;
+		}
+		return false;
+	}
+	public String formatear(java.util.Date date){
+		SimpleDateFormat DF= new SimpleDateFormat("dd/MM");
+		return DF.format(date);
+	}
+	public String generarCadena(String[] t){
+		String a="";
+		for(int i=0;i<t.length;i++){
+			a= a.concat(t[i]+"/");
+			if(a.length()>0) a=a.substring(0, a.length()-1);
+		}
+		return a;
+	}
 %>
 <%
-Calendar c1 = GregorianCalendar.getInstance();
-c1.add(Calendar.YEAR, 1);
-SimpleDateFormat dfActual= new SimpleDateFormat("dd/MM/YYYY");
-String fecAnoIni=dfActual.format(new java.util.Date());
-
-String fecAnoFin=dfActual.format(c1.getTime()); %>
+	Calendar c1 = GregorianCalendar.getInstance();
+	c1.add(Calendar.YEAR, 1);
+	SimpleDateFormat dfActual= new SimpleDateFormat("dd/MM/YYYY");
+	String fecAnoIni=dfActual.format(new java.util.Date());
+	String fecAnoFin=dfActual.format(c1.getTime()); 
+%>
 		
 </head>
 
@@ -149,16 +128,16 @@ String fecAnoFin=dfActual.format(c1.getTime()); %>
 		<div class="container-fluid">
 		<div class="row-fluid">
 				
-			<!-- left menu starts -->
-			<jsp:include page="/IngSoft/general/leftmenu.jsp" />
-						<!-- left menu ends -->
+		<!-- left menu starts -->
+		<jsp:include page="/IngSoft/general/leftmenu.jsp" />
+		<!-- left menu ends -->
 			
 		<noscript>
 				<div class="alert alert-block span10">
 					<h4 class="alert-heading">Warning!</h4>
 					<p>You need to have <a href="http://en.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript</a> enabled to use this site.</p>
 				</div>
-			</noscript>
+		</noscript>
 			
             <div id="content" class="span10">
               <!-- content starts -->
@@ -179,25 +158,19 @@ String fecAnoFin=dfActual.format(c1.getTime()); %>
                     <input type="hidden" name="accion" value="Agregar"></input>
 					<input type="hidden" name="tipo" value="2"></input>
                       <fieldset>
-                      
-                      
 
-						<input type="hidden" name="txtCodigoSoc" value="<%=((InfraccionBeanData)infraccion).getCodigosocio()%>"></input>
+						<input type="hidden" name="txtCodigoSoc" value="<%=codigoSocio%>"></input>
                       
                         <div class="control-group" id="dvNombre">
-                          <label class="control-label" for="typeahead">Codigo Socio(*):</label>
+                          <label class="control-label" for="txtCodigoSoc">Codigo Socio(*):</label>
                           <div class="controls">
-                            <input type="text" class="span6 typeahead" id="txtCodigoSoc"  data-provide="typeahead" name="txtCodigoSoc"  disabled value="<%= ((InfraccionBeanData)infraccion).getCodigosocio()%>" >
+                            <input type="text" class="span6 typeahead" id="txtCodigoSoc"  data-provide="typeahead" name="txtCodigoSoc"  disabled value="<%=codigoSocio%>" >
                           	<span class="help-inline" id="errNombre"> Please correct the error</span>
                           </div>
                         </div>
-                        
-				
-							
-						   
 		                  
 						    <div class="control-group" id="dvMonto">
-						      <label class="control-label" for="typeahead7">Monto(*): </label>
+						      <label class="control-label" for="txtMonto">Monto(*): </label>
 						      <div class="controls">
 						        <input type="text" class="span6 typeahead" id="txtMonto"  data-provide="typeahead"  name="txtMonto" >
 						        <span class="help-inline" id="errMonto"> Please correct the error</span>
@@ -212,9 +185,8 @@ String fecAnoFin=dfActual.format(c1.getTime()); %>
                           </div>
                         </div>
 
-
 							<div class="control-group" id="dvFecInicio">
-							  <label class="control-label" for="typeahead7" name="fFecInicio">Fecha Inicio(*): </label>
+							  <label class="control-label" for="typeahead7">Fecha Inicio(*): </label>
 							  <div class="controls">
 								<input type="text" class="input-xlarge datepicker"  id="fFecInicio" name="fFecInicio" value="<%=fecAnoIni%>" readonly="readonly">
 			                	<span class="help-inline" id="errFecInicio">Please correct the error</span>
@@ -229,27 +201,11 @@ String fecAnoFin=dfActual.format(c1.getTime()); %>
 			                </div>
 		                  </div>
 
-
-
-
-
-
-
-							
-
-
-                        
-
-                     
-                        
-                        
                         <div class="form-actions">
                           <button type="button" class="btn btn-primary" onclick="javascript:alt_submit()">Agregar</button>
                           <button type="button" class="btn" onclick="location.href='buscarinfraccion.jsp'" >Cancelar</button>
                         </div>
-                        
-                        
-                        
+
                       </fieldset>
                     </form>
 					<span style="font-size:70%">(*)Campos Obligatorios</span>
