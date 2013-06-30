@@ -217,9 +217,9 @@ String fecAnoFin=dfActual.format(c1.getTime()); %>
 		                  </div>
 		                  
 						    <div class="control-group" id="dvMonto">
-						      <label class="control-label" for="typeahead7">Monto(*): </label>
+						     <!-- <label class="control-label" for="typeahead7">Monto(*): </label>  -->
 						      <div class="controls">
-						        <input type="text" class="span6 typeahead" id="txtMonto"  data-provide="typeahead"  name="txtMonto" >
+						        <input type="hidden" class="span6 typeahead" id="txtMonto"  data-provide="typeahead"  name="txtMonto" value="0">
 						        <span class="help-inline" id="errMonto"> Please correct the error</span>
 					          </div>
 					        </div>
