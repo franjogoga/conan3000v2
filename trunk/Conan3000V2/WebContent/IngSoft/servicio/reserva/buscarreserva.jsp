@@ -64,7 +64,7 @@ var lock4=1;
 var lock5=1;
 var ctipo=2;
 var atipo=3;
-
+var reserva='';
 </script>
 <script src="reservas.js"></script>	
 </head>
@@ -155,7 +155,7 @@ var atipo=3;
 								  </select>
 								</div>
 							  </div>
-						<div class="control-group">						
+						<div class="control-group" id="servicios">						
 								<label class="control-label" for="cmbServicios">Seleccionar servicios</label>
 								<div class="controls">								
 								  <select id="cmbServicios" data-rel="chosen" name="cmbServicios" onchange="activarTipoCancha($(this))">
@@ -258,7 +258,7 @@ var atipo=3;
 			</div>
 			<div class="modal-footer">
 				<a href="#" class="btn" data-dismiss="modal">Cancelar</a>
-				<button class="btn btn-primary" onclick="">Guardar Adicionales</button>
+				<button class="btn btn-primary" onclick="registrarAdicion()">Guardar Adicionales</button>
 				
 			</div>
 		</div>

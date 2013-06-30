@@ -144,10 +144,19 @@ select bf.IdReservaBungalow
 from BUNGALOWxFECHA bf,
 RESERVA_BUNGALOW rb 
 where bf.IdReservaBungalow=rb.IdReservaBungalow
+and rb.estado='ACTIVO'
 and CONCAT(rb.IdBungalow,DATE_FORMAT(bf.fecha,'%d/%m/%Y')) in 
  <foreach item="item" index="i" collection="list" open="(" separator="," close=")">
  	#{item}
  </foreach>
+</select>
+<select id="getElimReservBungalowCodOne" parameterType="java.lang.String" resultType="java.lang.String">
+select CONCAT(bf.IdReservaBungalow,rb.IdSocio)
+from BUNGALOWxFECHA bf,
+RESERVA_BUNGALOW rb 
+where bf.IdReservaBungalow=rb.IdReservaBungalow
+and CONCAT(rb.IdBungalow,DATE_FORMAT(bf.fecha,'%d/%m/%Y')) like #{codigo} and rb.estado='ACTIVO'
+
 </select>
 <update id="eliminarReservaBungalow" parameterType="java.util.List">
 update RESERVA_BUNGALOW rb 
@@ -224,5 +233,9 @@ where sa.Estado='Activo'
 and (brsa.IdReservaBungalow=#{codigo} or brsa.IdReservaBungalow is null)
 order by 3,4
 </select>
-
+<insert id="insertServAdReserv" parameterType="hashmap" flushCache="true">
+insert into 
+RESERVA_BUNGALOWxSERV_ADICIONA(IdServAdicional,Fecha,Monto,IdReservaBungalow) 
+values(#{adicional},DATE(#{fecha}),#{monto},#{reserva})
+</insert>
 </mapper>

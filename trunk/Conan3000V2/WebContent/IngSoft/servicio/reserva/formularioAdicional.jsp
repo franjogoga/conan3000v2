@@ -40,13 +40,13 @@ No hay servicios adicionales DISPONIBLES
 
                           			<td class="center">
                           			<%if(((ServicioAdicionalBeanData)adicionales.get(i)).getRegistrado().equals("NO")){ %>
-                          				<button class="btn btn-success" id="<%=((ServicioAdicionalBeanData)adicionales.get(i)).getCodigo()%>"
-                          					onclick="javascript:agregarAdicional($(this))">
+                          				<button class="btn btn-success" id="<%=((ServicioAdicionalBeanData)adicionales.get(i)).getCodigo()%><%=((ServicioAdicionalBeanData)adicionales.get(i)).getMonto()%>"
+                          					onclick="javascript:CambiarEstadoAdicional($(this))">
                           					<i class="icon-zoom-in icon-white">
                           					</i>Agregar
                           				</button>   
                           				<%}else if(((ServicioAdicionalBeanData)adicionales.get(i)).getRegistrado().equals("SI")){ %>
-                          				<button class="btn btn-warning">
+                          				<button class="btn btn-danger">
                           					<i class="icon-zoom-in icon-white">
                           					</i>Agregado
                           				</button> 

@@ -21,6 +21,8 @@ public class ReservaBeanFuncion {
 	private Lock lAC= new ReentrantLock();
 	private Lock lEB= new ReentrantLock();
 	private Lock lEC= new ReentrantLock();
+	private Lock l1= new ReentrantLock();
+	
 	
 	 public static ReservaBeanFuncion getInstance(){
 	       if(ReservaFuncion==null) ReservaFuncion= new ReservaBeanFuncion();
@@ -266,10 +268,38 @@ public class ReservaBeanFuncion {
 		   return next;		   
 	   }
 	   
-	   public Vector<ServicioAdicionalBeanData> getServicios(String codigo){		  
+	   public boolean registrarServiciosxReserva(String[] lista,String reserva){
+		   l1.lock();
+		   boolean resultados=false;
+		   OrdenPagoBeanFunction orden=OrdenPagoBeanFunction.getInstance();
 		   SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
-			List<ServicioAdicionalBeanData> resultados=sqlsesion.selectList("Data.servicio.reserva.getServiciosAdicionales",codigo);
+		   HashMap<String, Object> map=new HashMap<String, Object>();
+		   try{
+			   String codigoReserva=(String)sqlsesion.selectOne("Data.servicio.reserva.getElimReservBungalowCodOne",reserva);
+			   for(int i=0;;i++){
+			   map.put("adicional", lista[i].substring(0, 9));
+			   map.put("fecha", new java.util.Date());
+			   map.put("monto", Double.parseDouble(lista[i].substring(9)));
+			   map.put("reserva",codigoReserva.substring(0, 9));
+			sqlsesion.insert("Data.servicio.reserva.insertServAdReserv",map);
+			sqlsesion.commit();
+			orden.agregarOrdenPago("RESERVABUNGALOWXSERVICIOADICIONAL", codigoReserva, lista[i].substring(0, 9), codigoReserva.substring(9), Double.parseDouble(lista[i].substring(9)), new java.sql.Date(new java.util.Date().getTime()), new java.sql.Date(new java.util.Date().getTime()));
+			}
+		   }catch(Exception e){
+			  // e.printStackTrace();
+		   }
+		   finally{
 			sqlsesion.close();
-			return new Vector<>(resultados);
+			l1.unlock();
+			}
+			return resultados;
 	   }
+
+	public Vector<ServicioAdicionalBeanData> getServicios(String codigo) {
+		 SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+		 String codigoReserva=(String)sqlsesion.selectOne("Data.servicio.reserva.getElimReservBungalowCodOne",codigo);
+			List<ServicioAdicionalBeanData> resultados=sqlsesion.selectList("Data.servicio.reserva.getServiciosAdicionales",codigoReserva.substring(0, 9));
+			sqlsesion.close();
+			return new Vector<>(resultados);	
+	}
 }
