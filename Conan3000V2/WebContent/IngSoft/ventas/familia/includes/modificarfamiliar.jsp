@@ -64,7 +64,7 @@
 			          <fieldset>
 			         
 			            <div class="control-group">
-			              <label class="control-label" for="typeahead1">Socio Asociado:</label>
+			              <label class="control-label" for="typeahead1">Socio Relacionado:</label>
 			              <div class="controls">
 			                <input type="text" name="txtSocio" disabled class="span6 typeahead" id="txtSocio" value=<%=socio.getCodigo() %>  data-provide="typeahead" maxlength="9" onpaste="return false;">
 		                  </div>
