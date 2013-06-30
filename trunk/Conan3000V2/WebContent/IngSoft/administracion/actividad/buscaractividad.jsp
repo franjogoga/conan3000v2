@@ -77,38 +77,66 @@
 	}
 	
  // validaciones fechas 
-	function alt_fecha(obj){
-		obj.value=obj.value.slice(0,5);
-		
-		}
-
-	function verificar_fecha(comparacion,fecha1,fecha2){
-		var fec1=fecha1.value.split("/");
-		var fec2=document.getElementById(fecha2).value.split("/");
-		var resultado=true;
-		if(fec1.length==fec2.length) {
-			var size=fec1.length;
-			for(i=size-1;i>=0;i--){
-				if(comparacion==0){
-					if(fec1[i].indexOf(fec2[i])<0)  resultado= false;
-					}
-				if(comparacion==1){
-					if(parseInt(fec1[i])<parseInt(fec2[i]))  resultado= false;
-					}
-				if(comparacion==-1){
-					if(parseInt(fec1[i])>parseInt(fec2[i]))  resultado= false;
-					}
-				}
-			if(resultado==false){			
-					fecha1.value=document.getElementById(fecha2).value;			
-				}
-				
-			} 
-		else{
-			alert("Error al comparar fechas");
-		}			
-	}
-	
+        
+        
+        function selectIni0()
+        {
+            
+            
+            
+            var selObj1 = document.getElementById('fFecIncio');
+            var selObj2 = document.getElementById('fFecFin');
+            
+            
+            
+            selObj2.value = selObj1.value;
+            
+        }
+        
+        
+        function selectFin0()
+        {
+            var selObj1 = document.getElementById('fFecIncio');
+            var selObj2 = document.getElementById('fFecFin');
+            
+            var fecha1 = selObj1.value.split("/") ;
+            var fecha2 = selObj2.value.split("/") ;
+            
+            var dia1 =fecha1[0] ;
+            var mes1 = (fecha1[1]-1);
+            var yea1 = fecha1[2];
+            
+            var dat1 = new Date(yea1,mes1,dia1);
+            
+            var dia2 =fecha2[0] ;
+            var mes2 = (fecha2[1]-1);
+            var yea2 = fecha2[2];
+            
+            var dat2 = new Date(yea2,mes2,dia2);
+            
+            
+            
+            if( dat1 > dat2 )
+            
+            selObj2.value = selObj1.value;
+            
+        }
+        
+        
+        function mueveFecha(){
+            fechaActual = new Date()
+            
+            dia = fechaActual.getDate()
+            mes = fechaActual.getMonth() +1
+            anno = fechaActual.getFullYear()
+            
+            
+            if (dia <10) dia = "0" + dia
+            if (mes <10) mes = "0" + mes
+            
+            fechaHoy = dia + "/" + mes + "/" + anno;
+            return fechaHoy
+        }
 	
 	</script>
 		
@@ -169,7 +197,7 @@
 								<div class="controls">
 																						   <!-- cmbTipoactividad  variable     -->	
 							 		<select id="selectError12" data-rel="chosen" name="cmbTipoactividad">
-								  
+								        <option value="" selected ></option>
 								  <%for(int i=0;i<tipoactividades.size();i++) if( i!=0){     %>
 										<option value="<%= ((TipoActividadMiniBeanData)tipoactividades.get(i)).getCodigo()%>" >
 										
@@ -178,7 +206,7 @@
 										
 										</option>
 									<%} else {   %>		
-										<option selected value="<%= ((TipoActividadMiniBeanData)tipoactividades.get(i)).getCodigo()%>" >
+										<option  value="<%= ((TipoActividadMiniBeanData)tipoactividades.get(i)).getCodigo()%>" >
 										
 										<%= ((TipoActividadMiniBeanData)tipoactividades.get(i)).getNombre()%>
 										
@@ -192,18 +220,24 @@
 						   <div class="control-group">
 							  <label class="control-label" for="date01">Fecha Inicio(*):</label>
 							  <div class="controls">
-								<input type="text" class="input-xlarge datepicker" id="fFecIncio" readonly="true" value="01/01"  name="fFecIncio" onchange="alt_fecha(this);verificar_fecha(-1,this,'fFecFin');">
+								<input type="text" class="input-xlarge datepicker" id="fFecIncio" readonly="true" value="01/01/2013"  name="fFecIncio" onchange="selectIni0();">
 							  </div>
 							</div>
 							
 							<div class="control-group">
 							  <label class="control-label" for="date02">Fecha Fin(*):</label>
 							  <div class="controls">
-								<input type="text" class="input-xlarge datepicker" id="fFecFin" readonly="true" value="31/12"  name="fFecFin" onchange="alt_fecha(this);verificar_fecha(1,this,'fFecIncio');">
+								<input type="text" class="input-xlarge datepicker" id="fFecFin" readonly="true" value="31/12/2013"  name="fFecFin" onchange="selectFin0();" >
 							  </div>
 							</div>
                         
                         
+                               <script>
+                                document.getElementById('fFecIncio').value=mueveFecha();
+                                document.getElementById('fFecFin').value=mueveFecha();
+                                </script>
+                            
+                            
                         
                         <div class="form-actions">
                           <button type="submit" class="btn btn-primary">Buscar</button>
