@@ -217,25 +217,7 @@
 								</div>
 							  </div>           
                         
-						   <div class="control-group">
-							  <label class="control-label" for="date01">Fecha Inicio(*):</label>
-							  <div class="controls">
-								<input type="text" class="input-xlarge datepicker" id="fFecIncio" readonly="true" value="01/01/2013"  name="fFecIncio" onchange="selectIni0();">
-							  </div>
-							</div>
-							
-							<div class="control-group">
-							  <label class="control-label" for="date02">Fecha Fin(*):</label>
-							  <div class="controls">
-								<input type="text" class="input-xlarge datepicker" id="fFecFin" readonly="true" value="31/12/2013"  name="fFecFin" onchange="selectFin0();" >
-							  </div>
-							</div>
-                        
-                        
-                               <script>
-                                document.getElementById('fFecIncio').value=mueveFecha();
-                                document.getElementById('fFecFin').value=mueveFecha();
-                                </script>
+
                             
                             
                         
