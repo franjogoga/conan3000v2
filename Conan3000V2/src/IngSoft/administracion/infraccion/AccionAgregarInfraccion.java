@@ -13,11 +13,11 @@ import IngSoft.general.CoException;
 
 public class AccionAgregarInfraccion extends CoAccion {
 	@Override
-	public void ejecutar(ServletContext sc, HttpServletRequest request,	HttpServletResponse response)  throws CoException{
-		InfraccionBeanFunction infraccionFuncion= InfraccionBeanFunction.getInstance();
-		if(Integer.valueOf(request.getParameter("tipo"))==2){													
+	public void ejecutar(ServletContext sc, HttpServletRequest request,	HttpServletResponse response)  throws CoException{		
+		if(Integer.valueOf(request.getParameter("tipo"))==2){
+			InfraccionBeanFunction infraccionFuncion= InfraccionBeanFunction.getInstance();
 			InfraccionBeanData infraccionData=infraccionFuncion.crearInfraccion(request, response);
-			infraccionFuncion.agregarInfraccion(infraccionData);		
+			infraccionFuncion.agregarInfraccion(infraccionData);	
 			this.direccionar(sc, request, response, "/IngSoft/administracion/infraccion/buscarinfraccion.jsp");					
 		}
 		if (Integer.valueOf(request.getParameter("tipo"))==1){						 
