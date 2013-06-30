@@ -27,6 +27,9 @@ public class SMVPago extends CoServlet{
 		acciones.put("Eliminar", new AccionEliminarPago());
 		acciones.put("SeleccionarSocioNoMembresia", new AccionSeleccionarNoMembresia());
 		acciones.put("SeleccionarMembresia", new AccionSeleccionarSocioPago());
+		acciones.put("AplicarMulta", new AccionAplicarMulta());
+		acciones.put("AplicarMultaExtra", new AccionAplicarMultaExtra());
+		acciones.put("BuscarFlujoCaja", new AccionBuscarFlujoCaja());
 	}
 	
 	

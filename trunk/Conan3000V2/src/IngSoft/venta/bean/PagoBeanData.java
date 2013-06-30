@@ -29,11 +29,28 @@ public class PagoBeanData implements Serializable {
 	private String idConcepto;
 	private Integer cantidad;
 	private Integer numCuota;
+	private Double multa;
+	private Date fechaActual;
 	
 	
 	
 	
-	
+	public Double getMulta() {
+		return multa;
+	}
+
+	public void setMulta(Double multa) {
+		this.multa = multa;
+	}
+
+	public Date getFechaActual() {
+		return fechaActual;
+	}
+
+	public void setFechaActual(Date fechaActual) {
+		this.fechaActual = fechaActual;
+	}
+
 	public Integer getNumCuota() {
 		return numCuota;
 	}

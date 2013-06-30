@@ -39,6 +39,14 @@
 		form.codigo.value=cod;
 		form.submit();
 	}
+	function alt_Multas(cod){
+	
+	
+		var form=document.getElementById("frmAlternativo");
+		form.accion.value="AplicarMultas";
+		form.codigo.value=cod;
+		form.submit();
+	}
 	
 	function ocultar(id){
 		document.getElementById(id).style.display='none';
@@ -188,6 +196,7 @@ String fecHoy=dfActual.format(new java.util.Date());
 		        <div class="box-content">
 		          <table class="table table-striped table-bordered bootstrap-datatable datatable">
 		            <!-- agregar nuevo boton -->
+					<div align="right"><a class="btn btn-primary iframe" href="multas2.jsp"> <i class="icon icon-add icon-white"></i> Aplicar Multas</a></div>
 		            <thead>
 		              <tr>
 		                <th>C&oacute;digo de Socio</th>

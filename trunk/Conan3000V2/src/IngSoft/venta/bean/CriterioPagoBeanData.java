@@ -20,11 +20,24 @@ public class CriterioPagoBeanData implements Serializable {
 	
 	private Date fechaEmisionIni;
 	private Date fechaEmisionFin;
-
+	private String anho;
+	private String concepto;
 	
 	
 	
 
+	public String getConcepto() {
+		return concepto;
+	}
+	public void setConcepto(String concepto) {
+		this.concepto = concepto;
+	}
+	public String getAnho() {
+		return anho;
+	}
+	public void setAnho(String anho) {
+		this.anho = anho;
+	}
 	public Date getFechaPagoIni() {
 		return fechaPagoIni;
 	}

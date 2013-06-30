@@ -24,10 +24,7 @@ from CUOTA, DETALLE_CUOTA, MEMBRESIA, PERSONA
   <if test="idSocio != null">
         AND PERSONA.IdPersona = #{idSocio}
     </if>
-  
-  <if test="fechaVencimientoIni != null">
-        AND CUOTA.FechaVencimiento &gt;= #{fechaVencimientoIni}
-    </if>
+ 
   
   <if test="fechaVencimientoIni != null">
         AND CUOTA.FechaVencimiento &gt;= #{fechaVencimientoIni}
@@ -37,7 +34,7 @@ from CUOTA, DETALLE_CUOTA, MEMBRESIA, PERSONA
     </if>
   
     <if test="estado != null">
-        AND CUOTA.Estado= #{estado}
+        AND CUOTA.Estado= #{estado} OR CUOTA.Estado='Vencido'
        
     </if>
    ORDER BY CUOTA.fechaVencimiento ASC
@@ -391,39 +388,6 @@ OTRO_INGRESO.IdConcepto=CONCEPTO.IdConcepto and CONCEPTO.IdSocio=PERSONA.IdPerso
 	values (#{idConcepto},#{idSocio},#{fecha})
 </insert>
 
-
- <select id="searchSocioMembresiaPago" parameterType="IngSoft.venta.bean.CriterioSocioBeanData" resultType="IngSoft.venta.bean.ResultadoSocioBeanData">
-select distinct
-SOCIO.IdSocio as idSocio
-,SOCIO.Direccion as direccion
-,PERSONA.Nombres as nombres
-,PERSONA.ApePaterno as apellidoPaterno
-,PERSONA.ApeMaterno as apellidoMaterno
-,PERSONA.TipoDocumento as tipoDocumento
-,PERSONA.NumeroDocumento as numeroDocumento
-,SOCIO.Flag as flag
-from SOCIO,PERSONA
-<where>
-	<if test="nombres != null ">
-        SOCIO.IdSocio=PERSONA.IdPersona and (PERSONA.nombres  like  #{nombres})
-    </if>
-    <if test="apellidoPaterno != null ">
-        AND (PERSONA.ApePaterno  like  #{apellidoPaterno})
-    </if>
-    <if test="apellidoMaterno != null ">
-        AND (PERSONA.ApeMaterno  like  #{apellidoMaterno})
-    </if>
-    <if test="direccion != null">
-        AND SOCIO.Direccion like #{direccion}
-    </if>
-     <if test="tipoDocumento != null">
-        AND PERSONA.TipoDocumento like #{tipoDocumento}
-    </if>
-    
-</where>
-</select>
-
-
  <select id="searchSocioNoMembresia" parameterType="IngSoft.venta.bean.CriterioSocioBeanData" resultType="IngSoft.venta.bean.ResultadoSocioBeanData">
 select distinct
 SOCIO.IdSocio as idSocio
@@ -459,7 +423,9 @@ INNER JOIN MEMBRESIA ON MEMBRESIA.IdSocio!=SOCIO.IdSocio
 </select>
 
 
- <select id="flujoCajaIngreso" parameterType="IngSoft.venta.bean.CriterioSocioBeanData" resultType="IngSoft.venta.bean.ResultadoSocioBeanData">
+
+
+<select id="cantMultas" parameterType="IngSoft.venta.bean.CriterioSocioBeanData" resultType="IngSoft.venta.bean.ResultadoSocioBeanData">
 select distinct
 SOCIO.IdSocio as idSocio
 ,SOCIO.Direccion as direccion
@@ -493,5 +459,89 @@ INNER JOIN MEMBRESIA ON MEMBRESIA.IdSocio!=SOCIO.IdSocio
 </where>
 </select>
 
+
+
+
+
+<select id="getCantMultas" resultType="java.lang.String">
+	select count(*) as cantidad from CUOTA where FechaVencimiento&lt;NOW() and Estado='No Cancelado'
+</select>
+
+
+<update id="generarMulta" parameterType="IngSoft.venta.bean.PagoBeanData">
+update CUOTA set Estado='Vencido', Monto=#{monto}
+ where  FechaVencimiento&lt;NOW()  and Estado='No Cancelado'
+</update>
+
+<select id="getCantMultasExtra" parameterType="IngSoft.venta.bean.PagoBeanData" resultType="java.lang.String">
+	select count(*) as cantidad from OTRO_INGRESO where FechaVencimiento&lt;NOW()  and Estado='No Cancelado'
+</select>
+
+
+<update id="generarMultaExtra" parameterType="IngSoft.venta.bean.PagoBeanData">
+update OTRO_INGRESO set Estado='Vencido', Monto=Monto*#{monto}
+ where  FechaVencimiento&lt;NOW()  and Estado='No Cancelado'
+</update>
+
+
+<select id="getFlujoCaja" parameterType="java.lang.String" resultType="IngSoft.venta.bean.ResultadoFlujoCajaBeanData">
+(Select
+OTRO_INGRESO.Descripcion as Concepto, 
+(Select sum(OI.Monto) as monto FROM OTRO_INGRESO OI, INGRESO I WHERE OI.Descripcion=Concepto and OI.IdOtroIngreso=I.IdOtroIngreso and YEAR(I.FechaPago)=#{anho} and MONTH(I.FechaPago)='01')  as Enero,
+(Select sum(OI.Monto) as monto FROM OTRO_INGRESO OI, INGRESO I WHERE OI.Descripcion=Concepto and OI.IdOtroIngreso=I.IdOtroIngreso and YEAR(I.FechaPago)=#{anho} and MONTH(I.FechaPago)='02')   as Febrero,
+(Select sum(OI.Monto) as monto FROM OTRO_INGRESO OI, INGRESO I WHERE OI.Descripcion=Concepto and OI.IdOtroIngreso=I.IdOtroIngreso and YEAR(I.FechaPago)=#{anho} and MONTH(I.FechaPago)='03')   as Marzo,
+(Select sum(OI.Monto) as monto FROM OTRO_INGRESO OI, INGRESO I WHERE OI.Descripcion=Concepto and OI.IdOtroIngreso=I.IdOtroIngreso and YEAR(I.FechaPago)=#{anho} and MONTH(I.FechaPago)='04')  as Abril,
+(Select sum(OI.Monto) as monto FROM OTRO_INGRESO OI, INGRESO I WHERE OI.Descripcion=Concepto and OI.IdOtroIngreso=I.IdOtroIngreso and YEAR(I.FechaPago)=#{anho} and MONTH(I.FechaPago)='05')  as Mayo,
+(Select sum(OI.Monto) as monto FROM OTRO_INGRESO OI, INGRESO I WHERE OI.Descripcion=Concepto and OI.IdOtroIngreso=I.IdOtroIngreso and YEAR(I.FechaPago)=#{anho} and MONTH(I.FechaPago)='06')  as Junio,
+(Select sum(OI.Monto) as monto FROM OTRO_INGRESO OI, INGRESO I WHERE OI.Descripcion=Concepto and OI.IdOtroIngreso=I.IdOtroIngreso and YEAR(I.FechaPago)=#{anho} and MONTH(I.FechaPago)='07')  as Julio,
+(Select sum(OI.Monto) as monto FROM OTRO_INGRESO OI, INGRESO I WHERE OI.Descripcion=Concepto and OI.IdOtroIngreso=I.IdOtroIngreso and YEAR(I.FechaPago)=#{anho} and MONTH(I.FechaPago)='08')  as Agosto,
+(Select sum(OI.Monto) as monto FROM OTRO_INGRESO OI, INGRESO I WHERE OI.Descripcion=Concepto and OI.IdOtroIngreso=I.IdOtroIngreso and YEAR(I.FechaPago)=#{anho} and MONTH(I.FechaPago)='09')  as Septiembre,
+(Select sum(OI.Monto) as monto FROM OTRO_INGRESO OI, INGRESO I WHERE OI.Descripcion=Concepto and OI.IdOtroIngreso=I.IdOtroIngreso and YEAR(I.FechaPago)=#{anho} and MONTH(I.FechaPago)='10')  as Octubre,
+(Select sum(OI.Monto) as monto FROM OTRO_INGRESO OI, INGRESO I WHERE OI.Descripcion=Concepto and OI.IdOtroIngreso=I.IdOtroIngreso and YEAR(I.FechaPago)=#{anho} and MONTH(I.FechaPago)='11')  as Noviembre,
+(Select sum(OI.Monto) as monto FROM OTRO_INGRESO OI, INGRESO I WHERE OI.Descripcion=Concepto and OI.IdOtroIngreso=I.IdOtroIngreso and YEAR(I.FechaPago)=#{anho} and MONTH(I.FechaPago)='12')  as Diciembre
+
+
+ from OTRO_INGRESO, INGRESO GROUP BY Descripcion)
+UNION (
+Select 
+'MEMBRESIA' as Concepto, 
+(Select sum(C.Monto) as monto FROM CUOTA C, INGRESO I WHERE  C.IdCuota=I.IdCuota and YEAR(I.FechaPago)=#{anho} and MONTH(I.FechaPago)='01')  as Enero,
+(Select sum(C.Monto) as monto FROM CUOTA C, INGRESO I WHERE  C.IdCuota=I.IdCuota and YEAR(I.FechaPago)=#{anho} and MONTH(I.FechaPago)='02')   as Febrero,
+(Select sum(C.Monto) as monto FROM CUOTA C, INGRESO I WHERE  C.IdCuota=I.IdCuota and YEAR(I.FechaPago)=#{anho} and MONTH(I.FechaPago)='03')   as Marzo,
+(Select sum(C.Monto) as monto FROM CUOTA C, INGRESO I WHERE  C.IdCuota=I.IdCuota and YEAR(I.FechaPago)=#{anho} and MONTH(I.FechaPago)='04')  as Abril,
+(Select sum(C.Monto) as monto FROM CUOTA C, INGRESO I WHERE  C.IdCuota=I.IdCuota and YEAR(I.FechaPago)=#{anho} and MONTH(I.FechaPago)='05')  as Mayo,
+(Select sum(C.Monto) as monto FROM CUOTA C, INGRESO I WHERE  C.IdCuota=I.IdCuota and YEAR(I.FechaPago)=#{anho} and MONTH(I.FechaPago)='06') as Junio,
+(Select sum(C.Monto) as monto FROM CUOTA C, INGRESO I WHERE  C.IdCuota=I.IdCuota and YEAR(I.FechaPago)=#{anho} and MONTH(I.FechaPago)='07')  as Julio,
+(Select sum(C.Monto) as monto FROM CUOTA C, INGRESO I WHERE  C.IdCuota=I.IdCuota and YEAR(I.FechaPago)=#{anho} and MONTH(I.FechaPago)='08')  as Agosto,
+(Select sum(C.Monto) as monto FROM CUOTA C, INGRESO I WHERE  C.IdCuota=I.IdCuota and YEAR(I.FechaPago)=#{anho} and MONTH(I.FechaPago)='09')  as Septiembre,
+(Select sum(C.Monto) as monto FROM CUOTA C, INGRESO I WHERE  C.IdCuota=I.IdCuota and YEAR(I.FechaPago)=#{anho} and MONTH(I.FechaPago)='10')  as Octubre,
+(Select sum(C.Monto) as monto FROM CUOTA C, INGRESO I WHERE  C.IdCuota=I.IdCuota and YEAR(I.FechaPago)=#{anho} and MONTH(I.FechaPago)='11')  as Noviembre,
+(Select sum(C.Monto) as monto FROM CUOTA C, INGRESO I WHERE  C.IdCuota=I.IdCuota and YEAR(I.FechaPago)=#{anho} and MONTH(I.FechaPago)='12')  as Diciembre
+
+
+ from CUOTA, INGRESO GROUP BY Concepto
+
+) UNION(
+Select 
+'EGRESOS' as Concepto, 
+(Select sum(E.MontoTotal) as monto FROM EGRESO E WHERE  YEAR(E.FechaPago)=#{anho} and MONTH(E.FechaPago)='01')  as Enero,
+(Select sum(E.MontoTotal) as monto FROM EGRESO E WHERE  YEAR(E.FechaPago)=#{anho} and MONTH(E.FechaPago)='02')   as Febrero,
+(Select sum(E.MontoTotal) as monto FROM EGRESO E WHERE  YEAR(E.FechaPago)=#{anho} and MONTH(E.FechaPago)='03')   as Marzo,
+(Select sum(E.MontoTotal) as monto FROM EGRESO E WHERE  YEAR(E.FechaPago)=#{anho} and MONTH(E.FechaPago)='04')  as Abril,
+(Select sum(E.MontoTotal) as monto FROM EGRESO E WHERE  YEAR(E.FechaPago)=#{anho} and MONTH(E.FechaPago)='05')  as Mayo,
+(Select sum(E.MontoTotal) as monto FROM EGRESO E WHERE  YEAR(E.FechaPago)=#{anho} and MONTH(E.FechaPago)='06') as Junio,
+(Select sum(E.MontoTotal) as monto FROM EGRESO E WHERE  YEAR(E.FechaPago)=#{anho} and MONTH(E.FechaPago)='07')  as Julio,
+(Select sum(E.MontoTotal) as monto FROM EGRESO E WHERE  YEAR(E.FechaPago)=#{anho} and MONTH(E.FechaPago)='08')  as Agosto,
+(Select sum(E.MontoTotal) as monto FROM EGRESO E WHERE  YEAR(E.FechaPago)=#{anho} and MONTH(E.FechaPago)='09')  as Septiembre,
+(Select sum(E.MontoTotal) as monto FROM EGRESO E WHERE  YEAR(E.FechaPago)=#{anho} and MONTH(E.FechaPago)='10')  as Octubre,
+(Select sum(E.MontoTotal) as monto FROM EGRESO E WHERE  YEAR(E.FechaPago)=#{anho} and MONTH(E.FechaPago)='11')  as Noviembre,
+(Select sum(E.MontoTotal) as monto FROM EGRESO E WHERE  YEAR(E.FechaPago)=#{anho} and MONTH(E.FechaPago)='12')  as Diciembre
+
+
+ from CUOTA, INGRESO GROUP BY Concepto
+
+
+)
+</select>
 
 </mapper>
