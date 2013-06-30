@@ -203,6 +203,11 @@ return DF.format(date);
         <div class="controls">
             <input type="text" class="span6 typeahead" id="txtNombre"  data-provide="typeahead"  name="txtNombre" disabled value=" <%=((ResultadoHorariodeactividadBeanData)resultados.get(0)).getNombre()%>">
                 <input type="hidden" name="codigoActividad" value="<%=((ResultadoHorariodeactividadBeanData)resultados.get(0)).getCodigo()%>"></input>
+                
+                <!-- -->
+                <input type="hidden" name="codigo" value="<%=((ResultadoHorariodeactividadBeanData)resultados.get(0)).getCodigo()%>"></input>
+                <input type="hidden" name="horario" value="<%=temphorario%>"></input>
+                
                  <input type="hidden" name="monto" value="<%=((ResultadoHorariodeactividadBeanData)resultados.get(0)).getMonto()%>"></input>
                  <input type="hidden" name="vacantes" value="<%=tempvacantes%>"></input>
                 <!--- ------------  -->

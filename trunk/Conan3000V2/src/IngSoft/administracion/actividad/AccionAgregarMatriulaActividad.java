@@ -77,9 +77,28 @@ public class AccionAgregarMatriulaActividad extends CoAccion{
 				
 			}
 		
+			
+			// nuevo
+			System.out.print("------> entrar -----> AccionConsultarMatriculaActividad ---> "+ request.getParameter("codigo") );
+			System.out.print("------> entrar -----> AccionConsultarMatriculaActividad ---> "+ request.getParameter("horario") );
+			
+			ActividadBeanFuncion actividadFuncion= ActividadBeanFuncion.getInstance(); 
+			
+			Vector<MatriculaBeanData> resultados= actividadFuncion.getMatriculadosActividad(request.getParameter("codigo"),request.getParameter("horario"));
 
-		
-			this.direccionar(sc, request, response, "/IngSoft/administracion/actividad/buscarmatricula.jsp");
+			Vector<ResultadoActividadBeanData> resultados2= actividadFuncion.getNumeroInscritos();
+			
+			
+			request.setAttribute("resultados2", resultados2);
+			request.setAttribute("resultados", resultados);
+			
+			this.direccionar(sc, request, response, "/IngSoft/administracion/actividad/consultarmatricula.jsp");
+			// fin nuevo
+			
+			
+
+			//antiguo
+			//this.direccionar(sc, request, response, "/IngSoft/administracion/actividad/buscarmatricula.jsp");
 			
 		}
 		else

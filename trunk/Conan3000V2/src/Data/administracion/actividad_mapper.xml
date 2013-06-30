@@ -381,6 +381,8 @@ LEFT JOIN  inf245g2.PERSONA FAM
 ON inf245g2.FAMILIAR.IdFamiliar = FAM.IdPersona
 
 WHERE SOC.Nombres like #{nombre}
+OR    SOC.ApePaterno like #{nombre}
+OR    SOC.ApeMaterno like #{nombre}
 
 ORDER BY 1 ASC
 ;

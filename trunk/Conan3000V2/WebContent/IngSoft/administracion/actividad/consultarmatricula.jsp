@@ -183,8 +183,8 @@
                     <div class="box span12">
                       <div class="box-header well" data-original-title>
                         <h2><i class="icon-th-list"></i> Actividad : <%= ((MatriculaBeanData)resultados.get(0)).getNombreAtc() %>
-                        / Vacantes: <%= ((MatriculaBeanData)resultados.get(0)).getVacantes() %>
-                         / Inscritos : <%= busarNumeroIncritos(    ((MatriculaBeanData)resultados.get(0)).getCodigoActividad() ,
+                        / Vac.: <%= ((MatriculaBeanData)resultados.get(0)).getVacantes() %>
+                         / Ins. : <%= busarNumeroIncritos(    ((MatriculaBeanData)resultados.get(0)).getCodigoActividad() ,
                                              ((MatriculaBeanData)resultados.get(0)).getHorario() ,
                                                                resultados2
                                                                )
