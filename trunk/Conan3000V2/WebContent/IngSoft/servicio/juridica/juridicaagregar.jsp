@@ -384,7 +384,7 @@ function validaForm(){
 	*/
 	
 	
-	var form=document.frmData;
+	var form=document.frmUpdate;
 	
 	var cadena= new Array();
 	var i=0;
@@ -398,36 +398,7 @@ function validaForm(){
 	
 	if(!esValido("Razon Social",form.txtRazonSocial,"RazonSocial",1,1,50)){cadena[i]="Razon Social";i++;}
 	
-	
-	
-	if(!esValido("Correo",form.txtCorreo,"Correo",1,0,50)){cadena[i]="Correo";i++;}
-	
- 	else{
-		
-  
-			if (correo.length > 0){
- 		
-  				if(!esValido("Correo",form.txtCorreo,"Correo",9,1,1)){cadena[i]="Correo";i++;}
- 			
-  			}
-		
- 		}
-	
-	if(!esValido("RUC",form.txtRuc,"Ruc",1,11,11)){cadena[i]="RUC";i++;}
-	
-	else{
-	
-		if(!esValido("RUC",form.txtRuc,"Ruc",6,11,11)){cadena[i]="RUC";i++;}
-	
-		}
-	
-	if(!esValido("Telefono",form.txtTelefono,"Telefono",1,7,7)){cadena[i]="Telefono";i++;}
-	
-	else{
-		
-			if(!esValido("Telefono",form.txtTelefono,"Telefono",6,7,7)){cadena[i]="Telefono";i++;}
-	
-			}
+
 	
 	
 	
