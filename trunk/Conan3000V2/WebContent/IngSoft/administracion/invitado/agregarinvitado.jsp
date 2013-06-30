@@ -236,9 +236,12 @@ function crearAlert(cadena){
 Calendar c1 = GregorianCalendar.getInstance();
 c1.add(Calendar.YEAR, 1);
 SimpleDateFormat dfActual= new SimpleDateFormat("dd/MM/YYYY");
-String fecAnoIni=dfActual.format(new java.util.Date());
+String fecAnoIni=dfActual.format(  c1.getTime() );
 
-String fecAnoFin=dfActual.format(c1.getTime()); %>
+    
+    
+    
+String fecAnoFin=dfActual.format(new java.util.Date()); %>
 		
 </head>
 
@@ -363,7 +366,7 @@ String fecAnoFin=dfActual.format(c1.getTime()); %>
 							  <div class="control-group" id="dvFecNacimiento">
 							  <label class="control-label" for="typeahead7" name="fFecNacimiento">Fecha Nacimiento(*): </label>
 							  <div class="controls">
-								<input type="text" class="input-xlarge datepicker"  id="fFecNacimiento" name="fFecNacimiento" value="<%=fecAnoIni%>" readonly="readonly">
+								<input type="text" class="input-xlarge datepicker"  id="fFecNacimiento" name="fFecNacimiento" value="01/01/1990" readonly="readonly">
 			                	<span class="help-inline" id="errFecNacimiento">Please correct the error</span>
 							  </div>
 							</div>
