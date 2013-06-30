@@ -1,6 +1,8 @@
 package IngSoft.venta.producto;
 
 import java.util.Vector;
+
+import javax.faces.bean.SessionScoped;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,7 +14,7 @@ import IngSoft.venta.bean.CriterioSolicitudProductoBeanData;
 import IngSoft.venta.bean.CriterioSolicitudProductoBeanFunction;
 import IngSoft.venta.bean.ResultadoProductoBeanData;
 import IngSoft.venta.bean.ResultadoSolicitudProductoBeanData;
-
+@SessionScoped
 public class AccionSeleccionarProducto  extends CoAccion {
 
 	@Override

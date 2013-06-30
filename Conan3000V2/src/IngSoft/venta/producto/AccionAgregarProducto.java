@@ -2,6 +2,7 @@ package IngSoft.venta.producto;
 
 import java.io.IOException;
 
+import javax.faces.bean.SessionScoped;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,7 +13,7 @@ import IngSoft.venta.bean.ProductoBeanData;
 import IngSoft.venta.bean.ProductoBeanFunction;
 import IngSoft.venta.bean.ProveedorBeanData;
 
-
+@SessionScoped
 public class AccionAgregarProducto extends CoAccion {
 
 	@Override

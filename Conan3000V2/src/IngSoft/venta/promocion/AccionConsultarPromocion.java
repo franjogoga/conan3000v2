@@ -1,5 +1,6 @@
 package IngSoft.venta.promocion;
 
+import javax.faces.bean.SessionScoped;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -7,7 +8,7 @@ import IngSoft.general.CoAccion;
 import IngSoft.general.CoException;
 import IngSoft.venta.bean.PromocionBeanData;
 import IngSoft.venta.bean.PromocionBeanFuncion;
-
+@SessionScoped
 public class AccionConsultarPromocion extends CoAccion{
 
 	@Override

@@ -1,5 +1,6 @@
 package IngSoft.venta.producto;
 
+import javax.faces.bean.SessionScoped;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -8,7 +9,7 @@ import IngSoft.general.CoAccion;
 import IngSoft.general.CoException;
 import IngSoft.venta.bean.ProductoBeanData;
 import IngSoft.venta.bean.ProductoBeanFunction;
-
+@SessionScoped
 public class AccionConsultarProducto extends CoAccion {
 	@Override
 	public void ejecutar(ServletContext sc, HttpServletRequest request,
