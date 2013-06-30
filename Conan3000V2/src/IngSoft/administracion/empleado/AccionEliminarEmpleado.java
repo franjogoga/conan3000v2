@@ -2,6 +2,7 @@ package IngSoft.administracion.empleado;
 
 import java.util.Vector;
 
+import javax.faces.bean.SessionScoped;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,7 +18,7 @@ import IngSoft.servicio.bean.JuridicaBeanFuncion;
 import IngSoft.servicio.bean.PersonaJuridicaBeanData;
 import IngSoft.servicio.bean.SedeMiniBeanData;
 import IngSoft.servicio.bean.TipoEventoMiniBeanData;
-
+@SessionScoped
 public class AccionEliminarEmpleado extends CoAccion {
 
 	@Override
