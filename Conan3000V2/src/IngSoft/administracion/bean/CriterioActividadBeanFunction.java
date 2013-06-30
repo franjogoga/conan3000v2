@@ -18,7 +18,7 @@ public class CriterioActividadBeanFunction {
 		
 						
 		CriterioActividadBeanData criterioActividadData= new CriterioActividadBeanData();
-		criterioActividadData.setTipoactividad( request.getParameter("cmbTipoactividad")==null?"0":request.getParameter("cmbTipoactividad") );
+		criterioActividadData.setTipoactividad( request.getParameter("cmbTipoactividad")==null?"":"%"+request.getParameter("cmbTipoactividad")+"%" );
 		criterioActividadData.setNombre("%"+request.getParameter("txtNombre")+"%");
 
 		return criterioActividadData;				
