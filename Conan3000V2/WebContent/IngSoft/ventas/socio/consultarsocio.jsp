@@ -122,7 +122,7 @@
 			<div class="row-fluid sortable">
 				<div class="box span12">
 					<div class="box-header well" data-original-title>
-					  <h2><i class="icon-plus-sign"></i>CONSULTAR SOCIO</h2>
+					  <h2>CONSULTAR SOCIO</h2>
 				  </div>
 					<div class="box-content">
 						<form class="form-horizontal" action="<%= response.encodeURL("SMVSocio")%>" name="frmData" method="POST">
@@ -131,28 +131,15 @@
 						
 						  <fieldset>
 						    <div class="control-group">
-						      <label class="control-label" for="typeahead7">Nombres(*): </label>
+						      <label class="control-label" for="typeahead7">Socio: </label>
 						      <div class="controls">
 						        <input type="text" class="span6 typeahead" id="txtNombreSocio"  data-provide="typeahead"  name="txtNombreSocio" disabled value="<%=persona.getNombres()%>">
 					          </div>
 					        </div>
 					        
-					        <div class="control-group">
-						      <label class="control-label" for="typeahead7">Apellido Paterno(*): </label>
-						      <div class="controls">
-						        <input type="text" class="span6 typeahead" id="txtApellidoPaterno"  data-provide="typeahead"  name="txtApellidoPaterno" disabled value="<%=persona.getApellidoPaterno()%>">
-					          </div>
-					        </div>
-					        
-					        <div class="control-group">
-						      <label class="control-label" for="typeahead7">Apellido Materno(*): </label>
-						      <div class="controls">
-						        <input type="text" class="span6 typeahead" id="txtNombreSocio"  data-provide="typeahead"  name="txtNombreSocio" disabled value="<%=persona.getApellidoMaterno()%>">
-					          </div>
-					        </div>
 
 							  <div class="control-group">
-							  <label class="control-label" for="date01">Fecha Nacimiento(*):</label>
+							  <label class="control-label" for="date01">Fecha Nacimiento:</label>
 							  <div class="controls">
 								<input type="text" class="input-xlarge datepicker" id="fFechaNacimiento" name="fFechaNacimiento" value="<%=formatear(new Date(persona.getFechaNacimiento().getTime())) %>"   disabled>
 							  </div>
@@ -176,35 +163,35 @@
 							  </div>
 					
 							<div class="control-group">
-						      <label class="control-label" for="typeahead7">Numero de documento(*): </label>
+						      <label class="control-label" for="typeahead7">Numero de documento: </label>
 						      <div class="controls">
 						        <input type="text" class="span6 typeahead" id="txtNumeroDocumento"  data-provide="typeahead"  name="txtNumeroDocumento" disabled value="<%=persona.getNumeroDocumento()%>">
 					          </div>
 					        </div>
 					        
 					        <div class="control-group">
-						      <label class="control-label" for="typeahead7">Correo Electronico(*): </label>
+						      <label class="control-label" for="typeahead7">Correo Electronico: </label>
 						      <div class="controls">
 						        <input type="text" class="span6 typeahead" id="txtCorreoElectronico"  data-provide="typeahead"  name="txtCorreoElectronico" disabled value="<%=socio.getCorreoElectronico()%>">
 					          </div>
 					        </div>
 					        
 					        <div class="control-group">
-						      <label class="control-label" for="typeahead7">Direccion(*): </label>
+						      <label class="control-label" for="typeahead7">Direcci&oacute;n: </label>
 						      <div class="controls">
 						        <input type="text" class="span6 typeahead" id="txtDireccion"  data-provide="typeahead"  name="txtDireccion" disabled value="<%=socio.getDireccion()%>">
 					          </div>
 					        </div>
 					        
 					        <div class="control-group">
-						      <label class="control-label" for="typeahead7">Telefono fijo(*): </label>
+						      <label class="control-label" for="typeahead7">Tel&eacute;fono fijo: </label>
 						      <div class="controls">
 						        <input type="text" class="span6 typeahead" id="txtTelefonoFijo"  data-provide="typeahead"  name="txtTelefonoFijo" disabled value="<%=socio.getTelefonoFijo()%>">
 					          </div>
 					        </div>
 					        
 					        <div class="control-group">
-						      <label class="control-label" for="typeahead7">Telefono celular(*): </label>
+						      <label class="control-label" for="typeahead7">Tel&eacute;fono celular: </label>
 						      <div class="controls">
 						        <input type="text" class="span6 typeahead" id="txtTelefonoCelular"  data-provide="typeahead"  name="txtTelefonoCelular" disabled value="<%=socio.getTelefonoCelular()%>">
 					          </div>
