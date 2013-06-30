@@ -150,6 +150,19 @@ from EMPLEADO e, PERSONA p  where e.IdEmpleado = #{codigo} AND p.IdPersona = #{c
  
 </select>
 
-
-
+<select id="searchEmpleadoOtros" parameterType="java.lang.String" resultType="IngSoft.administracion.bean.EmpleadoBeanData">
+SELECT e.IdEmpleado as codigo
+		FROM EMPLEADO e
+		WHERE e.IdEmpleado=#{codigo} AND
+			  (e.IdEmpleado IN (
+					SELECT e.IdEmpleado
+					FROM EMPLEADO e, ACTIVIDAD a
+					WHERE e.IdEmpleado=a.IdEmpleado
+						  AND a.Estado!='No Disponible')
+	  		  OR e.IdEmpleado IN (
+					SELECT e.IdEmpleado
+					FROM EMPLEADO e, USUARIO u
+					WHERE e.IdEmpleado=u.IdEmpleado
+						  AND u.Estado!='Eliminado'))
+</select>
 </mapper>
