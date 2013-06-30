@@ -134,4 +134,42 @@ IdProvincia like  #{codigo}
 </select>
 <!-- fin departamento,provincia y distrito -->
 
+<select id="searchSedeOtros" parameterType="java.lang.String" resultType="IngSoft.administracion.bean.SedeBeanData">
+	SELECT s.IdSede as codigo
+		FROM SEDE s
+		WHERE s.IdSede=#{codigo} AND
+			  (s.IdSede IN (
+					SELECT s.IdSede
+					FROM SEDE s, ACTIVIDAD a
+					WHERE s.IdSede=a.IdSede
+						  AND a.Estado!='No Disponible')
+	  		  OR s.IdSede IN (
+					SELECT s.IdSede
+					FROM SEDE s, SORTEO so
+					WHERE s.IdSede=so.IdSede
+						  AND so.Flag!=1)
+	  		  OR s.IdSede IN (
+					SELECT s.IdSede
+					FROM SEDE s, EVENTO_SEDE es
+					WHERE s.IdSede=es.IdSede
+						  AND es.Fecha&lt;CURDATE())
+	  		  OR s.IdSede IN (
+					SELECT s.IdSede
+					FROM SEDE s, EVENTO_SOCIO es
+					WHERE s.IdSede=es.IdSede
+						  AND es.Fecha&lt;CURDATE())
+			  OR s.IdSede IN (
+					SELECT s.IdSede
+					FROM SEDE s, EVENTO_CORPORATIVO es
+					WHERE s.IdSede=es.IdSede
+						  AND es.Fecha&lt;CURDATE())
+			  OR s.IdSede IN (SELECT s.IdSede
+					FROM SEDE s, AMBIENTE a
+					WHERE s.IdSede=a.IdSede
+						  AND a.Estado!='Eliminado')
+			  OR s.IdSede IN (SELECT s.IdSede
+					FROM SEDE s, CONCESIONARIOxSEDE a
+					WHERE s.IdSede=a.IdSede
+						  AND a.Estado!='Eliminado'))
+	</select>
 </mapper>
