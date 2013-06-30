@@ -118,7 +118,7 @@ function alt_submit(){
 		                          <div class="control-group" id="dvNumDoc">
 			                          <label class="control-label" for="typeahead6">N&uacute;mero de Documento(*): </label>
 			                          <div class="controls">
-			                            <input type="text" class="span6 typeahead" id="txtNumeroDocumento" name="txtNumeroDocumento" data-provide="typeahead" maxlength="9" onpaste="return false;">
+			                            <input type="text" class="span6 typeahead" id="txtNumeroDocumento" name="txtNumeroDocumento" data-provide="typeahead"  onpaste="return false;">
 		                                <span class="help-inline" id="errNumDoc">Please correct the error</span>
 		                              </div>
 		                      	</div>
