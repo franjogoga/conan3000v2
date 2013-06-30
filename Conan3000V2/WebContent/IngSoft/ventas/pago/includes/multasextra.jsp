@@ -9,6 +9,29 @@
 	}
 	
 	
+		function comprueba(obj){ 
+if (isNaN(obj.value)){ 
+obj.value=1; 
+} else{
+if(obj.value==0) obj.value=1;
+}
+
+}
+
+function entero(obj){
+
+var patron = /^\d*$/;                    
+var numero = 10;                                    
+if ( !patron .test(obj.value)) {         
+
+obj.value=1;
+}else {
+
+
+
+}
+}
+
 	
 	</script>	
 <%
@@ -57,13 +80,13 @@ String fecHoy=dfActual.format(new java.util.Date());
                             <label class="control-label" for="typeahead2">Fecha:(*) </label>
                             <div class="controls">
                               <input type="text" class="input-xlarge datepicker disabled" id="date2" name="fFechaActual" value="<%=fecHoy%>" readonly="true">
-                            <span class="help-inline" id="errFechaActual">Please correct the error</span>
+                            
 							</div>
                         </div>
 							  <div class="control-group">
 							    <label class="control-label" for="typeahead6">% Multa: </label>
 							    <div class="controls">
-							      <input type="text" class="span6 typeahead" id="txtMulta" name="txtMulta"  data-provide="typeahead" data-items="4" >
+							      <input type="text" class="span6 typeahead" id="txtMulta" name="txtMulta" onKeyUp="entero(this);"  data-provide="typeahead" data-items="4" >
 						        </div>
 						      </div>
 							  

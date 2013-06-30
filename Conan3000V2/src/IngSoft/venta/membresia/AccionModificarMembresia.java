@@ -26,7 +26,7 @@ public class AccionModificarMembresia extends CoAccion{
 			MembresiaFunction.modificarMembresia(MembresiaData);
 			this.direccionar(sc, request, response, "/IngSoft/ventas/membresia/buscarmembresia.jsp");
 		}	
-		MembresiaBeanData MembresiaData=MembresiaFunction.consultarMembresia(request.getParameter("codigo"));
+		MembresiaBeanData MembresiaData=MembresiaFunction.consultarMembresiaRenovar(request.getParameter("codigo"));
 
 		request.setAttribute("membresia", MembresiaData);
 		this.direccionar(sc, request, response, "/IngSoft/ventas/membresia/modificarmembresia.jsp");

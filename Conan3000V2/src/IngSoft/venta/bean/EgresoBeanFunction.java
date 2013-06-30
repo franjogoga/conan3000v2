@@ -15,7 +15,8 @@ import IngSoft.general.MyBatisSesion;
 
 public class EgresoBeanFunction {
 	static private EgresoBeanFunction EgresoFuncion=null;
-	private Lock l= new ReentrantLock();     
+	private Lock l= new ReentrantLock();    
+	private Lock l1= new ReentrantLock();
 	SimpleDateFormat DF = new SimpleDateFormat("dd/MM/yyyy");
 	   
 	   public static EgresoBeanFunction getInstance(){
@@ -87,13 +88,19 @@ public class EgresoBeanFunction {
 	
 			
 	public EgresoBeanData consultarEgreso(String codigo){
+		l1.lock();
 		EgresoBeanData egresoData=null;
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
 			egresoData= sqlsesion.selectOne("Data.venta.pago.getEgreso",codigo);
 		}
+		catch(Exception a)		
+		{
+		a.printStackTrace();
+		}
 		finally{
 			sqlsesion.close();
+			l1.unlock();
 		}
 		return egresoData;
 	}

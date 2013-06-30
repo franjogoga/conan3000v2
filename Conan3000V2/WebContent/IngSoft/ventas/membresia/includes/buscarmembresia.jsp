@@ -176,10 +176,11 @@ String fecAnoFin="31/12"+dfActual.format(c1.getTime()); %>
 		                <a class="btn btn-success"
                           					href="javascript:alt_consultar('<%=((ResultadoMembresiaBeanData)resultados.get(i)).getCodigo()%>')">
                           					 <i class="icon-zoom-in icon-white"></i> Ver </a> 
-		                
-                        <a class="btn btn-danger"
-                          					href="javascript:alt_eliminar('<%=((ResultadoMembresiaBeanData)resultados.get(i)).getCodigo()%>')">
-                          					 <i class="icon-trash icon-white"></i> Eliminar </a>
+		                <a class="btn btn-danger"
+                          					href="javascript:alt_modificar('<%=((ResultadoMembresiaBeanData)resultados.get(i)).getCodigo()%>')">
+                          					 <i class="icon-trash icon-white"></i> Renovar </a>
+						
+                       
                         <a class="btn btn-primary"
                           					href="javascript:alt_trasladar('<%=((ResultadoMembresiaBeanData)resultados.get(i)).getCodigo()%>')">
                           					 <i class="icon-share icon-white"></i> Trasladar </a></td>

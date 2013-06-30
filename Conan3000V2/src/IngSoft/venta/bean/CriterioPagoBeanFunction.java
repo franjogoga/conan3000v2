@@ -8,6 +8,9 @@ import java.util.Calendar;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Vector;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.ibatis.session.SqlSession;
@@ -17,7 +20,10 @@ import IngSoft.general.MyBatisSesion;
 
 
 public class CriterioPagoBeanFunction {
-
+	private Lock l1= new ReentrantLock();
+	private Lock l2= new ReentrantLock();
+	private Lock l3= new ReentrantLock();
+	private Lock l4= new ReentrantLock();
 	SimpleDateFormat DF = new SimpleDateFormat("dd/MM/yyyy");
 
 	public CriterioPagoBeanData crearCriterio(HttpServletRequest request, HttpServletResponse response){
@@ -87,6 +93,7 @@ public CriterioPagoBeanData crearCriterioFlujo(HttpServletRequest request, HttpS
 	}
 	
 	public Vector<ResultadoPagoBeanData> buscarPago(CriterioPagoBeanData criterioPagoData){		
+		l1.lock();
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		Vector<ResultadoPagoBeanData> resultadosV=null;
 		try{		
@@ -98,14 +105,20 @@ public CriterioPagoBeanData crearCriterioFlujo(HttpServletRequest request, HttpS
 			}				
 		resultadosV= new Vector<>(resultados);
 		}
+		catch(Exception a)		
+		{
+		a.printStackTrace();
+		}
 		finally{
-		sqlsesion.close();}
+		sqlsesion.close();
+		l1.unlock();}
 		return resultadosV;
 		
 	}
 	
 	
 	public Vector<ResultadoSocioBeanData> buscarSocioMembresia(CriterioSocioBeanData criterioSocioData){		
+		l2.lock();
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		Vector<ResultadoSocioBeanData> resultadosV=null;
 		try{		
@@ -113,13 +126,19 @@ public CriterioPagoBeanData crearCriterioFlujo(HttpServletRequest request, HttpS
 						
 		resultadosV= new Vector<>(resultados);
 		}
+		catch(Exception a)		
+		{
+		a.printStackTrace();
+		}
 		finally{
-		sqlsesion.close();}
+		sqlsesion.close();
+		l2.unlock();}
 		return resultadosV;
 		
 	}
 	
 	public Vector<ResultadoSocioBeanData> buscarSocioNoMembresia(CriterioSocioBeanData criterioSocioData){		
+		l3.lock();
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		Vector<ResultadoSocioBeanData> resultadosV=null;
 		try{		
@@ -127,22 +146,33 @@ public CriterioPagoBeanData crearCriterioFlujo(HttpServletRequest request, HttpS
 						
 		resultadosV= new Vector<>(resultados);
 		}
+		catch(Exception a)		
+		{
+		a.printStackTrace();
+		}
 		finally{
-		sqlsesion.close();}
+		sqlsesion.close();
+		l3.unlock();}
 		return resultadosV;
 		
 	}
 	
 	
 	public Vector<ResultadoFlujoCajaBeanData> buscarFlujo(CriterioPagoBeanData criterioPagoData) throws CoException {
+		l4.lock();
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		Vector<ResultadoFlujoCajaBeanData> resultadosV=null;
 		try{		
 			List<ResultadoFlujoCajaBeanData> resultados=sqlsesion.selectList("getFlujoCaja",criterioPagoData.getAnho());
 		resultadosV= new Vector<>(resultados);
 		}
+		catch(Exception a)		
+		{
+		a.printStackTrace();
+		}
 		finally{
 		sqlsesion.close();
+		l4.unlock();
 		}
 		return resultadosV;
 	}
