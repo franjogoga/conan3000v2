@@ -37,8 +37,17 @@ function anhadir(cod,name){
 			        <h2>SOLICITUD DE SERVICIO</h2>
 		          </div>
 			      <div class="box-content">
+			      
+			      <form class="form-horizontal" name="frmCriteriosBusqueda" id="frmCriteriosBusqueda"  method="POST" action="<%= response.encodeURL("SMVProducto")%>">
+						  <input type="hidden" name="accion" value="Ver Detalle"/></input>
+			      </form>
+			      
+			      
+			      
+			      
 			        <form class="form-horizontal" name="frmServicio"  method="Post"  action="SMVSolicitudServicio">
 			        <input type="hidden" name="accion" value="Agregar"></input>
+			            
 			 		<input type="hidden" name="codigo" value=""></input>
 			 		<input type="hidden" name="tipo" value="1"></input>
 			        
@@ -67,7 +76,7 @@ function anhadir(cod,name){
 			              <input type="hidden" name="idServicio" value=""/></input>
 			              <button type="button" class="btn btn-primary" onclick="javascript:alt_submit()">Agregar</button>
 			             <button type="button" class="btn" onclick="location.href='agregarsolicitudservicio.jsp'">Cancelar</button>
-			             <button type="button" class="btn btn-primary" onclick="javascript:alt_submit2()">Ver Detalle</button>
+			             <button type="button" class="btn btn-primary">Ver Detalle</button>
 		                </div>
 		              </fieldset>
 		            </form>
@@ -103,7 +112,7 @@ function anhadir(cod,name){
 					        <th>Servicio</th>
 					        <th>Precio</th>
 					        
-					        <th>Cantidad</th>
+					        <th>Periodo</th>
 					         <th>Subtotal</th>
 
 				          </tr>
