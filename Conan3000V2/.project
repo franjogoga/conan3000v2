@@ -230,6 +230,21 @@
 			<locationURI>JS</locationURI>
 		</link>
 		<link>
+			<name>WebContent/IngSoft/administracion/infraccion/css</name>
+			<type>2</type>
+			<locationURI>CSS</locationURI>
+		</link>
+		<link>
+			<name>WebContent/IngSoft/administracion/infraccion/img</name>
+			<type>2</type>
+			<locationURI>IMG</locationURI>
+		</link>
+		<link>
+			<name>WebContent/IngSoft/administracion/infraccion/js</name>
+			<type>2</type>
+			<locationURI>JS</locationURI>
+		</link>
+		<link>
 			<name>WebContent/IngSoft/administracion/invitado/css</name>
 			<type>2</type>
 			<locationURI>CSS</locationURI>
