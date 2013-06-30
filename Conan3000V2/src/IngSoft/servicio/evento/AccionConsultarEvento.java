@@ -1,7 +1,6 @@
 package IngSoft.servicio.evento;
 
 import java.io.IOException;
-import java.util.List;
 import java.util.Vector;
 
 import javax.servlet.ServletContext;
@@ -10,12 +9,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import IngSoft.general.CoAccion;
 import IngSoft.general.CoException;
-import IngSoft.servicio.bean.AmbienteMiniBeanData;
 import IngSoft.servicio.bean.ConcesionarioMiniBeanData;
 import IngSoft.servicio.bean.EventoBeanData;
 import IngSoft.servicio.bean.EventoBeanFuncion;
+import IngSoft.servicio.bean.JuridicaBeanFuncion;
+import IngSoft.servicio.bean.PersonaJuridicaBeanData;
 import IngSoft.servicio.bean.SedeMiniBeanData;
-import IngSoft.servicio.bean.TipoEventoMiniBeanData;
 
 public class AccionConsultarEvento extends CoAccion {
 
@@ -74,6 +73,15 @@ public class AccionConsultarEvento extends CoAccion {
 			}
 			 try {
 					response.getWriter().write( "/IngSoft/servicio/evento/SMSEvento?accion=Buscar&tipo=1");
+				} catch (IOException e) {				
+					e.printStackTrace();
+				}
+			
+		}
+		if(tipo==4){
+			PersonaJuridicaBeanData temp=JuridicaBeanFuncion.getInstance().consultarJuridica( request.getParameter("codigo"));
+			 try {
+					response.getWriter().write( temp.getCodigo()+temp.getRazonSocial());
 				} catch (IOException e) {				
 					e.printStackTrace();
 				}
