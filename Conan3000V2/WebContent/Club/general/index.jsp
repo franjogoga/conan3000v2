@@ -550,7 +550,7 @@ body #rt-logo {
 													<div class="clr"></div> <!-- Plugins: AfterDisplayContent -->
 													<!-- K2 Plugins: K2AfterDisplayContent --> <a
 													class="moduleItemReadMore"
-													href="index.php/component/k2/item/11-top.html"> More
+													href="#"> More
 														Info </a> <!-- Plugins: AfterDisplay --> <!-- K2 Plugins: K2AfterDisplay -->
 													<div class="clr"></div>
 												</li>
@@ -570,7 +570,7 @@ body #rt-logo {
 													<div class="clr"></div> <!-- Plugins: AfterDisplayContent -->
 													<!-- K2 Plugins: K2AfterDisplayContent --> <a
 													class="moduleItemReadMore"
-													href="index.php/component/k2/item/12-fly-fishing.html">
+													href="#">
 														More Info </a> <!-- Plugins: AfterDisplay --> <!-- K2 Plugins: K2AfterDisplay -->
 													<div class="clr"></div>
 												</li>
@@ -591,7 +591,7 @@ body #rt-logo {
 													<div class="clr"></div> <!-- Plugins: AfterDisplayContent -->
 													<!-- K2 Plugins: K2AfterDisplayContent --> <a
 													class="moduleItemReadMore"
-													href="index.php/component/k2/item/13-new-line.html">
+													href="#">
 														More Info </a> <!-- Plugins: AfterDisplay --> <!-- K2 Plugins: K2AfterDisplay -->
 													<div class="clr"></div>
 												</li>
@@ -611,7 +611,7 @@ body #rt-logo {
 													<div class="clr"></div> <!-- Plugins: AfterDisplayContent -->
 													<!-- K2 Plugins: K2AfterDisplayContent --> <a
 													class="moduleItemReadMore"
-													href="index.php/component/k2/item/14-save.html"> More
+													href="#"> More
 														Info </a> <!-- Plugins: AfterDisplay --> <!-- K2 Plugins: K2AfterDisplay -->
 													<div class="clr"></div>
 												</li>
