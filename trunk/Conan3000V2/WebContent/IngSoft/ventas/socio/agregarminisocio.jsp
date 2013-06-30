@@ -90,34 +90,46 @@ function validaForm(){
 	
 	
 	var form=document.frmSocio;
-
+	var tipoDocumento=frmSocio.rButton.value;
 	var cadena= new Array();
 	var i=0;
 	var error=false;
+	
+	
 	if(!esValido("Nombres",form.txtNombres,"Nombres",1,1,50)){cadena[i]="Nombres";i++;}
 	if(!esValido("Apellido Paterno",form.txtApellidoPaterno,"ApellidoP",1,1,50)){cadena[i]="Apellido Paterno";i++;}
-	//if(!verificar_fecha(-1,form.fFechaInicio,form.fFechaFin)){cadena[i]="Fecha Fin";i++;};
 	if(!esValido("Apellido Materno",form.txtApellidoMaterno,"ApellidoM",1,1,50)){cadena[i]="Apellido Materno";i++;}
 	if(!esValido("Distrito",form.cmdDistrito,"Distrito",1,1,50)){cadena[i]="Distrito";i++;}
-	//if(!validarEntero(form.txtNumeroDocumento)){cadena[i]="Numero de Documento";i++;}
 	if(!esValido("Direccion",form.txtDireccion,"Direccion",1,1,100)){cadena[i]="Direccion";i++;}
-	if(!esValido("Numero Documento",form.txtNumeroDocumento,"NumDoc",1,1,9)){cadena[i]="Numero de documento";i++;}else{
-		if(!esValido("Numero Documento",form.txtNumeroDocumento,"NumDoc",6,1,50)){cadena[i]="Numero de documento";i++;}
-	}
 	
-	if(!esValido("Telefono Fijo",form.txtTelefonoFijo,"TelefonoFijo",1,1,7)){cadena[i]="Telefono Fijo";i++;}else{
+	/* if(!esValido("Numero Documento",form.txtNumeroDocumento,"NumDoc",1,1,9)){cadena[i]="Numero de documento";i++;}else{
+		if(!esValido("Numero Documento",form.txtNumeroDocumento,"NumDoc",6,1,50)){cadena[i]="Numero de documento";i++;}
+	} */
+		if(!esValido("Tipo de Documento",form.rButton,"Tipo",3,1,100)){cadena[i]="Tipo de Documento";i++;}
+		
+		if  (tipoDocumento == "DNI"){
+ 				if(!esValido("Numero Documento",form.txtNumeroDocumento,"NumDoc",1,1,8)){cadena[i]="Numero de documento";i++;}else{
+				if(!esValido("Numero Documento",form.txtNumeroDocumento,"NumDoc",6,1,50)){cadena[i]="Numero de documento";i++;}
+				}
+ 		}
+			
+		else if(tipoDocumento == "Carnet de extranjeria"){
+				if(!esValido("Numero Documento",form.txtNumeroDocumento,"NumDoc",1,1,11)){cadena[i]="Numero de documento";i++;}else{
+				if(!esValido("Numero Documento",form.txtNumeroDocumento,"NumDoc",6,1,50)){cadena[i]="Numero de documento";i++;}
+				}	
+		}
+	
+	
+		if(!esValido("Telefono Fijo",form.txtTelefonoFijo,"TelefonoFijo",1,7,7)){cadena[i]="Telefono Fijo";i++;}else{
 		if(!esValido("Telefono Fijo",form.txtTelefonoFijo,"TelefonoFijo",6,1,50)){cadena[i]="Telefono Fijo";i++;}
 	}
-	if(!esValido("Telefono Celular",form.txtTelefonoCelular,"Celular",1,1,9)){cadena[i]="Telefono Celular";i++;}else{
+	if(!esValido("Telefono Celular",form.txtTelefonoCelular,"Celular",1,9,9)){cadena[i]="Telefono Celular";i++;}else{
 		if(!esValido("Telefono Celular",form.txtTelefonoCelular,"Celular",6,1,50)){cadena[i]="Telefono Celular";i++;}
 	}
 	
 	if(!esValido("Correo Electronico",form.txtCorreoElectronico,"CorreoE",9,1,50)){cadena[i]="Correo Electronico";i++;}
 	if(!esValido("Fecha",form.fFechaNacimiento,"Fecha",2,1,10)){cadena[i]="Fecha de Nacimiento";i++;}
-	if(!esValido("Tipo de Documento",form.rButton,"Tipo",3,1,100)){cadena[i]="Tipo de Documento";i++;}
-	
-	
-	
+
 	//No tocar
 	if(i>0){
 	crearAlert(cadena);
