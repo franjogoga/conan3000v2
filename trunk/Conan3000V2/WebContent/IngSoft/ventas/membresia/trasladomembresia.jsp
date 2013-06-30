@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.GregorianCalendar"%>
+<%@page import="java.util.Calendar"%>
 <%@page import="IngSoft.venta.bean.ResultadoMembresiaBeanData"%>
 <html lang="en">
 <head>
@@ -119,19 +122,6 @@ function validarEntero(valor){
 		form.submit();
 	}
 	
-	function validar(form){
-			if(form.fFecha.value.length <=0)return false;
-			if(form.txtMonto.value.length<=0)return false;
-			//if(form.fFechFin.value.lengtht<=0)return false;
-			//if(form.txtDescripcion.value.length<=0)return false;
-			//if(form.cmbAmbientes.value.length<=0)return false;
-	return true;
-		
-		
-		}
-
-
-
 
 	function alt_submit(){
 		var form= document.frmTraslado;
@@ -141,16 +131,21 @@ function validarEntero(valor){
 }
 
 
-	</script>		
+
+
+	</script>	
+	<%
+Calendar c1 = GregorianCalendar.getInstance();
+c1.add(Calendar.YEAR, 1);
+SimpleDateFormat dfActual= new SimpleDateFormat("dd/MM/YYYY");
+String fecAnoIni=dfActual.format(new java.util.Date());
+ %>
+		
 </head>
 
-<!--The beans  -->
+
 	<jsp:useBean id="membresia" scope="session"class="IngSoft.venta.bean.MembresiaBeanData"></jsp:useBean>
-	
-<!--The beans  -->
 	<jsp:useBean id="socio" scope="request"class="IngSoft.venta.bean.SocioBeanData"></jsp:useBean>
-	
-	<!--The beans  -->
 <jsp:useBean id="resultados" scope="request"class="java.util.Vector"></jsp:useBean>
 	
 
@@ -269,7 +264,7 @@ function validarEntero(valor){
                         <div class="control-group" id="dvFecha">
 							  <label class="control-label" for="date01">Fecha Inicio(*):</label>
 							  <div class="controls">
-								<input type="text" class="input-xlarge datepicker" id="fFechaInicio" name="fFechaInicio" value="01/01/2013" readonly="readonly" >
+								<input type="text" class="input-xlarge datepicker" id="fFechaInicio" name="fFechaInicio" value="<%=fecAnoIni%>" readonly="readonly" >
 								<span class="help-inline" id="errFecha">Please correct the error</span>
 							  </div>
 							</div>
@@ -289,8 +284,6 @@ function validarEntero(valor){
 			                    <option selected>Hija(o)</option>
 			                    <option>Madre</option>
 			                    <option>Padre</option>
-			                    <option>Hermana(o)</option>
-			                    <option>Nieto(a)</option>
 		                      </select>
 							  <span class="help-inline" id="errParentesco">Please correct the error</span>
 		                    </div>
