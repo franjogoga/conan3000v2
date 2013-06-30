@@ -31,7 +31,8 @@ public class SocioBeanFuncion {
 	public SocioBeanData crearSocio(HttpServletRequest request, HttpServletResponse response){
 		SocioBeanData socioData= new SocioBeanData();
 		try{		
-
+		
+		socioData.setIdSolicitud(request.getParameter("txtSolicitud"));
 		socioData.setDireccion(request.getParameter("txtDireccion"));
 		socioData.setCorreoElectronico(request.getParameter("txtCorreoElectronico"));
 		socioData.setTelefonoFijo(Long.parseLong(request.getParameter("txtTelefonoFijo")));
@@ -69,6 +70,9 @@ public class SocioBeanFuncion {
 			//aca validar si el get te da null y hacer otro insert !!!!!!
 			sqlsesion.insert("Data.venta.socio.insertSocio",socioData);
 			
+			String codSol=socioData.getIdSolicitud();
+			//saco un codigo por aca
+			sqlsesion.update("Data.venta.socio.updateSolicitud", codSol);
 			
 			resultado=true;
 		}
