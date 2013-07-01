@@ -71,7 +71,7 @@ String fecHoy=dfActual.format(new java.util.Date());
 						    <div class="control-group">
 						    
 						     <div class="control-group">
-							    <label class="control-label" for="typeahead6">Cant. de Cuotas: </label>
+							    <label class="control-label" for="typeahead6">Cant. Vencida (Cuotas Extraordinarias): </label>
 							    <div class="controls">
 							      <input type="text" class="span6 typeahead" disabled="" id="txtCantidad" name="txtCantidad" data-provide="typeahead" data-items="4" value="<%=cantidad%>" >
 						        </div>
