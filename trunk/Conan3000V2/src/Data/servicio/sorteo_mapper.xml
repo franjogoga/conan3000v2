@@ -45,22 +45,41 @@ order by 1 asc
 	where IdSorteo=#{idSorteo};
 </select>
 
-<select id="getBungalows" parameterType="java.sql.Date" resultType="java.lang.String">
+<select id="getBungalows" parameterType="IngSoft.servicio.bean.SorteoBeanData" resultType="java.lang.String">
 select  B.IdBungalow
 from 	inf245g2.BUNGALOW B
 		LEFT JOIN inf245g2.AMBIENTE A ON (B.IdAmbiente=A.IdAmbiente)
 		LEFT JOIN inf245g2.SEDE S ON (A.IdSede=S.IdSede),
 		inf245g2.RESERVA_BUNGALOW RB,
 		inf245g2.BUNGALOWxFECHA BF
-where	(BF.Fecha != #{fecha})
+where	(BF.Fecha != #{fechaReserva}) and (S.IdSede=#{idSede}) and (RB.IdSocio is not null)
 group by 1; 
 </select>
+
+<update id="eliminarReservaBungalow" parameterType="hashmap">
+UPDATE  inf245g2.RESERVA_BUNGALOW
+SET IdSocio=#{idSocio}
+WHERE 	(inf245g2.RESERVA_BUNGALOW.IdBungalow=#{idBungalow}) AND
+		(inf245g2.RESERVA_BUNGALOW.IdSocio is null) AND
+		(inf245g2.RESERVA_BUNGALOW.IdReservaBungalow in
+		(select inf245g2.BUNGALOWxFECHA.IdReservaBungalow from inf245g2.BUNGALOWxFECHA 
+		 where inf245g2.BUNGALOWxFECHA.Fecha = #{fReserva}))
+</update>
 
 <!-- Agregar plantilla Sorteo -->
 <insert id="insertPlantillaSorteo" parameterType="IngSoft.servicio.bean.SorteoBeanData" flushCache="true">
 	insert into SORTEO(idSede,idSorteo,FechaInicioIncr,Descripcion,FechaFinInscr,FechaSorteo, Flag, Estado)
 	values (#{idSede},#{idSorteo},#{fechaInicio},#{descripcion},#{fechaFin},#{fechaSorteo},0,'ACTIVADO')
 </insert>
+
+<select id="getFechaReserva" resultType="java.util.Date" parameterType="java.lang.String">
+	select FechaSorteo from SORTEO where IdSorteo=#{codSorteo}	
+</select>
+<insert id="agregarBungalowsSorteo" parameterType="IngSoft.servicio.bean.BungalowSorteoData" flushCache="true">
+	insert into BUNGALOWxSORTEO(IdBungalow,IdSorteo,Monto)
+	values (#{idBungalow},#{idSorteo},0);
+</insert>
+
 <select id="getNextCodigo" resultType="java.lang.String">
 	select max(IdSorteo) from SORTEO	
 </select>
