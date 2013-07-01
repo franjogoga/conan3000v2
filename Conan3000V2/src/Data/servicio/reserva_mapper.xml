@@ -230,6 +230,7 @@ left join
 RESERVA_BUNGALOWxSERV_ADICIONA brsa
 on sa.IdServAdicional=brsa.IdServAdicional
 where sa.Estado='Activo'
+and sa.Tipo not in ('Corporativo')
 and (brsa.IdReservaBungalow=#{codigo} or brsa.IdReservaBungalow is null)
 order by 3,4
 </select>
