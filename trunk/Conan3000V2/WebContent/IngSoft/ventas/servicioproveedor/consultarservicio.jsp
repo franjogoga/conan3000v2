@@ -124,10 +124,10 @@
 						<a href="/Conan3000V2/IngSoft/general/index.jsp">Home</a> <span class="divider">/</span>
 					</li>
 					<li>
-						<a href="buscarsocio.jsp">Mantenimiento de Servicio</a> <span class="divider">/</span>
+						<a href="buscarsocio.jsp">Mantenimiento de Servicio de Proveedor</a> <span class="divider">/</span>
 					</li>
 					<li>
-						Consultar de Servicio
+						Consultar de Servicio de Proveedor
 					</li>
 				</ul>
 			</div>
@@ -135,7 +135,7 @@
 			<div class="row-fluid sortable">
 				<div class="box span12">
 					<div class="box-header well" data-original-title>
-					  <h2><i class="icon-plus-sign"></i>CONSULTAR SERVICIO</h2>
+					  <h2><i class="icon-plus-sign"></i>CONSULTAR SERVICIO DE PROVEEDOR</h2>
 				  </div>
 					<div class="box-content">
 						<form class="form-horizontal" action="<%= response.encodeURL("SMVServicio")%>" name="frmData" method="POST">
