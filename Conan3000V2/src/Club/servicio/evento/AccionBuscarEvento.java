@@ -1,23 +1,16 @@
 package Club.servicio.evento;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Vector;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
 import IngSoft.general.CoAccion;
 import IngSoft.general.CoException;
-import IngSoft.servicio.bean.CriterioEventoBeanData;
-import IngSoft.servicio.bean.CriterioEventoBeanFunction;
 import IngSoft.servicio.bean.EventoBeanData;
 import IngSoft.servicio.bean.EventoBeanFuncion;
-import IngSoft.servicio.bean.ResultadoEventoBeanData;
 import IngSoft.servicio.bean.SedeMiniBeanData;
-import IngSoft.servicio.bean.TipoEventoMiniBeanData;
 
 public class AccionBuscarEvento extends CoAccion{
 
