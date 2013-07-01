@@ -918,7 +918,7 @@ body #rt-logo {
 							<div class="rt-block">
 								<ul class="menu-footer">
 									<li id="item-101" class="current active"><a
-										href="index.html"><span>Principal</span></a></li>
+										href="#"><span>Principal</span></a></li>
 									<li id="item-116" class="parent"><a
 										href="#"><span>Nosotros</span></a></li>
 									<li id="item-117"><a href="#"><span>Servicios</span></a></li>
