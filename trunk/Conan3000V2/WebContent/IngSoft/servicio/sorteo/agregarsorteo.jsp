@@ -1,5 +1,8 @@
 <!DOCTYPE html>
+<%@page import="java.util.Date"%>
+<%@page import="IngSoft.servicio.bean.Utils"%>
 <%@page import="IngSoft.servicio.bean.SedeMiniBeanData"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <html lang="en">
 <head>
 	<!--
@@ -160,24 +163,25 @@
 						  <div class="control-group" id="dvFechaInicio">
 			              <label class="control-label" for="date01">Fecha de inicio(*):</label>
 			                <div class="controls">
-			                  <input type="text" name="fFecInicio" class="input-xlarge datepicker" id="fFecInicio" value="" readonly="true" >
+			                  <input type="text" name="fFecInicio" class="input-xlarge datepicker" id="fFecInicio"  readonly="true" value="<%=new SimpleDateFormat("dd/MM/yyyy").format(Utils.fechaMas(new Date(), 1))%>" onchange="verificar_fecha(1,this,'fFecFin');" >
 			                  <span class="help-inline" id="errFechaInicio">Please correct the error</span>
 		                    </div>
 		                  </div>
 			              <div class="control-group" id="dvFechaFin">
 			                <label class="control-label" for="date02">Fecha de fin(*):</label>
 			                <div class="controls">
-			                  <input type="text" name="fFecFin" class="input-xlarge datepicker" id="fFecFin" value="" readonly="true" onchange="verificar_fecha(1,this,'fFecInicio');" >
+			                  <input type="text" name="fFecFin" class="input-xlarge datepicker" id="fFecFin"  readonly="true" value="<%=new SimpleDateFormat("dd/MM/yyyy").format(Utils.fechaMas(new Date(), 8))%>" onchange="verificar_fecha(-1,this,'fFecInicio');" >
 			                  <span class="help-inline" id="errFechaFin">Please correct the error</span>
 		                    </div>
 		                  </div>
 							<div class="control-group" id="dvFechaSorteo">
 			                <label class="control-label" for="date03">Fecha de Sorteo(*):</label>
 			                <div class="controls">
-			                  <input type="text" name="fFecSorteo" class="input-xlarge datepicker" id="fFecSorteo" value="" readonly="true" onchange="verificar_fecha(1,this,'fFecFin');" >
+			                  <input type="text" name="fFecSorteo" class="input-xlarge datepicker" id="fFecSorteo"  readonly="true" value="<%=new SimpleDateFormat("dd/MM/yyyy").format(Utils.fechaMas(new Date(), 8))%>" onchange="verificar_fecha(-1,this,'fFecFin');"  >
 			                  <span class="help-inline" id="errFechaSorteo">Please correct the error</span>
 		                    </div>
 		                  </div>
+		                  
 							<div class="form-actions">
 							  <button type="button" class="btn btn-primary" onclick="javascript:alt_submit()">BuscarBungalows</button>
 							  <button type="button" class="btn" onclick="location.href='buscarsorteo.jsp'" >Cancelar</button>
