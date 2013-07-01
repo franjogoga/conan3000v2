@@ -81,14 +81,14 @@ function validaForm(){
 	if(!esValido("Fecha",form.fFechaNacimiento,"Fecha",2,1,10)){cadena[i]="Fecha de Nacimiento";i++;}
 	if(!esValido("Tipo de Documento",form.rButton,"Tipo",3,1,100)){cadena[i]="Tipo de Documento";i++;}
 	//if(!esValido("Direccion",form.txtDireccion,"Direccion",1,1,100)){cadena[i]="Direccion";i++;}
-	if(!esValido("Numero Documento",form.txtNumeroDocumento,"NumDoc",1,1,9)){cadena[i]="Numero de documento";i++;}else{
+	if(!esValido("Numero Documento",form.txtNumeroDocumento,"NumDoc",1,8,11)){cadena[i]="Numero de documento";i++;}else{
 		if(!esValido("Numero Documento",form.txtNumeroDocumento,"NumDoc",6,1,50)){cadena[i]="Numero de documento";i++;}
 	}
 	
-	if(!esValido("Telefono Fijo",form.txtTelefonoF,"TelefonoFijo",1,1,7)){cadena[i]="Telefono Fijo";i++;}else{
+	if(!esValido("Telefono Fijo",form.txtTelefonoF,"TelefonoFijo",1,7,7)){cadena[i]="Telefono Fijo";i++;}else{
 		if(!esValido("Telefono Fijo",form.txtTelefonoF,"TelefonoFijo",6,1,50)){cadena[i]="Telefono Fijo";i++;}
 	}
-	if(!esValido("Telefono Celular",form.txtTelefonoC,"TelefonoCelular",1,1,9)){cadena[i]="Telefono Celular";i++;}else{
+	if(!esValido("Telefono Celular",form.txtTelefonoC,"TelefonoCelular",1,9,9)){cadena[i]="Telefono Celular";i++;}else{
 		if(!esValido("Telefono Celular",form.txtTelefonoC,"TelefonoCelular",6,1,50)){cadena[i]="Telefono Celular";i++;}
 	}
 	
