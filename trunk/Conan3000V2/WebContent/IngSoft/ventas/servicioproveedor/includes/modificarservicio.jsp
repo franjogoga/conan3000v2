@@ -43,7 +43,7 @@ function alt_submit(){
 			<div class="row-fluid sortable">
 				<div class="box span12">
 					<div class="box-header well" data-original-title>
-						<h2>MODIFICAR  SERVICIO				  </h2>
+						<h2>MODIFICAR  SERVICIO	DE PROVEEDOR			  </h2>
 				  </div>
 					<div class="box-content">
 						<form class="form-horizontal" name="frmUpdate" method="Post" action="<%= response.encodeURL("SMVServicio")%>">
