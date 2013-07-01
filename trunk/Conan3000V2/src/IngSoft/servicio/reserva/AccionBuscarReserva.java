@@ -12,19 +12,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.mysql.jdbc.Util;
-
 import IngSoft.administracion.bean.CanchaBeanFunction;
 import IngSoft.administracion.bean.TipoCanchaMiniBeanData;
 import IngSoft.general.CoAccion;
 import IngSoft.general.CoException;
 import IngSoft.general.bean.Conan3000Constantes;
-import IngSoft.servicio.bean.CriterioEventoBeanData;
-import IngSoft.servicio.bean.CriterioEventoBeanFunction;
 import IngSoft.servicio.bean.ReservaBeanFuncion;
 import IngSoft.servicio.bean.ReservaBungalowMiniBeanData;
 import IngSoft.servicio.bean.ReservaCanchaMiniBeanData;
-import IngSoft.servicio.bean.ResultadoEventoBeanData;
 import IngSoft.servicio.bean.SedeMiniBeanData;
 import IngSoft.servicio.bean.ServicioAdicionalBeanData;
 import IngSoft.servicio.bean.Utils;
