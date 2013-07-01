@@ -89,3 +89,12 @@ $('.datatable').dataTable({
 		concesionario='';
 		
 	}
+	
+		function agregarfilar(){
+		var num=parseInt($('#txtAgregarFilas').val());
+		for(i=0;i<num;i++){
+			$('#listainvitados').html($('#listainvitados').html()+"<input id='appendedInputButton' size='16' type='text' id='txtDNIinvitado' value='DNI'/><input id='appendedInputButton' size='16' type='text' value='Nombre'/><input id='appendedInputButton' size='16' type='text' value='Apellido Paterno'/><input id='appendedInputButton' size='16' type='text' value='Apellido Materno'/><br/>");		
+		}
+		}
+				
+		
