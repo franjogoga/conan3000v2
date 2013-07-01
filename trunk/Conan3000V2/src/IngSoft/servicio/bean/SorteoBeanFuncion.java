@@ -4,6 +4,7 @@ import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 import java.util.Vector;
@@ -39,18 +40,64 @@ public class SorteoBeanFuncion {
 			}catch(Exception e){
 				e.printStackTrace();		
 			}
+			SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+			String codigo= (String)sqlsesion.selectOne("Data.servicio.sorteo.getNextCodigo");
+			if(codigo!=null){
+			int cod= Integer.parseInt(codigo.substring(3))+1;
+			String defecto= "000000";
+			String temp= defecto.substring(0, defecto.length()-String.valueOf(cod).length()).concat(String.valueOf(cod));
+			
+			sorteoData.setIdSorteo(codigo.substring(0,3).concat(temp));}
+			else sorteoData.setIdSorteo("PSO000001");
 			return sorteoData;		
 		} 
 	
 	
-	public Vector<String> getBungalowsSorteo(Date fSorteo){
+	public void agregaFechaReserva(String idBungalow,String idSocio,Date fReserva) throws CoException{
+		l.lock();
+		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+		try {			
+			HashMap<String, Object> map=new HashMap<String, Object>();
+			map.put("idBungalow", idBungalow);
+			map.put("idSocio", idSocio);
+			map.put("fReserva", fReserva);
+			sqlsesion.update("Data.servicio.sorteo.eliminarReservaBungalow", map);
+		}
+			catch(Exception a)
+			
+			{sqlsesion.rollback();
+			a.printStackTrace();
+				throw CoException.set("Error: Error de la BD", "SMSSorteo?accion=Buscar&tipo=1");
+				
+			}
+			
+			finally{
+				sqlsesion.commit();
+				sqlsesion.close();
+				l.unlock();					
+			}
+	}
+	public Date getFechaReserva(String codSorteo){
+		Date fReserva=null;
+		try {
+			SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+			
+			fReserva =sqlsesion.selectOne("Data.servicio.sorteo.getFechaReserva",codSorteo);
+			fReserva=Utils.fechaMas(fReserva, 8);
+			return fReserva;		
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return fReserva;
+	}
+	public Vector<String> getBungalowsSorteo(SorteoBeanData sorteoData){
 		Vector<String>  bungalows= new Vector<>();
 		try{
 			
 			SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 			
-			java.sql.Date fecha = new java.sql.Date(fSorteo.getTime());
-			List<String> bunga =sqlsesion.selectList("Data.servicio.sorteo.getBungalows",fecha);
+			java.sql.Date fecha = new java.sql.Date(sorteoData.getFechaSorteo().getTime());
+			List<String> bunga =sqlsesion.selectList("Data.servicio.sorteo.getBungalows",sorteoData);
 			bungalows = new Vector<>(bunga);
 			}catch(Exception e){
 				e.printStackTrace();		
@@ -119,14 +166,7 @@ public class SorteoBeanFuncion {
 			l.lock();
 			SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 			try{
-				String codigo= (String)sqlsesion.selectOne("Data.servicio.sorteo.getNextCodigo");
-				if(codigo!=null){
-				int cod= Integer.parseInt(codigo.substring(3))+1;
-				String defecto= "000000";
-				String temp= defecto.substring(0, defecto.length()-String.valueOf(cod).length()).concat(String.valueOf(cod));
 				
-				sorteoData.setIdSorteo(codigo.substring(0,3).concat(temp));}
-				else sorteoData.setIdSorteo("PSO000001");
 				sqlsesion.insert("insertPlantillaSorteo",sorteoData);
 				resultado=true;
 			}
