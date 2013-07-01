@@ -88,22 +88,25 @@ function validaForm(){
 	var i=0;
 	var error=false;
 	
-	if(!esValido("Codigo Socio",form.txtSocio,"Codigo",1,1,9)){cadena[i]="Codigo Socio";i++;}
+	if(!esValido("Codigo Socio",form.txtSocio,"Codigo",1,9,9)){cadena[i]="Codigo Socio";i++;}
 	if(!esValido("Nombres",form.txtNombres,"Nombres",1,1,50)){cadena[i]="Nombres";i++;}
 	if(!esValido("Apellido Paterno",form.txtApellidoPaterno,"ApellidoP",1,1,50)){cadena[i]="Apellido Paterno";i++;}
 	if(!esValido("Apellido Materno",form.txtApellidoMaterno,"ApellidoM",1,1,50)){cadena[i]="Apellido Materno";i++;}
-	if(!esValido("Telefono Fijo",form.txtTelefonoF,"TelefonoF",1,1,9)){cadena[i]="Telefono Fijo";i++;}else{
-		if(!esValido("Telefono Fijo",form.txtTelefonoF,"TelefonoF",6,1,50)){cadena[i]="Telefono Fijo";i++;}
-	}
-	if(!esValido("Telefono Celular",form.txtTelefonoC,"TelefonoC",1,1,9)){cadena[i]="Telefono Celular";i++;}else{
-		if(!esValido("Telefono Celular",form.txtTelefonoC,"TelefonoC",6,1,50)){cadena[i]="Telefono Celular";i++;}
-	}
-		if(!esValido("Numero Documento",form.txtNumeroDocumento,"NumDoc",1,1,9)){cadena[i]="Numero de documento";i++;}else{
-		if(!esValido("Numero Documento",form.txtNumeroDocumento,"NumDoc",6,1,50)){cadena[i]="Numero de documento";i++;}
-	}
-	if(!esValido("Correo Electronico",form.txtCorreo,"Correo",9,1,100)){cadena[i]="Correo Electronico";i++;}
 	if(!esValido("Fecha",form.fFechaNacimiento,"Fecha",2,1,10)){cadena[i]="Fecha de Nacimiento";i++;}
 	if(!esValido("Tipo de Documento",form.rButton,"Tipo",3,1,100)){cadena[i]="Tipo de Documento";i++;}
+	if(!esValido("Numero Documento",form.txtNumeroDocumento,"NumDoc",8,11)){cadena[i]="Numero de documento";i++;}else{
+		if(!esValido("Numero Documento",form.txtNumeroDocumento,"NumDoc",6,1,50)){cadena[i]="Numero de documento";i++;}
+	}
+	if(!esValido("Telefono Fijo",form.txtTelefonoF,"TelefonoF",1,7,7)){cadena[i]="Telefono Fijo";i++;}else{
+		if(!esValido("Telefono Fijo",form.txtTelefonoF,"TelefonoF",6,1,50)){cadena[i]="Telefono Fijo";i++;}
+	}
+	if(!esValido("Telefono Celular",form.txtTelefonoC,"TelefonoC",1,9,9)){cadena[i]="Telefono Celular";i++;}else{
+		if(!esValido("Telefono Celular",form.txtTelefonoC,"TelefonoC",6,1,50)){cadena[i]="Telefono Celular";i++;}
+	}
+		
+	if(!esValido("Correo Electronico",form.txtCorreo,"Correo",9,1,100)){cadena[i]="Correo Electronico";i++;}
+	
+	
 	
 	
 	//No tocar
