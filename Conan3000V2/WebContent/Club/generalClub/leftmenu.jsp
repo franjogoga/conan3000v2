@@ -1,7 +1,7 @@
 <div class="span2 main-menu-span">
 				<div class="well nav-collapse sidebar-nav">
 					<ul class="nav nav-tabs nav-stacked main-menu">
-                        <li><a class="ajax-link" href="<%=request.getContextPath()%>/IngSoft/general/index.jsp"><i class="icon-home"></i><span class="hidden-tablet"> Home</span></a></li>
+                        <li><a class="ajax-link" href="<%=request.getContextPath()%>/Club/generalClub/index.jsp"><i class="icon-home"></i><span class="hidden-tablet"> Home</span></a></li>
    						
    						<a style="CURSOR: hand; text-decoration:none" href="#"> <li class="nav-header hidden-tablet" onclick="$('.administracion').slideToggle(800)">Servicios</li> </a>
    						<li><a class="ajax-link administracion" href="<%=request.getContextPath()%>/Club/servicio/sorteo/buscarInscripcionSorteo.jsp"><i class="icon-wrench"></i><span class="hidden-tablet"> Sorteos</span></a></li>
