@@ -49,6 +49,7 @@ and es.IdSede like #{sede}
 and DATE(es.Fecha) &gt;= DATE(#{FI})
 and DATE(es.Fecha) &lt;= DATE(#{FF})
 and es.Nombre like #{nombre}
+order by 3
 </select>
 
 <select id="searchEventoSocioMini" parameterType="hashmap" resultType="IngSoft.servicio.bean.EventoBeanData">
@@ -69,6 +70,27 @@ and DATE(so.Fecha) &gt;= DATE(#{FI})
 and DATE(so.Fecha) &lt;= DATE(#{FF})
 and so.Nombre like #{nombre}
 and so.IdSocio like #{socio}
+order by 3
+</select>
+<select id="searchEventoCorpMini" parameterType="hashmap" resultType="IngSoft.servicio.bean.EventoBeanData">
+select 
+ec.IdEventoCorp as codigo
+,ec.Nombre as nombre
+,ec.Fecha as fecha
+,s.Nombre as idSede
+,ec.Estado as estado
+from 
+EVENTO_CORPORATIVO ec
+, SEDE s 
+where 
+ec.IdSede= s.IdSede
+and ec.Estado like #{estado}
+and ec.IdSede like #{sede}
+and DATE(ec.Fecha) &gt;= DATE(#{FI})
+and DATE(ec.Fecha) &lt;= DATE(#{FF})
+and ec.Nombre like #{nombre}
+and ec.IdPersonaJuridica like #{corporativo}
+order by 3
 </select>
 
 
@@ -102,6 +124,9 @@ and so.IdSocio like #{socio}
 <update id="aprobarEventoSede" parameterType="java.lang.String">
 	update EVENTO_SEDE set Estado='APROBADO' where IdEventoSede=#{codigo};	
 </update>
+<update id="aprobarEventoCorp" parameterType="java.lang.String">
+	update EVENTO_CORPORATIVO set Estado='APROBADO' where IdEventoCorp=#{codigo};	
+</update>
 <!-- Fin aprobar eventos -->
 <!-- Anular eventos -->
 <update id="anularEventoSocio" parameterType="java.lang.String">
@@ -110,6 +135,20 @@ and so.IdSocio like #{socio}
 <update id="anularEventoSede" parameterType="java.lang.String">
 	update EVENTO_SEDE set Estado='ANULADO' where IdEventoSede=#{codigo};	
 </update>
+<update id="anularEventoCorp" parameterType="java.lang.String">
+	update EVENTO_CORPORATIVO set Estado='ANULADO' where IdEventoCorp=#{codigo}; 	
+</update>
+<update id="anularEventoCorpMasivo" parameterType="hashmap">
+update EVENTO_CORPORATIVO set Estado='ANULADO' where Date(Fecha)=Date(#{fecha}) and IdSede = #{sede};
+</update>
+<update id="anularEventoSedeMasivo" parameterType="hashmap">
+update EVENTO_SEDE set Estado='ANULADO' where Date(Fecha)=Date(#{fecha}) and IdSede = #{sede};
+</update>
+<update id="anularEventoSocioMasivo" parameterType="hashmap">
+update EVENTO_SOCIO set Estado='ANULADO' where Date(Fecha)=Date(#{fecha}) and IdSede = #{sede};
+</update>
+
+
 <!-- Fin Anular eventos -->
 <!-- Generar codigos -->
 <select id="getNextCodigoSdE" resultType="java.lang.String">
@@ -188,6 +227,30 @@ FROM EVENTO_SOCIO
 where
 IdEventoSocio like #{codigo};
 </select>
+<select id="searchEventoCorp"  parameterType="java.lang.String" resultType="IngSoft.servicio.bean.EventoBeanData">
+SELECT
+IdEventoCorp as codigo,
+Nombre as nombre,
+IdPersonaJuridica as juridica,
+IdSede as idSede,
+Fecha as fecha,
+MontoTotal as monto,
+IdConcesionario as idConcesionario,
+Estado as estado
+FROM EVENTO_CORPORATIVO  
+where
+IdEventoCorp like #{codigo}
+;
+</select>
+<select id="getInvitadosEventosCorp" parameterType="java.lang.String" resultType="IngSoft.servicio.bean.InvitadosMiniBeanData">
+select 
+ie.Dni,ie.Nombres,ie.ApePaterno,ie.ApeMaterno
+from 
+INVITADOxEVENTO_CORP iec
+,INVITADO_EVENTO ie 
+where iec.Dni=ie.Dni
+and iec.IdEventoCorp like #{codigo}
+</select>
 
 <!-- consultar solicitudes -->
 <!-- Modificar elemento -->
@@ -261,9 +324,23 @@ and sa.Tipo ='Corporativo'
 and (ecsa.IdEventoCorp = #{codigo} or ecsa.IdEventoCorp is null)
 order by 3,4
 </select>
+<select id="getjuridica" parameterType="java.lang.String" resultType="IngSoft.servicio.bean.PersonaJuridicaBeanData">
+select 
+IdPersonaJuridica as codigo,
+RazonSocial as razonSocial,
+Ruc as ruc,
+Direccion as direccion,
+Telefono as telefono,
+Correo as Correo,
+IdDistrito as IdDistrito,
+Estado as Estado
+from PERSONA_JURIDICA p where p.Ruc = #{codigo}; 
+
+</select>
 <insert id="insertInvitado" parameterType="hashmap" flushCache="true">
 insert ignore into INVITADO_EVENTO (Dni,Nombres,ApePaterno,ApeMaterno) values(#{dni},#{nombre},#{apepat},#{apemat});
 </insert>
+
 <insert id="insertInvitadoEvento" parameterType="hashmap" flushCache="true">
 insert ignore into INVITADOxEVENTO_CORP(Dni,IdEventoCorp) values (#{dni},#{codigo});
 </insert>

@@ -3,6 +3,7 @@ package Club.servicio.evento;
 import java.io.IOException;
 import java.util.Vector;
 
+import javax.faces.bean.SessionScoped;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,7 +14,7 @@ import IngSoft.servicio.bean.ConcesionarioMiniBeanData;
 import IngSoft.servicio.bean.EventoBeanData;
 import IngSoft.servicio.bean.EventoBeanFuncion;
 import IngSoft.servicio.bean.SedeMiniBeanData;
-
+@SessionScoped
 public class AccionConsultarEvento extends CoAccion {
 
 	@Override

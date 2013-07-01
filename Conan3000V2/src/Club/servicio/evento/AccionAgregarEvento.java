@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Vector;
 
+import javax.faces.bean.SessionScoped;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,7 +18,7 @@ import IngSoft.servicio.bean.ConcesionarioMiniBeanData;
 import IngSoft.servicio.bean.EventoBeanData;
 import IngSoft.servicio.bean.EventoBeanFuncion;
 import IngSoft.servicio.bean.SedeMiniBeanData;
-
+@SessionScoped
 public class AccionAgregarEvento extends CoAccion {
 
 	@Override

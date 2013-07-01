@@ -70,9 +70,15 @@
 	obj.value=obj.value.slice(0,5);
 	
 	}
-	function alt_agregar(){
+	function alt_agregarS(){
 		var form=document.getElementById("frmAlternativo");
 		form.accion.value="Agregar";
+		form.submit();
+	}
+	function alt_agregarC(){
+		var form=document.getElementById("frmAlternativo");
+		form.accion.value="Agregar";
+		form.tipo.value="4";
 		form.submit();
 	}
 	function alt_consultar(cod){	
@@ -239,9 +245,13 @@
                             
                             <div align="right">
                             
-                                <a class="btn btn-primary" href="javascript:alt_agregar()">
+                                  <a class="btn btn-primary" href="javascript:alt_agregarS()">
                                     <i class="icon icon-add icon-white"></i>
-                                    Agregar
+                                    Agregar E. Sede
+                                </a>
+                              	<a class="btn btn-primary" href="javascript:alt_agregarC()">
+                                    <i class="icon icon-add icon-white"></i>
+                                    Agregar E. Corporativo
                                 </a>
                               
                              </div>          

@@ -3,6 +3,7 @@ package Club.servicio.evento;
 import java.util.HashMap;
 import java.util.Vector;
 
+import javax.faces.bean.SessionScoped;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,7 +12,7 @@ import IngSoft.general.CoException;
 import IngSoft.servicio.bean.EventoBeanData;
 import IngSoft.servicio.bean.EventoBeanFuncion;
 import IngSoft.servicio.bean.SedeMiniBeanData;
-
+@SessionScoped
 public class AccionBuscarEvento extends CoAccion{
 
 	@Override

@@ -73,7 +73,7 @@
 		<div class="clear"></div>
 		<div class="content">
 			Ingrese de nuevo
-			<br/><a href="login.jsp">Ir al login</a>
+			<br/><a href="<%=request.getContextPath()%>/IngSoft/general/login.jsp">Ir al login</a>
 		</div>
 	</body>
 </html>

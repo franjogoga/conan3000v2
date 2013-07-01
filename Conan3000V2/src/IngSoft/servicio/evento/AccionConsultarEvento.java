@@ -3,6 +3,7 @@ package IngSoft.servicio.evento;
 import java.io.IOException;
 import java.util.Vector;
 
+import javax.faces.bean.SessionScoped;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,10 +13,11 @@ import IngSoft.general.CoException;
 import IngSoft.servicio.bean.ConcesionarioMiniBeanData;
 import IngSoft.servicio.bean.EventoBeanData;
 import IngSoft.servicio.bean.EventoBeanFuncion;
+import IngSoft.servicio.bean.InvitadosMiniBeanData;
 import IngSoft.servicio.bean.JuridicaBeanFuncion;
 import IngSoft.servicio.bean.PersonaJuridicaBeanData;
 import IngSoft.servicio.bean.SedeMiniBeanData;
-
+@SessionScoped
 public class AccionConsultarEvento extends CoAccion {
 
 	@Override
@@ -31,8 +33,11 @@ public class AccionConsultarEvento extends CoAccion {
 		if(codigo!=null && !codigo.isEmpty()){
 			switch(codigo.substring(0, 3)){
 			case "ESC": eventoData=eventoFuncion.consultarEventoSocio(codigo);break;
-			case "ESD": eventoData=eventoFuncion.consultarEventoSede(codigo);break;				
-			}
+			case "ESD": eventoData=eventoFuncion.consultarEventoSede(codigo);break;
+			case "ECP": eventoData=eventoFuncion.consultarEventoCorp(codigo);
+			Vector<InvitadosMiniBeanData> invitados=eventoFuncion.consultarInvitadosEventoCorp(codigo);
+			request.setAttribute("invitados", invitados);
+			break;				}
 		}
 		Vector<SedeMiniBeanData> sedeMiniData=eventoFuncion.getSedes();		
 		Vector<ConcesionarioMiniBeanData> resultado=eventoFuncion.consultarConcesionariosxSede(eventoData.getIdSede(), eventoData.getFecha());
@@ -53,6 +58,7 @@ public class AccionConsultarEvento extends CoAccion {
 				switch(codigo.substring(0, 3)){
 				case "ESC": eventoFuncion.aprobarEventoSocio(codigo);break;
 				case "ESD": eventoFuncion.aprobarEventoSede(codigo);break;
+				case "ECP": eventoFuncion.aprobarEventoCorp(codigo);break;
 					
 				}
 			}
@@ -68,6 +74,7 @@ public class AccionConsultarEvento extends CoAccion {
 				switch(codigo.substring(0, 3)){
 				case "ESC": eventoFuncion.anularEventoSocio(codigo);break;
 				case "ESD": eventoFuncion.anularEventoSede(codigo);break;
+				case "ECP": eventoFuncion.anularEventoCorp(codigo);break;
 					
 				}
 			}
@@ -79,9 +86,9 @@ public class AccionConsultarEvento extends CoAccion {
 			
 		}
 		if(tipo==4){
-			PersonaJuridicaBeanData temp=JuridicaBeanFuncion.getInstance().consultarJuridica( request.getParameter("codigo"));
+			PersonaJuridicaBeanData temp=eventoFuncion.getInstance().consultarJuridica( request.getParameter("codigo"));
 			 try {
-					response.getWriter().write( temp.getCodigo()+temp.getRazonSocial());
+					response.getWriter().write( temp.getCodigo()+"@"+temp.getRazonSocial());
 				} catch (IOException e) {				
 					e.printStackTrace();
 				}

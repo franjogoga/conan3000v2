@@ -3,6 +3,7 @@ package IngSoft.servicio.evento;
 import java.util.HashMap;
 import java.util.Vector;
 
+import javax.faces.bean.SessionScoped;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,7 +12,7 @@ import IngSoft.general.CoException;
 import IngSoft.servicio.bean.EventoBeanData;
 import IngSoft.servicio.bean.EventoBeanFuncion;
 import IngSoft.servicio.bean.SedeMiniBeanData;
-
+@SessionScoped
 public class AccionBuscarEvento extends CoAccion{
 
 	@Override
@@ -25,9 +26,11 @@ public class AccionBuscarEvento extends CoAccion{
 			HashMap<String, Object> map =eventoFuncion.crearCriterio(request,response);
 		Vector<EventoBeanData> resultados1=eventoFuncion.buscarSolicitudesEventoSede(map);
 		Vector<EventoBeanData> resultados2=eventoFuncion.buscarSolicitudesEventoSocio(map);
+		Vector<EventoBeanData> resultados3=eventoFuncion.buscarSolicitudesEventoCorp(map);
 		Vector<EventoBeanData> resultados= new Vector<EventoBeanData>();
 		resultados.addAll(resultados1);
 		resultados.addAll(resultados2);
+		resultados.addAll(resultados3);
 		resultados.trimToSize();
 		request.setAttribute("resultados", resultados);
 		this.direccionar(sc, request, response, "/IngSoft/servicio/evento/resultados.jsp");
