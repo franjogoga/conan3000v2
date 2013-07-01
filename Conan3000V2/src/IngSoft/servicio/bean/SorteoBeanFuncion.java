@@ -96,7 +96,6 @@ public class SorteoBeanFuncion {
 			
 			SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 			
-			java.sql.Date fecha = new java.sql.Date(sorteoData.getFechaSorteo().getTime());
 			List<String> bunga =sqlsesion.selectList("Data.servicio.sorteo.getBungalows",sorteoData);
 			bungalows = new Vector<>(bunga);
 			}catch(Exception e){
