@@ -118,6 +118,9 @@ and so.IdSocio like #{socio}
 <select id="getNextCodigoScE" resultType="java.lang.String">
 	select Max(IdEventoSocio) from  EVENTO_SOCIO	
 </select>
+<select id="getNextCodigoSjE" resultType="java.lang.String">
+	select Max(IdEventoCorp) from  EVENTO_CORPORATIVO	
+</select>
 <!-- Fin generar codigo -->
 <!-- insertar solicitudes -->
 <insert id="insertEventoxSede" parameterType="hashmap">
@@ -237,4 +240,36 @@ and DATE(es.Fecha) &lt;= DATE(#{FF})
 and es.Nombre like #{nombre}
 </select>
 <!-- Fin Inscribir en Evento sede -->
+<select id="getServiciosAdicionales" parameterType="java.lang.String"  resultType="IngSoft.servicio.bean.ServicioAdicionalBeanData">
+SELECT
+sa.IdServAdicional as codigo,
+sa.Nombre,
+sa.Tipo,
+sa.Monto,
+sa.Descripcion,
+sa.Estado
+,case when ecsa.IdEventoCorp is null then 'NO'			
+	  when ecsa.IdEventoCorp is not null then 'SI'				
+		END as Registrado
+FROM 
+SERV_ADICIONAL sa
+left join 
+EVENTO_CORPxSERV_ADICIONAL ecsa
+on sa.IdServAdicional=ecsa.IdServAdicional
+where sa.Estado='Activo'
+and sa.Tipo ='Corporativo'
+and (ecsa.IdEventoCorp = #{codigo} or ecsa.IdEventoCorp is null)
+order by 3,4
+</select>
+<insert id="insertInvitado" parameterType="hashmap" flushCache="true">
+insert ignore into INVITADO_EVENTO (Dni,Nombres,ApePaterno,ApeMaterno) values(#{dni},#{nombre},#{apepat},#{apemat});
+</insert>
+<insert id="insertInvitadoEvento" parameterType="hashmap" flushCache="true">
+insert ignore into INVITADOxEVENTO_CORP(Dni,IdEventoCorp) values (#{dni},#{codigo});
+</insert>
+<insert id="insertEventoCorporativo" parameterType="hashmap" flushCache="true">
+insert into EVENTO_CORPORATIVO(IdEventoCorp,Nombre,IdSede,IdPersonaJuridica,Fecha,MontoTotal,IdConcesionario,Estado) 
+values(#{codigo},#{nombre},#{sede},#{corporativo},#{fecha},#{monto},#{concesionario},'REGISTRADO');
+</insert>
+
 </mapper>
