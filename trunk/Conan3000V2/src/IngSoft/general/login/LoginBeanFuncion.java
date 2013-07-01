@@ -39,7 +39,7 @@ public class LoginBeanFuncion {
 		request.getSession().setAttribute("idSocio", idSocio);
 		
 		if (user.equals(u) && pass.equals(p)){
-			sesion.setMaxInactiveInterval(10*60);
+			sesion.setMaxInactiveInterval(120*60);
 			sesion.setAttribute("username",user);
 			String perfil = (String)sqlsesion.selectOne("getPerfilUsuario",pass);
 			request.getSession().setAttribute("idPerfil", perfil);
