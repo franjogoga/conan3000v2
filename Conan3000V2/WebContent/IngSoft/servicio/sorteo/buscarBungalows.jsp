@@ -235,7 +235,7 @@
 										<label class="control-label">Bungalows</label>
 									
 										<div class="controls">
-											<% for(int i=1; i<resultados.size(); i++) { %>
+											<% for(int i=0; i<resultados.size(); i++) { %>
 										   		<label class="checkbox inline">
 													<input type="checkbox" name="checkAcciones" value="<%=resultados.get(i)%>"> <%=resultados.get(i)%>
 												</label>	
