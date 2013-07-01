@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%@page import="IngSoft.servicio.bean.InvitadosMiniBeanData"%>
 <%@page import="IngSoft.servicio.bean.ConcesionarioMiniBeanData"%>
 <%@page import="IngSoft.servicio.bean.EventoBeanData"%>
 <%@page import="java.util.Date"%>
@@ -26,6 +27,7 @@
 	<meta name="author" content="Muhammad Usman">
 	<!--The beans  -->
 	<jsp:useBean id="sedes" scope="request"class="java.util.Vector"></jsp:useBean>
+	<jsp:useBean id="invitados" scope="request"class="java.util.Vector"></jsp:useBean>
 	<jsp:useBean id="evento" scope="request"class="IngSoft.servicio.bean.EventoBeanData"></jsp:useBean>
 	<jsp:useBean id="concesionario" scope="request"class="IngSoft.servicio.bean.ConcesionarioMiniBeanData"></jsp:useBean>
 	
@@ -222,7 +224,7 @@
 								<span class="help-inline" id="errNombreEvento" style="display:none;">Este campo no puede estar vacio</span>						        													       
 					          </div>
 					        </div>
-					        <%if(modo.equals("ESC")){ %>
+					        <%if(modo.equals("ESC")|| modo.equals("ESD")){ %>
 					        	<div class="control-group">
 						      <label class="control-label" for="txtCosto">Costo Reserva Salon Principal: </label>
 						      <div class="controls">
@@ -246,7 +248,7 @@
 									<input  id="txtPrecio" class="span4" name="txtPrecio" readonly="true"  type="text"  value="<%=((EventoBeanData)evento).getMonto()%>">									
 					        </div>
 					        </div>					 
-					        <%} %>  
+					        <%}%>					        						     
 							  <div class="control-group">
 								<label class="control-label" for="cmbSedes">Sede relacionada:</label>
 								<div class="controls">
@@ -275,8 +277,19 @@
 								  <div>
 								  <input id="appendedInputButton" size="16" type="text" readonly="true" value="<%=((ConcesionarioMiniBeanData)concesionario).getRazonSocial()%>"><button class="btn" disabled="disabled" type="button">X</button>
 								  </div><%} %></div>
-								  
+								 
 							</div>
+							<%if(modo.equals("ECP")){ %>
+							<div class="control-group">
+							  <label class="control-label" for="txtDNIinvitado">Invitados:</label>
+							  <div class="controls" id="listainvitados">
+									<%for(int i=0;i<invitados.size();i++){%>
+									<input id="appendedInputButton" size="16" type="text" readonly="readonly" value="<%=((InvitadosMiniBeanData)invitados.get(i)).getDni()%>"/><input id="appendedInputButton" size="16" type="text" readonly="readonly" value="<%=((InvitadosMiniBeanData)invitados.get(i)).getNombres()%>"/><input id="appendedInputButton" size="16" type="text" readonly="readonly" value="<%=((InvitadosMiniBeanData)invitados.get(i)).getApePaterno()%>"/><input id="appendedInputButton" size="16" type="text"  readonly="readonly" value="<%=((InvitadosMiniBeanData)invitados.get(i)).getApeMaterno()%>"/>
+								  	<br/>
+								  	<%}%>
+								  	</div>
+							</div>
+							<%} %>	
 							<div class="control-group">
 						      <label class="control-label" for="txtEstado">Estado: </label>
 						      <div class="controls">
@@ -287,8 +300,12 @@
 							  <button type="button" id="btnConcecionarios" class="btn btn-primary" disabled="disabled" >Concesionarios</button>							 
 							</div>														
 						    <div class="form-actions">
-						    <%if(((EventoBeanData)evento).getEstado().equals("REGISTRADO")){%>
+						    <%if(((EventoBeanData)evento).getEstado().equals("REGISTRADO")){
+						    	SimpleDateFormat df= new SimpleDateFormat("yyyyMMdd"); 
+						    	if(df.format(((EventoBeanData)evento).getFecha()).compareTo(df.format(new java.util.Date()))>0){
+						    	%>						    	
 							  <button type="button" id="btnAprobar" class="btn btn-primary" onclick="alt_aprobar('<%=((EventoBeanData)evento).getCodigo()%>')">Aprobar</button>
+							  <%} %>
 							  <button type="button" id="btnRechazar" class="btn btn-primary" onclick="alt_anular('<%=((EventoBeanData)evento).getCodigo()%>')" >Rechazar</button>
 							  <%} %>
 							  <button type="button" class="btn" onclick="location.href='<%=request.getContextPath()%>/IngSoft/servicio/evento/SMSEvento?accion=Buscar&tipo=1'" >Regresar</button>

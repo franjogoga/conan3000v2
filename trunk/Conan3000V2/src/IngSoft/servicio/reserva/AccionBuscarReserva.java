@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.Vector;
 
+import javax.faces.bean.SessionScoped;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -23,7 +24,7 @@ import IngSoft.servicio.bean.ReservaCanchaMiniBeanData;
 import IngSoft.servicio.bean.SedeMiniBeanData;
 import IngSoft.servicio.bean.ServicioAdicionalBeanData;
 import IngSoft.servicio.bean.Utils;
-
+@SessionScoped
 public class AccionBuscarReserva extends CoAccion {
 
 	@Override

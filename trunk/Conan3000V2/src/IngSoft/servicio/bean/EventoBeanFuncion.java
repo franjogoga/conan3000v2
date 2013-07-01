@@ -1,5 +1,6 @@
 package IngSoft.servicio.bean;
 
+import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 
+import IngSoft.administracion.bean.InvitadoBeanData;
 import IngSoft.general.CoException;
 import IngSoft.general.MyBatisSesion;
 import IngSoft.venta.bean.OrdenPagoBeanFunction;
@@ -23,6 +25,11 @@ public class EventoBeanFuncion {
 	private Lock l1= new ReentrantLock();
 	private Lock l2= new ReentrantLock();
 	private Lock l3= new ReentrantLock();
+	private Lock l4= new ReentrantLock();
+	private Lock l5= new ReentrantLock();
+	private Lock l6= new ReentrantLock();
+	private Lock l7= new ReentrantLock();
+	
 	SimpleDateFormat DF = new SimpleDateFormat("dd/MM/yyyy");
 	   
 	   public static EventoBeanFuncion getInstance(){
@@ -204,6 +211,7 @@ public class EventoBeanFuncion {
 		
 	}
 	
+	
 	public Vector<EventoBeanData> buscarSolicitudesEventoSocio(HashMap<String, Object> map){		
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		Vector<EventoBeanData> resultadosV=null;
@@ -219,12 +227,35 @@ public class EventoBeanFuncion {
 		
 	}
 	
+	public Vector<EventoBeanData> buscarSolicitudesEventoCorp(HashMap<String, Object> map){		
+		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+		Vector<EventoBeanData> resultadosV=null;
+		try{
+		
+		List<EventoBeanData> resultados=sqlsesion.selectList("Data.servicio.evento.searchEventoCorpMini",map);
+		
+		resultadosV= new Vector<>(resultados);
+		}
+		finally{
+		sqlsesion.close();}
+		return resultadosV;
+		
+	}
+	
 	public boolean aprobarEventoSocio(String codigo){
+		l4.lock();
 		boolean resultado=false;
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		OrdenPagoBeanFunction orden=OrdenPagoBeanFunction.getInstance();
 		try{
 			EventoBeanData eventoData= sqlsesion.selectOne("Data.servicio.evento.searchEventoSocio",codigo);
+			sqlsesion.update("Data.servicio.evento.aprobarEventoSocio", codigo);
+			HashMap<String,	Object> map= new HashMap<>();
+			map.put("fecha",  eventoData.getFecha());
+			map.put("sede", eventoData.getIdSede());
+			sqlsesion.update("Data.servicio.evento.anularEventoCorpMasivo", map);
+			sqlsesion.update("Data.servicio.evento.anularEventoSedeMasivo", map);
+			sqlsesion.update("Data.servicio.evento.anularEventoSocioMasivo", map);
 			sqlsesion.update("Data.servicio.evento.aprobarEventoSocio", codigo);
 			orden.agregarOrdenPago("EVENTOSOCIO", eventoData.getCodigo(),"" , eventoData.getSocio(), eventoData.getMonto(), new java.sql.Date(new java.util.Date().getTime()),  new java.sql.Date(eventoData.getFecha().getTime()));
 			resultado=true;
@@ -233,23 +264,62 @@ public class EventoBeanFuncion {
 		}
 		finally{
 			sqlsesion.close();
+			l4.unlock();
 		}
 		return resultado;
 	}
 	
 	public boolean aprobarEventoSede(String codigo){
+		l5.lock();
 		boolean resultado=false;
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try {
+			EventoBeanData eventoData= sqlsesion.selectOne("Data.servicio.evento.searchEventoSede",codigo);
+			sqlsesion.update("Data.servicio.evento.aprobarEventoSede", codigo);
+			HashMap<String,	Object> map= new HashMap<>();
+			map.put("fecha",  eventoData.getFecha());
+			map.put("sede", eventoData.getIdSede());
+			sqlsesion.update("Data.servicio.evento.anularEventoCorpMasivo", map);
+			sqlsesion.update("Data.servicio.evento.anularEventoSedeMasivo", map);
+			sqlsesion.update("Data.servicio.evento.anularEventoSocioMasivo", map);
 			sqlsesion.update("Data.servicio.evento.aprobarEventoSede", codigo);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		finally{
 			sqlsesion.close();
+			l5.unlock();
 		}
 		return resultado;				
 	}
+	
+	public boolean aprobarEventoCorp(String codigo){
+		l4.lock();
+		boolean resultado=false;
+		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+		OrdenPagoBeanFunction orden=OrdenPagoBeanFunction.getInstance();
+		try{
+			EventoBeanData eventoData= sqlsesion.selectOne("Data.servicio.evento.searchEventoCorp",codigo);
+			sqlsesion.update("Data.servicio.evento.aprobarEventoCorp", codigo);
+			HashMap<String,	Object> map= new HashMap<>();
+			map.put("fecha",  eventoData.getFecha());
+			map.put("sede", eventoData.getIdSede());
+			sqlsesion.update("Data.servicio.evento.anularEventoCorpMasivo", map);
+			sqlsesion.update("Data.servicio.evento.anularEventoSedeMasivo", map);
+			sqlsesion.update("Data.servicio.evento.anularEventoSocioMasivo", map);	
+			sqlsesion.update("Data.servicio.evento.aprobarEventoCorp", codigo);
+			orden.agregarOrdenPago("EVENTOCORPORATIVO", eventoData.getCodigo(), "", eventoData.getJuridica(), eventoData.getMonto(), new Date( new java.util.Date().getTime()), new Date(eventoData.getFecha().getTime()));			
+			resultado=true;
+		}catch(Exception e){
+			e.printStackTrace();		
+		}
+		finally{
+			sqlsesion.close();
+			l4.unlock();
+		}
+		return resultado;
+	}
+	
 	
 	public boolean anularEventoSocio(String codigo){
 		boolean resultado=false;
@@ -271,6 +341,19 @@ public class EventoBeanFuncion {
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try {
 			sqlsesion.update("Data.servicio.evento.anularEventoSede", codigo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		finally{
+			sqlsesion.close();
+		}
+		return resultado;				
+	}
+	public boolean anularEventoCorp(String codigo){
+		boolean resultado=false;
+		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+		try {
+			sqlsesion.update("Data.servicio.evento.anularEventoCorp", codigo);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -331,6 +414,28 @@ public class EventoBeanFuncion {
 		}
 		return eventoData;
 	} 
+	public EventoBeanData consultarEventoCorp(String codigo){
+		EventoBeanData eventoData=null;
+		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+		try{
+			eventoData= sqlsesion.selectOne("Data.servicio.evento.searchEventoCorp",codigo);
+		}
+		finally{
+			sqlsesion.close();
+		}
+		return eventoData;
+	} 
+	public Vector<InvitadosMiniBeanData> consultarInvitadosEventoCorp(String codigo){
+		List<InvitadosMiniBeanData> invitados=null;
+		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+		try{
+			invitados= sqlsesion.selectList("Data.servicio.evento.getInvitadosEventosCorp",codigo);
+		}
+		finally{
+			sqlsesion.close();
+		}
+		return new Vector<InvitadosMiniBeanData>(invitados);
+	} 
 
 	public HashMap<String, Object> crearCriterio(HttpServletRequest request,
 			HttpServletResponse response) {
@@ -353,11 +458,13 @@ public class EventoBeanFuncion {
 		temp=request.getSession().getAttribute("idSocio")==null?null:request.getSession().getAttribute("idSocio").toString();
 		temp= temp==null?request.getParameter("idsocio"):temp;
 		map.put("socio", temp==null?"%":temp);
-		
-		
+		temp=request.getSession().getAttribute("idJuridica")==null?null:request.getSession().getAttribute("idJuridica").toString();
+		temp= temp==null?request.getParameter("idJuridica"):temp;
+		map.put("corporativo", temp==null?"%":temp);
 		return map;
 	}
 	public void registrarEventoCorporativo(EventoBeanData eventoData,String invitados,String corporativo){
+		l6.lock();
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
 			String codigo= (String)sqlsesion.selectOne("Data.servicio.evento.getNextCodigoSjE");
@@ -373,8 +480,18 @@ public class EventoBeanFuncion {
 			map.put("fecha", eventoData.getFecha());
 			map.put("concesionario", eventoData.getIdConcesionario());
 			sqlsesion.insert("Data.servicio.evento.insertEventoCorporativo",map);
-			sqlsesion.commit();
 			
+			String lista[]=invitados.split("@");
+			for(int i=0;i<lista.length;i++){
+				String datos[]=lista[i].substring(0, lista[i].length()-1).split("_");
+				map.put("dni", datos[0]);
+				map.put("nombre", datos[1]);
+				map.put("apepat", datos[2]);
+				map.put("apemat", datos[3]);
+				sqlsesion.insert("Data.servicio.evento.insertInvitado",map);
+				sqlsesion.insert("Data.servicio.evento.insertInvitadoEvento",map);
+			}
+			sqlsesion.commit();
 			
 		}catch(Exception e){
 			sqlsesion.rollback();
@@ -382,14 +499,22 @@ public class EventoBeanFuncion {
 		}
 		finally{
 			sqlsesion.close();
+			l6.unlock();
 		}
 		
 	}
 	
-	public void insertInvitados(String evento, String invitados){
-		
-		
-	}
 
+	public PersonaJuridicaBeanData consultarJuridica(String codigo){
+		PersonaJuridicaBeanData JuridicaData=null;
+		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+		try{
+			JuridicaData= sqlsesion.selectOne("Data.servicio.evento.getjuridica",codigo);
+		}
+		finally{
+			sqlsesion.close();
+		}
+		return JuridicaData;
+	}
 	
 }

@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Vector;
 
+import javax.faces.bean.SessionScoped;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,7 +18,7 @@ import IngSoft.servicio.bean.ConcesionarioMiniBeanData;
 import IngSoft.servicio.bean.EventoBeanData;
 import IngSoft.servicio.bean.EventoBeanFuncion;
 import IngSoft.servicio.bean.SedeMiniBeanData;
-
+@SessionScoped
 public class AccionAgregarEvento extends CoAccion {
 
 	@Override
@@ -71,11 +72,22 @@ public class AccionAgregarEvento extends CoAccion {
 			EventoBeanFuncion eventoFuncion= EventoBeanFuncion.getInstance();	
 			EventoBeanData eventoData=eventoFuncion.crearEvento(request, response);
 			String corporativo=request.getParameter("idJuridica");
+			//String corporativo="PJO000001";
 			String temp=request.getParameter("invitados");
 			String invitados=temp.substring(0, temp.length()-1);
 			eventoFuncion.registrarEventoCorporativo(eventoData, invitados, corporativo);
 			//eventoFuncion.insertInvitados(evento, invitados) request.getParameter("codigo")
+			 try {
+					response.getWriter().write( "/IngSoft/servicio/evento/SMSEvento?accion=Buscar&tipo=1");
+				} catch (IOException e) {				
+					e.printStackTrace();
+				}
 			
+		}
+		if(tipo==6){
+			Vector<SedeMiniBeanData> sedeMiniData=eventoFunction.getSedes();		
+			request.setAttribute("sedes",sedeMiniData );		
+			this.direccionar(sc, request, response, "/IngSoft/servicio/evento/agregareventocorporativo.jsp");
 			
 		}
 	}

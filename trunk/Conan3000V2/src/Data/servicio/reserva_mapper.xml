@@ -34,7 +34,7 @@ RESERVA_BUNGALOW rb,
 BUNGALOWxFECHA bf 
 where bf.IdReservaBungalow=rb.IdReservaBungalow
 and rb.Estado='ACTIVO'
-and rb.IdSocio like #{idsocio}
+and (rb.IdSocio like #{idsocio}  ||  (#{idsocio}='%' and  rb.IdSocio is null))
 and bf.Fecha &gt;= DATE(#{fecIni})
 and bf.Fecha &lt;= DATE(#{fecFin})) r2
 on r1.codigoBungalow=r2.codigoBungalow

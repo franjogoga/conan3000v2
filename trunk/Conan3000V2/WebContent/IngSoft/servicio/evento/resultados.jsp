@@ -12,11 +12,14 @@
                             
                             <div align="right">
                             
-                                <a class="btn btn-primary" href="javascript:alt_agregar()">
+                                <a class="btn btn-primary" href="javascript:alt_agregarS()">
                                     <i class="icon icon-add icon-white"></i>
-                                    Agregar
+                                    Agregar E. Sede
                                 </a>
-                              
+                              	<a class="btn btn-primary" href="javascript:alt_agregarC()">
+                                    <i class="icon icon-add icon-white"></i>
+                                    Agregar E. Corporativo
+                                </a>
                              </div>          
                           <thead>
 							  <tr>
@@ -71,15 +74,7 @@
                           					</i>
 <%=((EventoBeanData)resultados.get(i)).getEstado().equals("REGISTRADO")?"Evaluar":"Ver"%>
                           				</a>
-                          				<%if(((EventoBeanData)resultados.get(i)).getEstado().equals("REGISTRADO")){ %>
-                          				<a class="btn btn-info"
-                          					href="javascript:alt_modificar('<%=((EventoBeanData)resultados.get(i)).getCodigo()%>')">
-                          					<i
-                          						class="icon-edit icon-white">
-                          					</i>
- Modificar
-                          				</a>
-                          				<%} %>
+                          				
                           			</td>
                           		</tr>
 

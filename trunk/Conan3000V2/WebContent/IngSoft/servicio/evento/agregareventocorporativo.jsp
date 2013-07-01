@@ -70,6 +70,7 @@
 	var fechaActual="<%=new SimpleDateFormat("dd/MM/yyyy").format(new Date())%>";
 	var boton='#btnConcecionarios';
 	var concesionario='';
+	var lck=1;
 		function validar(){
 			var test=true;			
 			$('#fFecha').parent().parent().addClass("success");
@@ -135,6 +136,46 @@
 				$('#txtCosto').parent().parent().toggleClass("error");
 			}
 			else $('#txtCosto').parent().parent().addClass("success");
+			if($('#txtRUC').val()==null || $('#txtRUC').val().length<=0){
+				$('#txtRUC').bind("change",function(){
+				var temp= $('#txtRUC');
+				if(temp.val()!=null && temp.val().length>0) {
+				temp.parent().parent().removeClass("error");
+				temp.parent().parent().addClass("success");
+				$('#errRUC').slideUp(1000);
+				}
+				else {
+				temp.parent().parent().removeClass("success");
+				temp.parent().parent().addClass("error");
+				$('#errRUC').slideDown(1000);
+				}
+				
+				})
+				$('#errRUC').slideDown(1000);
+				test=false;
+				$('#txtRUC').parent().parent().toggleClass("error");
+			}
+			else $('#txtRUC').parent().parent().addClass("success");
+			if($('#txtNombreCorporativo').val()==null || $('#txtNombreCorporativo').val().length<=0){
+				$('#txtNombreCorporativo').bind("change",function(){
+				var temp= $('#txtNombreCorporativo');
+				if(temp.val()!=null && temp.val().length>0) {
+				temp.parent().parent().removeClass("error");
+				temp.parent().parent().addClass("success");
+				$('#errNombreCorporativo').slideUp(1000);
+				}
+				else {
+				temp.parent().parent().removeClass("success");
+				temp.parent().parent().addClass("error");
+				$('#errNombreCorporativo').slideDown(1000);
+				}
+				
+				})
+				$('#errNombreCorporativo').slideDown(1000);
+				test=false;
+				$('#txtNombreCorporativo').parent().parent().toggleClass("error");
+			}
+			else $('#txtNombreCorporativo').parent().parent().addClass("success");
 	return test;
 		
 		
@@ -149,29 +190,29 @@
 	function alt_submit2(){
 		var listainvitados='';
 		var seleccion=$('#listainvitados').children('input');
-		cont=0;
+		var cont=0;
 		var invitado='';
 		var test=true;
-		for(i=0;i&lt;seleccion.length;i++){
+		for(var i=0;i<seleccion.length;i++){
 			var temp=seleccion[i].value;
-			if(temp.length&gt;0 && temp.value.indexOf('DNI')&lt;0 && temp.value.indexOf('Nombre')&lt;0&& temp.value.indexOf('Apellido Paterno')&lt;0&& temp.value.indexOf('Apellido Materno')&lt;0){
-				invitado=invitado+temp;
+			if(temp.length>0 && temp.indexOf('DNI')<0 && temp.indexOf('Nombre')<0&& temp.indexOf('Apellido Paterno')<0&& temp.indexOf('Apellido Materno')<0){
+				invitado=invitado+temp+'_';
 			}
 			else test=false;
 			cont = cont +1;
-			if(cont =4){
+			if(cont ==4){
 				if(test) listainvitados=listainvitados+invitado+'@';
 				invitado='';
-				test=false;
+				test=true;
 				cont=0;
 			}
 		}
 		$.ajax({
 			  type: "POST",
-			  url: "<%=request.getContextPath()%>/Club/servicio/evento/SMCEvento",
+			  url: "<%=request.getContextPath()%>/IngSoft/servicio/evento/SMSEvento",
 			  data: "accion=" + $(accion).val() + "&tipo=" + $(tipo).val() + "&txtNombreEvento=" + $(txtNombreEvento).val()   
 			  +"&cmbSedes="+ $(cmbSedes).val() + "&fFecha=" + $(fFecha).val()+"&concesionario="+concesionario+"&costo="+$(txtCosto).val()
-			  +"&invitados="+ $(listainvitados).val(),
+			  +"&invitados="+ listainvitados+"&idJuridica="+$('#idJuridica').val(),
 			  dataType: "text",
 			  success: function(msg){
 				  var url="<%=request.getContextPath()%>"+msg;
@@ -207,7 +248,7 @@
 	$(this).attr('disabled','disabled');
 		$.ajax({
 			  type: "POST",
-			  url: "<%=request.getContextPath()%>/Club/servicio/evento/SMCEvento",
+			  url: "<%=request.getContextPath()%>/IngSoft/servicio/evento/SMSEvento",
 			  data: "accion=" + $(accion).val() + "&tipo=3" + "&cmbSedes=" + $(cmbSedes).val() + "&fFecha=" + $(fFecha).val() ,
 			  dataType: "html",
 			  success: function(msg){				  
@@ -230,6 +271,42 @@
 			  }
 		
 			});		
+		
+	}
+	
+	function getCorporativo(elem){
+	if(lck==1){	
+	lck=0
+	if(elem.val().length>0){
+		$.ajax({
+			  type: "POST",
+			  url: "<%=request.getContextPath()%>/IngSoft/servicio/evento/SMSEvento",
+			  data: "accion=Consultar"+ "&tipo=4" + "&codigo=" + elem.val(),
+			  dataType: "html",
+			  success: function(msg){			
+			  if(msg.length>1){	 
+			  var temp=msg.split('@') 
+				  $("#idJuridica").val(temp[0]);
+				  $("#txtNombreCorporativo").val(temp[1]);
+				  lck=1;		
+				  }		 
+				  else{$('#txtRUC').val('');
+			   $('#txtNombreCorporativo').val('');}			  				  								
+			  },
+			  error: function(objeto, quepaso, otroobj){
+			  $('#txtRUC').val('');
+			   $('#txtNombreCorporativo').val('');			  	
+				lck=1;
+				
+			  }
+		
+			});	
+			}
+			else {$('#txtRUC').val('');
+			   $('#txtNombreCorporativo').val('');
+			   lck=1;
+			}
+	}	
 		
 	}
 	
@@ -300,9 +377,10 @@
 					  <h2><i class="icon-plus-sign"></i>AGREGAR EVENTO</h2>
 				  </div>
 					<div class="box-content">
-						<form class="form-horizontal" action="<%= response.encodeURL("SMCEvento")%>" onsubmit="alt_submit(); return false;"name="frmData" method="post">
+						<form class="form-horizontal" action="<%= response.encodeURL("SMSEvento")%>" onsubmit="alt_submit(); return false;"name="frmData" method="post">
 						<input type="hidden" name="accion" id="accion" value="Agregar"></input>
-						<input type="hidden" name="tipo" id="tipo" value="2"></input>
+						<input type="hidden" name="tipo" id="tipo" value="5"></input>
+						<input type="hidden" name="tipo" id="idJuridica" value=""></input>
 						<input type="hidden" name="fFechaActual" id="fFechaActual" value="<%=new SimpleDateFormat("dd/MM/yyyy").format(new Date())%>"></input>
 						  <fieldset>
 						    <div class="control-group">
@@ -310,6 +388,20 @@
 						      <div class="controls">
 						        <input type="text" class="span6 typeahead" id="txtNombreEvento"  data-provide="typeahead"  id="txtNombreEvento" name="txtNombreEvento" onkeypress="return alfanumerico(event);" autofocus maxlength="50"/>
 								<span class="help-inline" id="errNombreEvento" style="display:none;">Este campo no puede estar vacio</span>						        													       
+					          </div>
+					        </div>
+					        <div class="control-group">
+						      <label class="control-label" for="typeahead7">RUC Corporativo(*): </label>
+						      <div class="controls">
+						        <input type="text" class="span6 typeahead" id="txtRUC"  data-provide="typeahead"   name="txtRUC" onkeypress="return numerico(event);"  maxlength="50" onchange="getCorporativo($(this))"/>
+								<span class="help-inline" id="errRUC" style="display:none;">Este campo no puede estar vacio</span>						        													       
+					          </div>
+					        </div>
+					        <div class="control-group">
+						      <label class="control-label" for="typeahead7">Nombre de Corporativo(*): </label>
+						      <div class="controls">
+						        <input type="text" class="span6 typeahead" id="txtNombreCorporativo"  data-provide="typeahead"  readonly="readonly" name="txtNombreCorporativo" />
+								<span class="help-inline" id="errNombreCorporativo" style="display:none;">Este campo no puede estar vacio</span>						        													       
 					          </div>
 					        </div>					        
 					        <div class="control-group">
