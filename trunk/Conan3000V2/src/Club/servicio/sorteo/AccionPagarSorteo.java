@@ -25,7 +25,7 @@ import IngSoft.servicio.bean.SorteoBeanData;
 import IngSoft.servicio.bean.SorteoBeanFuncion;
 import IngSoft.servicio.bean.TipoEventoMiniBeanData;
 import IngSoft.venta.bean.OrdenPagoBeanFunction;
-
+import IngSoft.servicio.bean.Utils;
 @SessionScoped
 public class AccionPagarSorteo extends CoAccion {
 	SimpleDateFormat DF = new SimpleDateFormat("dd/MM/yyyy");
@@ -48,7 +48,8 @@ public class AccionPagarSorteo extends CoAccion {
 		
 		java.util.Date valor = new java.util.Date();
 		orden.agregarOrdenPago("BUNGALOWXSORTEO", bungalowSorteo.getIdBungalow(), bungalowSorteo.getIdSorteo(), idSocio, (double) bungalowSorteo.getMontoBungalow() , new Date(valor.getTime()), new Date(valor.getTime()));		
-		
+		java.util.Date fReserva = sorteoFuncion.getFechaReserva(codSorteo);
+		sorteoFuncion.agregaFechaReserva(bungalowSorteo.getIdBungalow(),idSocio,fReserva);
 		this.direccionar(sc, request, response, "/Club/servicio/sorteo/pagoRealizado.jsp");
 		
 	}
