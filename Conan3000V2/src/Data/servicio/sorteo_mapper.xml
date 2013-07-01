@@ -52,7 +52,8 @@ from 	inf245g2.BUNGALOW B
 		LEFT JOIN inf245g2.SEDE S ON (A.IdSede=S.IdSede),
 		inf245g2.RESERVA_BUNGALOW RB,
 		inf245g2.BUNGALOWxFECHA BF
-where	(BF.Fecha != #{fechaReserva}) and (S.IdSede=#{idSede}) and (RB.IdSocio is not null)
+where	(BF.Fecha != #{fechaReserva}) and (S.IdSede=#{idSede}) 
+		and (B.Estado='ACTIVO')
 group by 1; 
 </select>
 
