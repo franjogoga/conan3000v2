@@ -10,12 +10,19 @@ public class SorteoBeanData implements Serializable {
 	private Date fechaInicio;
 	private Date fechaFin;
 	private Date fechaSorteo;
+	private Date fechaReserva;
 	private String descripcion;
 	private String estado;
 	private int[] bungalows;
 	private int[] socios;
 	private int[] ganadores;
 	
+	public Date getFechaReserva() {
+		return fechaReserva;
+	}
+	public void setFechaReserva(Date fechaReserva) {
+		this.fechaReserva = fechaReserva;
+	}
 	public String getNombre() {
 		return nombre;
 	}
