@@ -44,6 +44,7 @@ public class MembresiaBeanFunction {
 				membresiaData= sqlsesion.selectOne("Data.venta.membresia.getPrecio");
 			
 			}
+			
 			finally{
 				sqlsesion.close();
 				l.unlock();
@@ -169,6 +170,11 @@ public class MembresiaBeanFunction {
 			
 			membresiaData.setCodigo(codigo.substring(0,3).concat(temp));}
 			else membresiaData.setCodigo("MO000001");
+			
+			
+			
+			
+			
 			//insertMembresia esta en membresia mapper
 			sqlsesion.insert("insertMembresia",membresiaData);
 			
@@ -311,8 +317,16 @@ public class MembresiaBeanFunction {
 			c.setTime(membresiaData.getFechaInicio());
 			c.set(c.get(Calendar.YEAR), c.get(Calendar.MONTH)+1,1);
 		
+			final Calendar c2 = Calendar.getInstance();
+			c2.setTime(membresiaData.getFechaInicio());
+			c2.set(c.get(Calendar.YEAR)+1, c.get(Calendar.MONTH)+1,1);
+			
 			
 			membresiaData.setFechaInicio(c.getTime());
+			membresiaData.setFechaFin(c2.getTime());
+			
+			
+			
 			
 		}
 		finally{
@@ -332,11 +346,11 @@ public class MembresiaBeanFunction {
 			
 			final Calendar c = Calendar.getInstance();
 			c.setTime(membresiaData.getFechaFin());
-			c.set(c.get(Calendar.YEAR), c.get(Calendar.MONTH)+1,1);
+			c.set(c.get(Calendar.YEAR), c.get(Calendar.MONTH),1);
 			
 			final Calendar c2 = Calendar.getInstance();
 			c2.setTime(membresiaData.getFechaFin());
-			c2.set(c.get(Calendar.YEAR)+1, c.get(Calendar.MONTH)+1,1);
+			c2.set(c.get(Calendar.YEAR)+1, c.get(Calendar.MONTH),1);
 			
 			membresiaData.setFechaInicio(c.getTime());
 			membresiaData.setFechaFin(c2.getTime());

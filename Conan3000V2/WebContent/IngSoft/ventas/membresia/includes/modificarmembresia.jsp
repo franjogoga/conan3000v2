@@ -21,17 +21,14 @@ function anhadir(cod, name){
 } 
 
 
-
-
-
 function actualizarTotal(){
 var form= document.frmMembresia;
 	if(form.cmbPeriodo.value=="Anual"){
-	form.txtTotal.value=form.txtCosto.value*(1-(form.txtDescuento.value/100));
+	form.txtTotal.value=form.txtCosto.value*12*(1-form.txtDescuento.value/100);
 	}
 
 	if(form.cmbPeriodo.value=="Semestral"){
-	form.txtTotal.value=form.txtCosto.value*(1-(form.txtDescuento.value/100));
+	form.txtTotal.value=form.txtCosto.value*6*(1-form.txtDescuento.value/100);
 
 	}
 
@@ -40,28 +37,41 @@ var form= document.frmMembresia;
 	}
 form.total.value=form.txtTotal.value;
 }
+
+
+
 function confFecha(){
 	var form= document.frmMembresia;
 	if(form.cmbPeriodo.value=="Mensual"){
 	document.getElementById("dvDescuento").style.display='none';
-	
+	fechaI=form.fFechaInicio.value.split("/");
+		fechaI[2]=parseInt(fechaI[2])+1;
+		fechaI[0]='01';
+		fechaI[1]=parseInt(fechaI[1]);
+		if(fechaI[1]==13){fechaI[1]=1;fechaI[2]=parseInt(fechaI[2])+1}
+		if(parseInt(fechaI[1])<10) fechaI[1]='0'+fechaI[1];
+		form.fFechaFin.value=fechaI[0]+'/'+fechaI[1]+'/'+fechaI[2];
 	}
 	if(form.cmbPeriodo.value=="Anual"){
 	document.getElementById("dvFechaFin").style.display='none';
 	document.getElementById("dvDescuento").style.display='block';
-		fechaI=form.fFechaInicio.value.split("/");
+	fechaI=form.fFechaInicio.value.split("/");
 		fechaI[2]=parseInt(fechaI[2])+1;
+		fechaI[0]='01';
+		fechaI[1]=parseInt(fechaI[1]);
+		if(fechaI[1]==13){fechaI[1]=1;fechaI[2]=parseInt(fechaI[2])+1}
+		if(parseInt(fechaI[1])<10) fechaI[1]='0'+fechaI[1];
 		form.fFechaFin.value=fechaI[0]+'/'+fechaI[1]+'/'+fechaI[2];
 	}
 	if(form.cmbPeriodo.value=="Semestral"){
 	document.getElementById("dvFechaFin").style.display='none';
 	document.getElementById("dvDescuento").style.display='block';
 		fechaI=form.fFechaInicio.value.split("/");
-		fechaI[1]=parseInt(fechaI[1])+6;
-		if(fechaI[1]>12){
-			fechaI[2]=parseInt(fechaI[2])+1;
-			fechaI[1]=parseInt(fechaI[1])-12;
-		}
+		fechaI[2]=parseInt(fechaI[2])+1;
+		fechaI[0]='01';
+		fechaI[1]=parseInt(fechaI[1]);
+		if(fechaI[1]==13){fechaI[1]=1;fechaI[2]=parseInt(fechaI[2])+1}
+		if(parseInt(fechaI[1])<10) fechaI[1]='0'+fechaI[1];
 		form.fFechaFin.value=fechaI[0]+'/'+fechaI[1]+'/'+fechaI[2];
 	}
 	if(form.cmbPeriodo.value=="Indefinido"){
@@ -154,7 +164,7 @@ String fecAnoFin=dfActual.format(c1.getTime());
 			              <div class="control-group" id="dvCosto">
 			                <label class="control-label" for="typeahead4">Costo Cuota(S/.) (*): </label>
 			                <div class="controls">
-			                  <input type="text" class="input-xlarge" id="txtCosto" name="txtCosto"  data-provide="typeahead" data-items="4" value="<%=membresia.getCosto()%>" >
+			                  <input type="text" class="input-xlarge" id="txtCosto" name="txtCosto"  data-provide="typeahead" data-items="4" onChange="actualizarTotal()" value="<%=membresia.getCosto()%>" >
 			                  <span class="help-inline" id="errCosto">Please correct the error</span>
 			                </div>
 		                  </div>
