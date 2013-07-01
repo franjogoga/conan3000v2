@@ -51,7 +51,7 @@
 			<div class="row-fluid sortable">
 				<div class="box span12">
 					<div class="box-header well" data-original-title>
-						<h2>ELIMINAR SERVICIO				  </h2>
+						<h2>ELIMINAR SERVICIO DE PROVEEDOR				  </h2>
 				  </div>
 				  
 					<div class="box-content">
