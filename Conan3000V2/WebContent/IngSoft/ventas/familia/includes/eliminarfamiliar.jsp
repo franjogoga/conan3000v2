@@ -22,7 +22,7 @@
 		var r=confirm("¿Esta seguro que desea borrar este familiar?");
 		if(r==true){
 				if(<%=familiar.getFlag()%>==1){
-        			crearAlert2("No se puede eliminar el ambiente. Se está violando el principio de dependencia.");
+        			crearAlert2("No se puede eliminar el familiar. Se está violando el principio de dependencia.");
         		}else{
 					form.submit();    
         		}
