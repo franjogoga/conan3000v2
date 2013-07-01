@@ -278,7 +278,7 @@ String fecHoy=dfActual.format(new java.util.Date());
 		                <td class="center"><%=((ResultadoOrdenPagoBeanData)resultados.get(i)).getMonto()%></td>
 		                
 		                
-		                <td class="center"><span class="label label-success">
+		                <td class="center"><span class="label label-<% if(((ResultadoOrdenPagoBeanData)resultados.get(i)).getEstado().equals("Cancelado")){ %>success<% }else{ if(((ResultadoOrdenPagoBeanData)resultados.get(i)).getEstado().equals("No Cancelado")){%>warning<% }else{%>important<% } } %>">
 		                <%=
                          ((ResultadoOrdenPagoBeanData)resultados.get(i)).getEstado()
                         %></span></td>

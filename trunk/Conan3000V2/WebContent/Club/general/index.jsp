@@ -326,7 +326,7 @@ body #rt-logo {
 													<li class="slide" data-thumb="">
 														<!-- Plugins: BeforeDisplay --> <!-- K2 Plugins: K2BeforeDisplay -->
 														<a class="moduleItemImage"
-														href="http://livedemo00.template-help.com/joomla_43780/index.php/component/k2/item/40-praesent-vestibulum"
+														href="#"
 														title="Continue reading &quot;Praesent vestibulum&quot;">
 															<img src="images/ccb4e23c8aa216f1e96d31ab209c036b_XL.jpg"
 															alt="Praesent vestibulum" />
@@ -350,7 +350,7 @@ body #rt-logo {
 													<li class="slide" data-thumb="">
 														<!-- Plugins: BeforeDisplay --> <!-- K2 Plugins: K2BeforeDisplay -->
 														<a class="moduleItemImage"
-														href="http://livedemo00.template-help.com/joomla_43780/index.php/component/k2/item/40-praesent-vestibulum"
+														href="#"
 														title="Continue reading &quot;Praesent vestibulum&quot;">
 															<img src="images/club1.jpg"
 															alt="Praesent vestibulum" />
@@ -374,7 +374,7 @@ body #rt-logo {
 													<li class="slide" data-thumb="">
 														<!-- Plugins: BeforeDisplay --> <!-- K2 Plugins: K2BeforeDisplay -->
 														<a class="moduleItemImage"
-														href="http://livedemo00.template-help.com/joomla_43780/index.php/component/k2/item/40-praesent-vestibulum"
+														href="#"
 														title="Continue reading &quot;Praesent vestibulum&quot;">
 															<img src="images/club5.jpg"
 															alt="Praesent vestibulum" />
@@ -398,7 +398,7 @@ body #rt-logo {
 													<li class="slide" data-thumb="">
 														<!-- Plugins: BeforeDisplay --> <!-- K2 Plugins: K2BeforeDisplay -->
 														<a class="moduleItemImage"
-														href="http://livedemo00.template-help.com/joomla_43780/index.php/component/k2/item/40-praesent-vestibulum"
+														href="#"
 														title="Continue reading &quot;Praesent vestibulum&quot;">
 															<img src="images/club6.jpg"
 															alt="Praesent vestibulum" />
@@ -422,7 +422,7 @@ body #rt-logo {
 													<li class="slide" data-thumb="">
 														<!-- Plugins: BeforeDisplay --> <!-- K2 Plugins: K2BeforeDisplay -->
 														<a class="moduleItemImage"
-														href="http://livedemo00.template-help.com/joomla_43780/index.php/component/k2/item/40-praesent-vestibulum"
+														href="#"
 														title="Continue reading &quot;Praesent vestibulum&quot;">
 															<img src="images/club2.jpg"
 															alt="Praesent vestibulum" />
@@ -642,9 +642,9 @@ body #rt-logo {
 																<!-- Item add link -->
 																<!-- Category image -->
 																<!-- Category title -->
-																<h2>Binvenidos al Club Conan 3000</h2>
+																<h2>Binvenidos al Club</h2>
 																<!-- Category description -->
-																<div class="text">Ubicado en uno de los más bellos parajes de Lima, el hoy denominado Country Club Conan 3000,
+																<div class="text">Ubicado en uno de los más bellos parajes de Lima, el hoy denominado Club Campestre Dos Virgenes,
 																				  es un compendio de la historia de la sociedad Limeña. ¡Se parte de una nueva experiencia en Clubs!
 															    </div>
 																<!-- K2 Plugins: K2CategoryDisplay -->
@@ -675,7 +675,7 @@ body #rt-logo {
 																				<!-- Item Image -->
 																				<!-- Item introtext -->
 																				<div class="catItemIntroText">
-																					<p>El Country Club Conan 3000 es una asociación civil sin fines de lucro, 
+																					<p>El Club Campestre Dos Virgenes es una asociación civil sin fines de lucro, 
 																					   de índole social, cultural y deportiva, que promueve entre sus asociados 
 																					   y familiares el valor de la amistad, la unidad familiar, el respeto 
 																					   mutuo y el cumplimiento de las normas de la vida en sociedad.</p>
@@ -764,7 +764,7 @@ body #rt-logo {
 																		<!-- Plugins: BeforeDisplayContent --> <!-- K2 Plugins: K2BeforeDisplayContent -->
 																		<div class="moduleItemIntrotext">
 																			<a class="moduleItemImage"
-																				href="http://livedemo00.template-help.com/joomla_43780/index.php/component/k2/item/88-praesent-vestibulum-molestie-lacus-aenean-nonummy-henerit-mauris"
+																				href="#"
 																				title="Continue reading &quot;Praesent vestibulum molestie lacus. Aenean nonummy henerit mauris.&quot;">
 																				<img
 																				src="images/tacuri.jpg"
@@ -788,7 +788,7 @@ body #rt-logo {
 																		<!-- Plugins: BeforeDisplayContent --> <!-- K2 Plugins: K2BeforeDisplayContent -->
 																		<div class="moduleItemIntrotext">
 																			<a class="moduleItemImage"
-																				href="http://livedemo00.template-help.com/joomla_43780/index.php/component/k2/item/89-praesent-vestibulum-molestie-lacus-aenean-nonummy-henerit-mauris"
+																				href="#"
 																				title="Continue reading &quot;Praesent vestibulum molestie lacus. Aenean nonummy henerit mauris.&quot;">
 																				<img
 																				src="images/lizita.jpg"
@@ -813,7 +813,7 @@ body #rt-logo {
 																		<!-- Plugins: BeforeDisplayContent --> <!-- K2 Plugins: K2BeforeDisplayContent -->
 																		<div class="moduleItemIntrotext">
 																			<a class="moduleItemImage"
-																				href="http://livedemo00.template-help.com/joomla_43780/index.php/component/k2/item/90-praesent-vestibulum-molestie-lacus-aenean-nonummy-henerit-mauris"
+																				href="#"
 																				title="Continue reading &quot;Praesent vestibulum molestie lacus. Aenean nonummy henerit mauris.&quot;">
 																				<img
 																				src="images/bigio.jpg"
@@ -838,14 +838,14 @@ body #rt-logo {
 																		<!-- Plugins: BeforeDisplayContent --> <!-- K2 Plugins: K2BeforeDisplayContent -->
 																		<div class="moduleItemIntrotext">
 																			<a class="moduleItemImage"
-																				href="http://livedemo00.template-help.com/joomla_43780/index.php/component/k2/item/91-praesent-vestibulum-molestie-lacus-aenean-nonummy-henerit-mauris"
+																				href="#"
 																				title="Continue reading &quot;Praesent vestibulum molestie lacus. Aenean nonummy henerit mauris.&quot;">
 																				<img
 																				src="images/jonatan.jpg"
 																				alt="Praesent vestibulum molestie lacus. Aenean nonummy henerit mauris." />
 																			</a>
 																			<p>"Soy parte de esta gran familia hace 30 años y puedo asegurar que desde sus inicios este club es mi vida y  
-																			    mi pasión.  Tengo muchos buenos recuerdos más que todo porque me case aqui. Gracias Conan 3000 !! "</p>
+																			    mi pasión.  Tengo muchos buenos recuerdos más que todo porque me case aqui. Gracias Dos Virgenes!! "</p>
 																			<p class="name">
 																				<strong>Jonatan Gonzales,</strong> <a href="#">Socio Vitalicio</a>
 																			</p>
@@ -910,7 +910,7 @@ body #rt-logo {
 							<div class="rt-block">
 								<p class="copyright">
 									<span class="siteName">Conan 3000 </span>&copy; 2013 &nbsp;|&nbsp;
-									<a href="index.php/privacy-policy.html">Política de Privacidad</a>
+									<a href="#">Política de Privacidad</a>
 								</p>
 							</div>
 						</div>
@@ -920,12 +920,12 @@ body #rt-logo {
 									<li id="item-101" class="current active"><a
 										href="index.html"><span>Principal</span></a></li>
 									<li id="item-116" class="parent"><a
-										href="index.php/about.html"><span>Nosotros</span></a></li>
-									<li id="item-117"><a href="index.php/services.html"><span>Servicios</span></a></li>
+										href="#"><span>Nosotros</span></a></li>
+									<li id="item-117"><a href="#"><span>Servicios</span></a></li>
 									<li id="item-118" class="parent"><span class="separator"><span>Galería</span></span>
 									</li>
-									<li id="item-122"><a href="index.php/testimonials.html"><span>Sorteos</span></a></li>
-									<li id="item-114"><a href="index.php/contacts.html"><span>Contactenos</span></a></li>
+									<li id="item-122"><a href="#"><span>Sorteos</span></a></li>
+									<li id="item-114"><a href="#"><span>Contactenos</span></a></li>
 								</ul>
 							</div>
 						</div>

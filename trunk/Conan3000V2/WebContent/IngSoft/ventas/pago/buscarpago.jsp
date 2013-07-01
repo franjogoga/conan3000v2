@@ -24,7 +24,7 @@
 			$(document).ready(function(){
 				//Examples of how to assign the Colorbox event to elements
 				
-				$(".iframe").colorbox({iframe:true, width:"60%", height:"80%"});
+				$(".iframe").colorbox({iframe:true, width:"600px", height:"490px"});
 				
 				//Example of preserving a JavaScript event for inline calls.
 				$("#click").click(function(){ 
