@@ -11,6 +11,7 @@ public class FamiliarBeanData implements Serializable{
 	private long telefonoCelular;
 	private String correo;
 	private String estado;
+	private Integer flag;
 	
 	public String getCodigoFamiliar() {
 		return codigoFamiliar;
@@ -66,5 +67,11 @@ public class FamiliarBeanData implements Serializable{
 	
 	public void setEstado(String estado) {
 		this.estado = estado;
+	}	
+	public Integer getFlag() {
+		return flag;
+	}
+	public void setFlag(Integer flag) {
+		this.flag = flag;
 	}
 }

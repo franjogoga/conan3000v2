@@ -113,6 +113,17 @@ update FAMILIAR set FAMILIAR.Parentesco=#{parentesco}
 <!-- Fin modificar  
 
  -->
-
+ 
+ <select id="searchFamiliarOtros" parameterType="java.lang.String" resultType="IngSoft.venta.bean.FamiliarBeanData">
+ 		SELECT f.IdFamiliar as codigo
+		FROM FAMILIAR f
+		WHERE f.IdFamiliar=#{codigo} AND
+			  (f.IdFamiliar IN ( 
+					SELECT f.IdFamiliar
+					FROM FAMILIAR f, ACTIVIDAD_SOCIO aso, ACTIVIDAD a
+					WHERE f.IdFamiliar=aso.IdFamiliar AND
+						  aso.IdActividad=a.IdActividad AND
+						  a.Estado!='No Disponible'))
+</select>
 </mapper>
  

@@ -1,5 +1,15 @@
 <%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
+	
+	<!--The beans  -->
+	<jsp:useBean id="familiar" scope="request" class="IngSoft.venta.bean.FamiliarBeanData"></jsp:useBean>
+	<jsp:useBean id="persona" scope="request" class="IngSoft.venta.bean.PersonaMiniBeanData"></jsp:useBean>
+	<jsp:useBean id="personaSocio" scope="request" class="IngSoft.venta.bean.PersonaMiniBeanData"></jsp:useBean>
+	
+	
+	<script type="text/javascript" src="js/apprise-1.5.full.js"></script>
+	<link rel="stylesheet" href="css/apprise.css" type="text/css" />
+	<script type="text/javascript" src="js/script.js"></script>
 			
 				<script>
 	function alt_fecha(obj){
@@ -10,7 +20,13 @@
 	function alt_submit(){
 		var form= document.frmDelete;
 		var r=confirm("¿Esta seguro que desea borrar este familiar?");
-		if(r==true){form.submit();}
+		if(r==true){
+				if(<%=familiar.getFlag()%>==1){
+        			crearAlert2("No se puede eliminar el ambiente. Se está violando el principio de dependencia.");
+        		}else{
+					form.submit();    
+        		}
+		}
 	}	
 
 
@@ -30,10 +46,6 @@
 	
 	
 			
-	<!--The beans  -->
-	<jsp:useBean id="familiar" scope="request" class="IngSoft.venta.bean.FamiliarBeanData"></jsp:useBean>
-	<jsp:useBean id="persona" scope="request" class="IngSoft.venta.bean.PersonaMiniBeanData"></jsp:useBean>
-	<jsp:useBean id="personaSocio" scope="request" class="IngSoft.venta.bean.PersonaMiniBeanData"></jsp:useBean>
 		
 	<%String nombre=((personaSocio.getNombres()) +" "+ (personaSocio.getApellidoPaterno()) +" "+ (personaSocio.getApellidoMaterno()) ); %>
 			  

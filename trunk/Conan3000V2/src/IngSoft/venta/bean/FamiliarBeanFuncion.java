@@ -1,6 +1,8 @@
 package IngSoft.venta.bean;
 
 import java.text.SimpleDateFormat;
+import java.util.List;
+import java.util.Vector;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -8,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.ibatis.session.SqlSession;
-
 import IngSoft.general.CoException;
 import IngSoft.general.MyBatisSesion;
 
@@ -150,6 +151,23 @@ public class FamiliarBeanFuncion {
 		finally{
 			sqlsesion.close();
 			l3.unlock();
+		}
+		//BUSCA AMBIENTES EN OTRAS TABLAS
+		sqlsesion=MyBatisSesion.metodo().openSession();
+		Vector<FamiliarBeanData> resultadosV=null;
+		try{		
+			List<FamiliarBeanData> resultados = sqlsesion.selectList("Data.venta.familiar.searchFamiliarOtros",codigo);
+			resultadosV= new Vector<>(resultados);
+		}
+		finally{
+			sqlsesion.close();
+		}
+		//COMPROBAR EL TAMAÑANO PARA SETEAR EL FLAG
+		if(resultadosV.size()==0){
+			familiarData.setFlag(0);
+		}
+		else {
+			familiarData.setFlag(1);
 		}
 		return familiarData;
 	}
