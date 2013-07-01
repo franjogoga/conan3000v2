@@ -10,7 +10,6 @@ import java.util.concurrent.locks.ReentrantLock;
 
 import org.apache.ibatis.session.SqlSession;
 
-import IngSoft.general.CoException;
 import IngSoft.general.MyBatisSesion;
 import IngSoft.general.bean.Conan3000Constantes;
 import IngSoft.venta.bean.OrdenPagoBeanFunction;

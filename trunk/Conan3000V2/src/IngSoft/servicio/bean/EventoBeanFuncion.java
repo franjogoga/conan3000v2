@@ -1,7 +1,6 @@
 package IngSoft.servicio.bean;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Vector;
@@ -357,6 +356,39 @@ public class EventoBeanFuncion {
 		
 		
 		return map;
+	}
+	public void registrarEventoCorporativo(EventoBeanData eventoData,String invitados,String corporativo){
+		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+		try{
+			String codigo= (String)sqlsesion.selectOne("Data.servicio.evento.getNextCodigoSjE");
+			codigo=codigo==null?"ECP000000":codigo;
+			codigo=Utils.generaSiguienteCodigo(codigo);
+			eventoData.setCodigo(codigo);
+			HashMap<String, Object> map=new HashMap<String, Object>();
+			map.put("codigo", eventoData.getCodigo());
+			map.put("nombre", eventoData.getNombre());
+			map.put("corporativo", corporativo);
+			map.put("monto", eventoData.getMonto());
+			map.put("sede", eventoData.getIdSede());
+			map.put("fecha", eventoData.getFecha());
+			map.put("concesionario", eventoData.getIdConcesionario());
+			sqlsesion.insert("Data.servicio.evento.insertEventoCorporativo",map);
+			sqlsesion.commit();
+			
+			
+		}catch(Exception e){
+			sqlsesion.rollback();
+			
+		}
+		finally{
+			sqlsesion.close();
+		}
+		
+	}
+	
+	public void insertInvitados(String evento, String invitados){
+		
+		
 	}
 
 	
