@@ -49,7 +49,7 @@ function confFecha(){
  <!-- content starts -->
 		    <div>
 		      <ul class="breadcrumb">
-		        <li> <a href="#">Home</a> / <a href="bucarproveedor.jsp">Mantenimiento de Proveedores</a> / Agregar Proveedor</li>
+		        <li> <a href="#">Home</a> / <a href="buscarproveedor.jsp">Mantenimiento de Proveedores</a> / Agregar Proveedor</li>
 	          </ul>
 	        </div>
 		    <div class="row-fluid sortable">
@@ -154,7 +154,7 @@ function confFecha(){
 							  </div>
 	                    
 		                <div class="control-group" id="dvNumDoc">
-		                  <label class="control-label" for="typeahead2">Numero de Documento(*): </label>
+		                  <label class="control-label" for="typeahead2">N&iacute;mero de Documento(*): </label>
 		                  <div class="controls">
 		                    <input type="text" class="span6 typeahead" id="txtNumDoc"  name="txtNumDoc" data-provide="typeahead" data-items="4" maxlength="9" onpaste="return false;">
 	                         <span class="help-inline" id="errNumDoc">Please correct the error</span>
@@ -168,7 +168,7 @@ function confFecha(){
 	                  </div>
 	                </fieldset>
 	              </form>
-	            (*) Datos Obligatorios</div>
+	            (*) Campos Obligatorios</div>
 	          </div>
 		      <!--/span-->
 	        </div>
