@@ -6,7 +6,7 @@ import java.util.Vector;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import IngSoft.servicio.bean.Utils;
 import IngSoft.general.CoAccion;
 import IngSoft.general.CoException;
 import IngSoft.servicio.bean.CriterioBungalowSorteoBeanData;
@@ -25,7 +25,8 @@ public class AccionBuscarBungalows extends CoAccion{
 			SorteoBeanFuncion sorteoFuncion= SorteoBeanFuncion.getInstance();
 			SorteoBeanData sorteoData=sorteoFuncion.crearSorteo(request, response);
 			request.setAttribute("sorteoData", sorteoData);
-			Vector<String> resultados = sorteoFuncion.getBungalowsSorteo(sorteoData.getFechaSorteo());
+			sorteoData.setFechaReserva(Utils.fechaMas(sorteoData.getFechaSorteo(), 8));
+			Vector<String> resultados = sorteoFuncion.getBungalowsSorteo(sorteoData);
 			request.setAttribute("resultados", resultados);
 			//sorteoFuncion.agregarSorteo(sorteoData);
 			this.direccionar(sc, request, response, "/IngSoft/servicio/sorteo/buscarBungalows.jsp");
