@@ -73,25 +73,12 @@
 			          <fieldset>
 			          
 			            <div class="control-group">
-			              <label class="control-label" for="typeahead7">Nombres Socio Asociado:</label>
+			              <label class="control-label" for="typeahead7">Socio Asociado:</label>
 			              <div class="controls">
-			                <input type="text" name="txtSocioasociado" disabled class="span6 typeahead" id="typeahead7"  data-provide="typeahead" value=<%=personaSocio.getNombres() %>>
+			                <input type="text" name="txtSocioasociado" disabled class="span6 typeahead" id="typeahead7"  data-provide="typeahead" value="<%=personaSocio.getNombres() %>">
 		                  </div>
 		                </div>
 		                
-		                  <div class="control-group">
-			              <label class="control-label" for="typeahead7">Apellido Paterno Socio Asociado :</label>
-			              <div class="controls">
-			                <input type="text" name="txtSocioasociado" disabled class="span6 typeahead" id="typeahead7"  data-provide="typeahead" value=<%=personaSocio.getApellidoPaterno()%>>
-		                  </div>
-		                </div>
-		                
-		                <div class="control-group">
-			              <label class="control-label" for="typeahead7">Apellido Materno Socio Asociado :</label>
-			              <div class="controls">
-			                <input type="text" name="txtSocioasociado" disabled class="span6 typeahead" id="typeahead7"  data-provide="typeahead" value=<%=personaSocio.getApellidoMaterno()%>>
-		                  </div>
-		                </div>
 		                
 		                	 <div class="control-group">
 			                  <label class="control-label" for="selectError">Parentesco:</label>
