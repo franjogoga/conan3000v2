@@ -1,5 +1,7 @@
 <!DOCTYPE html>
+<%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
+<%@page import="IngSoft.servicio.bean.Utils"%>
 <%@page import="java.util.Calendar"%>
 <%@page import="IngSoft.servicio.bean.ResultadoSorteoBeanData"%>
 <%@page import="java.util.Vector"%>
@@ -23,9 +25,8 @@
 	<meta name="author" content="Muhammad Usman">
 	<!--The beans  -->
 	<jsp:useBean id="resultados" scope="request"class="java.util.Vector"></jsp:useBean>
+	<jsp:useBean id="sorteoData" scope="request"class="IngSoft.servicio.bean.SorteoBeanData"></jsp:useBean>	
 
-	<jsp:useBean id="sorteoData" scope="request"class="IngSoft.servicio.bean.SorteoBeanData"></jsp:useBean>
-	
 	<!-- The styles -->
 	<link id="bs-css" href="css/bootstrap-cerulean.css" rel="stylesheet">
 	<style type="text/css">
@@ -110,54 +111,18 @@
 		form.codigo.value=cod;
 		form.submit();
 	}
+		function alt_submit_agregar_bungalows(){			
+			var form = document.frmDatos;
+			form.submit();			
+		}
+	</script>	
 	
-function cambiarClase(elemento){
-	if (atipo == 1) cAgregar(elemento);
-	else if(atipo == 2)cEliminar(elemento);	
-}
-
-function cAgregar(elemento){
-	if (elemento.className == "btn btn-success") {
-		elemento.className = "btn btn-warning";
-		elemento.innerHTML=elemento.innerHTML.replace("Reservar&nbsp;&nbsp;&nbsp;","Pendiente");
-		var temp=elemento.getAttribute("id")+"@";
-		if(cancelados.search(temp)<0)
-		pendientes=pendientes.concat(temp);
-		else cancelados=cancelados.replace(temp,"");
-
-		}
-		else 
-		if(elemento.className == "btn btn-warning") {
-		elemento.className = "btn btn-success";
-		elemento.innerHTML=elemento.innerHTML.replace("Pendiente","Reservar&nbsp;&nbsp;&nbsp;");
-		var temp=elemento.getAttribute("id")+"@";
-		if(pendientes.search(temp)<0)
-		cancelados=cancelados.concat(temp);
-		else pendientes=pendientes.replace(temp,"");
-		}	
-}
-
-function cEliminar(elemento){
-	if (elemento.className == "btn btn-danger") {
-		elemento.className = "btn btn-warning";
-		elemento.innerHTML=elemento.innerHTML.replace("Reservado","Pendiente");
-		var temp=elemento.getAttribute("id")+"@";
-		if(cancelados.search(temp)<0)
-		pendientes=pendientes.concat(temp);
-		else cancelados=cancelados.replace(temp,"");
-
-		}
-		else 
-		if(elemento.className == "btn btn-warning") {
-		elemento.className = "btn btn-danger";
-		elemento.innerHTML=elemento.innerHTML.replace("Pendiente","Reservado");
-		var temp=elemento.getAttribute("id")+"@";
-		if(pendientes.search(temp)<0)
-		cancelados=cancelados.concat(temp);
-		else pendientes=pendientes.replace(temp,"");
-		}	
-}
-	</script>			
+		<%! 
+	public String formatear(java.util.Date date){
+		SimpleDateFormat DF= new SimpleDateFormat("dd/MM/yyyy");
+		return DF.format(date);
+	}
+	%>			
 </head>
 
 <body>
@@ -192,91 +157,103 @@ function cEliminar(elemento){
 				</ul>
 			</div>
 			
-			<form id="frmAlternativo" name="frmAlternativo" method="post" action="<%= response.encodeURL("SMSSorteo")%>"  enctype="multipart/form-data">
-			<input type="hidden" name="accion" value="Agregar"></input>
-			<input type="hidden" name="resultados" value="<%=sorteoData %>"></input>
-			<input type="hidden" name="tipo" value="2"></input>
-			</form>
-			<div class="row-fluid sortable">		
+			<div class="row-fluid sortable">
 				<div class="box span12">
 					<div class="box-header well" data-original-title>
-						<h2><i></i> RESULTADOS</h2>
-                        
-						
-					</div>           
-					<div class="box-content">
-                        <table class="table table-striped table-bordered bootstrap-datatable datatable">
-                            <!-- agregar nuevo boton -->
-                            
-                            
-                            <div align="right">
-                            
-                                <a class="btn btn-primary" href="javascript:alt_agregar()">
-                                    <i class="icon icon-add icon-white"></i>
-                                    Agregar
-                                </a>
-                              
-                             </div>          
-                          <thead>
-							  <tr>
-								  <th>Codigo</th>
-							        <th>Nombre Sorteo</th>
-							        <th>Fecha Inicio</th>
-							        <th>Fecha Fin</th>
-									<th>Fecha Sorteo </th>
-												        							      							        
-							        <th>Acción</th>
-							
-							  </tr>
-						  </thead>
-                          <element>
-                          	<tbody id="resultadoBusqueda">
-                          		<% SimpleDateFormat df= new SimpleDateFormat("dd/MM/YYYY"); 
-                          			for(int i=0;
-                          			i<resultados.size();i++){
-                          		%>
-                          		<tr>
-                          			<td class="center">
-                          				<%=resultados.get(i)
-                          				%>
-                          			</td>
-                          			<td class="center">
-                          				<%=sorteoData.getDescripcion()
-                          				%>
-                          			</td>
-                          			<td class="center">
-                          				<%=df.format(sorteoData.getFechaInicio())
-                          				%>
-                          			</td>
-                          			<td class="center">
-                          				<%=df.format(sorteoData.getFechaFin())               
-                          				%>
-                          			</td>
-                          			<td class="center">
-                          				<%=df.format(sorteoData.getFechaSorteo())                  
-                          				%>
-                          			</td>
-                          			<td class="center">
-									  <label class="checkbox inline">
-									  		<span class="">
-												<input type="checkbox" id="marcar" name="marcar" value="<%=resultados.get(i)%>">
-											</span>
-									  </label>
-									</td>
-                          		</tr>
-
-                          		<%}%>
-
-
-                          	</tbody>
-                          </element>
-                        </table>       
+						<h2><i class="icon-search"></i> BUSCAR BUNGALOWS</h2>
+						<div class="box-icon">
+							<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
+							<a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>
+						</div>
 					</div>
+					<div class="box-content">
+						<!-- <form class="form-horizontal" name="frmCriteriosBusqueda" id="frmCriteriosBusqueda"  method="post" onsubmit="xmlhttpPost('/Conan3000V2/IngSoft/servicio/evento/SMSEvento?accion=Buscar', 'frmCriteriosBusqueda', 'resultadoBusqueda','<img >');
+		 return false;"> -->
+		 <form class="form-horizontal" name="frmCriteriosBusqueda" id="frmCriteriosBusqueda"  method="post" action="<%= response.encodeURL("SMSSorteo")%>">
+		 <input type="hidden" name="accion" value="Buscar"></input>
+						  <fieldset>
+							
+							<div class="control-group">
+							  <label class="control-label" for="typeahead">Nombre de Sorteo </label>
+							  <div class="controls">
+								<input type="text" class="span6 typeahead" id="typeahead" name="txtNombre" readonly="true" onkeypress="return alfanumerico(event);" autofocus value="<%=sorteoData.getDescripcion()%>">
+							  </div>
+							</div>
+
+							<div class="control-group">
+						      <label class="control-label" for="disabledInput">Fecha Inicio: </label>
+						      <div class="controls">
+								<input type="text" class="input-xlarge datepicker" id="fFecIncio"  readonly="true" value="<%=formatear(sorteoData.getFechaInicio())%>"  name="fFecIncio" onchange="alt_fecha(this)" disabled>
+					          </div>
+					        </div>
+					        							<div class="control-group">
+						      <label class="control-label" for="disabledInput">Fecha Fin: </label>
+						      <div class="controls">
+								<input type="text" class="input-xlarge datepicker" id="fFecFin"  readonly="true" value="<%=formatear(sorteoData.getFechaFin()) %>"  name="fFecFin" onchange="alt_fecha(this)" disabled>
+					          </div>
+					        </div>
+					        							<div class="control-group">
+						      <label class="control-label" for="disabledInput">Fecha Sorteo: </label>
+						      <div class="controls">
+								<input type="text" class="input-xlarge datepicker" id="fFecSorteo"  readonly="true" value="<%=formatear(sorteoData.getFechaSorteo()) %>"  name="fFecSorteo" onchange="alt_fecha(this)" disabled>
+					          </div>
+					        </div>	
+							<div class="control-group">
+						      <label class="control-label" for="disabledInput">Fecha Reserva : </label>
+						      <div class="controls">
+								<input type="text" class="input-xlarge datepicker" id="fFecReserva"  readonly="true" value="<%=new SimpleDateFormat("dd/MM/yyyy").format(Utils.fechaMas(sorteoData.getFechaSorteo(), 8)) %>"  name="fFecReserva" onchange="alt_fecha(this)" disabled>
+					          </div>
+					        </div>	
+							
+						  </fieldset>
+						</form>   
+
+					</div>
+					
 				</div><!--/span-->
-				
-				
+
 			</div><!--/row-->
 			
+			<div class="row-fluid sortable">
+					<div class="box span12">
+						<div class="box-header well" data-original-title>
+					    	<h2> AGREGAR BUNGALOWS</h2>
+					  	</div>
+				  
+			      		<div class="box-content">
+					        <form class="form-horizontal" action="<%= response.encodeURL("SMSSorteo")%>" name="frmDatos" method="post">
+						        <input type="hidden" name="accion" value="AgregarBungalows"></input>
+								<input type="hidden" name="idSede" value="<%=sorteoData.getIdSede() %>"></input>
+						       	<input type="hidden" name="idSorteo" value="<%=sorteoData.getIdSorteo() %>"></input>
+						       	<input type="hidden" name="fInicio" value="<%=(formatear(sorteoData.getFechaInicio()))%>"></input>
+						       	<input type="hidden" name="fFin" value="<%=(formatear(sorteoData.getFechaFin()))%>"></input>
+						       	<input type="hidden" name="fSorteo" value="<%=(formatear(sorteoData.getFechaSorteo()))%>"></input>
+						       	<input type="hidden" name="nombSorteo" value="<%=sorteoData.getDescripcion()%>"></input>
+						       	
+						       	<fieldset>
+									<div class="control-group">
+										<label class="control-label">Bungalows</label>
+									
+										<div class="controls">
+											<% for(int i=1; i<resultados.size(); i++) { %>
+										   		<label class="checkbox inline">
+													<input type="checkbox" name="checkAcciones" value="<%=resultados.get(i)%>"> <%=resultados.get(i)%>
+												</label>	
+												<br>																		
+											<% } %>											
+										</div>
+							  		</div>
+															
+							        <div class="form-actions">
+							           <button type="button" class="btn btn-primary" onclick="javascript:alt_submit_agregar_bungalows()">Agregar</button>
+							           <button type="button" class="btn" onclick="location.href='buscarsorteo.jsp'">Cancelar</button>
+							        </div>
+						        </fieldset>
+				            </form>
+				            (*) Campos Obligatorios
+				        </div>
+		        	</div> <!--/span-->			    
+		      	</div> <!--/row-->
 			
     
 					<!-- content ends -->
