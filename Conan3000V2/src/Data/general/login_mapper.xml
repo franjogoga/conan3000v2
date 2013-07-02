@@ -21,7 +21,9 @@ select IdPerfil from USUARIO where Password = #{pass};
 <select id="getIdSocio" parameterType="IngSoft.general.bean.UsuarioBeanData" resultType="java.lang.String">
 select IdSocio from USUARIO where Password = #{password} and NombreUsuario=#{nombUsuario};
 </select>
-
+<select id="getIdEmp" parameterType="IngSoft.general.bean.UsuarioBeanData" resultType="java.lang.String">
+select IdEmpleado from USUARIO where Password = #{password} and NombreUsuario=#{nombUsuario};
+</select>
 
 <select id="getCasosDeUso" parameterType="java.lang.String" resultType="IngSoft.general.bean.PerfilBeanData">
 select 	ACUP.IdPerfil as idPerfil,
