@@ -35,6 +35,7 @@ public class LoginBeanFuncion {
 		UsuarioBeanData usuario = new UsuarioBeanData();
 		usuario.setNombUsuario(u); usuario.setPassword(p);		
 		String idSocio = (String)sqlsesion.selectOne("getIdSocio",usuario);
+		if (idSocio==null) {idSocio=(String)sqlsesion.selectOne("getIdEmp",usuario);}
 		request.getSession().setAttribute("nombre", u);
 		request.getSession().setAttribute("idSocio", idSocio);
 		
