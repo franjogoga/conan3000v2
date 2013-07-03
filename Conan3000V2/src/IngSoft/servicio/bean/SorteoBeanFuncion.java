@@ -135,7 +135,10 @@ public class SorteoBeanFuncion {
 		int pagoRealizado=0;
 		int i;
 		int limite=0;
-		while (BS2.get(limite).getIdSocio()!=null) {limite++;}
+		while (BS2.get(limite).getIdSocio()!=null) {			
+			limite++;
+			if (limite>=BS2.size()) break;
+			}
 		for (i=0;i<limite;i++){
 			
 			if (BS2.get(i).getIdSocio().equals(bungalowSorteo.getIdSocio())) {
