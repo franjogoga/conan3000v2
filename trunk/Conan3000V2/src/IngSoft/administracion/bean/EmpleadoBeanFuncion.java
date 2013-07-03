@@ -3,6 +3,7 @@ package IngSoft.administracion.bean;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Vector;
 import java.util.concurrent.locks.Lock;
@@ -42,7 +43,12 @@ public class EmpleadoBeanFuncion {
 			return new Vector<>(resultados);
 		}
 	   
-	   
+	   public Vector<HashMap<String, Object>> getPerfiles(){
+		   	SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+		   	List<HashMap<String, Object>>resultados=sqlsesion.selectList("Data.administracion.empleado.getPerfiles");
+			sqlsesion.close();
+			return new Vector<>(resultados);		   
+	   }
   
 	   
 	   private EmpleadoBeanFuncion() {}
@@ -72,6 +78,7 @@ public class EmpleadoBeanFuncion {
 		empleadoData.setTipoDocumento(request.getParameter("cmbTipoDocumento"));
 		//String numDoc=request.getParameter("txtNumeroDocumento");
 		empleadoData.setNumeroDocumento(Integer.parseInt(request.getParameter("txtNumeroDocumento")));
+		empleadoData.setPerfil(request.getParameter("cmbPerfil"));
 		
 		//System.out.println(empleadoData.getNumeroDocumento());
 	
@@ -250,7 +257,7 @@ public class EmpleadoBeanFuncion {
 		finally{
 			sqlsesion.close();
 		}
-		//COMPROBAR EL TAMAÑANO PARA SETEAR EL FLAG
+		//COMPROBAR EL TAMAï¿½ANO PARA SETEAR EL FLAG
 		if(resultadosV.size()==0){
 			EmpleadoData.setFlag(0);
 		}
@@ -288,6 +295,35 @@ public class EmpleadoBeanFuncion {
 			sqlsesion.insert("Data.administracion.empleado.insertPlantillaEmpleado",empleadoData);
 			
 			sqlsesion.insert("Data.administracion.empleado.insertPlantillaPersona",empleadoData);
+			
+			HashMap<String, Object> map=new HashMap<>();
+			map.put("perfil", empleadoData.getPerfil());
+			String temp=String.valueOf(empleadoData.getNumeroDocumento());
+			temp= temp.length()==8?"E000"+temp:"E"+temp;
+			map.put("nombreusuario",temp);
+			map.put("empleado", empleadoData.getCodigo());
+			Vector<HashMap<String, Object>> perfiles=this. getPerfiles();
+			for(int i=0;i<perfiles.size();i++){
+				if(perfiles.get(i).get("idPerfil").equals(empleadoData.getPerfil())) {temp=(String)perfiles.get(i).get("Nombre");break;}
+			}
+			map.put("descripcion", temp);
+			map.put("estado", "Activo");
+			//Obtener codigo de usuario
+			String codUsuario= (String)sqlsesion.selectOne("Data.venta.socio.getNextCodigoU");
+			if(codUsuario!=null){
+				int codU= Integer.parseInt(codUsuario.substring(3))+1;
+				String defecto= "000000";
+				String tempU= defecto.substring(0, defecto.length()-String.valueOf(codU).length()).concat(String.valueOf(codU));
+			
+			codUsuario=codUsuario.substring(0,3).concat(tempU);}
+			else codUsuario="USU000001";
+			map.put("usuario", codUsuario);
+			String contrasenha=Integer.toString((int)(Math.random()*(999999-100000+1)+999999));
+			map.put("password", contrasenha);
+			
+			
+			
+			sqlsesion.insert("Data.administracion.empleado.insertUsuarioEmpleado",map);
 			
 			
 			resultado=true;

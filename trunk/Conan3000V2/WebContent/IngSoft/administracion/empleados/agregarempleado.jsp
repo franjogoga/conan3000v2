@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%@page import="java.util.HashMap"%>
 <%@page import="IngSoft.servicio.bean.AmbienteMiniBeanData"%>
 <%@page import="IngSoft.servicio.bean.SedeMiniBeanData"%>
 <%@page import="IngSoft.administracion.bean.HorarioEmpleados"%>
@@ -16,6 +17,7 @@
 	
 	<jsp:useBean id="sedes" scope="request"class="java.util.Vector"></jsp:useBean>
 	<jsp:useBean id="horarios" scope="request"class="java.util.Vector"></jsp:useBean>
+	<jsp:useBean id="perfiles" scope="request"class="java.util.Vector"></jsp:useBean>
 
 	<!-- The styles -->
 	<link id="bs-css" href="css/bootstrap-cerulean.css" rel="stylesheet">    
@@ -241,6 +243,17 @@
 								  </select>
 								  <span class="help-inline" id="errSedes" style="display:none;">Este campo no puede estar vacio</span>
 								</div>
+							  </div>
+							  <div class="control-group" id="dvSedes">
+								<label class="control-label" for="cmbPerfil">Sedes de Trabajo(*):</label>
+								<div class="controls">
+								  <select   data-rel="chosen" id="cmbPerfil" name="cmbPerfil" >
+									<%for(int i=0;i<perfiles.size();i++){ %>
+										<option value="<%= ((HashMap<String,Object>)perfiles.get(i)).get("idPerfil")%>"><%= ((HashMap<String,Object>)perfiles.get(i)).get("Nombre")%></option>
+									<%} %>																									
+								  </select>
+								  <span class="help-inline" id="errSedes" style="display:none;">Este campo no puede estar vacio</span>
+								</div>
 							  </div>																									
 						
 			            <div class="form-actions">
@@ -419,12 +432,12 @@
 			
 			if(!esValido("Nombres",form.txtNombreEmpleado,"NombreEmpleado",1,1,50)){cadena[i]="Nombres";i++;}
 			
-			else{
+			//else{
 			
-			if(!esValido("Nombres",form.txtNombreEmpleado,"NombreEmpleado",4,1,50)){cadena[i]="Nombres";i++;}
+			//if(!esValido("Nombres",form.txtNombreEmpleado,"NombreEmpleado",4,1,50)){cadena[i]="Nombres";i++;}
 			
 			
-			}
+			//}
 			
 			
 			if(!esValido("Apellido Paterno",form.txtApellidoPaterno,"ApellidoPaterno",1,1,50)){cadena[i]="Apellido Paterno";i++;}

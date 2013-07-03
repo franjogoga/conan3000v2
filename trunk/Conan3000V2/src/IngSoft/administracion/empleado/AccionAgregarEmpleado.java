@@ -1,11 +1,14 @@
 package IngSoft.administracion.empleado;
 
+import java.util.HashMap;
 import java.util.Vector;
 
 import javax.faces.bean.SessionScoped;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.mongodb.util.Hash;
 
 import IngSoft.general.CoAccion;
 import IngSoft.general.CoException;
@@ -46,6 +49,9 @@ public class AccionAgregarEmpleado extends CoAccion {
 		EmpleadoBeanFuncion empleadoFuncion = EmpleadoBeanFuncion.getInstance();
 	    Vector<HorarioEmpleados> horarioData = empleadoFuncion.getHorarios();
 		request.setAttribute("horarios",horarioData );
+		
+		Vector<HashMap<String , Object>>perfiles=empleadoFuncion.getPerfiles();
+		request.setAttribute("perfiles",perfiles);
 		
 		
 		this.direccionar(sc, request, response, "/IngSoft/administracion/empleados/agregarempleado.jsp");
