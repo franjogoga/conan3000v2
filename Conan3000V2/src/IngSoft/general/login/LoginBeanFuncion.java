@@ -46,7 +46,7 @@ public class LoginBeanFuncion {
 		if (user.equals(usuarioBD.getNombUsuario()) && pass.equals(usuarioBD.getPassword())){
 			sesion.setMaxInactiveInterval(120*60);
 			sesion.setAttribute("username",user);
-			String perfil = (String)sqlsesion.selectOne("getPerfilUsuario",pass);
+			String perfil = (String)sqlsesion.selectOne("getPerfilUsuario",usuarioBD);
 			request.getSession().setAttribute("idPerfil", perfil);
 			String nombre= (String)sqlsesion.selectOne("Data.general.login.getNombrePerfil", perfil);
 			request.getSession().setAttribute("tipoUsuario", nombre);
