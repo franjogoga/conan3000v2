@@ -1,6 +1,8 @@
 package IngSoft.general.bean;
 
-public class UsuarioBeanData {
+import java.io.Serializable;
+
+public class UsuarioBeanData implements Serializable{
 	private String idPerfil;
 	public String getIdPerfil() {
 		return idPerfil;
