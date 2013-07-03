@@ -22,6 +22,7 @@ public class EmpleadoBeanData implements Serializable{
 	private Date fechaContrato;
 	private String estado;
 	private Integer flag;
+	private String perfil;
 	
 	public int getNumeroDocumento() {
 		return numeroDocumento;
@@ -117,5 +118,11 @@ public class EmpleadoBeanData implements Serializable{
 	}
 	public void setFlag(Integer flag) {
 		this.flag = flag;
+	}
+	public String getPerfil() {
+		return perfil;
+	}
+	public void setPerfil(String perfil) {
+		this.perfil = perfil;
 	}
 }

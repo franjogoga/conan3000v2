@@ -26,7 +26,26 @@ update PERSONA set PERSONA.Nombres =#{nombre}
  ,PERSONA.NumeroDocumento= #{numeroDocumento} 
 where  IdPersona= #{codigo};
 </update>
-
+<insert id="insertUsuarioEmpleado" parameterType="hashmap" flushCache="true">
+INSERT INTO USUARIO
+(IdPerfil,
+IdUsuario,
+IdEmpleado,
+Descripcion,
+Estado,
+NombreUsuario,
+Password)
+VALUES
+(
+#{perfil},
+#{usuario},
+#{empleado},
+#{descripcion},
+#{estado},
+#{nombreusuario},
+#{password}
+)
+</insert>
 
 
 
@@ -99,7 +118,22 @@ from EMPLEADO, PERSONA
 
 order by 2 asc
 </select>
+<select id="getUsuarioEmpleado" parameterType="java.lang.String" resultType="hashmap">
+select * from USUARIO;
+select 
+u.NombreUsuario
+,u.Password 
+from 
+USUARIO u 
+where 
+u.IdEmpleado = #{empleado} 
+limit 1
+</select>
 
+<select id="getPerfiles" resultType="hashmap">
+
+select idPerfil,Nombre from PERFIL;
+</select>
 
 
 
