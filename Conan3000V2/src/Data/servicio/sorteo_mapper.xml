@@ -53,7 +53,7 @@ from 	inf245g2.BUNGALOW B
 where	(S.IdSede=#{idSede}) 
 		and (B.Estado='Activo') and
 		B.IdBungalow not in 
-		(select RB.IdSocio 
+		(select RB.IdBungalow 
 		 from 	inf245g2.RESERVA_BUNGALOW RB
 				left join inf245g2.BUNGALOWxFECHA BF ON (RB.IdReservaBungalow=BF.IdReservaBungalow));
 </select>
