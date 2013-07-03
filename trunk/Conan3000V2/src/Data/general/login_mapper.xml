@@ -20,8 +20,8 @@ from USUARIO U where U.NombreUsuario=#{nombUsuario} and U.Password = #{password}
 select Password from USUARIO where Password = #{pass};
 </select>
 
-<select id="getPerfilUsuario" parameterType="String" resultType="String">
-select IdPerfil from USUARIO where Password = #{pass};
+<select id="getPerfilUsuario" parameterType="IngSoft.general.bean.UsuarioBeanData" resultType="String">
+select IdPerfil from USUARIO U where U.Password = #{password} and U.NombreUsuario=#{nombUsuario};
 </select>
 
 <select id="getIdSocio" parameterType="IngSoft.general.bean.UsuarioBeanData" resultType="java.lang.String">
