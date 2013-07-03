@@ -29,17 +29,21 @@ public class LoginBeanFuncion {
 		String user= request.getParameter("username");
 		String pass= request.getParameter("password");
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
-		String u = (String)sqlsesion.selectOne("getUsuarioLogin",user);
-		String p = (String)sqlsesion.selectOne("getPassLogin",pass);
-		if (u==null || p == null ) return null;
+		UsuarioBeanData usuarioLogin = new UsuarioBeanData();
+		usuarioLogin.setNombUsuario(user);
+		usuarioLogin.setPassword(pass);
+		UsuarioBeanData usuarioBD = new UsuarioBeanData();
+		usuarioBD = sqlsesion.selectOne("getUsuarioBeanData", usuarioLogin);
+		
+		if (usuarioBD.getNombUsuario()==null || usuarioBD.getPassword() == null ) return null;
 		UsuarioBeanData usuario = new UsuarioBeanData();
-		usuario.setNombUsuario(u); usuario.setPassword(p);		
+		usuario.setNombUsuario(usuarioBD.getNombUsuario()); usuario.setPassword(usuarioBD.getPassword());		
 		String idSocio = (String)sqlsesion.selectOne("getIdSocio",usuario);
 		if (idSocio==null) {idSocio=(String)sqlsesion.selectOne("getIdEmp",usuario);}
-		request.getSession().setAttribute("nombre", u);
+		request.getSession().setAttribute("nombre", usuarioBD.getNombUsuario());
 		request.getSession().setAttribute("idSocio", idSocio);
 		
-		if (user.equals(u) && pass.equals(p)){
+		if (user.equals(usuarioBD.getNombUsuario()) && pass.equals(usuarioBD.getPassword())){
 			sesion.setMaxInactiveInterval(120*60);
 			sesion.setAttribute("username",user);
 			String perfil = (String)sqlsesion.selectOne("getPerfilUsuario",pass);
