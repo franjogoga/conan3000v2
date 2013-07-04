@@ -195,6 +195,21 @@
 						      <div class="controls">
 						        <input type="text" class="span6 typeahead" id="txtTelefonoCelular"  data-provide="typeahead"  name="txtTelefonoCelular" disabled value="<%=socio.getTelefonoCelular()%>">
 					          </div>
+					        </div>
+					        
+					       <div class="control-group">
+						      <label class="control-label" for="disabledInput"> Usuario: </label>
+						      <div class="controls">
+						        <input class="input-xlarge disabled" id="disabledInput" type="text"  disabled id="txtUsuario" name="txtUsuario" value="<%= socio.getUsuario()%>"  onkeypress="return alfanumerico(event);" autofocus>
+					          </div>
+					        </div>
+					
+					<div class="control-group">
+						      <label class="control-label" for="disabledInput"> Contraseña: </label>
+						      <div class="controls">
+						        <input class="input-xlarge disabled" id="disabledInput" type="password"  disabled id="txtContrasenia" name="txtContrasenia" value="<%= socio.getContraseña()%>"  onkeypress="return alfanumerico(event);" autofocus>
+					          <button type="button" class="btn" onclick="alert('Contraseña: <%= socio.getContraseña()%>')" >Ver Contraseña</button>
+					          </div>
 					        </div>							
 							
 							
