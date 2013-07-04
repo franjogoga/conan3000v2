@@ -72,6 +72,7 @@ from SOCIO,PERSONA
 	DISTRITO
 </select>
 
+
 <select id="getPlantillaSocio" parameterType="java.lang.String"  resultType="IngSoft.venta.bean.SocioBeanData">
 select 
 SOCIO.IdSocio as codigo
@@ -80,7 +81,9 @@ SOCIO.IdSocio as codigo
 ,SOCIO.Correo as correoElectronico
 ,SOCIO.TelefonoFijo as telefonoFijo
 ,SOCIO.TelefonoCelular as telefonoCelular
-from SOCIO  where SOCIO.IdSocio=#{codigo}; 
+,USUARIO.NombreUsuario as usuario
+,USUARIO.Password as contraseña
+from SOCIO,USUARIO  where SOCIO.IdSocio=#{codigo} and USUARIO.IdSocio=SOCIO.IdSocio; 
 </select>
 
 <select id="getPlantillaPersona" parameterType="java.lang.String"  resultType="IngSoft.venta.bean.PersonaMiniBeanData">
