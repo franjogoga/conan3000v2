@@ -23,6 +23,23 @@ public class EmpleadoBeanData implements Serializable{
 	private String estado;
 	private Integer flag;
 	private String perfil;
+	private String contrasenia;
+	private String usuario;
+	
+	
+	
+	public String getContrasenia() {
+		return contrasenia;
+	}
+	public void setContrasenia(String contrasenia) {
+		this.contrasenia = contrasenia;
+	}
+	public String getUsuario() {
+		return usuario;
+	}
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
+	}
 	
 	public int getNumeroDocumento() {
 		return numeroDocumento;
@@ -30,8 +47,7 @@ public class EmpleadoBeanData implements Serializable{
 	public void setNumeroDocumento(int numeroDocumento) {
 		this.numeroDocumento = numeroDocumento;
 	}
-	
-	
+		
 	public String getTipoDocumento() {
 		return tipoDocumento;
 	}
