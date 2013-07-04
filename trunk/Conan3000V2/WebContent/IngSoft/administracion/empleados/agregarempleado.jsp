@@ -245,7 +245,7 @@
 								</div>
 							  </div>
 							  <div class="control-group" id="dvSedes">
-								<label class="control-label" for="cmbPerfil">Sedes de Trabajo(*):</label>
+								<label class="control-label" for="cmbPerfil">Perfil Asignado:</label>
 								<div class="controls">
 								  <select   data-rel="chosen" id="cmbPerfil" name="cmbPerfil" >
 									<%for(int i=0;i<perfiles.size();i++){ %>
