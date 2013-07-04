@@ -1,7 +1,5 @@
 package IngSoft.venta.pago;
 
-import java.util.Vector;
-
 import javax.faces.bean.SessionScoped;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;

@@ -12,17 +12,9 @@ import IngSoft.general.CoException;
 
 import IngSoft.administracion.bean.ActividadBeanData;
 import IngSoft.administracion.bean.ActividadBeanFuncion;
-import IngSoft.administracion.bean.ActividadBeanData;
 import IngSoft.administracion.bean.AmbienteBeanData;
-import IngSoft.administracion.bean.CriterioActividadBeanData;
-import IngSoft.administracion.bean.CriterioActividadBeanFunction;
-import IngSoft.administracion.bean.CriterioSedeBeanData;
-import IngSoft.administracion.bean.CriterioSedeBeanFunction;
-import IngSoft.administracion.bean.ResultadoActividadBeanData;
 import IngSoft.administracion.bean.ResultadoEmpleadoBeanData;
-import IngSoft.administracion.bean.ResultadoSedeBeanData;
 import IngSoft.administracion.bean.SedeBeanData;
-import IngSoft.administracion.bean.SedeBeanFuncion;
 import IngSoft.administracion.bean.TipoActividadMiniBeanData;
 
 

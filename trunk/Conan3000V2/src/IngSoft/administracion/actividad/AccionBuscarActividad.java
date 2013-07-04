@@ -1,6 +1,5 @@
 package IngSoft.administracion.actividad;
 
-import java.util.List;
 import java.util.Vector;
 
 import javax.servlet.ServletContext;
@@ -11,16 +10,7 @@ import IngSoft.general.CoAccion;
 import IngSoft.general.CoException;
 import IngSoft.administracion.bean.CriterioActividadBeanData;
 import IngSoft.administracion.bean.CriterioActividadBeanFunction;
-import IngSoft.administracion.bean.CriterioActividadBeanData;
-import IngSoft.administracion.bean.CriterioSedeBeanData;
-import IngSoft.administracion.bean.CriterioSedeBeanFunction;
-import IngSoft.administracion.bean.DepartamentoBeanData;
-import IngSoft.administracion.bean.ResultadoSedeBeanData;
-import IngSoft.administracion.bean.SedeBeanFuncion;
 import IngSoft.administracion.bean.TipoActividadMiniBeanData;
-import IngSoft.administracion.bean.DistritoBeanData;
-import IngSoft.administracion.bean.ProvinciaBeanData;
-import IngSoft.administracion.bean.ResultadoActividadBeanData;
 import IngSoft.administracion.bean.ResultadoActividadBeanData;
 import IngSoft.administracion.bean.ActividadBeanFuncion;
 

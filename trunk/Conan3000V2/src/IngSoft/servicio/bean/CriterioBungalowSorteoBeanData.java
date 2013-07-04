@@ -2,7 +2,6 @@ package IngSoft.servicio.bean;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Vector;
 
 public class CriterioBungalowSorteoBeanData implements Serializable{
 	private Date fInicioSorteo;

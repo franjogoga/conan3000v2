@@ -8,18 +8,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.ibatis.session.SqlSession;
 
-import IngSoft.administracion.bean.CriterioActividadBeanData;
-import IngSoft.administracion.bean.CriterioEmpleadoBeanData;
-import IngSoft.administracion.bean.CriterioEmpleadoBeanFunction;
 import IngSoft.administracion.bean.PersonaBeanData;
-import IngSoft.administracion.bean.ResultadoActividadBeanData;
-import IngSoft.administracion.bean.ResultadoEmpleadoBeanData;
 import IngSoft.general.CoAccion;
 import IngSoft.general.CoException;
 import IngSoft.general.MyBatisSesion;
-import IngSoft.venta.bean.CriterioSocioBeanData;
-import IngSoft.venta.bean.CriterioSocioBeanFuncion;
-import IngSoft.venta.bean.ResultadoSocioBeanData;
 
 public class AccionSeleccionarSocio extends CoAccion{
 

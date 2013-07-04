@@ -9,9 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import IngSoft.general.CoAccion;
 import IngSoft.general.CoException;
-import IngSoft.servicio.bean.CriterioEventoBeanData;
-import IngSoft.servicio.bean.CriterioEventoBeanFunction;
-import IngSoft.servicio.bean.ResultadoEventoBeanData;
 import IngSoft.venta.bean.CriterioPromocionBeanData;
 import IngSoft.venta.bean.CriterioPromocionBeanFunction;
 import IngSoft.venta.bean.ResultadoPromocionBeanData;

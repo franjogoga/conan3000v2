@@ -1,16 +1,12 @@
 package IngSoft.venta.solicitud;
 
 import java.io.IOException;
-import java.util.Vector;
-
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import IngSoft.administracion.bean.SedeMiniBeanData;
 import IngSoft.general.CoAccion;
 import IngSoft.general.CoException;
-import IngSoft.venta.bean.EmpleadoMiniBeanData;
 import IngSoft.venta.bean.SolicitudProductoBeanData;
 import IngSoft.venta.bean.SolicitudProductoBeanFuncion;
 

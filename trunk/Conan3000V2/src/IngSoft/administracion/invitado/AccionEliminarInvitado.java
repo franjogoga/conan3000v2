@@ -6,7 +6,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import IngSoft.administracion.bean.InvitadoBeanFunction;
 import IngSoft.administracion.bean.InvitadoBeanData;
-import IngSoft.administracion.bean.InvitadoBeanFunction;
 import IngSoft.general.CoAccion;
 import IngSoft.general.CoException;
 

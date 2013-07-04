@@ -1,6 +1,5 @@
 package IngSoft.administracion.infraccion;
 
-import IngSoft.administracion.reserva.AccionAgregarReserva;
 import IngSoft.general.CoServlet;
 
 public class SMAInfraccion extends CoServlet{

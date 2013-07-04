@@ -1,7 +1,5 @@
 package IngSoft.servicio.juridica;
 
-import java.util.Vector;
-
 import javax.faces.bean.SessionScoped;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -11,9 +9,6 @@ import IngSoft.general.CoAccion;
 import IngSoft.general.CoException;
 import IngSoft.servicio.bean.PersonaJuridicaBeanData;
 import IngSoft.servicio.bean.JuridicaBeanFuncion;
-import IngSoft.servicio.bean.SedeMiniBeanData;
-import IngSoft.servicio.bean.SorteoBeanData;
-import IngSoft.servicio.bean.SorteoBeanFuncion;
 @SessionScoped
 public class AccionAgregarJuridica extends CoAccion{
 

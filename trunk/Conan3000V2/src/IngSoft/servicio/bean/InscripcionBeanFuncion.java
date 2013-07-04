@@ -2,15 +2,13 @@ package IngSoft.servicio.bean;
 
 import java.util.Date;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
 import java.util.Random;
 import java.util.Vector;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ApplicationScoped;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -21,7 +19,8 @@ import IngSoft.servicio.bean.SorteoBeanData;
 import IngSoft.general.CoException;
 import IngSoft.general.MyBatisSesion;
 
-@SessionScoped
+
+@ApplicationScoped
 public class InscripcionBeanFuncion {
 	static private InscripcionBeanFuncion SorteoFuncion = null;
 	private Lock l = new ReentrantLock();

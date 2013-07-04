@@ -8,8 +8,6 @@ import IngSoft.general.CoAccion;
 import IngSoft.general.CoException;
 import IngSoft.venta.bean.OrdenPagoBeanData;
 import IngSoft.venta.bean.OrdenPagoBeanFunction;
-import IngSoft.venta.bean.PagoBeanData;
-import IngSoft.venta.bean.PagoBeanFunction;
 @SessionScoped
 public class AccionConsultarOrdenPago extends CoAccion{
 

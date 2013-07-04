@@ -11,7 +11,6 @@ import IngSoft.general.CoAccion;
 import IngSoft.general.CoException;
 import IngSoft.administracion.bean.ConcesionarioBeanFunction;
 import IngSoft.administracion.bean.ConcesionarioBeanData;
-import IngSoft.administracion.bean.TipoCanchaMiniBeanData;
 import IngSoft.administracion.bean.ConcesionarioSedeBeanData;
 
 @SessionScoped

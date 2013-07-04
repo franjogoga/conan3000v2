@@ -8,8 +8,6 @@ import javax.servlet.http.HttpServletResponse;
 import IngSoft.general.CoAccion;
 import IngSoft.general.CoException;
 
-import IngSoft.venta.bean.EgresoBeanData;
-import IngSoft.venta.bean.EgresoBeanFunction;
 import IngSoft.venta.bean.OrdenPagoBeanData;
 import IngSoft.venta.bean.OrdenPagoBeanFunction;
 @SessionScoped

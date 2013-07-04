@@ -1,8 +1,5 @@
 package IngSoft.venta.bean;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Vector;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 
@@ -16,8 +13,6 @@ import org.apache.ibatis.session.SqlSession;
 
 import IngSoft.general.CoException;
 import IngSoft.general.MyBatisSesion;
-import IngSoft.servicio.bean.EventoBeanData;
-import IngSoft.servicio.bean.ModificacionesEventoBeanData;
 
 public class PromocionBeanFuncion {
 	static private PromocionBeanFuncion PromocionFuncion=null;

@@ -14,7 +14,6 @@ import IngSoft.servicio.bean.ConcesionarioMiniBeanData;
 import IngSoft.servicio.bean.EventoBeanData;
 import IngSoft.servicio.bean.EventoBeanFuncion;
 import IngSoft.servicio.bean.InvitadosMiniBeanData;
-import IngSoft.servicio.bean.JuridicaBeanFuncion;
 import IngSoft.servicio.bean.PersonaJuridicaBeanData;
 import IngSoft.servicio.bean.SedeMiniBeanData;
 @SessionScoped

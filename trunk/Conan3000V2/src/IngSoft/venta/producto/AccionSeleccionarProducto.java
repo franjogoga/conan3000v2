@@ -10,10 +10,7 @@ import IngSoft.general.CoAccion;
 import IngSoft.general.CoException;
 import IngSoft.venta.bean.CriterioProductoBeanData;
 import IngSoft.venta.bean.CriterioProductoBeanFunction;
-import IngSoft.venta.bean.CriterioSolicitudProductoBeanData;
-import IngSoft.venta.bean.CriterioSolicitudProductoBeanFunction;
 import IngSoft.venta.bean.ResultadoProductoBeanData;
-import IngSoft.venta.bean.ResultadoSolicitudProductoBeanData;
 @SessionScoped
 public class AccionSeleccionarProducto  extends CoAccion {
 

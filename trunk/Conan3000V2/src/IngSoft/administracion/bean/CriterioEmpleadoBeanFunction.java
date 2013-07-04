@@ -1,9 +1,6 @@
 package IngSoft.administracion.bean;
 
-import java.sql.Date;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
@@ -13,9 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.ibatis.session.SqlSession;
 
 import IngSoft.general.MyBatisSesion;
-import IngSoft.servicio.bean.CriterioEventoBeanData;
-import IngSoft.servicio.bean.ResultadoEventoBeanData;
-import IngSoft.administracion.bean.*;
 
 public class CriterioEmpleadoBeanFunction {
 	SimpleDateFormat DF = new SimpleDateFormat("dd/MM/yyyy");

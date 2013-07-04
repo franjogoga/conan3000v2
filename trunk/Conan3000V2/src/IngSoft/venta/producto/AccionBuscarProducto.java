@@ -9,11 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import IngSoft.general.CoAccion;
 import IngSoft.general.CoException;
-import IngSoft.venta.bean.CriterioMembresiaBeanData;
-import IngSoft.venta.bean.CriterioMembresiaBeanFunction;
 import IngSoft.venta.bean.CriterioProductoBeanData;
 import IngSoft.venta.bean.CriterioProductoBeanFunction;
-import IngSoft.venta.bean.ResultadoMembresiaBeanData;
 import IngSoft.venta.bean.ResultadoProductoBeanData;
 @SessionScoped
 public class AccionBuscarProducto extends CoAccion {

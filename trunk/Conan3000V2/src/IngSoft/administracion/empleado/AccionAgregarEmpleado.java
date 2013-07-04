@@ -8,16 +8,11 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.mongodb.util.Hash;
-
 import IngSoft.general.CoAccion;
 import IngSoft.general.CoException;
 import IngSoft.administracion.bean.*;
-import IngSoft.servicio.bean.*;
-
 import IngSoft.servicio.bean.EventoBeanFuncion;
 import IngSoft.servicio.bean.SedeMiniBeanData;
-import IngSoft.servicio.bean.TipoEventoMiniBeanData;
 @SessionScoped
 public class AccionAgregarEmpleado extends CoAccion {
 

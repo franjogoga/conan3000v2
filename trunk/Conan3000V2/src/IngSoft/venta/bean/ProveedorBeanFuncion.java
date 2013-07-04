@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.ibatis.session.SqlSession;
 
-import IngSoft.administracion.bean.AmbienteBeanData;
 import IngSoft.general.CoException;
 import IngSoft.general.MyBatisSesion;
 public class ProveedorBeanFuncion {
@@ -157,7 +156,7 @@ public class ProveedorBeanFuncion {
 		finally{
 			sqlsesion.close();
 		}
-		//COMPROBAR EL TAMAÑANO PARA SETEAR EL FLAG
+		//COMPROBAR EL TAMAï¿½ANO PARA SETEAR EL FLAG
 		if(resultadosV.size()==0){
 			proveedorData.setFlag(0);
 		}

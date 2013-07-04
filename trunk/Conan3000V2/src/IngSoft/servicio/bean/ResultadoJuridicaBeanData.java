@@ -1,7 +1,6 @@
 package IngSoft.servicio.bean;
 
 import java.io.Serializable;
-import java.sql.Date;
 
 public class ResultadoJuridicaBeanData implements Serializable{
 	private String codigo;

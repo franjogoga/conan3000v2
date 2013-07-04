@@ -1,7 +1,5 @@
 package IngSoft.servicio.bean;
 import java.util.Random;
-import java.util.Scanner;
-import java.util.InputMismatchException;
 
 public class SorteoRandom {
 

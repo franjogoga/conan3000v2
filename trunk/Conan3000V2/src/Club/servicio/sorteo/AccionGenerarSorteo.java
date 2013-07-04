@@ -1,23 +1,15 @@
 package Club.servicio.sorteo;
 
-import java.util.List;
 import java.util.Vector;
 
 import javax.faces.bean.SessionScoped;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
 import IngSoft.general.CoAccion;
 import IngSoft.general.CoException;
-import IngSoft.servicio.bean.AmbienteMiniBeanData;
-import IngSoft.servicio.bean.BungalowxSorteData;
-import IngSoft.servicio.bean.SocioBeanData;
-import IngSoft.servicio.bean.SocioInscritoBeanData;
 import IngSoft.servicio.bean.SorteoBeanData;
 import IngSoft.servicio.bean.SorteoBeanFuncion;
-import IngSoft.servicio.bean.TipoEventoMiniBeanData;
 
 @SessionScoped
 public class AccionGenerarSorteo extends CoAccion {

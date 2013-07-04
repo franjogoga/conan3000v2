@@ -1,6 +1,5 @@
 package IngSoft.administracion.reserva;
 
-import java.util.List;
 import java.util.Vector;
 
 import javax.servlet.ServletContext;
@@ -12,7 +11,6 @@ import IngSoft.general.CoException;
 import IngSoft.administracion.bean.CriterioReservaBeanData;
 import IngSoft.administracion.bean.CriterioReservaBeanFunction;
 import IngSoft.administracion.bean.ResultadoReservaBeanData;
-import IngSoft.administracion.bean.ReservaBeanFunction;
 
 public class AccionBuscarReserva extends CoAccion {
 

@@ -1,14 +1,8 @@
 package IngSoft.administracion.bean;
 
-import java.text.SimpleDateFormat;
-import java.sql.Date;
 import java.util.Calendar;
-import java.util.List;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.apache.ibatis.session.SqlSession;
 

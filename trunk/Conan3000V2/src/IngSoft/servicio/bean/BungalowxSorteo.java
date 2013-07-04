@@ -1,7 +1,6 @@
 package IngSoft.servicio.bean;
 
 import java.io.Serializable;
-import java.util.Date;
 
 public class BungalowxSorteo implements Serializable {
 	private String idBungalow;

@@ -1,6 +1,5 @@
 package IngSoft.administracion.infraccion;
 
-import java.util.List;
 import java.util.Vector;
 
 import javax.servlet.ServletContext;

@@ -1,7 +1,5 @@
 package IngSoft.administracion.horariodetrabajo;
 
-import java.util.Vector;
-
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

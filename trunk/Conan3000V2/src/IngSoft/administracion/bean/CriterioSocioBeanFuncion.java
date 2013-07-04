@@ -1,6 +1,5 @@
 package IngSoft.administracion.bean;
 
-import java.text.ParseException;
 import java.util.List;
 import java.util.Vector;
 

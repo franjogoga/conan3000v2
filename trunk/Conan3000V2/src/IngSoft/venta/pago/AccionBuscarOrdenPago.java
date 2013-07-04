@@ -12,10 +12,7 @@ import IngSoft.general.CoAccion;
 import IngSoft.general.CoException;
 import IngSoft.venta.bean.CriterioOrdenPagoBeanData;
 import IngSoft.venta.bean.CriterioOrdenPagoBeanFunction;
-import IngSoft.venta.bean.CriterioPagoBeanData;
-import IngSoft.venta.bean.CriterioPagoBeanFunction;
 import IngSoft.venta.bean.ResultadoOrdenPagoBeanData;
-import IngSoft.venta.bean.ResultadoPagoBeanData;
 @SessionScoped
 public class AccionBuscarOrdenPago extends CoAccion {
 
