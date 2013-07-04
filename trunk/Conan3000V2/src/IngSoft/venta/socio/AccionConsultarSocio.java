@@ -27,6 +27,7 @@ public class AccionConsultarSocio extends CoAccion{
 		SocioBeanData SocioData=SocioFuncion.consultarSocio(codigo);
 		PersonaMiniBeanData PersonaData=PersonaFuncion.consultarPersona(codigo);
 		
+		
 		request.setAttribute("socio", SocioData);
 		request.setAttribute("persona", PersonaData);
 
