@@ -1,7 +1,6 @@
 package IngSoft.administracion.bean;
 
 import java.io.Serializable;
-import java.util.Vector;
 
 public class HorariosEmpleado implements Serializable{
 	

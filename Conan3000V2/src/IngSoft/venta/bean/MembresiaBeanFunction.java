@@ -2,10 +2,8 @@ package IngSoft.venta.bean;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;
-import java.util.Locale;
 import java.util.Calendar;
 
-import java.util.GregorianCalendar;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 

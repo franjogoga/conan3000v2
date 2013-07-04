@@ -2,7 +2,6 @@ package IngSoft.administracion.bean;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Vector;
@@ -16,12 +15,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import IngSoft.general.CoException;
 import IngSoft.general.MyBatisSesion;
-import IngSoft.servicio.bean.PersonaJuridicaBeanData;
 import IngSoft.servicio.bean.SedeMiniBeanData;
-
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 
 public class EmpleadoBeanFuncion {	
 	

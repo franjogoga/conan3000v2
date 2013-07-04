@@ -4,10 +4,8 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import IngSoft.administracion.bean.ActividadBeanData;
 import IngSoft.administracion.bean.InvitadoBeanFunction;
 import IngSoft.administracion.bean.InvitadoBeanData;
-import IngSoft.administracion.bean.InvitadoBeanFunction;
 import IngSoft.general.CoAccion;
 import IngSoft.general.CoException;
 

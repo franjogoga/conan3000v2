@@ -7,8 +7,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import IngSoft.general.CoAccion;
 import IngSoft.general.CoException;
-import IngSoft.venta.bean.MembresiaBeanData;
-import IngSoft.venta.bean.MembresiaBeanFunction;
 import IngSoft.venta.bean.ProductoBeanData;
 import IngSoft.venta.bean.ProductoBeanFunction;
 @SessionScoped

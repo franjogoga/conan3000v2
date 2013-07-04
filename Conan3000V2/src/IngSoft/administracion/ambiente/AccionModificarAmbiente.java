@@ -11,7 +11,6 @@ import IngSoft.general.CoAccion;
 import IngSoft.general.CoException;
 import IngSoft.administracion.bean.AmbienteBeanData;
 import IngSoft.administracion.bean.AmbienteBeanFunction;
-import IngSoft.administracion.bean.PerfilBeanData;
 import IngSoft.administracion.bean.SedeMiniBeanData;
 import IngSoft.administracion.bean.TipoAmbienteMiniBeanData;
 

@@ -1,6 +1,5 @@
 package IngSoft.administracion.invitado;
 
-import java.util.List;
 import java.util.Vector;
 
 import javax.servlet.ServletContext;
@@ -12,7 +11,6 @@ import IngSoft.general.CoException;
 import IngSoft.administracion.bean.CriterioInvitadoBeanData;
 import IngSoft.administracion.bean.CriterioInvitadoBeanFunction;
 import IngSoft.administracion.bean.ResultadoInvitadoBeanData;
-import IngSoft.administracion.bean.InvitadoBeanFunction;
 
 public class AccionBuscarInvitado extends CoAccion {
 

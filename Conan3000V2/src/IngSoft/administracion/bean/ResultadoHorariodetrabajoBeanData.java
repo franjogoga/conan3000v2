@@ -1,7 +1,6 @@
 package IngSoft.administracion.bean;
 
 import java.io.Serializable;
-import java.sql.Date;
 
 public class ResultadoHorariodetrabajoBeanData implements Serializable{
 	private String codigo;

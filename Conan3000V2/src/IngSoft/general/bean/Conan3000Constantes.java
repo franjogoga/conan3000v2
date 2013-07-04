@@ -1,12 +1,9 @@
 package IngSoft.general.bean;
 
 import java.io.Serializable;
-import java.util.Date;
-
 import org.apache.ibatis.session.SqlSession;
 
 import IngSoft.general.MyBatisSesion;
-import IngSoft.servicio.bean.EventoBeanFuncion;
 
 public class Conan3000Constantes implements Serializable {
 	private double montoInvitado;

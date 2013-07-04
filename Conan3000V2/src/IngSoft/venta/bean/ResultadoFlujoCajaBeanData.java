@@ -1,7 +1,6 @@
 package IngSoft.venta.bean;
 
 import java.io.Serializable;
-import java.util.Date;
 
 public class ResultadoFlujoCajaBeanData implements Serializable {
 	

@@ -6,8 +6,6 @@ import javax.faces.bean.SessionScoped;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
 import IngSoft.general.CoAccion;
 import IngSoft.general.CoException;
 import IngSoft.administracion.bean.AmbienteBeanFunction;

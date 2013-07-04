@@ -6,11 +6,8 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import IngSoft.administracion.bean.CasosBeanData;
-import IngSoft.administracion.bean.InfraccionBeanData;
 import IngSoft.administracion.bean.InfraccionBeanFunction;
 import IngSoft.administracion.bean.InfraccionSocioBeanData;
-import IngSoft.administracion.bean.PerfilBeanFunction;
 import IngSoft.general.CoAccion;
 import IngSoft.general.CoException;
 

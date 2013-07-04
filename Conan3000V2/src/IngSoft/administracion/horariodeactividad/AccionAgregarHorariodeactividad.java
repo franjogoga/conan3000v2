@@ -20,9 +20,6 @@ import IngSoft.administracion.bean.HorariodeactividadBeanFuncion;
 import IngSoft.administracion.bean.DiasBeanData;
 import IngSoft.administracion.bean.ActividadDiaSemanaBeanData;
 import IngSoft.administracion.bean.ActividadDiaSemanaBeanFunction;
-import IngSoft.administracion.bean.HorariodeactividadBeanData;
-import IngSoft.administracion.bean.HorariodetrabajoBeanData;
-import IngSoft.administracion.bean.HorariodetrabajoBeanFuncion;
 import IngSoft.administracion.bean.ResultadoActividadBeanData;
 
 

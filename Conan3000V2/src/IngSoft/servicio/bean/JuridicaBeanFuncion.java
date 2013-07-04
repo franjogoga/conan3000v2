@@ -1,10 +1,6 @@
 package IngSoft.servicio.bean;
 
-import IngSoft.servicio.juridica.*;
-import IngSoft.servicio.bean.*;
-import java.sql.Date;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Vector;
 import java.util.concurrent.locks.Lock;

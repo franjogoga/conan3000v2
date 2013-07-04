@@ -2,8 +2,6 @@ package IngSoft.venta.ventaproducto;
 
 import IngSoft.general.CoServlet;
 import IngSoft.venta.ventaproducto.AccionRegistrarVenta;
-import IngSoft.venta.socio.AccionAgregarSocio;
-import IngSoft.venta.socio.AccionBuscarSocio;
 
 
 public class SMVVentaProductos extends CoServlet{

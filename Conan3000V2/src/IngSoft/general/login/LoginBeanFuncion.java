@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.Vector;
 
 import javax.faces.bean.SessionScoped;
-import javax.servlet.ServletContext;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;

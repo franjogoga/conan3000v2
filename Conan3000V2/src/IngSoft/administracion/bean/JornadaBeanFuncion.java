@@ -2,10 +2,7 @@ package IngSoft.administracion.bean;
 
 import java.util.Date;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
-import java.util.Random;
 import java.util.Vector;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;

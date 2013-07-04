@@ -1,7 +1,6 @@
 package IngSoft.venta.bean;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import java.util.Vector;
 import javax.servlet.http.HttpServletRequest;

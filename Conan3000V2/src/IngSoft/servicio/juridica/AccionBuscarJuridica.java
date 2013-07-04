@@ -10,10 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 import IngSoft.general.CoAccion;
 import IngSoft.general.CoException;
 import IngSoft.servicio.bean.*;
-
-import org.apache.ibatis.session.SqlSession;
-
-import IngSoft.general.MyBatisSesion;
 @SessionScoped
 public class AccionBuscarJuridica extends CoAccion {
 	

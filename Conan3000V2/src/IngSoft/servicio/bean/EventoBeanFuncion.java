@@ -14,7 +14,6 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 
-import IngSoft.administracion.bean.InvitadoBeanData;
 import IngSoft.general.CoException;
 import IngSoft.general.MyBatisSesion;
 import IngSoft.venta.bean.OrdenPagoBeanFunction;

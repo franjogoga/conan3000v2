@@ -15,7 +15,6 @@ import IngSoft.administracion.bean.ActividadBeanFuncion;
 import IngSoft.administracion.bean.AmbienteBeanData;
 import IngSoft.administracion.bean.ResultadoEmpleadoBeanData;
 import IngSoft.administracion.bean.SedeBeanData;
-import IngSoft.administracion.bean.SedeBeanFuncion;
 import IngSoft.administracion.bean.TipoActividadMiniBeanData;
 
 

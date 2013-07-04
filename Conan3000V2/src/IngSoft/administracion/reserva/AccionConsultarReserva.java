@@ -6,12 +6,9 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import IngSoft.administracion.bean.CriterioReservaBeanFunction;
 import IngSoft.administracion.bean.PersonaBeanData;
 import IngSoft.administracion.bean.ReservaBeanData;
 import IngSoft.administracion.bean.ReservaBeanFunction;
-import IngSoft.administracion.bean.ResultadoReservaBeanData;
-
 import IngSoft.general.CoAccion;
 import IngSoft.general.CoException;
 

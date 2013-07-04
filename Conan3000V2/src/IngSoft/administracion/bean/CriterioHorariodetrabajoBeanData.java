@@ -1,7 +1,6 @@
 package IngSoft.administracion.bean;
 
 import java.io.Serializable;
-import java.sql.Date;
 
 public class CriterioHorariodetrabajoBeanData implements Serializable{
 	private String nombre; 
