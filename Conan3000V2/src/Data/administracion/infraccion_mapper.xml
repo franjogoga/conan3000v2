@@ -10,10 +10,10 @@
 	</select>
 	
 	<select id="searchPlantillaInfraccion" parameterType="IngSoft.administracion.bean.CriterioInfraccionBeanData" resultType="IngSoft.administracion.bean.ResultadoInfraccionBeanData">
-		SELECT	inf245g2.SOCIO.IdSocio AS codigo, inf245g2.PERSONA.Nombres AS nombre, inf245g2.PERSONA.ApePaterno AS apepaterno,
-			inf245g2.PERSONA.ApeMaterno AS apematerno, inf245g2.PERSONA.NumeroDocumento AS numdocumento
-		FROM inf245g2.SOCIO, inf245g2.PERSONA
-		WHERE inf245g2.SOCIO.IdSocio=inf245g2.PERSONA.IdPersona AND inf245g2.PERSONA.Nombres like #{nombre}
+		SELECT	SOCIO.IdSocio AS codigo, PERSONA.Nombres AS nombre, PERSONA.ApePaterno AS apepaterno,
+			PERSONA.ApeMaterno AS apematerno, PERSONA.NumeroDocumento AS numdocumento
+		FROM SOCIO, PERSONA
+		WHERE SOCIO.IdSocio=PERSONA.IdPersona AND PERSONA.Nombres like #{nombre}
 		order by 1 asc
 	</select> 
 	

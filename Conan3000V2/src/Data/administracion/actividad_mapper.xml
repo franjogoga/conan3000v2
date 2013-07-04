@@ -16,28 +16,28 @@
 
 
 SELECT 
-inf245g2.ACTIVIDAD.IdActividad AS codigo ,
-inf245g2.ACTIVIDAD.nombre as nombre,
+ACTIVIDAD.IdActividad AS codigo ,
+ACTIVIDAD.nombre as nombre,
 
-inf245g2.ACTIVIDAD.Vacante as vacantes,
-inf245g2.ACTIVIDAD.Inscritos as inscritos,
-
-
-
-inf245g2.TIPO_ACTIVIDAD.nombre as tipoactividad,
-inf245g2.ACTIVIDAD.estado as estado
+ACTIVIDAD.Vacante as vacantes,
+ACTIVIDAD.Inscritos as inscritos,
 
 
 
-FROM inf245g2.ACTIVIDAD , inf245g2.TIPO_ACTIVIDAD 
+TIPO_ACTIVIDAD.nombre as tipoactividad,
+ACTIVIDAD.estado as estado
+
+
+
+FROM ACTIVIDAD , TIPO_ACTIVIDAD 
 
 
 WHERE
 
-inf245g2.ACTIVIDAD.IdTipoActividad = inf245g2.TIPO_ACTIVIDAD.IdTipoActividad
+ACTIVIDAD.IdTipoActividad = TIPO_ACTIVIDAD.IdTipoActividad
 
-AND inf245g2.ACTIVIDAD.nombre  like  #{nombre}
-AND  inf245g2.TIPO_ACTIVIDAD.IdTipoActividad  like  #{tipoactividad}
+AND ACTIVIDAD.nombre  like  #{nombre}
+AND  TIPO_ACTIVIDAD.IdTipoActividad  like  #{tipoactividad}
 
 
 ORDER BY 1 ASC
@@ -52,24 +52,24 @@ ORDER BY 1 ASC
 
 
 SELECT 
-inf245g2.ACTIVIDADxDIA_SEMANA.IdActividad AS codigo ,
-inf245g2.ACTIVIDAD.nombre as nombre,
-inf245g2.ACTIVIDAD.Vacante as vacantes,
-inf245g2.ACTIVIDAD.Inscritos as inscritos,
-inf245g2.TIPO_ACTIVIDAD.nombre as tipoactividad,
-inf245g2.ACTIVIDAD.estado as estado,
+ACTIVIDADxDIA_SEMANA.IdActividad AS codigo ,
+ACTIVIDAD.nombre as nombre,
+ACTIVIDAD.Vacante as vacantes,
+ACTIVIDAD.Inscritos as inscritos,
+TIPO_ACTIVIDAD.nombre as tipoactividad,
+ACTIVIDAD.estado as estado,
 
-inf245g2.ACTIVIDADxDIA_SEMANA.Estado as estadoHorario,
-inf245g2.ACTIVIDADxDIA_SEMANA.Horario  as horario
-FROM inf245g2.ACTIVIDADxDIA_SEMANA  ,inf245g2.ACTIVIDAD , inf245g2.TIPO_ACTIVIDAD 
+ACTIVIDADxDIA_SEMANA.Estado as estadoHorario,
+ACTIVIDADxDIA_SEMANA.Horario  as horario
+FROM ACTIVIDADxDIA_SEMANA  ,ACTIVIDAD , TIPO_ACTIVIDAD 
 WHERE
 
-inf245g2.ACTIVIDAD.IdTipoActividad = inf245g2.TIPO_ACTIVIDAD.IdTipoActividad
-AND inf245g2.ACTIVIDADxDIA_SEMANA.IdActividad  = inf245g2.ACTIVIDAD.IdActividad
+ACTIVIDAD.IdTipoActividad = TIPO_ACTIVIDAD.IdTipoActividad
+AND ACTIVIDADxDIA_SEMANA.IdActividad  = ACTIVIDAD.IdActividad
 
-AND inf245g2.ACTIVIDAD.nombre  like  #{nombre}
+AND ACTIVIDAD.nombre  like  #{nombre}
 
-group by inf245g2.ACTIVIDADxDIA_SEMANA.Horario
+group by ACTIVIDADxDIA_SEMANA.Horario
 
 ;
 
@@ -82,10 +82,10 @@ group by inf245g2.ACTIVIDADxDIA_SEMANA.Horario
 
 <select id="getNumeroInscritosHorariodeactividad"  resultType="IngSoft.administracion.bean.ResultadoActividadBeanData">
 SELECT 
-inf245g2.ACTIVIDAD_SOCIO.IdActividad AS codigo ,
-inf245g2.ACTIVIDAD_SOCIO.Horario  as horario,
+ACTIVIDAD_SOCIO.IdActividad AS codigo ,
+ACTIVIDAD_SOCIO.Horario  as horario,
 COUNT( ACTIVIDAD_SOCIO.Horario) as inscritos
-FROM inf245g2.ACTIVIDAD_SOCIO
+FROM ACTIVIDAD_SOCIO
 GROUP BY ACTIVIDAD_SOCIO.Horario
 </select>
 
@@ -93,10 +93,10 @@ GROUP BY ACTIVIDAD_SOCIO.Horario
 SELECT 
 
 COUNT(*)
-FROM inf245g2.ACTIVIDAD_SOCIO
+FROM ACTIVIDAD_SOCIO
 WHERE
-inf245g2.ACTIVIDAD_SOCIO.IdActividad =#{codigoActividad}
-AND inf245g2.ACTIVIDAD_SOCIO.Horario=#{horario}
+ACTIVIDAD_SOCIO.IdActividad =#{codigoActividad}
+AND ACTIVIDAD_SOCIO.Horario=#{horario}
 
 </select>
 
@@ -105,30 +105,30 @@ AND inf245g2.ACTIVIDAD_SOCIO.Horario=#{horario}
 
 
 SELECT 
-inf245g2.ACTIVIDAD.IdActividad AS codigo ,
-inf245g2.ACTIVIDAD.IdSede AS nombreSede,
-inf245g2.ACTIVIDAD.nombre as nombre,
-inf245g2.ACTIVIDAD.IdTipoActividad as nombreTipoactividad,
+ACTIVIDAD.IdActividad AS codigo ,
+ACTIVIDAD.IdSede AS nombreSede,
+ACTIVIDAD.nombre as nombre,
+ACTIVIDAD.IdTipoActividad as nombreTipoactividad,
 
-inf245g2.ACTIVIDAD.Vacante as vacantes,
-inf245g2.ACTIVIDAD.Costo as costo,
+ACTIVIDAD.Vacante as vacantes,
+ACTIVIDAD.Costo as costo,
 
-inf245g2.ACTIVIDAD.IdEmpleado AS nombreEncargado,
-inf245g2.ACTIVIDAD.IdAmbiente as nombreAmbientes,
-
-
-inf245g2.ACTIVIDAD.FechaInicio AS fechaInicio,
-inf245g2.ACTIVIDAD.FechaFin as fechaFin,
-inf245g2.ACTIVIDAD.Descripcion as descripcion,
-inf245g2.ACTIVIDAD.estado as estado
+ACTIVIDAD.IdEmpleado AS nombreEncargado,
+ACTIVIDAD.IdAmbiente as nombreAmbientes,
 
 
-FROM inf245g2.ACTIVIDAD 
+ACTIVIDAD.FechaInicio AS fechaInicio,
+ACTIVIDAD.FechaFin as fechaFin,
+ACTIVIDAD.Descripcion as descripcion,
+ACTIVIDAD.estado as estado
+
+
+FROM ACTIVIDAD 
 
 
 
 WHERE
-    inf245g2.ACTIVIDAD.IdActividad    = #{codigo}
+    ACTIVIDAD.IdActividad    = #{codigo}
 
 
 ORDER BY 1 ASC
@@ -167,41 +167,41 @@ and`Horario`=#{horario}
 <select id="getMatriculadosactividad" parameterType="IngSoft.administracion.bean.MatriculaBeanData" resultType="IngSoft.administracion.bean.MatriculaBeanData">
 
 SELECT 
-inf245g2.ACTIVIDAD_SOCIO.IdActividad AS codigoActividad,
-inf245g2.ACTIVIDAD.Nombre AS nombreAtc ,
-inf245g2.ACTIVIDAD.Vacante AS vacantes ,
-inf245g2.ACTIVIDAD.Inscritos AS inscritos ,
+ACTIVIDAD_SOCIO.IdActividad AS codigoActividad,
+ACTIVIDAD.Nombre AS nombreAtc ,
+ACTIVIDAD.Vacante AS vacantes ,
+ACTIVIDAD.Inscritos AS inscritos ,
 
-inf245g2.ACTIVIDAD_SOCIO.IdSocio AS codigosocio,
-inf245g2.PERSONA.Nombres AS nombreSoc,
-inf245g2.PERSONA.ApePaterno AS apaternoSoc,
-inf245g2.PERSONA.ApeMaterno AS amaternoSoc,
+ACTIVIDAD_SOCIO.IdSocio AS codigosocio,
+PERSONA.Nombres AS nombreSoc,
+PERSONA.ApePaterno AS apaternoSoc,
+PERSONA.ApeMaterno AS amaternoSoc,
 
-inf245g2.ACTIVIDAD_SOCIO.Monto AS monto,
-inf245g2.ACTIVIDAD_SOCIO.FechaRegistro AS fecha,
+ACTIVIDAD_SOCIO.Monto AS monto,
+ACTIVIDAD_SOCIO.FechaRegistro AS fecha,
 
 
-inf245g2.ACTIVIDAD_SOCIO.IdFamiliar AS codigofamiliar,
+ACTIVIDAD_SOCIO.IdFamiliar AS codigofamiliar,
 SOC.Nombres AS nombreFam,
 SOC.ApePaterno AS apaternoFam,
 SOC.ApeMaterno AS amaternoFam,
 
 
-inf245g2.ACTIVIDAD_SOCIO.Horario AS horario
+ACTIVIDAD_SOCIO.Horario AS horario
 
-FROM inf245g2.ACTIVIDAD_SOCIO
-LEFT JOIN  inf245g2.PERSONA 
-ON inf245g2.ACTIVIDAD_SOCIO.IdSocio = inf245g2.PERSONA.IdPersona
+FROM ACTIVIDAD_SOCIO
+LEFT JOIN  PERSONA 
+ON ACTIVIDAD_SOCIO.IdSocio = PERSONA.IdPersona
 
-LEFT JOIN  inf245g2.PERSONA SOC
-ON inf245g2.ACTIVIDAD_SOCIO.IdFamiliar = SOC.IdPersona
+LEFT JOIN  PERSONA SOC
+ON ACTIVIDAD_SOCIO.IdFamiliar = SOC.IdPersona
 
-LEFT JOIN  inf245g2.ACTIVIDAD
-ON inf245g2.ACTIVIDAD_SOCIO.IdActividad = inf245g2.ACTIVIDAD.IdActividad
+LEFT JOIN  ACTIVIDAD
+ON ACTIVIDAD_SOCIO.IdActividad = ACTIVIDAD.IdActividad
 
 WHERE 
-    inf245g2.ACTIVIDAD_SOCIO.IdActividad = #{codigoActividad}
-AND inf245g2.ACTIVIDAD_SOCIO.Horario = #{horario}
+    ACTIVIDAD_SOCIO.IdActividad = #{codigoActividad}
+AND ACTIVIDAD_SOCIO.Horario = #{horario}
 </select>
 
 <!-- Fin eliminar -->
@@ -253,21 +253,21 @@ TIPO_ACTIVIDAD;
 
 
 SELECT 
-inf245g2.ACTIVIDADxDIA_SEMANA.Horario AS Horario
-,inf245g2.ACTIVIDAD.IdActividad AS codigo
-,inf245g2.ACTIVIDAD.Nombre AS nombre
-,group_concat(inf245g2.DIA_SEMANA.IdDiaSemana ) AS codDiasemana
-,group_concat(inf245g2.DIA_SEMANA.Nombre,' ', DATE_FORMAT(inf245g2.ACTIVIDADxDIA_SEMANA.HoraInicio,'%h:%i'),'-',DATE_FORMAT(inf245g2.ACTIVIDADxDIA_SEMANA.HoraFin ,'%h:%i') SEPARATOR ' / '  ) AS diaSemana
-,inf245g2.ACTIVIDAD.Costo AS monto
+ACTIVIDADxDIA_SEMANA.Horario AS Horario
+,ACTIVIDAD.IdActividad AS codigo
+,ACTIVIDAD.Nombre AS nombre
+,group_concat(DIA_SEMANA.IdDiaSemana ) AS codDiasemana
+,group_concat(DIA_SEMANA.Nombre,' ', DATE_FORMAT(ACTIVIDADxDIA_SEMANA.HoraInicio,'%h:%i'),'-',DATE_FORMAT(ACTIVIDADxDIA_SEMANA.HoraFin ,'%h:%i') SEPARATOR ' / '  ) AS diaSemana
+,ACTIVIDAD.Costo AS monto
 FROM
-      inf245g2.ACTIVIDAD,  inf245g2.DIA_SEMANA, inf245g2.ACTIVIDADxDIA_SEMANA
+      ACTIVIDAD,  DIA_SEMANA, ACTIVIDADxDIA_SEMANA
 WHERE
 		
-	  inf245g2.ACTIVIDAD.IdActividad         = inf245g2.ACTIVIDADxDIA_SEMANA.IdActividad 
-AND   inf245g2.DIA_SEMANA.IdDiaSemana    = inf245g2.ACTIVIDADxDIA_SEMANA.IdDiaSemana
-AND    inf245g2.ACTIVIDAD.IdActividad  like  #{codigo} 
+	  ACTIVIDAD.IdActividad         = ACTIVIDADxDIA_SEMANA.IdActividad 
+AND   DIA_SEMANA.IdDiaSemana    = ACTIVIDADxDIA_SEMANA.IdDiaSemana
+AND    ACTIVIDAD.IdActividad  like  #{codigo} 
 
-group by inf245g2.ACTIVIDADxDIA_SEMANA.Horario 
+group by ACTIVIDADxDIA_SEMANA.Horario 
 
 
 </select>
@@ -298,19 +298,19 @@ AMBIENTE;
 <!-- getEmpleado  -->
 <select id="getEmpleado" resultType="IngSoft.administracion.bean.ResultadoEmpleadoBeanData">
 SELECT 
-inf245g2.PERSONA.IdPersona AS codigo ,
-inf245g2.PERSONA.Nombres as nombre,
-inf245g2.PERSONA.ApePaterno as apaterno,
-inf245g2.EMPLEADO.Puesto as puesto,
-inf245g2.EMPLEADO.Estado as estado
+PERSONA.IdPersona AS codigo ,
+PERSONA.Nombres as nombre,
+PERSONA.ApePaterno as apaterno,
+EMPLEADO.Puesto as puesto,
+EMPLEADO.Estado as estado
 
 
-FROM inf245g2.EMPLEADO , inf245g2.PERSONA 
+FROM EMPLEADO , PERSONA 
 
 
 WHERE
 
-inf245g2.EMPLEADO.IdEmpleado = inf245g2.PERSONA.IdPersona
+EMPLEADO.IdEmpleado = PERSONA.IdPersona
 
 
 
@@ -329,20 +329,20 @@ ORDER BY 1 ASC
 
 
 SELECT 
-inf245g2.PERSONA.IdPersona AS codigo ,
-inf245g2.PERSONA.Nombres as nombre,
-inf245g2.PERSONA.ApePaterno as apaterno,
-inf245g2.EMPLEADO.Puesto as puesto,
-inf245g2.EMPLEADO.Estado as estado
+PERSONA.IdPersona AS codigo ,
+PERSONA.Nombres as nombre,
+PERSONA.ApePaterno as apaterno,
+EMPLEADO.Puesto as puesto,
+EMPLEADO.Estado as estado
 
 
-FROM inf245g2.EMPLEADO , inf245g2.PERSONA 
+FROM EMPLEADO , PERSONA 
 
 
 WHERE
 
-inf245g2.EMPLEADO.IdEmpleado = inf245g2.PERSONA.IdPersona
-AND inf245g2.PERSONA.Nombres  like  #{nombre}
+EMPLEADO.IdEmpleado = PERSONA.IdPersona
+AND PERSONA.Nombres  like  #{nombre}
 
 
 
@@ -361,25 +361,25 @@ ORDER BY 1 ASC
 
 
 SELECT 
-inf245g2.SOCIO.IdSocio  AS codigo ,
+SOCIO.IdSocio  AS codigo ,
 SOC.Nombres AS nombre,
 SOC.ApePaterno AS apaterno,
 SOC.ApeMaterno AS amaterno,
 
-inf245g2.FAMILIAR.IdFamiliar AS codigofam ,
+FAMILIAR.IdFamiliar AS codigofam ,
 FAM.Nombres AS nombrefam,
 FAM.ApePaterno AS apaternofam,
 FAM.ApeMaterno AS amaternofam
 
-FROM inf245g2.SOCIO  
-LEFT JOIN  inf245g2.FAMILIAR 
-ON inf245g2.SOCIO.IdSocio = inf245g2.FAMILIAR.IdSocio
+FROM SOCIO  
+LEFT JOIN  FAMILIAR 
+ON SOCIO.IdSocio = FAMILIAR.IdSocio
 
-LEFT JOIN  inf245g2.PERSONA SOC
-ON inf245g2.SOCIO.IdSocio = SOC.IdPersona
+LEFT JOIN  PERSONA SOC
+ON SOCIO.IdSocio = SOC.IdPersona
 
-LEFT JOIN  inf245g2.PERSONA FAM
-ON inf245g2.FAMILIAR.IdFamiliar = FAM.IdPersona
+LEFT JOIN  PERSONA FAM
+ON FAMILIAR.IdFamiliar = FAM.IdPersona
 
 WHERE SOC.Nombres like #{nombre}
 OR    SOC.ApePaterno like #{nombre}
