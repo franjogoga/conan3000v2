@@ -18,6 +18,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import IngSoft.general.CoException;
 import IngSoft.general.MyBatisSesion;
+import IngSoft.venta.bean.OrdenPagoBeanFunction;
 
 public class InfraccionBeanFunction {
 	static private InfraccionBeanFunction infraccionFunction= null;		
@@ -61,6 +62,9 @@ public class InfraccionBeanFunction {
 				infraccionData.setCodigo(codigo.substring(0,3).concat(temp));
 			} else infraccionData.setCodigo("SXF000001");			
 			sqlsesion.insert("Data.administracion.infraccion.insertInfraccion",infraccionData);
+			OrdenPagoBeanFunction orden= OrdenPagoBeanFunction.getInstance();
+			orden.agregarOrdenPago("MULTAXINFRACCION",infraccionData.getCodigo(), "", infraccionData.getCodigosocio(), infraccionData.getMontomulta(), new java.sql.Date(new java.util.Date().getTime()), new java.sql.Date(infraccionData.getFechafin().getTime()));
+			
 			resultado=true;
 		}
 		catch(Exception a) {
