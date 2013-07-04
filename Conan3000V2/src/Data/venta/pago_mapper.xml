@@ -405,6 +405,13 @@ OTRO_INGRESO.IdConcepto=CONCEPTO.IdConcepto and CONCEPTO.IdSocio=PERSONA.IdPerso
 	values (#{idConcepto},#{idSocio},#{fecha})
 </insert>
 
+<insert id="insertOrdenPagoMultaxInfraccion" parameterType="IngSoft.venta.bean.OrdenPagoBeanData" flushCache="true">
+	insert into CONCEPTO(IdConcepto,IdSocio,Fecha)
+	values (#{idConcepto},#{idSocio},#{fecha})
+</insert>
+
+
+
  <select id="searchSocioNoMembresia" parameterType="IngSoft.venta.bean.CriterioSocioBeanData" resultType="IngSoft.venta.bean.ResultadoSocioBeanData">
 select distinct
 SOCIO.IdSocio as idSocio

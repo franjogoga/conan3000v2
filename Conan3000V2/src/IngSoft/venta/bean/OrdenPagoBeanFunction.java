@@ -197,7 +197,10 @@ public boolean agregarOrdenPago(String concepto, String id, String id2, String i
 			sqlsesion.insert("insertOrdenPagoTrasladoMembresia",ordenData);
 			break;
 		
-		
+		case "MULTAXINFRACCION":
+			ordenData.setIdServAdicional(id);
+			sqlsesion.insert("insertOrdenPagoMultaxInfraccion",ordenData);
+			break;
 		
 		}
 		
