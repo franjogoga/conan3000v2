@@ -8,7 +8,7 @@
   
   
 <select id="getNextInvitadoSocio" resultType="java.lang.String">
-	select max(IdInvitadoSocio) from inf245g2.INVITADOxSOCIO	
+	select max(IdInvitadoSocio) from INVITADOxSOCIO	
 </select>
 
 
@@ -38,15 +38,15 @@ WHERE
 
 UPDATE
 
-inf245g2.INVITADOxSOCIO
+INVITADOxSOCIO
 
 SET
 
 
-inf245g2.INVITADOxSOCIO.Monto     =	#{monto}
+INVITADOxSOCIO.Monto     =	#{monto}
 
 
-WHERE inf245g2.INVITADOxSOCIO.IdInvitadoSocio =  #{codigo}
+WHERE INVITADOxSOCIO.IdInvitadoSocio =  #{codigo}
 
 ;
 
@@ -62,30 +62,30 @@ WHERE inf245g2.INVITADOxSOCIO.IdInvitadoSocio =  #{codigo}
 
 
 SELECT 
-inf245g2.INVITADOxSOCIO.IdInvitadoSocio AS codigo,
-inf245g2.INVITADOxSOCIO.IdSocio AS codigosocio,
+INVITADOxSOCIO.IdInvitadoSocio AS codigo,
+INVITADOxSOCIO.IdSocio AS codigosocio,
 					SOC.Nombres AS nombresocio,
 					SOC.ApePaterno AS apaternosocio,
 					SOC.ApeMaterno AS amaternosocio,
 
 
-inf245g2.INVITADO.IdInvitado AS codigoinvitado,
-inf245g2.PERSONA.Nombres AS nombre,
-inf245g2.PERSONA.ApePaterno AS apaterno,
-inf245g2.PERSONA.ApeMaterno AS amaterno,
-inf245g2.PERSONA.NumeroDocumento AS dni,
-inf245g2.INVITADOxSOCIO.FechaIngreso AS fechaingreso,
-inf245g2.INVITADOxSOCIO.Estado AS estado
-FROM  (inf245g2.INVITADO , inf245g2.PERSONA ) 
-LEFT JOIN  inf245g2.INVITADOxSOCIO  
-ON inf245g2.INVITADOxSOCIO.IdInvitado = inf245g2.INVITADO.IdInvitado 
+INVITADO.IdInvitado AS codigoinvitado,
+PERSONA.Nombres AS nombre,
+PERSONA.ApePaterno AS apaterno,
+PERSONA.ApeMaterno AS amaterno,
+PERSONA.NumeroDocumento AS dni,
+INVITADOxSOCIO.FechaIngreso AS fechaingreso,
+INVITADOxSOCIO.Estado AS estado
+FROM  (INVITADO , PERSONA ) 
+LEFT JOIN  INVITADOxSOCIO  
+ON INVITADOxSOCIO.IdInvitado = INVITADO.IdInvitado 
 
-LEFT JOIN  inf245g2.PERSONA SOC
-ON inf245g2.INVITADOxSOCIO.IdSocio = SOC.IdPersona
+LEFT JOIN  PERSONA SOC
+ON INVITADOxSOCIO.IdSocio = SOC.IdPersona
 
 WHERE
-    inf245g2.INVITADO.IdInvitado = inf245g2.PERSONA.IdPersona 
-AND   inf245g2.PERSONA.Nombres LIKE #{nombre}
+    INVITADO.IdInvitado = PERSONA.IdPersona 
+AND   PERSONA.Nombres LIKE #{nombre}
 ;
 
 
@@ -96,18 +96,18 @@ AND   inf245g2.PERSONA.Nombres LIKE #{nombre}
 
 
 SELECT 
-inf245g2.MEMBRESIA.IdSocio AS codigo,
-inf245g2.PERSONA.Nombres AS nombre,
-inf245g2.PERSONA.ApePaterno AS apaterno,
-inf245g2.PERSONA.ApeMaterno AS amaterno
+MEMBRESIA.IdSocio AS codigo,
+PERSONA.Nombres AS nombre,
+PERSONA.ApePaterno AS apaterno,
+PERSONA.ApeMaterno AS amaterno
 
-FROM  inf245g2.MEMBRESIA, inf245g2.PERSONA
+FROM  MEMBRESIA, PERSONA
 
 
 WHERE
-    inf245g2.MEMBRESIA.IdSocio = inf245g2.PERSONA.IdPersona 
-AND inf245g2.MEMBRESIA.Estado='Activo'
-AND   inf245g2.PERSONA.Nombres LIKE #{nombre}
+    MEMBRESIA.IdSocio = PERSONA.IdPersona 
+AND MEMBRESIA.Estado='Activo'
+AND   PERSONA.Nombres LIKE #{nombre}
 ;
 
 
@@ -117,52 +117,52 @@ AND   inf245g2.PERSONA.Nombres LIKE #{nombre}
 
 <select id="getPLantillaReserva" parameterType="java.lang.String"  resultType="IngSoft.administracion.bean.ReservaBeanData">
 SELECT 
-inf245g2.INVITADOxSOCIO.IdInvitadoSocio AS codigo,
-inf245g2.INVITADOxSOCIO.IdSocio AS codigosocio,
-inf245g2.INVITADO.IdInvitado AS codigoinvitado,
-inf245g2.PERSONA.Nombres AS nombre,
-inf245g2.PERSONA.ApePaterno AS apaterno,
-inf245g2.PERSONA.ApeMaterno AS amaterno,
-inf245g2.PERSONA.NumeroDocumento AS dni,
-inf245g2.INVITADOxSOCIO.FechaIngreso AS fechaingreso,
-inf245g2.INVITADOxSOCIO.Monto AS monto,
-inf245g2.INVITADOxSOCIO.Estado AS estado
+INVITADOxSOCIO.IdInvitadoSocio AS codigo,
+INVITADOxSOCIO.IdSocio AS codigosocio,
+INVITADO.IdInvitado AS codigoinvitado,
+PERSONA.Nombres AS nombre,
+PERSONA.ApePaterno AS apaterno,
+PERSONA.ApeMaterno AS amaterno,
+PERSONA.NumeroDocumento AS dni,
+INVITADOxSOCIO.FechaIngreso AS fechaingreso,
+INVITADOxSOCIO.Monto AS monto,
+INVITADOxSOCIO.Estado AS estado
 
 
 
-FROM  (inf245g2.INVITADO , inf245g2.PERSONA)     LEFT JOIN  inf245g2.INVITADOxSOCIO  
+FROM  (INVITADO , PERSONA)     LEFT JOIN  INVITADOxSOCIO  
 
     
-ON inf245g2.INVITADOxSOCIO.IdInvitado = inf245g2.INVITADO.IdInvitado
+ON INVITADOxSOCIO.IdInvitado = INVITADO.IdInvitado
 WHERE
-   inf245g2.INVITADO.IdInvitado = inf245g2.PERSONA.IdPersona
-AND inf245g2.INVITADOxSOCIO.IdInvitadoSocio = #{codigo}
+   INVITADO.IdInvitado = PERSONA.IdPersona
+AND INVITADOxSOCIO.IdInvitadoSocio = #{codigo}
 
 </select>
 
 
 <select id="getPLantillaReservaInvitado" parameterType="java.lang.String"  resultType="IngSoft.administracion.bean.ReservaBeanData">
 SELECT 
-inf245g2.INVITADOxSOCIO.IdInvitadoSocio AS codigo,
-inf245g2.INVITADOxSOCIO.IdSocio AS codigosocio,
-inf245g2.INVITADO.IdInvitado AS codigoinvitado,
-inf245g2.PERSONA.Nombres AS nombre,
-inf245g2.PERSONA.ApePaterno AS apaterno,
-inf245g2.PERSONA.ApeMaterno AS amaterno,
-inf245g2.PERSONA.NumeroDocumento AS dni,
-inf245g2.INVITADOxSOCIO.FechaIngreso AS fechaingreso,
-inf245g2.INVITADOxSOCIO.Monto AS monto,
-inf245g2.INVITADOxSOCIO.Estado AS estado
+INVITADOxSOCIO.IdInvitadoSocio AS codigo,
+INVITADOxSOCIO.IdSocio AS codigosocio,
+INVITADO.IdInvitado AS codigoinvitado,
+PERSONA.Nombres AS nombre,
+PERSONA.ApePaterno AS apaterno,
+PERSONA.ApeMaterno AS amaterno,
+PERSONA.NumeroDocumento AS dni,
+INVITADOxSOCIO.FechaIngreso AS fechaingreso,
+INVITADOxSOCIO.Monto AS monto,
+INVITADOxSOCIO.Estado AS estado
 
 
 
-FROM  (inf245g2.INVITADO , inf245g2.PERSONA)     LEFT JOIN  inf245g2.INVITADOxSOCIO  
+FROM  (INVITADO , PERSONA)     LEFT JOIN  INVITADOxSOCIO  
 
     
-ON inf245g2.INVITADOxSOCIO.IdInvitado = inf245g2.INVITADO.IdInvitado
+ON INVITADOxSOCIO.IdInvitado = INVITADO.IdInvitado
 WHERE
-   inf245g2.INVITADO.IdInvitado = inf245g2.PERSONA.IdPersona
-AND inf245g2.INVITADO.IdInvitado = #{codigo}
+   INVITADO.IdInvitado = PERSONA.IdPersona
+AND INVITADO.IdInvitado = #{codigo}
 
 </select>
 
@@ -171,12 +171,12 @@ AND inf245g2.INVITADO.IdInvitado = #{codigo}
 
 <select id="getAllpersonas"  resultType="IngSoft.administracion.bean.PersonaBeanData">
 SELECT 
-inf245g2.PERSONA.IdPersona AS codigo,
-inf245g2.PERSONA.Nombres   AS  nombre,
-inf245g2.PERSONA.ApePaterno AS apaterno,
-inf245g2.PERSONA.ApeMaterno AS amaterno
+PERSONA.IdPersona AS codigo,
+PERSONA.Nombres   AS  nombre,
+PERSONA.ApePaterno AS apaterno,
+PERSONA.ApeMaterno AS amaterno
 
-FROM inf245g2.PERSONA;
+FROM PERSONA;
 </select>
 
 <!-- Agregar plantilla  -->
@@ -197,16 +197,16 @@ INSERT INTO `inf245g2`.`INVITADOxSOCIO` (`IdInvitadoSocio`, `IdSocio`, `IdInvita
 
 UPDATE
 
-inf245g2.INVITADOxSOCIO
+INVITADOxSOCIO
 
 SET
 
-inf245g2.INVITADOxSOCIO.FechaIngreso    =	#{fechaingreso} ,
+INVITADOxSOCIO.FechaIngreso    =	#{fechaingreso} ,
 
-inf245g2.INVITADOxSOCIO.Estado     =	#{estado}
+INVITADOxSOCIO.Estado     =	#{estado}
 
 
-WHERE inf245g2.INVITADOxSOCIO.IdInvitadoSocio =  #{codigo}
+WHERE INVITADOxSOCIO.IdInvitadoSocio =  #{codigo}
 
 ;
 
@@ -218,10 +218,10 @@ WHERE inf245g2.INVITADOxSOCIO.IdInvitadoSocio =  #{codigo}
 <!--Eliminar invitado -->
 
 <update id="deletePLantillaReserva" parameterType="java.lang.String" >
-update inf245g2.INVITADOxSOCIO 
+update INVITADOxSOCIO 
 set
- inf245g2.INVITADOxSOCIO.Estado ='Inactivo' 
-WHERE inf245g2.INVITADOxSOCIO.IdInvitadoSocio = #{codigo}
+ INVITADOxSOCIO.Estado ='Inactivo' 
+WHERE INVITADOxSOCIO.IdInvitadoSocio = #{codigo}
 </update>
 <!-- Fin eliminar -->
 

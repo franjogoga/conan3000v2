@@ -13,12 +13,12 @@
   
  <select id="getVerificaciondeCodigosActividadxDia"   parameterType="IngSoft.administracion.bean.ActividadDiaSemanaBeanData"   resultType="java.lang.String"   >
 SELECT 
-    inf245g2.ACTIVIDADxDIA_SEMANA.IdDiaSemana ,
-    inf245g2.ACTIVIDADxDIA_SEMANA.IdActividad
-    FROM inf245g2.ACTIVIDADxDIA_SEMANA
+    ACTIVIDADxDIA_SEMANA.IdDiaSemana ,
+    ACTIVIDADxDIA_SEMANA.IdActividad
+    FROM ACTIVIDADxDIA_SEMANA
     WHERE
-        inf245g2.ACTIVIDADxDIA_SEMANA.IdDiaSemana=#{codigoDia}
-    AND inf245g2.ACTIVIDADxDIA_SEMANA.IdActividad=#{codigoActividad}
+        ACTIVIDADxDIA_SEMANA.IdDiaSemana=#{codigoDia}
+    AND ACTIVIDADxDIA_SEMANA.IdActividad=#{codigoActividad}
 
 </select>
   
@@ -27,25 +27,25 @@ SELECT
 
 
 SELECT 
- inf245g2.ACTIVIDAD.IdActividad AS codigo
-,inf245g2.ACTIVIDAD.Nombre AS nombre
-,group_concat(inf245g2.DIA_SEMANA.IdDiaSemana) AS codDiasemana
-,group_concat(inf245g2.DIA_SEMANA.Nombre) AS diaSemana
-,inf245g2.ACTIVIDADxDIA_SEMANA.HoraInicio AS horaInicio
-,inf245g2.ACTIVIDADxDIA_SEMANA.HoraFin AS horaFin
-,inf245g2.ACTIVIDAD.Estado AS estado
+ ACTIVIDAD.IdActividad AS codigo
+,ACTIVIDAD.Nombre AS nombre
+,group_concat(DIA_SEMANA.IdDiaSemana) AS codDiasemana
+,group_concat(DIA_SEMANA.Nombre) AS diaSemana
+,ACTIVIDADxDIA_SEMANA.HoraInicio AS horaInicio
+,ACTIVIDADxDIA_SEMANA.HoraFin AS horaFin
+,ACTIVIDAD.Estado AS estado
 FROM
-      inf245g2.ACTIVIDAD,  inf245g2.DIA_SEMANA, inf245g2.ACTIVIDADxDIA_SEMANA
+      ACTIVIDAD,  DIA_SEMANA, ACTIVIDADxDIA_SEMANA
 WHERE
 		
-	  inf245g2.ACTIVIDAD.IdActividad         = inf245g2.ACTIVIDADxDIA_SEMANA.IdActividad 
-AND   inf245g2.DIA_SEMANA.IdDiaSemana    = inf245g2.ACTIVIDADxDIA_SEMANA.IdDiaSemana
-AND    inf245g2.ACTIVIDAD.Nombre  like  #{nombre} 
+	  ACTIVIDAD.IdActividad         = ACTIVIDADxDIA_SEMANA.IdActividad 
+AND   DIA_SEMANA.IdDiaSemana    = ACTIVIDADxDIA_SEMANA.IdDiaSemana
+AND    ACTIVIDAD.Nombre  like  #{nombre} 
 
 
 
 
-group by inf245g2.ACTIVIDAD.IdActividad
+group by ACTIVIDAD.IdActividad
 ;
 
 
@@ -56,27 +56,27 @@ group by inf245g2.ACTIVIDAD.IdActividad
 
 
 SELECT 
- inf245g2.ACTIVIDAD.IdActividad AS codigo
-,inf245g2.ACTIVIDAD.Nombre AS nombre
-,group_concat(inf245g2.DIA_SEMANA.IdDiaSemana) AS codDiasemana
-,group_concat(inf245g2.DIA_SEMANA.Nombre) AS diaSemana
-,group_concat(inf245g2.ACTIVIDADxDIA_SEMANA.HoraInicio) AS horaInicio
-,group_concat(inf245g2.ACTIVIDADxDIA_SEMANA.HoraFin) AS horaFin
-,group_concat(inf245g2.ACTIVIDADxDIA_SEMANA.Estado) AS estadosDias
-,inf245g2.ACTIVIDAD.Estado AS estado
+ ACTIVIDAD.IdActividad AS codigo
+,ACTIVIDAD.Nombre AS nombre
+,group_concat(DIA_SEMANA.IdDiaSemana) AS codDiasemana
+,group_concat(DIA_SEMANA.Nombre) AS diaSemana
+,group_concat(ACTIVIDADxDIA_SEMANA.HoraInicio) AS horaInicio
+,group_concat(ACTIVIDADxDIA_SEMANA.HoraFin) AS horaFin
+,group_concat(ACTIVIDADxDIA_SEMANA.Estado) AS estadosDias
+,ACTIVIDAD.Estado AS estado
 
 FROM
-      inf245g2.ACTIVIDAD,  inf245g2.DIA_SEMANA, inf245g2.ACTIVIDADxDIA_SEMANA
+      ACTIVIDAD,  DIA_SEMANA, ACTIVIDADxDIA_SEMANA
 WHERE
 		
-	  inf245g2.ACTIVIDAD.IdActividad     = inf245g2.ACTIVIDADxDIA_SEMANA.IdActividad 
-AND   inf245g2.DIA_SEMANA.IdDiaSemana    = inf245g2.ACTIVIDADxDIA_SEMANA.IdDiaSemana
+	  ACTIVIDAD.IdActividad     = ACTIVIDADxDIA_SEMANA.IdActividad 
+AND   DIA_SEMANA.IdDiaSemana    = ACTIVIDADxDIA_SEMANA.IdDiaSemana
 
 
 
 
-AND   inf245g2.ACTIVIDAD.IdActividad  = #{codigo}
-group by inf245g2.ACTIVIDAD.IdActividad
+AND   ACTIVIDAD.IdActividad  = #{codigo}
+group by ACTIVIDAD.IdActividad
 
 ORDER BY 1 ASC
 
@@ -96,7 +96,7 @@ where IdActividad= #{codigo}
 <!--Eliminar  -->
 
 <update id="deletePLantillaHorariodeactividad" parameterType="java.lang.String" >
-update inf245g2.ACTIVIDAD set Estado ='No Disponible' where  inf245g2.ACTIVIDAD.IdActividad = #{codigo}
+update ACTIVIDAD set Estado ='No Disponible' where  ACTIVIDAD.IdActividad = #{codigo}
 </update>
 <!-- Fin eliminar -->
 
@@ -105,7 +105,7 @@ update inf245g2.ACTIVIDAD set Estado ='No Disponible' where  inf245g2.ACTIVIDAD.
 <!-- Agregar plantilla ACTIVIDADxDIA_SEMANA -->
 
 <insert id="insertPlantillaActividadDiaSemana" parameterType="IngSoft.administracion.bean.ActividadDiaSemanaBeanData" flushCache="true">
-	insert into inf245g2.ACTIVIDADxDIA_SEMANA (IdDiaSemana,IdActividad,HoraInicio,HoraFin,Duracion,Estado,Horario)
+	insert into ACTIVIDADxDIA_SEMANA (IdDiaSemana,IdActividad,HoraInicio,HoraFin,Duracion,Estado,Horario)
 	values (#{codigoDia},#{codigoActividad},#{horaInicio},#{horaFin},#{duracion},#{estado},#{horario})
 </insert>
 
@@ -132,8 +132,8 @@ AND	  IdActividad   = #{codigoActividad}
 <!--obtener los dias de la semana -->
 <select id="getDias" parameterType="java.lang.String" resultType="IngSoft.administracion.bean.DiasBeanData">
 select 
-  inf245g2.DIA_SEMANA.IdDiaSemana as codigo
-, inf245g2.DIA_SEMANA.Nombre as nombre
+  DIA_SEMANA.IdDiaSemana as codigo
+, DIA_SEMANA.Nombre as nombre
 from 
 DIA_SEMANA
  
@@ -145,18 +145,18 @@ DIA_SEMANA
 
 
 SELECT 
-inf245g2.ACTIVIDAD.IdActividad AS codigo ,
-inf245g2.ACTIVIDAD.nombre as nombre,
-inf245g2.TIPO_ACTIVIDAD.nombre as tipoactividad,
-inf245g2.ACTIVIDAD.estado as estado
+ACTIVIDAD.IdActividad AS codigo ,
+ACTIVIDAD.nombre as nombre,
+TIPO_ACTIVIDAD.nombre as tipoactividad,
+ACTIVIDAD.estado as estado
 
 
-FROM inf245g2.ACTIVIDAD , inf245g2.TIPO_ACTIVIDAD 
+FROM ACTIVIDAD , TIPO_ACTIVIDAD 
 
 
 WHERE
 
-inf245g2.ACTIVIDAD.IdTipoActividad = inf245g2.TIPO_ACTIVIDAD.IdTipoActividad
+ACTIVIDAD.IdTipoActividad = TIPO_ACTIVIDAD.IdTipoActividad
 
 ORDER BY 1 ASC
 ;

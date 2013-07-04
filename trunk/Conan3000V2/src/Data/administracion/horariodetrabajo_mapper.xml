@@ -15,12 +15,12 @@
  
  <select id="getVerificaciondeCodigos"   parameterType="IngSoft.administracion.bean.HorarioDiaSemanaBeanData"   resultType="java.lang.String"   >
 SELECT 
-inf245g2.HORARIOxDIA_SEMANA.IdDiaSemana ,
-    inf245g2.HORARIOxDIA_SEMANA.IdHorario
-    FROM inf245g2.HORARIOxDIA_SEMANA
+HORARIOxDIA_SEMANA.IdDiaSemana ,
+    HORARIOxDIA_SEMANA.IdHorario
+    FROM HORARIOxDIA_SEMANA
     WHERE
-        inf245g2.HORARIOxDIA_SEMANA.IdDiaSemana=#{codigoDia}
-    AND inf245g2.HORARIOxDIA_SEMANA.IdHorario=#{codigoHorario}
+        HORARIOxDIA_SEMANA.IdDiaSemana=#{codigoDia}
+    AND HORARIOxDIA_SEMANA.IdHorario=#{codigoHorario}
 
 </select>
 
@@ -32,24 +32,24 @@ inf245g2.HORARIOxDIA_SEMANA.IdDiaSemana ,
 	
 
 SELECT 
- inf245g2.HORARIO.IdHorario AS codigo
-,inf245g2.HORARIO.Descripcion AS nombre
-,group_concat(inf245g2.DIA_SEMANA.IdDiaSemana) AS codDiasemana
-,group_concat(inf245g2.DIA_SEMANA.Nombre) AS diaSemana
-,inf245g2.HORARIOxDIA_SEMANA.HoraInicio AS horaInicio
-,inf245g2.HORARIOxDIA_SEMANA.HoraFin AS horaFin
-,inf245g2.HORARIO.Estado AS estado
+ HORARIO.IdHorario AS codigo
+,HORARIO.Descripcion AS nombre
+,group_concat(DIA_SEMANA.IdDiaSemana) AS codDiasemana
+,group_concat(DIA_SEMANA.Nombre) AS diaSemana
+,HORARIOxDIA_SEMANA.HoraInicio AS horaInicio
+,HORARIOxDIA_SEMANA.HoraFin AS horaFin
+,HORARIO.Estado AS estado
 FROM
-      inf245g2.HORARIO,  inf245g2.DIA_SEMANA, inf245g2.HORARIOxDIA_SEMANA
+      HORARIO,  DIA_SEMANA, HORARIOxDIA_SEMANA
 WHERE
 		
-	  inf245g2.HORARIO.IdHorario         = inf245g2.HORARIOxDIA_SEMANA.IdHorario 
-AND   inf245g2.DIA_SEMANA.IdDiaSemana    = inf245g2.HORARIOxDIA_SEMANA.IdDiaSemana
+	  HORARIO.IdHorario         = HORARIOxDIA_SEMANA.IdHorario 
+AND   DIA_SEMANA.IdDiaSemana    = HORARIOxDIA_SEMANA.IdDiaSemana
 
 
 
-AND inf245g2.HORARIO.Descripcion  like  #{nombre}
-group by inf245g2.HORARIO.IdHorario
+AND HORARIO.Descripcion  like  #{nombre}
+group by HORARIO.IdHorario
 
 ORDER BY 1 ASC
 ;
@@ -63,26 +63,26 @@ ORDER BY 1 ASC
 
 
 SELECT 
- inf245g2.HORARIO.IdHorario AS codigo
-,inf245g2.HORARIO.Descripcion AS nombre
-,group_concat(inf245g2.DIA_SEMANA.IdDiaSemana) AS codDiasemana
-,group_concat(inf245g2.DIA_SEMANA.Nombre) AS diaSemana
-,group_concat(inf245g2.HORARIOxDIA_SEMANA.HoraInicio) AS horaInicio
-,group_concat(inf245g2.HORARIOxDIA_SEMANA.HoraFin) AS horaFin
-,group_concat(inf245g2.HORARIOxDIA_SEMANA.Estado) AS estadosDias
-,inf245g2.HORARIO.Estado AS estado
+ HORARIO.IdHorario AS codigo
+,HORARIO.Descripcion AS nombre
+,group_concat(DIA_SEMANA.IdDiaSemana) AS codDiasemana
+,group_concat(DIA_SEMANA.Nombre) AS diaSemana
+,group_concat(HORARIOxDIA_SEMANA.HoraInicio) AS horaInicio
+,group_concat(HORARIOxDIA_SEMANA.HoraFin) AS horaFin
+,group_concat(HORARIOxDIA_SEMANA.Estado) AS estadosDias
+,HORARIO.Estado AS estado
 
 FROM
-      inf245g2.HORARIO,  inf245g2.DIA_SEMANA, inf245g2.HORARIOxDIA_SEMANA
+      HORARIO,  DIA_SEMANA, HORARIOxDIA_SEMANA
 WHERE
 		
-	  inf245g2.HORARIO.IdHorario         = inf245g2.HORARIOxDIA_SEMANA.IdHorario 
-AND   inf245g2.DIA_SEMANA.IdDiaSemana    = inf245g2.HORARIOxDIA_SEMANA.IdDiaSemana
+	  HORARIO.IdHorario         = HORARIOxDIA_SEMANA.IdHorario 
+AND   DIA_SEMANA.IdDiaSemana    = HORARIOxDIA_SEMANA.IdDiaSemana
 
 
 
-AND   inf245g2.HORARIO.IdHorario  = #{codigo}
-group by inf245g2.HORARIO.IdHorario
+AND   HORARIO.IdHorario  = #{codigo}
+group by HORARIO.IdHorario
 
 ORDER BY 1 ASC
 ;
@@ -143,7 +143,7 @@ AND	  IdHorario   = #{codigoHorario}
 <!--Eliminar  -->
 
 <update id="deletePLantillaHorariodetrabajo" parameterType="java.lang.String" >
-update inf245g2.HORARIO set Estado ='Inactivo' where  inf245g2.HORARIO.IdHorario = #{codigo}
+update HORARIO set Estado ='Inactivo' where  HORARIO.IdHorario = #{codigo}
 </update>
 <!-- Fin eliminar -->
 
@@ -152,8 +152,8 @@ update inf245g2.HORARIO set Estado ='Inactivo' where  inf245g2.HORARIO.IdHorario
 <!--obtener los dias de la semana -->
 <select id="getDias" parameterType="java.lang.String" resultType="IngSoft.administracion.bean.DiasBeanData">
 select 
-  inf245g2.DIA_SEMANA.IdDiaSemana as codigo
-, inf245g2.DIA_SEMANA.Nombre as nombre
+  DIA_SEMANA.IdDiaSemana as codigo
+, DIA_SEMANA.Nombre as nombre
 from 
 DIA_SEMANA
  

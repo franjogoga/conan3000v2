@@ -13,7 +13,7 @@
 
 
 <select id="getFlagEmpleado" resultType="java.lang.String">
-	select inf245g2.EMPLEADO.Flag from inf245g2.EMPLEADO where	 inf245g2.EMPLEADO.IdEmpleado = #{codigoEmpleado}
+	select EMPLEADO.Flag from EMPLEADO where	 EMPLEADO.IdEmpleado = #{codigoEmpleado}
 </select>
 
 <select id="searchPlantillaJornada" parameterType="IngSoft.administracion.bean.CriterioJornadaBeanData" resultType="IngSoft.administracion.bean.ResultadoJornadaBeanData">
@@ -21,24 +21,24 @@
 
 
 SELECT 
-inf245g2.JORNADA.IdJornada AS idJornada,
-inf245g2.JORNADA.IdEmpleado AS idEmpleado,
+JORNADA.IdJornada AS idJornada,
+JORNADA.IdEmpleado AS idEmpleado,
 
-inf245g2.PERSONA.Nombres as nombreEmpleado,
-inf245g2.PERSONA.ApePaterno as apaterno,
+PERSONA.Nombres as nombreEmpleado,
+PERSONA.ApePaterno as apaterno,
 
-inf245g2.JORNADA.HoraEntrada AS horaEntrada,
-inf245g2.JORNADA.HoraSalida AS horaSalida,
-inf245g2.JORNADA.Fecha AS fecha,
-inf245g2.JORNADA.HoraMarcado AS horaMarca,
-inf245g2.JORNADA.Flag AS flag
+JORNADA.HoraEntrada AS horaEntrada,
+JORNADA.HoraSalida AS horaSalida,
+JORNADA.Fecha AS fecha,
+JORNADA.HoraMarcado AS horaMarca,
+JORNADA.Flag AS flag
 
-FROM inf245g2.JORNADA , inf245g2.EMPLEADO , inf245g2.PERSONA
+FROM JORNADA , EMPLEADO , PERSONA
 
 WHERE 
 
-    inf245g2.EMPLEADO.IdEmpleado = inf245g2.PERSONA.IdPersona
-AND inf245g2.EMPLEADO.IdEmpleado = inf245g2.JORNADA.IdEmpleado
+    EMPLEADO.IdEmpleado = PERSONA.IdPersona
+AND EMPLEADO.IdEmpleado = JORNADA.IdEmpleado
 
 
 ORDER BY 1 DESC 
@@ -60,11 +60,11 @@ ORDER BY 1 DESC
 <!--actualizar flag del empleado  -->
 
 <update id="updateFlagEmpleadoJornada" parameterType="java.lang.String" >
-         update inf245g2.EMPLEADO
+         update EMPLEADO
          set 
-           inf245g2.EMPLEADO.Flag =   IF( inf245g2.EMPLEADO.Flag >0,0,1)
+           EMPLEADO.Flag =   IF( EMPLEADO.Flag >0,0,1)
          where 
-         inf245g2.EMPLEADO.IdEmpleado =   #{codigo}
+         EMPLEADO.IdEmpleado =   #{codigo}
 </update>
 
 

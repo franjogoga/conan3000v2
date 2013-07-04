@@ -47,27 +47,27 @@ order by 1 asc
 
 <select id="getBungalows" parameterType="IngSoft.servicio.bean.SorteoBeanData" resultType="java.lang.String">
 select  B.IdBungalow
-from 	inf245g2.BUNGALOW B
-		LEFT JOIN inf245g2.AMBIENTE A ON (B.IdAmbiente=A.IdAmbiente)
-		LEFT JOIN inf245g2.SEDE S ON (A.IdSede=S.IdSede)
+from 	BUNGALOW B
+		LEFT JOIN AMBIENTE A ON (B.IdAmbiente=A.IdAmbiente)
+		LEFT JOIN SEDE S ON (A.IdSede=S.IdSede)
 where	(S.IdSede=#{idSede}) 
 		and (B.Estado='Activo') and
 		B.IdBungalow not in 
 		(select RB.IdBungalow 
-		 from 	inf245g2.RESERVA_BUNGALOW RB
-				left join inf245g2.BUNGALOWxFECHA BF ON (RB.IdReservaBungalow=BF.IdReservaBungalow));
+		 from 	RESERVA_BUNGALOW RB
+				left join BUNGALOWxFECHA BF ON (RB.IdReservaBungalow=BF.IdReservaBungalow));
 </select>
 
 
  
 <update id="eliminarReservaBungalow" parameterType="hashmap">
-UPDATE  inf245g2.RESERVA_BUNGALOW
+UPDATE  RESERVA_BUNGALOW
 SET IdSocio=#{idSocio}
-WHERE 	(inf245g2.RESERVA_BUNGALOW.IdBungalow=#{idBungalow}) AND
-		(inf245g2.RESERVA_BUNGALOW.IdSocio is null) AND
-		(inf245g2.RESERVA_BUNGALOW.IdReservaBungalow in
-		(select inf245g2.BUNGALOWxFECHA.IdReservaBungalow from inf245g2.BUNGALOWxFECHA 
-		 where inf245g2.BUNGALOWxFECHA.Fecha = #{fReserva}))
+WHERE 	(RESERVA_BUNGALOW.IdBungalow=#{idBungalow}) AND
+		(RESERVA_BUNGALOW.IdSocio is null) AND
+		(RESERVA_BUNGALOW.IdReservaBungalow in
+		(select BUNGALOWxFECHA.IdReservaBungalow from BUNGALOWxFECHA 
+		 where BUNGALOWxFECHA.Fecha = #{fReserva}))
 </update>
 
 <!-- Agregar plantilla Sorteo -->
