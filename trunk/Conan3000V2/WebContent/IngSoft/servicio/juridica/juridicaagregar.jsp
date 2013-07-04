@@ -384,7 +384,7 @@ function validaForm(){
 	*/
 	
 	
-	var form=document.frmUpdate;
+	var form=document.frmData;
 	
 	var cadena= new Array();
 	var i=0;
