@@ -173,12 +173,15 @@ update EMPLEADO set Estado='inactivo' where IdEmpleado= #{codigo}
 
 
 select 
-IdEmpleado as codigo,
+e.IdEmpleado as codigo,
 Nombres as nombre,
 apePaterno as apellidoPaterno,
 NumeroDocumento as numeroDocumento,
-Area as area
-from EMPLEADO e, PERSONA p  where e.IdEmpleado = #{codigo} AND p.IdPersona = #{codigo} ;
+Area as area,
+NombreUsuario as usuario,
+Password as contrasenia
+
+from EMPLEADO e, USUARIO u, PERSONA p  where e.IdEmpleado = #{codigo} AND p.IdPersona = #{codigo} and u.IdEmpleado = e.IdEmpleado;
 
 
  
