@@ -160,6 +160,7 @@ String fecHoy=dfActual.format(new java.util.Date());
 									<option value="SOCIOXEVENTOSEDE">Socio por Evento Sede</option>
 									<option value="INVITADOXSOCIO">Invitado de Socio</option>
 									<option value="TRASLADOMEMBRESIA">Traslado de Membresia</option>
+									<option value="MULTAXINFRACCION">Multa por Infraccion</option>
 									
 								  </select>
 								</div>
@@ -259,6 +260,7 @@ String fecHoy=dfActual.format(new java.util.Date());
                           				if(dato.equals("SOCIOXEVENTOSEDE")) concepto="Socio por Evento Sede";
                           				if(dato.equals("INVITADOXSOCIO")) concepto="Invitado de Socio";
                           				if(dato.equals("TRASLADOMEMBRESIA")) concepto="Traslado de Membresia";
+                          				if(dato.equals("MULTAXINFRACCION")) concepto="Multa por Infraccion";
                           				if(dato.equals("CUOTAEXTRAORDINARIA")) concepto="Cuota Extraordinaria ("+((ResultadoOrdenPagoBeanData)resultados.get(i)).getDescripcion()+" )";
                           				
                           				
