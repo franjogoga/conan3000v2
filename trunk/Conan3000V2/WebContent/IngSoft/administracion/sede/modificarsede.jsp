@@ -92,7 +92,7 @@
               <div>
                 <ul class="breadcrumb">
                   <li> <a href="../../general/index.jsp">Home</a> <span class="divider">/</span> </li>
-                  <li> <a href="buscarambiente.jsp">Mantenimiento de Sede</a> <span class="divider">/</span></li>
+                  <li> <a href="buscarsede.jsp">Mantenimiento de Sede</a> <span class="divider">/</span></li>
                   <li>Modificar Sede</li>
                 </ul>
               </div>
