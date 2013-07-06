@@ -7,6 +7,7 @@ import java.util.Vector;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
+import javax.faces.bean.ApplicationScoped;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -15,7 +16,7 @@ import org.apache.ibatis.session.SqlSession;
 import IngSoft.administracion.bean.SedeMiniBeanData;
 import IngSoft.general.CoException;
 import IngSoft.general.MyBatisSesion;
-
+@ApplicationScoped
 public class SolicitudProductoBeanFuncion {
 
 	static private SolicitudProductoBeanFuncion SolicitudProductoFuncion=null;
