@@ -33,6 +33,18 @@ WHERE
 	
 </select>
 
+<select id="getCostoYNumMaxInvitadoSocio" resultType="java.lang.String">
+
+SELECT  CONCAT(MontoInvitado, '/', NumMaxinvitados) As Resultado
+FROM CONFIGURACION 
+
+	
+	
+</select>
+
+
+
+
 <update id="actualizaPLantillaMontoReserva" parameterType="IngSoft.administracion.bean.ReservaBeanData" >
 
 
