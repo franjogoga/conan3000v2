@@ -390,7 +390,7 @@ function validaForm(){
 	var i=0;
 	var error=false;
 	
-    var correo = frmData.txtCorreo.value;
+    //var correo = frmData.txtCorreo.value;
     //var telefono = frmData.txtTelefono.value;
     //var correo = "viejo"
     //alert(correo);
@@ -398,7 +398,34 @@ function validaForm(){
 	
 	if(!esValido("Razon Social",form.txtRazonSocial,"RazonSocial",1,1,50)){cadena[i]="Razon Social";i++;}
 	
+	if(!esValido("RUC",form.txtRuc,"Ruc",1,11,11)){cadena[i]="RUC";i++;}
+	
+	else{
+	
+	if(!esValido("RUC",form.txtRuc,"Ruc",6,11,11)){cadena[i]="RUC";i++;}
+	
+	}
+	
+	
+	if(!esValido("Telefono",form.txtTelefono,"Telefono",1,7,7)){cadena[i]="Telefono";i++;}
+	
+	else{
+	
+	if(!esValido("Telefono",form.txtTelefono,"Telefono",6,11,11)){cadena[i]="Telefono";i++;}
+	
+	}
 
+	
+	if(!esValido("Correo",form.txtCorreo,"Correo",9,1,50)){cadena[i]="Correo";i++;}
+	
+
+
+	//if(!esValido("",form.txtRuc,"Ruc",2,1,11)){cadena[i]="RUC";i++;}
+	
+	//else{
+	
+	//if(!esValido("RUC",form.txtCosto,"Ruc",6,1,1)){cadena[i]="RUC";i++;}
+	
 	
 	
 	
