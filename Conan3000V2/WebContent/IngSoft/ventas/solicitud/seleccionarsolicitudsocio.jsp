@@ -85,7 +85,7 @@
 </head>
 <body>
 
-		<jsp:include page="/IngSoft/general/superior.jsp" />
+		
 		<div class="container-fluid">
 			<div class="row-fluid">
 				<jsp:include page="/IngSoft/general/leftmenu.jsp" />
@@ -95,14 +95,6 @@
 
 			<div id="content" class="span10">
 
-			<div>
-				<ul class="breadcrumb">
-					
-					<li><a href="/Conan3000V2/IngSoft/general/index.jsp">Home / </a><a href="/Conan3000V2/IngSoft/ventas/solicitud/buscarsolicitudsocio.jsp">Mantenimiento de Solicitud Socio / </a>Busqueda Solicitud Socio
-			           
-			              </li>
-				</ul>
-			</div>
 			
 			<div class="row-fluid sortable">
 				<div class="box span12">
