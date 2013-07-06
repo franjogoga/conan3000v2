@@ -3,13 +3,15 @@ package IngSoft.venta.bean;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Vector;
+
+import javax.faces.bean.ApplicationScoped;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.ibatis.session.SqlSession;
 
 import IngSoft.general.MyBatisSesion;
-
+@ApplicationScoped
 public class CriterioFamiliarBeanFuncion {
 
 	SimpleDateFormat DF = new SimpleDateFormat("dd/MM/yyyy");

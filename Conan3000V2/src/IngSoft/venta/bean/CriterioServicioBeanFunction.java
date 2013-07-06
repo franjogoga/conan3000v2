@@ -5,13 +5,14 @@ import java.util.Vector;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
+import javax.faces.bean.ApplicationScoped;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.ibatis.session.SqlSession;
 
 import IngSoft.general.MyBatisSesion;
-
+@ApplicationScoped
 public class CriterioServicioBeanFunction {
 	private Lock l= new ReentrantLock(); 
 public CriterioServicioBeanData crearCriterio(HttpServletRequest request, HttpServletResponse response){
