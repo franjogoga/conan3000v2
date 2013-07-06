@@ -366,7 +366,7 @@
 	                          			
 								           <%
 									 
-												  if( ((ResultadoJornadaBeanData)resultados.get(i)).getFlag()==0 ){    
+												  if( ((ResultadoJornadaBeanData)resultados.get(i)).getFlag()==1 ){    
 								 out.print(" <span class='label label-success'> Entrada   </span>       ");
 												  }
 												  else { 
