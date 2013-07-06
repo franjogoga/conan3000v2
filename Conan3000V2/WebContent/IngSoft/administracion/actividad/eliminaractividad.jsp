@@ -98,7 +98,7 @@
 	return false;
 	}
 	public String formatear(java.util.Date date){
-		SimpleDateFormat DF= new SimpleDateFormat("dd/MM");
+		SimpleDateFormat DF= new SimpleDateFormat("dd/MM/YYYY");
 		return DF.format(date);
 	}
 	%>
@@ -297,21 +297,22 @@
 
 
 
-
-							  <div class="control-group">
-							  <label class="control-label" for="date01">Fecha Inicio(*):</label>
-							  <div class="controls">
-								<input type="text" class="input-xlarge datepicker" id="date01" value="<%=formatear(new Date(actividad.getFechaInicio().getTime())) %>"  name="fFecIncio" onchange="alt_fecha(this)" disabled>
-							  </div>
-							</div>
-							
-							<div class="control-group">
-							  <label class="control-label" for="date02">Fecha Fin(*):</label>
-							  <div class="controls">
-								<input type="text" class="input-xlarge datepicker" id="date02" value="<%=formatear(new Date(actividad.getFechaFin().getTime())) %>" name="fFecFin" onchange="alt_fecha(this)" disabled>
-							  </div>
-							</div>
-							
+                              
+                              <div class="control-group">
+                                  <label class="control-label" for="date01">Fecha Inicio(*):</label>
+                                  <div class="controls">
+                                      <input type="text" class="input-xlarge datepicker" id="fFecIncio" readonly="true"  value="<%=formatear(new Date(actividad.getFechaInicio().getTime())) %>"   name="fFecIncio" onchange=""   disabled>
+                                          </div>
+                              </div>
+                              
+                              <div class="control-group">
+                                  <label class="control-label" for="date02">Fecha Fin(*):</label>
+                                  <div class="controls">
+                                      <input type="text" class="input-xlarge datepicker" id="fFecFin" readonly="true" value="<%=formatear(new Date(actividad.getFechaFin().getTime())) %>"  name="fFecFin" onchange="selectFin0();" disabled>
+                                          </div>
+                              </div>
+                              
+                              
 							
 
                                 <div class="control-group">
