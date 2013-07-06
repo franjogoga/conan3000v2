@@ -93,10 +93,9 @@ function validaForm(){
 	if(!esValido("Apellido Paterno",form.txtApellidoPaterno,"ApellidoP",1,1,50)){cadena[i]="Apellido Paterno";i++;}
 	if(!esValido("Apellido Materno",form.txtApellidoMaterno,"ApellidoM",1,1,50)){cadena[i]="Apellido Materno";i++;}
 	if(!esValido("Fecha",form.fFechaNacimiento,"Fecha",2,1,10)){cadena[i]="Fecha de Nacimiento";i++;}
-	if(!esValido("Tipo de Documento",form.rButton,"Tipo",3,1,100)){cadena[i]="Tipo de Documento";i++;}
-	if(!esValido("Numero Documento",form.txtNumeroDocumento,"NumDoc",8,11)){cadena[i]="Numero de documento";i++;}else{
-		if(!esValido("Numero Documento",form.txtNumeroDocumento,"NumDoc",6,1,50)){cadena[i]="Numero de documento";i++;}
-	}
+	
+	
+
 	if(!esValido("Telefono Fijo",form.txtTelefonoF,"TelefonoF",1,7,7)){cadena[i]="Telefono Fijo";i++;}else{
 		if(!esValido("Telefono Fijo",form.txtTelefonoF,"TelefonoF",6,1,50)){cadena[i]="Telefono Fijo";i++;}
 	}
@@ -105,8 +104,11 @@ function validaForm(){
 	}
 		
 	if(!esValido("Correo Electronico",form.txtCorreo,"Correo",9,1,100)){cadena[i]="Correo Electronico";i++;}
+	if(!esValido("Tipo de Documento",form.rButton,"Tipo",3,1,100)){cadena[i]="Tipo de Documento";i++;}
 	
-	
+	if(!esValido("Numero Documento",form.txtNumeroDocumento,"NumDoc",1,8,11)){cadena[i]="Numero de documento";i++;}else{
+		if(!esValido("Numero Documento",form.txtNumeroDocumento,"NumDoc",6,1,50)){cadena[i]="Numero de documento";i++;}
+	}
 	
 	
 	//No tocar
