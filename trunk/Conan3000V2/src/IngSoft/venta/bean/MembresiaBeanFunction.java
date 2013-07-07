@@ -167,7 +167,7 @@ public class MembresiaBeanFunction {
 			String temp= defecto.substring(0, defecto.length()-String.valueOf(cod).length()).concat(String.valueOf(cod));
 			
 			membresiaData.setCodigo(codigo.substring(0,3).concat(temp));}
-			else membresiaData.setCodigo("MO000001");
+			else membresiaData.setCodigo("MEM000001");
 			
 			
 			
