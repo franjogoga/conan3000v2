@@ -10,6 +10,7 @@ import java.util.Vector;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
+import javax.faces.bean.ApplicationScoped;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -18,6 +19,7 @@ import org.apache.ibatis.session.SqlSession;
 import IngSoft.general.CoException;
 import IngSoft.general.MyBatisSesion;
 
+@ApplicationScoped
 public class SorteoBeanFuncion {
 	static private SorteoBeanFuncion SorteoFuncion=null;
 	private Lock l= new ReentrantLock();    
@@ -35,7 +37,7 @@ public class SorteoBeanFuncion {
 			sorteoData.setFechaFin(new Date(DF.parse(request.getParameter("fFecFin")).getTime()));
 			sorteoData.setFechaSorteo(new Date(DF.parse(request.getParameter("fFecSorteo")).getTime()));
 			sorteoData.setDescripcion(request.getParameter("txtNombre"));
-			sorteoData.setEstado(request.getParameter("txtCodigoSorteo"));
+			//sorteoData.setEstado(request.getParameter("txtCodigoSorteo"));
 			}catch(Exception e){
 				e.printStackTrace();		
 			}
@@ -103,7 +105,9 @@ public class SorteoBeanFuncion {
 			bungalows.trimToSize();
 			return bungalows;		
 		}
+	
 	public double getCostoM2(){
+		
 		return 15;
 	}
 	
