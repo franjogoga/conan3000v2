@@ -56,7 +56,7 @@ where	(S.IdSede=#{idSede})
 (select RB.IdBungalow 
 from 	RESERVA_BUNGALOW RB 
 left join BUNGALOWxFECHA BF ON (RB.IdReservaBungalow=BF.IdReservaBungalow) 
-where not (BF.Fecha between #{fechaInicio} and #{fechaFin}));
+where (BF.Fecha between #{fechaInicio} and #{fechaFin}));
 </select>
 
 
