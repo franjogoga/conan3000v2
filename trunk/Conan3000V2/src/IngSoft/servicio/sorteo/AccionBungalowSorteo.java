@@ -63,13 +63,15 @@ public class AccionBungalowSorteo extends CoAccion{
 		sorteoData.setFechaSorteo(fSorteo);
 		sorteoData.setDescripcion(nombSorteo);
 		SorteoBeanFuncion sorteoFuncion= SorteoBeanFuncion.getInstance();
-		sorteoFuncion.agregarSorteo(sorteoData);
+		
 		BungalowBeanData BS = new BungalowBeanData();
         String nextcodigo;
 		l.lock();
 		SqlSession sqlsesion = MyBatisSesion.metodo().openSession();
 		try {
 			String[] valores = request.getParameterValues("checkAcciones");
+			if (valores==null) this.direccionar(sc, request, response, "/IngSoft/servicio/sorteo/errorAgregar.jsp");
+			sorteoFuncion.agregarSorteo(sorteoData);
 			String codigoCaso;
 			Vector<String> idBungalows=new Vector<>();						
 			for (int i=0; i<valores.length; i++) {
