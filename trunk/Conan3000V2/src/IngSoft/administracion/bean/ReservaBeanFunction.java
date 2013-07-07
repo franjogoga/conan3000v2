@@ -116,12 +116,20 @@ public class ReservaBeanFunction {
 			
 			String contador    = (String)sqlsesion.selectOne("Data.administracion.reserva.getContadorInvitadoSocio",codigosocio);
 			
-			if(  Integer.parseInt(contador) > 6 )
+			String valores    = (String)sqlsesion.selectOne("Data.administracion.reserva.getCostoYNumMaxInvitadoSocio");
+			
+	               // valores   20 / 2     = montoinvitado / numeromaxinvitados
+
+
+	  		System.out.print("montoinvitado ---> "+   valores.split("/")[0].toString()  );		
+	  		System.out.print("numeromaxinvitados ---> "+  valores.split("/")[1].toString()  );
+			
+			if(  Integer.parseInt(contador) > Integer.parseInt(     valores.split("/")[1]    ) )
 			{
 				
 				OrdenPagoBeanFunction orden=OrdenPagoBeanFunction.getInstance();
-				String cadena    = (String)sqlsesion.selectOne("Data.administracion.reserva.getMontoInvitadoSocio");
-				Double monto = Double.parseDouble(cadena);
+				//String cadena    = (String)sqlsesion.selectOne("Data.administracion.reserva.getMontoInvitadoSocio");
+				Double monto = Double.parseDouble(   valores.split("/")[0]  );
 				
 				reservaData.setMonto(monto);
 				
