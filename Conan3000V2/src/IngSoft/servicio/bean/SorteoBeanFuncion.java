@@ -54,6 +54,28 @@ public class SorteoBeanFuncion {
 		} 
 	
 	
+	public SorteoBeanData getSorteo(String codSorteo) throws CoException{
+		SorteoBeanData sorteoData = new SorteoBeanData();
+		l.lock();
+		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+		try {			
+			sorteoData=sqlsesion.selectOne("Data.servicio.sorteo.getSorteo", codSorteo);
+		}
+			catch(Exception a)
+			
+			{sqlsesion.rollback();
+			a.printStackTrace();
+				throw CoException.set("Error: Error de la BD", "SMSSorteo?accion=Buscar&tipo=1");
+				
+			}
+			
+			finally{
+				sqlsesion.commit();
+				sqlsesion.close();
+				l.unlock();					
+			}
+		return sorteoData;
+	}
 	public void agregaFechaReserva(String idBungalow,String idSocio,Date fReserva) throws CoException{
 		l.lock();
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
