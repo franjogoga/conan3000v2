@@ -181,14 +181,14 @@
 							
 							  
 							  <div class="control-group">
-							  <label class="control-label" for="date01">Fecha Inicio</label>
+							  <label class="control-label" for="date01">Inicio Reserva</label>
 							  <div class="controls">
 								<input type="text" class="input-xlarge datepicker" id="fFecInicio" name="fFecInicio" value="<%=formatear(new Date(sorteo.getFechaInicio().getTime())) %>" onchange="verificar_fecha(1,this,'fFecFin');" >
 							  </div>
 							</div>
 							
 							<div class="control-group">
-							  <label class="control-label" for="date02">Fecha Fin</label>
+							  <label class="control-label" for="date02">Fin Reserva</label>
 							  <div class="controls">
 								<input type="text" class="input-xlarge datepicker" id="fFecFin" name="fFecFin"  value="<%=formatear(new Date(sorteo.getFechaFin().getTime())) %>" onchange="verificar_fecha(-1,this,'fFecInicio');"  >
 							  </div>
