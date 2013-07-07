@@ -293,8 +293,6 @@ String fecAnoIni=dfActual.format(new java.util.Date());
 			                    <option selected>Hija(o)</option>
 			                    <option>Madre</option>
 			                    <option>Padre</option>
-			                    <option>Hermana(o)</option>
-			                    <option>Nieto(a)</option>
 		                      </select>
 							  <span class="help-inline" id="errParentesco">Please correct the error</span>
 		                    </div>
