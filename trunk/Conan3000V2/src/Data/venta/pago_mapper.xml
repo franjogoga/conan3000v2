@@ -422,13 +422,12 @@ SOCIO.IdSocio as idSocio
 ,PERSONA.TipoDocumento as tipoDocumento
 ,PERSONA.NumeroDocumento as numeroDocumento
 ,SOCIO.Flag as flag
-from SOCIO INNER JOIN  PERSONA ON PERSONA.IdPersona=SOCIO.IdSocio
-INNER JOIN MEMBRESIA ON MEMBRESIA.IdSocio!=SOCIO.IdSocio 
+from SOCIO, PERSONA
 
 <where>
 
 	<if test="nombres != null ">
-	PERSONA.IdPersona!=MEMBRESIA.IdSocio AND PERSONA.IdPersona NOT IN (SELECT IdSocio FROM MEMBRESIA) AND (PERSONA.nombres  like  #{nombres})
+	SOCIO.IdSocio=PERSONA.IdPersona and SOCIO.idSocio NOT IN (Select IdSocio FROM MEMBRESIA) AND (PERSONA.nombres  like  #{nombres})
     </if>
     <if test="apellidoPaterno != null ">
         AND (PERSONA.ApePaterno  like  #{apellidoPaterno})

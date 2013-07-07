@@ -211,12 +211,12 @@ public class MembresiaBeanFunction {
 			
 			String fechaEmision=DF.format(fechaActual);
 			
-			String codigoCuota= (String)sqlsesion.selectOne("Data.venta.membresia.getNextCodigoCuota");
+			
 			
 			int codCuota=0;
 			int estadoPA=0;
 			for(int i=0;i<membresiaData.getCantCuota();i++){
-				
+				String codigoCuota= (String)sqlsesion.selectOne("Data.venta.membresia.getNextCodigoCuota");
 				if(codigoCuota!=null){
 				if(codCuota==0)	
 				codCuota= Integer.parseInt(codigoCuota.substring(3))+1;
