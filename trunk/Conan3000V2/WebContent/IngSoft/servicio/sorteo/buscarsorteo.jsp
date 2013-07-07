@@ -168,14 +168,14 @@
 							</div>
 
 							<div class="control-group">
-							  <label class="control-label" for="date01">Fecha Inicio</label>
+							  <label class="control-label" for="date01">Inicio Reserva</label>
 							  <div class="controls">
 								<input type="text" class="input-xlarge datepicker" id="date01" name="date01"  >
 							  </div>
 							</div>
 							
 							<div class="control-group">
-							  <label class="control-label" for="date02">Fecha Fin</label>
+							  <label class="control-label" for="date02">Fin Reserva</label>
 							  <div class="controls">
 								<input type="text" class="input-xlarge datepicker" id="date02" name="date02" onchange="alt_fecha(this);verificar_fecha(1,this,'date01');"  >
 							  </div>
