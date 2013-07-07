@@ -23,7 +23,7 @@ public class AccionBuscarBungalows extends CoAccion{
 			SorteoBeanFuncion sorteoFuncion= SorteoBeanFuncion.getInstance();
 			SorteoBeanData sorteoData=sorteoFuncion.crearSorteo(request, response);
 			request.setAttribute("sorteoData", sorteoData);
-			sorteoData.setFechaReserva(Utils.fechaMas(sorteoData.getFechaSorteo(), 8));
+			//sorteoData.setFechaSorteo(Utils.fechaMas(sorteoData.getFechaInicio(), -1));
 			Vector<String> resultados = sorteoFuncion.getBungalowsSorteo(sorteoData);
 			request.setAttribute("resultados", resultados);
 			//sorteoFuncion.agregarSorteo(sorteoData);
