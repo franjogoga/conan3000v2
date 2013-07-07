@@ -37,7 +37,7 @@ public class PersonaMiniBeanFuncion {
 		personaData.setApellidoMaterno(request.getParameter("txtApellidoMaterno"));
 		personaData.setApellidoPaterno(request.getParameter("txtApellidoPaterno"));
 		personaData.setNumeroDocumento(Long.parseLong(request.getParameter("txtNumeroDocumento")));
-		personaData.setTipoDocumento(request.getParameter("cmbTipoDocumento"));
+		personaData.setTipoDocumento(request.getParameter("rButton"));
 		//if (request.getParameter("rButton")!=null){
 			//String tipoDocumento;
 			//tipoDocumento=request.getParameter("rButton");
