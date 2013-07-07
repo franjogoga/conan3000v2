@@ -163,14 +163,14 @@
 					        </div>				        
 					        
 						  <div class="control-group" id="dvFechaInicio">
-			              <label class="control-label" for="date01">Fecha de inicio(*):</label>
+			              <label class="control-label" for="date01">Inicio Reserva(*):</label>
 			                <div class="controls">
 								<input type="text" class="input-xlarge datepicker" id="fFecIncio"  readonly="true" value="<%=formatear(new Date(sorteo.getFechaInicio().getTime())) %>"  name="fFecIncio" onchange="alt_fecha(this)" disabled>
 			                  <span class="help-inline" id="errFechaInicio"></span>
 		                    </div>
 		                  </div>
 			              <div class="control-group" id="dvFechaFin">
-			                <label class="control-label" for="date02">Fecha de fin(*):</label>
+			                <label class="control-label" for="date02">Fin Reserva(*):</label>
 			                <div class="controls">
 							  <input type="text" class="input-xlarge datepicker" id="fFecFin"  readonly="true" value="<%=formatear(new Date(sorteo.getFechaFin().getTime())) %>"  name="fFecFin" onchange="alt_fecha(this)" disabled>
 			                  <span class="help-inline" id="errFechaFin"></span>
