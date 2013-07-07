@@ -181,13 +181,13 @@
 							</div>
 
 							<div class="control-group">
-						      <label class="control-label" for="disabledInput">Fecha Inicio: </label>
+						      <label class="control-label" for="disabledInput">Inicio Reserva: </label>
 						      <div class="controls">
 								<input type="text" class="input-xlarge datepicker" id="fFecIncio"  readonly="true" value="<%=formatear(sorteoData.getFechaInicio())%>"  name="fFecIncio" onchange="alt_fecha(this)" disabled>
 					          </div>
 					        </div>
 					        							<div class="control-group">
-						      <label class="control-label" for="disabledInput">Fecha Fin: </label>
+						      <label class="control-label" for="disabledInput">Fin Reserva: </label>
 						      <div class="controls">
 								<input type="text" class="input-xlarge datepicker" id="fFecFin"  readonly="true" value="<%=formatear(sorteoData.getFechaFin()) %>"  name="fFecFin" onchange="alt_fecha(this)" disabled>
 					          </div>
@@ -198,12 +198,7 @@
 								<input type="text" class="input-xlarge datepicker" id="fFecSorteo"  readonly="true" value="<%=formatear(sorteoData.getFechaSorteo()) %>"  name="fFecSorteo" onchange="alt_fecha(this)" disabled>
 					          </div>
 					        </div>	
-							<div class="control-group">
-						      <label class="control-label" for="disabledInput">Fecha Reserva : </label>
-						      <div class="controls">
-								<input type="text" class="input-xlarge datepicker" id="fFecReserva"  readonly="true" value="<%=new SimpleDateFormat("dd/MM/yyyy").format(Utils.fechaMas(sorteoData.getFechaSorteo(), 8)) %>"  name="fFecReserva" onchange="alt_fecha(this)" disabled>
-					          </div>
-					        </div>	
+							
 							
 						  </fieldset>
 						</form>   
