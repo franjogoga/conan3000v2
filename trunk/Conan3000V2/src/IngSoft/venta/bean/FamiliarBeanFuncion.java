@@ -86,10 +86,6 @@ public class FamiliarBeanFuncion {
 		try{
 			String codigo= (String)sqlsesion.selectOne("Data.venta.familiar.getNextCodigo");
 			
-			int cod= Integer.parseInt(codigo.substring(3))+1;
-			String defecto= "000000";
-			String temp= defecto.substring(0, defecto.length()-String.valueOf(cod).length()).concat(String.valueOf(cod));
-			codigo=(codigo.substring(0,3).concat(temp));
 			if(codigo!=null){
 			
 			personaData.setCodigo(codigo);}
