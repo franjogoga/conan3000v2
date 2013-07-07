@@ -144,13 +144,13 @@
 					          </div>
 					        </div>
 							<div class="control-group">
-						      <label class="control-label" for="disabledInput">Fecha Inicio: </label>
+						      <label class="control-label" for="disabledInput">Inicio Reserva: </label>
 						      <div class="controls">
 								<input type="text" class="input-xlarge datepicker" id="fFecIncio"  readonly="true" value="<%=formatear(new Date(sorteo.getFechaInicio().getTime())) %>"  name="fFecIncio" onchange="alt_fecha(this)" disabled>
 					          </div>
 					        </div>
 					        							<div class="control-group">
-						      <label class="control-label" for="disabledInput">Fecha Fin: </label>
+						      <label class="control-label" for="disabledInput">Fin Reserva: </label>
 						      <div class="controls">
 								<input type="text" class="input-xlarge datepicker" id="fFecIncio"  readonly="true" value="<%=formatear(new Date(sorteo.getFechaFin().getTime())) %>"  name="fFecFin" onchange="alt_fecha(this)" disabled>
 					          </div>
