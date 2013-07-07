@@ -85,6 +85,16 @@ WHERE 	(RESERVA_BUNGALOW.IdBungalow=#{idBungalow}) AND
 	values (#{idBungalow},#{idSorteo},0);
 </insert>
 
+<select id="getSorteo" resultType="IngSoft.servicio.bean.SorteoBeanData" parameterType="java.lang.String">
+select 
+ IdSede as idSede,
+ IdSorteo as idSorteo,
+ FechaInicioIncr as fechaInicio,
+ FechaFinInscr as fechaFin,
+ FechaSorteo as fechaSorteo
+from SORTEO where IdSorteo=#{codSorteo}	
+</select>
+
 <select id="getNextCodigo" resultType="java.lang.String">
 	select max(IdSorteo) from SORTEO	
 </select>
