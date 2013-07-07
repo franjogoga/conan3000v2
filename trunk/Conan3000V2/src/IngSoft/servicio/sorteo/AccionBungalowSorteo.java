@@ -63,7 +63,9 @@ public class AccionBungalowSorteo extends CoAccion{
 		sorteoData.setFechaSorteo(fSorteo);
 		sorteoData.setDescripcion(nombSorteo);
 		SorteoBeanFuncion sorteoFuncion= SorteoBeanFuncion.getInstance();
-		
+		long diferencia = fFin.getTime() - fInicio.getTime();
+		double dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+		dias++;
 		BungalowBeanData BS = new BungalowBeanData();
         String nextcodigo;
 		l.lock();
@@ -85,26 +87,28 @@ public class AccionBungalowSorteo extends CoAccion{
 				data.setIdBungalow(BS.getBungalows().get(i));
 				data.setIdSorteo(idSorteo);
 				sqlsesion.insert("Data.servicio.sorteo.agregarBungalowsSorteo", data);
-				nextcodigo=sqlsesion.selectOne("Data.servicio.reserva.getNextCodigoB");
-				nextcodigo=nextcodigo==null?"RSB000000":nextcodigo;
-				nextcodigo=Utils.generaSiguienteCodigo(nextcodigo);
-				SimpleDateFormat df= new SimpleDateFormat("dd/MM/yyyy");
-				   OrdenPagoBeanFunction orden=OrdenPagoBeanFunction.getInstance();
-				   HashMap<String, Object> map=new HashMap<String, Object>();
-				   Conan3000Constantes constantes=Conan3000Constantes.getInstance();
-				   map.put("idsocio",null);
-				   IngSoft.administracion.bean.BungalowBeanData bung = new IngSoft.administracion.bean.BungalowBeanData();
-				   BungalowBeanFunction BF = BungalowBeanFunction.getInstance();
-				   bung = BF.consultarBungalow(BS.getBungalows().get(i));
-				   double area=0;
-					   map.put("idbungalow", BS.getBungalows().get(i)); 
-					   map.put("idreservasbungalow", nextcodigo);
-					   area=(bung.getAreaBungalow());
-					   map.put("monto",constantes.getCostoXm2Bungalow()*area);
-					   map.put("fecha",Utils.fechaMas(fSorteo, 8));
-					   sqlsesion.insert("Data.servicio.reserva.insertBungalowReserva",map);
-					   sqlsesion.insert("Data.servicio.reserva.insertBungalowReservaFecha",map);
-				   sqlsesion.commit();
+				for(int j=0; j<(int)dias ; j++){					
+					nextcodigo=sqlsesion.selectOne("Data.servicio.reserva.getNextCodigoB");
+					nextcodigo=nextcodigo==null?"RSB000000":nextcodigo;
+					nextcodigo=Utils.generaSiguienteCodigo(nextcodigo);
+					SimpleDateFormat df= new SimpleDateFormat("dd/MM/yyyy");
+					   OrdenPagoBeanFunction orden=OrdenPagoBeanFunction.getInstance();
+					   HashMap<String, Object> map=new HashMap<String, Object>();
+					   Conan3000Constantes constantes=Conan3000Constantes.getInstance();
+					   map.put("idsocio",null);
+					   IngSoft.administracion.bean.BungalowBeanData bung = new IngSoft.administracion.bean.BungalowBeanData();
+					   BungalowBeanFunction BF = BungalowBeanFunction.getInstance();
+					   bung = BF.consultarBungalow(BS.getBungalows().get(i));
+					   double area=0;
+						   map.put("idbungalow", BS.getBungalows().get(i)); 
+						   map.put("idreservasbungalow", nextcodigo);
+						   area=(bung.getAreaBungalow());
+						   map.put("monto",constantes.getCostoXm2Bungalow()*area);
+						   map.put("fecha",Utils.fechaMas(fInicio, j));
+						   sqlsesion.insert("Data.servicio.reserva.insertBungalowReserva",map);
+						   sqlsesion.insert("Data.servicio.reserva.insertBungalowReservaFecha",map);
+					   sqlsesion.commit();
+				}
 			}
 			   
 		} catch (Exception e4){
