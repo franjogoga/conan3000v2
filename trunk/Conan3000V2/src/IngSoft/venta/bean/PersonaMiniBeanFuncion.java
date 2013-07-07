@@ -42,9 +42,9 @@ public class PersonaMiniBeanFuncion {
 			//String tipoDocumento;
 			//tipoDocumento=request.getParameter("rButton");
 		//personaData.setTipoDocumento(tipoDocumento);}
-
+		
 		personaData.setFechaNacimiento(new Date(DF.parse(request.getParameter("fFechaNacimiento")).getTime()));
-
+		
 		
 		}catch(Exception e){
 			e.printStackTrace();
