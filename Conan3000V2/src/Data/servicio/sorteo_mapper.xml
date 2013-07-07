@@ -53,9 +53,10 @@ from 	BUNGALOW B
 where	(S.IdSede=#{idSede}) 
 		and (B.Estado='Activo') and
 		B.IdBungalow not in 
-		(select RB.IdBungalow 
-		 from 	RESERVA_BUNGALOW RB
-				left join BUNGALOWxFECHA BF ON (RB.IdReservaBungalow=BF.IdReservaBungalow));
+(select RB.IdBungalow 
+from 	RESERVA_BUNGALOW RB 
+left join BUNGALOWxFECHA BF ON (RB.IdReservaBungalow=BF.IdReservaBungalow) 
+where not (BF.Fecha between #{fechaInicio} and #{fechaFin}));
 </select>
 
 
