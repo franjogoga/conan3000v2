@@ -27,8 +27,9 @@ public class AccionAgregarFamiliar extends CoAccion{
 					FamiliarBeanData familiarData=familiarFuncion.crearFamiliar(request, response);
 					PersonaMiniBeanData personaData=personaFuncion.crearPersona(request, response);
 					
-					familiarFuncion.agregarPersona(personaData);
 					familiarFuncion.agregarFamiliar(familiarData);
+					familiarFuncion.agregarPersona(personaData);
+					
 					this.direccionar(sc, request, response, "/IngSoft/ventas/familia/buscarfamiliar.jsp");
 				}
 				
