@@ -36,11 +36,9 @@ public class AccionAgregarSolicitudSocio extends CoAccion{
 				}
 				if(tipo==1){
 					SocioBeanFuncion socioFunction= SocioBeanFuncion.getInstanceS();
-					Vector<DistritoMiniBeanData> distritoMiniData=socioFunction.getDistritos();			
-					
+					Vector<DistritoMiniBeanData> distritoMiniData=socioFunction.getDistritos();					
 					request.setAttribute("tiposDistrito",distritoMiniData);	
 					
-				
 				this.direccionar(sc, request, response, "/IngSoft/ventas/solicitud/agregarsolicitudsocio.jsp");
 				}
 	}
