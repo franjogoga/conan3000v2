@@ -148,6 +148,7 @@
 					          	<span class="help-inline" id="errNombreSorteo">Please correct the error</span>
 					          </div>
 					        </div>
+
 					        
 					        <div class="control-group">
 								<label class="control-label" for="selectM1">Sede (*):</label>
@@ -159,28 +160,29 @@
 								  </select>
 								</div>
 							  </div>					        
-					        
+					      <div class="control-group" id="dvFechaSorteo">
+			              <label class="control-label" for="date01">Fecha Sorteo(*):</label>
+			                <div class="controls">
+			                  <input type="text" name="fFecSorteo" class="input-xlarge datepicker" id="fFecSorteo"  readonly="true" value="<%=new SimpleDateFormat("dd/MM/yyyy").format(Utils.fechaMas(new Date(), 1))%>" onchange="verificar_fecha(1,this,'fFecInicio');" >
+			                  <span class="help-inline" id="errFechaSorteo">Please correct the error</span>
+		                    </div>
+		                  </div>
+		                  
 						  <div class="control-group" id="dvFechaInicio">
-			              <label class="control-label" for="date01">Fecha de inicio(*):</label>
+			              <label class="control-label" for="date01">Inicio Reserva(*):</label>
 			                <div class="controls">
 			                  <input type="text" name="fFecInicio" class="input-xlarge datepicker" id="fFecInicio"  readonly="true" value="<%=new SimpleDateFormat("dd/MM/yyyy").format(Utils.fechaMas(new Date(), 1))%>" onchange="verificar_fecha(1,this,'fFecFin');" >
 			                  <span class="help-inline" id="errFechaInicio">Please correct the error</span>
 		                    </div>
 		                  </div>
 			              <div class="control-group" id="dvFechaFin">
-			                <label class="control-label" for="date02">Fecha de fin(*):</label>
+			                <label class="control-label" for="date02">Fin Reserva(*):</label>
 			                <div class="controls">
 			                  <input type="text" name="fFecFin" class="input-xlarge datepicker" id="fFecFin"  readonly="true" value="<%=new SimpleDateFormat("dd/MM/yyyy").format(Utils.fechaMas(new Date(), 8))%>" onchange="verificar_fecha(-1,this,'fFecInicio');" >
 			                  <span class="help-inline" id="errFechaFin">Please correct the error</span>
 		                    </div>
 		                  </div>
-							<div class="control-group" id="dvFechaSorteo">
-			                <label class="control-label" for="date03">Fecha de Sorteo(*):</label>
-			                <div class="controls">
-			                  <input type="text" name="fFecSorteo" class="input-xlarge datepicker" id="fFecSorteo"  readonly="true" value="<%=new SimpleDateFormat("dd/MM/yyyy").format(Utils.fechaMas(new Date(), 8))%>" onchange="verificar_fecha(-1,this,'fFecFin');"  >
-			                  <span class="help-inline" id="errFechaSorteo">Please correct the error</span>
-		                    </div>
-		                  </div>
+							
 		                  
 							<div class="form-actions">
 							  <button type="button" class="btn btn-primary" onclick="javascript:alt_submit()">BuscarBungalows</button>
@@ -366,13 +368,13 @@ function validaForm(){
 		}
 	}
 	
-	if(!esValido("Fecha Sorteo",form.fFecSorteo,"FechaSorteo",2,1,10)){
+/*	if(!esValido("Fecha Sorteo",form.fFecSorteo,"FechaSorteo",2,1,10)){
 		cadena[i]="Fecha Sorteo";i++;
 	}else{
 		if(!validarFechas("Fecha Sorteo",form.fFecSorteo,"FechaSorteo","Fecha Fin",form.fFecFin)){
 		cadena[i]="Fecha Sorteo";i++;
 		}
-	}
+	}*/
 	//if(!esValido("RUC",form.txtRuc,"Ruc",2,1,11)){cadena[i]="RUC";i++;}
 	//else{
 	
