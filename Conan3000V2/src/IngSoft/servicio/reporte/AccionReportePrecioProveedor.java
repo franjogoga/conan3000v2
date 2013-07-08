@@ -22,9 +22,10 @@ public class AccionReportePrecioProveedor extends CoAccion {
 	public void ejecutar(ServletContext sc, HttpServletRequest request,
 			HttpServletResponse response){
 			SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
-			String reporte = sc.getRealPath("/reporte/PrecioProductoProveedor.jasper");
-			Map<String, Object> parameters = new HashMap<String, Object>();
+			
 			try {
+				String reporte = sc.getRealPath("/reporte/PrecioProductoProveedor.jasper");
+				Map<String, Object> parameters = new HashMap<String, Object>();
 				String nombSocio = request.getParameter("txtNombre");
 				parameters.put("nombSocio", nombSocio);
 				
@@ -36,7 +37,7 @@ public class AccionReportePrecioProveedor extends CoAccion {
 			this.direccionar(sc, request, response, "/IngSoft/servicio/reporte/generarreportes.jsp");
 
 			} catch (Exception ex) {
-				this.direccionar(sc, request, response, "/IngSoft/servicio/sorteo/generarreportes.jsp");
+				this.direccionar(sc, request, response, "/IngSoft/servicio/reporte/generarreportes.jsp");
 			}
 	}
 
