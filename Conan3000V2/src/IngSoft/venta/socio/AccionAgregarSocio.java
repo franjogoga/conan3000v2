@@ -28,13 +28,12 @@ public class AccionAgregarSocio extends CoAccion{
 					
 					SocioBeanFuncion socioFuncion= SocioBeanFuncion.getInstanceS();
 					SocioBeanData socioData=socioFuncion.crearSocio(request, response);
-
-					socioFuncion.agregarSocio(socioData);
-					
 					PersonaMiniBeanFuncion personaFuncion=PersonaMiniBeanFuncion.getInstanceP();
 					PersonaMiniBeanData personaData=personaFuncion.crearPersona(request, response);
-					personaFuncion.agregarPersona(personaData);
 					
+					personaFuncion.agregarPersonaTraslado(personaData);
+					socioFuncion.agregarSocioTraslado(socioData);
+	
 					request.setAttribute("socio", socioData);
 
 					this.direccionar(sc, request, response, "/IngSoft/ventas/membresia/trasladomembresia.jsp");
