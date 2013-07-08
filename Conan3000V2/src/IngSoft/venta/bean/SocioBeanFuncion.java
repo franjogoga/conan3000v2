@@ -95,6 +95,52 @@ public class SocioBeanFuncion {
 		return resultado;
 	}
 	
+	public boolean agregarSocioTraslado(SocioBeanData socioData) throws CoException {
+		boolean resultado=false;		
+		l.lock();
+		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+		try{
+			String codigo= (String)sqlsesion.selectOne("Data.venta.socio.getNextCodigo3");
+			if(codigo!=null){
+			int cod= Integer.parseInt(codigo.substring(3))+1;
+			String defecto= "000000";
+			String temp= defecto.substring(0, defecto.length()-String.valueOf(cod).length()).concat(String.valueOf(cod));
+			//String codigoM=;
+			
+			socioData.setCodigo(codigo.substring(0,3).concat(temp));}
+			else socioData.setCodigo("SOC000001");
+			
+			//busco la membresia
+			//String codMembresia=socioData.getIdMembresia();
+			//String codAntiguo=sqlsesion.selectOne("Data.venta.socio.getCodigoAntiguo",codMembresia);
+			//String codSolic=sqlsesion.selectOne("Data.venta.socio.getCodSolic", codAntiguo);
+			
+			//socioData.setIdSolicitud(codSolic);
+			//aca validar si el get te da null y hacer otro insert !!!!!!
+			sqlsesion.insert("Data.venta.socio.insertSocio2",socioData);
+			
+			//String codSol=socioData.getIdSolicitud();
+			//saco un codigo por aca
+			//sqlsesion.update("Data.venta.socio.updateSolicitud", codSol);
+			
+			resultado=true;
+		}
+		catch(Exception a)		
+		{sqlsesion.rollback();
+		a.printStackTrace();
+			//throw CoException.set("Error: Nombre de evento repetido", "SMSEvento?accion=Agregar&tipo=1");
+			
+		}
+		
+		finally{
+			sqlsesion.commit();
+			sqlsesion.close();
+			l.unlock();					
+		}
+			
+		return resultado;
+	}
+	
 	
 	public SocioBeanData consultarSocio(String codigo){
 	l1.lock();
