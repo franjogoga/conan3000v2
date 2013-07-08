@@ -44,6 +44,11 @@ from SOCIO,PERSONA
 	values (#{codigo},#{direccion},#{correoElectronico},#{telefonoFijo},#{idSolicitud},#{idDistrito},#{telefonoCelular},'0')
 </insert>
 
+<insert id="insertSocio2" parameterType="IngSoft.venta.bean.SocioBeanData" flushCache="true">
+	insert into SOCIO(IdSocio,Direccion,Correo,TelefonoFijo,IdDistrito,TelefonoCelular,Flag)
+	values (#{codigo},#{direccion},#{correoElectronico},#{telefonoFijo},#{idDistrito},#{telefonoCelular},'0')
+</insert>
+
 <insert id="insertPersona" parameterType="IngSoft.venta.bean.PersonaMiniBeanData" flushCache="true">
 	insert into PERSONA(IdPersona,Nombres,ApePaterno,ApeMaterno,NumeroDocumento,TipoDocumento,FechaNac)
 	values (#{codigo},#{nombres},#{apellidoPaterno},#{apellidoMaterno},#{numeroDocumento},#{tipoDocumento},#{fechaNacimiento})
@@ -60,6 +65,17 @@ from SOCIO,PERSONA
 <select id="getNextCodigo3" resultType="java.lang.String">
 	select max(IdSocio) from SOCIO
 </select>
+
+<select id="getCodigoAntiguo" resultType="java.lang.String">
+	select MEMBRESIA.IdSocio 
+	from MEMBRESIA where MEMBRESIA.IdMembresia=#{codMembresia};
+</select>
+
+<select id="getCodSolic" resultType="java.lang.String">
+	select SOCIO.IdSolicitudIngreso
+	from SOCIO where SOCIO.IdSocio=#{codAntiguo};
+</select>
+
 
 <select id="getNextCodigoU" resultType="java.lang.String">
 	select max(IdUsuario) from USUARIO
