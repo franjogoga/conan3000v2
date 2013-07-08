@@ -28,7 +28,7 @@ public class AccionReporteInscritosSorteo extends CoAccion {
 			/*String reporte = FacesContext.getCurrentInstance()
 			.getExternalContext()
 			.getRealPath("/reporte/ReservaBungalowFecha.jasper"); */
-			String reporte = sc.getRealPath("/reporte/InscritosSorteo.jasper");
+			String reporte = sc.getRealPath("/reporte/NombrexSorteo.jasper");
 			Map<String, Object> parameters = new HashMap<String, Object>();
 			try {
 				Date finicio = new Date(DF.parse(request.getParameter("fFecInicio")).getTime());
