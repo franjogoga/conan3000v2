@@ -22,7 +22,7 @@ public class AccionReportePagoMembresia extends CoAccion {
 	public void ejecutar(ServletContext sc, HttpServletRequest request,
 			HttpServletResponse response){
 			SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
-			String reporte = sc.getRealPath("/reporte/PagosMembresia.jasper");
+			String reporte = sc.getRealPath("/reporte/PagosMembresia2.jasper");
 			Map<String, Object> parameters = new HashMap<String, Object>();
 			try {
 				String nombSocio = request.getParameter("txtNombre");
