@@ -35,8 +35,9 @@ WHERE
 
 <select id="getCostoYNumMaxInvitadoSocio" resultType="java.lang.String">
 
-SELECT  CONCAT(MontoInvitado, '/', NumMaxinvitados) As Resultado
-FROM CONFIGURACION 
+SELECT  group_concat( MontoInvitado,'/',NumMaxInvitados) As Resultado
+FROM CONFIGURACION
+ WHERE IdConfiguracion like '%CNF000001%' 
 
 	
 	
