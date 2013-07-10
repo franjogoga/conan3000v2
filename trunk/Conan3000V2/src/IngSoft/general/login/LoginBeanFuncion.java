@@ -3,6 +3,7 @@ package IngSoft.general.login;
 import java.io.IOException;
 import java.util.Vector;
 
+import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.SessionScoped;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -17,6 +18,7 @@ import IngSoft.general.bean.PerfilBeanData;
 import IngSoft.general.bean.UsuarioBeanData;
 
 @SessionScoped
+@ApplicationScoped
 public class LoginBeanFuncion {
 	
 	public Vector<PerfilBeanData> verificaUsuario(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -34,7 +36,7 @@ public class LoginBeanFuncion {
 		UsuarioBeanData usuarioBD = new UsuarioBeanData();
 		usuarioBD = sqlsesion.selectOne("getUsuarioBeanData", usuarioLogin);
 		
-		if (usuarioBD.getNombUsuario()==null || usuarioBD.getPassword() == null ) return null;
+		if (usuarioBD == null || usuarioBD.getNombUsuario()==null || usuarioBD.getPassword() == null ) return null;
 		UsuarioBeanData usuario = new UsuarioBeanData();
 		usuario.setNombUsuario(usuarioBD.getNombUsuario()); usuario.setPassword(usuarioBD.getPassword());		
 		String idSocio = (String)sqlsesion.selectOne("getIdSocio",usuario);
