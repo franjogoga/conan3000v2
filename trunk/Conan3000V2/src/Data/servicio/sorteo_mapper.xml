@@ -36,7 +36,11 @@ order by 1 asc
 	sede
 </select>
 
-
+<select id="selectCostoM2" resultType="java.lang.Integer">
+	select CostoXm2Bungalow 
+	from 
+	CONFIGURACION;
+</select>
 
 <select id="cantidadGanadores" parameterType="String" resultType="String">
 	select count(*) 
