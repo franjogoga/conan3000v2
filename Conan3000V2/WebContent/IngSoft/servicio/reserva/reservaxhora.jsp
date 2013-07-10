@@ -24,6 +24,7 @@
   SimpleDateFormat DF=new SimpleDateFormat("dd/MM");
   SimpleDateFormat DFT=new SimpleDateFormat("dd/MM/yyyy");
   SimpleDateFormat DFI=new SimpleDateFormat("yyyy/MM/dd");
+  SimpleDateFormat inv=new SimpleDateFormat("yyyy/MM/dd");
  public String addHora(String hora,int step){
  	try{
  	//System.out.println(hora);
@@ -92,9 +93,9 @@ esnull=false;
 								<%for(int l=0;l<dias.length;l++){								
 								%>
 								<td class="center">
-									<a id="<%=codActual%><%=DFT.format(Utils.fechaMas(fecIni, l))%><%=hora%>"  <%=(inv.format(Utils.fechaMas(fecIni, k)).compareTo(inv.format(new java.util.Date()))<0)?"disabled":""%>
+									<a id="<%=codActual%><%=DFT.format(Utils.fechaMas(fecIni, l))%><%=hora%>"  <%=(inv.format(Utils.fechaMas(fecIni, l)).compareTo(inv.format(new java.util.Date()))<0)?"disabled":"onclick='javascript:cambiarClase(this)'"%>
 									class="btn btn-success" 
-									onclick="javascript:cambiarClase(this)">
+									>
 										<i class="icon-ok icon-white"></i>  
 										Reservar&nbsp;&nbsp;&nbsp;                                
 									</a>									
@@ -125,10 +126,10 @@ esnull=false;
 									test=(!esnull)&&((DFI.format(Utils.fechaMas(fecIni, l)).compareTo(temp)==0)&&(HRI.compareTo(hora))==0);																											
 								%>
 								<td class="center">
-									<a id="<%=codActual%><%=DFT.format(Utils.fechaMas(fecIni, l))%><%=hora%>"  <%=(inv.format(Utils.fechaMas(fecIni, k)).compareTo(inv.format(new java.util.Date()))<0)?"disabled":""%>
+									<a id="<%=codActual%><%=DFT.format(Utils.fechaMas(fecIni, l))%><%=hora%>"  <%=(inv.format(Utils.fechaMas(fecIni, l)).compareTo(inv.format(new java.util.Date()))<0)?"disabled":"onclick='javascript:cambiarClase(this)'"%>
 									<%if(test){%>
 									class="btn btn-danger" 
-									onclick="javascript:cambiarClase(this)">									
+									>									
 										<i class="icon-remove icon-white"></i>  
 										Reservado
 									<%}
