@@ -50,8 +50,8 @@
 								 for(int i=0;i<dias.length;i++) {%>
 								<td class="center">
 									<a id="<%=codActual%><%=DF.format(Utils.fechaMas(fecIni, i))%><%=Area%>" 
-									name="<%=codActual%><%=DF.format(Utils.fechaMas(fecIni, k))%><%=Area%>" <%=(inv.format(Utils.fechaMas(fecIni, k)).compareTo(inv.format(new java.util.Date()))<0)?"disabled":""%>
-									class="btn btn-success" onclick="javascript:cambiarClase(this)">
+									name="<%=codActual%><%=DF.format(Utils.fechaMas(fecIni, k))%><%=Area%>" <%=(inv.format(Utils.fechaMas(fecIni, l)).compareTo(inv.format(new java.util.Date()))<0)?"disabled":"onclick='javascript:cambiarClase(this)'"%>
+									class="btn btn-success" >
 										<i class="icon-ok icon-white"></i>  
 										Reservar&nbsp;&nbsp;&nbsp;&nbsp;                                      
 								</a>										
@@ -67,8 +67,8 @@
 								 	%>
 								 	<td class="center">
 									<a id="<%=codActual%><%=DF.format(Utils.fechaMas(fecIni, k))%><%=test?"":Area%>" 
-									name="<%=codActual%><%=DF.format(Utils.fechaMas(fecIni, k))%><%=test?"":Area%>" <%=(inv.format(Utils.fechaMas(fecIni, k)).compareTo(inv.format(new java.util.Date()))<0)?"disabled":""%>
-									class="btn <%=test?"btn-danger":"btn-success"%>" onclick="javascript:cambiarClase(this)">
+									name="<%=codActual%><%=DF.format(Utils.fechaMas(fecIni, k))%><%=test?"":Area%>" <%=(inv.format(Utils.fechaMas(fecIni, l)).compareTo(inv.format(new java.util.Date()))<0)?"disabled":"onclick='javascript:cambiarClase(this)'"%>
+									class="btn <%=test?"btn-danger":"btn-success"%>" >
 										<i class="icon-<%=test?"remove":"ok"%> icon-white"></i>
 										<%=test?"Reservado":"Reservar&nbsp;&nbsp;&nbsp;&nbsp;"%>  										                                      
 									</a>										
