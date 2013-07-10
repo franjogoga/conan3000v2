@@ -129,8 +129,9 @@ public class SorteoBeanFuncion {
 		}
 	
 	public double getCostoM2(){
-		
-		return 15;
+		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+		int costoxM2 = sqlsesion.selectOne("Data.servicio.sorteo.selectCostoM2");
+		return costoxM2;
 	}
 	
 	public String getNombSocio(String idSocio){
