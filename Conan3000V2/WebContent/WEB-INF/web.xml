@@ -168,6 +168,12 @@
         <servlet-name>SMAInfraccion</servlet-name>
 	<servlet-class>IngSoft.administracion.infraccion.SMAInfraccion</servlet-class>				   
 </servlet>
+<servlet id="Servlet_0040">
+        <servlet-name>SMAConfiguracion</servlet-name>
+	<servlet-class>IngSoft.administracion.configuracion.SMAConfiguracion</servlet-class>				   
+</servlet>
+
+
 
 <servlet-mapping id="ServletMapping_0001">
         <servlet-name>SMSEvento</servlet-name>
@@ -332,7 +338,10 @@
         <servlet-name>SMAInfraccion</servlet-name>
 <url-pattern>/IngSoft/administracion/infraccion/SMAInfraccion</url-pattern>
 </servlet-mapping>
-
+<servlet-mapping id="ServletMapping_0040">
+        <servlet-name>SMAConfiguracion</servlet-name>
+<url-pattern>/IngSoft/administracion/configuracion/SMAConfiguracion</url-pattern>
+</servlet-mapping>
 <error-page>
 <error-code>404</error-code>
 <location>/IngSoft/general/404.jsp</location>
