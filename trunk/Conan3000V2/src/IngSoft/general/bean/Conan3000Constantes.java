@@ -13,6 +13,8 @@ public class Conan3000Constantes implements Serializable {
 	//private Date fecha;
 	private double montoMultaFalta;
 	private double precioSalonPrincipal;
+	private double montoInvitadoBungalow;
+	private int numMaxInvitados;
 	private String codigo;
 	public static Integer step=60;
 	private static Conan3000Constantes constantes=null;
@@ -98,6 +100,24 @@ public class Conan3000Constantes implements Serializable {
 	public static void setConstantes(Conan3000Constantes constantes) {
 		Conan3000Constantes.constantes = constantes;
 	}
+
+	public double getMontoInvitadoBungalow() {
+		return montoInvitadoBungalow;
+	}
+
+	public void setMontoInvitadoBungalow(double montoInvitadoBungalow) {
+		this.montoInvitadoBungalow = montoInvitadoBungalow;
+	}
+
+	public int getNumMaxInvitados() {
+		return numMaxInvitados;
+	}
+
+	public void setNumMaxInvitados(int numMaxInvitados) {
+		this.numMaxInvitados = numMaxInvitados;
+	}
+	
+	
 	
 	
 	
