@@ -88,7 +88,7 @@
                         <div class="control-group">
                           <label class="control-label" for="typeahead">Costo de reserva de cancha(por hora):</label>
                           <div class="controls">
-                            <input type="text" class="span6 typeahead" id="txtCostoReservaCancha" 
+                            <input type="text" class="span2 typeahead" id="txtCostoReservaCancha" 
                             name="txtCostoReservaCancha" data-provide="typeahead" value="<%=constantes.getCostoReservaCancha()%>">
                           	<span class="help-inline" style="display:none;" id="errCostoReservaCancha">Este campo no puede estar vacio</span>
                           </div>
@@ -96,7 +96,7 @@
                         <div class="control-group" >
                           <label class="control-label" for="typeahead">Costo de reserva de bungalow(por m2):</label>
                           <div class="controls">
-                            <input type="text" class="span6 typeahead" id="txtCostoReservaBungalow" 
+                            <input type="text" class="span2 typeahead" id="txtCostoReservaBungalow" 
                             name="txtCostoReservaBungalow" data-provide="typeahead" value="<%=constantes.getCostoXm2Bungalow()%>">
                           	<span class="help-inline" style="display:none;" id="errCostoReservaBungalow">Este campo no puede estar vacio</span>
                           </div>
@@ -104,7 +104,7 @@
                         <div class="control-group" >
                           <label class="control-label" for="typeahead">Monto a cobrar por invitados extra:</label>
                           <div class="controls">
-                            <input type="text" class="span6 typeahead" id="txtMontoInvitados" 
+                            <input type="text" class="span2 typeahead" id="txtMontoInvitados" 
                             name="txtMontoInvitados" data-provide="typeahead" value="<%=constantes.getMontoInvitado()%>">
                           	<span class="help-inline" style="display:none;" id="errMontoInvitados">Este campo no puede estar vacio</span>
                           </div>
@@ -112,7 +112,7 @@
                         <div class="control-group">
                           <label class="control-label" for="typeahead">Monto a cobrar por invitados a Bungalow:</label>
                           <div class="controls">
-                            <input type="text" class="span6 typeahead" id="txtMontoInvitadosBungalow" 
+                            <input type="text" class="span2 typeahead" id="txtMontoInvitadosBungalow" 
                             name="txtMontoInvitadosBungalow" data-provide="typeahead" value="<%=constantes.getMontoInvitadoBungalow()%>">
                           	<span class="help-inline" style="display:none;" id="errMontoInvitadosBungalow">Este campo no puede estar vacio</span>
                           </div>
@@ -120,7 +120,7 @@
                         <div class="control-group">
                           <label class="control-label" for="typeahead">Monto a cobrar por Multa:</label>
                           <div class="controls">
-                            <input type="text" class="span6 typeahead" id="txtMontoMulta" 
+                            <input type="text" class="span2 typeahead" id="txtMontoMulta" 
                             name="txtMontoMulta" data-provide="typeahead" value="<%=constantes.getMontoMultaFalta()%>">
                           	<span class="help-inline" style="display:none;" id="errMontoMulta">Este campo no puede estar vacio</span>
                           </div>
@@ -128,7 +128,7 @@
                         <div class="control-group">
                           <label class="control-label" for="typeahead">Numero maximo de invitados sin cobro:</label>
                           <div class="controls">
-                            <input type="text" class="span6 typeahead" id="txtMaxInvitados" 
+                            <input type="text" class="span2 typeahead" id="txtMaxInvitados" 
                             name="txtMaxInvitados" data-provide="typeahead" value="<%=constantes.getNumMaxInvitados()%>">
                           	<span class="help-inline" style="display:none;" id="errMaxInvitados">Este campo no puede estar vacio</span>
                           </div>
@@ -136,7 +136,7 @@
                         <div class="control-group">
                           <label class="control-label" for="typeahead">Precio por defecto de la Membresia:</label>
                           <div class="controls">
-                            <input type="text" class="span6 typeahead" id="txtPrecioMembresia" 
+                            <input type="text" class="span2 typeahead" id="txtPrecioMembresia" 
                             name="txtPrecioMembresia" data-provide="typeahead" value="<%=constantes.getPrecioMembresia()%>">
                           	<span class="help-inline" style="display:none;" id="errPrecioMembresia">Este campo no puede estar vacio</span>
                           </div>
@@ -144,7 +144,7 @@
                         <div class="control-group">
                           <label class="control-label" for="typeahead">Monto a cobrar por reserva de un Salon Principal:</label>
                           <div class="controls">
-                            <input type="text" class="span6 typeahead" id="txtMontoSalonPrincipal" 
+                            <input type="text" class="span2 typeahead" id="txtMontoSalonPrincipal" 
                             name="txtMontoSalonPrincipal" data-provide="typeahead" value="<%=constantes.getPrecioSalonPrincipal()%>">
                           	<span class="help-inline" style="display:none;" id="errMontoSalonPrincipal">Este campo no puede estar vacio</span>
                           </div>
