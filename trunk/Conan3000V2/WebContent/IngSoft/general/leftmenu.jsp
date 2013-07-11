@@ -30,6 +30,7 @@
 	   										}else if (casoUso.equals("SMASocio")){%> <li><a class="ajax-link administracion" href="<%=request.getContextPath()%>/IngSoft/administracion/socio/accionsocio.jsp"style="display:none"><i class="icon-wrench"></i><span class="hidden-tablet"> Socio</span></a></li><%
 	   										}else if (casoUso.equals("SMAConcesionario")){%> <li><a class="ajax-link administracion" href="<%=request.getContextPath()%>/IngSoft/administracion/concesionario/SMAConcesionario?accion=Buscar&tipo=1"style="display:none"><i class="icon-wrench"></i><span class="hidden-tablet"> Concesionarios </span></a></li> <%
 	   										}else if (casoUso.equals("SMAInfraccion")){%> <li><a class="ajax-link administracion" href="<%=request.getContextPath()%>/IngSoft/administracion/infraccion/buscarinfraccion.jsp"style="display:none"><i class="icon-wrench"></i><span class="hidden-tablet"> Multas por Infraccion </span></a></li> <%
+	   										}else if (casoUso.equals("SMAConfiguracion")){%> <li><a class="ajax-link administracion" href="<%=request.getContextPath()%>/IngSoft/administracion/SMAConfiguracion?accion=Consultar"style="display:none"><i class="icon-wrench"></i><span class="hidden-tablet"> Multas por Infraccion </span></a></li> <%
 	   										}
 	   										i++;
 	   										if (i==casosDeUso.size()) break;
@@ -62,6 +63,7 @@
 	   										}else if (casoUso.equals("SMVFamiliar")){%> <li><a class="ajax-link venta" href="<%=request.getContextPath()%>/IngSoft/ventas/familia/buscarfamiliar.jsp"style="display:none"><i class="icon-wrench"></i><span class="hidden-tablet">Familiares</span></a></li> <%
 	   										}else if (casoUso.equals("SMVSolicitudSocio")){%> <li><a class="ajax-link venta" href="<%=request.getContextPath()%>/IngSoft/ventas/solicitud/buscarsolicitudsocio.jsp"style="display:none"><i class="icon-wrench"></i><span class="hidden-tablet"> Solicitud de Socio</span></a></li> <%
 	   										}else if (casoUso.equals("SMVJuridica")) {%><li><a class="ajax-link venta" href="<%=request.getContextPath()%>/IngSoft/servicio/juridica/juridicabuscar.jsp"style="display:none"><i class="icon-wrench"></i><span class="hidden-tablet"> Persona Juridica</span></a></li><%	   										
+	   										}else if (casoUso.equals("SMVSolicitudProducto")) {%><li><a class="ajax-link venta" href="<%=request.getContextPath()%>/IngSoft/servicio/solicitud/buscarsolicitudproducto.jsp"style="display:none"><i class="icon-wrench"></i><span class="hidden-tablet"> Persona Juridica</span></a></li><%	   										
 	   										} 
 	   										i++;
 	   										if (i==casosDeUso.size()) break;
