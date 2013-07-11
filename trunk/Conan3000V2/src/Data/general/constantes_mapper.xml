@@ -14,8 +14,24 @@ CostoXm2Bungalow,
 CostoReservaCancha,
 PrecioMembresia,
 MontoMultaFalta,
-PrecioSalonPrincipal
+PrecioSalonPrincipal,
+MontoInvitadoBungalow,
+NumMaxInvitados
 FROM CONFIGURACION
 where IdConfiguracion = "CNF000001"
 </select>
+<update id="updateConstantes" parameterType="hashmap">
+update CONFIGURACION set
+IdConfiguracion,
+MontoInvitado,
+CostoXm2Bungalow,
+CostoReservaCancha,
+PrecioMembresia,
+MontoMultaFalta,
+PrecioSalonPrincipal,
+MontoInvitadoBungalow,
+NumMaxInvitados
+ where IdConfiguracion = "CNF000001" 
+
+</update>
 </mapper>

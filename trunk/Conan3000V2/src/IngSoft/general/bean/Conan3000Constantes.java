@@ -61,13 +61,6 @@ public class Conan3000Constantes implements Serializable {
 		this.precioMembresia = precioMembresia;
 	}
 
-//	public double getFecha() {
-//		return fecha;
-//	}
-//
-//	public void setFecha(double fecha) {
-//		this.fecha = fecha;
-//	}
 
 	public double getMontoMultaFalta() {
 		return montoMultaFalta;

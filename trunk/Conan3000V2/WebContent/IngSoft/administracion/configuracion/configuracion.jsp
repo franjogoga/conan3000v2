@@ -1,25 +1,15 @@
 <!DOCTYPE html>
+<%@page import="IngSoft.general.bean.Conan3000Constantes"%>
 <html lang="en">
 <head>
-	<!--
-		Charisma v1.0.0
-
-		Copyright 2012 Muhammad Usman
-		Licensed under the Apache License v2.0
-		http://www.apache.org/licenses/LICENSE-2.0
-
-		http://usman.it
-		http://twitter.com/halalit_usman
-	-->
 	<meta charset="utf-8">
-	<title>Conan3000</title>
+	<title>Configuraci&oacute;n</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
 	<meta name="author" content="Muhammad Usman">
 
 	<!-- The styles -->
 	<link id="bs-css" href="css/bootstrap-cerulean.css" rel="stylesheet">
-    
 	<style type="text/css">
 	  body {
 		padding-bottom: 40px;
@@ -52,12 +42,16 @@
 
 	<!-- The fav icon -->
 	<link rel="shortcut icon" href="img/conan_logo.png">
-		
+	
+	<script>
+	function alt_submit(){
+		var form= document.frmData;
+		if(validaForm()) form.submit();
+	}
+	</script>
 </head>
-
+<%Conan3000Constantes constantes=Conan3000Constantes.getInstance(); %>
 <body>
-
-
 		<jsp:include page="/IngSoft/general/superior.jsp" />
 		<div class="container-fluid">
 		<div class="row-fluid">
@@ -66,366 +60,120 @@
 			<jsp:include page="/IngSoft/general/leftmenu.jsp" />
 						<!-- left menu ends -->
 			
-			
-		  <noscript>
+			<noscript>
 				<div class="alert alert-block span10">
 					<h4 class="alert-heading">Warning!</h4>
 					<p>You need to have <a href="http://en.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript</a> enabled to use this site.</p>
 				</div>
 			</noscript>
 			
-			<div id="content" class="span10">
-			  <!-- content starts -->
-			  <div>
-			    <ul class="breadcrumb">
-			      <li> <a href="#">Home</a> /  Configuracion </li>
-		        </ul>
-		      </div>
-		      
-		      
-		        <!--    ----------------------------------------------------------------------------------------------    -->
-			  <div class="row-fluid sortable">
-			    <div class="box span12">
-			      <div class="box-header well" data-original-title>
-			        <h2><i class=" icon-cog"></i> CONFIGURACION DEPARTAMENTO</h2>
-					  	<div class="box-icon">
-							<a href="#" class="btn btn-setting btn-round"><i class="icon-cog"></i></a>
-							<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-down"></i></a>
-							<!--   <a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>  -->
-						</div>
-		          </div>
-			      <div class="box-content" style="display: none;">
-			        <form class="form-horizontal"  action="#">
-			          <fieldset>
-					  
-					  <!--    ----------------------------------------------------------------------------------------------    -->
-
-                       
-
-                                <div class="control-group">
-                                 <p class="help-block">Escriba sobre la casilla el  departamento y luego presione enter. </p>
-                                 <p></p>
-                                    <label class="control-label" for="textarea2">Lista :</label>
-			                          <div class="controls">
-			                            <textarea name="textarea" rows="3" id="textarea2" style="resize:none"></textarea>
-			                          </div>
-                                    </div>
-						
-						<!--    ----------------------------------------------------------------------------------------------    -->
-						
-						
-			            <div class="form-actions">
-			              <button type="submit" class="btn btn-primary">Guardar</button>
-			              <button type="reset" class="btn">Cancelar</button>
-		                </div>
-		              </fieldset>
-		            </form>
-		          </div>
-		        </div>
-			    <!--/span-->
-		      </div>
-			  <!--/row-->
-			<!--    ----------------------------------------------------------------------------------------------    -->
-
-
-
-		        <!--    ----------------------------------------------------------------------------------------------    -->
-			  <div class="row-fluid sortable">
-			    <div class="box span12">
-			      <div class="box-header well" data-original-title>
-			        <h2><i class=" icon-cog"></i> CONFIGURACION PROVINCIA</h2>
-					  	<div class="box-icon">
-							<a href="#" class="btn btn-setting btn-round"><i class="icon-cog"></i></a>
-							<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-down"></i></a>
-							<!--   <a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>  -->
-						</div>
-		          </div>
-			      <div class="box-content" style="display: none;">
-			        <form class="form-horizontal">
-			          <fieldset>
-					  
-					  <!--    ----------------------------------------------------------------------------------------------    -->
-  								 
-                                <div class="control-group">
-                                <p class="help-block">Escriba sobre la casilla la provincia y luego presione enter. </p>
-                                <p></p>
-                                    <label class="control-label" for="textarea2">Lista :</label>
-			                          <div class="controls">
-			                            <textarea name="textarea" rows="3" id="textarea2" style="resize:none"></textarea>
-			                          </div>
-                                    </div>
-						
-						<!--    ----------------------------------------------------------------------------------------------    -->
-						
-						
-			            <div class="form-actions">
-			              <button type="submit" class="btn btn-primary">Guardar</button>
-			              <button type="reset" class="btn">Cancelar</button>
-		                </div>
-		              </fieldset>
-		            </form>
-		          </div>
-		        </div>
-			    <!--/span-->
-		      </div>
-			  <!--/row-->
-			<!--    ----------------------------------------------------------------------------------------------    -->
-
-		        <!--    ----------------------------------------------------------------------------------------------    -->
-			  <div class="row-fluid sortable">
-			    <div class="box span12">
-			      <div class="box-header well" data-original-title>
-			        <h2><i class=" icon-cog"></i> CONFIGURACION DITRITO</h2>
-					  	<div class="box-icon">
-							<a href="#" class="btn btn-setting btn-round"><i class="icon-cog"></i></a>
-							<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-down"></i></a>
-							<!--   <a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>  -->
-						</div>
-		          </div>
-			      <div class="box-content" style="display: none;">
-			        <form class="form-horizontal">
-			          <fieldset>
-					  
-					  <!--    ----------------------------------------------------------------------------------------------    -->
-  								 
-                                <div class="control-group">
-                                <p class="help-block">Escriba sobre la casilla el distrito y luego presione enter. </p>
-                                <p></p>
-                                    <label class="control-label" for="textarea2">Lista :</label>
-			                          <div class="controls">
-			                            <textarea name="textarea" rows="3" id="textarea2" style="resize:none"></textarea>
-			                          </div>
-                                    </div>
-						
-						<!--    ----------------------------------------------------------------------------------------------    -->
-						
-						
-			            <div class="form-actions">
-			              <button type="submit" class="btn btn-primary">Guardar</button>
-			              <button type="reset" class="btn">Cancelar</button>
-		                </div>
-		              </fieldset>
-		            </form>
-		          </div>
-		        </div>
-			    <!--/span-->
-		      </div>
-			  <!--/row-->
-			<!--    ----------------------------------------------------------------------------------------------    -->
-		  
-       
-       
-       
-       
-       
-		        <!--    ----------------------------------------------------------------------------------------------    -->
-			  <div class="row-fluid sortable">
-			    <div class="box span12">
-			      <div class="box-header well" data-original-title>
-			        <h2><i class=" icon-cog"></i> CONFIGURACION TIPO DE AMBIENTES</h2>
-					  	<div class="box-icon">
-							<a href="#" class="btn btn-setting btn-round"><i class="icon-cog"></i></a>
-							<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-down"></i></a>
-							<!--   <a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>  -->
-						</div>
-		          </div>
-			      <div class="box-content" style="display: none;">
-			        <form class="form-horizontal">
-			          <fieldset>
-					  
-					  <!--    ----------------------------------------------------------------------------------------------    -->
-  								 
-                                <div class="control-group">
-                                <p class="help-block">Escriba sobre la casilla el tipo de ambiente y luego presione enter. </p>
-                                <p></p>
-                                    <label class="control-label" for="textarea2">Lista :</label>
-			                          <div class="controls">
-			                            <textarea name="textarea" rows="3" id="textarea2" style="resize:none"></textarea>
-			                          </div>
-                                    </div>
-						
-						<!--    ----------------------------------------------------------------------------------------------    -->
-						
-						
-			            <div class="form-actions">
-			              <button type="submit" class="btn btn-primary">Guardar</button>
-			              <button type="reset" class="btn">Cancelar</button>
-		                </div>
-		              </fieldset>
-		            </form>
-		          </div>
-		        </div>
-			    <!--/span-->
-		      </div>
-			  <!--/row-->
-			<!--    ----------------------------------------------------------------------------------------------    -->
-       
-       
-       
-       
-		        <!--    ----------------------------------------------------------------------------------------------    -->
-			  <div class="row-fluid sortable">
-			    <div class="box span12">
-			      <div class="box-header well" data-original-title>
-			        <h2><i class=" icon-cog"></i> CONFIGURACION TIPO DE ACTIVIDADES</h2>
-					  	<div class="box-icon">
-							<a href="#" class="btn btn-setting btn-round"><i class="icon-cog"></i></a>
-							<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-down"></i></a>
-							<!--   <a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>  -->
-						</div>
-		          </div>
-			     <div class="box-content" style="display: none;">
-			        <form class="form-horizontal">
-			          <fieldset>
-					  
-					  <!--    ----------------------------------------------------------------------------------------------    -->
-  								 
-                                <div class="control-group">
-                                <p class="help-block">Escriba sobre la casilla el tipo de actividad y luego presione enter. </p>
-                                <p></p>
-                                    <label class="control-label" for="textarea2">Lista :</label>
-			                          <div class="controls">
-			                            <textarea name="textarea" rows="3" id="textarea2" style="resize:none"></textarea>
-			                          </div>
-                                    </div>
-						
-						<!--    ----------------------------------------------------------------------------------------------    -->
-						
-						
-			            <div class="form-actions">
-			              <button type="submit" class="btn btn-primary">Guardar</button>
-			              <button type="reset" class="btn">Cancelar</button>
-		                </div>
-		              </fieldset>
-		            </form>
-		          </div>
-		        </div>
-			    <!--/span-->
-		      </div>
-			  <!--/row-->
-			<!--    ----------------------------------------------------------------------------------------------    -->
-       
-       
-       
-		        <!--    ----------------------------------------------------------------------------------------------    -->
-			  <div class="row-fluid sortable">
-			    <div class="box span12">
-			      <div class="box-header well" data-original-title>
-			        <h2><i class=" icon-cog"></i> CONFIGURACION TIPO DE CANCHAS</h2>
-					  	<div class="box-icon">
-							<a href="#" class="btn btn-setting btn-round"><i class="icon-cog"></i></a>
-							<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-down"></i></a>
-							<!--   <a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>  -->
-						</div>
-		          </div>
-			      <div class="box-content" style="display: none;">
-			        <form class="form-horizontal">
-			          <fieldset>
-					  
-					  <!--    ----------------------------------------------------------------------------------------------    -->
-  								 
-                                <div class="control-group">
-                                <p class="help-block">Escriba sobre la casilla el tipo de cancha y luego presione enter.</p>
-                                <p></p>
-                                    <label class="control-label" for="textarea2">Lista :</label>
-			                          <div class="controls">
-			                            <textarea name="textarea" rows="3" id="textarea2" style="resize:none"></textarea>
-			                          </div>
-                                    </div>
-						
-						<!--    ----------------------------------------------------------------------------------------------    -->
-						
-						
-			            <div class="form-actions">
-			              <button type="submit" class="btn btn-primary">Guardar</button>
-			              <button type="reset" class="btn">Cancelar</button>
-		                </div>
-		              </fieldset>
-		            </form>
-		          </div>
-		        </div>
-			    <!--/span-->
-		      </div>
-			  <!--/row-->
-			<!--    ----------------------------------------------------------------------------------------------    -->
-   
-   
-   
-   
- 		        <!--    ----------------------------------------------------------------------------------------------    -->
-			  <div class="row-fluid sortable">
-			    <div class="box span12">
-			      <div class="box-header well" data-original-title>
-			        <h2><i class=" icon-cog"></i> CONFIGURACION TIPO DE CONCESIONAIOS</h2>
-					  	<div class="box-icon">
-							<a href="#" class="btn btn-setting btn-round"><i class="icon-cog"></i></a>
-							<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-down"></i></a>
-							<!--   <a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>  -->
-						</div>
-		          </div>
-			      <div class="box-content" style="display: none;">
-			        <form class="form-horizontal">
-			          <fieldset>
-					  
-					  <!--    ----------------------------------------------------------------------------------------------    -->
-  								
-                                <div class="control-group">
-                                 <p class="help-block">Escriba sobre la casilla el tipo de consecionario y luego presione enter. </p>
-                                 <p></p>
-                                    <label class="control-label" for="textarea2">Lista :</label>
-			                          <div class="controls">
-			                            <textarea name="textarea" rows="3" id="textarea2" style="resize:none"></textarea>
-			                          </div>
-                                    </div>
-						
-						<!--    ----------------------------------------------------------------------------------------------    -->
-						
-						
-			            <div class="form-actions">
-			              <button type="submit" class="btn btn-primary">Guardar</button>
-			              <button type="reset" class="btn">Cancelar</button>
-		                </div>
-		              </fieldset>
-		            </form>
-		          </div>
-		        </div>
-			    <!--/span-->
-		      </div>
-			  <!--/row-->
-			<!--    ----------------------------------------------------------------------------------------------    -->
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-       
-					<!-- content ends -->
-		  </div><!--/#content.span10-->
+            <div id="content" class="span10">
+              <!-- content starts -->
+              <div>
+                <ul class="breadcrumb">
+                  <li> <a href="<%=request.getContextPath()%>/general/index.jsp">Home</a> <span class="divider">/</span> </li>                  
+                  <li>Configuracion</li>
+                </ul>
+              </div>
+              <div class="row-fluid sortable">
+                <div class="box span12">
+                  <div class="box-header well" data-original-title>
+                    <h2>CONFIGURACION</h2>
+                  </div>
+                  <div class="box-content">
+                    <form class="form-horizontal" action="<%=response.encodeURL("SMAConfuguracion")%>" name="frmData" method="post">
+                    <input type="hidden" name="accion" value="Modificar"></input>
+					<input type="hidden" name="tipo" value="2"></input>
+                      <fieldset>
+                        <div class="control-group">
+                          <label class="control-label" for="typeahead">Costo de reserva de cancha(por hora):</label>
+                          <div class="controls">
+                            <input type="text" class="span6 typeahead" id="txtCostoReservaCancha" 
+                            name="txtCostoReservaCancha" data-provide="typeahead" value="<%=constantes.getCostoReservaCancha()%>">
+                          	<span class="help-inline" style="display:none;" id="errCostoReservaCancha">Este campo no puede estar vacio</span>
+                          </div>
+                        </div>
+                        <div class="control-group" >
+                          <label class="control-label" for="typeahead">Costo de reserva de bungalow(por m2):</label>
+                          <div class="controls">
+                            <input type="text" class="span6 typeahead" id="txtCostoReservaBungalow" 
+                            name="txtCostoReservaBungalow" data-provide="typeahead" value="<%=constantes.getCostoXm2Bungalow()%>">
+                          	<span class="help-inline" style="display:none;" id="errCostoReservaBungalow">Este campo no puede estar vacio</span>
+                          </div>
+                        </div>
+                        <div class="control-group" >
+                          <label class="control-label" for="typeahead">Monto a cobrar por invitados extra:</label>
+                          <div class="controls">
+                            <input type="text" class="span6 typeahead" id="txtMontoInvitados" 
+                            name="txtMontoInvitados" data-provide="typeahead" value="<%=constantes.getMontoInvitado()%>">
+                          	<span class="help-inline" style="display:none;" id="errMontoInvitados">Este campo no puede estar vacio</span>
+                          </div>
+                        </div>
+                        <div class="control-group">
+                          <label class="control-label" for="typeahead">Monto a cobrar por invitados a Bungalow:</label>
+                          <div class="controls">
+                            <input type="text" class="span6 typeahead" id="txtMontoInvitadosBungalow" 
+                            name="txtMontoInvitadosBungalow" data-provide="typeahead" value="<%=constantes.getMontoInvitadoBungalow()%>">
+                          	<span class="help-inline" style="display:none;" id="errMontoInvitadosBungalow">Este campo no puede estar vacio</span>
+                          </div>
+                        </div>
+                        <div class="control-group">
+                          <label class="control-label" for="typeahead">Monto a cobrar por Multa:</label>
+                          <div class="controls">
+                            <input type="text" class="span6 typeahead" id="txtMontoMulta" 
+                            name="txtMontoMulta" data-provide="typeahead" value="<%=constantes.getMontoMultaFalta()%>">
+                          	<span class="help-inline" style="display:none;" id="errMontoMulta">Este campo no puede estar vacio</span>
+                          </div>
+                        </div>
+                        <div class="control-group">
+                          <label class="control-label" for="typeahead">Numero maximo de invitados sin cobro:</label>
+                          <div class="controls">
+                            <input type="text" class="span6 typeahead" id="txtMaxInvitados" 
+                            name="txtMaxInvitados" data-provide="typeahead" value="<%=constantes.getNumMaxInvitados()%>">
+                          	<span class="help-inline" style="display:none;" id="errMaxInvitados">Este campo no puede estar vacio</span>
+                          </div>
+                        </div>
+                        <div class="control-group">
+                          <label class="control-label" for="typeahead">Precio por defecto de la Membresia:</label>
+                          <div class="controls">
+                            <input type="text" class="span6 typeahead" id="txtPrecioMembresia" 
+                            name="txtPrecioMembresia" data-provide="typeahead" value="<%=constantes.getPrecioMembresia()%>">
+                          	<span class="help-inline" style="display:none;" id="errPrecioMembresia">Este campo no puede estar vacio</span>
+                          </div>
+                        </div>
+                        <div class="control-group">
+                          <label class="control-label" for="typeahead">Monto a cobrar por reserva de un Salon Principal:</label>
+                          <div class="controls">
+                            <input type="text" class="span6 typeahead" id="txtMontoSalonPrincipal" 
+                            name="txtMontoSalonPrincipal" data-provide="typeahead" value="<%=constantes.getPrecioSalonPrincipal()%>">
+                          	<span class="help-inline" style="display:none;" id="errMontoSalonPrincipal">Este campo no puede estar vacio</span>
+                          </div>
+                        </div>
+                        <div class="form-actions">
+                          <button type="button" class="btn btn-primary" onclick="javascript:alt_submit()">Guardar Modificaciones</button>
+                          <button type="button" class="btn" onclick="location.href='buscarconcesionario.jsp'">Cancelar</button>
+                        </div>
+                      </fieldset>
+                    </form>
+					<span style="font-size:70%">(*)Campos Obligatorios</span>
+                  </div>
+                </div>
+                <!--/span-->
+              </div>
+              <!--/row-->
+              <div class="row-fluid sortable">
+                
+                <!--/span-->
+              </div>
+              <!--/row-->
+              <div class="row-fluid sortable">
+                
+                <!--/span-->
+              </div>
+              <!--/row-->
+              <!-- content ends -->
+            </div>
+          <!--/#content.span10-->
 				</div><!--/fluid-row-->
 				
 		<hr>
@@ -443,10 +191,8 @@
 				<a href="#" class="btn btn-primary">Save changes</a>
 			</div>
 		</div>
-
-		<footer>
-		 Conan 3000 Â© 2013 <p class="pull-right">Powered by: <a href="http://usman.it/free-responsive-admin-template">Las dos virgenes</a></p>
-		</footer>
+		<jsp:include page="/IngSoft/general/inferior.jsp" />
+	
 		
 	</div><!--/.fluid-container-->
 
@@ -523,14 +269,73 @@
 	<script src="js/jquery.history.js"></script>
 	<!-- application script for Charisma demo -->
 	<script src="js/charisma.js"></script>
-	<script>
-	function loadContent() 
-{ 
-   $("#includedContent").load("menu.html"); 
-} 
+	
+	<script type="text/javascript" src="js/apprise-1.5.full.js"></script>
+	<link rel="stylesheet" href="css/apprise.css" type="text/css" />
+	<script type="text/javascript" src="js/script.js"></script>
+                <script>
+ 
+ 
+function validaForm(){
+                /*
+        esValido(nombre, casilla, id, tipoValidacion, minimo,maximo)
+        nombre: es el nombre de la casilla: ejemplo -> Nombre, Apellido, Fecha de Nacimiento, etc
+        casilla: corresponde a la casilla en si, para esto colocamos por ejemplo form.txtNombre, donde form ya fue definido
+        id: identificador de los divs para efectuar las validaciones
+        tipoValidacion: es un valor numerico el cual permite identificar el tipo de validacion que se efectuara
+        1: Validacion con cantidad de caracteres Minimo y maximo
+        2: Validación de cantidad de caracteres de fecha
+        3: validacion de llenado de radio button
+        4: Validacion de alfanumerico
+        5: validacion de valores Float
+        6: Validacion de enteros
+        7: Validacion de fechas
+        minimo: valor numerico que indica la menor cantidad de caracteres que como minimo debe ser llenado (Solo para tipoValidacion 1 y 2, en el resto poner 1)
+        maximo: valor numerico que indica la maxima cantidad de caracteres que como maximo debe ser llenado (Solo para tipoValidacion 1 y 2, en el resto poner 1)
+       
+        El valor que va en cadena[i] es el nombre del campo
+       
+        #############################ADICIONAL#########################
+        Para validar una fecha Inicial y fecha Final usar la siguiente funcion
+        validarFechas(nombre[Fecha Final], casilla[Fecha Final], id[Fecha Final],nombre[Fecha Inicial],casilla[Fecha Inicial])
+        OJO: no va como parametro el id de la fecha Inicial
+        ###############################################################
+       
+        */
+       
+        var form=document.frmData;
+ 
+        var cadena= new Array();
+        var i=0;
+        var error=false;
+        
+        if(!esValido("Raz&oacute;n Social",form.txtRazonSocial,"RazonSocial",1,1,100)){cadena[i]="Raz&oacute;n Social";i++;}
+        
+        if(!esValido("RUC",form.txtRuc,"Ruc",1,11,11)){cadena[i]="RUC";i++;}else{
+			if(!esValido("RUC",form.txtRuc,"Ruc",6,11,11)){cadena[i]="RUC";i++;}
+		}
 
-
-	</script>
-		<script>loadContent()</script> 
+        if(!esValido("Descripci&oacute;n",form.txtDescripcion,"Descripcion",1,1,100)){cadena[i]="Descripci&oacute;n";i++;}
+        
+        //No tocar
+        if(i>0){
+        crearAlert(cadena);
+        return false;
+        }else{
+                return true;               
+        }
+}
+ 
+ 
+function inicializa(){
+        document.getElementById("errRazonSocial").style.display='none';
+        document.getElementById("errRuc").style.display='none';
+        document.getElementById("errDescripcion").style.display='none'; 
+}
+ 
+inicializa();
+ 
+</script>
+	
 </body>
 </html>
