@@ -9,25 +9,14 @@
 <select id="searchPlantillaSolicitudProducto" parameterType="IngSoft.venta.bean.CriterioSolicitudProductoBeanData" resultType="IngSoft.venta.bean.ResultadoSolicitudProductoBeanData">
 select 
 SOLICITUD_PRODUCTO.IdSolicitudProducto as idSolicitudProducto
-,SOLICITUD_PRODUCTO.IdEmpleado as idEmpleado
-,SOLICITUD_PRODUCTO.Estado as estado
-,SOLICITUD_PRODUCTO.MontoTotal as montoTotal
-,SOLICITUD_PRODUCTO.Fecha as fecha
-,SOLICITUD_PRODUCTO.IdSede as idSede
-,LINEA_PRODUCTO.Cantidad as cantidad
-from SOLICITUD_PRODUCTO,LINEA_PRODUCTO
+,SOLICITUD_PRODUCTO.idProductoProv as idProductoProv
+from SOLICITUD_PRODUCTO
 <where>
 	
-    <if test="idEmpleado != null">
-       SOLICITUD_PRODUCTO.IdEmpleado like #{idEmpleado}
-    </if>
-    <if test="cantidad != null">
-        AND LINEA_PRODUCTO.Cantidad like #{cantidad}
+    <if test="idProductoProv != null">
+       SOLICITUD_PRODUCTO.IdProductoProv like #{idProductoProv}
     </if>
    
-     <if test="estado != null">
-        AND SOLICITUD_PRODUCTO.IdSede like #{idSede}
-    </if>  
       
 </where>
 </select>
@@ -36,12 +25,12 @@ from SOLICITUD_PRODUCTO,LINEA_PRODUCTO
 		select IdSede as codigo, Nombre as nombre 
 		from SEDE
 	</select>
- 
+	
   
 <!-- Agregar plantilla membresia -->
 <insert id="insertSolicitudProducto" parameterType="IngSoft.venta.bean.SolicitudProductoBeanData" flushCache="true">
-	insert into SOLICITUD_PRODUCTO(IdSolicitudProducto,IdEmpleado,Estado,MontoTotal,Fecha,IdSede)
-	values (#{idSolicitudProducto},#{idEmpleado},'Pendiente',#{montoTotal},#{fecha},#{idSede})
+	insert into SOLICITUD_PRODUCTO(IdSolicitudProducto,IdProductoProv,IdSede,PrecioUnitario,Cantidad,Fecha,Estado)
+	values (#{idSolicitudProducto},#{idProductoProv},#{idSede},#{precio},#{cantidad},#{fecha},'Nueva');
 </insert>
 
 <select id="getNextCodigoS" resultType="java.lang.String">
@@ -52,27 +41,19 @@ from SOLICITUD_PRODUCTO,LINEA_PRODUCTO
  <!-- Fin agregar  -->
 
 
-<!--Eliminar membresia -->
-<update id="deleteSolicitudProducto" parameterType="java.lang.String" >
-update SOLICITUD_PRODUCTO set Estado='Eliminado' where IdSolicitudProducto= #{IdSolicitudProducto}
-</update>
-<!-- Fin eliminar -->
 
 <select id="getPlantillaSolicitudProducto" parameterType="java.lang.String"  resultType="IngSoft.venta.bean.SolicitudProductoBeanData">
 select 
 SOLICITUD_PRODUCTO.IdSolicitudProducto as idSolicitudProducto
-,SOLICITUD_PRODUCTO.IdEmpleado as idEmpleado
+,SOLICITUD_PRODUCTO.idProductoProv as idProductoProv
 ,SOLICITUD_PRODUCTO.Estado as estado
-,SOLICITUD_PRODUCTO.MontoTotal as montoTotal
+,SOLICITUD_PRODUCTO.PrecioUnitario as precio
+,SOLICITUD_PRODUCTO.Cantidad as cantidad
 ,SOLICITUD_PRODUCTO.Fecha as fecha
 ,SOLICITUD_PRODUCTO.IdSede as idSede
 
 from SOLICITUD_PRODUCTO  where IdSolicitudProducto=#{idSolicitudProducto} 
 
-
 </select>
-
-
-
 
 </mapper>

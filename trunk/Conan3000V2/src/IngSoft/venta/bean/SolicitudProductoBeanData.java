@@ -7,17 +7,18 @@ public class SolicitudProductoBeanData {
 
 private String idSolicitudProducto;
 private Integer cantidad;
-private String idEmpleado;
 private String idProducto;
+private String idSede;
 private String estado;
-private double montoTotal;
-public String getIdProducto() {
-	return idProducto;
+public String getIdSede() {
+	return idSede;
 }
-public void setIdProducto(String idProducto) {
-	this.idProducto = idProducto;
+public void setIdSede(String idSede) {
+	this.idSede = idSede;
 }
+private double precio;
 private Date fecha;
+private String idProductoProv;
 
 public String getIdSolicitudProducto() {
 	return idSolicitudProducto;
@@ -31,11 +32,11 @@ public Integer getCantidad() {
 public void setCantidad(Integer cantidad) {
 	this.cantidad = cantidad;
 }
-public String getIdEmpleado() {
-	return idEmpleado;
+public String getIdProducto() {
+	return idProducto;
 }
-public void setIdEmpleado(String idEmpleado) {
-	this.idEmpleado = idEmpleado;
+public void setIdProducto(String idProducto) {
+	this.idProducto = idProducto;
 }
 public String getEstado() {
 	return estado;
@@ -43,11 +44,11 @@ public String getEstado() {
 public void setEstado(String estado) {
 	this.estado = estado;
 }
-public double getMontoTotal() {
-	return montoTotal;
+public double getPrecio() {
+	return precio;
 }
-public void setMontoTotal(double montoTotal) {
-	this.montoTotal = montoTotal;
+public void setPrecio(double precio) {
+	this.precio = precio;
 }
 public Date getFecha() {
 	return fecha;
@@ -55,13 +56,13 @@ public Date getFecha() {
 public void setFecha(Date fecha) {
 	this.fecha = fecha;
 }
-public String getIdSede() {
-	return idSede;
+public String getIdProductoProv() {
+	return idProductoProv;
 }
-public void setIdSede(String idSede) {
-	this.idSede = idSede;
+public void setIdProductoProv(String idProductoProv) {
+	this.idProductoProv = idProductoProv;
 }
-private String idSede;
+
 
 
 }
