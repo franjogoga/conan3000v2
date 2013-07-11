@@ -23,17 +23,13 @@ public class CriterioSolicitudProductoBeanFunction {
 	
 	CriterioSolicitudProductoBeanData criterioSolicitudProductoData= new CriterioSolicitudProductoBeanData();
 	
-	//criterioPromocionData.setTipo(Integer.parseInt(request.getParameter("cmbTipoEvento")==null?"0":request.getParameter("cmbTipoEvento")));
-	try {
-		criterioSolicitudProductoData.setFecha(new Date(DF.parse(request.getParameter("fFecha")).getTime()));
-	} catch (ParseException e) {
-		// TODO Auto-generated catch block
+	try{
+		criterioSolicitudProductoData.setProducto(request.getParameter("txtProducto")+"%");
+	}catch(Exception e){
 		e.printStackTrace();
+		
 	}
-	
-	criterioSolicitudProductoData.setIdSolicitudProducto(request.getParameter("txtidSolicitud"));
-	
-	//juridicaData.setRuc(Integer.parseInt(request.getParameter("txtRuc").equals("")?"0":request.getParameter("txtRuc")));
+		
 	return criterioSolicitudProductoData;
 	}
 

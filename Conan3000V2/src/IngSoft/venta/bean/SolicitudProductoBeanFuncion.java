@@ -20,7 +20,8 @@ import IngSoft.general.MyBatisSesion;
 public class SolicitudProductoBeanFuncion {
 
 	static private SolicitudProductoBeanFuncion SolicitudProductoFuncion=null;
-	private Lock l= new ReentrantLock();     
+	private Lock l= new ReentrantLock();
+	private Lock l4= new ReentrantLock(); 
 	SimpleDateFormat DF = new SimpleDateFormat("dd/MM/yyyy");
 	   
 	   public static SolicitudProductoBeanFuncion getInstance(){
@@ -36,9 +37,9 @@ public class SolicitudProductoBeanFuncion {
 			try{		
 		
 				solproductoData.setIdSede(request.getParameter("cmbSede"));
-				solproductoData.setIdEmpleado(request.getParameter("idEmpleado"));
 				solproductoData.setIdProducto(request.getParameter("idProducto"));			
 				solproductoData.setCantidad(Integer.parseInt(request.getParameter("txtCantidad")));
+				solproductoData.setPrecio(Double.parseDouble(request.getParameter("txtPrecio")));
 				solproductoData.setFecha(new Date(DF.parse(request.getParameter("fFecha")).getTime()));
 				
 			}
@@ -166,4 +167,28 @@ public Vector<SedeMiniBeanData> getSedes(){
 }
 
 
-}
+public void modificarSolicitud(SolicitudProductoBeanData solicitud) throws CoException {
+	l4.lock();
+		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+		try{
+					
+			sqlsesion.update("Data.venta.solicitudproducto.updateSolicitud",solicitud);
+		}
+		catch(Exception a)		
+		{sqlsesion.rollback();
+		a.printStackTrace();
+			//throw CoException.set("Error: No se pudo modificar la plantilla intente de nuevo", "SMVSolicitudSocio?accion=Modificar&tipo=1");
+			
+		}
+		
+		finally{
+			sqlsesion.commit();
+			sqlsesion.close();
+			l4.unlock();
+		}			
+		return ;
+	}
+	
+	}
+
+

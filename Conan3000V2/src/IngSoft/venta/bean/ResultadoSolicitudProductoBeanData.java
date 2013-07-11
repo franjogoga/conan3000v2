@@ -5,7 +5,14 @@ public class ResultadoSolicitudProductoBeanData {
 	private String estado;
 	private Double monto;
 	private Integer cantidad;
+	private String idSolicitudProducto;
 		
+	public String getIdSolicitudProducto() {
+		return idSolicitudProducto;
+	}
+	public void setIdSolicitudProducto(String idSolicitudProducto) {
+		this.idSolicitudProducto = idSolicitudProducto;
+	}
 	public String getEstado() {
 		return estado;
 	}
