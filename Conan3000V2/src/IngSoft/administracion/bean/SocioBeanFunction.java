@@ -37,8 +37,8 @@ public class SocioBeanFunction {
 			int mes = 1+ c.get(Calendar.MONTH);
 			int annio = c.get(Calendar.YEAR);
 			int fechaActualmenos30 = annio*10000 + mes*100 + dia;													
-			
-			if (datos.getVitalicio().equalsIgnoreCase("No") && fechaInicio <= fechaActualmenos30) {							
+						
+			if (datos.getVitalicio().equalsIgnoreCase("No")) {							
 				sesion.update("Data.administracion.socio.vitalizarSocio",codigo);
 				resultado = true;
 			}						
