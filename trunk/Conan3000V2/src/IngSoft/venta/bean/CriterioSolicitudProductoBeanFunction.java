@@ -24,11 +24,14 @@ public class CriterioSolicitudProductoBeanFunction {
 		
 	CriterioSolicitudProductoBeanData criterioSolicitudProductoData= new CriterioSolicitudProductoBeanData();
 	
-	try{
-		criterioSolicitudProductoData.setProducto(request.getParameter("txtProducto")+"%");
-	}catch(Exception e){
-		e.printStackTrace();
+	try {		
 		
+		criterioSolicitudProductoData.setLimInicio(new Date(DF.parse(request.getParameter("fFechInicio")).getTime()));
+	
+			
+				
+	} catch (ParseException e) {
+		e.printStackTrace();
 	}
 		
 	return criterioSolicitudProductoData;

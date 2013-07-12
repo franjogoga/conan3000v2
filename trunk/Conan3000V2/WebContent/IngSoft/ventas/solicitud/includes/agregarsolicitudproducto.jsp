@@ -1,5 +1,7 @@
 <%@page import="IngSoft.servicio.bean.SedeMiniBeanData"%>
 <%@page import="IngSoft.administracion.bean.EmpleadoBeanData"%>
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
 
 	<meta charset="utf-8">
 	<title>Agregar Solicitud Producto</title>
@@ -8,8 +10,7 @@
 	<meta name="author" content="Muhammad Usman">
 	
 	<jsp:useBean id="sedes" scope="request" class="java.util.Vector"></jsp:useBean>
-	<jsp:useBean id="empleados" scope="request" class="IngSoft.administracion.bean.EmpleadoBeanData"></jsp:useBean>
-
+	
 	<jsp:useBean id="resultados" scope="request"class="java.util.Vector"></jsp:useBean>
 	
 		
@@ -35,29 +36,30 @@
 		
 			<script>	
    function anhadirprod(cod, name){
-	var form= document.frmProducto;
+	var form= document.frmSolicitud;
 	form.txtProducto.value=name;
 	form.idProductoProv.value=cod;
 	$.fn.colorbox.close();
 	
 } 
    
-   function anhadiremp(cod, name){
-		var form= document.frmEmpleado;
-		form.txtEmpleado.value=name;
-		form.idEmpleado.value=cod;
-		$.fn.colorbox.close();
-		
-	} 
    
    function alt_submit(){
 		var form= document.frmSolicitud;
 		if(validaForm()) form.submit();
 			
 }
+   
+  
 </script>	
 					 
-			  <!-- content starts -->
+		 <%! 	
+   public String getFechaActual(){
+   	SimpleDateFormat DF= new SimpleDateFormat("dd/MM/YYYY");
+   	Date fecha= new Date();
+   return (DF.format(fecha));
+   }	
+   %>	  <!-- content starts -->
 			 
 		       <div>
 			    <ul class="breadcrumb">
@@ -73,11 +75,13 @@
 			        <h2><i class="icon-search"></i>SOLICITUD DE PRODUCTO</h2>
 		          </div>
 			      <div class="box-content">
-			        <form class="form-horizontal" name="frmProducto"  method="Post"  action="SMVProducto" onsubmit="alt_submit();return false;" >
-						<input type="hidden" name="accion" id="accion" value="Agregar" ></input>
-						<input type="hidden" name="tipo" id="tipo" value="1" ></input>
-						
-						    
+			         <form class="form-horizontal" name="frmSolicitud" id="frmSolicitud"method="POST" action="SMVSolicitudProducto" onsubmit="alt_submit();return false;">
+			          <input type="hidden" name="accion" value="Agregar"></input>
+			          <input type="hidden" name="tipo" value="2"></input>
+			             <input type="hidden" name="fFecha" value=<%=getFechaActual()%>></input>
+			          
+			          <fieldset>
+												    
 			         <div class="control-group" id="dvProducto">
 			                <label class="control-label" for="typeahead8">Producto (*): </label>
 			                <div class="controls">
@@ -87,17 +91,10 @@
 			                  <span class="help-inline" id="errProducto">Please correct the error</span>
 			                </div>
 		                  </div>
-		                  
-						<input type="hidden" name="idProductoProv" value=""/></input>
+		                 	 <input type="hidden" name="idProductoProv" value=""/></input>					
 			         </form>
-			        
-			        			        
-			                <form class="form-horizontal" name="frmSolicitud" id="frmSolicitud"method="POST" action="SMVSolicitudProducto" onsubmit="alt_submit();return false;">
-			          <input type="hidden" name="accion" value="Agregar"></input>
-			          <input type="hidden" name="tipo" value="2"></input>
-			             <input type="hidden" name="fFecha" value=<%= new java.util.Date()%>></input>
-			          
-			          <fieldset>
+			        		        			        
+			             
 	         			         
 			            <div class="control-group">
 			                <label class="control-label" for="typeahead4">Cantidad(*):</label>
@@ -128,7 +125,7 @@
 		               		              			          
 			            <div class="form-actions">
 			          
-			           
+			          
 			           <button type="submit" class="btn btn-primary" onclick="javascript:alt_submit()" >Agregar</button>
 			              <button type="button" class="btn" onclick="location.href='../solicitud/buscarsolicitudproducto.jsp'">Cancelar</button>
 		                </div>

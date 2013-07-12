@@ -3,7 +3,7 @@
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="IngSoft.venta.bean.ResultadoSolicitudProductoBeanData"%>
 <%@page import="java.util.Vector"%>
-
+<%@page import="java.util.Date"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -73,7 +73,13 @@
 		form.submit();
 	}
 	</script>	
-		
+		<%! 	
+public String getFechaActual(){
+	SimpleDateFormat DF= new SimpleDateFormat("dd/MM/YYYY");
+	Date fecha= new Date();
+return (DF.format(fecha));
+}	
+%>
 
 
 </head>
@@ -111,26 +117,22 @@
 				  </div>
 					<div class="box-content">
 						<form class="form-horizontal" name="frmCriteriosBusqueda" id="frmCriteriosBusqueda"  method="POST" action="<%= response.encodeURL("SMVSolicitudProducto")%>">
-						   <input type="hidden" name="accion" value="Buscar"/></input>
+						 <input type="hidden" name="accion" id="accion" value="Buscar" ></input>
+						<input type="hidden" name="tipo" id="tipo" value="2" ></input>
 						  
 						  <fieldset>
 						    <div class="control-group">
 						    
-						     <div class="control-group">
-							    <label class="control-label" for="typeahead6">Producto: </label>
-							    <div class="controls">
-							      <input type="text" class="span6 typeahead" id="txtProducto" name="txtProducto" data-provide="typeahead" data-items="4" >
-						        </div>
-						      </div>
+						           <div class="control-group" id="dvFecha">
+			              <label class="control-label" for="date01">Fecha(*):</label>
+			                <div class="controls">
+			                  <input type="text" name="fFechInicio" class="datepicker" id="fFecha" value="<%=getFechaActual()%>"  readonly width=44px  >
+			                  <span class="help-inline" id="errFecha">Please correct the error</span>
+		                    </div>
+		                  </div>
+			            
 						    
-							
-						      <!-- <div class="control-group">
-			              		<label class="control-label" for="typeahead21">Fecha Registro: </label>
-			              		<div class="controls">
-			               		 <input type="text" class="input-xlarge datepicker" id="fFechaR" name="fFechaR" value="01/06/2013" readonly="readonly">
-			             		</div>
-		                		</div> -->
-                              
+							                              
 						    </div>
 						    <div class="form-actions">
 						    <button type="submit" class="btn btn-primary">Buscar</button>
@@ -172,6 +174,7 @@
 							  <tr>
 								  <th>Solicitud</th>
 								  <th>Estado</th>
+								  <th>Cantidad</th>
 								 </tr>
 						  </thead>  
 						  
@@ -203,6 +206,12 @@
                           				%>
                           	</td>
                           	
+                          	 <td class="center">
+                          				<%=
+                          					((ResultadoSolicitudProductoBeanData)resultados.get(i)).getCantidad()
+
+                          				%>
+                          	</td>
                          
                        
                                <td class="center">

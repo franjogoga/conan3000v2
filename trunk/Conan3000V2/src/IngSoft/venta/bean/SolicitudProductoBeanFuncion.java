@@ -37,7 +37,7 @@ public class SolicitudProductoBeanFuncion {
 			try{		
 		
 				solproductoData.setIdSede(request.getParameter("cmbSede"));
-				solproductoData.setIdProducto(request.getParameter("idProducto"));			
+				solproductoData.setIdProductoProv(request.getParameter("idProductoProv"));			
 				solproductoData.setCantidad(Integer.parseInt(request.getParameter("txtCantidad")));
 				solproductoData.setPrecio(Double.parseDouble(request.getParameter("txtPrecio")));
 				solproductoData.setFecha(new Date(DF.parse(request.getParameter("fFecha")).getTime()));
@@ -63,7 +63,7 @@ public class SolicitudProductoBeanFuncion {
 			String temp= defecto.substring(0, defecto.length()-String.valueOf(cod).length()).concat(String.valueOf(cod));
 			
 			productoData.setIdSolicitudProducto(codigo.substring(0,3).concat(temp));}
-			else productoData.setIdSolicitudProducto("SPR00001");
+			else productoData.setIdSolicitudProducto("SPR000001");
 
 			sqlsesion.insert("insertSolicitudProducto",productoData);
 			
