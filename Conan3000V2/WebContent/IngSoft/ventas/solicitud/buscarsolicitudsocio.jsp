@@ -240,7 +240,7 @@
                        
                                <td class="center">
                           				<a class="btn btn-success"
-                          					href="javascript:alt_aceptar('<%=((ResultadoSolicitudSocioBeanData)resultados.get(i)).getCodSolicitudSocio()%>')">
+                          					href="javascript:alt_aceptar('<%=((ResultadoSolicitudSocioBeanData)resultados.get(i)).g.getCodSolicitudSocio()%>')">
                           					<i
                           						class="icon-ok icon-white">
                           					</i>

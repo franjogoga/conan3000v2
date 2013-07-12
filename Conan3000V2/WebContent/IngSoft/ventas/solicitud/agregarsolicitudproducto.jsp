@@ -75,10 +75,19 @@ function validaForm(){
 	var i=0;
 	var error=false;
 
+	if(!esValido("Producto",form.txtProducto,"Producto",1,1,50)){cadena[i]="Producto";i++;}
 	
+	if(!esValido("Precio",form.txtPrecio,"Precio",1,1,50)){
+		cadena[i]="Precio";i++;
+	}else{
+		//valida si es float o entero
+		if(!esValido("Precio",form.txtPrecio,"Precio",5,1,1)){cadena[i]="Precio";i++;}
+	}
+	if(!esValido("Sede",form.cmbSede,"Sede",1,1,50)){cadena[i]="Sede";i++;}
 	
+	if(!esValido("Cantidad",form.txtCantidad,"Cantidad",6,1,50)){cadena[i]="Precio";i++;}
+}//No tocar
 	
-	//No tocar
 	if(i>0){
 	crearAlert(cadena);
 	return false;
