@@ -19,7 +19,7 @@ public class AccionSuspenderSocio extends CoAccion {
 		}
 		if (Integer.valueOf(request.getParameter("tipo"))==2) {
 			boolean resultado = funcion.suspenderSocio(request.getParameter("codigo"), request.getParameter("txtMotivo"));			
-			this.direccionar(sc, request, response, "/IngSoft/administracion/socio/accionsocio.jsp");
+			this.direccionar(sc, request, response, "/IngSoft/administracion/socio/exitosocio.jsp");
 		}
 	}
 
