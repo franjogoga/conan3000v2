@@ -50,11 +50,23 @@
 	<link rel="shortcut icon" href="img/conan_logo.png">
 	
 	<script>	
-	function alt_vitalizar(cod, msg){
+	function alt_vitalizar(cod, strfechaInicio){
+		var arrFechaInicio = strfechaInicio.split('-'); //arrFechaInicio = ["aaaa","mm","dd"]
+		var fechaInicio = parseInt(arrFechaInicio[0])*10000 + parseInt(arrFechaInicio[1])*100 + parseInt(arrFechaInicio[2]);		
+		var f = new Date();
+		var fechaActualmenos30 = (f.getFullYear()-30)*10000 + (f.getMonth()+1)*100 + f.getDate();				
+		
 		var form=document.getElementById("frmAlternativo");
 		form.accion.value="Vitalizar";
 		form.codigo.value=cod;
-		form.submit();		
+		
+		if( fechaInicio > fechaActualmenos30) {
+			if (confirm("Pelotudo! este socio aun no tiene más de 30 años, deseas hacerlo vitalicio de todas maneras?")) {
+				form.submit();	
+			}
+		} else {
+			form.submit();	
+		}					
 	}
 	function alt_suspender(cod){
 		var form=document.getElementById("frmAlternativo");
@@ -201,7 +213,7 @@
 										<td><%=((ResultadoSocioBeanData)resultados.get(i)).getVitalicio()%></td>
 										<td><%=((ResultadoSocioBeanData)resultados.get(i)).getEstado()%></td>										
 										<td class="center">
-											<a class="btn btn-success" href="javascript:alt_vitalizar('<%=((ResultadoSocioBeanData)resultados.get(i)).getIdSocio()%>')">
+											<a class="btn btn-success" href="javascript:alt_vitalizar('<%=((ResultadoSocioBeanData)resultados.get(i)).getIdSocio()%>', '<%=((ResultadoSocioBeanData)resultados.get(i)).getFechaInicio()%>')">
 												<i class="icon-zoom-in icon-white"></i> Vitalizar 
 											</a>											
 											<a class="btn btn-danger" href="javascript:alt_suspender('<%=((ResultadoSocioBeanData)resultados.get(i)).getIdSocio()%>')">
