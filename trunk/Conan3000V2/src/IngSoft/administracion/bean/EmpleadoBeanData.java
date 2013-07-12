@@ -26,6 +26,22 @@ public class EmpleadoBeanData implements Serializable{
 	private String contrasenia;
 	private String usuario;
 	
+	private String sede;
+	private String horario;
+	
+	public String getSede() {
+		return sede;
+	}
+	public void setSede(String sede) {
+		this.sede = sede;
+	}
+	public String getHorario() {
+		return horario;
+	}
+	public void setHorario(String horario) {
+		this.horario = horario;
+	}
+	
 	
 	
 	public String getContrasenia() {
