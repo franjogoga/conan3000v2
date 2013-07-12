@@ -164,9 +164,9 @@ update EVENTO_SOCIO set Estado='ANULADO' where Date(Fecha)=Date(#{fecha}) and Id
 <!-- insertar solicitudes -->
 <insert id="insertEventoxSede" parameterType="hashmap">
 insert into 
-EVENTO_SEDE(IdEventoSede,Nombre,LimiteEntradas,Precio,IdSede,IdConcesionario,Estado,Fecha,EntradasTotal)
+EVENTO_SEDE(IdEventoSede,Nombre,LimiteEntradas,Precio,PrecioEntradaInvitado,IdSede,IdConcesionario,Estado,Fecha,EntradasTotal)
 values
-(#{codigo},#{nombre},#{limiteE},#{precio},#{sede},#{concesionario},'REGISTRADO',#{fecha},0)
+(#{codigo},#{nombre},#{limiteE},#{precio},#{precioI},#{sede},#{concesionario},'REGISTRADO',#{fecha},0)
 </insert>
 <insert id="insertEventoxSocio" parameterType="hashmap">
 insert into 

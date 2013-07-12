@@ -93,6 +93,10 @@ public class EventoBeanFuncion {
 			temp=(temp==null||temp.isEmpty())?"0.00":temp;
 			temp= temp.contains(".")?temp:temp+".00";
 			eventoData.setPrecioEntrada(Double.parseDouble(temp));
+			temp= request.getParameter("precioentradaI");
+			temp=(temp==null||temp.isEmpty())?"0.00":temp;
+			temp= temp.contains(".")?temp:temp+".00";
+			eventoData.setPrecioEntradaI(Double.parseDouble(temp));
 			eventoData.setIdConcesionario(request.getParameter("concesionario"));
 			temp=request.getParameter("costo");
 			temp=(temp==null||temp.isEmpty())?"0":temp;
@@ -121,6 +125,7 @@ public class EventoBeanFuncion {
 			map.put("nombre", eventoData.getNombre());
 			map.put("limiteE", eventoData.getLimiteEntradas());
 			map.put("precio", eventoData.getPrecioEntrada());
+			map.put("precioI", eventoData.getPrecioEntradaI());
 			map.put("sede", eventoData.getIdSede());
 			map.put("fecha", eventoData.getFecha());
 			map.put("concesionario", eventoData.getIdConcesionario());
