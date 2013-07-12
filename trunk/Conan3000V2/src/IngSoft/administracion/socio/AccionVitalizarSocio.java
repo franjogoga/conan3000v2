@@ -13,6 +13,6 @@ public class AccionVitalizarSocio extends CoAccion {
 	public void ejecutar(ServletContext sc, HttpServletRequest request, HttpServletResponse response) throws CoException {
 		SocioBeanFunction funcion = SocioBeanFunction.getInstance();			
 		boolean resultado = funcion.vitalizarSocio(request.getParameter("codigo"));		
-		this.direccionar(sc, request, response, "/IngSoft/administracion/socio/accionsocio.jsp");
+		this.direccionar(sc, request, response, "/IngSoft/administracion/socio/exitosocio.jsp");
 	}
 }
