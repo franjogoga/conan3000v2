@@ -4,12 +4,14 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Vector;
 
+import javax.faces.bean.ApplicationScoped;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.ibatis.session.SqlSession;
 
 import IngSoft.general.MyBatisSesion;
+@ApplicationScoped
 
 public class CriterioEmpleadoBeanFunction {
 	SimpleDateFormat DF = new SimpleDateFormat("dd/MM/yyyy");
@@ -39,7 +41,7 @@ public class CriterioEmpleadoBeanFunction {
 		List<ResultadoEmpleadoBeanData> resultados;
 		
 		
-		System.out.println("antes");
+		//System.out.println("antes");
 		if ( criterioEmpleadoData.getArea().equals("TODOS")) 
 		
 			{resultados=sqlsesion.selectList("Data.administracion.empleado.searchPlantillaEmpleado2",criterioEmpleadoData);}
