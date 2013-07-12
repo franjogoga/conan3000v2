@@ -98,7 +98,7 @@
 		
 		function alt_submit_agregar_perfil(){			
 			var form = document.frmDatos;
-			if ( validate(form) form.submit();			
+			if ( validar(form)) form.submit();			
 		}
 		
 		function validate(form){ 			
