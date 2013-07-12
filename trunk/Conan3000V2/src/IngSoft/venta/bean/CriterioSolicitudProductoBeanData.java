@@ -5,7 +5,7 @@ import java.sql.Date;
 public class CriterioSolicitudProductoBeanData {
 
 	private String idSolicitudProducto;
-	private Date fecha;
+	private String producto;
 	
 	public String getIdSolicitudProducto() {
 		return idSolicitudProducto;
@@ -13,11 +13,11 @@ public class CriterioSolicitudProductoBeanData {
 	public void setIdSolicitudProducto(String idSolicitudProducto) {
 		this.idSolicitudProducto = idSolicitudProducto;
 	}
-	public Date getFecha() {
-		return fecha;
+	public String getProducto() {
+		return producto;
 	}
-	public void setFecha(Date fecha) {
-		this.fecha = fecha;
+	public void setProducto(String producto) {
+		this.producto = producto;
 	}
 	
 }
