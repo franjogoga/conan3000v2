@@ -155,6 +155,26 @@
 				$('#txtPrecio').parent().parent().toggleClass("error");
 			}
 			else $('#txtPrecio').parent().parent().addClass("success");
+			if($('#txtPrecioInvitado').val()==null || $('#txtPrecioInvitado').val().length<=0){
+				$('#txtPrecioInvitado').bind("change",function(){
+				var temp= $('#txtPrecioInvitado');
+				if(temp.val()!=null && temp.val().length>0) {
+				temp.parent().parent().removeClass("error");
+				temp.parent().parent().addClass("success");
+				$('#errPrecioInvitado').slideUp(1000);
+				}
+				else {
+				temp.parent().parent().removeClass("success");
+				temp.parent().parent().addClass("error");
+				$('#errPrecioInvitado').slideDown(1000);
+				}
+				
+				})
+				$('#errPrecioInvitado').slideDown(1000);
+				test=false;
+				$('#txtPrecioInvitado').parent().parent().toggleClass("error");
+			}
+			else $('#txtPrecioInvitado').parent().parent().addClass("success");
 	return test;
 		
 		
@@ -176,7 +196,7 @@
 			  type: "POST",
 			  url: "/Conan3000V2/IngSoft/servicio/evento/SMSEvento",
 			  data: "accion=" + $(accion).val() + "&tipo=" + $(tipo).val() + "&txtNombreEvento=" + $(txtNombreEvento).val() + "&txtNumEntradas=" + $(txtNumEntradas).val()  
-			  +  "&cmbSedes=" + $(cmbSedes).val() + "&fFecha=" + $(fFecha).val()+"&concesionario="+concesionario+"&precioentrada="+$(txtPrecio).val(),
+			  +  "&cmbSedes=" + $(cmbSedes).val() + "&fFecha=" + $(fFecha).val()+"&concesionario="+concesionario+"&precioentrada="+$(txtPrecio).val()+"&precioentradaI="+$(txtPrecioInvitado).val(),
 			  dataType: "text",
 			  success: function(msg){
 				  var url="<%=request.getContextPath()%>"+msg;
@@ -330,6 +350,15 @@
 									<input  id="txtPrecio" class="span4" name="txtPrecio" onchange="vDinero($(this))"  type="text" onkeypress="return dinero(event);"  maxlength="10">
 									<br/>
 								  <span class="help-inline" id="errPrecio" name="errPrecio" style="display:none;">Este campo no puede estar vacio</span>
+					        </div>
+					        </div>	
+					        <div class="control-group">
+						      <label class="control-label" for="txtPrecioInvitado">Precio de la Entrada Invitado(*): </label>
+						      <div class="controls">
+
+									<input  id="txtPrecioInvitado" class="span4" name="txtPrecioInvitado" onchange="vDinero($(this))"  type="text" onkeypress="return dinero(event);"  maxlength="10">
+									<br/>
+								  <span class="help-inline" id="errPrecio" name="errPrecioInvitado" style="display:none;">Este campo no puede estar vacio</span>
 					        </div>
 					        </div>					   
 							  <div class="control-group">

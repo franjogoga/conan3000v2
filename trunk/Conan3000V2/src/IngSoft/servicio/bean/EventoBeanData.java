@@ -10,6 +10,7 @@ public class EventoBeanData implements Serializable{
 	private int entradasTotal;
 	private int limiteEntradas;
 	private double precioEntrada;
+	private double precioEntradaI;
 	private String idSede;
 	private String idConcesionario;
 	private Date fecha;
@@ -95,6 +96,12 @@ public class EventoBeanData implements Serializable{
 	}
 	public void setJuridica(String juridica) {
 		this.juridica = juridica;
+	}
+	public double getPrecioEntradaI() {
+		return precioEntradaI;
+	}
+	public void setPrecioEntradaI(double precioEntradaI) {
+		this.precioEntradaI = precioEntradaI;
 	}
 	
 	
