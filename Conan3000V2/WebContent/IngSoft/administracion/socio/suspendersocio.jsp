@@ -138,7 +138,7 @@
 									  
 									<div class="form-actions">
 										<button type="button" class="btn btn-primary" onclick="javascript:alt_suspender()">Suspender</button>
-										<button type="button" class="btn" onclick="location.href='accionsocio.jsp'">Regresar</button>                
+										<button type="button" class="btn" onclick="javascript:history.back(1)">Regresar</button>                
 									</div>
 					  
 								</fieldset>
