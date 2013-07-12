@@ -50,8 +50,8 @@
 	</update>
 	
 	<insert id="insertSuspension" parameterType="IngSoft.administracion.bean.SuspensionBeanData" flushCache="true">
-		insert INTO SUSPENSION_PAGO(IdSuspensionPago, FechaRegistro, IdMembresia)		
-		values (#{idSuspensionPago}, #{fechaRegistro}, #{idMembresia})
+		insert INTO SUSPENSION_PAGO(IdSuspensionPago, Descripcion, FechaRegistro, IdMembresia)		
+		values (#{idSuspensionPago}, #{descripcion}, #{fechaRegistro}, #{idMembresia})
 	</insert>
 	
 	<update id="updateSuspendidoSocio" parameterType="java.lang.String">
