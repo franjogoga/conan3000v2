@@ -95,12 +95,31 @@ public class SocioBeanFunction {
 		} catch (Exception e3){
 			sesion.rollback();
 			e3.printStackTrace();
-			throw CoException.set("Error: No se pudo suspender el socio", "SMASocio?accion=Buscar&tipo=1");
+			throw CoException.set("Error: No se pudo suspender el socio, ya esta suspendido", "SMASocio?accion=Buscar&tipo=1");
 		} finally {
 			sesion.commit();
 			sesion.close();
 			l.unlock();
 		}		
+		return resultado;
+	}
+
+	public boolean activarSocio(String codigo) throws CoException {	
+		l.lock();
+		boolean resultado = false;
+		SqlSession sesion = MyBatisSesion.metodo().openSession();
+		try {
+			sesion.update("Data.administracion.socio.updateSuspendidoSocioActivar", codigo);
+			resultado = true;
+		} catch (Exception e4) {
+			sesion.rollback();
+			e4.printStackTrace();
+			throw CoException.set("Error: No se pudo activar al socio, ya esta activo", "SMASocio?accion=Buscar&tipo=1");
+		} finally {
+			sesion.commit();
+			sesion.close();
+			l.unlock();
+		}				
 		return resultado;
 	}
 	
