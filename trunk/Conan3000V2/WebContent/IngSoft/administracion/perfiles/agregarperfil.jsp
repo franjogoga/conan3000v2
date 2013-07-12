@@ -209,7 +209,7 @@
 																		
 							        <div class="form-actions">
 							           <button type="button" class="btn btn-primary" onclick="javascript:alt_submit_agregar_perfil()">Agregar</button>
-							           <button type="button" class="btn" onclick="location.href='buscarperfil.jsp'">Cancelar</button>
+							           <button type="button" class="btn" onclick="javascript:history.back(1)">Cancelar</button>
 							        </div>
 						        </fieldset>
 				            </form>

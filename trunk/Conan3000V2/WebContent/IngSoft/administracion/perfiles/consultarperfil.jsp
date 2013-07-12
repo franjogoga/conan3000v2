@@ -166,7 +166,7 @@
 							  		</div>
 																									        
 							        <div class="form-actions">
-							           	<button type="button" class="btn" onclick="location.href='buscarperfil.jsp'">Regresar</button>
+							           	<button type="button" class="btn" onclick="javascript:history.back(1)">Regresar</button>
 							        </div>
 						        </fieldset>
 				            </form>				            
