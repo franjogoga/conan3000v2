@@ -8,6 +8,7 @@ import java.util.Vector;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
+import javax.faces.bean.ApplicationScoped;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -16,7 +17,7 @@ import org.apache.ibatis.session.SqlSession;
 import IngSoft.general.CoException;
 import IngSoft.general.MyBatisSesion;
 import IngSoft.servicio.bean.SedeMiniBeanData;
-
+@ApplicationScoped
 public class EmpleadoBeanFuncion {	
 	
 	static private EmpleadoBeanFuncion EmpleadoFuncion=null;
@@ -251,7 +252,7 @@ public class EmpleadoBeanFuncion {
 		finally{
 			sqlsesion.close();
 		}
-		//COMPROBAR EL TAMA�ANO PARA SETEAR EL FLAG
+		//COMPROBAR EL TAMANO PARA SETEAR EL FLAG
 		if(resultadosV.size()==0){
 			EmpleadoData.setFlag(0);
 		}
