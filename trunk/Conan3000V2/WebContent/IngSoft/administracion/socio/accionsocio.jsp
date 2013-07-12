@@ -81,7 +81,17 @@
 			form.codigo.value=cod;
 			form.submit();
 		}
-	}		
+	}
+	function alt_activar(cod, estado){
+		if (estado.toLowerCase() == "Activo".toLowerCase()) {
+			alert("Este socio ya esta activo");
+		} else {
+			var form=document.getElementById("frmAlternativo");
+			form.accion.value="Activar";
+			form.codigo.value=cod;
+			form.submit();
+		}
+	}				
 	</script>		
 </head>
 
@@ -115,9 +125,7 @@
 							Buscar Socio
 						</li>
 					</ul>
-				</div>
-							
-				
+				</div>											
 								
 				<div class="row-fluid sortable">
 					<div class="box span12">
@@ -219,12 +227,15 @@
 										<td><%=((ResultadoSocioBeanData)resultados.get(i)).getFechaInicio()%></td>
 										<td><%=((ResultadoSocioBeanData)resultados.get(i)).getVitalicio()%></td>
 										<td><%=((ResultadoSocioBeanData)resultados.get(i)).getEstado()%></td>										
-										<td class="center">
-											<a class="btn btn-success" href="javascript:alt_vitalizar('<%=((ResultadoSocioBeanData)resultados.get(i)).getIdSocio()%>', '<%=((ResultadoSocioBeanData)resultados.get(i)).getFechaInicio()%>', '<%=((ResultadoSocioBeanData)resultados.get(i)).getVitalicio()%>')">
-												<i class="icon-zoom-in icon-white"></i> Vitalizar 
-											</a>											
+										<td class="center">																																	
+											<a class="btn btn-primary" href="javascript:alt_activar('<%=((ResultadoSocioBeanData)resultados.get(i)).getIdSocio()%>', '<%=((ResultadoSocioBeanData)resultados.get(i)).getEstado()%>')">
+												<i class="icon-edit icon-white"></i> Activar
+											</a>
 											<a class="btn btn-danger" href="javascript:alt_suspender('<%=((ResultadoSocioBeanData)resultados.get(i)).getIdSocio()%>', '<%=((ResultadoSocioBeanData)resultados.get(i)).getEstado()%>')">
 												<i class="icon-trash icon-white"></i> Suspender
+											</a>
+											<a class="btn btn-warning" href="javascript:alt_vitalizar('<%=((ResultadoSocioBeanData)resultados.get(i)).getIdSocio()%>', '<%=((ResultadoSocioBeanData)resultados.get(i)).getFechaInicio()%>', '<%=((ResultadoSocioBeanData)resultados.get(i)).getVitalicio()%>')">
+												<i class="icon-flag icon-white"></i> Vitalizar 
 											</a>
 										</td>
 									</tr>					  
