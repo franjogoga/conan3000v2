@@ -11,6 +11,20 @@ public class ResultadoEmpleadoBeanData implements Serializable{
 	private String apaterno;
 	private String puesto;
 	private String estado;
+	private String sede;
+	public String getSede() {
+		return sede;
+	}
+	public void setSede(String sede) {
+		this.sede = sede;
+	}
+	public String getHorario() {
+		return horario;
+	}
+	public void setHorario(String horario) {
+		this.horario = horario;
+	}
+	private String horario;
 	
 	
 	// ** Cambios David: Agrego campo area y campo numeroDocumento
