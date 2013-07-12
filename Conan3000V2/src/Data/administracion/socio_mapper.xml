@@ -60,5 +60,10 @@
 		where IdSocio = #{codigo}
 	</update>
 	
+	<update id="updateSuspendidoSocioActivar" parameterType="java.lang.String">
+		update MEMBRESIA
+		set Estado = 'Activo'
+		where IdSocio = #{codigo}
+	</update>
 	
 </mapper>
