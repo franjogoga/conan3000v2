@@ -7,7 +7,7 @@
 <head>
 
 	<meta charset="utf-8">
-	<title>Buscar Socio</title>
+	<title>Suspender Socio</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="Dos Virgenes, pagina de administrador">
 	<meta name="author" content="Dos Virgenes">
@@ -104,7 +104,7 @@
 							<a href="accionsocio.jsp">Transacciones de Socio</a> <span class="divider">/</span>
 						</li>
 						<li>
-							Buscar Socio
+							Suspender Socio
 						</li>
 					</ul>
 				</div>											
@@ -112,7 +112,7 @@
 				<div class="row-fluid sortable">
 					<div class="box span12">
 						<div class="box-header well" data-original-title>
-							<h2><i class="icon-search"></i> BUSCAR SOCIO</h2>
+							<h2><i class="icon-search"></i> Suspender SOCIO</h2>
 							<div class="box-icon">
 								<a href="#" class="btn btn-minimize btn-round">
 									<i class="icon-chevron-up"></i>
