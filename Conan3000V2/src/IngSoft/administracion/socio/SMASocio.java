@@ -7,6 +7,7 @@ public class SMASocio extends CoServlet{
 	protected void initAcciones() {		
 		acciones.put("Buscar", new AccionBuscarSocio());
 		acciones.put("Vitalizar", new AccionVitalizarSocio());
-		acciones.put("Suspender", new AccionSuspenderSocio());			
+		acciones.put("Suspender", new AccionSuspenderSocio());
+		acciones.put("Activar", new AccionActivarSocio());
 	}
 }
