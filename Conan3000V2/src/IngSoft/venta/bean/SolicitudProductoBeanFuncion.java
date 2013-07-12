@@ -83,31 +83,6 @@ public class SolicitudProductoBeanFuncion {
 		return resultado;
 	}
 	
-	public boolean eliminarSolicitudProducto(String codigo) throws CoException {
-		boolean resultado=false;		
-		
-		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
-		try{
-		
-			sqlsesion.update("Data.venta.solicitudproducto.deleteSolicitudProducto",codigo);
-			
-			resultado=true;
-		}
-		catch(Exception a)		
-		{sqlsesion.rollback();
-		a.printStackTrace();
-			throw CoException.set("Error: No se pudo eliminar la solicitud, intente de nuevo", "SMVSolicitudProducto?accion=Agregar&tipo=1");
-			
-		}
-		
-		finally{
-			sqlsesion.commit();
-			sqlsesion.close();					
-		}
-			
-		return resultado;
-	}
-	
 	
 			
 	public SolicitudProductoBeanData consultarSolicitudProducto(String codigo){

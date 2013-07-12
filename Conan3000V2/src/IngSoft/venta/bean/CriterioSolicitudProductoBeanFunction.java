@@ -21,6 +21,7 @@ public class CriterioSolicitudProductoBeanFunction {
 	public CriterioSolicitudProductoBeanData crearCriterio(HttpServletRequest request, HttpServletResponse response){
 		
 	
+		
 	CriterioSolicitudProductoBeanData criterioSolicitudProductoData= new CriterioSolicitudProductoBeanData();
 	
 	try{
