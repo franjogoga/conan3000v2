@@ -221,6 +221,8 @@
 		                <th>Codigo</th>
 		                <th>Nombre</th>
 		                <th>Apellido</th>
+		                <th>Sede</th>
+		                <th>Horario</th>
 		                <th>Area</th>
 		                <th>Acci&oacuten</th>
 	                  </tr>
@@ -257,6 +259,20 @@
                           			</td>
                           				                          			
                           			<td class="center">
+                          				<%=
+                          					((ResultadoEmpleadoBeanData)resultados.get(i)).getSede()
+                          				%>
+                          			
+                          				
+                          			</td>
+                          				<td class="center">
+                          				<%=
+                          					((ResultadoEmpleadoBeanData)resultados.get(i)).getHorario()
+                          				%>
+                          			
+                          				
+                          			</td>
+                          				<td class="center">
                           				<%=
                           					((ResultadoEmpleadoBeanData)resultados.get(i)).getArea()
                           				%>
