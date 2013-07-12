@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 public class SuspensionBeanData implements Serializable{
 	private String idSuspensionPago;
+	private String descripcion;
 	private String fechaRegistro;
 	private String idMembresia;
 	
@@ -12,6 +13,12 @@ public class SuspensionBeanData implements Serializable{
 	}
 	public void setIdSuspensionPago(String idSuspensionPago) {
 		this.idSuspensionPago = idSuspensionPago;
+	}
+	public String getDescripcion() {
+		return descripcion;
+	}
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
 	}
 	public String getFechaRegistro() {
 		return fechaRegistro;
@@ -24,5 +31,5 @@ public class SuspensionBeanData implements Serializable{
 	}
 	public void setIdMembresia(String idMembresia) {
 		this.idMembresia = idMembresia;
-	}			
+	}	
 }
