@@ -20,7 +20,7 @@ public class AccionEliminarPerfil extends CoAccion {
 			PerfilBeanFunction funcionPerfil = PerfilBeanFunction.getInstance();
 			funcionPerfil.eliminarPerfil(request.getParameter("codigo"));
 			funcionPerfil.eliminarPerfilxaccionxcaso(request.getParameter("codigo"));
-			this.direccionar(sc, request, response, "/IngSoft/administracion/perfiles/buscarperfil.jsp");
+			this.direccionar(sc, request, response, "/IngSoft/administracion/perfiles/exitoperfil.jsp");
 		}
 		if (Integer.valueOf(request.getParameter("tipo"))==1) { 
 			PerfilBeanFunction funcionPerfil = PerfilBeanFunction.getInstance();

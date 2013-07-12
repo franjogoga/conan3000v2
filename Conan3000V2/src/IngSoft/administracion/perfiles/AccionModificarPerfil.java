@@ -23,7 +23,7 @@ public class AccionModificarPerfil extends CoAccion {
 			funcionPerfil.modificarPerfil(dataPerfil);
 			funcionPerfil.eliminarPerfilxaccionxcaso(dataPerfil.getCodigo());
 			funcionPerfil.agregarAccionxcasoxperfil(request, response, dataPerfil.getCodigo());
-			this.direccionar(sc, request, response, "/IngSoft/administracion/perfiles/buscarperfil.jsp");
+			this.direccionar(sc, request, response, "/IngSoft/administracion/perfiles/exitoperfil.jsp");
 		}		
 		if (Integer.valueOf(request.getParameter("tipo"))==1) {			
 			PerfilBeanData dataPerfil = funcionPerfil.consultarPerfil(request.getParameter("codigo"));

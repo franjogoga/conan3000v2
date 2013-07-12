@@ -22,7 +22,7 @@ public class AccionAgregarPerfil extends CoAccion {
 			PerfilBeanData dataPerfil = funcionPerfil.crearPerfil(request, response);
 			funcionPerfil.agregarPerfil(dataPerfil);			
 			funcionPerfil.agregarAccionxcasoxperfil(request, response, dataPerfil.getCodigo());						
-			this.direccionar(sc, request, response, "/IngSoft/administracion/perfiles/buscarperfil.jsp");
+			this.direccionar(sc, request, response, "/IngSoft/administracion/perfiles/exitoperfil.jsp");
 		}
 		if (tipo == 1) { //desde la ventana buscar da click al boton agregar			
 			Vector<CasosBeanData> casos = PerfilBeanFunction.getInstance().getCasos();
