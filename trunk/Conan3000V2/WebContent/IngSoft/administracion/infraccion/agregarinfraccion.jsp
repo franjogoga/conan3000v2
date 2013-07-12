@@ -162,7 +162,7 @@
 						<input type="hidden" name="txtCodigoSoc" value="<%=codigoSocio%>"></input>
                       
                         <div class="control-group" id="dvNombre">
-                          <label class="control-label" for="txtCodigoSoc">Codigo Socio(*):</label>
+                          <label class="control-label" for="txtCodigoSoc">Codigo Socio :</label>
                           <div class="controls">
                             <input type="text" class="span6 typeahead" id="txtCodigoSoc"  data-provide="typeahead" name="txtCodigoSoc"  disabled value="<%=codigoSocio%>" >
                           	<span class="help-inline" id="errNombre"> Please correct the error</span>
@@ -170,23 +170,23 @@
                         </div>
 		                  
 						    <div class="control-group" id="dvMonto">
-						      <label class="control-label" for="txtMonto">Monto(*): </label>
+						      <label class="control-label" for="txtMonto">Monto (*): </label>
 						      <div class="controls">
-						        <input type="text" class="span6 typeahead" id="txtMonto"  data-provide="typeahead"  name="txtMonto" >
+						        <input type="text" class="span6 typeahead" id="txtMonto"  data-provide="typeahead"  name="txtMonto" autofocus maxlength="7">
 						        <span class="help-inline" id="errMonto"> Please correct the error</span>
 					          </div>
 					        </div>
 					        
 					        <div class="control-group" id="dvDescripcion">
-                  		  <label class="control-label" for="textarea2">Descripci&oacute;n:</label>
+                  		  <label class="control-label" for="textarea2">Descripci&oacute;n (*):</label>
                           <div class="controls">
-                            <textarea name="txtDescripcion" rows="3" id="txtDescripcion" style="resize:none"></textarea>
+                            <textarea name="txtDescripcion" rows="3" id="txtDescripcion" style="resize:none" autofocus maxlength="100"></textarea>
                           	<span class="help-inline" id="errDescripcion">Please correct the error</span>
                           </div>
                         </div>
 
 							<div class="control-group" id="dvFecInicio">
-							  <label class="control-label" for="typeahead7">Fecha Inicio(*): </label>
+							  <label class="control-label" for="typeahead7">Fecha Inicio (*): </label>
 							  <div class="controls">
 								<input type="text" class="input-xlarge datepicker"  id="fFecInicio" name="fFecInicio" value="<%=fecAnoIni%>" readonly="readonly">
 			                	<span class="help-inline" id="errFecInicio">Please correct the error</span>
@@ -203,7 +203,7 @@
 
                         <div class="form-actions">
                           <button type="button" class="btn btn-primary" onclick="javascript:alt_submit()">Agregar</button>
-                          <button type="button" class="btn" onclick="location.href='buscarinfraccion.jsp'" >Cancelar</button>
+                          <button type="button" class="btn" onclick="javascript:history.back(1)" >Cancelar</button>
                         </div>
 
                       </fieldset>

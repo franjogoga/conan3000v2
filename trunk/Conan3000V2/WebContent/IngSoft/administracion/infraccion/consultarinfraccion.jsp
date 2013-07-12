@@ -87,13 +87,16 @@
 	                      		<div class="control-group">
 									<label class="control-label"><b>Nombre de Socio</b></label>
 									<div class="controls">
-									  <span class="input-xlarge uneditable-input"><%=nombre%></span>
-									</div>
-								</div>
+									  <span class="input-xlarge uneditable-input"><%=nombre%></span>									  																	  
+									  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+									  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+									  <button type="button" class="btn" onclick="javascript:history.back(1)" >Regresar</button>									  
+									</div>																		
+								</div>																								
 	                      	</fieldset>
 	                    </form>
 	                                                                 	                      
-                        <table class="table table-striped table-bordered bootstrap-datatable datatable">                         
+                        <table class="table table-striped table-bordered bootstrap-datatable datatable">                            	                                             
                           <thead>
                             <tr>                                                            
                               <th>Monto de Multa</th>
