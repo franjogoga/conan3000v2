@@ -98,8 +98,17 @@
 		
 		function alt_submit_agregar_perfil(){			
 			var form = document.frmDatos;
-			if (validar(form)) form.submit();			
+			if ( validate(form) form.submit();			
 		}
+		
+		function validate(form){ 			
+			for(var i = 0; i < form.checkAcciones.length; i++){ 
+				alert('entre'); 
+				if(form.checkAcciones[i].checked) return true; 
+			}
+			alert('Debes seleccionar al menos una opcion'); 
+			return false; 
+		} 
 	</script>
 </head>
 
