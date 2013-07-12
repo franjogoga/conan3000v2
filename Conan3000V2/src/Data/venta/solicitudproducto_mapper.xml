@@ -4,7 +4,7 @@
 
 <mapper namespace="Data.venta.solicitudproducto">
 
-  <cache />
+  <cache />dfssf
 
 <select id="searchPlantillaSolicitudProducto" parameterType="IngSoft.venta.bean.CriterioSolicitudProductoBeanData" resultType="IngSoft.venta.bean.ResultadoSolicitudProductoBeanData">
 select 
