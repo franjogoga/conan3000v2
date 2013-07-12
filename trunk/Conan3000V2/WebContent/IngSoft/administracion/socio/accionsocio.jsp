@@ -51,7 +51,7 @@
 	
 	<script>	
 	function alt_vitalizar(cod, strfechaInicio, vitalicio){
-		if (vitalicio.toLowerCase() == "No".toLowercase()) {
+		if (vitalicio.toLowerCase() == "No".toLowerCase()) {
 			var arrFechaInicio = strfechaInicio.split('-'); //arrFechaInicio = ["aaaa","mm","dd"]
 			var fechaInicio = parseInt(arrFechaInicio[0])*10000 + parseInt(arrFechaInicio[1])*100 + parseInt(arrFechaInicio[2]);		
 			var f = new Date();
@@ -72,13 +72,16 @@
 			alert("Este socio ya es vitalicio");
 		}
 	}
-	function alt_suspender(cod){
-		var form=document.getElementById("frmAlternativo");
-		form.accion.value="Suspender";
-		form.codigo.value=cod;
-		form.submit();
-	}	
-	
+	function alt_suspender(cod, estado){
+		if (estado.toLowerCase() == "Suspendido".toLowerCase()) {
+			alert("Este socio ya esta suspendido");
+		} else {
+			var form=document.getElementById("frmAlternativo");
+			form.accion.value="Suspender";
+			form.codigo.value=cod;
+			form.submit();
+		}
+	}		
 	</script>		
 </head>
 
@@ -220,7 +223,7 @@
 											<a class="btn btn-success" href="javascript:alt_vitalizar('<%=((ResultadoSocioBeanData)resultados.get(i)).getIdSocio()%>', '<%=((ResultadoSocioBeanData)resultados.get(i)).getFechaInicio()%>', '<%=((ResultadoSocioBeanData)resultados.get(i)).getVitalicio()%>')">
 												<i class="icon-zoom-in icon-white"></i> Vitalizar 
 											</a>											
-											<a class="btn btn-danger" href="javascript:alt_suspender('<%=((ResultadoSocioBeanData)resultados.get(i)).getIdSocio()%>')">
+											<a class="btn btn-danger" href="javascript:alt_suspender('<%=((ResultadoSocioBeanData)resultados.get(i)).getIdSocio()%>', '<%=((ResultadoSocioBeanData)resultados.get(i)).getEstado()%>')">
 												<i class="icon-trash icon-white"></i> Suspender
 											</a>
 										</td>
