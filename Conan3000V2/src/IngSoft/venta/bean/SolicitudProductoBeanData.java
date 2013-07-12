@@ -1,13 +1,14 @@
 package IngSoft.venta.bean;
 
+import java.io.Serializable;
 import java.sql.Date;
 
-public class SolicitudProductoBeanData {
+public class SolicitudProductoBeanData implements Serializable {
 		
 
 private String idSolicitudProducto;
 private Integer cantidad;
-private String idProducto;
+
 private String idSede;
 private String estado;
 public String getIdSede() {
@@ -32,12 +33,7 @@ public Integer getCantidad() {
 public void setCantidad(Integer cantidad) {
 	this.cantidad = cantidad;
 }
-public String getIdProducto() {
-	return idProducto;
-}
-public void setIdProducto(String idProducto) {
-	this.idProducto = idProducto;
-}
+
 public String getEstado() {
 	return estado;
 }

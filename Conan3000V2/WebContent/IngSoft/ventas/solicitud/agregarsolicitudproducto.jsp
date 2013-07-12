@@ -86,16 +86,16 @@ function validaForm(){
 	if(!esValido("Sede",form.cmbSede,"Sede",1,1,50)){cadena[i]="Sede";i++;}
 	
 	if(!esValido("Cantidad",form.txtCantidad,"Cantidad",6,1,50)){cadena[i]="Precio";i++;}
-}//No tocar
+//No tocar
 	
-	if(i>0){
+	
+if(i>0){
 	crearAlert(cadena);
 	return false;
 	}else{
 		return true;
 		
 	}
-
 }
 
 
@@ -103,7 +103,8 @@ function inicializa(){
 /*Esto se debe llenar siempre deacuerdo a las etiuquetas <span> del formulario, esto sirve para ocultar inicialmente los avisos
 Solo poner el id de los <span> segun corresponda
 */
-
+	document.getElementById("errProducto").style.display='none';
+	
 	
 }
 

@@ -4,22 +4,41 @@
 
 <mapper namespace="Data.venta.solicitudproducto">
 
-  <cache />dfssf
+  <cache/>
 
 <select id="searchPlantillaSolicitudProducto" parameterType="IngSoft.venta.bean.CriterioSolicitudProductoBeanData" resultType="IngSoft.venta.bean.ResultadoSolicitudProductoBeanData">
 select 
 SOLICITUD_PRODUCTO.IdSolicitudProducto as idSolicitudProducto
-,SOLICITUD_PRODUCTO.idProductoProv as idProductoProv
+,SOLICITUD_PRODUCTO.Fecha as limInicio
+,SOLICITUD_PRODUCTO.Cantidad as cantidad
+,SOLICITUD_PRODUCTO.Estado as estado
 from SOLICITUD_PRODUCTO
 <where>
 	
-    <if test="idProductoProv != null">
-       SOLICITUD_PRODUCTO.IdProductoProv like #{idProductoProv}
+    <if test="limInicio != null">
+       SOLICITUD_PRODUCTO.Fecha like #{limInicio}
     </if>
    
       
 </where>
 </select>
+
+<select id="getPlantillaSolicitud" parameterType="java.lang.String"  resultType="IngSoft.venta.bean.SolicitudProductoBeanData">
+select 
+SOLICITUD_PRODUCTO.IdSolicitudProducto as idSolicitudProducto
+,SOLICITUD_PRODUCTO.Fecha as limInicio
+,SOLICITUD_PRODUCTO.Cantidad as cantidad
+,SOLICITUD_PRODUCTO.Estado as estado
+from SOLICITUD_PRODUCTO  where SOLICITUD_PRODUCTO.IdSolicitudProducto=#{codigo}; 
+</select>
+
+
+
+
+<update id="updateSolicitud" parameterType="IngSoft.venta.bean.SolicitudProductoBeanData">
+update SOLICITUD_PRODUCTO set SOLICITUD_PRODUCTO.Estado=#{estado}
+ where SOLICITUD_PRODUCTO.IdSolicitudProducto= #{idSolicitudProducto}
+</update>
   
   <select id="searchSedeMini" resultType="IngSoft.servicio.bean.SedeMiniBeanData">
 		select IdSede as codigo, Nombre as nombre 
