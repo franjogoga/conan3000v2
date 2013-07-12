@@ -59,7 +59,10 @@ select
 <!-- Fin cambios -->
 ,PERSONA.NumeroDocumento as numeroDocumento
 ,EMPLEADO.Area as area
-from EMPLEADO, PERSONA 
+,SEDE.Nombre  as sede
+,HORARIO.Descripcion as horario
+
+from EMPLEADO, PERSONA, SEDE, HORARIO 
 
 
 <where>
@@ -78,7 +81,7 @@ from EMPLEADO, PERSONA
     <if test="area != null">
         AND EMPLEADO.Area like #{area}
     </if>
-    AND EMPLEADO.Estado='activo' AND EMPLEADO.IdEmpleado = PERSONA.IdPersona
+   AND EMPLEADO.Estado='activo' AND EMPLEADO.IdEmpleado = PERSONA.IdPersona  AND EMPLEADO.IdSede= SEDE.IdSede AND EMPLEADO.IdHorario = HORARIO.IdHorario
 </where>
 
 order by 1 asc
@@ -95,7 +98,10 @@ select
 <!-- Fin cambios -->
 ,PERSONA.NumeroDocumento as numeroDocumento
 ,EMPLEADO.Area as area
-from EMPLEADO, PERSONA 
+,SEDE.Nombre  as sede
+,HORARIO.Descripcion as horario
+
+from EMPLEADO, PERSONA, SEDE, HORARIO 
 
 
 <where>
@@ -113,7 +119,7 @@ from EMPLEADO, PERSONA
     
        
     
-    AND EMPLEADO.Estado='activo' AND EMPLEADO.IdEmpleado = PERSONA.IdPersona
+    AND EMPLEADO.Estado='activo' AND EMPLEADO.IdEmpleado = PERSONA.IdPersona  AND EMPLEADO.IdSede= SEDE.IdSede AND EMPLEADO.IdHorario = HORARIO.IdHorario
 </where>
 
 order by 2 asc
