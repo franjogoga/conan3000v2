@@ -237,6 +237,9 @@
 											<a class="btn btn-warning" href="javascript:alt_vitalizar('<%=((ResultadoSocioBeanData)resultados.get(i)).getIdSocio()%>', '<%=((ResultadoSocioBeanData)resultados.get(i)).getFechaInicio()%>', '<%=((ResultadoSocioBeanData)resultados.get(i)).getVitalicio()%>')">
 												<i class="icon-flag icon-white"></i> Vitalizar 
 											</a>
+											<!-- <a class="btn btn-success" href="javascript:alt_vitalizar('<%=((ResultadoSocioBeanData)resultados.get(i)).getIdSocio()%>', '<%=((ResultadoSocioBeanData)resultados.get(i)).getFechaInicio()%>', '<%=((ResultadoSocioBeanData)resultados.get(i)).getVitalicio()%>')">
+												<i class="icon-zoom-in icon-white"></i> Ver 
+											</a> -->
 										</td>
 									</tr>					  
 									<%}%>					  
