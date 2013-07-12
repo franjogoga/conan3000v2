@@ -12,12 +12,7 @@ public class AccionVitalizarSocio extends CoAccion {
 	@Override
 	public void ejecutar(ServletContext sc, HttpServletRequest request, HttpServletResponse response) throws CoException {
 		SocioBeanFunction funcion = SocioBeanFunction.getInstance();			
-		boolean resultado = funcion.vitalizarSocio(request.getParameter("codigo"));
-		String mensaje = "No se vitaliz� el socio, ya es vitalicio";
-		if (resultado) {
-			mensaje = "Se vitaliz� el socio";
-		}
-		//response.setContentType(arg0)		
+		boolean resultado = funcion.vitalizarSocio(request.getParameter("codigo"));		
 		this.direccionar(sc, request, response, "/IngSoft/administracion/socio/accionsocio.jsp");
 	}
 }
