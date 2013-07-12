@@ -61,7 +61,7 @@
 		form.codigo.value=cod;
 		
 		if( fechaInicio > fechaActualmenos30) {
-			if (confirm("Pelotudoooooooooo! este socio aun no tiene más de 30 años, deseas hacerlo vitalicio de todas maneras?")) {
+			if (confirm("Este socio aun no tiene más de 30 años, deseas hacerlo vitalicio de todas maneras?")) {
 				form.submit();	
 			}
 		} else {
