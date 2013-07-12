@@ -16,12 +16,6 @@ import IngSoft.venta.bean.OrdenPagoBeanFunction;
 
 public class ReservaBeanFuncion {
 	static private ReservaBeanFuncion ReservaFuncion=null;
-	private Lock lAB= new ReentrantLock();
-	private Lock lAC= new ReentrantLock();
-	private Lock lEB= new ReentrantLock();
-	private Lock lEC= new ReentrantLock();
-	private Lock l1= new ReentrantLock();
-	
 	
 	 public static ReservaBeanFuncion getInstance(){
 	       if(ReservaFuncion==null) ReservaFuncion= new ReservaBeanFuncion();
@@ -132,8 +126,7 @@ public class ReservaBeanFuncion {
 		   return resultado;
 	   }
 	   
-	   public void agregarReservaBungalow(Vector<String> listareservas, String codSocio){
-		   lAB.lock();
+	   public synchronized void agregarReservaBungalow(Vector<String> listareservas, String codSocio){		   
 		   String nextcodigo;
 		   SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		   try{
@@ -166,14 +159,11 @@ public class ReservaBeanFuncion {
 			   e.printStackTrace();			   
 		   }
 		   finally{			   
-			   sqlsesion.close();
-			   lAB.unlock();
-			   
+			   sqlsesion.close();			   			   
 		   }
 		   
 	   }
-	   public void agregarReservaCancha(Vector<String> listareservas, String codSocio){
-		   lAC.lock();
+	   public synchronized void agregarReservaCancha(Vector<String> listareservas, String codSocio){		   
 		   String nextcodigo;
 		   SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		   try{
@@ -209,16 +199,13 @@ public class ReservaBeanFuncion {
 			   e.printStackTrace();			   
 		   }
 		   finally{			   
-			   sqlsesion.close();
-			   lAC.unlock();
-			   
+			   sqlsesion.close(); 
 		   }
 		   
 		   
 	   }
 	   
-	   public void eliminarResevaBungalow(Vector<String> listareservas){
-		   lEB.lock();
+	   public synchronized void eliminarResevaBungalow(Vector<String> listareservas){		   
 		   SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		   try{			   
 			   List<String> temp=sqlsesion.selectList("Data.servicio.reserva.getElimReservBungalowCod",listareservas);			   
@@ -230,13 +217,11 @@ public class ReservaBeanFuncion {
 			   e.printStackTrace();			   
 		   }
 		   finally{			   
-			   sqlsesion.close();
-			   lEB.unlock();
+			   sqlsesion.close();			   
 		   }
 		   
 	   }
-	   public void eliminarResevaCancha(Vector<String> listareservas){
-		   lEC.lock();
+	   public synchronized void eliminarResevaCancha(Vector<String> listareservas){		   
 		   SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		   try{			   			   
 			   List<String> temp=sqlsesion.selectList("Data.servicio.reserva.getElimReservCanchaCod",listareservas);			   
@@ -248,8 +233,7 @@ public class ReservaBeanFuncion {
 			   e.printStackTrace();			   
 		   }
 		   finally{			   
-			   sqlsesion.close();	
-			   lEC.unlock();
+			   sqlsesion.close();				   
 		   }
 		   
 	   }
@@ -267,8 +251,7 @@ public class ReservaBeanFuncion {
 		   return next;		   
 	   }
 	   
-	   public boolean registrarServiciosxReserva(String[] lista,String reserva){
-		   l1.lock();
+	   public synchronized boolean registrarServiciosxReserva(String[] lista,String reserva){		   
 		   boolean resultados=false;
 		   OrdenPagoBeanFunction orden=OrdenPagoBeanFunction.getInstance();
 		   SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
@@ -288,8 +271,7 @@ public class ReservaBeanFuncion {
 			  // e.printStackTrace();
 		   }
 		   finally{
-			sqlsesion.close();
-			l1.unlock();
+			sqlsesion.close();			
 			}
 			return resultados;
 	   }
