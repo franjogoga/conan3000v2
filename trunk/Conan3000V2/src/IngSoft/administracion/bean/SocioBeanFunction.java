@@ -64,14 +64,14 @@ public class SocioBeanFunction {
 		return datos;
 	}
 	
-	public boolean suspenderSocio(String codigo) throws CoException{	
+	public boolean suspenderSocio(String codigo, String descripcion) throws CoException{	
 		l.lock();
 		boolean resultado = false;		
 		SqlSession sesion = MyBatisSesion.metodo().openSession();
 		SocioBeanData datos = null;
 		try {
 			datos = sesion.selectOne("Data.administracion.socio.getSocio", codigo);			
-			if (datos.getEstado().equalsIgnoreCase("Vencido")) {
+			if (datos.getEstado().equalsIgnoreCase("Activo")) {
 				SuspensionBeanData datosSuspension = new SuspensionBeanData();			
 				String codigoSuspension = (String)sesion.selectOne("Data.administracion.socio.getNextCodigoSuspension");			
 				if (codigoSuspension != null) {
@@ -80,7 +80,8 @@ public class SocioBeanFunction {
 					String temp = defecto.substring(0, defecto.length() - String.valueOf(cod).length()).concat(String.valueOf(cod));
 					datosSuspension.setIdSuspensionPago(codigoSuspension.substring(0,3).concat(temp));
 				}
-				else datosSuspension.setIdSuspensionPago("SUS000001");			
+				else datosSuspension.setIdSuspensionPago("SUS000001");	
+				datosSuspension.setDescripcion(descripcion);
 				datosSuspension.setIdMembresia(datos.getCodigo().toString());
 				Calendar c = Calendar.getInstance();												
 				int dia = c.get(Calendar.DATE);		
