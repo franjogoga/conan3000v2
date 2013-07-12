@@ -127,8 +127,7 @@ return (DF.format(fecha));
 			              <label class="control-label" for="date01">Fecha(*):</label>
 			                <div class="controls">
 			                  <input type="text" name="fFechInicio" class="datepicker" id="fFecha" value="<%=getFechaActual()%>"  readonly width=44px  >
-			                  <span class="help-inline" id="errFecha">Please correct the error</span>
-		                    </div>
+			                                    </div>
 		                  </div>
 			            
 						    
