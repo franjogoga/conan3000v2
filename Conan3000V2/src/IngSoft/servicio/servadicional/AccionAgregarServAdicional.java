@@ -14,7 +14,7 @@ public class AccionAgregarServAdicional extends CoAccion {
 			HttpServletResponse response) throws CoException {
 		int tipo=Integer.parseInt(request.getParameter("tipo"));
 		if(tipo==1){
-			this.direccionar(sc, request, response, "/");
+			this.direccionar(sc, request, response, "/IngSoft/servicio/servadicional/agregadicional.jsp");
 		}
 		if(tipo==2){					
 		}
