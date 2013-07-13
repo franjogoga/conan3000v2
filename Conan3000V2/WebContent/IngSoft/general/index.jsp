@@ -73,23 +73,23 @@
 			<div class="sortable row-fluid">
 				<a data-rel="tooltip" title="6 new members." class="well span3 top-block" href="#">
 					<span class="icon32 icon-red icon-user"></span>
-					<div>Total de Miembros</div>
-					<div>507</div>
-					<span class="notification">6</span>
+					<div>Miembros</div>
+					<div>27</div>
+					<span class="notification">4</span>
 				</a>
 
 				<a data-rel="tooltip" title="4 new pro members." class="well span3 top-block" href="#">
 					<span class="icon32 icon-color icon-star-on"></span>
 					<div>Socios</div>
-					<div>228</div>
+					<div>27</div>
 					<span class="notification green">4</span>
 				</a>
 
 				<a data-rel="tooltip" title="$34 new sales." class="well span3 top-block" href="#">
 					<span class="icon32 icon-color icon-cart"></span>
 					<div>Ventas</div>
-					<div>$13320</div>
-					<span class="notification yellow">$34</span>
+					<div>S/. 13320</div>
+					<span class="notification yellow">S/. 34</span>
 				</a>
 				
 				<a data-rel="tooltip" title="12 new messages." class="well span3 top-block" href="#">
@@ -153,32 +153,32 @@
 						<div class="box-content">
 							<ul class="dashboard-list">
 								<li>
-									<a href="#">
-										<img class="dashboard-avatar" alt="Usman" src="img/chato.png"></a>
+									<a href="http://www.facebook.com/daniel.bernallovera">
+										<img class="dashboard-avatar" alt="chato" src="img/chato.png"></a>
 										<strong>Nombre:</strong> <a href="#">Daniel Bernal
 									</a><br>
 									<strong>Desde:</strong> 17/05/2012<br>
 									<strong>Estado:</strong> <span class="label label-success">Aprobado</span>                                  
 								</li>
 								<li>
-									<a href="#">
-										<img class="dashboard-avatar" alt="Sheikh Heera" src="img/colorado.png"></a>
+									<a href="http://www.facebook.com/david.bigio.luks">
+										<img class="dashboard-avatar" alt="colorado" src="img/colorado.png"></a>
 										<strong>Nombre:</strong> <a href="#">David Bigio
 									</a><br>
 									<strong>Desde:</strong> 17/05/2012<br>
 									<strong>Estado:</strong> <span class="label label-warning">Suspendido</span>                                 
 								</li>
 								<li>
-									<a href="#">
-										<img class="dashboard-avatar" alt="Abdullah" src="img/liz.png"></a>
+									<a href="http://www.facebook.com/lizc.diazc">
+										<img class="dashboard-avatar" alt="lizita" src="img/liz.png"></a>
 										<strong>Nombre:</strong> <a href="#">Liz D&iacute;az
 									</a><br>
 									<strong>Desde:</strong> 25/05/2012<br>
 									<strong>Estado:</strong> <span class="label label-important">Eliminado</span>                                  
 								</li>
 								<li>
-									<a href="#">
-										<img class="dashboard-avatar" alt="Saruar Ahmed" src="img/ati.png"></a>
+									<a href="http://www.facebook.com/aTiTixD">
+										<img class="dashboard-avatar" alt="atiti" src="img/ati.png"></a>
 										<strong>Nombre:</strong> <a href="#">Carlos Bustamante
 									</a><br>
 									<strong>Desde:</strong> 17/05/2012<br>
@@ -226,7 +226,7 @@
 
 		<footer>
 		  <p class="pull-left"><a href="#">Conan 3000</a> &copy;  2013</p>
-          <p class="pull-right">Powered by: <a href="#">Las dos virgenes</a></p>
+          <p class="pull-right">Powered by: <a href="#">Dos Virgenes</a></p>
 		</footer>
 		
 	</div><!--/.fluid-container-->
