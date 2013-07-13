@@ -142,8 +142,6 @@ DIA_SEMANA
 <!--obtener todas las actividades -->
 <select id="getAllActividades" parameterType="java.lang.String" resultType="IngSoft.administracion.bean.ResultadoActividadBeanData">
 
-
-
 SELECT 
 ACTIVIDAD.IdActividad AS codigo ,
 ACTIVIDAD.nombre as nombre,
@@ -157,11 +155,10 @@ FROM ACTIVIDAD , TIPO_ACTIVIDAD
 WHERE
 
 ACTIVIDAD.IdTipoActividad = TIPO_ACTIVIDAD.IdTipoActividad
-
+AND
+ACTIVIDAD.Estado = 'Disponible'
 ORDER BY 1 ASC
 ;
-
-
 </select>
 
 
