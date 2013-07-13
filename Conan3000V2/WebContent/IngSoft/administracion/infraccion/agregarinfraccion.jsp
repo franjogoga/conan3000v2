@@ -185,7 +185,7 @@
                                         
                                         
                                         <div class="control-group" id="dvCodigoSoc">
-                                            <label class="control-label" for="txtCodigoSoc">Codigo Socio(*):  <%=codigoSocio%> </label>
+                                            <label class="control-label" for="txtCodigoSoc">Codigo Socio(*):</label>
                                             <div class="controls">
                                                 
                                                 
