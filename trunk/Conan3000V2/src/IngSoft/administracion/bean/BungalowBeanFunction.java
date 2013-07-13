@@ -17,7 +17,6 @@ import IngSoft.administracion.bean.AmbienteMiniBeanData;
 public class BungalowBeanFunction {	
 	
 	static private BungalowBeanFunction BungalowFunction=null;
-	private Lock l= new ReentrantLock();     
 		   
 	public static BungalowBeanFunction getInstance(){
 		if(BungalowFunction==null) BungalowFunction= new BungalowBeanFunction();
@@ -54,10 +53,8 @@ public class BungalowBeanFunction {
 		return bungalowData;
 	} 
 	
-	
-	public boolean agregarBungalow(BungalowBeanData bungalowData) throws CoException {
+	public synchronized boolean agregarBungalow(BungalowBeanData bungalowData) throws CoException {
 		boolean resultado=false;		
-		l.lock();
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
 			String codigo= (String)sqlsesion.selectOne("Data.administracion.bungalow.getNextCodigo");
@@ -77,11 +74,9 @@ public class BungalowBeanFunction {
 		}
 		finally{
 			sqlsesion.commit();
-			sqlsesion.close();
-			l.unlock();					
+			sqlsesion.close();				
 		}
 		//AGREGAR EL NUMERO DE BUNGALOW
-		l.lock();
 		sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
 			Integer numero= (Integer)sqlsesion.selectOne("Data.administracion.bungalow.getNextNumero",bungalowData.getIdAmbiente());
@@ -101,14 +96,12 @@ public class BungalowBeanFunction {
 		finally{
 			sqlsesion.commit();
 			sqlsesion.close();
-			l.unlock();					
 		}		
 		return resultado;
 	}
 	
-	public boolean eliminarBungalow(String codigo) throws CoException {
+	public synchronized boolean eliminarBungalow(String codigo) throws CoException {
 		boolean resultado=false;
-		l.lock();		
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
 			sqlsesion.update("Data.administracion.bungalow.deleteBungalow",codigo);
@@ -121,15 +114,13 @@ public class BungalowBeanFunction {
 		}		
 		finally{
 			sqlsesion.commit();
-			sqlsesion.close();
-			l.unlock();							
+			sqlsesion.close();				
 		}
 		return resultado;
 	}
 
-	public boolean modificarBungalow(BungalowBeanData bungalowData) throws CoException {
+	public synchronized boolean modificarBungalow(BungalowBeanData bungalowData) throws CoException {
 		boolean resultado=false;
-		l.lock();
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
 			sqlsesion.update("Data.administracion.bungalow.updateBungalow",bungalowData);
@@ -142,8 +133,7 @@ public class BungalowBeanFunction {
 		}
 		finally{
 			sqlsesion.commit();
-			sqlsesion.close();
-			l.unlock();							
+			sqlsesion.close();				
 		}
 		return resultado;
 	}

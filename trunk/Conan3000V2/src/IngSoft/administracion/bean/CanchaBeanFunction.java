@@ -15,8 +15,7 @@ import IngSoft.general.MyBatisSesion;
 
 public class CanchaBeanFunction {	
 	
-	static private CanchaBeanFunction CanchaFunction=null;
-	private Lock l= new ReentrantLock();     
+	static private CanchaBeanFunction CanchaFunction=null; 
 		   
 	public static CanchaBeanFunction getInstance(){
 		if(CanchaFunction==null) CanchaFunction= new CanchaBeanFunction();
@@ -52,9 +51,8 @@ public class CanchaBeanFunction {
 		return canchaData;
 	} 
 	
-	public boolean agregarCancha(CanchaBeanData canchaData) throws CoException {
+	public synchronized boolean agregarCancha(CanchaBeanData canchaData) throws CoException {
 		boolean resultado=false;		
-		l.lock();
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
 			String codigo= (String)sqlsesion.selectOne("Data.administracion.cancha.getNextCodigo");
@@ -78,14 +76,12 @@ public class CanchaBeanFunction {
 		finally{
 			sqlsesion.commit();
 			sqlsesion.close();
-			l.unlock();					
 		}
 		return resultado;
 	}
 	
-	public boolean eliminarCancha(String codigo) throws CoException {
+	public synchronized boolean eliminarCancha(String codigo) throws CoException {
 		boolean resultado=false;
-		l.lock();		
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
 			sqlsesion.update("Data.administracion.cancha.deleteCancha",codigo);
@@ -98,15 +94,13 @@ public class CanchaBeanFunction {
 		}		
 		finally{
 			sqlsesion.commit();
-			sqlsesion.close();
-			l.unlock();							
+			sqlsesion.close();				
 		}
 		return resultado;
 	}
 
-	public boolean modificarCancha(CanchaBeanData canchaData) throws CoException {
+	public synchronized boolean modificarCancha(CanchaBeanData canchaData) throws CoException {
 		boolean resultado=false;
-		l.lock();
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
 			sqlsesion.update("Data.administracion.cancha.updateCancha",canchaData);
@@ -119,8 +113,7 @@ public class CanchaBeanFunction {
 		}
 		finally{
 			sqlsesion.commit();
-			sqlsesion.close();
-			l.unlock();							
+			sqlsesion.close();				
 		}
 		return resultado;
 	}
