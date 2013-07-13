@@ -185,10 +185,14 @@ apePaterno as apellidoPaterno,
 NumeroDocumento as numeroDocumento,
 Area as area,
 NombreUsuario as usuario,
-Password as contrasenia
+Password as contrasenia,
+s.Nombre as sede,
+h.Descripcion as horario
 
-from EMPLEADO e, USUARIO u, PERSONA p  where e.IdEmpleado = #{codigo} AND p.IdPersona = #{codigo} and u.IdEmpleado = e.IdEmpleado;
-
+from EMPLEADO e, USUARIO u, PERSONA p, SEDE s, HORARIO h  
+where e.IdEmpleado = #{codigo}
+ and p.IdPersona = #{codigo} and u.IdEmpleado = e.IdEmpleado and
+ s.IdSede = e.IdSede and e.IdHorario = h.IdHorario;
 
  
 </select>
