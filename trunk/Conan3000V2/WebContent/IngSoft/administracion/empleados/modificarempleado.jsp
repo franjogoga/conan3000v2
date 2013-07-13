@@ -165,7 +165,7 @@
 						
 			            <div class="form-actions">
 							  <button type="button" class="btn btn-primary" onclick="javascript:alt_submit()">Modificar</button>
-							  <button type="button" class="btn" onclick="location.href='buscarempleado.jsp'" >Cancelar</button>
+							  <button type="button" class="btn" onclick="javascript:history.back(1)">Cancelar</button>
 							</div>
 		              </fieldset>
 		            </form>
