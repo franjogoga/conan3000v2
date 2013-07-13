@@ -64,6 +64,7 @@
 	   										}else if (casoUso.equals("SMVSolicitudSocio")){%> <li><a class="ajax-link venta" href="<%=request.getContextPath()%>/IngSoft/ventas/solicitud/buscarsolicitudsocio.jsp"style="display:none"><i class="icon-wrench"></i><span class="hidden-tablet"> Solicitud de Socio</span></a></li> <%
 	   										}else if (casoUso.equals("SMVJuridica")) {%><li><a class="ajax-link venta" href="<%=request.getContextPath()%>/IngSoft/servicio/juridica/juridicabuscar.jsp"style="display:none"><i class="icon-wrench"></i><span class="hidden-tablet"> Persona Juridica</span></a></li><%	   										
 	   										}else if (casoUso.equals("SMVSolicitudProducto")) {%><li><a class="ajax-link venta" href="<%=request.getContextPath()%>/IngSoft/ventas/solicitud/buscarsolicitudproducto.jsp"style="display:none"><i class="icon-wrench"></i><span class="hidden-tablet"> solicitud producto</span></a></li><%	   										
+	   										}else if (casoUso.equals("SMVVentaProductos")) {%><li><a class="ajax-link venta" href="<%=request.getContextPath()%>/IngSoft/ventas/ventaproducto/buscarventaproducto.jsp"style="display:none"><i class="icon-wrench"></i><span class="hidden-tablet"> Venta de Productos</span></a></li><%	   										
 	   										} 
 	   										i++;
 	   										if (i==casosDeUso.size()) break;
