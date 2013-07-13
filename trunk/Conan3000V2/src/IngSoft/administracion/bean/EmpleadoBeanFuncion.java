@@ -207,7 +207,7 @@ public class EmpleadoBeanFuncion {
 	
 	public boolean eliminarEmpleado(String codigo) throws CoException {
 		boolean resultado=false;		
-		
+		//ELIMINA AL EMPLEADO
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
 		
@@ -218,10 +218,25 @@ public class EmpleadoBeanFuncion {
 		catch(Exception a)		
 		{sqlsesion.rollback();
 		a.printStackTrace();
-			throw CoException.set("Error: No se pudo eliminar la plantilla intente de nuevo", "SMSEmpleado?accion=Agregar&tipo=1");
+			throw CoException.set("Error: No se pudo eliminar el empleado intente de nuevo", "SMSEmpleado?accion=Agregar&tipo=1");
 			
 		}
 		
+		finally{
+			sqlsesion.commit();
+			sqlsesion.close();					
+		}
+		//ELIMINA AL USUARIO
+		sqlsesion=MyBatisSesion.metodo().openSession();
+		try{
+			sqlsesion.update("Data.administracion.empleado.deleteEmpleadoUsuario",codigo);
+			resultado=true;
+		}
+		catch(Exception a){
+			sqlsesion.rollback();
+			a.printStackTrace();
+			throw CoException.set("Error: No se pudo eliminar el empleado intente de nuevo", "SMSEmpleado?accion=Agregar&tipo=1");
+		}
 		finally{
 			sqlsesion.commit();
 			sqlsesion.close();					
