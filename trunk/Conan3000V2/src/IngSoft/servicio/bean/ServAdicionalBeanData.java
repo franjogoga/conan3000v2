@@ -1,9 +1,12 @@
 package IngSoft.servicio.bean;
 
-public class ServAdicionalBeanData {
+import java.io.Serializable;
+
+public class ServAdicionalBeanData implements Serializable {
 	private String codigo;
 	private String nombre;
 	private String descripcion;
+	private String tipo;
 	private String estado;
 	private double precio;
 	public String getCodigo() {
@@ -35,6 +38,12 @@ public class ServAdicionalBeanData {
 	}
 	public void setPrecio(double precio) {
 		this.precio = precio;
+	}
+	public String getTipo() {
+		return tipo;
+	}
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
 
 	

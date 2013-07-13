@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Data.servicio.servadicional">
+
+  <cache />
+
+<select id="searchServAdicional" parameterType="hashmap" resultType="IngSoft.servicio.bean.ServAdicionalBeanData">
+select IdServAdicional
+,Nombre
+,Tipo
+,Monto as precio
+,Descripcion
+,Estado 
+from 
+SERV_ADICIONAL 
+where Nombre like #{nombre}
+and tipo like #{tipo} 
+and UPPER(estado) like UPPER(#{estado}); 
+</select>
+
+<select id="getNextCodigoSA" resultType="java.lang.String">
+	select Max(IdServAdicional) from  SERV_ADICIONAL	
+</select>
+
+<insert id="insertServAdicional" parameterType="hashmap">
+insert into SERV_ADICIONAL(IdServAdicional
+,Nombre
+,Tipo
+,Monto
+,Descripcion
+,Estado )
+values (#{codigo},#{nombre},#{tipo},#{precio},#{desc},'Activo');
+</insert>
+<update id="modificarServAdicional" parameterType="IngSoft.servicio.bean.ServAdicionalBeanData">
+UPDATE SERV_ADICIONAL
+SET
+Nombre = #{nombre},
+Tipo = #{tipo},
+Monto = #{precio},
+Descripcion = #{descripcion},
+WHERE IdServAdicional like #{codigo}
+</update>
+<update id="eliminarServAdicional" parameterType="java.lang.String">
+UPDATE SERV_ADICIONAL
+SET
+Estado = 'Eliminado'
+WHERE IdServAdicional like #{codigo}
+</update>
+</mapper>

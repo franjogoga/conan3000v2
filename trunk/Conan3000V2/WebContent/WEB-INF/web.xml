@@ -172,7 +172,10 @@
         <servlet-name>SMAConfiguracion</servlet-name>
 	<servlet-class>IngSoft.administracion.configuracion.SMAConfiguracion</servlet-class>				   
 </servlet>
-
+<servlet id="Servlet_0041">
+        <servlet-name>SMSServAdcional</servlet-name>
+	<servlet-class>IngSoft.servicio.servadicional.SMSServAdcional</servlet-class>				   
+</servlet>
 
 
 <servlet-mapping id="ServletMapping_0001">
@@ -342,6 +345,11 @@
         <servlet-name>SMAConfiguracion</servlet-name>
 <url-pattern>/IngSoft/administracion/configuracion/SMAConfiguracion</url-pattern>
 </servlet-mapping>
+<servlet-mapping id="ServletMapping_0041">
+        <servlet-name>SMSServAdcional</servlet-name>
+<url-pattern>/IngSoft/servicio/servadicional/SMSServAdcional</url-pattern>
+</servlet-mapping>
+
 <error-page>
 <error-code>404</error-code>
 <location>/IngSoft/general/404.jsp</location>

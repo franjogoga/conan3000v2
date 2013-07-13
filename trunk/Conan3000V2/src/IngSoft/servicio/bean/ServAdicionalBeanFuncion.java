@@ -36,12 +36,13 @@ public class ServAdicionalBeanFuncion {
 	   private ServAdicionalBeanFuncion() {}
 	
 	   	  	  
-		public ServAdicionalBeanData crearEvento(HttpServletRequest request, HttpServletResponse response){
+		public ServAdicionalBeanData crearServAdicional(HttpServletRequest request, HttpServletResponse response){
 			ServAdicionalBeanData servAdicionalData= new ServAdicionalBeanData();
 			String temp=null;
 			try{
 			servAdicionalData.setCodigo(request.getParameter("txtCodigo"));			
-			servAdicionalData.setNombre(request.getParameter("txtNombre"));			
+			servAdicionalData.setNombre(request.getParameter("txtNombre"));
+			servAdicionalData.setTipo(request.getParameter("cmbTipo"));	
 			servAdicionalData.setDescripcion(request.getParameter("txtDesc").trim());												
 			temp=request.getParameter("txtPrecio");
 			temp=(temp==null||temp.isEmpty())?"0.00":temp;
@@ -67,8 +68,9 @@ public class ServAdicionalBeanFuncion {
 			HashMap<String, Object> map=new HashMap<String, Object>();
 			map.put("codigo", servAdicionalData.getCodigo());
 			map.put("nombre", servAdicionalData.getNombre());	
-			map.put("precio", servAdicionalData.getPrecio());			
-			map.put("descripcion", servAdicionalData.getDescripcion());						
+			map.put("precio", servAdicionalData.getPrecio());
+			map.put("tipo",  servAdicionalData.getTipo());
+			map.put("desc", servAdicionalData.getDescripcion());						
 			sqlsesion.insert("Data.servicio.servadicional.insertServAdicional",map);
 			sqlsesion.commit();
 			resultado=true;
@@ -93,6 +95,9 @@ public class ServAdicionalBeanFuncion {
 		List<ServAdicionalBeanData> resultados=sqlsesion.selectList("Data.servicio.servadicional.searchServAdicional",map);
 	
 		resultadosV= new Vector<>(resultados);
+		}
+		catch(Exception e){
+			e.printStackTrace();
 		}
 		finally{
 		sqlsesion.close();}
