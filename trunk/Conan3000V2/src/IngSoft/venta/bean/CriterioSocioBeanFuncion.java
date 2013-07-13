@@ -36,8 +36,8 @@ public class CriterioSocioBeanFuncion {
 		return criterioSocioData;				
 	}
 	
-	public Vector<ResultadoSocioBeanData> buscarPlantillaSocio(CriterioSocioBeanData criterioSocioData){
-		l1.lock();
+	public synchronized Vector<ResultadoSocioBeanData> buscarPlantillaSocio(CriterioSocioBeanData criterioSocioData){
+		
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		Vector<ResultadoSocioBeanData> resultadosV=null;
 		try{		
@@ -47,7 +47,7 @@ public class CriterioSocioBeanFuncion {
 		}
 		finally{
 		sqlsesion.close();
-		l1.unlock();}
+		}
 		return resultadosV;
 		
 	}
