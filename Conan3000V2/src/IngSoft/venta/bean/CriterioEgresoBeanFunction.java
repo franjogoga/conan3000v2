@@ -56,8 +56,7 @@ public class CriterioEgresoBeanFunction {
 		return criterioEgresoData;				
 	}
 	
-	public Vector<ResultadoEgresoBeanData> buscarEgreso(CriterioEgresoBeanData criterioEgresoData){	
-		l1.lock();
+	public synchronized Vector<ResultadoEgresoBeanData> buscarEgreso(CriterioEgresoBeanData criterioEgresoData){	
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		Vector<ResultadoEgresoBeanData> resultadosV=null;
 		try{		
@@ -71,7 +70,7 @@ public class CriterioEgresoBeanFunction {
 		}
 		finally{
 		sqlsesion.close();
-		l1.unlock();}
+		}
 		return resultadosV;
 		
 	}
