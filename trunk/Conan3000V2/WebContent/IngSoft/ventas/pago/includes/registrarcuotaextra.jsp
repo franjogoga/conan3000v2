@@ -25,6 +25,26 @@ form.fFechaEmision0.value=form.fFechaEmision.value;
 form.fFechaVencimiento0.value=form.fFechaVencimiento.value;
 }
 
+function activarSocio(){
+	var form= document.frmPago;
+	if(form.chkAplicar.checked){
+		document.getElementById("dvSocio").style.display='block';
+		document.getElementById("dvPeriodo").style.display='block';
+		document.getElementById("dvFechaVencimiento").style.display='block';
+		
+		
+	}else{
+		document.getElementById("dvSocio").style.display='none';
+		document.getElementById("dvPeriodo").style.display='none';
+		document.getElementById("dvFechaVencimiento").style.display='none';
+		
+	
+	}
+}
+
+
+
+
 function comprueba(obj){ 
 if (isNaN(obj.value)){ 
 obj.value=1; 
@@ -158,6 +178,17 @@ String fecHoy=dfActual.format(new java.util.Date());
 			        <input type="hidden" name="fFechaPago" value="<%=fecHoy%>"></input>
 					<input type="hidden" name="tipo" value="2"></input>
 			          <fieldset>
+					  
+					  <div class="control-group" id="dvPersonal">
+			                <label class="control-label" for="typeahead8">Aplicar a un Socio: </label>
+			                <div class="controls">
+									<input type="checkbox" id="chkAplicar" name="chkAplicar" value="1" onChange="activarSocio();">
+									
+							</div>
+		                  </div>
+					  
+					  
+					  
 			          <div class="control-group" id="dvPeriodo">
                             <label class="control-label" for="selectError">Periodo Pago (*):</label>
                             <div class="controls">
@@ -172,7 +203,8 @@ String fecHoy=dfActual.format(new java.util.Date());
                             </div>
                           </div>
 						  
-			          <div class="control-group" id="dvSocio">
+			          		          
+					  <div class="control-group" id="dvSocio">
 			                <label class="control-label" for="typeahead8">Socio (*): </label>
 			                <div class="controls">
 			                  <input type="text" class="span6 typeahead" id="typeahead8"  data-provide="typeahead" name="txtSocio" data-items="4" readonly="readonly">
@@ -181,7 +213,8 @@ String fecHoy=dfActual.format(new java.util.Date());
 			                  <span class="help-inline" id="errSocio">Please correct the error</span>
 			                </div>
 		                  </div>
-			          <div class="control-group" id="dvMonto">
+					  
+					  <div class="control-group" id="dvMonto">
                             <label class="control-label" for="typeahead2">Monto Total: (*)</label>
                             <div class="controls">
                               <input type="text" class="input-xlarge" id="txtMonto" name="txtMonto" value="" onKeyUp="comprueba(this);actualizarMonto();" onChange="actualizarMonto()">
@@ -251,7 +284,7 @@ String fecHoy=dfActual.format(new java.util.Date());
 		      </div>
 			  <!--/row-->
 			 
-
+<script>activarSocio();actualizarHidden();</script>
 		  
        
 					<!-- content ends -->

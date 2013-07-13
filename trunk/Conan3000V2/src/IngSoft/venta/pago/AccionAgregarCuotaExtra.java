@@ -23,10 +23,12 @@ public class AccionAgregarCuotaExtra extends CoAccion {
 				if(tipo==2){
 					
 					OrdenPagoBeanData ordenPagoData=OrdenPagoFunction.crearCuotaExtra(request, response);
-					
-					
-					
-					OrdenPagoFunction.agregarCuotaExtra(ordenPagoData);
+					System.out.println("valor de aplicar: "+ordenPagoData.getAplicar());
+					if(ordenPagoData.getAplicar()==1){
+						OrdenPagoFunction.agregarCuotaExtra(ordenPagoData);
+					}else{
+						OrdenPagoFunction.agregarCuotaExtra2(ordenPagoData);
+					}	
 					this.direccionar(sc, request, response, "/IngSoft/ventas/pago/buscarpagootros.jsp");
 				}
 				

@@ -8,6 +8,7 @@ public class ResultadoPagoBeanData implements Serializable {
 	private String idPago;
 	private String idSocio;
 	private String idCuota;
+	private String idDetalleCuota;
 	private String socio;
 	private Date fechaEmision;
 	private Date fechaVencimiento;
@@ -23,6 +24,12 @@ public class ResultadoPagoBeanData implements Serializable {
 	
 	
 	
+	public String getIdDetalleCuota() {
+		return idDetalleCuota;
+	}
+	public void setIdDetalleCuota(String idDetalleCuota) {
+		this.idDetalleCuota = idDetalleCuota;
+	}
 	public String getIdCuota() {
 		return idCuota;
 	}

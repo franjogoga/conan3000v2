@@ -77,7 +77,9 @@ public class CriterioOrdenPagoBeanFunction {
 			if(criterioOrdenPagoData.getEstado().equals("Cancelado")){
 				resultados=sqlsesion.selectList("searchOrdenPagada",criterioOrdenPagoData);
 			}else{
-				resultados=sqlsesion.selectList("searchOrdenPago",criterioOrdenPagoData);
+				
+					resultados=sqlsesion.selectList("searchOrdenPago",criterioOrdenPagoData);
+				
 			}				
 		resultadosV= new Vector<>(resultados);
 		}
@@ -92,4 +94,36 @@ public class CriterioOrdenPagoBeanFunction {
 		return resultadosV;
 		
 	}
+	
+	public Vector<ResultadoOrdenPagoBeanData> buscarOrdenPago2(CriterioOrdenPagoBeanData criterioOrdenPagoData){		
+		l1.lock();
+		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+		Vector<ResultadoOrdenPagoBeanData> resultadosV=null;
+		try{		
+			List<ResultadoOrdenPagoBeanData> resultados=null;
+		
+				resultados=sqlsesion.selectList("searchOrdenPagoCuota",criterioOrdenPagoData);
+				
+					
+		resultadosV= new Vector<>(resultados);
+		}
+		catch(Exception a)		
+		{
+		a.printStackTrace();
+		}
+		finally{
+		sqlsesion.close();
+		l1.unlock();
+		}
+		return resultadosV;
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 }

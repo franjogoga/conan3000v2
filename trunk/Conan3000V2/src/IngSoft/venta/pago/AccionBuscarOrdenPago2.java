@@ -14,7 +14,7 @@ import IngSoft.venta.bean.CriterioOrdenPagoBeanData;
 import IngSoft.venta.bean.CriterioOrdenPagoBeanFunction;
 import IngSoft.venta.bean.ResultadoOrdenPagoBeanData;
 @SessionScoped
-public class AccionBuscarOrdenPago extends CoAccion {
+public class AccionBuscarOrdenPago2 extends CoAccion {
 
 	@Override
 	public void ejecutar(ServletContext sc, HttpServletRequest request,
@@ -23,13 +23,12 @@ public class AccionBuscarOrdenPago extends CoAccion {
 		
 		CriterioOrdenPagoBeanData criterioOrdenPagoData =new CriterioOrdenPagoBeanFunction().crearCriterio(request,response);
 		
-		Vector<ResultadoOrdenPagoBeanData> resultados=new CriterioOrdenPagoBeanFunction().buscarOrdenPago(criterioOrdenPagoData);
+		Vector<ResultadoOrdenPagoBeanData> resultados=new CriterioOrdenPagoBeanFunction().buscarOrdenPago2(criterioOrdenPagoData);
 			
 		
 		//request.setAttribute(name, o)
 		request.setAttribute("resultados", resultados);
-		
-			this.direccionar(sc, request, response, "/IngSoft/ventas/pago/buscarpagootros.jsp");
+			this.direccionar(sc, request, response, "/IngSoft/ventas/pago/buscarpagootros2.jsp");
 		
 	}
 

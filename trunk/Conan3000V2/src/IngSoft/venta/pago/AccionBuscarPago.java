@@ -12,6 +12,7 @@ import IngSoft.general.CoAccion;
 import IngSoft.general.CoException;
 import IngSoft.venta.bean.CriterioPagoBeanData;
 import IngSoft.venta.bean.CriterioPagoBeanFunction;
+import IngSoft.venta.bean.PagoBeanFunction;
 import IngSoft.venta.bean.ResultadoPagoBeanData;
 @SessionScoped
 public class AccionBuscarPago extends CoAccion {
@@ -23,6 +24,8 @@ public class AccionBuscarPago extends CoAccion {
 		
 		CriterioPagoBeanData criterioPagoData =new CriterioPagoBeanFunction().crearCriterio(request,response);
 		Vector<ResultadoPagoBeanData> resultados=new CriterioPagoBeanFunction().buscarPago(criterioPagoData);
+		PagoBeanFunction pago=PagoBeanFunction.getInstance();
+		pago.cuotaVitalicio();
 		
 		//request.setAttribute(name, o)
 		request.setAttribute("resultados", resultados);
