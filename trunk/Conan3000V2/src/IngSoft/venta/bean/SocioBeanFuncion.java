@@ -73,6 +73,7 @@ public class SocioBeanFuncion {
 			else socioData.setCodigo("SOC000001");
 			
 			//String codigoP= (String)sqlsesion.selectOne("Data.venta.socio.getNextCodigo3");
+			codigo=socioData.getCodigo();
 			if(codigo!=null){
 			////int cod= Integer.parseInt(codigo.substring(3))+1;
 			////String defecto= "000000";
@@ -89,7 +90,6 @@ public class SocioBeanFuncion {
 			
 			//aca creo el usuario y password
 			//PersonaMiniBeanData personaData2=sqlsesion.selectOne("Data.venta.socio.getPlantillaPersona", codigo);
-			
 			long dni=personaData.getNumeroDocumento();
 			String strLong = Long.toString(dni);
 			String ceros="";
