@@ -15,8 +15,7 @@ import IngSoft.general.MyBatisSesion;
 
 public class ServicioBeanFunction {	
 	
-	static private ServicioBeanFunction ServicioFunction=null;
-	private Lock l= new ReentrantLock();     
+	static private ServicioBeanFunction ServicioFunction=null;  
 		   
 	public static ServicioBeanFunction getInstance(){
 		if(ServicioFunction==null) ServicioFunction= new ServicioBeanFunction();
@@ -50,9 +49,8 @@ public class ServicioBeanFunction {
 		return servicioData;
 	} 
 	
-	public boolean agregarServicio(ServicioBeanData servicioData) throws CoException {
+	public synchronized boolean agregarServicio(ServicioBeanData servicioData) throws CoException {
 		boolean resultado=false;		
-		l.lock();
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
 			String codigo= (String)sqlsesion.selectOne("Data.administracion.servicio.getNextCodigo");
@@ -75,15 +73,13 @@ public class ServicioBeanFunction {
 		}
 		finally{
 			sqlsesion.commit();
-			sqlsesion.close();
-			l.unlock();					
+			sqlsesion.close();					
 		}
 		return resultado;
 	}
 	
-	public boolean eliminarServicio(String codigo) throws CoException {
+	public synchronized boolean eliminarServicio(String codigo) throws CoException {
 		boolean resultado=false;
-		l.lock();		
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
 			sqlsesion.update("Data.administracion.servicio.deleteServicio",codigo);
@@ -96,15 +92,13 @@ public class ServicioBeanFunction {
 		}		
 		finally{
 			sqlsesion.commit();
-			sqlsesion.close();
-			l.unlock();							
+			sqlsesion.close();				
 		}
 		return resultado;
 	}
 
-	public boolean modificarServicio(ServicioBeanData servicioData) throws CoException {
+	public synchronized boolean modificarServicio(ServicioBeanData servicioData) throws CoException {
 		boolean resultado=false;
-		l.lock();
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
 			sqlsesion.update("Data.administracion.servicio.updateServicio",servicioData);
@@ -117,8 +111,7 @@ public class ServicioBeanFunction {
 		}
 		finally{
 			sqlsesion.commit();
-			sqlsesion.close();
-			l.unlock();							
+			sqlsesion.close();				
 		}
 		return resultado;
 	}

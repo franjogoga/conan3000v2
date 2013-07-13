@@ -17,8 +17,7 @@ import IngSoft.administracion.bean.TipoAmbienteMiniBeanData;
 
 public class AmbienteBeanFunction {	
 	
-	static private AmbienteBeanFunction AmbienteFunction=null;
-	private Lock l= new ReentrantLock();     
+	static private AmbienteBeanFunction AmbienteFunction=null;  
 		   
 	public static AmbienteBeanFunction getInstance(){
 		if(AmbienteFunction==null) AmbienteFunction= new AmbienteBeanFunction();
@@ -56,9 +55,8 @@ public class AmbienteBeanFunction {
 		return ambienteData;		
 	} 
 	
-	public boolean agregarAmbiente(AmbienteBeanData ambienteData) throws CoException {
+	public synchronized boolean agregarAmbiente(AmbienteBeanData ambienteData) throws CoException {
 		boolean resultado=false;		
-		l.lock();
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
 			String codigo= (String)sqlsesion.selectOne("Data.administracion.ambiente.getNextCodigo");
@@ -82,14 +80,12 @@ public class AmbienteBeanFunction {
 		finally{
 			sqlsesion.commit();
 			sqlsesion.close();
-			l.unlock();					
 		}
 		return resultado;
 	}
 	
-	public boolean eliminarAmbiente(String codigo) throws CoException {
+	public synchronized boolean eliminarAmbiente(String codigo) throws CoException {
 		boolean resultado=false;
-		l.lock();
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
 			sqlsesion.update("Data.administracion.ambiente.deleteAmbiente",codigo);
@@ -102,15 +98,13 @@ public class AmbienteBeanFunction {
 		}		
 		finally{
 			sqlsesion.commit();
-			sqlsesion.close();
-			l.unlock();						
+			sqlsesion.close();					
 		}
 		return resultado;
 	}
 
-	public boolean modificarAmbiente(AmbienteBeanData ambienteData) throws CoException {
+	public synchronized boolean modificarAmbiente(AmbienteBeanData ambienteData) throws CoException {
 		boolean resultado=false;
-		l.lock();
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
 			sqlsesion.update("Data.administracion.ambiente.updateAmbiente",ambienteData);
@@ -123,8 +117,7 @@ public class AmbienteBeanFunction {
 		}
 		finally{
 			sqlsesion.commit();
-			sqlsesion.close();	
-			l.unlock();						
+			sqlsesion.close();						
 		}
 		return resultado;
 	}
