@@ -16,7 +16,7 @@
 </select>
 
 <update id="updatePlantillaEmpleado" parameterType="IngSoft.administracion.bean.EmpleadoBeanData">
-update EMPLEADO set EMPLEADO.Area =#{area}
+update EMPLEADO set EMPLEADO.Area =#{area}, EMPLEADO.IdSede = #{idSede}, EMPLEADO.IdHorario = #{idHorario}
 where  IdEmpleado= #{codigo};
 </update>
 
