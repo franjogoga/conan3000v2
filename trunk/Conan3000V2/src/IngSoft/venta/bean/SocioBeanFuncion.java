@@ -56,9 +56,9 @@ public class SocioBeanFuncion {
 		return socioData;		
 	} 
 	
-	public boolean agregarSocio(SocioBeanData socioData) throws CoException {
+	public synchronized boolean agregarSocio(SocioBeanData socioData) throws CoException {
 		boolean resultado=false;		
-		l.lock();
+		
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
 			String codigo= (String)sqlsesion.selectOne("Data.venta.socio.getNextCodigo3");
@@ -89,15 +89,15 @@ public class SocioBeanFuncion {
 		finally{
 			sqlsesion.commit();
 			sqlsesion.close();
-			l.unlock();					
+								
 		}
 			
 		return resultado;
 	}
 	
-	public boolean agregarSocioTraslado(SocioBeanData socioData) throws CoException {
+	public synchronized boolean agregarSocioTraslado(SocioBeanData socioData) throws CoException {
 		boolean resultado=false;		
-		l.lock();
+		
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
 			String codigo= (String)sqlsesion.selectOne("Data.venta.socio.getNextCodigo3");
@@ -135,15 +135,15 @@ public class SocioBeanFuncion {
 		finally{
 			sqlsesion.commit();
 			sqlsesion.close();
-			l.unlock();					
+							
 		}
 			
 		return resultado;
 	}
 	
 	
-	public SocioBeanData consultarSocio(String codigo){
-	l1.lock();
+	public synchronized SocioBeanData consultarSocio(String codigo){
+	
 		SocioBeanData socioData=null;
 	SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 	try{
@@ -151,7 +151,7 @@ public class SocioBeanFuncion {
 	}
 	finally{
 		sqlsesion.close();
-		l1.unlock();
+		
 	}
 	return socioData;
 	}
@@ -191,8 +191,8 @@ public class SocioBeanFuncion {
 		return new Vector<>(resultados);
 	}
 	
-	public void modificarSocio(SocioBeanData socio) throws CoException {
-	l2.lock();
+	public synchronized void modificarSocio(SocioBeanData socio) throws CoException {
+	
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
 					
@@ -208,7 +208,7 @@ public class SocioBeanFuncion {
 		finally{
 			sqlsesion.commit();
 			sqlsesion.close();
-			l2.unlock();
+			
 		}			
 		return ;
 	}
