@@ -312,6 +312,10 @@ WHERE
 
 EMPLEADO.IdEmpleado = PERSONA.IdPersona
 
+AND
+
+EMPLEADO.Estado = 'activo'
+
 
 
 
@@ -343,6 +347,8 @@ WHERE
 
 EMPLEADO.IdEmpleado = PERSONA.IdPersona
 AND PERSONA.Nombres  like  #{nombre}
+AND
+EMPLEADO.Estado = 'activo'
 
 
 
