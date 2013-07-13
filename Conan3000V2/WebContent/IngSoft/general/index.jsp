@@ -3,7 +3,7 @@
 <head>
 
 	<meta charset="utf-8">
-	<title>Home</title>
+	<title>Inicio</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="Dos Virgenes, pagina de administrador">
 	<meta name="author" content="Dos Virgenes">
@@ -105,15 +105,13 @@
 					<div class="box-header well">
 						<h2><i class="icon-info-sign"></i> Introducci&oacute;n</h2>
 						<div class="box-icon">
-							<a href="#" class="btn btn-setting btn-round"><i class="icon-cog"></i></a>
-							<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
-							<a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>
+							<!--  iconos -->
 						</div>
 					</div>
 					<div class="box-content">
-						<h1>Conan 3000 <small>intranet</small></h1>
-						<p>Its a live demo of the template. I have created Charisma to ease the repeat work I have to do on my projects. Now I re-use Charisma as a base for my admin panel work and I am sharing it with you :)</p>
-						<p><b>All pages in the menu are functional, take a look at all, please share this with your followers.</b></p>
+						<h1>Conan 3000 <small></small></h1>
+						<p>Bienvenido a la p&aacute;gina de administrador.</p>
+						<p><b>Comience a gestionar su club de una manera sencilla y r&aacute;pida.</b></p>
 												
 						<div class="clearfix"></div>
 					</div>
@@ -123,45 +121,32 @@
 			<div class="row-fluid sortable">
 				<div class="box span4">
 					<div class="box-header well">
-						<h2><i class="icon-th"></i> Tabs</h2>
+						<h2><i class="icon-th"></i> Extras</h2>
 						<div class="box-icon">
-							<a href="#" class="btn btn-setting btn-round"><i class="icon-cog"></i></a>
-							<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
-							<a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>
+							
+							
 						</div>
 					</div>
 					<div class="box-content">
 						<ul class="nav nav-tabs" id="myTab">
-							<li class="active"><a href="#info">Info</a></li>
-							<li><a href="#custom">Custom</a></li>
-							<li><a href="#messages">Messages</a></li>
+							<li class="active"><a href="#info">C&oacute;digo QR</a></li>
+							
 						</ul>
 						 
 						<div id="myTabContent" class="tab-content">
 							<div class="tab-pane active" id="info">
-								<h3>Conan 3000 <small>a fully featued template</small></h3>
-								<p>Its a fully featured, responsive template for your admin panel. Its optimized for tablet and mobile phones. Scan the QR code below to view it in your mobile device.</p> <img alt="QR Code" class="charisma_qr center" src="img/qrcode136.png" />
-							</div>
-							<div class="tab-pane" id="custom">
-								<h3>Custom <small>small text</small></h3>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor.</p>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales at. Nulla tellus elit, varius non commodo eget, mattis vel eros. In sed ornare nulla. Donec consectetur, velit a pharetra ultricies, diam lorem lacinia risus, ac commodo orci erat eu massa. Sed sit amet nulla ipsum. Donec felis mauris, vulputate sed tempor at, aliquam a ligula. Pellentesque non pulvinar nisi.</p>
-							</div>
-							<div class="tab-pane" id="messages">
-								<h3>Messages <small>small text</small></h3>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales at. Nulla tellus elit, varius non commodo eget, mattis vel eros. In sed ornare nulla. Donec consectetur, velit a pharetra ultricies, diam lorem lacinia risus, ac commodo orci erat eu massa. Sed sit amet nulla ipsum. Donec felis mauris, vulputate sed tempor at, aliquam a ligula. Pellentesque non pulvinar nisi.</p>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor.</p>
-							</div>
+								<h3> <small> Escanee el c&oacute;digo QR con su smartphone </small></h3>
+								<p>Usted puede administrar la p&aacute;gina desde su celular </p> <img alt="QR Code" class="charisma_qr center" src="img/qrcode136.png" />
+							</div>							
 						</div>
 					</div>
 				</div><!--/span-->
 						
 				<div class="box span4">
 					<div class="box-header well" data-original-title>
-						<h2><i class="icon-user"></i> Member Activity</h2>
+						<h2><i class="icon-user"></i> Actividad de los Miembros</h2>
 						<div class="box-icon">
-							<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
-							<a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>
+							
 						</div>
 					</div>
 					<div class="box-content">
@@ -169,35 +154,35 @@
 							<ul class="dashboard-list">
 								<li>
 									<a href="#">
-										<img class="dashboard-avatar" alt="Usman" src="http://www.gravatar.com/avatar/f0ea51fa1e4fae92608d8affee12f67b.png?s=50"></a>
-										<strong>Name:</strong> <a href="#">Usman
+										<img class="dashboard-avatar" alt="Usman" src="img/chato.png"></a>
+										<strong>Nombre:</strong> <a href="#">Daniel Bernal
 									</a><br>
-									<strong>Since:</strong> 17/05/2012<br>
-									<strong>Status:</strong> <span class="label label-success">Approved</span>                                  
+									<strong>Desde:</strong> 17/05/2012<br>
+									<strong>Estado:</strong> <span class="label label-success">Aprobado</span>                                  
 								</li>
 								<li>
 									<a href="#">
-										<img class="dashboard-avatar" alt="Sheikh Heera" src="http://www.gravatar.com/avatar/3232415a0380253cfffe19163d04acab.png?s=50"></a>
-										<strong>Name:</strong> <a href="#">Sheikh Heera
+										<img class="dashboard-avatar" alt="Sheikh Heera" src="img/colorado.png"></a>
+										<strong>Nombre:</strong> <a href="#">David Bigio
 									</a><br>
-									<strong>Since:</strong> 17/05/2012<br>
-									<strong>Status:</strong> <span class="label label-warning">Pending</span>                                 
+									<strong>Desde:</strong> 17/05/2012<br>
+									<strong>Estado:</strong> <span class="label label-warning">Suspendido</span>                                 
 								</li>
 								<li>
 									<a href="#">
-										<img class="dashboard-avatar" alt="Abdullah" src="http://www.gravatar.com/avatar/46056f772bde7c536e2086004e300a04.png?s=50"></a>
-										<strong>Name:</strong> <a href="#">Abdullah
+										<img class="dashboard-avatar" alt="Abdullah" src="img/liz.png"></a>
+										<strong>Nombre:</strong> <a href="#">Liz D&iacute;az
 									</a><br>
-									<strong>Since:</strong> 25/05/2012<br>
-									<strong>Status:</strong> <span class="label label-important">Banned</span>                                  
+									<strong>Desde:</strong> 25/05/2012<br>
+									<strong>Estado:</strong> <span class="label label-important">Eliminado</span>                                  
 								</li>
 								<li>
 									<a href="#">
-										<img class="dashboard-avatar" alt="Saruar Ahmed" src="http://www.gravatar.com/avatar/564e1bb274c074dc4f6823af229d9dbb.png?s=50"></a>
-										<strong>Name:</strong> <a href="#">Saruar Ahmed
+										<img class="dashboard-avatar" alt="Saruar Ahmed" src="img/ati.png"></a>
+										<strong>Nombre:</strong> <a href="#">Carlos Bustamante
 									</a><br>
-									<strong>Since:</strong> 17/05/2012<br>
-									<strong>Status:</strong> <span class="label label-info">Updates</span>                                  
+									<strong>Desde:</strong> 17/05/2012<br>
+									<strong>Estado:</strong> <span class="label label-info">Actualizado</span>                                  
 								</li>
 							</ul>
 						</div>
@@ -206,96 +191,18 @@
 						
 				<div class="box span4">
 					<div class="box-header well" data-original-title>
-						<h2><i class="icon-list-alt"></i> Realtime Traffic</h2>
+						<h2><i class="icon-list-alt"></i> Tr&aacute;fico de la p&aacute;gina</h2>
 						<div class="box-icon">
-							<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
-							<a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>
+						
 						</div>
 					</div>
 					<div class="box-content">
 						<div id="realtimechart" style="height:190px;"></div>
-							<p class="clearfix">You can update a chart periodically to get a real-time effect by using a timer to insert the new data in the plot and redraw it.</p>
-							<p>Time between updates: <input id="updateInterval" type="text" value="" style="text-align: right; width:5em"> milliseconds</p>
+							<p class="clearfix">Seleccione un valor para mostrar el cuadro de tr&aacute;fico de la p&aacute;gina.</p>
+							<p>Tiempo en milisegundos : <input id="updateInterval" type="text" value="" style="text-align: right; width:5em"> </p>
 					</div>
 				</div><!--/span-->
-			</div><!--/row-->
-
-			<div class="row-fluid sortable">									
-					
-				<div class="box span4">
-					<div class="box-header well" data-original-title>
-						<h2><i class="icon-list"></i> Weekly Stat</h2>
-						<div class="box-icon">
-							<a href="#" class="btn btn-setting btn-round"><i class="icon-cog"></i></a>
-							<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
-							<a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>
-						</div>
-					</div>
-					<div class="box-content">
-						<ul class="dashboard-list">
-							<li>
-								<a href="#">
-									<i class="icon-arrow-up"></i>                               
-									<span class="green">92</span>
-									New Comments                                    
-								</a>
-							</li>
-						  <li>
-							<a href="#">
-							  <i class="icon-arrow-down"></i>
-							  <span class="red">15</span>
-							  New Registrations
-							</a>
-						  </li>
-						  <li>
-							<a href="#">
-							  <i class="icon-minus"></i>
-							  <span class="blue">36</span>
-							  New Articles                                    
-							</a>
-						  </li>
-						  <li>
-							<a href="#">
-							  <i class="icon-comment"></i>
-							  <span class="yellow">45</span>
-							  User reviews                                    
-							</a>
-						  </li>
-						  <li>
-							<a href="#">
-							  <i class="icon-arrow-up"></i>                               
-							  <span class="green">112</span>
-							  New Comments                                    
-							</a>
-						  </li>
-						  <li>
-							<a href="#">
-							  <i class="icon-arrow-down"></i>
-							  <span class="red">31</span>
-							  New Registrations
-							</a>
-						  </li>
-						  <li>
-							<a href="#">
-							  <i class="icon-minus"></i>
-							  <span class="blue">93</span>
-							  New Articles                                    
-							</a>
-						  </li>
-						  <li>
-							<a href="#">
-							  <i class="icon-comment"></i>
-							  <span class="yellow">254</span>
-							  User reviews                                    
-							</a>
-						  </li>
-						</ul>
-					</div>
-				</div><!--/span-->
-			</div><!--/row-->
-				  
-
-		  
+			</div><!--/row-->  
        
 					<!-- content ends -->
 			</div><!--/#content.span10-->
@@ -305,11 +212,11 @@
 
 		<div class="modal hide fade" id="myModal">
 			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal">Ã—</button>
-				<h3>Settings</h3>
+				<button type="button" class="close" data-dismiss="modal">X—</button>
+				<h3>Opciones</h3>
 			</div>
 			<div class="modal-body">
-				<p>Here settings can be configured...</p>
+				<p>Aqu&iacute; las opciones pueden ser configuradas...</p>
 			</div>
 			<div class="modal-footer">
 				<a href="#" class="btn" data-dismiss="modal">Close</a>
