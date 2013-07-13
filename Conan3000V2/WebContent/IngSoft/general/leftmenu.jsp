@@ -30,7 +30,7 @@
 	   										}else if (casoUso.equals("SMASocio")){%> <li><a class="ajax-link administracion" href="<%=request.getContextPath()%>/IngSoft/administracion/socio/accionsocio.jsp"style="display:none"><i class="icon-wrench"></i><span class="hidden-tablet"> Socio</span></a></li><%
 	   										}else if (casoUso.equals("SMAConcesionario")){%> <li><a class="ajax-link administracion" href="<%=request.getContextPath()%>/IngSoft/administracion/concesionario/SMAConcesionario?accion=Buscar&tipo=1"style="display:none"><i class="icon-wrench"></i><span class="hidden-tablet"> Concesionarios </span></a></li> <%
 	   										}else if (casoUso.equals("SMAInfraccion")){%> <li><a class="ajax-link administracion" href="<%=request.getContextPath()%>/IngSoft/administracion/infraccion/buscarinfraccion.jsp"style="display:none"><i class="icon-wrench"></i><span class="hidden-tablet"> Multas por Infraccion </span></a></li> <%
-	   										}else if (casoUso.equals("SMAConfiguracion")){%> <li><a class="ajax-link administracion" href="<%=request.getContextPath()%>/IngSoft/administracion/SMAConfiguracion?accion=Consultar"style="display:none"><i class="icon-wrench"></i><span class="hidden-tablet"> Multas por Infraccion </span></a></li> <%
+	   										}else if (casoUso.equals("SMAConfiguracion")){%> <li><a class="ajax-link administracion" href="<%=request.getContextPath()%>/IngSoft/administracion/SMAConfiguracion?accion=Consultar"style="display:none"><i class="icon-wrench"></i><span class="hidden-tablet"> Configuracion </span></a></li> <%
 	   										}
 	   										i++;
 	   										if (i==casosDeUso.size()) break;
