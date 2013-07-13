@@ -33,24 +33,12 @@ public class InfraccionBeanFunction {
 	public InfraccionBeanData crearInfraccion(HttpServletRequest request, HttpServletResponse response){
 		InfraccionBeanData infraccionData= new InfraccionBeanData();
 		try{	
-			System.out.print("  --------- crearInfraccion ----------- ");
-			System.out.print("  txtCodigoSoc "+request.getParameter("txtCodigoSoc"));
-			System.out.print(" txtMonto "+request.getParameter("txtMonto"));
-			System.out.print(" txtDescripcion "+request.getParameter("txtDescripcion"));
-			System.out.print("  fFecInicio "+request.getParameter("fFecInicio"));
-			System.out.print("  fFecFin "+request.getParameter("fFecFin"));
-			
-			
-			
 	  		infraccionData.setCodigosocio(request.getParameter("txtCodigoSoc"));		
 			infraccionData.setMontomulta(Double.parseDouble(request.getParameter("txtMonto")));
 			infraccionData.setDescripcion(request.getParameter("txtDescripcion"));
 			infraccionData.setFechainicio(new Date(DF.parse(request.getParameter("fFecInicio")+"/0000").getTime()));
 			infraccionData.setFechafin(new Date(DF.parse(request.getParameter("fFecFin")+"/0000").getTime()));			
-			infraccionData.setEstado("Activo");
-			
-			
-			
+			infraccionData.setEstado("Activo");					
 		} catch(Exception e){
 			e.printStackTrace();		
 		}
@@ -71,8 +59,7 @@ public class InfraccionBeanFunction {
 			} else infraccionData.setCodigo("SXF000001");			
 			sqlsesion.insert("Data.administracion.infraccion.insertInfraccion",infraccionData);
 			OrdenPagoBeanFunction orden= OrdenPagoBeanFunction.getInstance();
-			orden.agregarOrdenPago("MULTAXINFRACCION",infraccionData.getCodigo(), "", infraccionData.getCodigosocio(), infraccionData.getMontomulta(), new java.sql.Date(new java.util.Date().getTime()), new java.sql.Date(infraccionData.getFechafin().getTime()));
-			
+			orden.agregarOrdenPago("MULTAXINFRACCION",infraccionData.getCodigo(), "", infraccionData.getCodigosocio(), infraccionData.getMontomulta(), new java.sql.Date(new java.util.Date().getTime()), new java.sql.Date(infraccionData.getFechafin().getTime()));			
 			resultado=true;
 		}
 		catch(Exception a) {
