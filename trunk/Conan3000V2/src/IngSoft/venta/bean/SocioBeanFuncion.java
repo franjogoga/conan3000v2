@@ -72,15 +72,14 @@ public class SocioBeanFuncion {
 			socioData.setCodigo(codigo.substring(0,3).concat(temp));}
 			else socioData.setCodigo("SOC000001");
 			
-			String codigoP= (String)sqlsesion.selectOne("Data.venta.socio.getNextCodigo3");
-			if(codigoP!=null){
-			//int cod= Integer.parseInt(codigo.substring(3))+1;
-			//String defecto= "000000";
+			//String codigoP= (String)sqlsesion.selectOne("Data.venta.socio.getNextCodigo3");
+			if(codigo!=null){
+			////int cod= Integer.parseInt(codigo.substring(3))+1;
+			////String defecto= "000000";
 			
-			//String temp= defecto.substring(0, defecto.length()-String.valueOf(cod).length()).concat(String.valueOf(cod));
-			//String codigoM=;
-					
-			personaData.setCodigo(codigoP);
+			////String temp= defecto.substring(0, defecto.length()-String.valueOf(cod).length()).concat(String.valueOf(cod));
+			////String codigoM=;	
+			personaData.setCodigo(codigo);
 			}
 			else personaData.setCodigo("SOC000001");
 			
