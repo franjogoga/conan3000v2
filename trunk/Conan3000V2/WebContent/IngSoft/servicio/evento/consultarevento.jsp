@@ -273,7 +273,7 @@
 									<input id="appendedInputButton" size="16" type="text" readonly="true" value="Salon Principal"><button class="btn" disabled="disabled" type="button">X</button>
 								</div>	
 								  <br/>
-								  <%if(concesionario!=null){ %>
+								  <%if(concesionario!=null && ((ConcesionarioMiniBeanData)concesionario).getRazonSocial()!=null){ %>
 								  <div>
 								  <input id="appendedInputButton" size="16" type="text" readonly="true" value="<%=((ConcesionarioMiniBeanData)concesionario).getRazonSocial()%>"><button class="btn" disabled="disabled" type="button">X</button>
 								  </div><%} %></div>
