@@ -28,12 +28,13 @@ public class AccionAgregarMiniSocio extends CoAccion{
 					
 					SocioBeanFuncion socioFuncion= SocioBeanFuncion.getInstanceS();
 					SocioBeanData socioData=socioFuncion.crearSocio(request, response);
-
-					socioFuncion.agregarSocio(socioData);
 					
 					PersonaMiniBeanFuncion personaFuncion=PersonaMiniBeanFuncion.getInstanceP();
 					PersonaMiniBeanData personaData=personaFuncion.crearPersona(request, response);
-					personaFuncion.agregarPersona(personaData);
+					
+					socioFuncion.agregarSocio(socioData,personaData);
+					
+					//personaFuncion.agregarPersona(personaData);
 
 					request.setAttribute("socio", socioData);
 					
