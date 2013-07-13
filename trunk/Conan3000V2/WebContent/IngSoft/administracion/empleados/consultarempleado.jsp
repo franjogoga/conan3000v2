@@ -174,10 +174,25 @@
 					          </div>
 					        </div>
 					
+					<div class="control-group">
+						      <label class="control-label" for="disabledInput"> Sede: </label>
+						      <div class="controls">
+						        <input class="input-xlarge disabled" id="disabledInput" type="text"  disabled id="txtArea" name="txtArea" value="<%= empleado.getSede()%>" onkeypress="return alfanumerico(event);" autofocus>
+					          </div>
+					        </div>
+					        
+					        <div class="control-group">
+						      <label class="control-label" for="disabledInput"> Horario: </label>
+						      <div class="controls">
+						        <input class="input-xlarge disabled" id="disabledInput" type="text"  disabled id="txtArea" name="txtArea" value="<%= empleado.getHorario()%>" onkeypress="return alfanumerico(event);" autofocus>
+					          </div>
+					        </div>
+					
+					
 						
 			            <div class="form-actions">
 							  
-							  <button type="button" class="btn" onclick="location.href='buscarempleado.jsp'" >Regresar</button>
+							  <button type="button" class="btn" onclick="javascript:history.back(1)" >Regresar</button>
 							</div>
 		              </fieldset>
 		            </form>
