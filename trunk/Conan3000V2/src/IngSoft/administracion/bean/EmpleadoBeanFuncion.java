@@ -136,7 +136,8 @@ public class EmpleadoBeanFuncion {
 		//empleadoData.setFechaNacimiento(new Date(DF.parse(request.getParameter("txtFechaFacimiento")).getTime()));
 		//empleadoData.setFechaContrato(new Date(DF.parse(request.getParameter("txtFechaContrato")).getTime()));
 			
-		//empleadoData.setPuesto(request.getParameter("cmbPuesto"));
+		empleadoData.setIdSede(request.getParameter("cmbSedes"));
+		empleadoData.setIdHorario(request.getParameter("cmbHorarios"));
 		//empleadoData.setEstado("activo");
 		//empleadoData.setTipoDocumento(request.getParameter("cmbTipoDocumento"));
 		//String numDoc=request.getParameter("txtNumeroDocumento");
