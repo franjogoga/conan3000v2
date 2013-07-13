@@ -155,7 +155,7 @@ select CONCAT(bf.IdReservaBungalow,rb.IdSocio)
 from BUNGALOWxFECHA bf,
 RESERVA_BUNGALOW rb 
 where bf.IdReservaBungalow=rb.IdReservaBungalow
-and CONCAT(rb.IdBungalow,DATE_FORMAT(bf.fecha,'%d/%m/%Y')) like #{codigo} and rb.estado='ACTIVO'
+and CONCAT(rb.IdBungalow,DATE_FORMAT(bf.fecha,'%d/%m/%Y')) like SUBSTRING(#{codigo} FROM 1 FOR 19) and rb.estado='ACTIVO'
 
 </select>
 <update id="eliminarReservaBungalow" parameterType="java.util.List">
