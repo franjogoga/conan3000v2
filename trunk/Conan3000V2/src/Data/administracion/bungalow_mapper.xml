@@ -59,6 +59,10 @@
 	<select id="getNextCodigo" resultType="java.lang.String">
 	 	SELECT MAX(IdBungalow) FROM BUNGALOW	
 	</select>
+	
+	<select id="getNextNumero" resultType="java.lang.Integer">
+	 	SELECT MAX(Numero) FROM BUNGALOW WHERE IdAmbiente=#{IdAmbiente};
+	</select>	
 
 	<select id="getBungalow" parameterType="java.lang.String"  resultType="IngSoft.administracion.bean.BungalowBeanData">
 		SELECT b.IdBungalow as codigo, b.IdAmbiente as idAmbiente, b.Numero as numero, b.Estado as estado,
