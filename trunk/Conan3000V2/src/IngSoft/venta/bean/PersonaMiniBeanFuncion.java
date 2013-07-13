@@ -53,9 +53,9 @@ public class PersonaMiniBeanFuncion {
 		return personaData;		
 	} 
 	
-	public boolean agregarPersona(PersonaMiniBeanData personaData) throws CoException {
+	public synchronized boolean agregarPersona(PersonaMiniBeanData personaData) throws CoException {
 		boolean resultado=false;		
-		l.lock();
+		
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
 			String codigo= (String)sqlsesion.selectOne("Data.venta.socio.getNextCodigo3");
@@ -116,15 +116,15 @@ public class PersonaMiniBeanFuncion {
 		finally{
 			sqlsesion.commit();
 			sqlsesion.close();
-			l.unlock();					
+							
 		}
 			
 		return resultado;
 	}
 	
-	public boolean agregarPersonaTraslado(PersonaMiniBeanData personaData) throws CoException {
+	public synchronized boolean agregarPersonaTraslado(PersonaMiniBeanData personaData) throws CoException {
 		boolean resultado=false;		
-		l.lock();
+		
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
 			String codigo= (String)sqlsesion.selectOne("Data.venta.socio.getNextCodigo3");
@@ -184,14 +184,14 @@ public class PersonaMiniBeanFuncion {
 		finally{
 			sqlsesion.commit();
 			sqlsesion.close();
-			l.unlock();					
+							
 		}
 			
 		return resultado;
 	}
 	
-	public void modificarPersona(PersonaMiniBeanData persona) throws CoException {
-		l1.lock();
+	public synchronized void modificarPersona(PersonaMiniBeanData persona) throws CoException {
+		
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
 					
@@ -206,14 +206,14 @@ public class PersonaMiniBeanFuncion {
 		finally{
 			sqlsesion.commit();
 			sqlsesion.close();
-			l1.unlock();
+			
 		}			
 		return ;
 	}
 	
 	
-	public PersonaMiniBeanData consultarPersona(String codigo){
-		l2.lock();
+	public synchronized PersonaMiniBeanData consultarPersona(String codigo){
+		
 		PersonaMiniBeanData personaData=null;
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
@@ -221,13 +221,13 @@ public class PersonaMiniBeanFuncion {
 		}
 		finally{
 			sqlsesion.close();
-			l2.unlock();
+			
 		}
 		return personaData;
 	}
 	
-	public PersonaMiniBeanData consultarPersonaSocio(String codigo){
-		l3.lock();
+	public synchronized PersonaMiniBeanData consultarPersonaSocio(String codigo){
+		
 		PersonaMiniBeanData personaData=null;
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
@@ -235,7 +235,7 @@ public class PersonaMiniBeanFuncion {
 		}
 		finally{
 			sqlsesion.close();
-			l3.unlock();
+			
 		}
 		return personaData;
 	}
