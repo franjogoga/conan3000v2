@@ -130,4 +130,10 @@
 					WHERE c.IdConcesionario=eso.IdConcesionario
 						  AND eso.Estado!='ANULADO'))
 		</select>	
+		
+		<select id="searchConcesionarioRUC" resultType="IngSoft.administracion.bean.ConcesionarioBeanData">
+			SELECT IdConcesionario as codigo, Ruc as ruc
+			FROM CONCESIONARIO
+			WHERE Estado='Activo';
+		</select>
 </mapper>
