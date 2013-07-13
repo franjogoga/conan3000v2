@@ -5,6 +5,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
+	
 	<title>Consultar Infracci&oacute;n por Socio</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="Dos Virgenes">
@@ -67,7 +68,8 @@
 			<div>
 				<ul class="breadcrumb">
                   <li> <a href="../../general/index.jsp">Home</a> <span class="divider">/</span> </li>
-                  <li>Consultar Infracci&oacute;n por socio</li>
+                    <li> <a href="buscarinfraccion.jsp">Mantenimiento de Infraccion</a> <span class="divider">/</span></li>
+                    <li>Consultar Infraccion</li>
 				</ul>
 			</div>
 			
