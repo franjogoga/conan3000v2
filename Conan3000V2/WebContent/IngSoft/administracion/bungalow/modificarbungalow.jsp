@@ -136,11 +136,10 @@
                       <input type="hidden" name="accion" value="Modificar"></input>
 					  <input type="hidden" name="tipo" value="2"></input>
                       <fieldset>
-                        <div class="control-group" id="dvNumero">
-                          <label class="control-label" for="typeahead">N&uacute;mero (*):</label>
+                        <div class="control-group">
+                          <label class="control-label" for="typeahead">N&uacute;mero:</label>
                           <div class="controls">
-                            <input type="text" class="span6 typeahead" id="txtNumero" name="txtNumero" data-provide="typeahead" value="<%=bungalow.getNumero()%>">
-                          	<span class="help-inline" id="errNumero">Please correct the error</span>
+                            <input type="text" class="span6 typeahead" id="txtNumero" name="txtNumero" data-provide="typeahead" value="<%=bungalow.getNumero()%>" disabled>
                           </div>
                         </div>
                         <div class="control-group" id="dvNumeroDivisiones">
@@ -356,11 +355,7 @@ function validaForm(){
         var cadena= new Array();
         var i=0;
         var error=false;
-
-        if(!esValido("N&uacute;mero",form.txtNumero,"Numero",1,1,11)){cadena[i]="N&uacute;mero";i++;}else{
-			if(!esValido("N&uacute;mero",form.txtNumero,"Numero",6,1,50)){cadena[i]="N&uacute;mero";i++;}
-		}
-
+        
 		if(!esValido("N&uacute;m. de Divisiones",form.txtNumeroDivisiones,"NumeroDivisiones",1,1,11)){cadena[i]="N&uacute;m. de Divisiones";i++;}else{
 			if(!esValido("N&uacute;m. de Divisiones",form.txtNumeroDivisiones,"NumeroDivisiones",6,1,50)){cadena[i]="N&uacute;m. de Divisiones";i++;}
 		}
@@ -382,7 +377,6 @@ function validaForm(){
  
  
 function inicializa(){
-        document.getElementById("errNumero").style.display='none';
         document.getElementById("errNumeroDivisiones").style.display='none';
         document.getElementById("errAreaBungalow").style.display='none';
         document.getElementById("errDescripcion").style.display='none'; 
