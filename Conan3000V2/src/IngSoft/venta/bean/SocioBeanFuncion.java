@@ -69,6 +69,9 @@ public class SocioBeanFuncion {
 			String temp= defecto.substring(0, defecto.length()-String.valueOf(cod).length()).concat(String.valueOf(cod));
 			//String codigoM=;
 			
+			socioData.setCodigo(codigo.substring(0,3).concat(temp));}
+			else socioData.setCodigo("SOC000001");
+			
 			String codigoP= (String)sqlsesion.selectOne("Data.venta.socio.getNextCodigo3");
 			if(codigoP!=null){
 			//int cod= Integer.parseInt(codigo.substring(3))+1;
@@ -82,6 +85,8 @@ public class SocioBeanFuncion {
 			else personaData.setCodigo("SOC000001");
 			
 			sqlsesion.insert("Data.venta.socio.insertPersona",personaData);
+			//aca validar si el get te da null y hacer otro insert !!!!!!
+			sqlsesion.insert("Data.venta.socio.insertSocio",socioData);
 			
 			//aca creo el usuario y password
 			//PersonaMiniBeanData personaData2=sqlsesion.selectOne("Data.venta.socio.getPlantillaPersona", codigo);
@@ -107,19 +112,14 @@ public class SocioBeanFuncion {
 			if(codUsuario!=null){
 				int codU= Integer.parseInt(codUsuario.substring(3))+1;
 				String defectoP= "000000";
-				String tempU= defecto.substring(0, defecto.length()-String.valueOf(codU).length()).concat(String.valueOf(codU));
+				String tempU= defectoP.substring(0, defectoP.length()-String.valueOf(codU).length()).concat(String.valueOf(codU));
 			
 			usuarioData.setCodUsuario(codUsuario.substring(0,3).concat(tempU));}
 			else usuarioData.setCodUsuario("USU000001");
 			
 			//inserto el nombreusuario y contraseña
 			sqlsesion.insert("Data.venta.socio.insertUsuario", usuarioData);
-			
-			socioData.setCodigo(codigo.substring(0,3).concat(temp));}
-			else socioData.setCodigo("SOC000001");
-			//aca validar si el get te da null y hacer otro insert !!!!!!
-			sqlsesion.insert("Data.venta.socio.insertSocio",socioData);
-			
+
 			String codSol=socioData.getIdSolicitud();
 			//saco un codigo por aca
 			sqlsesion.update("Data.venta.socio.updateSolicitud", codSol);
