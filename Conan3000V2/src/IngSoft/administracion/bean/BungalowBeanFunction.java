@@ -29,7 +29,6 @@ public class BungalowBeanFunction {
 	public BungalowBeanData crearBungalow(HttpServletRequest request, HttpServletResponse response){
 		BungalowBeanData bungalowData= new BungalowBeanData();
 		try{
-		bungalowData.setNumero(Integer.parseInt(request.getParameter("txtNumero")));
 		bungalowData.setNumeroDivisiones(Integer.parseInt(request.getParameter("txtNumeroDivisiones")));
 		bungalowData.setAreaBungalow(Double.parseDouble(request.getParameter("txtAreaBungalow")));
 		bungalowData.setIdAmbiente(request.getParameter("cmbAmbiente"));
@@ -70,6 +69,26 @@ public class BungalowBeanFunction {
 				bungalowData.setCodigo(codigo.substring(0,3).concat(temp));
 			}
 			else bungalowData.setCodigo("BUN000001");
+		}
+		catch(Exception a){
+			sqlsesion.rollback();
+			a.printStackTrace();
+			throw CoException.set("Error: El Bungalow no se pudo registrar", "SMABungalow?accion=Agregar&tipo=1");
+		}
+		finally{
+			sqlsesion.commit();
+			sqlsesion.close();
+			l.unlock();					
+		}
+		//AGREGAR EL NUMERO DE BUNGALOW
+		l.lock();
+		sqlsesion=MyBatisSesion.metodo().openSession();
+		try{
+			Integer numero= (Integer)sqlsesion.selectOne("Data.administracion.bungalow.getNextNumero",bungalowData.getIdAmbiente());
+			if(numero!=0){
+				bungalowData.setNumero(numero+1);
+			}
+			else bungalowData.setNumero(100);
 			sqlsesion.insert("Data.administracion.bungalow.insertBungalow",bungalowData);
 	
 			resultado=true;
@@ -83,7 +102,7 @@ public class BungalowBeanFunction {
 			sqlsesion.commit();
 			sqlsesion.close();
 			l.unlock();					
-		}
+		}		
 		return resultado;
 	}
 	
