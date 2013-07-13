@@ -85,7 +85,7 @@ public class BungalowBeanFunction {
 		sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
 			Integer numero= (Integer)sqlsesion.selectOne("Data.administracion.bungalow.getNextNumero",bungalowData.getIdAmbiente());
-			if(numero!=0){
+			if(numero!=null){
 				bungalowData.setNumero(numero+1);
 			}
 			else bungalowData.setNumero(100);
