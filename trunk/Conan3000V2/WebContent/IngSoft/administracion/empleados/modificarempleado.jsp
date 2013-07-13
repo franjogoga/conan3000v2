@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="IngSoft.servicio.bean.*"%>
+<%@page import="IngSoft.servicio.bean.SedeMiniBeanData"%>
 <%@page import="IngSoft.administracion.bean.*"%>
 <%@page import="java.util.Date"%>
 <html lang="en">
@@ -13,6 +14,8 @@
 	<meta name="author" content="Dos Virgenes">
 	
 	<jsp:useBean id="empleado" scope="request" class="IngSoft.administracion.bean.EmpleadoBeanData">></jsp:useBean>
+	<jsp:useBean id="horarios" scope="request"class="java.util.Vector"></jsp:useBean>
+	<jsp:useBean id="sedes" scope="request"class="java.util.Vector"></jsp:useBean>
 
 	<!-- The styles -->
 	<link id="bs-css" href="css/bootstrap-cerulean.css" rel="stylesheet">    
@@ -150,6 +153,30 @@
 						        <input class="input-xlarge disabled"  type="text" id="txtNumeroDocumento" name="txtNumeroDocumento" value="<%= empleado.getNumeroDocumento()%>"  onkeypress="return alfanumerico(event);" autofocus>
 					          </div>
 					        </div>
+					        
+					        <div class="control-group" id="dvHorarios" >
+								<label class="control-label" for="cmbHorarios">Horario de Trabajo(*):</label>
+								<div class="controls">
+								  <select  data-rel="chosen" id="cmbHorarios" name="cmbHorarios" >
+									<%for(int i=0;i<horarios.size();i++){ %>
+										<option value="<%= ((HorarioEmpleados)horarios.get(i)).getCodigo()%>"><%= ((HorarioEmpleados)horarios.get(i)).getDescripcion()%></option>
+									<%} %>																									
+								  </select>
+								  <span class="help-inline" id="errHorarios" style="display:none;">Este campo no puede estar vacio</span>
+								</div>
+							  </div>
+					
+						<div class="control-group" id="dvSedes">
+								<label class="control-label" for="cmbSedes">Sedes de Trabajo(*):</label>
+								<div class="controls">
+								  <select  data-rel="chosen" id="cmbSedes" name="cmbSedes" >
+									<%for(int i=0;i<sedes.size();i++){ %>
+										<option value="<%= ((SedeMiniBeanData)sedes.get(i)).getCodigo()%>"><%= ((SedeMiniBeanData)sedes.get(i)).getNombre()%></option>
+									<%} %>																									
+								  </select>
+								  <span class="help-inline" id="errSedes" style="display:none;">Este campo no puede estar vacio</span>
+								</div>
+							  </div>
 					
 						<div class="control-group">
 								<label class="control-label" for="cmbArea">&Aacute;rea (*):</label>
