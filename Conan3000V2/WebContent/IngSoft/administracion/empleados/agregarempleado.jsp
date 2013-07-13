@@ -204,7 +204,7 @@
 							 <div class="control-group" id="dvHorarios" >
 								<label class="control-label" for="cmbHorarios">Horario de Trabajo(*):</label>
 								<div class="controls">
-								  <select  multiple data-rel="chosen" id="cmbHorarios" name="cmbHorarios" >
+								  <select  data-rel="chosen" id="cmbHorarios" name="cmbHorarios" >
 									<%for(int i=0;i<horarios.size();i++){ %>
 										<option value="<%= ((HorarioEmpleados)horarios.get(i)).getCodigo()%>"><%= ((HorarioEmpleados)horarios.get(i)).getDescripcion()%></option>
 									<%} %>																									
@@ -236,7 +236,7 @@
 							  <div class="control-group" id="dvSedes">
 								<label class="control-label" for="cmbSedes">Sedes de Trabajo(*):</label>
 								<div class="controls">
-								  <select  multiple data-rel="chosen" id="cmbSedes" name="cmbSedes" >
+								  <select  data-rel="chosen" id="cmbSedes" name="cmbSedes" >
 									<%for(int i=0;i<sedes.size();i++){ %>
 										<option value="<%= ((SedeMiniBeanData)sedes.get(i)).getCodigo()%>"><%= ((SedeMiniBeanData)sedes.get(i)).getNombre()%></option>
 									<%} %>																									
