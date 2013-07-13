@@ -20,10 +20,8 @@ import IngSoft.general.CoException;
 import IngSoft.general.MyBatisSesion;
 
 @ApplicationScoped
-public class SorteoBeanFuncion {
+public  class SorteoBeanFuncion {
 	static private SorteoBeanFuncion SorteoFuncion=null;
-	private Lock l= new ReentrantLock();    
-	private Lock lAB= new ReentrantLock();
 	SimpleDateFormat DF = new SimpleDateFormat("dd/MM/yyyy");
 	public static SorteoBeanFuncion getInstance(){
 		if(SorteoFuncion==null) SorteoFuncion= new SorteoBeanFuncion();
@@ -56,7 +54,6 @@ public class SorteoBeanFuncion {
 	
 	public synchronized SorteoBeanData getSorteo(String codSorteo) throws CoException{
 		SorteoBeanData sorteoData = new SorteoBeanData();
-		l.lock();
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try {			
 			sorteoData=sqlsesion.selectOne("Data.servicio.sorteo.getSorteo", codSorteo);
@@ -72,12 +69,10 @@ public class SorteoBeanFuncion {
 			finally{
 				sqlsesion.commit();
 				sqlsesion.close();
-				l.unlock();					
 			}
 		return sorteoData;
 	}
 	public synchronized void agregaFechaReserva(String idBungalow,String idSocio,Date fReserva) throws CoException{
-		l.lock();
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try {			
 			HashMap<String, Object> map=new HashMap<String, Object>();
@@ -97,7 +92,6 @@ public class SorteoBeanFuncion {
 			finally{
 				sqlsesion.commit();
 				sqlsesion.close();
-				l.unlock();					
 			}
 	}
 	public synchronized Date getFechaReserva(String codSorteo){
@@ -191,7 +185,6 @@ public class SorteoBeanFuncion {
 	
 		public synchronized boolean agregarSorteo(SorteoBeanData sorteoData) throws CoException {
 			boolean resultado=false;		
-			l.lock();
 			SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 			try{
 				
@@ -208,7 +201,6 @@ public class SorteoBeanFuncion {
 			finally{
 				sqlsesion.commit();
 				sqlsesion.close();
-				l.unlock();					
 			}
 				
 			return resultado;
