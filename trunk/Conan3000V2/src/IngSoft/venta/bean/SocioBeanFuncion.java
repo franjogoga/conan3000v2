@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.ibatis.session.SqlSession;
 
+import IngSoft.administracion.bean.PersonaBeanData;
 import IngSoft.general.CoException;
 import IngSoft.general.MyBatisSesion;
 
@@ -56,7 +57,7 @@ public class SocioBeanFuncion {
 		return socioData;		
 	} 
 	
-	public synchronized boolean agregarSocio(SocioBeanData socioData) throws CoException {
+	public synchronized boolean agregarSocio(SocioBeanData socioData,PersonaMiniBeanData personaData) throws CoException {
 		boolean resultado=false;		
 		
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
@@ -67,6 +68,52 @@ public class SocioBeanFuncion {
 			String defecto= "000000";
 			String temp= defecto.substring(0, defecto.length()-String.valueOf(cod).length()).concat(String.valueOf(cod));
 			//String codigoM=;
+			
+			String codigoP= (String)sqlsesion.selectOne("Data.venta.socio.getNextCodigo3");
+			if(codigoP!=null){
+			//int cod= Integer.parseInt(codigo.substring(3))+1;
+			//String defecto= "000000";
+			
+			//String temp= defecto.substring(0, defecto.length()-String.valueOf(cod).length()).concat(String.valueOf(cod));
+			//String codigoM=;
+					
+			personaData.setCodigo(codigoP);
+			}
+			else personaData.setCodigo("SOC000001");
+			
+			sqlsesion.insert("Data.venta.socio.insertPersona",personaData);
+			
+			//aca creo el usuario y password
+			//PersonaMiniBeanData personaData2=sqlsesion.selectOne("Data.venta.socio.getPlantillaPersona", codigo);
+			
+			long dni=personaData.getNumeroDocumento();
+			String strLong = Long.toString(dni);
+			String ceros="";
+			int cantDni=strLong.length();
+			
+			for(int i=0;i<11-cantDni;i++){
+				ceros='0'+ceros;
+			}
+			String nombUsuario=codigo.substring(0,1).concat(ceros).concat(strLong);
+			//genero la password
+			String contraseña=Integer.toString((int)(Math.random()*(999999-100000+1)+999999));//contraseña numero aleatorio rango 100000 a 999999, lo raro es que sale una contraseña de 7 digitos
+			UsuarioBeanData usuarioData=new UsuarioBeanData();
+			usuarioData.setCodSocio(codigo);
+			usuarioData.setNombUsuario(nombUsuario);
+			usuarioData.setContraseña(contraseña);
+			
+			//busco codigo de usuario y genero el siguiente
+			String codUsuario= (String)sqlsesion.selectOne("Data.venta.socio.getNextCodigoU");
+			if(codUsuario!=null){
+				int codU= Integer.parseInt(codUsuario.substring(3))+1;
+				String defectoP= "000000";
+				String tempU= defecto.substring(0, defecto.length()-String.valueOf(codU).length()).concat(String.valueOf(codU));
+			
+			usuarioData.setCodUsuario(codUsuario.substring(0,3).concat(tempU));}
+			else usuarioData.setCodUsuario("USU000001");
+			
+			//inserto el nombreusuario y contraseña
+			sqlsesion.insert("Data.venta.socio.insertUsuario", usuarioData);
 			
 			socioData.setCodigo(codigo.substring(0,3).concat(temp));}
 			else socioData.setCodigo("SOC000001");
