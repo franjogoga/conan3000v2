@@ -20,7 +20,6 @@ public class AccionAgregarAmbiente extends CoAccion {
 	@Override
 	public void ejecutar(ServletContext sc, HttpServletRequest request,
 			HttpServletResponse response) throws CoException {
-		// TODO Auto-generated method stub
 		int tipo=Integer.parseInt(request.getParameter("tipo"));
 		if(tipo==2){
 			AmbienteBeanFunction ambienteFunction= AmbienteBeanFunction.getInstance();
