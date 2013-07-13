@@ -90,7 +90,7 @@ public class ReservaBeanFunction {
 			
 			String codigo = (String)sqlsesion.selectOne("Data.administracion.reserva.getNextInvitadoSocio");
 
-			System.out.print(" reservaData ----> "+ codigo);
+			System.out.print(" reservaData antes ----> "+ codigo);
 			
 			
 			if(codigo!=null)
@@ -104,7 +104,7 @@ public class ReservaBeanFunction {
 			else reservaData.setCodigo("IXS000001");
 
 
-			
+			System.out.print(" reservaData ----> despues "+ reservaData.getCodigo());
 			System.out.print("antes ---> "+  reservaData.getCodigo()  );		
 	  		System.out.print("antes ---> "+  reservaData.getMonto() );
 			
