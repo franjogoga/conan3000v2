@@ -29,7 +29,7 @@ public class SorteoBeanFuncion {
 		if(SorteoFuncion==null) SorteoFuncion= new SorteoBeanFuncion();
 		return SorteoFuncion;
 		}
-	public SorteoBeanData crearSorteo(HttpServletRequest request, HttpServletResponse response){
+	public synchronized SorteoBeanData crearSorteo(HttpServletRequest request, HttpServletResponse response){
 		SorteoBeanData sorteoData= new SorteoBeanData();
 		try{
 			sorteoData.setIdSede(request.getParameter("cmbSedes"));
@@ -54,7 +54,7 @@ public class SorteoBeanFuncion {
 		} 
 	
 	
-	public SorteoBeanData getSorteo(String codSorteo) throws CoException{
+	public synchronized SorteoBeanData getSorteo(String codSorteo) throws CoException{
 		SorteoBeanData sorteoData = new SorteoBeanData();
 		l.lock();
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
@@ -76,7 +76,7 @@ public class SorteoBeanFuncion {
 			}
 		return sorteoData;
 	}
-	public void agregaFechaReserva(String idBungalow,String idSocio,Date fReserva) throws CoException{
+	public synchronized void agregaFechaReserva(String idBungalow,String idSocio,Date fReserva) throws CoException{
 		l.lock();
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try {			
@@ -100,7 +100,7 @@ public class SorteoBeanFuncion {
 				l.unlock();					
 			}
 	}
-	public Date getFechaReserva(String codSorteo){
+	public synchronized Date getFechaReserva(String codSorteo){
 		Date fReserva=null;
 		try {
 			SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
@@ -113,7 +113,7 @@ public class SorteoBeanFuncion {
 		}
 		return fReserva;
 	}
-	public Vector<String> getBungalowsSorteo(SorteoBeanData sorteoData){
+	public synchronized Vector<String> getBungalowsSorteo(SorteoBeanData sorteoData){
 		Vector<String>  bungalows= new Vector<>();
 		try{
 			
@@ -153,7 +153,7 @@ public class SorteoBeanFuncion {
 		
 	}
 	
-	public BungalowxSorteo getBungalowSorteo(BungalowxSorteo bungalowSorteo){
+	public synchronized BungalowxSorteo getBungalowSorteo(BungalowxSorteo bungalowSorteo){
 		BungalowxSorteo BS = new BungalowxSorteo();
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		List<BungalowxSorteo> BS2 = sqlsesion.selectList("Data.club.inscripcionSorteo.getBungalowxSorteo2");
@@ -189,7 +189,7 @@ public class SorteoBeanFuncion {
 		return BS;
 	}
 	
-		public boolean agregarSorteo(SorteoBeanData sorteoData) throws CoException {
+		public synchronized boolean agregarSorteo(SorteoBeanData sorteoData) throws CoException {
 			boolean resultado=false;		
 			l.lock();
 			SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
@@ -214,7 +214,7 @@ public class SorteoBeanFuncion {
 			return resultado;
 		}
 		
-		public boolean eliminarSorteo(String codigo) throws CoException {
+		public synchronized boolean eliminarSorteo(String codigo) throws CoException {
 			boolean resultado=false;		
 			
 			SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
@@ -239,7 +239,7 @@ public class SorteoBeanFuncion {
 			return resultado;
 		}
 		
-		public SorteoBeanData consultarSorteo(String codigo){
+		public synchronized SorteoBeanData consultarSorteo(String codigo){
 			SorteoBeanData sorteoData=null;
 			SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 			try{
@@ -273,7 +273,7 @@ public class SorteoBeanFuncion {
 		}
 		private Random generator = new Random();
 		
-		public Vector<String> getGanadores(Vector<SocioInscritoBeanData> listaInscritos,int n, String idSorteo){			
+		public synchronized Vector<String> getGanadores(Vector<SocioInscritoBeanData> listaInscritos,int n, String idSorteo){			
 			Vector<String> Ramdomsocios = new Vector<>();
 			int indiceRandom;
 			SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
