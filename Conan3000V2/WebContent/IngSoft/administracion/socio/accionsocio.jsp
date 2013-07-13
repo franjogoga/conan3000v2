@@ -50,8 +50,8 @@
 	<link rel="shortcut icon" href="img/conan_logo.png">
 	
 	<script>	
-	function alt_vitalizar(cod, strfechaInicio, vitalicio){
-		if (vitalicio.toLowerCase() == "No".toLowerCase()) {
+	function alt_vitalizar(cod, strfechaInicio, vitalicio, estado){
+		if (vitalicio.toLowerCase() == "No".toLowerCase() && estado.toLowerCase() == "Activo".toLowerCase() ) {
 			var arrFechaInicio = strfechaInicio.split('-'); //arrFechaInicio = ["aaaa","mm","dd"]
 			var fechaInicio = parseInt(arrFechaInicio[0])*10000 + parseInt(arrFechaInicio[1])*100 + parseInt(arrFechaInicio[2]);		
 			var f = new Date();
@@ -69,7 +69,7 @@
 				form.submit();	
 			}					
 		} else {
-			alert("Este socio ya es vitalicio");
+			alert("Este socio ya es vitalicio o está suspendido");
 		}
 	}
 	function alt_suspender(cod, estado){
@@ -234,7 +234,7 @@
 											<a class="btn btn-danger" href="javascript:alt_suspender('<%=((ResultadoSocioBeanData)resultados.get(i)).getIdSocio()%>', '<%=((ResultadoSocioBeanData)resultados.get(i)).getEstado()%>')">
 												<i class="icon-trash icon-white"></i> Suspender
 											</a>
-											<a class="btn btn-warning" href="javascript:alt_vitalizar('<%=((ResultadoSocioBeanData)resultados.get(i)).getIdSocio()%>', '<%=((ResultadoSocioBeanData)resultados.get(i)).getFechaInicio()%>', '<%=((ResultadoSocioBeanData)resultados.get(i)).getVitalicio()%>')">
+											<a class="btn btn-warning" href="javascript:alt_vitalizar('<%=((ResultadoSocioBeanData)resultados.get(i)).getIdSocio()%>', '<%=((ResultadoSocioBeanData)resultados.get(i)).getFechaInicio()%>', '<%=((ResultadoSocioBeanData)resultados.get(i)).getVitalicio()%>', '<%=((ResultadoSocioBeanData)resultados.get(i)).getEstado()%>')">
 												<i class="icon-flag icon-white"></i> Vitalizar 
 											</a>
 											<!-- <a class="btn btn-success" href="javascript:alt_vitalizar('<%=((ResultadoSocioBeanData)resultados.get(i)).getIdSocio()%>', '<%=((ResultadoSocioBeanData)resultados.get(i)).getFechaInicio()%>', '<%=((ResultadoSocioBeanData)resultados.get(i)).getVitalicio()%>')">
