@@ -72,9 +72,10 @@ function validaForm(){
 	var cadena= new Array();
 	var i=0;
 	var error=false;
-	
-	if(!esValido("Periodo",form.cmbPeriodo,"Periodo",1,1,50)){cadena[i]="Periodo";i++;}
-	if(!esValido("Socio",form.txtSocio,"Socio",1,1,50)){cadena[i]="Socio";i++;}
+	if(form.chkAplicar.checked){
+		if(!esValido("Periodo",form.cmbPeriodo,"Periodo",1,1,50)){cadena[i]="Periodo";i++;}
+		if(!esValido("Socio",form.txtSocio,"Socio",1,1,50)){cadena[i]="Socio";i++;}
+	}
 	if(!esValido("Monto",form.txtMonto,"Monto",1,1,50)){
 		cadena[i]="Monto";i++;
 	}else{
@@ -82,11 +83,13 @@ function validaForm(){
 		if(!esValido("Monto",form.txtMonto,"Monto",5,1,1)){cadena[i]="Monto";i++;}
 	}
 	if(!esValido("Fecha Emision",form.fFechaEmision,"FechaEmision",2,1,10)){cadena[i]="Fecha Emision";i++;}
-	if(!esValido("Fecha Vencimiento",form.fFechaVencimiento,"FechaVencimiento",2,1,10)){cadena[i]="Fecha Vencimiento";i++;}
-	if(!validarFechas("Fecha Vencimiento",form.fFechaVencimiento,"FechaVencimiento","Fecha Emision",form.fFechaEmision)){cadena[i]="Fecha Vencimiento";i++;};
+	
+	if(form.chkAplicar.checked){
+		if(!esValido("Fecha Vencimiento",form.fFechaVencimiento,"FechaVencimiento",2,1,10)){cadena[i]="Fecha Vencimiento";i++;}
+		if(!validarFechas("Fecha Vencimiento",form.fFechaVencimiento,"FechaVencimiento","Fecha Emision",form.fFechaEmision)){cadena[i]="Fecha Vencimiento";i++;};
+		
+	}
 	if(!esValido("Descripcion",form.txtDescripcion,"Descripcion",1,1,100)){cadena[i]="Descripcion";i++;}
-	
-	
 	
 	//No tocar
 	if(i>0){

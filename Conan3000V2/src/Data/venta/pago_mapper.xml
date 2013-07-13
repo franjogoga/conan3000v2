@@ -223,7 +223,7 @@ distinct PERSONA.IdPersona idSocio
 ,OTRO_INGRESO.FechaVencimiento as fechaVencimiento
 ,OTRO_INGRESO.Estado as estado
 ,OTRO_INGRESO.IdConcepto as idConcepto
-from OTRO_INGRESO, CONCEPTO, PERSONA, INGRESO
+from OTRO_INGRESO, CONCEPTO, PERSONA
 <where>
 	<if test="socio != null">
 	OTRO_INGRESO.IdConcepto=CONCEPTO.IdConcepto and CONCEPTO.IdSocio=PERSONA.IdPersona and (PERSONA.Nombres like #{socio} or PERSONA.ApePaterno like #{socio} or PERSONA.ApeMaterno like #{socio})
@@ -293,6 +293,41 @@ from OTRO_INGRESO, CONCEPTO, PERSONA, INGRESO
 </where>
 </select>
 
+<select id="searchOrdenPagoCuota" parameterType="IngSoft.venta.bean.CriterioOrdenPagoBeanData" resultType="IngSoft.venta.bean.ResultadoOrdenPagoBeanData">
+select 
+distinct OTRO_INGRESO.Descripcion as concepto
+,OTRO_INGRESO.Descripcion2 as descripcion
+,OTRO_INGRESO.IdOtroIngreso as idOtroIngreso
+,OTRO_INGRESO.Monto as monto
+,OTRO_INGRESO.FechaEmision as fechaEmision
+,OTRO_INGRESO.FechaVencimiento as fechaVencimiento
+,OTRO_INGRESO.Estado as estado
+,OTRO_INGRESO.IdConcepto as idConcepto
+from OTRO_INGRESO, CONCEPTO
+<where>
+	<if test="socio != null">
+	OTRO_INGRESO.IdConcepto=CONCEPTO.IdConcepto and Estado='Referencia'
+  </if>
+  
+  
+  <if test="fechaEmisionIni != null">
+        AND OTRO_INGRESO.FechaEmision &gt;= #{fechaEmisionIni}
+    </if>
+    <if test="fechaEmisionFin != null">
+        AND OTRO_INGRESO.FechaEmision &lt;= #{fechaEmisionFin}
+    </if>
+    
+  <if test="concepto != null">
+        AND OTRO_INGRESO.Descripcion= #{concepto}
+       
+    </if>
+  
+   ORDER BY OTRO_INGRESO.fechaVencimiento ASC
+      
+</where>
+</select>
+
+
 
 <select id="getOrdenPagoIngreso" parameterType="java.lang.String"  resultType="IngSoft.venta.bean.OrdenPagoBeanData">
 Select
@@ -305,7 +340,7 @@ distinct PERSONA.IdPersona idSocio
 ,OTRO_INGRESO.FechaVencimiento as fechaVencimiento
 ,OTRO_INGRESO.Estado as estado
 ,OTRO_INGRESO.IdConcepto as idConcepto
-from OTRO_INGRESO, CONCEPTO, PERSONA, INGRESO
+from OTRO_INGRESO, CONCEPTO, PERSONA
 WHERE 
 OTRO_INGRESO.IdConcepto=CONCEPTO.IdConcepto and CONCEPTO.IdSocio=PERSONA.IdPersona  and OTRO_INGRESO.IdOtroIngreso=#{codigo}
 </select>
@@ -323,7 +358,10 @@ OTRO_INGRESO.IdConcepto=CONCEPTO.IdConcepto and CONCEPTO.IdSocio=PERSONA.IdPerso
 	values (#{idOtroIngreso},#{idConcepto},#{monto},#{fechaEmision},#{fechaVencimiento},'No Cancelado',#{descripcion},#{descripcionCuota})
 </insert>
 
-
+<insert id="insertOrdenPagoOtrosIngresos2" parameterType="IngSoft.venta.bean.OrdenPagoBeanData" flushCache="true">
+	insert into OTRO_INGRESO(IdOtroIngreso,IdConcepto,Monto,FechaEmision,FechaVencimiento,Estado,Descripcion,Descripcion2)
+	values (#{idOtroIngreso},#{idConcepto},#{monto},#{fechaEmision},#{fechaVencimiento},'Referencia',#{descripcion},#{descripcionCuota})
+</insert>
 
 <insert id="insertOrdenPagoSolicitudProducto" parameterType="IngSoft.venta.bean.OrdenPagoBeanData" flushCache="true">
 	insert into CONCEPTO(IdSolicitudProducto,IdConcepto,IdSocio,Fecha)
@@ -410,6 +448,43 @@ OTRO_INGRESO.IdConcepto=CONCEPTO.IdConcepto and CONCEPTO.IdSocio=PERSONA.IdPerso
 	values (#{idConcepto},#{idSocio},#{fecha})
 </insert>
 
+<insert id="insertOrdenPagoCuotaExtra2" parameterType="IngSoft.venta.bean.OrdenPagoBeanData" flushCache="true">
+	insert into CONCEPTO(IdConcepto,Fecha)
+	values (#{idConcepto},#{fecha})
+</insert>
+
+ <select id="searchSocioMembresiaPago" parameterType="IngSoft.venta.bean.CriterioSocioBeanData" resultType="IngSoft.venta.bean.ResultadoSocioBeanData">
+select distinct
+SOCIO.IdSocio as idSocio
+,SOCIO.Direccion as direccion
+,PERSONA.Nombres as nombres
+,PERSONA.ApePaterno as apellidoPaterno
+,PERSONA.ApeMaterno as apellidoMaterno
+,PERSONA.TipoDocumento as tipoDocumento
+,PERSONA.NumeroDocumento as numeroDocumento
+,SOCIO.Flag as flag
+from SOCIO, PERSONA
+
+<where>
+
+	<if test="nombres != null ">
+	SOCIO.IdSocio=PERSONA.IdPersona and SOCIO.idSocio IN (Select IdSocio FROM MEMBRESIA) AND (PERSONA.nombres  like  #{nombres})
+    </if>
+    <if test="apellidoPaterno != null ">
+        AND (PERSONA.ApePaterno  like  #{apellidoPaterno})
+    </if>
+    <if test="apellidoMaterno != null ">
+        AND (PERSONA.ApeMaterno  like  #{apellidoMaterno})
+    </if>
+    <if test="direccion != null">
+        AND SOCIO.Direccion like #{direccion}
+    </if>
+     <if test="tipoDocumento != null">
+        AND PERSONA.TipoDocumento like #{tipoDocumento}
+    </if>
+    
+</where>
+</select>
 
 
  <select id="searchSocioNoMembresia" parameterType="IngSoft.venta.bean.CriterioSocioBeanData" resultType="IngSoft.venta.bean.ResultadoSocioBeanData">
@@ -444,9 +519,6 @@ from SOCIO, PERSONA
     
 </where>
 </select>
-
-
-
 
 <select id="cantMultas" parameterType="IngSoft.venta.bean.CriterioSocioBeanData" resultType="IngSoft.venta.bean.ResultadoSocioBeanData">
 select distinct
@@ -566,5 +638,29 @@ Select
 
 )
 </select>
+
+
+<select id="searchAddCuota" parameterType="IngSoft.venta.bean.OrdenPagoBeanData" resultType="IngSoft.venta.bean.ResultadoPagoBeanData">
+SELECT IdDetalleCuota as idDetalleCuota,
+MIN(idCuota) as idCuota
+FROM CUOTA where Estado='No Cancelado' and cantidad=1 and 
+FechaVencimiento>#{fechaEmision}
+group by IdDetalleCuota order by NumCuota asc
+</select>
+
+<update id="addCuotaExtraACuota" parameterType="IngSoft.venta.bean.ResultadoPagoBeanData">
+update CUOTA set Monto=Monto+#{monto}, Cantidad=2
+ where IdCuota= #{idCuota}
+</update>
+
+<select id="searchVitalicio" resultType="IngSoft.venta.bean.ResultadoPagoBeanData">
+Select CUOTA.IdCuota as idCuota from MEMBRESIA,CUOTA, DETALLE_CUOTA where MEMBRESIA.Vitalicio='Si'
+ and CUOTA.IdDetalleCuota=DETALLE_CUOTA.IdDetalleCuota and DETALLE_CUOTA.IdMembresia=MEMBRESIA.IdMembresia and CUOTA.Estado='No Cancelado'
+</select>
+
+<update id="updateCuotaVitalicio" parameterType="IngSoft.venta.bean.ResultadoPagoBeanData">
+update CUOTA set Monto=0.0, Estado='Vitalicio'
+ where IdCuota= #{idCuota}
+</update>
 
 </mapper>

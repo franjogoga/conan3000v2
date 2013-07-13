@@ -247,13 +247,11 @@ String fecHoy=dfActual.format(new java.util.Date());
 		           <a class="btn btn-primary" href="javascript:alt_agregar()"> <i class="icon icon-add icon-white"></i> Agregar Cuota Extraordinaria </a></div> 
 		           <br><thead>
 		              <tr>
-		                <th>C&oacute;digo de Socio</th>
-		                <th>Socio</th>
 		                <th>Concepto</th>
+		                <th>Descripci&oacute;n</th>
 		                <th>Fecha de Emisi&oacute;n</th>
 		                <th>Monto</th>
 		                <th>Estado</th>
-		                <th>Acci&oacute;n</th>
 	                  </tr>
 	                </thead>
 		            <tbody>
@@ -283,7 +281,7 @@ String fecHoy=dfActual.format(new java.util.Date());
                           				if(dato.equals("INVITADOXSOCIO")) concepto="Invitado de Socio";
                           				if(dato.equals("TRASLADOMEMBRESIA")) concepto="Traslado de Membresia";
                           				if(dato.equals("MULTAXINFRACCION")) concepto="Multa por Infraccion";
-                          				if(dato.equals("CUOTAEXTRAORDINARIA")) concepto="Cuota Extraordinaria ("+((ResultadoOrdenPagoBeanData)resultados.get(i)).getDescripcion()+" )";
+                          				if(dato.equals("CUOTAEXTRAORDINARIA")) concepto="Cuota Extraordinaria";
                           				
                           				
                           				
@@ -292,9 +290,9 @@ String fecHoy=dfActual.format(new java.util.Date());
                           				
                          %>
 		              <tr>
-		                <td><%=((ResultadoOrdenPagoBeanData)resultados.get(i)).getIdSocio()%></td>
-		                <td class="center"><%=((ResultadoOrdenPagoBeanData)resultados.get(i)).getSocio()%></td>
 		                <td class="center"><%=concepto%></td>
+						<td class="center"><%=((ResultadoOrdenPagoBeanData)resultados.get(i)).getDescripcion()%></td>
+		                
 		                <td class="center"><%=
                          df.format(((ResultadoOrdenPagoBeanData)resultados.get(i)).getFechaEmision())
                           %></td>
@@ -306,20 +304,7 @@ String fecHoy=dfActual.format(new java.util.Date());
 		                <%=
                          ((ResultadoOrdenPagoBeanData)resultados.get(i)).getEstado()
                         %></span></td>
-		                <td class="center">
-		                   
-		                <a class="btn btn-success"
-                          					href="javascript:alt_consultar('<%=((ResultadoOrdenPagoBeanData)resultados.get(i)).getIdOtroIngreso()%>')">
-                          					 <i class="icon-zoom-in icon-white"></i> Ver </a> 
-                        <% if(((ResultadoOrdenPagoBeanData)resultados.get(i)).getEstado().equals("Cancelado")){ %>
 		                
-                        <% }else{ %>
-                        <a class="btn btn-primary"
-                          					href="javascript:alt_Pagar('<%=((ResultadoOrdenPagoBeanData)resultados.get(i)).getIdOtroIngreso()%>')">
-                          					 <i class="icon-share icon-white"></i> Pagar </a>
-                        <% } %>
-                        
-						</td>
 	                  </tr>
 	                  
 	                  <%}%>

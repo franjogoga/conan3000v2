@@ -171,7 +171,7 @@ public class MembresiaBeanFunction {
 			
 			
 			
-			
+			System.out.println("Fecha inicio: "+membresiaData.getFechaInicio());
 			
 			//insertMembresia esta en membresia mapper
 			sqlsesion.insert("insertMembresia",membresiaData);

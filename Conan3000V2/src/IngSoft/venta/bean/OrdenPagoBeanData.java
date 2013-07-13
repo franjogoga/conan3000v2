@@ -40,9 +40,17 @@ public class OrdenPagoBeanData implements Serializable {
 	private Integer cuota;
 	private String descripcionCuota;
 	private String periodo;
+	private Integer aplicar;
 	
 	
 	
+	
+	public Integer getAplicar() {
+		return aplicar;
+	}
+	public void setAplicar(Integer aplicar) {
+		this.aplicar = aplicar;
+	}
 	public String getPeriodo() {
 		return periodo;
 	}

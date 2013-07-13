@@ -3,6 +3,8 @@ package IngSoft.venta.bean;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.List;
+import java.util.Vector;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -385,6 +387,40 @@ public boolean aplicarMultaExtra(PagoBeanData pagoData) throws CoException {
 	return resultado;
 }
 
+
+
+public boolean cuotaVitalicio() throws CoException {
+	
+	boolean resultado=false;		
+	l2.lock();
+	SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+	Vector<ResultadoPagoBeanData> resultadosV=null;
+	try{
+		
+		
+		
+		List<ResultadoPagoBeanData> resultados=sqlsesion.selectList("Data.venta.pago.searchVitalicio");
+		resultadosV= new Vector<>(resultados);
+			for(int k=0;k<resultados.size();k++){
+				ResultadoPagoBeanData res=((ResultadoPagoBeanData)resultados.get(k));
+				sqlsesion.update("Data.venta.pago.updateCuotaVitalicio",res);
+			}
+		
+		resultado=true;
+	}
+	catch(Exception a)		
+	{sqlsesion.rollback();
+	a.printStackTrace();
+		//throw CoException.set("Error: Nombre de pago repetido", "SMVPago?accion=Agregar&tipo=1");
+	}
+	
+	finally{
+		sqlsesion.commit();
+		sqlsesion.close();
+		l2.unlock();					
+	}
+	return resultado;
+}
 
 
 

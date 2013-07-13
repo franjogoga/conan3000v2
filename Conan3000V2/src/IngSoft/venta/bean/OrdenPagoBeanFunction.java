@@ -3,6 +3,8 @@ package IngSoft.venta.bean;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.List;
+import java.util.Vector;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -60,16 +62,29 @@ public class OrdenPagoBeanFunction {
 	   public OrdenPagoBeanData crearCuotaExtra(HttpServletRequest request, HttpServletResponse response){
 		   OrdenPagoBeanData ordenPagoData= new OrdenPagoBeanData();
 			try{		
-		
+				if(request.getParameter("chkAplicar")==null){
+					ordenPagoData.setAplicar(0);
+					System.out.println("valor de aplicar en crear cuota: "+ordenPagoData.getAplicar());
+				}else{
+					System.out.println("valor de aplicar en crear cuota: "+request.getParameter("chkAplicar"));
+					ordenPagoData.setAplicar(Integer.parseInt(request.getParameter("chkAplicar")));
+					
+				}
+				if(ordenPagoData.getAplicar()==1){
 				ordenPagoData.setIdSocio(request.getParameter("idSocio"));
+				ordenPagoData.setPeriodo(request.getParameter("cmbPeriodo"));
+				}
 				ordenPagoData.setDescripcionCuota(request.getParameter("txtDescripcion"));
+				ordenPagoData.setFechaVencimiento(new Date(DF.parse(request.getParameter("fFechaVencimiento0")).getTime()));
 				ordenPagoData.setDescripcion("CUOTAEXTRAORDINARIA");
 				ordenPagoData.setMonto(Double.parseDouble(request.getParameter("txtTotalxCuota0")));
+				
+				
 				//ordenPagoData.setFechaPago(new Date(DF.parse(request.getParameter("FechaEmision")).getTime()));
 				ordenPagoData.setFechaEmision(new Date(DF.parse(request.getParameter("fFechaEmision0")).getTime()));
-				ordenPagoData.setFechaVencimiento(new Date(DF.parse(request.getParameter("fFechaVencimiento0")).getTime()));
+				
 				ordenPagoData.setCuota(Integer.parseInt(request.getParameter("txtCuota")));
-				ordenPagoData.setPeriodo(request.getParameter("cmbPeriodo"));
+				
 				
 				
 				
@@ -293,6 +308,7 @@ public boolean agregarCuotaExtra(OrdenPagoBeanData ordenPagoData) throws CoExcep
 		Integer estadoPA=0;
 		
 		final Calendar c = Calendar.getInstance();
+		System.out.println(ordenPagoData.getFechaVencimiento());
 		c.setTime(ordenPagoData.getFechaVencimiento());
 		Integer mes=0;
 		if(ordenPagoData.getPeriodo().equals("Mensual")) mes=1;
@@ -300,6 +316,7 @@ public boolean agregarCuotaExtra(OrdenPagoBeanData ordenPagoData) throws CoExcep
 		if(ordenPagoData.getPeriodo().equals("Trimestral")) mes=3;
 		if(ordenPagoData.getPeriodo().equals("Semestral")) mes=6;
 		if(ordenPagoData.getPeriodo().equals("Anual")) mes=12;
+		String valorDes=ordenPagoData.getDescripcionCuota();
 		
 		for(int i=0;i<ordenPagoData.getCuota();i++){
 			
@@ -322,6 +339,7 @@ public boolean agregarCuotaExtra(OrdenPagoBeanData ordenPagoData) throws CoExcep
 				}
 			
 			ordenPagoData.setFechaVencimiento(c.getTime());
+			ordenPagoData.setDescripcionCuota(valorDes+" ( Cuota "+(i+1)+" )");
 		sqlsesion.insert("insertOrdenPagoOtrosIngresos",ordenPagoData);
 		}
 		
@@ -342,6 +360,67 @@ public boolean agregarCuotaExtra(OrdenPagoBeanData ordenPagoData) throws CoExcep
 }
 
 
+public boolean agregarCuotaExtra2(OrdenPagoBeanData ordenPagoData) throws CoException {
+	
+	boolean resultado=false;		
+	l2.lock();
+	SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+	Vector<ResultadoPagoBeanData> resultadosV=null;
+	try{
+		
+		String codigoConcepto= (String)sqlsesion.selectOne("Data.venta.pago.getNextCodigoOrden");
+		if(codigoConcepto!=null){
+		int cod= Integer.parseInt(codigoConcepto.substring(3))+1;
+		String defecto= "000000";
+		String temp= defecto.substring(0, defecto.length()-String.valueOf(cod).length()).concat(String.valueOf(cod));
+		
+		ordenPagoData.setIdConcepto(codigoConcepto.substring(0,3).concat(temp));}
+		else ordenPagoData.setIdConcepto("OPG000001");
+		
+		//insertPago esta en pago mapper
+		sqlsesion.insert("insertOrdenPagoCuotaExtra2",ordenPagoData);
+		String valorDes=ordenPagoData.getDescripcionCuota();
+		
+		for(int i=0;i<ordenPagoData.getCuota();i++){
+			
+			String codigoOtros= (String)sqlsesion.selectOne("Data.venta.pago.getNextCodigoOtroIngreso");
+			if(codigoOtros!=null){
+			int cod2= Integer.parseInt(codigoOtros.substring(3))+1;
+			String defecto2= "000000";
+			String temp2= defecto2.substring(0, defecto2.length()-String.valueOf(cod2).length()).concat(String.valueOf(cod2));
+			
+			ordenPagoData.setIdOtroIngreso(codigoOtros.substring(0,3).concat(temp2));}
+			else ordenPagoData.setIdOtroIngreso("OIN000001");
+			
+			ordenPagoData.setDescripcionCuota(valorDes+" ( Cuota "+(i+1)+" )");
+			sqlsesion.insert("insertOrdenPagoOtrosIngresos2",ordenPagoData);
+		}
+		
+		
+		for(int j=0; j<ordenPagoData.getCuota();j++){
+		List<ResultadoPagoBeanData> resultados=sqlsesion.selectList("Data.venta.pago.searchAddCuota",ordenPagoData);
+		resultadosV= new Vector<>(resultados);
+			for(int k=0;k<resultados.size();k++){
+				ResultadoPagoBeanData res=((ResultadoPagoBeanData)resultados.get(k));
+				res.setMonto(ordenPagoData.getMonto());
+				sqlsesion.update("Data.venta.pago.addCuotaExtraACuota",res);
+			}
+		}
+		resultado=true;
+	}
+	catch(Exception a)		
+	{sqlsesion.rollback();
+	a.printStackTrace();
+		//throw CoException.set("Error: Nombre de pago repetido", "SMVPago?accion=Agregar&tipo=1");
+	}
+	
+	finally{
+		sqlsesion.commit();
+		sqlsesion.close();
+		l2.unlock();					
+	}
+	return resultado;
+}
 
 
 
