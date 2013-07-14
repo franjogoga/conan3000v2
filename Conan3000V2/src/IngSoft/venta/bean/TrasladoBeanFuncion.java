@@ -76,6 +76,7 @@ public class TrasladoBeanFuncion {
 			//Busco la membresia anterior y saco la modalidad de periodo
 			MembresiaBeanData membresiaAntData=sqlsesion.selectOne("Data.venta.traslado.getPlantillaMembresia",codigo);
 			
+			
 			//membresiaData.setIdMembresia(idMembresia);
 			membresiaData.setIdMembresia(codigoNuevo);
 			membresiaData.setEstado("Activo");
@@ -86,9 +87,14 @@ public class TrasladoBeanFuncion {
 			membresiaData.setFechafin(trasladoData.getFechafin());
 			membresiaData.setPeriodo(membresiaAntData.getPeriodo());
 			
+			String CodMembresiaAnt=trasladoData.getIdmembresiantiguo();
+			
+			String codSocioAnt=sqlsesion.selectOne("Data.venta.traslado.getCodSocioAnt",CodMembresiaAnt);
+			
 			sqlsesion.insert("Data.venta.traslado.insertNuevaMembresia",membresiaData);
 			sqlsesion.update("Data.venta.traslado.updateCodigo", codigo);
 			sqlsesion.insert("Data.venta.traslado.insertTraslado",trasladoData);
+			sqlsesion.update("Data.venta.traslado.updateUsuario",codSocioAnt);
 			
 			resultado=true;
 		}
