@@ -195,7 +195,7 @@ FROM PERSONA;
 <!-- Agregar plantilla  -->
 
 <insert id="insertPlantillaReserva" parameterType="IngSoft.administracion.bean.ReservaBeanData" flushCache="true">
-INSERT INTO `inf245g2`.`INVITADOxSOCIO` (`IdInvitadoSocio`, `IdSocio`, `IdInvitado`, `FechaIngreso`, `Monto`, `Estado`) 
+INSERT INTO `INVITADOxSOCIO` (`IdInvitadoSocio`, `IdSocio`, `IdInvitado`, `FechaIngreso`, `Monto`, `Estado`) 
                                  VALUES (#{codigo}, #{codigosocio}, #{codigoinvitado} , #{fechaingreso} , #{monto}, #{estado});
 	
 </insert>
