@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <%@page import="IngSoft.administracion.bean.SedeMiniBeanData"%>
 <%@page import="java.util.Date"%>
+<%@page import="java.util.Vector"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <html lang="en">
 <head>
@@ -11,17 +12,18 @@
 	<link rel="shortcut icon" href="img/conan_logo.png">
 	
 	<script>
-
-	function alt_submit(){
-		var form= document.frmData;
-		if(validaForm()) form.submit();
-	}
-	
 	function alt_Cerrar(){
-		var form= document.frmData;
-		form.submit();
 		
-		parent.actualizar();
+		$.ajax({
+			  type: "POST",
+			  url: "/Conan3000V2/IngSoft/administracion/concesionario/SMAConcesionario",
+			  data: "accion=Seleccionar&tipo=2&codigo=<%=concesionario.getCodigo()%>" + "&cmbSede=" + $(cmbSede).val() + "&fechaInicio=" + $(fechaInicio).val()+ "&fechaFin=" + $(fechaFin).val(),
+			  dataType: "text",
+			  success: function(){
+			  	parent.actualizar();    				  								
+			  },
+			  error: function(){ }
+			});
 	}
 	
 	function verificar_fecha(comparacion,fecha1,fecha2){
@@ -64,6 +66,17 @@
 	}	
 	%>
 	
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+  <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+  <link rel="stylesheet" href="/resources/demos/style.css" />
+  <script>
+  $(function() {
+    $( "#fechaInicio" ).datepicker({ minDate: "-0d", changeMonth:true,changeYear:true  });
+    $( "#fechaFin" ).datepicker({ minDate: "-0d", changeMonth:true,changeYear:true  }); 
+  });
+  </script>
+	
 </head>
 
 <body>
@@ -79,7 +92,7 @@
                     <h2>SELECCIONAR SEDE</h2>
                   </div>
                   <div class="box-content">
-                    <form class="form-horizontal" action="<%=response.encodeURL("SMAConcesionario")%>" name="frmData" method="post" >
+                    <form class="form-horizontal" action="<%=response.encodeURL("SMAConcesionario")%>" id="frmData" name="frmData" method="post" >
                     <input type="hidden" name="codigo" value="<%=concesionario.getCodigo()%>"></input>        
                     <input type="hidden" name="accion" value="Seleccionar"></input>
 					<input type="hidden" name="tipo" value="2"></input>
@@ -97,13 +110,13 @@
 			           <div class="control-group">
 			              <label class="control-label" for="date01" >Fecha Inicial (*):</label>
 			                <div class="controls">
-			                  <input type="text" name="fechaInicio" class="datepicker" id="fechaInicio" value="<%=getFechaActual()%>" readonly width=44px onchange="verificar_fecha(1,this,'fechaFin');">
+			                  <input type="text" name="fechaInicio" class="datepickerB" id="fechaInicio" value="<%=getFechaActual()%>" readonly width=44px onchange="verificar_fecha(1,this,'fechaFin');">
 		                    </div>
 		                  </div>
 			              <div class="control-group">
 			                <label class="control-label" for="date02">Fecha Final (*):</label>
 			                <div class="controls">
-			                  <input type="text" name="fechaFin" class="datepicker" id="fechaFin" value="<%=getFechaActual()%>" readonly width=44px onchange="verificar_fecha(-1,this,'fechaInicio');">
+			                  <input type="text" name="fechaFin" class="datepickerB" id="fechaFin" value="<%=getFechaActual()%>" readonly width=44px onchange="verificar_fecha(-1,this,'fechaInicio');">
 		                    </div>
 		                  </div>
                         <div class="form-actions">
@@ -199,5 +212,15 @@
 	<!-- application script for Charisma demo -->
 	<script src="js/charisma.js"></script>
 	
+		<script src="js/ajaxsbmt.js"></script>
+	<script>
+		$(function() {
+    	$( ".datepickerB" ).datepicker({
+    		 changeMonth: true,
+    	      changeYear: true,
+    	      showButtonPanel: true
+    });
+  });
+	</script>
 </body>
 </html>

@@ -159,7 +159,7 @@
                       <div class="box-content">
                         <table class="table table-striped table-bordered bootstrap-datatable datatable">
                           <!-- agregar nuevo boton -->
-                          <div  align="right"> <a class="btn btn-primary" href="agregarconcesionario.jsp"> <i class="icon icon-add icon-white"></i> Agregar </a> </div>
+                          <div  align="right"> <a class="btn btn-primary" href="javascript:alt_agregar()"> <i class="icon icon-add icon-white"></i> Agregar </a> </div>
                           <thead>
                             <tr>
                               <th>RUC</th>
@@ -171,8 +171,8 @@
                           <tbody>
                           	<%for(int i=0; i<resultados.size(); i++) { %>
                             <tr>
-                              <td class="center"><%=((ResultadoConcesionarioBeanData)resultados.get(i)).getRazonSocial()%></td>
                               <td class="center"><%=((ResultadoConcesionarioBeanData)resultados.get(i)).getRuc()%></td>
+                              <td class="center"><%=((ResultadoConcesionarioBeanData)resultados.get(i)).getRazonSocial()%></td>
                               <td class="center"><%if(((ResultadoConcesionarioBeanData)resultados.get(i)).getEstado().equalsIgnoreCase("Activo")){    
 								 						out.print("<span class='label label-success'>"+((ResultadoConcesionarioBeanData)resultados.get(i)).getEstado()+"</span>");
 												   }
