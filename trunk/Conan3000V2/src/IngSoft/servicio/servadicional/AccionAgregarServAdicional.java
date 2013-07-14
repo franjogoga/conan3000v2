@@ -6,6 +6,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import IngSoft.general.CoAccion;
 import IngSoft.general.CoException;
+import IngSoft.servicio.bean.ServAdicionalBeanData;
+import IngSoft.servicio.bean.ServAdicionalBeanFuncion;
 
 public class AccionAgregarServAdicional extends CoAccion {
 
@@ -16,7 +18,11 @@ public class AccionAgregarServAdicional extends CoAccion {
 		if(tipo==1){
 			this.direccionar(sc, request, response, "/IngSoft/servicio/servadicional/agregadicional.jsp");
 		}
-		if(tipo==2){					
+		if(tipo==2){	
+			ServAdicionalBeanFuncion servadicionalFuncion= ServAdicionalBeanFuncion.getInstance();
+			ServAdicionalBeanData servadicionalData=servadicionalFuncion.crearServAdicional(request, response);
+			servadicionalFuncion.agregarServAdicional(servadicionalData);			
+			
 		}
 
 	}
