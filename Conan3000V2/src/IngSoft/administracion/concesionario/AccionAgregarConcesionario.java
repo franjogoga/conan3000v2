@@ -1,5 +1,6 @@
 package IngSoft.administracion.concesionario;
 
+import java.io.IOException;
 import java.util.Vector;
 
 import javax.faces.bean.SessionScoped;
@@ -28,10 +29,23 @@ public class AccionAgregarConcesionario extends CoAccion {
 			this.direccionar(sc, request, response, "/IngSoft/administracion/concesionario/buscarconcesionario.jsp");
 		}
 		if(tipo==1){
+			this.direccionar(sc, request, response, "/IngSoft/administracion/concesionario/agregarconcesionario.jsp");
+		}
+		if(tipo==3){
 			ConcesionarioBeanFunction concesionarioFunction = ConcesionarioBeanFunction.getInstance();
 			Vector<ConcesionarioBeanData> resultados = concesionarioFunction.buscarConcesionarioRUC();
-			request.setAttribute("resultados", resultados);
-			this.direccionar(sc, request, response, "/IngSoft/administracion/concesionario/agregarconcesionario.jsp");
+			long ruc=Long.parseLong(request.getParameter("ruc"));
+			String texto="0";
+			for(int i=0;i<resultados.size();i++){
+				if(ruc==resultados.get(i).getRuc())texto="1";
+			}
+			response.setContentType("text/plain");  
+		    response.setCharacterEncoding("UTF-8");
+		    try {
+				response.getWriter().write(texto);
+			} catch (IOException e) {				
+				e.printStackTrace();
+			}
 		}
 	}
 }

@@ -24,12 +24,10 @@ public class AccionModificarConcesionario extends CoAccion {
 			concesionarioFunction.modificarConcesionario(concesionarioData);
 			this.direccionar(sc, request, response,"/IngSoft/administracion/concesionario/buscarconcesionario.jsp");
 		}
-		System.out.println("ENTRO AL ACCION MODIFICAR CONCESIONARIO TIPO=1");
 		ConcesionarioBeanData concesionarioData = concesionarioFunction.consultarConcesionario(request.getParameter("codigo"));
 		request.setAttribute("concesionario",concesionarioData);
 		Vector<ConcesionarioSedeBeanData> concesionarioSede=concesionarioFunction.getConcesionarioSede(request.getParameter("codigo"));
 		request.setAttribute("concesionarioSede",concesionarioSede);
 		this.direccionar(sc, request, response,"/IngSoft/administracion/concesionario/modificarconcesionario.jsp");
-		System.out.println("SALIO AL ACCION MODIFICAR CONCESIONARIO TIPO=1");
 	}
 }

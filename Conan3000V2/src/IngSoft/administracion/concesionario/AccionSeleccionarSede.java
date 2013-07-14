@@ -22,20 +22,16 @@ public class AccionSeleccionarSede extends CoAccion {
 		ConcesionarioBeanFunction concesionarioFunction= ConcesionarioBeanFunction.getInstance();
 		int tipo=Integer.parseInt(request.getParameter("tipo"));
 		if(tipo==2){
-			System.out.println("ENTRO AL ACCION SELECCIONAR SEDE TIPO=2");
 			ConcesionarioSedeBeanData concesionarioSede = concesionarioFunction.crearConcesionarioSede(request, response);
 			concesionarioSede.setCodigoCon(request.getParameter("codigo"));
 			concesionarioFunction.agregarConcesionarioSede(concesionarioSede);
-			System.out.println("SALE AL ACCION SELECCIONAR SEDE TIPO=2");
 		}
-		else {
-			System.out.println("ENTRO AL ACCION SELECCIONAR SEDE TIPO=1");
+		if(tipo==1){
 			ConcesionarioBeanData concesionarioData = concesionarioFunction.consultarConcesionario(request.getParameter("codigo"));
 			request.setAttribute("concesionario",concesionarioData);
 			Vector<SedeMiniBeanData> sedeMiniData=concesionarioFunction.getSedes(request.getParameter("codigo"));
 			request.setAttribute("sedes",sedeMiniData);
 			this.direccionar(sc, request, response, "/IngSoft/administracion/concesionario/seleccionarsede.jsp");
-			System.out.println("SALE AL ACCION SELECCIONAR SEDE TIPO=1");
 		}
 	}
 }
