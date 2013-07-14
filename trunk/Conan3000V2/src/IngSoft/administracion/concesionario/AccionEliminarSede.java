@@ -26,12 +26,14 @@ public class AccionEliminarSede extends CoAccion {
 		if(tipo==2){
 			concesionarioFunction.eliminarConcesionarioSede(request.getParameter("codigo"),request.getParameter("codigoSede"));
 		}
-		ConcesionarioBeanData concesionarioData = concesionarioFunction.consultarConcesionario(request.getParameter("codigo"));
-		request.setAttribute("concesionario",concesionarioData);
-		ConcesionarioSedeBeanData concesionarioSede = concesionarioFunction.consultarConcesionarioSede(request.getParameter("codigo"),request.getParameter("codigoSede"));
-		request.setAttribute("concesionarioSede",concesionarioSede);
-		Vector<SedeMiniBeanData> sedeMiniData=ambienteFunction.getSedes();
-		request.setAttribute("sedes",sedeMiniData);
-		this.direccionar(sc, request, response, "/IngSoft/administracion/concesionario/eliminarsede.jsp");
+		else{
+			ConcesionarioBeanData concesionarioData = concesionarioFunction.consultarConcesionario(request.getParameter("codigo"));
+			request.setAttribute("concesionario",concesionarioData);
+			ConcesionarioSedeBeanData concesionarioSede = concesionarioFunction.consultarConcesionarioSede(request.getParameter("codigo"),request.getParameter("codigoSede"));
+			request.setAttribute("concesionarioSede",concesionarioSede);
+			Vector<SedeMiniBeanData> sedeMiniData=ambienteFunction.getSedes();
+			request.setAttribute("sedes",sedeMiniData);
+			this.direccionar(sc, request, response, "/IngSoft/administracion/concesionario/eliminarsede.jsp");
+		}
 	}
 }
