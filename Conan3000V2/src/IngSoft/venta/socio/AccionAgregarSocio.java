@@ -33,7 +33,7 @@ public class AccionAgregarSocio extends CoAccion{
 					
 					personaFuncion.agregarPersonaTraslado(personaData);
 					socioFuncion.agregarSocioTraslado(socioData);
-	
+					
 					request.setAttribute("socio", socioData);
 
 					this.direccionar(sc, request, response, "/IngSoft/ventas/membresia/trasladomembresia.jsp");
