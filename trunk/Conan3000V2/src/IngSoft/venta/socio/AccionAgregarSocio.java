@@ -31,6 +31,7 @@ public class AccionAgregarSocio extends CoAccion{
 					PersonaMiniBeanFuncion personaFuncion=PersonaMiniBeanFuncion.getInstanceP();
 					PersonaMiniBeanData personaData=personaFuncion.crearPersona(request, response);
 					
+					
 					personaFuncion.agregarPersonaTraslado(personaData);
 					socioFuncion.agregarSocioTraslado(socioData);
 					
