@@ -159,7 +159,7 @@ public class PersonaMiniBeanFuncion {
 			usuarioData.setNombUsuario(nombUsuario);
 			usuarioData.setContraseña(contraseña);
 			
-			//busco codigo de usuario y genero el siguiente
+			//busco codigo de usuario y genero el siguiente		
 			String codUsuario= (String)sqlsesion.selectOne("Data.venta.socio.getNextCodigoU");
 			if(codUsuario!=null){
 				int codU= Integer.parseInt(codUsuario.substring(3))+1;
