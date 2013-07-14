@@ -58,6 +58,7 @@ public class LoginBeanFuncion {
 			}
 			CU.trimToSize();
 			sqlsesion.close();
+			CU.get(0).setEstado(usuarioBD.getEstado());
 			return CU;
 			
 		}
