@@ -1,6 +1,4 @@
 <!DOCTYPE html>
-<%@page import="java.util.Vector"%>
-<%@page import="IngSoft.administracion.bean.ConcesionarioBeanData"%>
 <html lang="en">
 <head>
 	<meta charset="utf-8">
@@ -8,9 +6,6 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
 	<meta name="author" content="Muhammad Usman">
-
-	<!--The beans  -->
-	<jsp:useBean id="resultados" scope="request" class="java.util.Vector"></jsp:useBean>
 	
 	<!-- The styles -->
 	<link id="bs-css" href="css/bootstrap-cerulean.css" rel="stylesheet">
@@ -55,31 +50,25 @@
 	function alt_submit(){
 		var form= document.frmData;
 		if(validaForm()){
-        	form.submit();
-        }
-	}
-	
-	function alt_submit1(){
-		var form= document.frmData;
-		if(validaForm()){
-				var comp = comprueba();
-				if(comprueba()==1){
-        			crearAlert2("No se puede agregar el concesionario. El número de RUC ya está registrado, "+comp);
+			$.ajax({
+			  type: "POST",
+			  url: "/Conan3000V2/IngSoft/administracion/concesionario/SMAConcesionario",
+			  data: "accion=Agregar&tipo=3&ruc=" + $(txtRuc).val(),
+			  dataType: "text",
+			  success: function(msg){
+			  	if(msg == "1"){
+        			crearAlert2("No se puede agregar el concesionario. El número de RUC ya existe.");
         		}else{
-        		
         			form.submit();    
-        		}
+        		}  				  								
+			  },
+			  error: function(){
+			  	return "";
+			  }
+			});
 		}
 	}
-	
-	function comprueba (){
-
-		return 0;
-	}
-	
-	
 	</script>
-	
 </head>
 
 <body>
