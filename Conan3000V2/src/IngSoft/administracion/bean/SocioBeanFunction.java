@@ -91,6 +91,7 @@ public class SocioBeanFunction {
 				datosSuspension.setFechaRegistro(fechaRegistro);
 				sesion.insert("Data.administracion.socio.insertSuspension", datosSuspension);	
 				sesion.update("Data.administracion.socio.updateSuspendidoSocio", codigo);
+				sesion.update("Data.administracion.socio.updateSuspendidoSocioEnUsuario", codigo);
 			}
 		} catch (Exception e3){
 			sesion.rollback();
@@ -110,6 +111,7 @@ public class SocioBeanFunction {
 		SqlSession sesion = MyBatisSesion.metodo().openSession();
 		try {
 			sesion.update("Data.administracion.socio.updateSuspendidoSocioActivar", codigo);
+			sesion.update("Data.administracion.socio.updateSuspendidoSocioActivarEnUsuario", codigo);
 			resultado = true;
 		} catch (Exception e4) {
 			sesion.rollback();
