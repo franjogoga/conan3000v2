@@ -1,7 +1,4 @@
 <!DOCTYPE html>
-<%@page import="IngSoft.servicio.bean.InvitadosMiniBeanData"%>
-<%@page import="IngSoft.servicio.bean.ConcesionarioMiniBeanData"%>
-<%@page import="IngSoft.servicio.bean.EventoBeanData"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="IngSoft.servicio.bean.Utils"%>
@@ -20,18 +17,16 @@
 		http://usman.it
 		http://twitter.com/halalit_usman
 	-->
+	<!--The beans  -->
+	<jsp:useBean id="modo" scope="request"class="java.lang.String"></jsp:useBean>
+	
 	<meta charset="utf-8">
-	<title>Agregar Solicitud de Evento</title>
+	<title>Consultar Adicional</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
 	<meta name="author" content="Muhammad Usman">
-	<!--The beans  -->
-	<jsp:useBean id="sedes" scope="request"class="java.util.Vector"></jsp:useBean>
-	<jsp:useBean id="invitados" scope="request"class="java.util.Vector"></jsp:useBean>
-	<jsp:useBean id="evento" scope="request"class="IngSoft.servicio.bean.EventoBeanData"></jsp:useBean>
-	<jsp:useBean id="concesionario" scope="request"class="IngSoft.servicio.bean.ConcesionarioMiniBeanData"></jsp:useBean>
 	
-	<%String modo=((EventoBeanData)evento).getCodigo().substring(0, 3);%>
+	
 	<!-- The styles -->
 	<link id="bs-css" href="css/bootstrap-cerulean.css" rel="stylesheet">
 	<style type="text/css">
@@ -76,14 +71,107 @@
 	var fechaActual="<%=new SimpleDateFormat("dd/MM/yyyy").format(new Date())%>";
 	var boton='#btnConcecionarios';
 	var concesionario='';
+		function validar(){
+			var test=true;												
+			if($('#txtNombreAdicional').val()==null || $('#txtNombreAdicional').val().length<=0){
+				$('#txtNombreAdicional').bind("change",function(){
+				var temp= $('#txtNombreAdicional');
+				if(temp.val()!=null && temp.val().length>0) {
+				temp.parent().parent().removeClass("error");
+				temp.parent().parent().addClass("success");
+				$('#errNombreAdicional').slideUp(1000);
+				}
+				else {
+				temp.parent().parent().removeClass("success");
+				temp.parent().parent().addClass("error");
+				$('#errNombreAdicional').slideDown(1000);
+				}
 				
-	
+				})
+				$('#errNombreAdicional').slideDown(1000);
+				test=false;
+				$('#txtNombreAdicional').parent().parent().toggleClass("error");
+			}
+			else $('#txtNombreAdicional').parent().parent().addClass("success");
+			
+			if($('#cmbTipo').val()==null||$('#cmbTipo').val().length<=0||$('#cmbTipo').val().indexOf('none')==0){
+				$('#cmbTipo').bind("change",function(){
+				var temp= $('#cmbTipo');
+				if(temp.val()!=null && temp.val().length>0 && $('#cmbTipo').val().indexOf('none')<0) {
+				temp.parent().parent().removeClass("error");
+				temp.parent().parent().addClass("success");
+				$('#errTipo').slideUp(1000);
+				}
+				else {
+				temp.parent().parent().removeClass("success");
+				temp.parent().parent().addClass("error");
+				$('#errTipo').slideDown(1000);
+				}
+				
+				})
+				$('#errTipo').slideDown(1000);
+				test=false;
+				$('#cmbTipo').parent().parent().toggleClass("error");
+			}
+			else $('#cmbTipo').parent().parent().addClass("success");					
+			if($('#txtPrecio').val()==null || $('#txtPrecio').val().length<=0){
+				$('#txtPrecio').bind("change",function(){
+				var temp= $('#txtPrecio');
+				if(temp.val()!=null && temp.val().length>0) {
+				temp.parent().parent().removeClass("error");
+				temp.parent().parent().addClass("success");
+				$('#errPrecio').slideUp(1000);
+				}
+				else {
+				temp.parent().parent().removeClass("success");
+				temp.parent().parent().addClass("error");
+				$('#errPrecio').slideDown(1000);
+				}
+				
+				})
+				$('#errPrecio').slideDown(1000);
+				test=false;
+				$('#txtPrecio').parent().parent().toggleClass("error");
+			}
+			else $('#txtPrecio').parent().parent().addClass("success");
+			if($('#txtDesc').val()==null || $('#txtDesc').val().length<=0){
+				$('#txtDesc').bind("change",function(){
+				var temp= $('#txtDesc');
+				if(temp.val()!=null && temp.val().length>0) {
+				temp.parent().parent().removeClass("error");
+				temp.parent().parent().addClass("success");
+				$('#errDesc').slideUp(1000);
+				}
+				else {
+				temp.parent().parent().removeClass("success");
+				temp.parent().parent().addClass("error");
+				$('#errDesc').slideDown(1000);
+				}
+				
+				})
+				$('#errDesc').slideDown(1000);
+				test=false;
+				$('#txtDesc').parent().parent().toggleClass("error");
+			}
+			else $('#txtDesc').parent().parent().addClass("success");
+	return test;
 		
-	function alt_aprobar(codigo){
+		
+		}
+	
+	
+	function alt_submit(){
+		var form= document.frmData;
+		if(validar()) alt_submit2();
+		else alert("Uno o mas campos estan vacios");			
+			}
+	function alt_submit2(){
+
 		$.ajax({
 			  type: "POST",
 			  url: "/Conan3000V2/IngSoft/servicio/evento/SMSEvento",
-			  data: "accion=Consultar"+ "&tipo=2"+"&codigo="+codigo,
+			  data: "accion=" + $(accion).val() + "&tipo=" + $(tipo).val() + "&txtNombreAdicional=" + $(txtNombreAdicional).val() + "&txtNumEntradas=" + $(txtNumEntradas).val()  
+			  +  "&cmbTipo=" + $(cmbTipo).val() + "&fFecha=" + $(fFecha).val()+"&concesionario="+concesionario+"&precioentrada="+$(txtPrecio).val()+"&precioentradaI="+$(txtDesc).val(),
 			  dataType: "text",
 			  success: function(msg){
 				  var url="<%=request.getContextPath()%>"+msg;
@@ -92,7 +180,7 @@
 				  $("#modalTitulo").html("EXITO");	
 				  $("#MensajeExito").css("display","inline");
 				  $("#listaConcecionarios").css("display","none");			  
-				  $("#modalContenido").html("La solicitud de evento ha sido aprobada");
+				  $("#modalContenido").html("La plantilla de evento ha sido agregada exitosamente");
 				  $("#linkAceptar").bind("click",function(){
 					  location.href=url;					  
 				  });
@@ -103,49 +191,24 @@
 				$("#linkAceptar").css("display","inline");
 				$("#linkCerrar").css("display","none");
 				$("#modalTitulo").html("ERROR");
-				$("#modalContenido").html("La operacion fallo intente de nuevo");
-				$("#bModal").trigger("click");				
-			  }		
-			});		
-	}
-	
-	function alt_anular(codigo){
-		$.ajax({
-			  type: "POST",
-			  url: "/Conan3000V2/IngSoft/servicio/evento/SMSEvento",
-			  data: "accion=Consultar"+ "&tipo=3"+"&codigo="+codigo,
-			  dataType: "text",
-			  success: function(msg){
-				  var url="<%=request.getContextPath()%>"+msg;
-				  $("#linkAceptar").css("display","inline");
-				  $("#linkCerrar").css("display","none");
-				  $("#modalTitulo").html("EXITO");	
-				  $("#MensajeExito").css("display","inline");
-				  $("#listaConcecionarios").css("display","none");			  
-				  $("#modalContenido").html("La solicitud de evento ha sido anulada");
-				  $("#linkAceptar").bind("click",function(){
-					  location.href=url;					  
-				  });
-				  $("#bModal").trigger("click");
-				  				  								
-			  },
-			  error: function(objeto, quepaso, otroobj){
-				$("#linkAceptar").css("display","inline");l
-				$("#linkCerrar").css("display","none");
-				$("#modalTitulo").html("ERROR");
-				$("#modalContenido").html("La operacion fallo intente de nuevo");
-				$("#bModal").trigger("click");				
+				$("#modalContenido").html("No se pudo agregar su plantilla de evento, intentelo mas tarde");
+				$("#bModal").trigger("click");
+				alert("ERROR!!");			
 			  }
 		
 			});		
 	}
-		
+	
+	function resetConcesionarios(){	 
+	 $('#listaServicios').html("<div class='input-append'><input id='appendedInputButton' size='16' type='text' readonly='true' value='Salon Principal'><button class='btn' disabled='disabled' type='button'>X</button></div><br/>");
+	 concesionario='';
+	}
 	function getConcecionarios(){
 	$(this).attr('disabled','disabled');
 		$.ajax({
 			  type: "POST",
 			  url: "/Conan3000V2/IngSoft/servicio/evento/SMSEvento",
-			  data: "accion=" + $(accion).val() + "&tipo=3" + "&cmbSedes=" + $(cmbSedes).val() + "&fFecha=" + $(fFecha).val() ,
+			  data: "accion=" + $(accion).val() + "&tipo=3" + "&cmbTipo=" + $(cmbTipo).val() + "&fFecha=" + $(fFecha).val() ,
 			  dataType: "html",
 			  success: function(msg){				  
 				  $("#concesionarioResultados").html(msg);
@@ -162,15 +225,39 @@
 				$("#modalTitulo").html("ERROR");
 				$("#modalContenido").html("Hubo un error, no se pudo conseguir la lista de concesionarios");
 				$("#bModal").trigger("click");
-				$(this).removeAttr('disabled','');				
-			  }		
+				$(this).removeAttr('disabled','');
+				
+			  }
+		
 			});		
 		
 	}
-		
+	
+	
+	function confirmarcambio(elem){
+		var contenido=elem.val();
+		$('.btn-success').removeAttr('disabled')
+		resetConcesionarios();
+		//if(temp.length>0) temp.removeAtrr('disabled');
+		if($('#cmbTipo').val().indexOf('0')==0){
+			$(boton).attr('disabled','disabled');
+		}
+		else $(boton).removeAttr('disabled');
+		if(elem.attr('id').indexOf("fFecha")>=0){
+			$(boton).unbind('click');
+			if((contenido.indexOf(fechaActual)>=0)) $(boton).bind('click', function(){$("#bModal").trigger("click");});
+			else $(boton).bind('click',function(){getConcecionarios();})
+		}
+		else{
+			$(boton).unbind('click');
+			if((contenido.indexOf(codSedeActual)>=0)) $(boton).bind('click', function(){$("#bModal").trigger("click");});
+			else $(boton).bind('click',function(){getConcecionarios();})		
+		}
+	}
+			
 	</script>	
 </head>
-
+<!-- nombre tipo monto descripcion -->
 <body>
 		<jsp:include page="/IngSoft/general/superior.jsp" />
 		<div class="container-fluid">
@@ -201,7 +288,7 @@
 						<a href="buscarevento.jsp">Mantenimiento de Eventos</a> <span class="divider">/</span>
 					</li>
 					<li>
-						Consultar Solicitud de Eventos Internos
+						Agregar Solicitud de Eventos Internos
 					</li>
 				</ul>
 			</div>
@@ -209,110 +296,56 @@
 			<div class="row-fluid sortable">
 				<div class="box span12">
 					<div class="box-header well" data-original-title>
-					  <h2><i class="icon-plus-sign"></i>CONSULTAR EVENTO</h2>
+					  <h2><i class="icon-plus-sign"></i>AGREGAR SERVICIO ADICIONAL</h2>
 				  </div>
 					<div class="box-content">
-						<form class="form-horizontal" onsubmit="alt_submit(); return false;"name="frmData" method="post">
-						<input type="hidden" name="accion" id="accion" value="Consultar"></input>
+						<form class="form-horizontal" action="<%= response.encodeURL("SMSServAdcional")%>" onsubmit="alt_submit(); return false;"name="frmData" method="post">
+						<input type="hidden" name="accion" id="accion" value="Agregar"></input>
 						<input type="hidden" name="tipo" id="tipo" value="2"></input>
-						
+						<input type="hidden" name="fFechaActual" id="fFechaActual" value="<%=new SimpleDateFormat("dd/MM/yyyy").format(new Date())%>"></input>
 						  <fieldset>
 						    <div class="control-group">
-						      <label class="control-label" for="typeahead7">Nombre de evento: </label>
+						      <label class="control-label" for="typeahead7">Nombre de servicio adicional(*): </label>
 						      <div class="controls">
-						        <input type="text" class="span6 typeahead" id="txtNombreEvento"  data-provide="typeahead" readonly="true" id="txtNombreEvento" name="txtNombreEvento" value="<%=((EventoBeanData)evento).getNombre()%>"/>
-								<span class="help-inline" id="errNombreEvento" style="display:none;">Este campo no puede estar vacio</span>						        													       
+						        <input type="text" class="span6 typeahead" id="txt	NombreAdicional"  data-provide="typeahead"  id="txtNombreAdicional" name="txtNombreAdicional" onkeypress="return alfanumerico(event);" autofocus maxlength="50"/>
+								<span class="help-inline" id="errNombreAdicional" style="display:none;">Este campo no puede estar vacio</span>						        													       
 					          </div>
 					        </div>
-					        <%if(modo.equals("ESC")|| modo.equals("ESD")){ %>
-					        	<div class="control-group">
-						      <label class="control-label" for="txtCosto">Costo Reserva Salon Principal: </label>
-						      <div class="controls">
-
-									<input  id="txtCosto" class="span4" name="txtCosto" value="<%=((EventoBeanData)evento).getMonto()%>" readonly onchange="vDinero($(this))"  type="text" onkeypress="return dinero(event);"  maxlength="12">
-									<br/>
-								  <span class="help-inline" id="errCosto" name="errCosto" style="display:none;">Este campo no puede estar vacio</span>
-					        </div>
-					        <%}
-					        else if(modo.equals("ESD")){ %>
 					        <div class="control-group">
-						      <label class="control-label" for="txtNumEntradas">Entradas: </label>
-						      <div class="controls">
-						        <input type="text" class="input typeahead" id="txtNumEntradas"  data-provide="typeahead"  name="txtNumEntradas" readonly="true" value="<%=((EventoBeanData)evento).getEntradasTotal()%> de <%=((EventoBeanData)evento).getLimiteEntradas()%> vendidas"/><br/>
-								<span class="help-inline" id="errNumEntradas" style="display:none;">Este campo no puede estar vacio</span>						        													       
-					          </div>
-					        </div>	
-					        <div class="control-group">
-						      <label class="control-label" for="txtPrecio">Precio de la Entrada: </label>
-						      <div class="controls">
-									<input  id="txtPrecio" class="span4" name="txtPrecio" readonly="true"  type="text"  value="<%=((EventoBeanData)evento).getMonto()%>">									
-					        </div>
-					        </div>					 
-					        <%}%>					        						     
-							  <div class="control-group">
-								<label class="control-label" for="cmbSedes">Sede relacionada:</label>
+								<label class="control-label" for="cmbTipo">Tipo de servicios adicionales(*):</label>
 								<div class="controls">
-								  <select  data-rel="chosen" id="cmbSedes" name="cmbSedes" disabled onchange="confirmarcambio($(this))">								  	
-									<%for(int i=0;i<sedes.size();i++){ %>
-										<option value="<%= ((SedeMiniBeanData)sedes.get(i)).getCodigo()%>" <%=((EventoBeanData)evento).getIdSede().equals(((SedeMiniBeanData)sedes.get(i)).getCodigo())?"selected":""%>><%= ((SedeMiniBeanData)sedes.get(i)).getNombre()%></option>
-									<%} %>																									
+								  <select  data-rel="chosen" id="cmbTipo" name="cmbTipo" onchange="confirmarcambio($(this))">
+								  	<option value="none" selected>--Seleccione una tipo--</option>
+								  	<option value="Mueble">Mueble</option>
+								  	<option value="Electrodomestico">Electrodomestico</option>								  																																	
 								  </select><br/>
-								  <span class="help-inline" id="errSedes" style="display:none;">Debe seleccionar una sede</span>
+								  <span class="help-inline" id="errTipo" style="display:none;">Debe seleccionar una sede</span>
 								</div>
-							  </div>							   
-							  <div class="control-group">
-							  <label class="control-label" for="fFecha">Fecha:</label>
-							  <div class="controls">
-								<input type="text" class="input datepickerB" id="fFecha" readonly="true" value="<%=new SimpleDateFormat("dd/MM/yyyy").format(((EventoBeanData)evento).getFecha())%>"  name="fFecha" onchange="confirmarcambio($(this))">
-							  </div>
-							</div>
-							 <div class="control-group">
-							  <label class="control-label" for="fFecha">Servicios Seleccionados:</label>
-							  <div class="controls" id="listaServicios">
-								<div class="input-append">
-									<input id="appendedInputButton" size="16" type="text" readonly="true" value="Salon Principal"><button class="btn" disabled="disabled" type="button">X</button>
-								</div>	
-								  <br/>
-								  <%if(concesionario!=null){ %>
-								  <div>
-								  <input id="appendedInputButton" size="16" type="text" readonly="true" value="<%=((ConcesionarioMiniBeanData)concesionario).getRazonSocial()%>"><button class="btn" disabled="disabled" type="button">X</button>
-								  </div><%} %></div>
-								 
-							</div>
-							<%if(modo.equals("ECP")){ %>
-							<div class="control-group">
-							  <label class="control-label" for="txtDNIinvitado">Invitados:</label>
-							  <div class="controls" id="listainvitados">
-									<%for(int i=0;i<invitados.size();i++){%>
-									<input id="appendedInputButton" size="16" type="text" readonly="readonly" value="<%=((InvitadosMiniBeanData)invitados.get(i)).getDni()%>"/><input id="appendedInputButton" size="16" type="text" readonly="readonly" value="<%=((InvitadosMiniBeanData)invitados.get(i)).getNombres()%>"/><input id="appendedInputButton" size="16" type="text" readonly="readonly" value="<%=((InvitadosMiniBeanData)invitados.get(i)).getApePaterno()%>"/><input id="appendedInputButton" size="16" type="text"  readonly="readonly" value="<%=((InvitadosMiniBeanData)invitados.get(i)).getApeMaterno()%>"/>
-								  	<br/>
-								  	<%}%>
-								  	</div>
-							</div>
-							<%} %>	
-							<div class="control-group">
-						      <label class="control-label" for="txtEstado">Estado: </label>
+							  </div>	
+					        <div class="control-group">
+						      <label class="control-label" for="txtPrecio">Precio del servicio adicional(*): </label>
 						      <div class="controls">
-									<input  id="txtEstado" class="span4" name="txtEstado" readonly="true"  type="text"  value="<%=((EventoBeanData)evento).getEstado()%>">									
+									<input  id="txtPrecio" class="span4" name="txtPrecio" onchange="vDinero($(this))"  type="text" onkeypress="return dinero(event);"  maxlength="10">
+									<br/>
+								  <span class="help-inline" id="errPrecio" name="errPrecio" style="display:none;">Este campo no puede estar vacio</span>
 					        </div>
 					        </div>
-							<div class="form-actions" style="display: none;">
-							  <button type="button" id="btnConcecionarios" class="btn btn-primary" disabled="disabled" >Concesionarios</button>							 
-							</div>														
+					        <div class="control-group">
+						      <label class="control-label" for="txtDesc">Descripcion(*): </label>
+						      <div class="controls">
+									<input  id="txtDesc" class="span4" name="txtDesc"   type="text" onkeypress="return alfanumerico(event);"  maxlength="100">
+									<br/>
+								  <span class="help-inline" id="errDesc" name="errDesc" style="display:none;">Este campo no puede estar vacio</span>
+					        </div>
+					        </div>					  							  							   							 
+													
 						    <div class="form-actions">
-						    <%if(((EventoBeanData)evento).getEstado().equals("REGISTRADO")){
-						    	SimpleDateFormat df= new SimpleDateFormat("yyyyMMdd"); 
-						    	if(df.format(((EventoBeanData)evento).getFecha()).compareTo(df.format(new java.util.Date()))>0){
-						    	%>						    	
-							  <button type="button" id="btnAprobar" class="btn btn-primary" onclick="alt_aprobar('<%=((EventoBeanData)evento).getCodigo()%>')">Aprobar</button>
-							  <%} %>
-							  <button type="button" id="btnRechazar" class="btn btn-primary" onclick="alt_anular('<%=((EventoBeanData)evento).getCodigo()%>')" >Rechazar</button>
-							  <%} %>
-							  <button type="button" class="btn" onclick="location.href='<%=request.getContextPath()%>/IngSoft/servicio/evento/SMSEvento?accion=Buscar&tipo=1'" >Regresar</button>
+							  <button type="submit" id="btnAgregar" class="btn btn-primary" >Agregar</button>
+							  <button type="button" class="btn" onclick="location.href='SMSServAdicional?accion=Buscar&tipo=1'" >Cancelar</button>
 							</div>
 						  </fieldset>
 					  </form>   
-					
+					<span style="font-size:70%">(*)Campos Obligatorios</span>
 				  </div>
 				</div><!--/span-->
 
@@ -342,7 +375,7 @@
 				<h3 id="modalTitulo">EXITO</h3>
 			</div>
 			<div class="modal-body">
-				<p id="modalContenido">La plantilla de evento ha sido agregada exitosamente</p>
+				<p id="modalContenido">El servicio adicional ha sido agregada exitosamente</p>
 			</div>
 			
 			<div class="modal-footer">
@@ -350,18 +383,7 @@
 				<a href="#" class="btn" id="linkCerrar"  data-dismiss="modal" style="display: none">Cerrar</a>
 								
 			</div>
-			</div>
-			<div id="listaConcecionarios">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal">X</button>
-				<h3 id="modalTitulo">Lista de concesionarios</h3>
-			</div>
-			<div class="box-content" id="concesionarioResultados"  >
-			
-			</div>
-			
-			
-			</div>
+			</div>			
 		</div>
 		<br/>
 		<jsp:include page="/IngSoft/general/inferior.jsp" />
@@ -441,11 +463,11 @@
 	<script src="js/charisma.js"></script>
 	<script src="js/conan3000.js"></script>
 	<script>
-		$('#txtNombreEvento').bind('paste',function(){		
-			setTimeout(function(){filtrar('abcdefghijklmnopqrstuwxyzABCDEFGHIJKLMNOPQRSTUWXYZÒ—·¡È…ÌÕÛ”˙⁄1234567890',$('#txtNombreEvento'),50)}, 0);
+		$('#txtNombreAdicional').bind('paste',function(){		
+			setTimeout(function(){filtrar('abcdefghijklmnopqrstuwxyzABCDEFGHIJKLMNOPQRSTUWXYZÒ—·¡È…ÌÕÛ”˙⁄1234567890',$('#txtNombreAdicional'),50)}, 0);
 		})
-		$('#txtNumEntradas').bind('paste',function(){		
-			setTimeout(function(){filtrar('1234567890',$('#txtNumEntradas'),50)}, 0);
+		$('#txtDesc').bind('paste',function(){		
+			setTimeout(function(){filtrar('abcdefghijklmnopqrstuwxyzABCDEFGHIJKLMNOPQRSTUWXYZÒ—·¡È…ÌÕÛ”˙⁄1234567890',$('#txtNombreAdicional'),50)}, 0);
 		})
 		$('#txtPrecio').bind('paste',function(){		
 			setTimeout(function(){filtrar('1234567890.',$('#txtPrecio'),50)}, 0);			

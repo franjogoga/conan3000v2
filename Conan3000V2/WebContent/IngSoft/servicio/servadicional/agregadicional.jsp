@@ -174,17 +174,16 @@
 		$.ajax({
 			  type: "POST",
 			  url: "/Conan3000V2/IngSoft/servicio/evento/SMSEvento",
-			  data: "accion=" + $(accion).val() + "&tipo=" + $(tipo).val() + "&txtNombreAdicional=" + $(txtNombreAdicional).val() + "&txtNumEntradas=" + $(txtNumEntradas).val()  
-			  +  "&cmbTipo=" + $(cmbTipo).val() + "&fFecha=" + $(fFecha).val()+"&concesionario="+concesionario+"&precioentrada="+$(txtPrecio).val()+"&precioentradaI="+$(txtDesc).val(),
+			  data: "accion=" + $(accion).val() + "&tipo=" + $(tipo).val() + "&txtNombre=" + $(txtNombreAdicional).val() + "&txtDesc=" + $(txtDesc).val()  
+			  +  "&cmbTipo=" + $(cmbTipo).val() +"&txtPrecio="+$(txtPrecio).val(),
 			  dataType: "text",
 			  success: function(msg){
 				  var url="<%=request.getContextPath()%>"+msg;
 				  $("#linkAceptar").css("display","inline");
 				  $("#linkCerrar").css("display","none");
 				  $("#modalTitulo").html("EXITO");	
-				  $("#MensajeExito").css("display","inline");
-				  $("#listaConcecionarios").css("display","none");			  
-				  $("#modalContenido").html("La plantilla de evento ha sido agregada exitosamente");
+				  $("#MensajeExito").css("display","inline");					  
+				  $("#modalContenido").html("El servicio adicional ha sido agregado exitosamente");
 				  $("#linkAceptar").bind("click",function(){
 					  location.href=url;					  
 				  });
@@ -195,7 +194,7 @@
 				$("#linkAceptar").css("display","inline");
 				$("#linkCerrar").css("display","none");
 				$("#modalTitulo").html("ERROR");
-				$("#modalContenido").html("No se pudo agregar su plantilla de evento, intentelo mas tarde");
+				$("#modalContenido").html("No se pudo agregar su servicio adicional, intentelo mas tarde");
 				$("#bModal").trigger("click");
 				alert("ERROR!!");			
 			  }
@@ -203,61 +202,6 @@
 			});		
 	}
 	
-	function resetConcesionarios(){	 
-	 $('#listaServicios').html("<div class='input-append'><input id='appendedInputButton' size='16' type='text' readonly='true' value='Salon Principal'><button class='btn' disabled='disabled' type='button'>X</button></div><br/>");
-	 concesionario='';
-	}
-	function getConcecionarios(){
-	$(this).attr('disabled','disabled');
-		$.ajax({
-			  type: "POST",
-			  url: "/Conan3000V2/IngSoft/servicio/evento/SMSEvento",
-			  data: "accion=" + $(accion).val() + "&tipo=3" + "&cmbTipo=" + $(cmbTipo).val() + "&fFecha=" + $(fFecha).val() ,
-			  dataType: "html",
-			  success: function(msg){				  
-				  $("#concesionarioResultados").html(msg);
-				  updatetable();				
-				  $('#mytable_length').css("display","none");  
-				  $("#bModal").trigger("click");
-				  $(this).removeAttr('disabled','');
-				  $(boton).unbind('click');
-				  $(boton).bind('click', function(){$("#bModal").trigger("click");});				  				  								
-			  },
-			  error: function(objeto, quepaso, otroobj){
-				$("#linkAceptar").css("display","inline");
-				$("#linkCerrar").css("display","none");
-				$("#modalTitulo").html("ERROR");
-				$("#modalContenido").html("Hubo un error, no se pudo conseguir la lista de concesionarios");
-				$("#bModal").trigger("click");
-				$(this).removeAttr('disabled','');
-				
-			  }
-		
-			});		
-		
-	}
-	
-	
-	function confirmarcambio(elem){
-		var contenido=elem.val();
-		$('.btn-success').removeAttr('disabled')
-		resetConcesionarios();
-		//if(temp.length>0) temp.removeAtrr('disabled');
-		if($('#cmbTipo').val().indexOf('0')==0){
-			$(boton).attr('disabled','disabled');
-		}
-		else $(boton).removeAttr('disabled');
-		if(elem.attr('id').indexOf("fFecha")>=0){
-			$(boton).unbind('click');
-			if((contenido.indexOf(fechaActual)>=0)) $(boton).bind('click', function(){$("#bModal").trigger("click");});
-			else $(boton).bind('click',function(){getConcecionarios();})
-		}
-		else{
-			$(boton).unbind('click');
-			if((contenido.indexOf(codSedeActual)>=0)) $(boton).bind('click', function(){$("#bModal").trigger("click");});
-			else $(boton).bind('click',function(){getConcecionarios();})		
-		}
-	}
 			
 	</script>	
 </head>
@@ -306,12 +250,11 @@
 						<form class="form-horizontal" action="<%= response.encodeURL("SMSServAdcional")%>" onsubmit="alt_submit(); return false;"name="frmData" method="post">
 						<input type="hidden" name="accion" id="accion" value="Agregar"></input>
 						<input type="hidden" name="tipo" id="tipo" value="2"></input>
-						<input type="hidden" name="fFechaActual" id="fFechaActual" value="<%=new SimpleDateFormat("dd/MM/yyyy").format(new Date())%>"></input>
-						  <fieldset>
+					
 						    <div class="control-group">
 						      <label class="control-label" for="typeahead7">Nombre de servicio adicional(*): </label>
 						      <div class="controls">
-						        <input type="text" class="span6 typeahead" id="txt	NombreAdicional"  data-provide="typeahead"  id="txtNombreAdicional" name="txtNombreAdicional" onkeypress="return alfanumerico(event);" autofocus maxlength="50"/>
+						        <input type="text" class="span6 typeahead" data-provide="typeahead"  id="txtNombreAdicional" name="txtNombreAdicional" onkeypress="return alfanumerico(event);" autofocus maxlength="50"/>
 								<span class="help-inline" id="errNombreAdicional" style="display:none;">Este campo no puede estar vacio</span>						        													       
 					          </div>
 					        </div>
