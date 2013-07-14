@@ -19,7 +19,6 @@ import IngSoft.administracion.bean.SedeMiniBeanData;
 public class ConcesionarioBeanFunction {	
 	
 	static private ConcesionarioBeanFunction ConcesionarioFunction=null;
-	private Lock l= new ReentrantLock();
 
 	SimpleDateFormat DF = new SimpleDateFormat("dd/MM/yyyy"); 
 		   
@@ -55,9 +54,9 @@ public class ConcesionarioBeanFunction {
 		return concesionarioData;	
 	} 
 	
-	public boolean agregarConcesionario(ConcesionarioBeanData concesionarioData) throws CoException {
+	public synchronized boolean agregarConcesionario(ConcesionarioBeanData concesionarioData) throws CoException {
 		boolean resultado=false;	
-		l.lock();
+	
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
 			String codigo= (String)sqlsesion.selectOne("Data.administracion.concesionario.getNextCodigo");
@@ -79,15 +78,13 @@ public class ConcesionarioBeanFunction {
 		}
 		finally{
 			sqlsesion.commit();
-			sqlsesion.close();
-			l.unlock();					
+			sqlsesion.close();					
 		}
 		return resultado;
 	}
 	
-	public boolean eliminarConcesionario(String codigo) throws CoException {
+	public synchronized boolean eliminarConcesionario(String codigo) throws CoException {
 		boolean resultado=false;
-		l.lock();
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
 			sqlsesion.update("Data.administracion.concesionario.deleteConcesionario",codigo);
@@ -101,14 +98,12 @@ public class ConcesionarioBeanFunction {
 		finally{
 			sqlsesion.commit();
 			sqlsesion.close();
-			l.unlock();
 		}
 		return resultado;
 	}
 
-	public boolean modificarConcesionario(ConcesionarioBeanData concesionarioData) throws CoException {
+	public synchronized boolean modificarConcesionario(ConcesionarioBeanData concesionarioData) throws CoException {
 		boolean resultado=false;
-		l.lock();
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
 			sqlsesion.update("Data.administracion.concesionario.updateConcesionario",concesionarioData);
@@ -122,7 +117,6 @@ public class ConcesionarioBeanFunction {
 		finally{
 			sqlsesion.commit();
 			sqlsesion.close();
-			l.unlock();
 		}
 		return resultado;
 	}
@@ -183,9 +177,8 @@ public class ConcesionarioBeanFunction {
 		return concesionarioSede;		
 	}
 	
-	public boolean agregarConcesionarioSede(ConcesionarioSedeBeanData concesionarioSede) throws CoException {
+	public synchronized boolean agregarConcesionarioSede(ConcesionarioSedeBeanData concesionarioSede) throws CoException {
 		boolean resultado=false;	
-		l.lock();
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
 			sqlsesion.insert("Data.administracion.concesionario.insertConcesionarioSede",concesionarioSede);
@@ -199,15 +192,13 @@ public class ConcesionarioBeanFunction {
 		}
 		finally{
 			sqlsesion.commit();
-			sqlsesion.close();
-			l.unlock();					
+			sqlsesion.close();	
 		}
 		return resultado;
 	}
 	
-	public boolean eliminarConcesionarioSede(String codigoCon,String codigoSede) throws CoException {
+	public synchronized boolean eliminarConcesionarioSede(String codigoCon,String codigoSede) throws CoException {
 		boolean resultado=false;
-		l.lock();
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
 			ConSedeBeanData conSede=new ConSedeBeanData();
@@ -223,8 +214,7 @@ public class ConcesionarioBeanFunction {
 		}		
 		finally{
 			sqlsesion.commit();
-			sqlsesion.close();
-			l.unlock();					
+			sqlsesion.close();		
 		}
 		return resultado;
 	}
@@ -267,9 +257,8 @@ public class ConcesionarioBeanFunction {
 		return concesionarioSede;		
 	}
 
-	public boolean modificarConcesionarioSede(ConcesionarioSedeBeanData concesionarioSede) throws CoException {
+	public synchronized boolean modificarConcesionarioSede(ConcesionarioSedeBeanData concesionarioSede) throws CoException {
 		boolean resultado=false;
-		l.lock();
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
 			sqlsesion.update("Data.administracion.concesionario.updateConcesionarioSede",concesionarioSede);
@@ -282,10 +271,21 @@ public class ConcesionarioBeanFunction {
 		}
 		finally{
 			sqlsesion.commit();
-			sqlsesion.close();	
-			l.unlock();				
+			sqlsesion.close();		
 		}
 		return resultado;
+	}
+	
+	public Vector<ConcesionarioBeanData> buscarConcesionarioRUC (){
+		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+		Vector<ConcesionarioBeanData> resultadosV=null;
+		try{		
+			List<ConcesionarioBeanData> resultados = sqlsesion.selectList("searchConcesionarioRUC");
+			resultadosV= new Vector<>(resultados);
+		}
+		finally{
+		sqlsesion.close();}
+		return resultadosV;		
 	}
 		
 }
