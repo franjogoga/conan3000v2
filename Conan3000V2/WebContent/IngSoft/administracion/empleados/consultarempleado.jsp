@@ -161,11 +161,11 @@
 						      <label class="control-label" for="disabledInput"> Contre&nacute;a: </label>
 						      <div class="controls">
 						        <input class="input-xlarge disabled" id="disabledInput" type="password"  disabled id="txtContrasenia" name="txtContrasenia" value="<%= empleado.getContrasenia()%>"  onkeypress="return alfanumerico(event);" autofocus>
-					          <button type="button" class="btn" onclick="alert('Contraseña: <%= empleado.getContrasenia()%>')" >Ver Contre&nacute;a</button>
+					          <button type="button" class="btn" onclick="alert('Contraseña: <%= empleado.getContrasenia()%>')" >Ver Contrase&nacute;a</button>
 					          </div>
 					        </div>
 					
-					
+					//contrasenha se ha agregado
 					
 						<div class="control-group">
 						      <label class="control-label" for="disabledInput"> Area: </label>
