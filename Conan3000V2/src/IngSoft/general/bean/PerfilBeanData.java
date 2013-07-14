@@ -8,7 +8,14 @@ public class PerfilBeanData implements Serializable {
 	private String idAccion;
 	private String idCasoUso;
 	private String mantenimiento;
+	private String estado;
 	
+	public String getEstado() {
+		return estado;
+	}
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
 	public String getMantenimiento() {
 		return mantenimiento;
 	}
