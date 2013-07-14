@@ -73,7 +73,7 @@
 		<div class="clear"></div>
 		<div class="content">
 			La p&aacute;gina que est&aacute; buscando no ha sido encontrada.
-			<br/><a href="index.html">Ir a la P&aacute;gina Principal</a> o<br/><form>Buscar<br/><input autofocus type="text" name="search" /></form>
+			<br/><a  href="login.jsp">Ir a la P&aacute;gina Principal</a> o<br/><form>Buscar<br/><input autofocus type="text" name="search" /></form>
 		</div>
 	</body>
 </html>
