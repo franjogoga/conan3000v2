@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<%@page import="java.util.Vector"%>
+<%@page import="IngSoft.administracion.bean.ConcesionarioBeanData"%>
 <html lang="en">
 <head>
 	<meta charset="utf-8">
@@ -7,6 +9,9 @@
 	<meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
 	<meta name="author" content="Muhammad Usman">
 
+	<!--The beans  -->
+	<jsp:useBean id="resultados" scope="request" class="java.util.Vector"></jsp:useBean>
+	
 	<!-- The styles -->
 	<link id="bs-css" href="css/bootstrap-cerulean.css" rel="stylesheet">
 	<style type="text/css">
@@ -42,12 +47,39 @@
 	<!-- The fav icon -->
 	<link rel="shortcut icon" href="img/conan_logo.png">
 	
+	<script type="text/javascript" src="js/apprise-1.5.full.js"></script>
+	<link rel="stylesheet" href="css/apprise.css" type="text/css" />
+	<script type="text/javascript" src="js/script.js"></script>
+	
 	<script>
 	function alt_submit(){
 		var form= document.frmData;
-		if(validaForm()) form.submit();
+		if(validaForm()){
+        	form.submit();
+        }
 	}
+	
+	function alt_submit1(){
+		var form= document.frmData;
+		if(validaForm()){
+				var comp = comprueba();
+				if(comprueba()==1){
+        			crearAlert2("No se puede agregar el concesionario. El número de RUC ya está registrado, "+comp);
+        		}else{
+        		
+        			form.submit();    
+        		}
+		}
+	}
+	
+	function comprueba (){
+
+		return 0;
+	}
+	
+	
 	</script>
+	
 </head>
 
 <body>
