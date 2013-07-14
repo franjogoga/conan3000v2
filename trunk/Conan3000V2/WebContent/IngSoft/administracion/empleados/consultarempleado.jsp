@@ -165,8 +165,7 @@
 					          </div>
 					        </div>
 					
-					//contrasenha se ha agregado
-					
+				
 						<div class="control-group">
 						      <label class="control-label" for="disabledInput"> Area: </label>
 						      <div class="controls">
