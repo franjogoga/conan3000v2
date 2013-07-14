@@ -35,9 +35,21 @@ from MEMBRESIA  where IdMembresia=#{codigo};
 </select>
 
 
+<select id="getCodSocioAnt" resultType="java.lang.String">
+select 
+MEMBRESIA.IdSocio as socio
+from MEMBRESIA  where MEMBRESIA.IdMembresia=#{CodMembresiaAnt}; 
+</select>
+
 <update id="updateCodigo" parameterType="IngSoft.venta.bean.MembresiaBeanData">
 update MEMBRESIA set Estado='Eliminado'
  where MEMBRESIA.IdMembresia= #{codigo}
+</update>
+
+
+<update id="updateUsuario" parameterType="IngSoft.venta.bean.UsuarioBeanData">
+update USUARIO set Estado='Suspendido'
+ where USUARIO.IdSocio= #{codSocioAnt}
 </update>
 
 </mapper>
