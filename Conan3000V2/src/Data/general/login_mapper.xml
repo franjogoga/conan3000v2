@@ -12,7 +12,8 @@ select NombreUsuario from USUARIO where NombreUsuario = #{user};
 
 <select id="getUsuarioBeanData" parameterType="IngSoft.general.bean.UsuarioBeanData" resultType="IngSoft.general.bean.UsuarioBeanData">
 select 	NombreUsuario as nombUsuario,
-		Password as password		 
+		Password as password,
+		Estado as estado		 
 from USUARIO U where U.NombreUsuario=#{nombUsuario} and U.Password = #{password};
 </select>
 
