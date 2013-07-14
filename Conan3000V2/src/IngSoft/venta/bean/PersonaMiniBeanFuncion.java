@@ -154,8 +154,11 @@ public class PersonaMiniBeanFuncion {
 			String nombUsuario=codigo.substring(0,1).concat(ceros).concat(strLong);
 			//genero la password
 			String contraseña=Integer.toString((int)(Math.random()*(999999-100000+1)+999999));//contraseña numero aleatorio rango 100000 a 999999, lo raro es que sale una contraseña de 7 digitos
+			
+			String codigoP=personaData.getCodigo();
+			
 			UsuarioBeanData usuarioData=new UsuarioBeanData();
-			usuarioData.setCodSocio(codigo);
+			usuarioData.setCodSocio(codigoP);
 			usuarioData.setNombUsuario(nombUsuario);
 			usuarioData.setContraseña(contraseña);
 			
