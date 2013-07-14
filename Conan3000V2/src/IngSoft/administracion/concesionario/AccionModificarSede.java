@@ -27,12 +27,14 @@ public class AccionModificarSede extends CoAccion {
 			concesionarioSede.setNombre(request.getParameter("codigoSede"));
 			concesionarioFunction.modificarConcesionarioSede(concesionarioSede);
 		}
-		ConcesionarioBeanData concesionarioData = concesionarioFunction.consultarConcesionario(request.getParameter("codigo"));
-		request.setAttribute("concesionario",concesionarioData);
-		ConcesionarioSedeBeanData concesionarioSede = concesionarioFunction.consultarConcesionarioSede(request.getParameter("codigo"),request.getParameter("codigoSede"));
-		request.setAttribute("concesionarioSede",concesionarioSede);
-		Vector<SedeMiniBeanData> sedeMiniData=concesionarioFunction.getSedes2(request.getParameter("codigo"),request.getParameter("codigoSede"));
-		request.setAttribute("sedes",sedeMiniData);
-		this.direccionar(sc, request, response, "/IngSoft/administracion/concesionario/modificarsede.jsp");
+		else{
+			ConcesionarioBeanData concesionarioData = concesionarioFunction.consultarConcesionario(request.getParameter("codigo"));
+			request.setAttribute("concesionario",concesionarioData);
+			ConcesionarioSedeBeanData concesionarioSede = concesionarioFunction.consultarConcesionarioSede(request.getParameter("codigo"),request.getParameter("codigoSede"));
+			request.setAttribute("concesionarioSede",concesionarioSede);
+			Vector<SedeMiniBeanData> sedeMiniData=concesionarioFunction.getSedes2(request.getParameter("codigo"),request.getParameter("codigoSede"));
+			request.setAttribute("sedes",sedeMiniData);
+			this.direccionar(sc, request, response, "/IngSoft/administracion/concesionario/modificarsede.jsp");
+		}
 	}
 }
