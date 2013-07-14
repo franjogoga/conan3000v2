@@ -30,11 +30,14 @@ public class AccionLogin extends CoAccion {
 			if (perfil == null) {
 				this.direccionar(sc, request, response, "/IngSoft/general/perfil4.jsp");
 				}
-			else{
+			else{ if(perfil.get(0).getEstado().equals("Suspendido")){
+				this.direccionar(sc, request, response, "/IngSoft/general/perfil3.jsp");
+			}else{
 				sesion.setAttribute("casosDeUso", perfil);
 				String tipo= (String)sesion.getAttribute("tipoUsuario");
 				if(tipo.equals("Socio")) this.direccionar(sc, request, response, "/Club/generalClub/index.html");
 				else this.direccionar(sc, request, response, "/IngSoft/general/index.jsp");
+				}
 			}
 		} catch (ServletException e) {
 			// TODO Auto-generated catch block
