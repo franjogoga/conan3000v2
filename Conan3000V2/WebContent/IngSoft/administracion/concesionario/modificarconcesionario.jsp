@@ -61,7 +61,7 @@
 		var form= document.frmActualizado;
 		form.submit();
 		$.fn.colorbox.close();
-	} 
+	}
 	
 	</script>
 	<%! public boolean  encontrar(String a, String b){		

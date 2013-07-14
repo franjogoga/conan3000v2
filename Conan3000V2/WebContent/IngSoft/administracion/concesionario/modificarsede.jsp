@@ -14,13 +14,24 @@
 	
 	<link rel="shortcut icon" href="img/conan_logo.png">
 	
+	<script type="text/javascript" src="js/apprise-1.5.full.js"></script>
+	<link rel="stylesheet" href="css/apprise.css" type="text/css" />
+	<script type="text/javascript" src="js/script.js"></script>
+	
 	<script>
 	
 	function alt_Cerrar(){
-		var form= document.frmData;
-		form.submit();
-		
-		parent.actualizar();
+		$.ajax({
+			  type: "POST",
+			  url: "/Conan3000V2/IngSoft/administracion/concesionario/SMAConcesionario",
+			  data: "accion=ModificarSede&tipo=2&codigo=<%=concesionario.getCodigo()%>&codigoSede=<%=concesionarioSede.getCodigo()%>" 
+			  + "&cmbSede=" + $(cmbSede).val() + "&fechaInicio=" + $(fechaInicio).val()+ "&fechaFin=" + $(fechaFin).val()+ "&optionsRadios=" + $('input[name=optionsRadios]:checked').val(),
+			  dataType: "text",
+			  success: function(){
+			  	parent.actualizar();    				  								
+			  },
+			  error: function(){ }
+			});
 	}
 	
 	function verificar_fecha(comparacion,fecha1,fecha2){

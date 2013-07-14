@@ -17,10 +17,16 @@
 	<script>
 	
 	function alt_Cerrar(){
-		var form= document.frmData;
-		form.submit();
-		
-		parent.actualizar();
+		$.ajax({
+			  type: "POST",
+			  url: "/Conan3000V2/IngSoft/administracion/concesionario/SMAConcesionario",
+			  data: "accion=EliminarSede&tipo=2&codigo=<%=concesionario.getCodigo()%>&codigoSede=<%=concesionarioSede.getCodigo()%>",
+			  dataType: "text",
+			  success: function(){
+			  	parent.actualizar();    				  								
+			  },
+			  error: function(){ }
+			});
 	}
 	
 	<%! public boolean  encontrar(String a, String b){		
