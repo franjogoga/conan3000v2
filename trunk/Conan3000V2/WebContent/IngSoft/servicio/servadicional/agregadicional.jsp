@@ -166,14 +166,9 @@
 		else alert("Uno o mas campos estan vacios");			
 			}
 	function alt_submit2(){
-		var listaconcecionarios=$(".btn-success [disabled='disabled']");
-		
-		for(i=0;i<listaconcecionarios.length;i++){
-			concesionario=concesionario+listaconcecionario[i].attr('id')+'@';		
-		}
 		$.ajax({
 			  type: "POST",
-			  url: "/Conan3000V2/IngSoft/servicio/evento/SMSEvento",
+			  url: "/Conan3000V2/IngSoft/servicio/servadicional/SMSServAdcional",
 			  data: "accion=" + $(accion).val() + "&tipo=" + $(tipo).val() + "&txtNombre=" + $(txtNombreAdicional).val() + "&txtDesc=" + $(txtDesc).val()  
 			  +  "&cmbTipo=" + $(cmbTipo).val() +"&txtPrecio="+$(txtPrecio).val(),
 			  dataType: "text",
@@ -254,7 +249,7 @@
 						    <div class="control-group">
 						      <label class="control-label" for="typeahead7">Nombre de servicio adicional(*): </label>
 						      <div class="controls">
-						        <input type="text" class="span6 typeahead" data-provide="typeahead"  id="txtNombreAdicional" name="txtNombreAdicional" onkeypress="return alfanumerico(event);" autofocus maxlength="50"/>
+						        <input type="text" class="span6 typeahead" data-provide="typeahead"  id="txtNombreAdicional" name="txtNombreAdicional"  onkeypress="return alfanumerico(event);" autofocus maxlength="50"/>
 								<span class="help-inline" id="errNombreAdicional" style="display:none;">Este campo no puede estar vacio</span>						        													       
 					          </div>
 					        </div>
@@ -301,9 +296,7 @@
 
 			<div class="row-fluid sortable"><!--/span-->
 			
-			</div><!--/row-->
-			
-			<div class="row-fluid sortable"><!--/span-->
+		
 
 			</div><!--/row-->		 
 					<!-- content ends -->

@@ -1,5 +1,7 @@
 package IngSoft.servicio.servadicional;
 
+import java.io.IOException;
+
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,7 +24,13 @@ public class AccionAgregarServAdicional extends CoAccion {
 			ServAdicionalBeanFuncion servadicionalFuncion= ServAdicionalBeanFuncion.getInstance();
 			ServAdicionalBeanData servadicionalData=servadicionalFuncion.crearServAdicional(request, response);
 			servadicionalFuncion.agregarServAdicional(servadicionalData);			
-			
+			response.setContentType("text/plain");  
+		    response.setCharacterEncoding("UTF-8");
+		    try {
+				response.getWriter().write( "/IngSoft/servicio/servadicional/SMSServAdcional?accion=Buscar&tipo=1");
+			} catch (IOException e) {				
+				e.printStackTrace();
+			}
 		}
 
 	}

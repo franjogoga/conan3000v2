@@ -19,6 +19,7 @@
 	-->
 	<!--The beans  -->
 	<jsp:useBean id="modo" scope="request"class="java.lang.String"></jsp:useBean>
+	<jsp:useBean id="resultado" scope="request"class="IngSoft.servicio.bean.ServAdicionalBeanData"></jsp:useBean>
 	
 	<meta charset="utf-8">
 	<title>Consultar Adicional</title>
@@ -65,6 +66,7 @@
 	
 	<!-- jQuery -->
 	<script src="js/jquery-1.7.2.min.js"></script>
+	<%if(modo.equals("M")){%>
 	<script>
 	var cont=-1;
 	var codSedeActual="none";
@@ -169,9 +171,9 @@
 
 		$.ajax({
 			  type: "POST",
-			  url: "/Conan3000V2/IngSoft/servicio/evento/SMSEvento",
-			  data: "accion=" + $(accion).val() + "&tipo=" + $(tipo).val() + "&txtNombreAdicional=" + $(txtNombreAdicional).val() + "&txtNumEntradas=" + $(txtNumEntradas).val()  
-			  +  "&cmbTipo=" + $(cmbTipo).val() + "&fFecha=" + $(fFecha).val()+"&concesionario="+concesionario+"&precioentrada="+$(txtPrecio).val()+"&precioentradaI="+$(txtDesc).val(),
+			  url: "/Conan3000V2/IngSoft/servicio/servadicional/SMSServAdcional",
+			  data: "accion=" + $(accion).val() + "&tipo=" + $(tipo).val() + "&txtNombre=" + $(txtNombreAdicional).val() + "&txtDesc=" + $(txtDesc).val()  
+			  +  "&cmbTipo=" + $(cmbTipo).val() +"&txtPrecio="+$(txtPrecio).val()+"&txtCodigo=<%=resultado.getCodigo()%>",
 			  dataType: "text",
 			  success: function(msg){
 				  var url="<%=request.getContextPath()%>"+msg;
@@ -180,7 +182,7 @@
 				  $("#modalTitulo").html("EXITO");	
 				  $("#MensajeExito").css("display","inline");
 				  $("#listaConcecionarios").css("display","none");			  
-				  $("#modalContenido").html("La plantilla de evento ha sido agregada exitosamente");
+				  $("#modalContenido").html("La plantilla de evento ha sido <%=modo.equals("M")?"modificada":""%><%=modo.equals("E")?"eliminada":""%> exitosamente");
 				  $("#linkAceptar").bind("click",function(){
 					  location.href=url;					  
 				  });
@@ -199,63 +201,9 @@
 			});		
 	}
 	
-	function resetConcesionarios(){	 
-	 $('#listaServicios').html("<div class='input-append'><input id='appendedInputButton' size='16' type='text' readonly='true' value='Salon Principal'><button class='btn' disabled='disabled' type='button'>X</button></div><br/>");
-	 concesionario='';
-	}
-	function getConcecionarios(){
-	$(this).attr('disabled','disabled');
-		$.ajax({
-			  type: "POST",
-			  url: "/Conan3000V2/IngSoft/servicio/evento/SMSEvento",
-			  data: "accion=" + $(accion).val() + "&tipo=3" + "&cmbTipo=" + $(cmbTipo).val() + "&fFecha=" + $(fFecha).val() ,
-			  dataType: "html",
-			  success: function(msg){				  
-				  $("#concesionarioResultados").html(msg);
-				  updatetable();				
-				  $('#mytable_length').css("display","none");  
-				  $("#bModal").trigger("click");
-				  $(this).removeAttr('disabled','');
-				  $(boton).unbind('click');
-				  $(boton).bind('click', function(){$("#bModal").trigger("click");});				  				  								
-			  },
-			  error: function(objeto, quepaso, otroobj){
-				$("#linkAceptar").css("display","inline");
-				$("#linkCerrar").css("display","none");
-				$("#modalTitulo").html("ERROR");
-				$("#modalContenido").html("Hubo un error, no se pudo conseguir la lista de concesionarios");
-				$("#bModal").trigger("click");
-				$(this).removeAttr('disabled','');
-				
-			  }
-		
-			});		
-		
-	}
 	
-	
-	function confirmarcambio(elem){
-		var contenido=elem.val();
-		$('.btn-success').removeAttr('disabled')
-		resetConcesionarios();
-		//if(temp.length>0) temp.removeAtrr('disabled');
-		if($('#cmbTipo').val().indexOf('0')==0){
-			$(boton).attr('disabled','disabled');
-		}
-		else $(boton).removeAttr('disabled');
-		if(elem.attr('id').indexOf("fFecha")>=0){
-			$(boton).unbind('click');
-			if((contenido.indexOf(fechaActual)>=0)) $(boton).bind('click', function(){$("#bModal").trigger("click");});
-			else $(boton).bind('click',function(){getConcecionarios();})
-		}
-		else{
-			$(boton).unbind('click');
-			if((contenido.indexOf(codSedeActual)>=0)) $(boton).bind('click', function(){$("#bModal").trigger("click");});
-			else $(boton).bind('click',function(){getConcecionarios();})		
-		}
-	}
-			
 	</script>	
+	<%}%>
 </head>
 <!-- nombre tipo monto descripcion -->
 <body>
@@ -282,13 +230,13 @@
 			<div>
 				<ul class="breadcrumb">
 					<li>
-						<a href="/Conan3000V2/IngSoft/general/index.jsp">Home</a> <span class="divider">/</span>
+						<a href="<%=request.getContextPath()%>/IngSoft/general/index.jsp">Home</a> <span class="divider">/</span>
 					</li>
 					<li>
-						<a href="buscarevento.jsp">Mantenimiento de Eventos</a> <span class="divider">/</span>
+						<a href="SMSServAdicional?accion=Buscar&tipo=1">Mantenimiento de Servicios Adicionales</a> <span class="divider">/</span>
 					</li>
 					<li>
-						Agregar Solicitud de Eventos Internos
+						<%=modo.equals("C")?"Consultar":""%><%=modo.equals("M")?"Modificar":""%><%=modo.equals("E")?"Eliminar":""%> Solicitud de Eventos Internos
 					</li>
 				</ul>
 			</div>
@@ -296,56 +244,63 @@
 			<div class="row-fluid sortable">
 				<div class="box span12">
 					<div class="box-header well" data-original-title>
-					  <h2><i class="icon-plus-sign"></i>AGREGAR SERVICIO ADICIONAL</h2>
+					  <h2><i class="icon-plus-sign"></i><%=modo.equals("C")?"CONSULTAR":""%><%=modo.equals("M")?"MODIFICAR":""%><%=modo.equals("E")?"ELIMINAR":""%> SERVICIO ADICIONAL</h2>
 				  </div>
 					<div class="box-content">
-						<form class="form-horizontal" action="<%= response.encodeURL("SMSServAdcional")%>" onsubmit="alt_submit(); return false;"name="frmData" method="post">
-						<input type="hidden" name="accion" id="accion" value="Agregar"></input>
+						<form class="form-horizontal" action="<%= response.encodeURL("SMSServAdcional")%>"  <%if(modo.equals("M")){%>onsubmit="alt_submit(); return false;"<%}%> name="frmData" method="post">
+						<input type="hidden" name="accion" id="accion" value="<%=modo.equals("M")?"Modificar":""%><%=modo.equals("E")?"Eliminar":""%>"></input>
 						<input type="hidden" name="tipo" id="tipo" value="2"></input>
-						<input type="hidden" name="fFechaActual" id="fFechaActual" value="<%=new SimpleDateFormat("dd/MM/yyyy").format(new Date())%>"></input>
+						<input type="hidden" name="txtCodigo" id="txtCodigo" value="<%=resultado.getCodigo()%>"></input>							
 						  <fieldset>
 						    <div class="control-group">
-						      <label class="control-label" for="typeahead7">Nombre de servicio adicional(*): </label>
+						      <label class="control-label" for="typeahead7">Nombre de servicio adicional<%=modo.equals("M")?"(*)":""%>: </label>
 						      <div class="controls">
-						        <input type="text" class="span6 typeahead" id="txt	NombreAdicional"  data-provide="typeahead"  id="txtNombreAdicional" name="txtNombreAdicional" onkeypress="return alfanumerico(event);" autofocus maxlength="50"/>
+						        <input type="text" <%=modo.equals("M")?"":"disabled"%> class="span6 typeahead" id="txtNombreAdicional"  data-provide="typeahead"  id="txtNombreAdicional" name="txtNombreAdicional" onkeypress="return alfanumerico(event);" value="<%=resultado.getNombre()%>" autofocus maxlength="50"/>
 								<span class="help-inline" id="errNombreAdicional" style="display:none;">Este campo no puede estar vacio</span>						        													       
 					          </div>
 					        </div>
 					        <div class="control-group">
-								<label class="control-label" for="cmbTipo">Tipo de servicios adicionales(*):</label>
+								<label class="control-label" for="cmbTipo">Tipo de servicios adicionales<%=modo.equals("M")?"(*)":""%>:</label>
 								<div class="controls">
-								  <select  data-rel="chosen" id="cmbTipo" name="cmbTipo" onchange="confirmarcambio($(this))">
-								  	<option value="none" selected>--Seleccione una tipo--</option>
-								  	<option value="Mueble">Mueble</option>
-								  	<option value="Electrodomestico">Electrodomestico</option>								  																																	
+								  <select <%=modo.equals("M")?"":"disabled"%>  data-rel="chosen" id="cmbTipo" name="cmbTipo" onchange="confirmarcambio($(this))">								  	
+								  	<option value="Mueble" <%=resultado.getTipo().equals("Mueble")?"selected":""%>>Mueble</option>
+								  	<option value="Electrodomestico" <%=resultado.getTipo().equals("Electrodomestico")?"selected":""%>>Electrodomestico</option>								  																																	
 								  </select><br/>
 								  <span class="help-inline" id="errTipo" style="display:none;">Debe seleccionar una sede</span>
 								</div>
 							  </div>	
 					        <div class="control-group">
-						      <label class="control-label" for="txtPrecio">Precio del servicio adicional(*): </label>
+						      <label class="control-label" for="txtPrecio">Precio del servicio adicional<%=modo.equals("M")?"(*)":""%>: </label>
 						      <div class="controls">
-									<input  id="txtPrecio" class="span4" name="txtPrecio" onchange="vDinero($(this))"  type="text" onkeypress="return dinero(event);"  maxlength="10">
+									<input  id="txtPrecio"  <%=modo.equals("M")?"":"disabled"%> class="span4" name="txtPrecio" onchange="vDinero($(this))"  type="text" onkeypress="return dinero(event);"  maxlength="10" value="<%=resultado.getPrecio()%>">
 									<br/>
 								  <span class="help-inline" id="errPrecio" name="errPrecio" style="display:none;">Este campo no puede estar vacio</span>
 					        </div>
 					        </div>
 					        <div class="control-group">
-						      <label class="control-label" for="txtDesc">Descripcion(*): </label>
+						      <label class="control-label" for="txtDesc">Descripci&oacute;n<%=modo.equals("M")?"(*)":""%>: </label>
 						      <div class="controls">
-									<input  id="txtDesc" class="span4" name="txtDesc"   type="text" onkeypress="return alfanumerico(event);"  maxlength="100">
+									<input  id="txtDesc" class="span4" name="txtDesc" <%=modo.equals("M")?"":"disabled"%>  type="text" onkeypress="return alfanumerico(event);"  maxlength="100" value="<%=resultado.getDescripcion()%>">
 									<br/>
 								  <span class="help-inline" id="errDesc" name="errDesc" style="display:none;">Este campo no puede estar vacio</span>
 					        </div>
 					        </div>					  							  							   							 
 													
 						    <div class="form-actions">
-							  <button type="submit" id="btnAgregar" class="btn btn-primary" >Agregar</button>
-							  <button type="button" class="btn" onclick="location.href='SMSServAdicional?accion=Buscar&tipo=1'" >Cancelar</button>
+						    <%if(modo.equals("C")){ %>
+							  <button type="button" class="btn" onclick="location.href='SMSServAdcional?accion=Buscar&tipo=1'" >Regresar</button>
+							<%}
+							else if(modo.equals("M")){%>
+							  <button type="submit" id="btnModificar" class="btn btn-primary" >Guardar</button>
+							  <button type="button" class="btn" onclick="location.href='SMSServAdcional?accion=Buscar&tipo=1'" >Cancelar</button>
+							  <%} else if(modo.equals("E")){ %>
+							  <button type="submit" id="btnEliminar" class="btn btn-primary" >Elminar</button>
+							  <button type="button" class="btn" onclick="location.href='SMSServAdcional?accion=Buscar&tipo=1'" >Cancelar</button>
+							  <%} %>
 							</div>
 						  </fieldset>
 					  </form>   
-					<span style="font-size:70%">(*)Campos Obligatorios</span>
+					<%if(modo.equals("M")){%> %><span style="font-size:70%">(*)Campos Obligatorios</span><%} %>
 				  </div>
 				</div><!--/span-->
 
@@ -379,6 +334,7 @@
 			</div>
 			
 			<div class="modal-footer">
+
 				<button type="button" class="btn" id="linkAceptar" style="display: none">Aceptar</a>
 				<a href="#" class="btn" id="linkCerrar"  data-dismiss="modal" style="display: none">Cerrar</a>
 								

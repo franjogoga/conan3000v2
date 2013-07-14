@@ -105,6 +105,23 @@ public class ServAdicionalBeanFuncion {
 		
 	}
 	
+	public ServAdicionalBeanData consultarServAdicional(String codigo){		
+		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+		ServAdicionalBeanData resultado=null;
+		try{
+		
+		resultado=(ServAdicionalBeanData)sqlsesion.selectOne("Data.servicio.servadicional.getServAdicional",codigo);
+			
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		finally{
+		sqlsesion.close();}
+		return resultado;
+		
+	}
+	
 	public synchronized boolean eliminarServAdicional(String codigo){
 		boolean resultado=false;
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
