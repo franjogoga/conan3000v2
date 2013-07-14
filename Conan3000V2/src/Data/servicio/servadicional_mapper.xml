@@ -7,7 +7,7 @@
   <cache />
 
 <select id="searchServAdicional" parameterType="hashmap" resultType="IngSoft.servicio.bean.ServAdicionalBeanData">
-select IdServAdicional
+select IdServAdicional as codigo
 ,Nombre
 ,Tipo
 ,Monto as precio
@@ -18,6 +18,18 @@ SERV_ADICIONAL
 where Nombre like #{nombre}
 and tipo like #{tipo} 
 and UPPER(estado) like UPPER(#{estado}); 
+</select>
+
+<select id="getServAdicional" parameterType="java.lang.String" resultType="IngSoft.servicio.bean.ServAdicionalBeanData">
+select IdServAdicional as codigo
+,Nombre
+,Tipo
+,Monto as precio
+,Descripcion
+,Estado 
+from 
+SERV_ADICIONAL 
+where IdServAdicional = #{codigo}; 
 </select>
 
 <select id="getNextCodigoSA" resultType="java.lang.String">
@@ -39,7 +51,7 @@ SET
 Nombre = #{nombre},
 Tipo = #{tipo},
 Monto = #{precio},
-Descripcion = #{descripcion},
+Descripcion = #{descripcion}
 WHERE IdServAdicional like #{codigo}
 </update>
 <update id="eliminarServAdicional" parameterType="java.lang.String">

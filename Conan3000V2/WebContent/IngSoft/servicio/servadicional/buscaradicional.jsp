@@ -82,7 +82,6 @@
 		form.submit();
 	}
 	function alt_modificar(cod){
-	return null;
 		var form=document.getElementById("frmAlternativo");
 		form.accion.value="Modificar";
 		form.codigo.value=cod;
@@ -190,13 +189,10 @@
                         
 						
 					</div>           
-					<div class="box-content" id="resultadoBusqueda" >
-                             
-<table id="mytable" class="table table-striped table-bordered bootstrap-datatable datatable">
+					<div class="box-content" >
+                     <table class="table table-striped table-bordered bootstrap-datatable datatable">
                             <!-- agregar nuevo boton -->
-                            
-                            
-                            <div align="right">                            
+                           <div align="right">                            
                                   <a class="btn btn-primary" href="javascript:alt_agregar()">
                                     <i class="icon icon-add icon-white"></i>
                                     Agregar Servicio Adicional
@@ -207,14 +203,13 @@
 								<th>Tipo</th>
 							        <th>Nombre Servicio Adicional</th>
 							        <th>Precio</th>
-							        <th>Estado</th>							        
+							        <th>Estado</th>		
+							        <th>Accion</th>					        
 							  </tr>
 						  </thead>
                           <element>
-                          	
-<% SimpleDateFormat df= new SimpleDateFormat("dd/MM/yyyy"); 
-                          			for(int i=0;
-                          			i<resultados.size();i++){
+                          	<tbody >
+                          		<%for(int i=0;i<resultados.size();i++){
                           		%>
                           		<tr>
                           			<td class="center">
@@ -240,7 +235,7 @@
                           				<a class="btn btn-success" href="javascript:alt_consultar('<%=((ServAdicionalBeanData)resultados.get(i)).getCodigo()%>')">
 												<i class="icon-zoom-in icon-white"></i> Ver
 										</a> 
-										
+										<%if(!((ServAdicionalBeanData)resultados.get(i)).getEstado().equals("Eliminado")){ %>
 										<a class="btn btn-info" href="javascript:alt_modificar('<%=((ServAdicionalBeanData)resultados.get(i)).getCodigo()%>')"> <i
 												class="icon-edit icon-white"></i> Modificar
 										</a> 
@@ -248,14 +243,14 @@
 										<a class="btn btn-danger" href="javascript:alt_eliminar('<%=((ServAdicionalBeanData)resultados.get(i)).getCodigo()%>')"> <i
 												class="icon-trash icon-white"></i> Eliminar
 										</a>
+										<%} %>
                           			</td>
                           		</tr>
-
-
                           		<%}%>
-                          		 	</tbody>
-                          </element>
-                        </table> 
+
+                          	</tbody>
+                          </element>  
+                          </table>      
 					</div>
 				</div><!--/span-->
 				
