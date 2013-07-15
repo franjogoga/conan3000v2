@@ -42,7 +42,7 @@
 
 	<!-- The fav icon -->
 	<link rel="shortcut icon" href="img/conan_logo.png">
-	
+	<script src="evento.js"></script>
 	<script>
 	function alt_submit(){
 		var form= document.frmData;
@@ -112,7 +112,107 @@
 			test=false;
 			$('#txtMontoInvitados').parent().parent().toggleClass("error");
 		}
-		else $('#txtMontoInvitados').parent().parent().addClass("success");		
+		else $('#txtMontoInvitados').parent().parent().addClass("success");
+		if($('#txtMontoInvitadosBungalow').val()==null || $('#txtMontoInvitadosBungalow').val().length<=0){
+			$('#txtMontoInvitadosBungalow').bind("change",function(){
+			var temp= $('#txtMontoInvitadosBungalow');
+			if(temp.val()!=null && temp.val().length>0) {
+			temp.parent().parent().removeClass("error");
+			temp.parent().parent().addClass("success");
+			$('#errMontoInvitadosBungalow').slideUp(1000);
+			}
+			else {
+			temp.parent().parent().removeClass("success");
+			temp.parent().parent().addClass("error");
+			$('#errMontoInvitadosBungalow').slideDown(1000);
+			}
+			
+			})
+			$('#errMontoInvitadosBungalow').slideDown(1000);
+			test=false;
+			$('#txtMontoInvitadosBungalow').parent().parent().toggleClass("error");
+		}
+		else $('#txtMontoInvitadosBungalow').parent().parent().addClass("success");
+		if($('#txtMontoMulta').val()==null || $('#txtMontoMulta').val().length<=0){
+			$('#txtMontoMulta').bind("change",function(){
+			var temp= $('#txtMontoMulta');
+			if(temp.val()!=null && temp.val().length>0) {
+			temp.parent().parent().removeClass("error");
+			temp.parent().parent().addClass("success");
+			$('#errMontoMulta').slideUp(1000);
+			}
+			else {
+			temp.parent().parent().removeClass("success");
+			temp.parent().parent().addClass("error");
+			$('#errMontoMulta').slideDown(1000);
+			}
+			
+			})
+			$('#errMontoMulta').slideDown(1000);
+			test=false;
+			$('#txtMontoMulta').parent().parent().toggleClass("error");
+		}
+		else $('#txtMontoMulta').parent().parent().addClass("success");		
+		if($('#txtMaxInvitados').val()==null || $('#txtMaxInvitados').val().length<=0){
+			$('#txtMaxInvitados').bind("change",function(){
+			var temp= $('#txtMaxInvitados');
+			if(temp.val()!=null && temp.val().length>0) {
+			temp.parent().parent().removeClass("error");
+			temp.parent().parent().addClass("success");
+			$('#errMaxInvitados').slideUp(1000);
+			}
+			else {
+			temp.parent().parent().removeClass("success");
+			temp.parent().parent().addClass("error");
+			$('#errMaxInvitados').slideDown(1000);
+			}
+			
+			})
+			$('#errMaxInvitados').slideDown(1000);
+			test=false;
+			$('#txtMaxInvitados').parent().parent().toggleClass("error");
+		}
+		else $('#txtMaxInvitados').parent().parent().addClass("success");		
+		if($('#txtPrecioMembresia').val()==null || $('#txtPrecioMembresia').val().length<=0){
+			$('#txtPrecioMembresia').bind("change",function(){
+			var temp= $('#txtPrecioMembresia');
+			if(temp.val()!=null && temp.val().length>0) {
+			temp.parent().parent().removeClass("error");
+			temp.parent().parent().addClass("success");
+			$('#errPrecioMembresia').slideUp(1000);
+			}
+			else {
+			temp.parent().parent().removeClass("success");
+			temp.parent().parent().addClass("error");
+			$('#errPrecioMembresia').slideDown(1000);
+			}
+			
+			})
+			$('#errPrecioMembresia').slideDown(1000);
+			test=false;
+			$('#txtPrecioMembresia').parent().parent().toggleClass("error");
+		}
+		else $('#txtPrecioMembresia').parent().parent().addClass("success");
+		if($('#txtMontoSalonPrincipal').val()==null || $('#txtMontoSalonPrincipal').val().length<=0){
+			$('#txtMontoSalonPrincipal').bind("change",function(){
+			var temp= $('#txtMontoSalonPrincipal');
+			if(temp.val()!=null && temp.val().length>0) {
+			temp.parent().parent().removeClass("error");
+			temp.parent().parent().addClass("success");
+			$('#errMontoSalonPrincipal').slideUp(1000);
+			}
+			else {
+			temp.parent().parent().removeClass("success");
+			temp.parent().parent().addClass("error");
+			$('#errMontoSalonPrincipal').slideDown(1000);
+			}
+			
+			})
+			$('#errMontoSalonPrincipal').slideDown(1000);
+			test=false;
+			$('#txtMontoSalonPrincipal').parent().parent().toggleClass("error");
+		}
+		else $('#txtMontoSalonPrincipal').parent().parent().addClass("success");								
 return test;	
 	}
 	</script>
@@ -155,7 +255,7 @@ return test;
                         <div class="control-group">
                           <label class="control-label" for="typeahead">Costo de reserva de cancha(por hora):</label>
                           <div class="controls">
-                            <input type="text" class="span2 typeahead" id="txtCostoReservaCancha" 
+                            <input type="text" onchange="vDinero($(this))"  class="span2 typeahead" id="txtCostoReservaCancha" 
                             name="txtCostoReservaCancha" data-provide="typeahead" value="<%=constantes.getCostoReservaCancha()%>">
                           	<span class="help-inline" style="display:none;" id="errCostoReservaCancha">Este campo no puede estar vacio</span>
                           </div>
@@ -163,7 +263,7 @@ return test;
                         <div class="control-group" >
                           <label class="control-label" for="typeahead">Costo de reserva de bungalow(por m2):</label>
                           <div class="controls">
-                            <input type="text" class="span2 typeahead" id="txtCostoReservaBungalow" 
+                            <input type="text" onchange="vDinero($(this))"  class="span2 typeahead" id="txtCostoReservaBungalow" 
                             name="txtCostoReservaBungalow" data-provide="typeahead" value="<%=constantes.getCostoXm2Bungalow()%>">
                           	<span class="help-inline" style="display:none;" id="errCostoReservaBungalow">Este campo no puede estar vacio</span>
                           </div>
@@ -171,7 +271,7 @@ return test;
                         <div class="control-group" >
                           <label class="control-label" for="typeahead">Monto a cobrar por invitados extra:</label>
                           <div class="controls">
-                            <input type="text" class="span2 typeahead" id="txtMontoInvitados" 
+                            <input type="text" onchange="vDinero($(this))"  class="span2 typeahead" id="txtMontoInvitados" 
                             name="txtMontoInvitados" data-provide="typeahead" value="<%=constantes.getMontoInvitado()%>">
                           	<span class="help-inline" style="display:none;" id="errMontoInvitados">Este campo no puede estar vacio</span>
                           </div>
@@ -179,7 +279,7 @@ return test;
                         <div class="control-group">
                           <label class="control-label" for="typeahead">Monto a cobrar por invitados a Bungalow:</label>
                           <div class="controls">
-                            <input type="text" class="span2 typeahead" id="txtMontoInvitadosBungalow" 
+                            <input type="text" onchange="vDinero($(this))"  class="span2 typeahead" id="txtMontoInvitadosBungalow" 
                             name="txtMontoInvitadosBungalow" data-provide="typeahead" value="<%=constantes.getMontoInvitadoBungalow()%>">
                           	<span class="help-inline" style="display:none;" id="errMontoInvitadosBungalow">Este campo no puede estar vacio</span>
                           </div>
@@ -187,7 +287,7 @@ return test;
                         <div class="control-group">
                           <label class="control-label" for="typeahead">Monto a cobrar por Multa:</label>
                           <div class="controls">
-                            <input type="text" class="span2 typeahead" id="txtMontoMulta" 
+                            <input type="text" onchange="vDinero($(this))"  class="span2 typeahead" id="txtMontoMulta" 
                             name="txtMontoMulta" data-provide="typeahead" value="<%=constantes.getMontoMultaFalta()%>">
                           	<span class="help-inline" style="display:none;" id="errMontoMulta">Este campo no puede estar vacio</span>
                           </div>
@@ -195,7 +295,7 @@ return test;
                         <div class="control-group">
                           <label class="control-label" for="typeahead">Numero maximo de invitados sin cobro:</label>
                           <div class="controls">
-                            <input type="text" class="span2 typeahead" id="txtMaxInvitados" 
+                            <input type="text"  class="span2 typeahead" id="txtMaxInvitados" 
                             name="txtMaxInvitados" data-provide="typeahead" value="<%=constantes.getNumMaxInvitados()%>">
                           	<span class="help-inline" style="display:none;" id="errMaxInvitados">Este campo no puede estar vacio</span>
                           </div>
@@ -203,7 +303,7 @@ return test;
                         <div class="control-group">
                           <label class="control-label" for="typeahead">Precio por defecto de la Membresia:</label>
                           <div class="controls">
-                            <input type="text" class="span2 typeahead" id="txtPrecioMembresia" 
+                            <input type="text" onchange="vDinero($(this))"  class="span2 typeahead" id="txtPrecioMembresia" 
                             name="txtPrecioMembresia" data-provide="typeahead" value="<%=constantes.getPrecioMembresia()%>">
                           	<span class="help-inline" style="display:none;" id="errPrecioMembresia">Este campo no puede estar vacio</span>
                           </div>
@@ -211,14 +311,14 @@ return test;
                         <div class="control-group">
                           <label class="control-label" for="typeahead">Monto a cobrar por reserva de un Salon Principal:</label>
                           <div class="controls">
-                            <input type="text" class="span2 typeahead" id="txtMontoSalonPrincipal" 
+                            <input type="text" onchange="vDinero($(this))"  class="span2 typeahead" id="txtMontoSalonPrincipal" 
                             name="txtMontoSalonPrincipal" data-provide="typeahead" value="<%=constantes.getPrecioSalonPrincipal()%>">
                           	<span class="help-inline" style="display:none;" id="errMontoSalonPrincipal">Este campo no puede estar vacio</span>
                           </div>
                         </div>
                         <div class="form-actions">
                           <button type="button" class="btn btn-primary" onclick="javascript:alt_submit()">Guardar Modificaciones</button>
-                          <button type="button" class="btn" onclick="location.href='buscarconcesionario.jsp'">Cancelar</button>
+                          <button type="button" class="btn" onclick="location.href='SMAConfiguracion?accion=Consultar'">Cancelar</button>
                         </div>
                       </fieldset>
                     </form>
@@ -336,10 +436,18 @@ return test;
 	<script src="js/jquery.history.js"></script>
 	<!-- application script for Charisma demo -->
 	<script src="js/charisma.js"></script>
-	
 	<script type="text/javascript" src="js/apprise-1.5.full.js"></script>
 	<link rel="stylesheet" href="css/apprise.css" type="text/css" />
-	
+	<script>
+$('#txtCostoReservaCancha').bind('paste',function(){setTimeout(function(){filtrar('1234567890.',$('#txtCostoReservaCancha'),10)}, 0);})
+$('#txtCostoReservaBungalow').bind('paste',function(){setTimeout(function(){filtrar('1234567890.',$('#txtCostoReservaBungalow'),10)}, 0);})
+$('#txtMontoInvitados').bind('paste',function(){setTimeout(function(){filtrar('1234567890.',$('#txtMontoInvitados'),10)}, 0);})
+$('#txtMontoInvitadosBungalow').bind('paste',function(){setTimeout(function(){filtrar('1234567890.',$('#txtMontoInvitadosBungalow'),10)}, 0);})
+$('#txtMontoMulta').bind('paste',function(){setTimeout(function(){filtrar('1234567890.',$('#txtMontoMulta'),10)}, 0);})
+$('#txtMaxInvitados').bind('change',function(){setTimeout(function(){filtrar('1234567890',$('#txtMaxInvitados'),5)}, 0);})
+$('#txtPrecioMembresia').bind('paste',function(){setTimeout(function(){filtrar('1234567890.',$('#txtPrecioMembresia'),10)}, 0);})
+$('#txtMontoSalonPrincipal').bind('paste',function(){setTimeout(function(){filtrar('1234567890.',$('#txtMontoSalonPrincipal'),10)}, 0);})
+	</script>
 	
 </body>
 </html>
