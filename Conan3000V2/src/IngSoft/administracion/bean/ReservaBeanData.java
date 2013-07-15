@@ -19,6 +19,14 @@ public class ReservaBeanData implements Serializable {
 	private String estado;
 	
 	
+	private String opcion;
+	
+	public String getOpcion() {
+		return opcion;
+	}
+	public void setOpcion(String opcion) {
+		this.opcion = opcion;
+	}
 	public String getCodigo() {
 		return codigo;
 	}
