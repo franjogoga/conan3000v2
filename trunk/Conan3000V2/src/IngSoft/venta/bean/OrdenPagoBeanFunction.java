@@ -264,10 +264,21 @@ public synchronized  boolean pagarOrdenPago(OrdenPagoBeanData ordenPagoData) thr
 		
 		sqlsesion.update("Data.venta.pago.pagarOrdenPago",ordenPagoData);
 		sqlsesion.insert("insertOtroIngreso",ordenPagoData);
+		
+		
 		//sqlsesion.insert("insertPlantillaEventoSedes",eventoData);
-		/*
+		/*String concepto= (String)sqlsesion.selectOne("Data.venta.pago.getDescripcion",ordenPagoData);
+		ordenPagoData.setDescripcion(concepto);
+		System.out.println("Concepto: "+concepto);
+		
 		if(ordenPagoData.getDescripcion().equals("MULTAXINFRACCION")){
-			sqlsesion.update("Data.venta.pago.updateSuspension");	
+			String codigo2= (String)sqlsesion.selectOne("Data.venta.pago.getIdConcepto",ordenPagoData);
+			ordenPagoData.setIdConcepto(codigo2);
+			System.out.println("Codigo2: "+codigo2);
+			String codigo3= (String)sqlsesion.selectOne("Data.venta.pago.getIdSuspensionFalta",ordenPagoData);
+			ordenPagoData.setIdSuspensionFalta(codigo3);
+			System.out.println("Codigo3: "+codigo3);
+			sqlsesion.update("Data.venta.pago.updateSuspension",ordenPagoData);	
 			
 		}*/
 		

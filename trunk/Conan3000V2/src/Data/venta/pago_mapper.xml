@@ -283,7 +283,10 @@ from OTRO_INGRESO, CONCEPTO, PERSONA, INGRESO
     <if test="fechaPagoFin != null">
         AND INGRESO.FechaPago &lt;= #{fechaPagoFin}
     </if>
-  
+  <if test="concepto != null">
+        AND OTRO_INGRESO.Descripcion= #{concepto}
+       
+    </if>
     <if test="estado != null">
         AND INGRESO.Estado= #{estado}
        
@@ -682,5 +685,22 @@ Select CUOTA.IdCuota as idCuota from MEMBRESIA,CUOTA, DETALLE_CUOTA where MEMBRE
 update CUOTA set Monto=0.0, Estado='Vitalicio'
  where IdCuota= #{idCuota}
 </update>
+
+<update id="updateSuspension" parameterType="IngSoft.venta.bean.OrdenPagoBeanData">
+update SUSPENSION_FALTA set Estado='Inactivo'
+ where IdSuspensionFalta= #{idSuspensionFalta}
+</update>
+
+<select id="getIdConcepto" parameterType="IngSoft.venta.bean.OrdenPagoBeanData" resultType="java.lang.String">
+	SELECT max(O.IdConcepto) FROM OTRO_INGRESO O where O.IdOtroIngreso=#{idOtroIngreso}
+</select>
+
+<select id="getIdSuspensionFalta" parameterType="IngSoft.venta.bean.OrdenPagoBeanData" resultType="java.lang.String">
+	SELECT max(C.IdSuspensionFalta) FROM CONCEPTO C where C.IdCONCEPTO=#{idConcepto}
+</select>
+
+<select id="getDescripcion" parameterType="IngSoft.venta.bean.OrdenPagoBeanData" resultType="java.lang.String">
+	SELECT max(O.Descripcion) FROM OTRO_INGRESO O where O.IdOtroIngreso=#{idOtroIngreso}
+</select>
 
 </mapper>
