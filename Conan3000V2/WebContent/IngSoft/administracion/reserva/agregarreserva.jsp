@@ -247,7 +247,22 @@ String fecAnoFin=dfActual.format(c1.getTime()); %>
 				                </div>
 	                    </div>
 
-                     
+                     		<div class="control-group" >
+								<label class="control-label" for="typeahead3">Opcion(*):</label>
+								<div class="controls">
+								  <label class="radio">
+									<input type="radio" name="opcion"  value="Normal">
+									NORMAL
+								  </label>
+								  <div style="clear:both"></div>
+								  <label class="radio">
+									<input type="radio" name="opcion"  value="Bungalow">
+									CON BUNGALOW
+								  </label>
+								  
+								
+								</div>
+							  </div>
                         
                         
                         <div class="form-actions">
