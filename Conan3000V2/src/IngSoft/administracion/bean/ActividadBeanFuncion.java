@@ -14,6 +14,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import IngSoft.general.CoException;
 import IngSoft.general.MyBatisSesion;
+import IngSoft.venta.bean.OrdenPagoBeanFunction;
 
 public class ActividadBeanFuncion {
 	
@@ -235,7 +236,20 @@ public class ActividadBeanFuncion {
           if( Integer.parseInt(numero) >= Integer.parseInt(matriculaBeanData.getVacantes()) )
         	  throw CoException.set("Error en ingreso de datos: No se puede agregar la Matricula por falta de vacantes", "SMAActividad?accion=Agregar&tipo=1");
           else
-			sqlsesion.insert("Data.administracion.actividad.insertPlantillaMatriculaActividad", matriculaBeanData);
+          {	sqlsesion.insert("Data.administracion.actividad.insertPlantillaMatriculaActividad", matriculaBeanData);
+          
+             OrdenPagoBeanFunction orden=OrdenPagoBeanFunction.getInstance();
+             
+             orden.agregarOrdenPago(
+            		 "ACTIVIDADSOCIO",
+            		 matriculaBeanData.getCodigoActividad(),
+            		 "",
+            		 matriculaBeanData.getCodigosocio(), 
+            		 matriculaBeanData.getMonto(),
+            		 new java.sql.Date(new java.util.Date().getTime()),
+            		 new java.sql.Date(new java.util.Date().getTime()));
+          
+          }
             
 			
 			resultado=true;
