@@ -36,6 +36,7 @@ public class CriterioOrdenPagoBeanFunction {
 				criterioOrdenPagoData.setIdSocio(null);
 			
 			criterioOrdenPagoData.setConcepto(request.getParameter("cmbConcepto"));
+			System.out.println("por este concepto: "+criterioOrdenPagoData.getConcepto());
 			if(criterioOrdenPagoData.getConcepto().equals("ALL"))
 				criterioOrdenPagoData.setConcepto(request.getParameter(null));
 			
