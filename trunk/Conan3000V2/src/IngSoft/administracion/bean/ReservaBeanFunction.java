@@ -124,11 +124,11 @@ public class ReservaBeanFunction {
 			System.out.print("valores ---> "+   valores  );	
 	  		System.out.print("montoinvitado ---> "+   valores.split("/")[0].toString()  );		
 	  		System.out.print("numeromaxinvitados ---> "+  valores.split("/")[1].toString()  );
-	  		System.out.print("numeromaxinvitadosbumgalow ---> "+  valores.split("/")[2].toString()  );
+	  		System.out.print("montoinvitadoboongalo ---> "+  valores.split("/")[2].toString()  );
 	  		
 	  		String montooficial ;
 	  		
-	  		if( reservaData.getOpcion()=="Normal")
+	  		if( reservaData.getOpcion().equalsIgnoreCase("Normal")   )
 	  		{
 	  			montooficial =  valores.split("/")[0].toString() ;
 	  		}else
