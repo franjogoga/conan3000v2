@@ -210,8 +210,10 @@ String fecHoy=dfActual.format(new java.util.Date());
 		              <%SimpleDateFormat df= new SimpleDateFormat("dd/MM/YYYY");
 		             
                           	for(int i=0;i<resultados.size();i++){
-							if(((ResultadoFlujoCajaBeanData)resultados.get(i)).getConcepto().equals("EGRESOS")) factor=-1.0; else factor =1.0;		
+							if(((ResultadoFlujoCajaBeanData)resultados.get(i)).getConcepto().equals("EGRESOS")) factor=-1.0; else factor =1.0;	
+							if(((ResultadoFlujoCajaBeanData)resultados.get(i)).getConcepto().equals("CUOTAEXTRAORDINARIA")) concepto="CUOTA EXTRAORDINARIA (NO INCLUIDA EN MEMBRESIA)"; else {	
 							concepto=((ResultadoFlujoCajaBeanData)resultados.get(i)).getConcepto();
+							}
 							
 							
 							
