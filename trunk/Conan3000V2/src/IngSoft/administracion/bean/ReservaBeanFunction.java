@@ -66,8 +66,9 @@ public class ReservaBeanFunction {
 		reservaData.setFechaingreso(new Date(DF.parse(		request.getParameter("fFecInvitado")+"/0000").getTime()));
 		reservaData.setMonto(Double.parseDouble(            request.getParameter("txtMonto")));
 		reservaData.setEstado(    							"Activo" );
-			
-	
+		
+		
+		reservaData.setOpcion(  request.getParameter("opcion") );
 
 		}catch(Exception e){
 			e.printStackTrace();
@@ -90,7 +91,7 @@ public class ReservaBeanFunction {
 			
 			String codigo = (String)sqlsesion.selectOne("Data.administracion.reserva.getNextInvitadoSocio");
 
-			System.out.print(" reservaData antes ----> "+ codigo);
+			System.out.print(" reservaData ----> "+ codigo);
 			
 			
 			if(codigo!=null)
@@ -104,9 +105,9 @@ public class ReservaBeanFunction {
 			else reservaData.setCodigo("IXS000001");
 
 
-			System.out.print(" reservaData ----> despues "+ reservaData.getCodigo());
+			
 			System.out.print("antes ---> "+  reservaData.getCodigo()  );		
-	  		System.out.print("antes ---> "+  reservaData.getMonto() );
+	  		System.out.print("antes opcion ---> "+  reservaData.getOpcion() );
 			
 			
 			
@@ -118,18 +119,33 @@ public class ReservaBeanFunction {
 			
 			String valores    = (String)sqlsesion.selectOne("Data.administracion.reserva.getCostoYNumMaxInvitadoSocio");
 			
-	               // valores   20 / 2     = montoinvitado / numeromaxinvitados
+	               // valores   20 / 2  / 25   = montoinvitado / numeromaxinvitados / MontoInvitadoBungalow
 
-
+			System.out.print("valores ---> "+   valores  );	
 	  		System.out.print("montoinvitado ---> "+   valores.split("/")[0].toString()  );		
 	  		System.out.print("numeromaxinvitados ---> "+  valores.split("/")[1].toString()  );
+	  		System.out.print("numeromaxinvitadosbumgalow ---> "+  valores.split("/")[2].toString()  );
+	  		
+	  		String montooficial ;
+	  		
+	  		if( reservaData.getOpcion()=="Normal")
+	  		{
+	  			montooficial =  valores.split("/")[0].toString() ;
+	  		}else
+	  		{
+	  			montooficial =  valores.split("/")[2].toString();
+	  		}
+	  		
+	  		
+	  		
 			
 			if(  Integer.parseInt(contador) > Integer.parseInt(     valores.split("/")[1]    ) )
 			{
 				
 				OrdenPagoBeanFunction orden=OrdenPagoBeanFunction.getInstance();
 				//String cadena    = (String)sqlsesion.selectOne("Data.administracion.reserva.getMontoInvitadoSocio");
-				Double monto = Double.parseDouble(   valores.split("/")[0]  );
+				//Double monto = Double.parseDouble(   valores.split("/")[0]  );
+				Double monto = Double.parseDouble(   montooficial  );
 				
 				reservaData.setMonto(monto);
 				
