@@ -207,6 +207,7 @@ es.IdEventoSede as codigo
 ,es.IdConcesionario as idConcesionario
 ,es.LimiteEntradas as limiteEntradas
 ,es.Precio as monto
+,es.PrecioEntradaInvitado as precioEntradaI
 ,es.EntradasTotal as entradasTotal
 from 
 EVENTO_SEDE es

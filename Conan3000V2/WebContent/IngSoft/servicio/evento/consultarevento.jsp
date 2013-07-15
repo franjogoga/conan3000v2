@@ -234,7 +234,7 @@
 								  <span class="help-inline" id="errCosto" name="errCosto" style="display:none;">Este campo no puede estar vacio</span>
 					        </div>
 					        <%}
-					        else if(modo.equals("ESD")){ %>
+					        if(modo.equals("ESD")){ %>
 					        <div class="control-group">
 						      <label class="control-label" for="txtNumEntradas">Entradas: </label>
 						      <div class="controls">
@@ -247,7 +247,16 @@
 						      <div class="controls">
 									<input  id="txtPrecio" class="span4" name="txtPrecio" readonly="true"  type="text"  value="<%=((EventoBeanData)evento).getMonto()%>">									
 					        </div>
-					        </div>					 
+					        </div>
+					        <div class="control-group">
+						      <label class="control-label" for="txtPrecioInvitado">Precio de la Entrada Invitado(*): </label>
+						      <div class="controls">
+
+									<input  id="txtPrecioInvitado" class="span4" name="txtPrecioInvitado" readonly="true" value="<%=((EventoBeanData)evento).getPrecioEntradaI()%>" type="text"  maxlength="10">
+									<br/>
+								  <span class="help-inline" id="errPrecio" name="errPrecioInvitado" style="display:none;">Este campo no puede estar vacio</span>
+					        </div>
+					        </div>						 
 					        <%}%>					        						     
 							  <div class="control-group">
 								<label class="control-label" for="cmbSedes">Sede relacionada:</label>
