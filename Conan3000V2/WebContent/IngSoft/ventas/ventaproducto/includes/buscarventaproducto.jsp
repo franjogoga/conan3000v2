@@ -5,6 +5,8 @@
 <%@page import="IngSoft.venta.bean.*"%>
 
 
+<%@page import="IngSoft.servicio.bean.SedeMiniBeanData"%>
+
 
 
 <script>
@@ -36,13 +38,16 @@
 		form.codigo.value=cod;
 		form.submit();
 	}
-	
-	
-	
+
 	</script>	
+<%
 
+SimpleDateFormat dfActual= new SimpleDateFormat("dd/MM/YYYY");
+String fecHoy=dfActual.format(new java.util.Date());
+
+ %>
 <jsp:useBean id="resultados" scope="request"class="java.util.Vector"></jsp:useBean>
-
+<jsp:useBean id="sedes" scope="request"class="java.util.Vector"></jsp:useBean>
 	<noscript>
 				<div class="alert alert-block span10">
 					<h4 class="alert-heading">Warning!</h4>
@@ -73,13 +78,40 @@
 						  <fieldset>
 						  
 							  
-					<div class="control-group" id="dvVenta">
-		                <label class="control-label" for="typeahead">C&oacute;digo de Venta:</label>
+					
+					
+					<div class="control-group" id="dvSede">
+								<label class="control-label" for="selectError">Sede(*):</label>
+								<div class="controls">
+																						  
+							 	<select  id="cmbSede" data-rel="chosen" name="cmbSede">
+								  <option value=''>Seleccione</option>
+								  <%for(int i=0;i<sedes.size();i++) if( i!=0){     %>
+										<option value="<%= ((SedeMiniBeanData)sedes.get(i)).getCodigo()%>" >
+										
+										<%= ((SedeMiniBeanData)sedes.get(i)).getNombre()%>
+										
+										
+										</option>
+									<%} else {   %>			
+										<option selected value="<%= ((SedeMiniBeanData)sedes.get(i)).getCodigo()%>" >
+										
+										<%= ((SedeMiniBeanData)sedes.get(i)).getNombre()%>
+										
+										
+										</option>
+									<%}   %>				
+								  </select>
+								  
+								</div>
+							  </div>	  
+						<div class="control-group" id="fechaEmision">
+		                <label class="control-label" for="typeahead2">Fecha de Venta: </label>
 		                <div class="controls">
-		                  <input type="text" class="span6 typeahead"   id="txtVenta" name="txtVenta" value="" onkeypress="return alfanumerico(event);" autofocus maxlength="50"/>
+		                  <input type="text" class="input-xlarge datepicker" id="fFechaIni" name="fFechaIni" value="<%=fecHoy%>" onpaste="return false;" > 
+		                  - <input type="text" class="input-xlarge datepicker" id="fFechaFin" name="fFechaFin" value="<%=fecHoy%>" onpaste="return false;" >
 	                    </div>
 	                  </div>
-						        
 						    
 						    <div class="form-actions">
 							 
@@ -116,8 +148,12 @@
 		            <thead>
 		              <tr>
 		                <th>Codigo de Venta</th>
-		                <th>Fecha de Venta</th>
-		                <th>Acci&oacute;n</th>
+						<th>Fecha de Venta</th>
+						<th>Sede</th>
+		                <th>Producto</th>
+						<th>Cantidad</th>
+						<th>Precio Unitario</th>
+						<th>Subtotal</th>
 	                  </tr>
 	                </thead>
 		           <tbody id="resultadoBusqueda">
@@ -135,32 +171,46 @@
                           					((ResultadoVentaBeanData)resultados.get(i)).getIdVenta()
                           				%>
                           			</td>
-                          			
-                          			
-                          			<td class="center">
+									
+									<td class="center">
                           				<%=
-                          					((ResultadoVentaBeanData)resultados.get(i)).getFechaVenta()
+											
+											df.format(((ResultadoVentaBeanData)resultados.get(i)).getFechaVenta())
                           				%>
                           			</td>
                           			
+									<td class="center">
+                          				<%=
+                          					((ResultadoVentaBeanData)resultados.get(i)).getSede()
+                          				%>
+                          			</td>
+									<td class="center">
+                          				<%=
+                          					((ResultadoVentaBeanData)resultados.get(i)).getProducto()
+                          				%>
+                          			</td>
+									<td class="center">
+                          				<%=
+                          					((ResultadoVentaBeanData)resultados.get(i)).getCantidad()
+                          				%>
+                          			</td>
+									
+									<td class="center">
+                          				<%=
+                          					((ResultadoVentaBeanData)resultados.get(i)).getPrecioU()
+                          				%>
+                          			</td>
+									
+									<td class="center">
+                          				<%=
+                          					((ResultadoVentaBeanData)resultados.get(i)).getSubtotal()
+                          				%>
+                          			</td>
+                          			
+                          			                       			
                           				                          			
                           			
-                          			<td class="center">
-                          				<a class="btn btn-success"
-                          					href="javascript:alt_consultar('<%=((ResultadoVentaBeanData)resultados.get(i)).getIdVenta()%>')">
-                          					<i
-                          						class="icon-zoom-in icon-white">
-                          					</i>
-Ver
-                          				</a>
-                          	
-                          				<a class="btn btn-danger"
-                          					href="javascript:alt_eliminar('<%=((ResultadoVentaBeanData)resultados.get(i)).getIdVenta()%>')">
-                          					<i class="icon-trash icon-white">
-                          					</i>
-		Eliminar
-                          				</a>
-                          			</td>
+                          			
                           		</tr>
 
 

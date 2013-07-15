@@ -57,7 +57,7 @@ public class PagoBeanFunction {
 		return pagoData;		
 	} 
 	
-	public PagoBeanData crearPagoMembresia(HttpServletRequest request, HttpServletResponse response){
+	public  PagoBeanData crearPagoMembresia(HttpServletRequest request, HttpServletResponse response){
 		PagoBeanData pagoData= new PagoBeanData();
 		try{		
 	
@@ -98,10 +98,10 @@ public class PagoBeanFunction {
 	
 	
 	
-	public boolean agregarPago(PagoBeanData pagoData) throws CoException {
+	public synchronized  boolean agregarPago(PagoBeanData pagoData) throws CoException {
 		
 		boolean resultado=false;		
-		l.lock();
+		
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		
 		try{
@@ -134,7 +134,7 @@ public class PagoBeanFunction {
 		finally{
 			sqlsesion.commit();
 			sqlsesion.close();
-			l.unlock();					
+							
 		}
 		return resultado;
 	}
@@ -143,7 +143,7 @@ public class PagoBeanFunction {
 	
 
 
-	public boolean eliminarPago(String codigo) throws CoException {
+	public synchronized  boolean eliminarPago(String codigo) throws CoException {
 		boolean resultado=false;		
 		
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
@@ -173,8 +173,8 @@ public class PagoBeanFunction {
 	
 	
 			
-	public PagoBeanData consultarPago(String codigo){
-		l1.lock();
+	public synchronized  PagoBeanData consultarPago(String codigo){
+		
 		PagoBeanData pagoData=null;
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
@@ -186,13 +186,13 @@ public class PagoBeanFunction {
 		}
 		finally{
 			sqlsesion.close();
-			l1.unlock();
+			
 		}
 		return pagoData;
 	}
 	
-	public PagoBeanData consultarPagoMembresia(String codigo){
-		l2.lock();
+	public synchronized  PagoBeanData consultarPagoMembresia(String codigo){
+		
 		PagoBeanData pagoData=null;
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
@@ -204,15 +204,15 @@ public class PagoBeanFunction {
 		}
 		finally{
 			sqlsesion.close();
-			l2.unlock();
+			
 		}
 		return pagoData;
 	}
 	
-public String consultarPagoMax() throws CoException {
+public synchronized  String consultarPagoMax() throws CoException {
 		
 		//boolean resultado=false;		
-		l3.lock();
+		
 	String codigo=null;
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		
@@ -241,14 +241,14 @@ public String consultarPagoMax() throws CoException {
 		finally{
 			//sqlsesion.commit();
 			sqlsesion.close();
-			l3.unlock();					
+								
 		}
 		return codigo;
 	}
 
 
-	public void modificarPago(PagoBeanData pago) throws CoException {
-		l4.lock();
+	public synchronized  void modificarPago(PagoBeanData pago) throws CoException {
+		
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
 					
@@ -265,13 +265,13 @@ public String consultarPagoMax() throws CoException {
 		finally{
 			sqlsesion.commit();
 			sqlsesion.close();	
-			l4.unlock();
+			
 		}			
 		return ;
 	}
 	
-public String consultarMulta() throws CoException {
-	l5.lock();
+public synchronized String consultarMulta() throws CoException {
+	
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		String cantidad=null;
 		try{
@@ -293,16 +293,16 @@ public String consultarMulta() throws CoException {
 		finally{
 			//sqlsesion.commit();
 			sqlsesion.close();
-			l5.unlock();
+			
 		}			
 		return cantidad;
 }
 
 
-public boolean aplicarMulta(PagoBeanData pagoData) throws CoException {
+public synchronized boolean aplicarMulta(PagoBeanData pagoData) throws CoException {
 		
 		boolean resultado=false;		
-		l6.lock();
+		
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		
 		try{
@@ -323,7 +323,7 @@ public boolean aplicarMulta(PagoBeanData pagoData) throws CoException {
 		finally{
 			sqlsesion.commit();
 			sqlsesion.close();
-			l6.unlock();					
+								
 		}
 		return resultado;
 	}
@@ -333,8 +333,8 @@ public boolean aplicarMulta(PagoBeanData pagoData) throws CoException {
 
 
 
-public String consultarMultaExtra() throws CoException {
-	l7.lock();
+public synchronized  String consultarMultaExtra() throws CoException {
+	
 	SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 	String cantidad=null;
 	try{
@@ -353,16 +353,16 @@ public String consultarMultaExtra() throws CoException {
 	finally{
 		//sqlsesion.commit();
 		sqlsesion.close();
-		l7.unlock();
+		
 	}			
 	return cantidad;
 }
 
 
-public boolean aplicarMultaExtra(PagoBeanData pagoData) throws CoException {
+public synchronized  boolean aplicarMultaExtra(PagoBeanData pagoData) throws CoException {
 	
 	boolean resultado=false;		
-	l8.lock();
+	
 	SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 	
 	try{
@@ -382,17 +382,17 @@ public boolean aplicarMultaExtra(PagoBeanData pagoData) throws CoException {
 	finally{
 		sqlsesion.commit();
 		sqlsesion.close();
-		l8.unlock();					
+							
 	}
 	return resultado;
 }
 
 
 
-public boolean cuotaVitalicio() throws CoException {
+public synchronized  boolean cuotaVitalicio() throws CoException {
 	
 	boolean resultado=false;		
-	l2.lock();
+	
 	SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 	Vector<ResultadoPagoBeanData> resultadosV=null;
 	try{
@@ -417,7 +417,7 @@ public boolean cuotaVitalicio() throws CoException {
 	finally{
 		sqlsesion.commit();
 		sqlsesion.close();
-		l2.unlock();					
+							
 	}
 	return resultado;
 }

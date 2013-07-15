@@ -153,10 +153,10 @@ public class MembresiaBeanFunction {
 		return membresiaData;		
 	} 
 	
-	public boolean agregarMembresia(MembresiaBeanData membresiaData) throws CoException {
+	public synchronized  boolean agregarMembresia(MembresiaBeanData membresiaData) throws CoException {
 		
 		boolean resultado=false;		
-		l1.lock();
+		
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		
 		try{
@@ -268,7 +268,7 @@ public class MembresiaBeanFunction {
 		finally{
 			sqlsesion.commit();
 			sqlsesion.close();
-			l1.unlock();					
+								
 		}
 		return resultado;
 	}
@@ -304,8 +304,8 @@ public class MembresiaBeanFunction {
 	
 	
 			
-	public MembresiaBeanData consultarMembresia(String codigo){
-		l2.lock();
+	public synchronized  MembresiaBeanData consultarMembresia(String codigo){
+		
 		MembresiaBeanData membresiaData=null;
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		try{
@@ -329,7 +329,7 @@ public class MembresiaBeanFunction {
 		}
 		finally{
 			sqlsesion.close();
-			l2.unlock();
+			
 		}
 		return membresiaData;
 	}

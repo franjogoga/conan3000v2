@@ -67,11 +67,12 @@ function validaForm(){
 	*/
 	
 	
-	var form=document.frmMembresia;
+	var form=document.frmVentas;
 
 	var cadena= new Array();
 	var i=0;
 	var error=false;
+	/*
 	if(!esValido("Fecha Inicio",form.fFechaInicio,"FechaInicio",2,1,10)){cadena[i]="Fecha Inicio";i++;}
 	if(!esValido("Fecha Fin",form.fFechaFin,"FechaFin",2,1,10)){cadena[i]="Fecha Fin";i++;}
 	if(!validarFechas("Fecha Final",form.fFechaFin,"FechaFin","Fecha Inicio",form.fFechaInicio)){cadena[i]="Fecha Fin";i++;};
@@ -84,7 +85,23 @@ function validaForm(){
 		if(!esValido("Costo",form.txtCosto,"Costo",5,1,1)){cadena[i]="Costo";i++;}
 	}
 	if(!esValido("Estado",form.rButton,"Estado",3,1,1)){cadena[i]="Estado";i++;}
+	*/
 	
+	if(!esValido("Sede",form.cmbSede,"Sede",1,1,50)){cadena[i]="Sede";i++;}
+	if(!esValido("Producto",form.cmbProducto,"Producto",1,1,50)){cadena[i]="Producto";i++;}
+	if(!esValido("Precio Unitario",form.txtPrecioU,"PrecioU",1,1,50)){
+		cadena[i]="Precio Unitario";i++;
+	}else{
+		//valida si es float o entero
+		if(!esValido("Precio Unitario",form.txtPrecioU,"PrecioU",5,1,1)){cadena[i]="Precio Unitario";i++;}
+	}
+	
+	if(!esValido("Cantidad",form.txtCantidad,"Cantidad",1,1,50)){
+		cadena[i]="Cantidad";i++;
+	}else{
+		//valida si es float o entero
+		if(!esValido("Cantidad",form.txtCantidad,"Cantidad",6,1,1)){cadena[i]="Cantidad";i++;}
+	}
 	
 	//No tocar
 	if(i>0){
@@ -102,13 +119,17 @@ function inicializa(){
 /*Esto se debe llenar siempre deacuerdo a las etiuquetas <span> del formulario, esto sirve para ocultar inicialmente los avisos
 Solo poner el id de los <span> segun corresponda
 */
-	document.getElementById("errEstado").style.display='none';
+	/*document.getElementById("errEstado").style.display='none';
 	document.getElementById("errFechaInicio").style.display='none';
 	document.getElementById("errFechaFin").style.display='none';
 	document.getElementById("errSocio").style.display='none';
 	document.getElementById("errCosto").style.display='none';
 	document.getElementById("errPeriodo").style.display='none';
-	
+	*/
+	document.getElementById("errSede").style.display='none';
+	document.getElementById("errProducto").style.display='none';
+	document.getElementById("errPrecioU").style.display='none';
+	document.getElementById("errCantidad").style.display='none';
 }
 
 

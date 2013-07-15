@@ -2,6 +2,8 @@ package IngSoft.venta.bean;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.util.List;
+import java.util.Vector;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -34,13 +36,11 @@ public class VentaBeanFunction {
 	
 		
 			//System.out.println(request.getParameter("txtCliente"));
-			
-			ventaData.setIdSocio(request.getParameter("txtCliente"));
-			
-			System.out.println(request.getParameter("txtCliente"));
-			
-			ventaData.setIdEmpleado(request.getParameter("txtVendedor"));
-			//ventaData.setFechaVenta(request.getParameter("txtFechaVenta"));
+			ventaData.setIdSede(request.getParameter("cmbSede"));
+			ventaData.setIdProducto(request.getParameter("cmbProducto"));
+			ventaData.setPrecioU(Double.parseDouble(request.getParameter("txtPrecioU")));
+			ventaData.setCantidad(Integer.parseInt(request.getParameter("txtCantidad")));
+			ventaData.setSubTotal(Double.parseDouble(request.getParameter("txtSubtotal")));
 			ventaData.setFechaVenta(new Date(DF.parse(request.getParameter("txtFechaVenta")).getTime()));
 			
 		
@@ -67,9 +67,21 @@ public class VentaBeanFunction {
 			String temp= defecto.substring(0, defecto.length()-String.valueOf(cod).length()).concat(String.valueOf(cod));
 			
 			ventaData.setIdVenta(codigo.substring(0,3).concat(temp));}
-			else ventaData.setIdVenta("VEN00001");
+			else ventaData.setIdVenta("VEN000001");
+			
+			
+			String codigo2= (String)sqlsesion.selectOne("Data.venta.ventaproducto.getNextLineaCodigo");
+			if(codigo2!=null){
+			int cod2= Integer.parseInt(codigo2.substring(3))+1;
+			String defecto2= "000000";
+			String temp2= defecto2.substring(0, defecto2.length()-String.valueOf(cod2).length()).concat(String.valueOf(cod2));
+			
+			ventaData.setIdLineaVenta(codigo2.substring(0,3).concat(temp2));}
+			else ventaData.setIdLineaVenta("LVN000001");
+			
 
 			sqlsesion.insert("insertVenta",ventaData);
+			sqlsesion.insert("insertLineaVenta",ventaData);
 			
 			resultado=true;
 		}
@@ -185,4 +197,19 @@ public String consultarProductoMax() throws CoException {
 		return ;
 	}
 
+	public Vector<VentaBeanData> buscarProductos(){		
+		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
+		Vector<VentaBeanData> resultadosV=null;
+		try{		
+		List<VentaBeanData> resultados=sqlsesion.selectList("getProductos");
+						
+		resultadosV= new Vector<>(resultados);
+		}
+		finally{
+		sqlsesion.close();}
+		return resultadosV;
+		
+	}
+	
+	
 }

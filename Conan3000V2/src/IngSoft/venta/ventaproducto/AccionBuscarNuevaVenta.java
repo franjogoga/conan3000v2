@@ -13,7 +13,7 @@ import IngSoft.servicio.bean.SedeMiniBeanData;
 import IngSoft.venta.bean.*;
 
 
-public class AccionBuscarVenta extends CoAccion {
+public class AccionBuscarNuevaVenta extends CoAccion {
 	
 
 	@Override
@@ -21,14 +21,12 @@ public class AccionBuscarVenta extends CoAccion {
 			HttpServletResponse response) throws CoException {
 		// TODO Auto-generated method stub
 		
-	    CriterioVentaBeanData criterioVentaData =new CriterioVentaBeanFunction().crearCriterio(request,response);
-		Vector<ResultadoVentaBeanData> resultados=new CriterioVentaBeanFunction().buscarPlantillaVenta(criterioVentaData);
+	   
 		EventoBeanFuncion eventoFunction=EventoBeanFuncion.getInstance();
 		Vector<SedeMiniBeanData> sedeMiniData=eventoFunction.getSedes();
 		
 		request.setAttribute("sedes", sedeMiniData);
-		//request.setAttribute(name, o)
-		request.setAttribute("resultados", resultados);
+    	
 		this.direccionar(sc, request, response, "/IngSoft/ventas/ventaproducto/buscarventaproducto2.jsp");
 		
 	}

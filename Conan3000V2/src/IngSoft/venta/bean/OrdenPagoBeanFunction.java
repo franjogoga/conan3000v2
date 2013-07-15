@@ -96,12 +96,12 @@ public class OrdenPagoBeanFunction {
 			return ordenPagoData;		
 		}
 
-public boolean agregarOrdenPago(String concepto, String id, String id2, String idSocio, Double monto, Date fechaEmision, Date fechaVencimiento) throws CoException {
+public synchronized  boolean agregarOrdenPago(String concepto, String id, String id2, String idSocio, Double monto, Date fechaEmision, Date fechaVencimiento) throws CoException {
 	
 	boolean resultado=false;
 	OrdenPagoBeanData ordenData= new OrdenPagoBeanData();
 	
-	l.lock();
+	
 	SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 	
 	try{
@@ -237,16 +237,16 @@ public boolean agregarOrdenPago(String concepto, String id, String id2, String i
 	finally{
 		sqlsesion.commit();
 		sqlsesion.close();
-		l.unlock();					
+					
 	}
 	return resultado;
 }
 	
 
-public boolean pagarOrdenPago(OrdenPagoBeanData ordenPagoData) throws CoException {
+public synchronized  boolean pagarOrdenPago(OrdenPagoBeanData ordenPagoData) throws CoException {
 	
 	boolean resultado=false;		
-	l1.lock();
+	
 	SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 	
 	try{
@@ -265,6 +265,11 @@ public boolean pagarOrdenPago(OrdenPagoBeanData ordenPagoData) throws CoExceptio
 		sqlsesion.update("Data.venta.pago.pagarOrdenPago",ordenPagoData);
 		sqlsesion.insert("insertOtroIngreso",ordenPagoData);
 		//sqlsesion.insert("insertPlantillaEventoSedes",eventoData);
+		/*
+		if(ordenPagoData.getDescripcion().equals("MULTAXINFRACCION")){
+			sqlsesion.update("Data.venta.pago.updateSuspension");	
+			
+		}*/
 		
 		resultado=true;
 	}
@@ -277,15 +282,15 @@ public boolean pagarOrdenPago(OrdenPagoBeanData ordenPagoData) throws CoExceptio
 	finally{
 		sqlsesion.commit();
 		sqlsesion.close();
-		l1.unlock();					
+							
 	}
 	return resultado;
 }
 
-public boolean agregarCuotaExtra(OrdenPagoBeanData ordenPagoData) throws CoException {
+public synchronized  boolean agregarCuotaExtra(OrdenPagoBeanData ordenPagoData) throws CoException {
 	
 	boolean resultado=false;		
-	l2.lock();
+	
 	SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 	
 	try{
@@ -354,16 +359,16 @@ public boolean agregarCuotaExtra(OrdenPagoBeanData ordenPagoData) throws CoExcep
 	finally{
 		sqlsesion.commit();
 		sqlsesion.close();
-		l2.unlock();					
+							
 	}
 	return resultado;
 }
 
 
-public boolean agregarCuotaExtra2(OrdenPagoBeanData ordenPagoData) throws CoException {
+public synchronized  boolean agregarCuotaExtra2(OrdenPagoBeanData ordenPagoData) throws CoException {
 	
 	boolean resultado=false;		
-	l2.lock();
+
 	SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 	Vector<ResultadoPagoBeanData> resultadosV=null;
 	try{
@@ -417,15 +422,15 @@ public boolean agregarCuotaExtra2(OrdenPagoBeanData ordenPagoData) throws CoExce
 	finally{
 		sqlsesion.commit();
 		sqlsesion.close();
-		l2.unlock();					
+							
 	}
 	return resultado;
 }
 
 
 
-public OrdenPagoBeanData consultarOrdenPago(String codigo){
-	l3.lock();
+public synchronized OrdenPagoBeanData consultarOrdenPago(String codigo){
+	
 	OrdenPagoBeanData ordenPagoData=null;
 	SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 	try{
@@ -437,7 +442,7 @@ public OrdenPagoBeanData consultarOrdenPago(String codigo){
 	}
 	finally{
 		sqlsesion.close();
-		l3.unlock();
+		
 	}
 	return ordenPagoData;
 }
@@ -449,12 +454,12 @@ public OrdenPagoBeanData consultarOrdenPago(String codigo){
 
 
 
-public boolean agregarOrdenPagoPrueba() throws CoException {
+public synchronized  boolean agregarOrdenPagoPrueba() throws CoException {
 	
 	boolean resultado=false;
 	OrdenPagoBeanData ordenData= new OrdenPagoBeanData();
 	
-	l4.lock();
+	
 	SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 	
 	try{
@@ -498,7 +503,7 @@ public boolean agregarOrdenPagoPrueba() throws CoException {
 	finally{
 		sqlsesion.commit();
 		sqlsesion.close();
-		l4.unlock();					
+							
 	}
 	return resultado;
 }
