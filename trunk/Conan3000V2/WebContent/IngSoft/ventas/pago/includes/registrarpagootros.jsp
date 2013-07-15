@@ -110,7 +110,7 @@ String fecHoy=dfActual.format(new java.util.Date());
 			            <div class="form-actions">
 			            <input type="hidden" name="idOtroIngreso" value="<%=ordenPago.getIdOtroIngreso() %>"/></input>
 			              <button type="button" class="btn btn-primary" onclick="javascript:alt_submit()">Pagar</button>
-			              <button type="button" class="btn" onclick="location.href='buscarpago.jsp'">Cancelar</button>
+			              <button type="button" class="btn" onclick="location.href='buscarpagootros.jsp'">Cancelar</button>
 		                </div>
 		              </fieldset>
 		            </form>

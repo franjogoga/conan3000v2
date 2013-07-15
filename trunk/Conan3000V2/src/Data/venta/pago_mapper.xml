@@ -429,7 +429,7 @@ OTRO_INGRESO.IdConcepto=CONCEPTO.IdConcepto and CONCEPTO.IdSocio=PERSONA.IdPerso
 </insert>
 
 <insert id="insertOrdenPagoInvitadoxSocio" parameterType="IngSoft.venta.bean.OrdenPagoBeanData" flushCache="true">
-	insert into CONCEPTO(IdInvitado,IdConcepto,IdSocio,Fecha)
+	insert into CONCEPTO(IdInvitadoSocio,IdConcepto,IdSocio,Fecha)
 	values (#{idInvitado},#{idConcepto},#{idSocio},#{fecha})
 </insert>
 
