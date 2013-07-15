@@ -618,6 +618,26 @@ Select
 
 ) UNION(
 Select 
+'VENTA DE PRODUCTOS' as Concepto, 
+(Select sum(V.MontoTotal) as monto FROM VENTA V WHERE  YEAR(V.Fecha)=#{anho} and MONTH(V.Fecha)='01')  as Enero,
+(Select sum(V.MontoTotal) as monto FROM VENTA V WHERE  YEAR(V.Fecha)=#{anho} and MONTH(V.Fecha)='02')   as Febrero,
+(Select sum(V.MontoTotal) as monto FROM VENTA V WHERE  YEAR(V.Fecha)=#{anho} and MONTH(V.Fecha)='03')   as Marzo,
+(Select sum(V.MontoTotal) as monto FROM VENTA V WHERE  YEAR(V.Fecha)=#{anho} and MONTH(V.Fecha)='04')  as Abril,
+(Select sum(V.MontoTotal) as monto FROM VENTA V WHERE  YEAR(V.Fecha)=#{anho} and MONTH(V.Fecha)='05')  as Mayo,
+(Select sum(V.MontoTotal) as monto FROM VENTA V WHERE  YEAR(V.Fecha)=#{anho} and MONTH(V.Fecha)='06') as Junio,
+(Select sum(V.MontoTotal) as monto FROM VENTA V WHERE  YEAR(V.Fecha)=#{anho} and MONTH(V.Fecha)='07')  as Julio,
+(Select sum(V.MontoTotal) as monto FROM VENTA V WHERE  YEAR(V.Fecha)=#{anho} and MONTH(V.Fecha)='08')  as Agosto,
+(Select sum(V.MontoTotal) as monto FROM VENTA V WHERE  YEAR(V.Fecha)=#{anho} and MONTH(V.Fecha)='09')  as Septiembre,
+(Select sum(V.MontoTotal) as monto FROM VENTA V WHERE  YEAR(V.Fecha)=#{anho} and MONTH(V.Fecha)='10')  as Octubre,
+(Select sum(V.MontoTotal) as monto FROM VENTA V WHERE  YEAR(V.Fecha)=#{anho} and MONTH(V.Fecha)='11')  as Noviembre,
+(Select sum(V.MontoTotal) as monto FROM VENTA V WHERE  YEAR(V.Fecha)=#{anho} and MONTH(V.Fecha)='12')  as Diciembre
+
+
+ from VENTA GROUP BY Concepto
+
+
+) UNION(
+Select 
 'EGRESOS' as Concepto, 
 (Select sum(E.MontoTotal) as monto FROM EGRESO E WHERE  YEAR(E.FechaPago)=#{anho} and MONTH(E.FechaPago)='01')  as Enero,
 (Select sum(E.MontoTotal) as monto FROM EGRESO E WHERE  YEAR(E.FechaPago)=#{anho} and MONTH(E.FechaPago)='02')   as Febrero,

@@ -1,23 +1,30 @@
  <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Calendar"%>
 <%@page import="java.util.GregorianCalendar"%>
+<%@page import="java.util.Vector"%>
+<%@page import="IngSoft.servicio.bean.SedeMiniBeanData"%>
+<%@page import="IngSoft.venta.bean.VentaBeanData"%>
 <script type="text/javascript" src="js/apprise-1.5.full.js"></script>
 <link rel="stylesheet" href="css/apprise.css" type="text/css" />
+<script type="text/javascript" src="js/dynamicoptionlist.js"></script>
 
 
-<script type="text/javascript" src="js/ajax.js"></script>
-<script type="text/javascript" src="js/dynamic-select.js"></script>
+
+<!-- Bean-->
+<jsp:useBean id="sedes" scope="request"class="java.util.Vector"></jsp:useBean>
+<jsp:useBean id="productos" scope="request"class="java.util.Vector"></jsp:useBean>
+
 
 <script>
 function alt_submit(){
-		var form= document.dynsel;
-		 form.submit();
+		var form= document.frmVentas;
+		 if(validaForm())  form.submit();
 			
 }
 
 
 function anhadirprod(cod,name){
-	var form=document.dynsel;
+	var form=document.frmVentas;
 	var cadena = "";
 	var cod1 = "("; 
 	var cod2 = ")";
@@ -38,7 +45,7 @@ function recargaproductos(val){
 	$('#cmbProductos').html('<option value="">Cargando...aguarde</option>'); 
 	//realizo la call via jquery ajax 
 	$.ajax({ 
-		url: '/procesar.php', 
+		url: '/procesar.html', 
 		data: 'id='+val, 
 		success: function(resp){ 
 			$('#cmbProductos').html(resp) 
@@ -50,7 +57,7 @@ function recargaproductos(val){
 
 
 function confFecha(){
-	var form= document.frmMembresia;
+	var form= document.frmVentas;
 	if(form.cmbPeriodo.value=="Anual"){
 	document.getElementById("dvFechaFin").style.display='none';
 		fechaI=form.fFechaInicio.value.split("/");
@@ -72,6 +79,8 @@ function confFecha(){
 	}
 	
 }
+
+
 
 
 
@@ -99,29 +108,36 @@ String fecAnoFin=dfActual.format(c1.getTime()); %>
 			        <h2>REGISTRAR VENTA DE PRODUCTOS </h2>
 		          </div>
 			      <div class="box-content">
-			        <form class="form-horizontal"  name="dynsel" id="dynsel" method="Post"  action="SMVVentaProductos">
+			        <form class="form-horizontal"  name="frmVentas" id="frmVentas" method="Post"  action="SMVVentaProductos">
 					<input type="hidden" name="accion" value="Registrar"></input>
 					<input type="hidden" name="tipo" value="2"></input>
 			          <fieldset>
 			          
-			       			            
-			            
-			            <div class="control-group" id="dvVendedor">
-							  <label class="control-label" for="vendedor">Vendedor (*):</label>							  
-							  <div class="controls">
-								<input type="text" class="span6 typeahead"   id="txtVendedor" name="txtVendedor" value="" onkeypress="return alfanumerico(event);" autofocus maxlength="50"/>														
-							  
-							  </div>
-							</div>
-							
-							  <div class="control-group" id="dvCliente">
-							  <label class="control-label" for="cliente">Cliente (*):</label>							  
-							  <div class="controls">
-								<input type="text" class="span6 typeahead"   id="txtCliente" name="txtCliente" value="" onkeypress="return alfanumerico(event);" autofocus maxlength="50"/>														
-							  
-							  </div>
-							</div>
-						
+			       		<div class="control-group" id="dvSede">
+								<label class="control-label" for="selectError">Sede(*):</label>
+								<div class="controls">
+																						  
+							 	<select  id="cmbSede" data-rel="chosen" name="cmbSede" >
+								  
+								  <%for(int i=0;i<sedes.size();i++) if( i!=0){     %>
+										<option value="<%= ((SedeMiniBeanData)sedes.get(i)).getCodigo()%>" >
+										
+										<%= ((SedeMiniBeanData)sedes.get(i)).getNombre()%>
+										
+										
+										</option>
+									<%} else {   %>			
+										<option selected value="<%= ((SedeMiniBeanData)sedes.get(i)).getCodigo()%>" >
+										
+										<%= ((SedeMiniBeanData)sedes.get(i)).getNombre()%>
+										
+										
+										</option>
+									<%}   %>				
+								  </select>
+								  <span class="help-inline" id="errSede">Please correct the error</span>
+								</div>
+							  </div>	            
 			            
 			            
 			            <div class="control-group" id="dvFechaVenta">
@@ -135,37 +151,59 @@ String fecAnoFin=dfActual.format(c1.getTime()); %>
 			              
 			             			              
 			              <div class="control-group" id="dvProducto">
-			                <label class="control-label" for="typeahead8">Producto (*): </label>
-			                <div class="controls">
-			                  <input  type="text" class="span6 typeahead"   data-provide="typeahead"    name="title"  value   id="title"  readonly="readonly"  />
-								 <br>
-								<input type="button" name="clear"  value="X"  onclick='document.dynsel.title.value="";'  />
-								<input type="button" name="add"  style="width:140px" value="Add to select" onclick="addoption()"  />
-			                  
-			                 <br> <br>
-			                  <div  align="left"> <a class="btn btn-primary iframe" href="../producto/seleccionarproductoventa.jsp"> <i class="icon icon-search icon-white"></i> </a> </div>
-			            
-			                </div>
-		                  </div>
-            
- 
-							 <div class="control-group" id="dvProductos" >
-								<label class="control-label" for="cmbProductos">Carrito:</label>
+								<label class="control-label" for="selectError">Producto(*):</label>
 								<div class="controls">
-								  <select name="select1" id="select1" style="width:180px" multiple onchange="selectoption();">
-																																
+																						  
+							 	<select  id="cmbProducto" data-rel="chosen" name="cmbProducto">
+								  		<%for(int j=0;j<productos.size();j++) if( j!=0){     %>
+										<option value="<%= ((VentaBeanData)productos.get(j)).getIdProducto()%>" >
+										
+										<%= ((VentaBeanData)productos.get(j)).getProducto()%>
+										
+										
+										</option>
+									<%} else {   %>			
+										<option selected value="<%= ((VentaBeanData)productos.get(j)).getIdProducto()%>" >
+										
+										<%= ((VentaBeanData)productos.get(j)).getProducto()%>
+										
+										
+										</option>
+									<%}   %>	
 								  </select>
-								  </div>
+								  <span class="help-inline" id="errProducto">Please correct the error</span>
+								</div>
 							  </div>
+							<div class="control-group" id="dvPrecioU">
+			              <div class="control-group">
+			                <label class="control-label" for="typeahead4">Precio Unitario (S/.): </label>
+			                <div class="controls">
+			                  <input type="text" class="input-xlarge disabled"  id="txtPrecioU" name="txtPrecioU"  data-provide="typeahead" data-items="4" value="" onKeyUp="calcular()" >
+		                    <span class="help-inline" id="errPrecioU">Please correct the error</span>
+							</div>
+		                  </div>
+			            </div>
+						
+						<div class="control-group" id="dvCantidad">
+			              <div class="control-group">
+			                <label class="control-label" for="typeahead4">Cantidad: </label>
+			                <div class="controls">
+			                  <input type="text" class="input-xlarge disabled"  id="txtCantidad" name="txtCantidad"  data-provide="typeahead" data-items="4" value="" onKeyUp="calcular()" >
+		                    <span class="help-inline" id="errCantidad">Please correct the error</span>
+							</div>
+		                  </div>
+			            </div>
+						
+						<div class="control-group" >
+			              <div class="control-group">
+			                <label class="control-label" for="typeahead4">Subtotal (S/.): </label>
+			                <div class="controls">
+			                  <input type="text" class="input-xlarge disabled" disabled="" id="txtSubtotal0" name="txtSubtotal0"  data-provide="typeahead" data-items="4" value="" >
+		                    </div>
+		                  </div>
+			            </div>
  
-<input type="button" name="del"  style="width:120px" value="Delete" onclick="deloption()"  />
-<span  style="margin-left:16px" >Remove the selected option </span>
 
-<br />
-<br />
-
-<input type="button" name="del2"  style="width:120px" value="Move up" onclick="moveup()"  />
-<span  style="margin-left:16px" >Move up in the list the option  </span>
             
 
 
@@ -179,7 +217,9 @@ String fecAnoFin=dfActual.format(c1.getTime()); %>
 			            </div>
 			            <div class="form-actions">
 			            <input type="hidden" name="idVentaProducto" value=""/></input>
-			              <button type="submit" class="btn btn-primary" >Registrar Venta</button>
+						<input type="hidden" name="txtSubtotal" value=""/></input>
+						<button type="button" class="btn btn-primary" onclick="javascript:alt_submit()">Registrar Venta</button>
+			            
 			              <button type="button" class="btn" onclick="location.href='buscarventaproducto.jsp'">Cancelar</button>
 		                </div>
 		              </fieldset>
@@ -199,7 +239,15 @@ String fecAnoFin=dfActual.format(c1.getTime()); %>
 		      </div>
 			  <!--/row-->
 			 
+<script>
+function calcular(){
+form=document.frmVentas;
+if(form.txtCantidad.value<=0) form.txtCantidad.value=1;
+if(form.txtPrecioU.value<0) form.txtPrecioU.value=0;
+form.txtSubtotal0.value=form.txtCantidad.value*form.txtPrecioU.value;
+form.txtSubtotal.value=form.txtSubtotal0.value;
 
-		<script>confFecha();</script>  
+}
+</script>
        
 					<!-- content ends -->

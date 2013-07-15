@@ -63,8 +63,8 @@ public class CriterioMembresiaBeanFunction {
 		return criterioMembresiaData;				
 	}
 	
-	public Vector<ResultadoMembresiaBeanData> buscarPlantillaMembresia(CriterioMembresiaBeanData criterioMembresiaData){		
-		l1.lock();
+	public synchronized Vector<ResultadoMembresiaBeanData> buscarPlantillaMembresia(CriterioMembresiaBeanData criterioMembresiaData){		
+		
 		SqlSession sqlsesion=MyBatisSesion.metodo().openSession();
 		Vector<ResultadoMembresiaBeanData> resultadosV=null;
 		try{		
@@ -78,7 +78,7 @@ public class CriterioMembresiaBeanFunction {
 		}
 		finally{
 		sqlsesion.close();
-		l1.unlock();}
+		}
 		return resultadosV;
 		
 	}

@@ -1,11 +1,15 @@
 package IngSoft.venta.ventaproducto;
 
+import java.util.Vector;
+
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import IngSoft.general.CoAccion;
 import IngSoft.general.CoException;
+import IngSoft.servicio.bean.EventoBeanFuncion;
+import IngSoft.servicio.bean.SedeMiniBeanData;
 import IngSoft.venta.bean.*;
 
 
@@ -46,10 +50,19 @@ public class AccionRegistrarVenta extends CoAccion {
 					//	e.printStackTrace();
 				//	}
 					System.out.println("despues del crearVenta");
-					//this.direccionar(sc, request, response, "/IngSoft/ventas/ventaproducto/buscarventaproducto.jsp");
+					this.direccionar(sc, request, response, "/IngSoft/ventas/ventaproducto/buscarventaproducto.jsp");
 				}
 				    if(tipo==1){
-				      
+				    	VentaBeanFunction VentaFunction= VentaBeanFunction.getInstance();
+				    	EventoBeanFuncion eventoFunction=EventoBeanFuncion.getInstance();
+				    	CriterioProductoBeanFunction productoFunction=new CriterioProductoBeanFunction();
+				    	Vector<SedeMiniBeanData> sedeMiniData=eventoFunction.getSedes();
+				    	Vector<VentaBeanData> productos=VentaFunction.buscarProductos();
+				    	
+				    	request.setAttribute("sedes", sedeMiniData);
+				    	request.setAttribute("productos",productos);
+				    	
+				    	
 					    this.direccionar(sc, request, response, "/IngSoft/ventas/ventaproducto/registrarventaproducto.jsp");
 				    }
 				

@@ -5,22 +5,34 @@
 <mapper namespace="Data.venta.ventaproducto">
 
 <select id="searchPlantillaVenta" parameterType="IngSoft.venta.bean.CriterioVentaBeanData" resultType="IngSoft.venta.bean.ResultadoVentaBeanData">
-select 
-VENTA.IdVenta as idVenta
-,VENTA.Fecha as fechaVenta
-
-from VENTA
+Select
+distinct PP.IdProductoProv as idProducto,
+PP.Nombre as producto,
+V.IdVenta as idVenta,
+LV.idLineaVenta as idLineaVenta,
+S.Nombre as sede,
+LV.Cantidad as cantidad,
+V.MontoTotal as subtotal,
+LV.SubTotal as precioU,
+V.Fecha as fechaVenta
+from PRODUCTO_PROV PP,VENTA V, LINEA_VENTA LV, SEDE S
 <where>
 	
-    <if test="idVenta != null">
-       VENTA.IdVenta like #{idVenta}
+    <if test="idSede != null">
+      V.IdVenta=LV.idVenta and LV.idProductoProv=PP.IdProductoProv and LV.IdSede=S.IdSede and  S.IdSede= #{idSede}
     </if>
-      
+     <if test="fechaIni != null">
+        AND V.Fecha&gt;= #{fechaIni}
+    </if>
+    <if test="fechaFin != null">
+        AND V.Fecha &lt;= #{fechaFin}
+    </if>
      <if test="estado != null">
-        AND VENTA.Estado='Activo'
+        AND V.Estado=#{estado}
     </if>  
       
 </where>
+group by idVenta
 </select>
 
 
@@ -28,12 +40,20 @@ from VENTA
  <select id="getNextCodigo" resultType="java.lang.String">
 	select max(IdVenta) from VENTA
 </select>
+
+ <select id="getNextLineaCodigo" resultType="java.lang.String">
+	select max(IdLineaVenta) from LINEA_VENTA
+</select>
  
  <insert id="insertVenta" parameterType="IngSoft.venta.bean.VentaBeanData" flushCache="true">
-	insert into VENTA(IdVenta,IdSocio,Estado,IdEmpleado,Fecha,Observacion,MontoTotal)
-	values (#{idVenta},#{idSocio},'Activo',#{idEmpleado},#{fechaVenta},'Venta de productos',0)
+	insert into VENTA(IdEmpleado,IdVenta,Estado,Fecha,Observacion,MontoTotal)
+	values ('EMP000001',#{idVenta},'Activo',#{fechaVenta},'Venta de productos',#{subTotal})
 </insert>
- 
+
+ <insert id="insertLineaVenta" parameterType="IngSoft.venta.bean.VentaBeanData" flushCache="true">
+	insert into LINEA_VENTA(IdLineaVenta,IdSede,IdProductoProv,IdVenta,Cantidad,SubTotal)
+	values (#{idLineaVenta},#{idSede},#{idProducto},#{idVenta},#{cantidad},#{precioU})
+</insert> 
  
 
 
@@ -48,6 +68,18 @@ from VENTA  where IdVenta=#{idVenta}
 
 
 </select>	
+
+<select id="getProductos"  resultType="IngSoft.venta.bean.VentaBeanData">
+Select
+PP.IdProductoProv as IdProducto,
+PP.Nombre as producto,
+PP.PrecioUnitario as precioUnitario,
+IF ((Select SUM(PRODUCTOXSEDE.Cantidad) as cantidad from PRODUCTOXSEDE WHERE IdProductoProv=IdProducto) is NULL,0, cantidad) as cantidadComprada,
+IF ((Select SUM(LINEA_VENTA.Cantidad) as cantidad from LINEA_VENTA WHERE IdProductoProv=IdProducto) is NULL,0,cantidad) as cantidadVendida,
+PS.IdSede as idSede
+from PRODUCTO_PROV PP, PRODUCTOXSEDE PS WHERE PP.IdProductoProv=PS.IdProductoProv and PP.Estado ='Activo'
+
+</select>
 	
 	</mapper>
 	

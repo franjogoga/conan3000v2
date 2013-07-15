@@ -9,6 +9,7 @@ public class SMVVentaProductos extends CoServlet{
 	@Override
 	protected void initAcciones() {
 		acciones.put("Buscar", new AccionBuscarVenta());
+		acciones.put("BuscarNuevo", new AccionBuscarNuevaVenta());
 		acciones.put("Consultar", new AccionConsultarVenta());
 		//acciones.put("Registrar", new AccionRegistrarVentaProductos()); 
 		//acciones.put("RegistrarVenta", new AccionRegistrarVenta()); 

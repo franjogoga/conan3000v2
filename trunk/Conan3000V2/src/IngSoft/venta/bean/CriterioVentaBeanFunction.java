@@ -1,5 +1,7 @@
 package IngSoft.venta.bean;
 
+import java.sql.Date;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Vector;
@@ -20,12 +22,21 @@ public class CriterioVentaBeanFunction {
 		CriterioVentaBeanData criterioVentaData= new CriterioVentaBeanData();
 		
 		//criterioMembresiaData.setTipo(Integer.parseInt(request.getParameter("cmbTipoEvento")==null?"0":request.getParameter("cmbTipoEvento")));
-		criterioVentaData.setIdVenta(request.getParameter("txtVenta")+"%");
-		//criterioProductoData.setDescripcion((request.getParameter("txtDescripcion")+"%"));
-		//if (request.getParameter("rButton")!=null){
-		//String est;
-		//est=request.getParameter("rButton");
-		//criterioProductoData.setEstado(est);}
+		try{
+		criterioVentaData.setIdSede(request.getParameter("cmbSede"));
+		
+		if(request.getParameter("fFechaIni")!=null && request.getParameter("fFechaFin")!=null){
+			criterioVentaData.setFechaIni(new Date(DF.parse(request.getParameter("fFechaIni")).getTime()));
+			criterioVentaData.setFechaFin(new Date(DF.parse(request.getParameter("fFechaFin")).getTime()));
+			}else{
+				criterioVentaData.setFechaIni(null);
+				criterioVentaData.setFechaFin(null);
+			}
+			
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
 		return criterioVentaData;				
 	}
 	
